@@ -33,6 +33,11 @@ public interface VmsService {
 
     interface List {
         @Out Vm[] vms();
+
+        /**
+         * A query string used to restrict the returned virtual machines.
+         */
+        @In String search();
     }
 
     @Service VmService vm(String id);

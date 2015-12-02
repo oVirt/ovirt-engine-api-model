@@ -34,6 +34,11 @@ public interface DisksService {
          * Sets the maximum number of disks to return. If not specified all the disks are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned disks.
+         */
+        @In String search();
     }
 
     @Service DiskService disk(String id);

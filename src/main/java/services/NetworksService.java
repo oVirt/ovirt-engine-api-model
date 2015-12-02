@@ -34,6 +34,11 @@ public interface NetworksService {
          * Sets the maximum number of networks to return. If not specified all the networks are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned networks.
+         */
+        @In String search();
     }
 
     @Service NetworkService network(String id);

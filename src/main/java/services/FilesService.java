@@ -30,6 +30,11 @@ public interface FilesService {
          * Sets the maximum number of files to return. If not specified all the files are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned files.
+         */
+        @In String search();
     }
 
     @Service FileService file(String id);

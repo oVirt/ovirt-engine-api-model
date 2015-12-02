@@ -30,6 +30,11 @@ public interface DomainGroupsService {
          * Sets the maximum number of groups to return. If not specified all the groups are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned groups.
+         */
+        @In String search();
     }
 
     @Service DomainGroupService group(String id);

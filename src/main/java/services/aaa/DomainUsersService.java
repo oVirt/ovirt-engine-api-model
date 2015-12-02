@@ -30,6 +30,11 @@ public interface DomainUsersService {
          * Sets the maximum number of users to return. If not specified all the users are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned users.
+         */
+        @In String search();
     }
 
     @Service DomainUserService user(String id);

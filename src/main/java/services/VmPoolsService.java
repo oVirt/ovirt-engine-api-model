@@ -34,6 +34,11 @@ public interface VmPoolsService {
          * Sets the maximum number of pools to return. If not specified all the pool are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned pools.
+         */
+        @In String search();
     }
 
     @Service VmPoolService pool(String id);

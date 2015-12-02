@@ -34,6 +34,11 @@ public interface ClustersService {
          * Sets the maximum number of clusters to return. If not specified all the clusters are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned clusters.
+         */
+        @In String search();
     }
 
     @Service ClusterService cluster(String id);

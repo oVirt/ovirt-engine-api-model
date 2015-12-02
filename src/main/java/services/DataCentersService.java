@@ -34,6 +34,11 @@ public interface DataCentersService {
          * Sets the maximum number of data centers to return. If not specified all the data centers are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned data centers.
+         */
+        @In String search();
     }
 
     @Service DataCenterService dataCenter(String id);

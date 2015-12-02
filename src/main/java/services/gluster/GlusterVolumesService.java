@@ -42,6 +42,11 @@ public interface GlusterVolumesService {
          * Sets the maximum number of volumes to return. If not specified all the volumes are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned volumes.
+         */
+        @In String search();
     }
 
     @Service GlusterVolumeService volume(String id);

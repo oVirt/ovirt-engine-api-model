@@ -34,6 +34,11 @@ public interface TemplatesService {
          * Sets the maximum number of templates to return. If not specified all the templates are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned templates.
+         */
+        @In String search();
     }
 
     @Service TemplateService template(String id);

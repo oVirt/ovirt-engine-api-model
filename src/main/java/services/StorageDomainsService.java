@@ -34,6 +34,11 @@ public interface StorageDomainsService {
          * Sets the maximum number of storage domains to return. If not specified all the storage domains are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned storage domains.
+         */
+        @In String search();
     }
 
     @Service StorageDomainService storageDomain(String id);

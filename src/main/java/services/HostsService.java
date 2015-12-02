@@ -42,6 +42,11 @@ public interface HostsService {
          * Sets the maximum number of hosts to return. If not specified all the hosts are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned hosts.
+         */
+        @In String search();
     }
 
     @Service HostService host(String id);

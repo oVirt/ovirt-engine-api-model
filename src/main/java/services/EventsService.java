@@ -34,6 +34,11 @@ public interface EventsService {
          * Sets the maximum number of events to return. If not specified all the events are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned events.
+         */
+        @In String search();
     }
 
     interface Undelete {
