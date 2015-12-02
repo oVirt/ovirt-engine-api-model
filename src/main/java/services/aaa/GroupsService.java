@@ -39,6 +39,13 @@ public interface GroupsService {
          * A query string used to restrict the returned groups.
          */
         @In String search();
+
+        /**
+         * Indicates if the search performed using the `search` parameter should be performed taking case into
+         * account. The default value is `true`, which means that case is taken into account. If you want to search
+         * ignoring case set it to `false`.
+         */
+        @In Boolean caseSensitive();
     }
 
     @Service GroupService group(String id);
