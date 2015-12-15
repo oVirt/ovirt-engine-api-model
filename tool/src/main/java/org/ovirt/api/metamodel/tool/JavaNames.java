@@ -38,6 +38,11 @@ public interface JavaNames {
     String getJavaMemberStyleName(Name name);
 
     /**
+     * Returns a representation of the given name using the capitalization style typically used for Java properties.
+     */
+    String getJavaPropertyStyleName(Name name);
+
+    /**
      * Returns a representation of the given name using the capitalization style typically used for Java constants: all
      * the words in uppercase and separated by underscores.
      */

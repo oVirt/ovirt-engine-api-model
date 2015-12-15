@@ -56,6 +56,7 @@ public class VersionedJavaNames implements JavaNames {
     }
 
     /**
+     * {@inheritDoc}
      */
     public String getJavaClassStyleName(Name name) {
         // Classes need to have the version prefix.
@@ -63,10 +64,19 @@ public class VersionedJavaNames implements JavaNames {
     }
 
     /**
-     * Members don't need the version prefix.
+     * {@inheritDoc}
      */
     public String getJavaMemberStyleName(Name name) {
-        return javaNames.getJavaMemberStyleName(addPrefix(name));
+        // Members don't need the version prefix:
+        return javaNames.getJavaMemberStyleName(name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getJavaPropertyStyleName(Name name) {
+        // Properties don't need a version prefix:
+        return javaNames.getJavaPropertyStyleName(name);
     }
 
     /**
