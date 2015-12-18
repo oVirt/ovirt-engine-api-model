@@ -172,12 +172,6 @@ public class JaxrsGenerator extends JavaGenerator {
             javaBuffer.addLine("@HEAD");
             javaBuffer.addLine("Response head();");
             javaBuffer.addLine();
-
-            // TODO: This is for V4 experiments, should be removed in the future.
-            javaBuffer.addImport(Path.class);
-            javaBuffer.addLine("@Path(\"v4\")");
-            javaBuffer.addLine("V4Resource getV4Resource();");
-            javaBuffer.addLine();
         }
 
         // Generate the methods:

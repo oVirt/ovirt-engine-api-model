@@ -40,11 +40,6 @@ public class JavaClassName {
         simpleName = newClassName;
     }
 
-    public void setClass(Class<?> newClass) {
-        packageName = newClass.getPackage().getName();
-        simpleName = newClass.getSimpleName();
-    }
-
     @Override
     public String toString() {
         return packageName + "." + simpleName;

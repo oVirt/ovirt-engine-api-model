@@ -18,7 +18,6 @@ package org.ovirt.api.metamodel.tool;
 
 import static java.util.stream.Collectors.joining;
 
-import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -33,13 +32,10 @@ import org.ovirt.api.metamodel.concepts.Name;
 @Style("plain")
 @Default
 public class PlainJavaNames implements JavaNames {
-    // Reference to the object used to do calculations with words:
+    /**
+     * Reference to the object used to do computations with words.
+     */
     @Inject private Words words;
-
-    // We need the Java reserved words in order to avoid producing names that aren't legal in Java:
-    @Inject
-    @ReservedWords(language = "java")
-    private Set<String> javaReservedWords;
 
     /**
      * {@inheritDoc}
@@ -57,19 +53,7 @@ public class PlainJavaNames implements JavaNames {
         StringBuilder buffer = new StringBuilder();
         name.words().findFirst().map(String::toLowerCase).ifPresent(buffer::append);
         name.words().skip(1).map(words::capitalize).forEach(buffer::append);
-        String result = buffer.toString();
-        if (javaReservedWords.contains(result)) {
-            result = result + "_";
-        }
-        return result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getJavaPropertyStyleName(Name name) {
-        return getJavaClassStyleName(name);
+        return buffer.toString();
     }
 
     /**

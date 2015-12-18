@@ -18,6 +18,7 @@ package org.ovirt.api.metamodel.tool;
 
 import static java.util.stream.Collectors.joining;
 
+import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -39,6 +40,11 @@ public class JaxrsNames {
     @Inject JavaPackages javaPackages;
     @Inject JavaNames javaNames;
 
+    // We need the Java reserved words in order to avoid producing names that aren't legal in Java:
+    @Inject
+    @ReservedWords(language = "java")
+    private Set<String> javaReservedWords;
+
     /**
      * Calculates the name of the JAX-RS interface that corresponds to the given service.
      */
@@ -55,12 +61,9 @@ public class JaxrsNames {
      * Calculates the JAX-RS method that corresponds to the given method name.
      */
     public String getMethodName(Name name) {
-        // The object that calculates Java names adds "_" as a suffix to the name if it clashes with a Java reserved
-        // word, but in the JAX-RS interface the rules is to add "do" as a prefix instead, so we need to adapt the
-        // calculated name:
         String result = javaNames.getJavaMemberStyleName(name);
-        if (result.endsWith("_")) {
-            result = "do" + words.capitalize(result.substring(0, result.length() - 1));
+        if (javaReservedWords.contains(result)) {
+            result = "do" + words.capitalize(result);
         }
         return result;
     }

@@ -14,14 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package org.ovirt.api.metamodel.tool;
+package org.ovirt.api.metamodel.annotations;
 
-import org.ovirt.api.metamodel.concepts.Model;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * This class generates the JSON readers and writers.
+ * This annotation is used to mark methods that represent constraints that represent allowed conditions.
  */
-public class JsonSupportGenerator extends JavaGenerator {
-    public void generate(Model model) {
-    }
+@Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD })
+@Retention(RetentionPolicy.SOURCE)
+public @interface Allowed {
 }
+

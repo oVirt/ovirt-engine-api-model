@@ -47,27 +47,19 @@ public class Tool {
     @Inject private SchemaGenerator schemaGenerator;
     @Inject private JaxrsGenerator jaxrsGenerator;
     @Inject private EnumGenerator enumGenerator;
-    @Inject private StructsGenerator structsGenerator;
-    @Inject private XmlSupportGenerator xmlSupportGenerator;
-    @Inject private JsonSupportGenerator jsonSupportGenerator;
 
     // The names of the command line options:
     private static final String MODEL_OPTION = "model";
     private static final String IN_SCHEMA_OPTION = "in-schema";
     private static final String OUT_SCHEMA_OPTION = "out-schema";
-    private static final String XML_DESCRIPTION_OPTION = "xml-description";
-    private static final String JSON_DESCRIPTION_OPTION = "json-description";
+    private static final String XML_OPTION = "xml";
+    private static final String JSON_OPTION = "json";
     private static final String JAVA_OPTION = "java";
     private static final String VERSION_PREFIX_OPTION = "version-prefix";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
     private static final String XJC_PACKAGE_OPTION = "xjc-package";
-    private static final String TYPES_PACKAGE_OPTION = "types-package";
-    private static final String CONTAINERS_PACKAGE_OPTION = "containers-package";
-    private static final String BUILDERS_PACKAGE_OPTION = "builders-package";
-    private static final String JSON_PACKAGE_OPTION = "json-package";
-    private static final String XML_PACKAGE_OPTION = "xml-package";
 
     public void run(String[] args) throws Exception {
         // Create the command line options:
@@ -86,7 +78,7 @@ public class Tool {
 
         // Options for the location of the generated XML and JSON model representations:
         options.addOption(Option.builder()
-            .longOpt(XML_DESCRIPTION_OPTION)
+            .longOpt(XML_OPTION)
             .desc(
                 "The location of the generated XML description of the model. If not specified then the XML " +
                 "description isn't generated.")
@@ -97,7 +89,7 @@ public class Tool {
             .build()
         );
         options.addOption(Option.builder()
-            .longOpt(JSON_DESCRIPTION_OPTION)
+            .longOpt(JSON_OPTION)
             .desc(
                 "The location of the generated JSON description of the model. If not specified then the JSON " +
                 "description isn't generated.")
@@ -155,46 +147,6 @@ public class Tool {
             .build()
         );
         options.addOption(Option.builder()
-            .longOpt(TYPES_PACKAGE_OPTION)
-            .desc("The name of the Java package for the generated type interfaces.")
-            .required(false)
-            .hasArg(true)
-            .argName("PACKAGE")
-            .build()
-        );
-        options.addOption(Option.builder()
-            .longOpt(CONTAINERS_PACKAGE_OPTION)
-            .desc("The name of the Java package for the generated type containers.")
-            .required(false)
-            .hasArg(true)
-            .argName("PACKAGE")
-            .build()
-        );
-        options.addOption(Option.builder()
-            .longOpt(BUILDERS_PACKAGE_OPTION)
-            .desc("The name of the Java package for the generated type builders.")
-            .required(false)
-            .hasArg(true)
-            .argName("PACKAGE")
-            .build()
-        );
-        options.addOption(Option.builder()
-            .longOpt(JSON_PACKAGE_OPTION)
-            .desc("The name of the Java package for the generated JSON readers and writers.")
-            .required(false)
-            .hasArg(true)
-            .argName("PACKAGE")
-            .build()
-        );
-        options.addOption(Option.builder()
-            .longOpt(XML_PACKAGE_OPTION)
-            .desc("The name of the Java package for the generated XML readers and writers.")
-            .required(false)
-            .hasArg(true)
-            .argName("PACKAGE")
-            .build()
-        );
-        options.addOption(Option.builder()
             .longOpt(VERSION_PREFIX_OPTION)
             .desc("The version prefix to add to the generated Java class names, for example V4.")
             .required(false)
@@ -218,11 +170,12 @@ public class Tool {
 
         // Extract the locations of files and directories from the command line:
         File modelFile = (File) line.getParsedOptionValue(MODEL_OPTION);
-        File xmlFile = (File) line.getParsedOptionValue(XML_DESCRIPTION_OPTION);
-        File jsonFile = (File) line.getParsedOptionValue(JSON_DESCRIPTION_OPTION);
+        File xmlFile = (File) line.getParsedOptionValue(XML_OPTION);
+        File jsonFile = (File) line.getParsedOptionValue(JSON_OPTION);
         File inSchemaFile = (File) line.getParsedOptionValue(IN_SCHEMA_OPTION);
         File outSchemaFile = (File) line.getParsedOptionValue(OUT_SCHEMA_OPTION);
         File javaDir = (File) line.getParsedOptionValue(JAVA_OPTION);
+
 
         // Analyze the model files:
         Model model = new Model();
@@ -261,26 +214,6 @@ public class Tool {
         if (xjcPackage != null) {
             javaPackages.setXjcPackageName(xjcPackage);
         }
-        String typesPackage = line.getOptionValue(TYPES_PACKAGE_OPTION);
-        if (typesPackage != null) {
-            javaPackages.setTypesPackageName(typesPackage);
-        }
-        String containersPackage = line.getOptionValue(CONTAINERS_PACKAGE_OPTION);
-        if (containersPackage != null) {
-            javaPackages.setContainersPackageName(containersPackage);
-        }
-        String buildersPackage = line.getOptionValue(BUILDERS_PACKAGE_OPTION);
-        if (buildersPackage != null) {
-            javaPackages.setBuildersPackageName(buildersPackage);
-        }
-        String jsonPackage = line.getOptionValue(JSON_PACKAGE_OPTION);
-        if (jsonPackage != null) {
-            javaPackages.setJsonPackageName(jsonPackage);
-        }
-        String xmlPackage = line.getOptionValue(XML_PACKAGE_OPTION);
-        if (xmlPackage != null) {
-            javaPackages.setXmlPackageName(xmlPackage);
-        }
 
         // Generate the XML schema:
         if (inSchemaFile != null && outSchemaFile != null) {
@@ -298,18 +231,6 @@ public class Tool {
             // Generate the enums:
             enumGenerator.setOutDir(javaDir);
             enumGenerator.generate(model);
-
-            // Generate the structs:
-            structsGenerator.setOutDir(javaDir);
-            structsGenerator.generate(model);
-
-            // Generate JSON support classes:
-            jsonSupportGenerator.setOutDir(javaDir);
-            jsonSupportGenerator.generate(model);
-
-            // Generate XML support classes:
-            xmlSupportGenerator.setOutDir(javaDir);
-            xmlSupportGenerator.generate(model);
         }
     }
 }

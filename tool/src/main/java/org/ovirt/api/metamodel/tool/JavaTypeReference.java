@@ -36,10 +36,6 @@ public class JavaTypeReference {
         text = newText;
     }
 
-    public void setText(Class<?> clazz) {
-        text = clazz.getSimpleName();
-    }
-
     public List<JavaClassName> getImports() {
         return new ArrayList<>(imports);
     }
@@ -58,18 +54,6 @@ public class JavaTypeReference {
         newImport.setPackageName(packageName);
         newImport.setSimpleName(className);
         imports.add(newImport);
-    }
-
-    public void addImport(Class<?> clazz) {
-        JavaClassName newImport = new JavaClassName();
-        newImport.setPackageName(clazz.getPackage().getName());
-        newImport.setSimpleName(clazz.getSimpleName());
-        imports.add(newImport);
-    }
-
-    @Override
-    public String toString() {
-        return text;
     }
 }
 

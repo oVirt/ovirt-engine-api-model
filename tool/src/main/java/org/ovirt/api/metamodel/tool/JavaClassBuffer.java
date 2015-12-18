@@ -113,17 +113,8 @@ public class JavaClassBuffer {
      * Adds a line to the body of the class.
      */
     public void addLine(String line) {
-        // Check if the line is the begin of end of a block:
-        boolean isBegin =
-            line.endsWith("{") ||
-            line.startsWith("case ");
-        boolean isEnd =
-            line.endsWith("}") ||
-            line.endsWith("};") ||
-            line.endsWith("break;");
-
-        // If the line is the end of a block then reduce the indentation:
-        if (isEnd) {
+        // Check if the line is the end of a block, and reduce the indentation level accordingly:
+        if (line.endsWith("}")) {
             if (level > 0) {
                 level--;
             }
@@ -138,8 +129,8 @@ public class JavaClassBuffer {
         line = buffer.toString();
         lines.add(line);
 
-        // If the line is the begin of a block then increase the indentation level:
-        if (isBegin) {
+        // Check if the line is the beginning of a block, and increase the indentation level accordingly:
+        if (line.endsWith("{")) {
             level++;
         }
     }
