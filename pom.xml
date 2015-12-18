@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.ovirt.engine.api</groupId>
+  <artifactId>model</artifactId>
+  <version>4.0.0-SNAPSHOT</version>
+
+  <name>oVirt API Model</name>
+
+  <description>
+    Model management tools for the oVirt Engine API.
+  </description>
+
+  <url>http://www.ovirt.org</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Juan Hernandez</name>
+      <email>juan.hernandez@redhat.com</email>
+      <organization>oVirt</organization>
+      <organizationUrl>http://www.ovirt.org</organizationUrl>
+    </developer>
+    <developer>
+      <name>Ori Liel</name>
+      <email>oliel@redhat.com</email>
+      <organization>oVirt</organization>
+      <organizationUrl>http://www.ovirt.org</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</connection>
+    <developerConnection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</developerConnection>
+    <url>git://gerrit.ovirt.org/ovirt-engine-api-model.git</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+
+    <!-- Always use UTF-8 for source code: -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- The version of the metamodel used to specify the model and to generate
+         code from it: -->
+    <metamodel.version>1.0.0</metamodel.version>
+
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.ovirt.engine.api</groupId>
+      <artifactId>metamodel-annotations</artifactId>
+      <version>${metamodel.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+
+        <!-- Make sure we use Java 8: -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.2</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <additionalparam>-Xdoclint:none</additionalparam>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.2</version>
+        <configuration>
+          <tagNameFormat>@{version}</tagNameFormat>
+          <pushChanges>false</pushChanges>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <profiles>
+
+    <!-- This profile is used to sign the artifacts when performing
+         releases. -->
+    <profile>
+      <id>sign</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is used to generate the JSON and XML descriptions
+         of the model: -->
+    <profile>
+      <id>describe</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+              <execution>
+                <id>describe</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+                <configuration>
+                  <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
+                  <arguments>
+                    <argument>--model</argument>
+                    <argument>${project.basedir}/src/main/java</argument>
+                    <argument>--json-description</argument>
+                    <argument>${project.basedir}/target/model.json</argument>
+                    <argument>--xml-description</argument>
+                    <argument>${project.basedir}/target/model.xml</argument>
+                  </arguments>
+                  <includePluginDependencies>true</includePluginDependencies>
+                  <includeProjectDependencies>false</includeProjectDependencies>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.ovirt.engine.api</groupId>
+                <artifactId>metamodel-tool</artifactId>
+                <version>${metamodel.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+
+</project>
