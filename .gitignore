@@ -1,5 +1,11 @@
 *.class
 *.iml
+.bash_history
+exported-artifacts/
+logs*
+mocker*
 pom.xml.releaseBackup
 release.properties
+repository/
+settings.xml
 target/
