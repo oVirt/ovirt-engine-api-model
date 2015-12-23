@@ -56,6 +56,7 @@ public class Tool {
     private static final String XML_OPTION = "xml";
     private static final String JSON_OPTION = "json";
     private static final String JAVA_OPTION = "java";
+    private static final String JAXRS_OPTION = "jaxrs";
     private static final String VERSION_PREFIX_OPTION = "version-prefix";
 
     // Names of options for Java package names:
@@ -135,6 +136,15 @@ public class Tool {
             .build()
         );
         options.addOption(Option.builder()
+            .longOpt(JAXRS_OPTION)
+            .desc("The directory where the generated JAX-RS source will be created.")
+            .type(File.class)
+            .required(false)
+            .hasArg(true)
+            .argName("DIRECTORY")
+            .build()
+        );
+        options.addOption(Option.builder()
             .longOpt(JAXRS_PACKAGE_OPTION)
             .desc("The name of the Java package for JAX-RS interfaces.")
             .required(false)
@@ -202,6 +212,7 @@ public class Tool {
         File jsonFile = (File) line.getParsedOptionValue(JSON_OPTION);
         File inSchemaFile = (File) line.getParsedOptionValue(IN_SCHEMA_OPTION);
         File outSchemaFile = (File) line.getParsedOptionValue(OUT_SCHEMA_OPTION);
+        File jaxrsDir = (File) line.getParsedOptionValue(JAXRS_OPTION);
         File javaDir = (File) line.getParsedOptionValue(JAVA_OPTION);
 
         // Analyze the model files:
@@ -261,17 +272,17 @@ public class Tool {
             schemaGenerator.generate(model);
         }
 
-        if (javaDir != null) {
-            // Generate the JAX-RS interfaces:
-            FileUtils.forceMkdir(javaDir);
-            jaxrsGenerator.setOutDir(javaDir);
+        // Generate the JAX-RS source:
+        if (jaxrsDir != null) {
+            FileUtils.forceMkdir(jaxrsDir);
+            jaxrsGenerator.setOutDir(jaxrsDir);
             jaxrsGenerator.generate(model);
+        }
 
-            // Generate the enums:
+        // Generate the Java source:
+        if (javaDir != null) {
             enumGenerator.setOutDir(javaDir);
             enumGenerator.generate(model);
-
-            // Generate the structs:
             structsGenerator.setOutDir(javaDir);
             structsGenerator.generate(model);
         }
