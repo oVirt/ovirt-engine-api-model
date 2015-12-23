@@ -34,6 +34,11 @@ public interface WeightsService {
          * Sets the maximum number of weights to return. If not specified all the weights are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service WeightService weight(String id);

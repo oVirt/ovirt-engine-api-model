@@ -90,6 +90,11 @@ public interface HostService extends MeasurableService {
 
     interface Get {
         @Out Host host();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Install {

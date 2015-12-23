@@ -34,6 +34,11 @@ public interface FiltersService {
          * Sets the maximum number of filters to return. If not specified all the filters are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service FilterService filter(String id);

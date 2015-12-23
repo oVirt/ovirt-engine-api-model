@@ -34,6 +34,11 @@ public interface BalancesService {
          * Sets the maximum number of balances to return. If not specified all the balances are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service BalanceService balance(String id);

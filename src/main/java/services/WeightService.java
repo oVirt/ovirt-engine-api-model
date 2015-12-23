@@ -25,6 +25,11 @@ import types.Weight;
 public interface WeightService {
     interface Get {
         @Out Weight weight();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Remove {

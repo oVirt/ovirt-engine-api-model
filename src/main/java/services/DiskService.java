@@ -32,6 +32,11 @@ public interface DiskService extends MeasurableService {
          * Indicates if the copy should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Export {
@@ -41,6 +46,11 @@ public interface DiskService extends MeasurableService {
          * Indicates if the export should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Get {
@@ -54,6 +64,11 @@ public interface DiskService extends MeasurableService {
          * Indicates if the move should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Remove {

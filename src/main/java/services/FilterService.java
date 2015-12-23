@@ -24,7 +24,12 @@ import types.Filter;
 @Service
 public interface FilterService {
     interface Get {
-        @Out Filter filter();
+        @Out Filter result();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Remove {

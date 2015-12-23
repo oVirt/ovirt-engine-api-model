@@ -32,6 +32,11 @@ public interface VmPoolService {
 
     interface Get {
         @Out VmPool pool();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Update {

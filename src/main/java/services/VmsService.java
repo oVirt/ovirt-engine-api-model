@@ -45,6 +45,11 @@ public interface VmsService {
          * ignoring case set it to `false`.
          */
         @In Boolean caseSensitive();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service VmService vm(String id);

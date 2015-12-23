@@ -25,6 +25,11 @@ import types.DataCenter;
 public interface DataCenterService {
     interface Get {
         @Out DataCenter dataCenter();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Update {

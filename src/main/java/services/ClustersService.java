@@ -46,6 +46,11 @@ public interface ClustersService {
          * ignoring case set it to `false`.
          */
         @In Boolean caseSensitive();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service ClusterService cluster(String id);

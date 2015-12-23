@@ -34,6 +34,11 @@ public interface SchedulingPoliciesService {
          * Sets the maximum number of policies to return. If not specified all the policies are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service SchedulingPolicyService policy(String id);

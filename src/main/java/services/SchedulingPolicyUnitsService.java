@@ -30,6 +30,11 @@ public interface SchedulingPolicyUnitsService {
          * Sets the maximum number of policy units to return. If not specified all the policy units are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service SchedulingPolicyUnitService unit(String id);

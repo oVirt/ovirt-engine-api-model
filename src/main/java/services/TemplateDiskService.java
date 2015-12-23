@@ -28,6 +28,11 @@ public interface TemplateDiskService {
          * Indicates if the copy should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Export {
@@ -35,6 +40,11 @@ public interface TemplateDiskService {
          * Indicates if the export should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Get {

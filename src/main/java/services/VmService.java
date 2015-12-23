@@ -122,6 +122,11 @@ public interface VmService extends MeasurableService {
          * ```
          */
         @In Boolean nextRun();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Logon {
@@ -223,6 +228,11 @@ public interface VmService extends MeasurableService {
          * Indicates if the action should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Stop {

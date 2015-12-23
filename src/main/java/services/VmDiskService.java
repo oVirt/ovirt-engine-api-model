@@ -42,6 +42,11 @@ public interface VmDiskService extends MeasurableService {
          * Indicates if the export should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Get {
@@ -53,6 +58,11 @@ public interface VmDiskService extends MeasurableService {
          * Indicates if the move should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Update {

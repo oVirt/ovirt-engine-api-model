@@ -25,6 +25,11 @@ import types.SchedulingPolicyUnit;
 public interface SchedulingPolicyUnitService {
     interface Get {
         @Out SchedulingPolicyUnit unit();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Remove {

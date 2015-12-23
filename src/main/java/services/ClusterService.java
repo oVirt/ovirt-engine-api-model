@@ -27,6 +27,11 @@ import types.Cluster;
 public interface ClusterService {
     interface Get {
         @Out Cluster cluster();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Update {

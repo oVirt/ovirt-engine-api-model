@@ -25,6 +25,11 @@ import types.Balance;
 public interface BalanceService {
     interface Get {
         @Out Balance balance();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface Remove {

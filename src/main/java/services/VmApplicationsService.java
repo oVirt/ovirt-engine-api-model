@@ -30,6 +30,11 @@ public interface VmApplicationsService {
          * Sets the maximum number of applications to return. If not specified all the applications are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     @Service VmApplicationService application(String id);

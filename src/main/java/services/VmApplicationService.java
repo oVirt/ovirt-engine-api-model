@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Application;
@@ -24,5 +25,10 @@ import types.Application;
 public interface VmApplicationService {
     interface Get {
         @Out Application application();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 }

@@ -27,6 +27,11 @@ import types.StorageDomain;
 public interface StorageDomainService {
     interface Get {
         @Out StorageDomain storageDomain();
+
+        /**
+         * Indicates if the results should be filtered according to the permissions of the user.
+         */
+        @In Boolean filter();
     }
 
     interface IsAttached {
