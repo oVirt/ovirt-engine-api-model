@@ -585,7 +585,7 @@ public class StructsGenerator extends JavaGenerator {
         Name name = NameParser.parseUsingCase("Builders");
         javaBuffer = new JavaClassBuffer();
         JavaClassName factoryName = new JavaClassName();
-        factoryName.setPackageName(javaPackages.getXjcPackageName());
+        factoryName.setPackageName(javaPackages.getBuildersPackageName());
         factoryName.setSimpleName(javaNames.getJavaClassStyleName(name));
         javaBuffer.setClassName(factoryName);
         generateBuildersFactorySource(model);
