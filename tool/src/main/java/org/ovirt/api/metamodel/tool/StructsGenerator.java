@@ -117,7 +117,7 @@ public class StructsGenerator extends JavaGenerator {
 
         // Get the type reference:
         Type type = member.getType();
-        JavaTypeReference typeReference = javaTypes.getTypeReference(type);
+        JavaTypeReference typeReference = javaTypes.getTypeReference(type, false);
         javaBuffer.addImports(typeReference.getImports());
 
         // Generate the getter:
@@ -128,7 +128,7 @@ public class StructsGenerator extends JavaGenerator {
         if (type instanceof ListType) {
             ListType listType = (ListType) type;
             Type elementType = listType.getElementType();
-            JavaTypeReference elementReference = javaTypes.getTypeReference(elementType);
+            JavaTypeReference elementReference = javaTypes.getTypeReference(elementType, true);
             javaBuffer.addImports(elementReference.getImports());
             javaBuffer.addImport(Stream.class);
             javaBuffer.addLine("Stream<%1$s> get%2$sStream();", elementReference, property);
@@ -197,7 +197,7 @@ public class StructsGenerator extends JavaGenerator {
 
         // Get the type reference:
         Type type = member.getType();
-        JavaTypeReference typeReference = javaTypes.getTypeReference(type);
+        JavaTypeReference typeReference = javaTypes.getTypeReference(type, true);
         javaBuffer.addImports(typeReference.getImports());
 
         // Generate the field:
@@ -212,7 +212,7 @@ public class StructsGenerator extends JavaGenerator {
 
         // Get the type reference:
         Type type = member.getType();
-        JavaTypeReference typeReference = javaTypes.getTypeReference(type);
+        JavaTypeReference typeReference = javaTypes.getTypeReference(type, false);
         javaBuffer.addImports(typeReference.getImports());
 
         // Generate the getter:
@@ -251,22 +251,47 @@ public class StructsGenerator extends JavaGenerator {
         }
 
         // Generate the setter:
-        javaBuffer.addLine("public void set%1$s(%2$s new%1$s) {", property, typeReference.getText());
-        if (type instanceof ListType) {
+        if (type instanceof PrimitiveType) {
+            Model model = type.getModel();
+            if (type == model.getBooleanType()) {
+                // Generate the method that takes a "boolean" parameter:
+                javaBuffer.addLine("public void set%1$s(boolean new%1$s) {", property);
+                javaBuffer.addLine(  "%1$s = Boolean.valueOf(new%2$s);", field, property);
+                javaBuffer.addLine("}");
+                javaBuffer.addLine();
+
+                // Generate the method that takes a "Boolean" parameter:
+                javaBuffer.addLine("public void set%1$s(Boolean new%1$s) {", property);
+                javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+                javaBuffer.addLine("}");
+                javaBuffer.addLine();
+            }
+            else {
+                javaBuffer.addLine("public void set%1$s(%2$s new%1$s) {", property, typeReference.getText());
+                javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+                javaBuffer.addLine("}");
+                javaBuffer.addLine();
+            }
+        }
+        else if (type instanceof ListType) {
             javaBuffer.addImport(Collections.class);
             javaBuffer.addImport(ArrayList.class);
-            javaBuffer.addLine("if (new%1$s == null) {", property);
-            javaBuffer.addLine(  "%1$s = Collections.emptyList();", field);
+            javaBuffer.addLine("public void set%1$s(%2$s new%1$s) {", property, typeReference.getText());
+            javaBuffer.addLine(  "if (new%1$s == null) {", property);
+            javaBuffer.addLine(    "%1$s = Collections.emptyList();", field);
+            javaBuffer.addLine(  "}");
+            javaBuffer.addLine(  "else {");
+            javaBuffer.addLine(    "%1$s = new ArrayList<>(new%2$s);", field, property);
+            javaBuffer.addLine(  "}");
             javaBuffer.addLine("}");
-            javaBuffer.addLine("else {");
-            javaBuffer.addLine(  "%1$s = new ArrayList<>(new%2$s);", field, property);
-            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
         else {
-            javaBuffer.addLine("%1$s = new%2$s;", field, property);
+            javaBuffer.addLine("public void set%1$s(%2$s new%1$s) {", property, typeReference.getText());
+            javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
-        javaBuffer.addLine("}");
-        javaBuffer.addLine();
 
         // Generate the checker:
         javaBuffer.addLine("public boolean has%1$s() {", property);
@@ -334,7 +359,7 @@ public class StructsGenerator extends JavaGenerator {
 
         // Get the type reference:
         Type type = member.getType();
-        JavaTypeReference typeReference = javaTypes.getTypeReference(type);
+        JavaTypeReference typeReference = javaTypes.getTypeReference(type, true);
         javaBuffer.addImports(typeReference.getImports());
 
         // Generate the field:
@@ -349,7 +374,7 @@ public class StructsGenerator extends JavaGenerator {
 
         // Get the type reference of the property:
         Type type = member.getType();
-        JavaTypeReference typeReference = javaTypes.getTypeReference(type);
+        JavaTypeReference typeReference = javaTypes.getTypeReference(type, false);
         JavaClassName thisName = javaTypes.getBuilderName(struct);
         javaBuffer.addImports(typeReference.getImports());
         javaBuffer.addImport(thisName);
@@ -520,7 +545,7 @@ public class StructsGenerator extends JavaGenerator {
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
             Type elementType = listType.getElementType();
-            JavaTypeReference elementReference = javaTypes.getTypeReference(elementType);
+            JavaTypeReference elementReference = javaTypes.getTypeReference(elementType, true);
             javaBuffer.addImports(elementReference.getImports());
 
             // Add one method that sets the list from another list:

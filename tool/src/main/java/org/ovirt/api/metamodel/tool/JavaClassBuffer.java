@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
@@ -66,7 +67,10 @@ public class JavaClassBuffer {
      * @param newClassName the fully qualified class name
      */
     public void addImport(JavaClassName newClassName) {
-        addImport(newClassName.getPackageName(), newClassName.getSimpleName());
+        String newPackageName = newClassName.getPackageName();
+        if (newPackageName != null) {
+            addImport(newPackageName, newClassName.getSimpleName());
+        }
     }
 
     /**
@@ -76,7 +80,7 @@ public class JavaClassBuffer {
      * @param newClassName the simple name of the class, without the package name
      */
     public void addImport(String newPackageName, String newClassName) {
-        if (!newPackageName.equals(className.getPackageName())) {
+        if (!Objects.equals(newPackageName, className.getPackageName())) {
             String newImport = newPackageName + "." + newClassName;
             imports.add(newImport);
         }

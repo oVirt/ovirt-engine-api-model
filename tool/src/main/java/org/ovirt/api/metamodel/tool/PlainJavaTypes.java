@@ -65,7 +65,7 @@ public class PlainJavaTypes implements JavaTypes {
 
     private JavaClassName getTypeName(Type type, String packageName, String suffix) {
         if (type instanceof PrimitiveType) {
-            return getPrimitiveTypeName((PrimitiveType) type);
+            return getPrimitiveTypeName((PrimitiveType) type, true);
         }
         if (type instanceof StructType) {
             JavaClassName name = new JavaClassName();
@@ -76,11 +76,16 @@ public class PlainJavaTypes implements JavaTypes {
         throw new RuntimeException("Don't know how to calculate the Java type name for type \"" + type + "\"");
     }
 
-    private JavaClassName getPrimitiveTypeName(PrimitiveType type) {
+    private JavaClassName getPrimitiveTypeName(PrimitiveType type, boolean preferWrapper) {
         JavaClassName name = new JavaClassName();
         Model model = type.getModel();
         if (type == model.getBooleanType()) {
-            name.setClass(Boolean.class);
+            if (preferWrapper) {
+                name.setClass(Boolean.class);
+            }
+            else {
+                name.setSimpleName("boolean");
+            }
         }
         else if (type == model.getStringType()) {
             name.setClass(String.class);
@@ -100,9 +105,9 @@ public class PlainJavaTypes implements JavaTypes {
         return name;
     }
 
-    public JavaTypeReference getTypeReference(Type type) {
+    public JavaTypeReference getTypeReference(Type type, boolean preferWrapper) {
         if (type instanceof PrimitiveType) {
-            JavaClassName name = getPrimitiveTypeName((PrimitiveType) type);
+            JavaClassName name = getPrimitiveTypeName((PrimitiveType) type, preferWrapper);
             JavaTypeReference reference = new JavaTypeReference();
             reference.addImport(name);
             reference.setText(name.getSimpleName());
@@ -127,7 +132,7 @@ public class PlainJavaTypes implements JavaTypes {
 
     private JavaTypeReference getListReference(ListType type) {
         Type elementType = type.getElementType();
-        JavaTypeReference reference = getTypeReference(elementType);
+        JavaTypeReference reference = getTypeReference(elementType, true);
         reference.addImport(List.class);
         reference.setText("List<" + reference.getText() + ">");
         return reference;

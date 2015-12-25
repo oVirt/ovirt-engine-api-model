@@ -47,7 +47,12 @@ public interface JavaTypes {
      * Calculates the type reference that should be generated for the given type. For example, for the type
      * {@code Vm[]} it returns the text {@code List<Vm>} and a list of imports containing {@code java.util.List}
      * and {@code org.ovirt.engine.api.model.V4Vm}.
+     *
+     * @param preferWrapper indicates if a wrapper for a primitive type is preferred over the primitive type itself,
+     *     for example, if the type is {@code boolean} and the flag is {@code false} then the result will be the
+     *     primitive type {@code boolean}, but if the flag is {@code true} then the result will be the {@code Boolean}
+     *     wrapper type
      */
-    JavaTypeReference getTypeReference(Type type);
+    JavaTypeReference getTypeReference(Type type, boolean preferWrapper);
 }
 
