@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<module xmlns="urn:jboss:module:1.1" name="org.ovirt.api.metamodel-server">
+<module xmlns="urn:jboss:module:1.1" name="org.ovirt.engine.api.metamodel-server">
 
   <resources>
     <resource-root path="metamodel-server.jar"/>
