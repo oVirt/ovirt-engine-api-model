@@ -126,7 +126,7 @@ public class ModelServlet extends HttpServlet {
                 String extension = path.substring(last + 1).toLowerCase();
                 switch (extension) {
                 case "xml":
-                    return MimeTypes.APPLICATION_JSON;
+                    return MimeTypes.APPLICATION_XML;
                 case "json":
                     return MimeTypes.APPLICATION_JSON;
                 case "jar":
