@@ -130,6 +130,7 @@ public class ModelServlet extends HttpServlet {
                 case "json":
                     return MimeTypes.APPLICATION_JSON;
                 case "jar":
+                case "zip":
                     return MimeTypes.APPLICATION_OCTET_STREAM;
                 }
             }
