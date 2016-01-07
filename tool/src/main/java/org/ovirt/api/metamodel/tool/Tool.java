@@ -200,6 +200,7 @@ public class Tool {
             line = parser.parse(options, args);
         }
         catch (ParseException exception) {
+            System.err.println(exception.getMessage());
             HelpFormatter formatter = new HelpFormatter();
             formatter.setSyntaxPrefix("Usage: ");
             formatter.printHelp("metamodel-tool [OPTIONS]", options);
