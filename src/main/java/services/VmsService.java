@@ -24,7 +24,7 @@ import types.Vm;
 @Service
 public interface VmsService {
     /**
-     * Creates a new VM and adds it to the database. The VM is created * based on the properties of the `vm` parameter.
+     * Creates a new VM and adds it to the database. The VM is created based on the properties of the `vm` parameter.
      * The `name`, `templateId` and `clusterId` properties are required.
      */
     interface Add {
