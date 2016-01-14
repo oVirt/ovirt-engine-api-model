@@ -45,4 +45,7 @@ public interface Cluster extends Identified {
 
     @Link DataCenter dataCenter();
     @Link Network managementNetwork();
+
+    /** A reference to the MAC pool used by this cluster. */
+    @Link MacPool macPool();
 }

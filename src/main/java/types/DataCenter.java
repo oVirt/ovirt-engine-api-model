@@ -28,5 +28,13 @@ public interface DataCenter extends Identified {
     Status status();
     QuotaModeType quotaMode();
 
+    /**
+     * Note that since version 4 of the API each cluster has its own MAC pool.
+     * If you change `macPool` property on data center, all the clusters belonging
+     * to this data center will be changed to use this new MAC pool. Also note,
+     * that if any data center has more clusters with different MAC pools
+     * assigned, `macPool` property of data center cannot be determined, and thus
+     * will not be reported in that case.
+     */
     @Link MacPool macPool();
 }
