@@ -184,6 +184,136 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * This method is used to change the configuration of the network interfaces of a host.
+     *
+     * For example, lets assume that you have a host with three network interfaces `eth0`, `eth1` and `eth2` and that
+     * you want to configure a new bond using `eth0` and `eth1`, and put a VLAN on top of it. Using a simple shell
+     * script and the `curl` command line HTTP client that can be done as follows:
+     *
+     * ```bash
+     * #!/bin/sh -ex
+     *
+     * url="https://engine.example.com/ovirt-engine/api"
+     * user="admin@internal"
+     * password="..."
+     *
+     * curl \
+     * --verbose \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --user "${user}:${password}" \
+     * --request POST \
+     * --header "Content-Type: application/xml" \
+     * --header "Accept: application/xml" \
+     * --data '
+     * <action>
+     *   <modified_bonds>
+     *     <host_nic>
+     *       <name>bond0</name>
+     *       <bonding>
+     *         <options>
+     *           <option>
+     *             <name>mode</name>
+     *             <value>4</value>
+     *           </option>
+     *           <option>
+     *             <name>miimon</name>
+     *             <value>100</value>
+     *           </option>
+     *         </options>
+     *         <slaves>
+     *           <host_nic>
+     *             <name>eth1</name>
+     *           </host_nic>
+     *           <host_nic>
+     *             <name>eth2</name>
+     *           </host_nic>
+     *         </slaves>
+     *       </bonding>
+     *     </host_nic>
+     *   </modified_bonds>
+     *   <modified_network_attachments>
+     *     <network_attachment>
+     *       <network>
+     *         <name>myvlan</name>
+     *       </network>
+     *       <host_nic>
+     *         <name>bond0</name>
+     *       </host_nic>
+     *       <ip_address_assignments>
+     *         <assignment_method>static</assignment_method>
+     *         <ip_address_assignment>
+     *           <ip>
+     *             <address>192.168.122.10</address>
+     *             <netmask>255.255.255.0</netmask>
+     *           </ip>
+     *         </ip_address_assignment>
+     *       </ip_address_assignments>
+     *     </network_attachment>
+     *   </modified_network_attachments>
+     *  </action>
+     * ' \
+     * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc/setupnetworks"
+     * ```
+     *
+     * Note that this is valid for version 4 of the API. In previous versions some elements were represented as XML
+     * attributes instead of XML elements. In particular the `options` and `ip` elements were represented as follows:
+     *
+     * ```xml
+     * <options name="mode" value="4"/>
+     * <options name="miimon" value="100"/>
+     * <ip address="192.168.122.10" netmask="255.255.255.0"/>
+     * ```
+     *
+     * Using the Python SDK the same can be done with the following code:
+     *
+     * ```python
+     * host.setupnetworks(
+     *   params.Action(
+     *     modified_bonds=params.HostNics(
+     *       host_nic=[
+     *         params.HostNIC(
+     *           name="bond0",
+     *           bonding=params.Bonding(
+     *             options=params.Options(
+     *               option=[
+     *                 params.Option(name="mode", value="4"),
+     *                 params.Option(name="miimon", value="100"),
+     *               ],
+     *             ),
+     *             slaves=params.Slaves(
+     *               host_nic=[
+     *                 params.HostNIC(name="eth1"),
+     *                 params.HostNIC(name="eth2"),
+     *               ],
+     *             ),
+     *           ),
+     *         ),
+     *       ],
+     *     ),
+     *     modified_network_attachments=params.NetworkAttachments(
+     *       network_attachment=[
+     *         params.NetworkAttachment(
+     *           network=params.Network(name="myvlan"),
+     *           host_nic=params.HostNIC(name="bond0"),
+     *           ip_address_assignments=params.IpAddressAssignments(
+     *             ip_address_assignment=[
+     *               params.IpAddressAssignment(
+     *                 assignment_method="static",
+     *                 ip=params.IP(
+     *                   address="192.168.122.10",
+     *                   netmask="255.255.255.0",
+     *                 ),
+     *               ),
+     *             ],
+     *           ),
+     *         ),
+     *       ],
+     *     ),
+     *   ),
+     * )
+     * ```
+     */
     interface SetupNetworks {
         @In NetworkAttachment[] modifiedNetworkAttachments();
         @In NetworkAttachment[] removedNetworkAttachments();
