@@ -26,5 +26,9 @@ public interface Identified {
     String id();
     String name();
     String description();
-    String comments();
+
+    /**
+     * Free text containing comments about this object.
+     */
+    String comment();
 }
