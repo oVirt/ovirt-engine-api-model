@@ -39,5 +39,5 @@ public interface IscsiDetails {
   String status();
   String volumeGroupId();
   String storageDomainId();
-  String diskIo();
+  String diskId();
 }
