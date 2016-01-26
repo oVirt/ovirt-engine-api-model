@@ -64,7 +64,7 @@ public interface Host extends Identified {
     HostDevicePassthrough devicePassthrough();
 
     @Link Cluster cluster();
-    @Link Hook hooks();
+    @Link Hook[] hooks();
     @Link ExternalHostProvider externalHostProvider();
     @Link StorageConnectionExtension[] storageConnectionExtensions();
 }
