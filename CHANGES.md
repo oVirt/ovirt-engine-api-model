@@ -3,6 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
+## 4.0.4 / Feb 2 2016
+
+Bug fixes:
+
+* Fix the name of the `IcsiDetails.diskId` attribute, it should be `diskId`,
+  not `diskIo`.
+
+* Fix the type of the `Group.roles` attribute, it should be a list of roles
+  instead of a single role.
+
+* Fix the type of the `Host.hooks` attribute, it should be a list of hooks
+  instead of a single hook.
+
 ## 4.0.3 / Jan 22 2016
 
 Bug fixes:
