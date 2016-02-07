@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,19 +17,29 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Root;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.aaa.DomainsService;
 import services.aaa.GroupsService;
 import services.aaa.UsersService;
-import services.externalhostproviders.ExternalHostProvidersService;
 import services.externalhostproviders.EngineKatelloErrataService;
+import services.externalhostproviders.ExternalHostProvidersService;
 import services.openstack.OpenstackImageProvidersService;
 import services.openstack.OpenstackNetworkProvidersService;
 import services.openstack.OpenstackVolumeProvidersService;
+import types.Api;
 
 @Root
 public interface SystemService {
+    /**
+     * Returns basic information describing the API, like the product name, the version number and a summary of the
+     * number of relevant objects.
+     */
+    interface Get {
+        @Out Api api();
+    }
+
     interface ReloadConfigurations {
         /**
          * Indicates if the reload should be performed asynchronously.
