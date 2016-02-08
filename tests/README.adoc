@@ -1,6 +1,6 @@
-# Metamodel tests
+= Metamodel tests
 
-## Introduction
+== Introduction
 
 This project contains the tests for the metamodel tools.
 

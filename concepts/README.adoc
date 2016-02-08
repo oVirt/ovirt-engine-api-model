@@ -1,6 +1,6 @@
-# Metamodel model
+= Metamodel model
 
-## Introduction
+== Introduction
 
 This project contains the classes that represent the model concepts, like types
 types, attributes, etc.
