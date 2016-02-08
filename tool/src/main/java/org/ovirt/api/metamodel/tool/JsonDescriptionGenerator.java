@@ -24,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
@@ -51,6 +52,10 @@ import org.ovirt.api.metamodel.concepts.Type;
 public class JsonDescriptionGenerator {
     private Model model;
     private JsonGenerator writer;
+
+    // Reference to the object that converts documentation to HTML:
+    @Inject
+    private HtmlGenerator htmlGenerator;
 
     public void generate(Model model, File file) {
         // Save the model:
@@ -198,6 +203,10 @@ public class JsonDescriptionGenerator {
         String doc = concept.getDoc();
         if (doc != null) {
             writer.write("doc", doc);
+            String html = htmlGenerator.toHtml(doc);
+            if (html != null) {
+                writer.write("html", html);
+            }
         }
     }
 

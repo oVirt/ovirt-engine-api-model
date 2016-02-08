@@ -106,6 +106,13 @@ limitations under the License.
       <scope>runtime</scope>
     </dependency>
 
+    <!-- This is needed in order to generate HTML code from the model documentation: -->
+    <dependency>
+      <groupId>org.asciidoctor</groupId>
+      <artifactId>asciidoctorj</artifactId>
+      <version>1.5.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>

@@ -18,6 +18,7 @@ package org.ovirt.api.metamodel.tool;
 
 import java.io.File;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
@@ -42,6 +43,10 @@ import org.ovirt.api.metamodel.concepts.Type;
 public class XmlDescriptionGenerator {
     private Model model;
     private XmlWriter writer;
+
+    // Reference to the object that converts documentation to HTML:
+    @Inject
+    private HtmlGenerator htmlGenerator;
 
     public void generate(Model model, File file) {
         // Save the model:
@@ -165,6 +170,10 @@ public class XmlDescriptionGenerator {
         String doc = concept.getDoc();
         if (doc != null) {
             writer.writeElement("doc", doc);
+            String html = htmlGenerator.toHtml(doc);
+            if (html != null) {
+                writer.writeElement("html", html);
+            }
         }
     }
 
