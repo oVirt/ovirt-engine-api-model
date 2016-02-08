@@ -1,6 +1,6 @@
-# oVirt Engine API Model
+= oVirt Engine API Model
 
-## Introduction
+== Introduction
 
 This project contains the specification of the oVirt Engine API, also
 known ans the _model_.
@@ -12,7 +12,8 @@ Data types are represented by Java interfaces. For example, the `Vm.java`
 file contains the specification of the `Vm` entity, which looks like
 this:
 
-```java
+[source,java]
+----
 @Type
 public interface Vm extends VmBase {
     String stopReason();
@@ -20,7 +21,7 @@ public interface Vm extends VmBase {
     Date stopTime();
     ...
 }
-```
+----
 
 The methods  of these interfaces represent the attributes of the data
 types, including their type and name.
@@ -29,7 +30,8 @@ Services API are also represented by Java interfaces. For example, the
 `VmService.java` file contains the specification of the `Vm` service, and
 it has content similar to this:
 
-```java
+[source,java]
+----
 @Service
 public interface VmService extends MeasurableService {
     interface Start {
@@ -41,7 +43,7 @@ public interface VmService extends MeasurableService {
     }
     ...
 }
-```
+----
 
 Operations are represented as nested interfaces. The names of these nested
 interfaces correspond to the names of the operations, and the methods correspond
@@ -53,7 +55,8 @@ be added before the definition of any element, like interfaces and methods. Thes
 _Javadoc_ comments are the mechanism that we use to document the specification. For
 example, the `Vm` type can be documented modifying the `Vm.java` file like this:
 
-```java
+[source,java]
+----
 /**
  * Represents a virtual machine.
  */
@@ -61,12 +64,13 @@ example, the `Vm` type can be documented modifying the `Vm.java` file like this:
 public interface Vm extends VmBase {
     ...
 }
-```
+----
 
 Attributes can be documented in a similar way, just placing the _Javadoc_ comment
 before the definition of the method that represents that attribute:
 
-```java
+[source,java]
+----
 /**
  * Represents a virtual machine.
  */
@@ -79,11 +83,12 @@ public interface Vm extends VmBase {
     String stopReason();
     ...
 }
-```
+----
 
 Same for services, their operations and their parameters:
 
-```java
+[source,java]
+----
 /**
  * This service manages a specific virtual machine.
  */
@@ -105,25 +110,24 @@ public interface VmService extends MeasurableService {
     }
     ...
 }
-```
+----
 
 These _Javadoc_ comments are processed by tools that are part of the system
 and it is used to automatically generate the reference documentation. You
 can see an example of the generated documentation
-[here](https://jhernand.fedorapeople.org/ovirt-api-explorer).
+https://jhernand.fedorapeople.org/ovirt-api-explorer[here].
 
 This documentation viewer will eventually be part of the oVirt Engine server
 itself.
 
 The _Javadoc_ comments have their own format, but it isn't used by the
 our documentation tools. Instead of that the tools expect and support
-_Markdown_, in particular the
-[GitHub](https://help.github.com/articles/github-flavored-markdown)
-variant. This means that _Javadoc_ comments can contain rich text and
-examples. For example, you could write the following to better describe
-the `Start` operation of the `Vm` service:
+http://www.methods.co.nz/asciidoc[AsciiDoc]. This means that _Javadoc_
+comments can contain rich text and examples. For example, you could write
+the following to better describe the `Start` operation of the `Vm` service:
 
-```java
+[source,java]
+----
 /**
  * Specifies if the virtual machine should be started in pause
  * mode. It is an _optional_ parameter, if not given then the
@@ -132,7 +136,8 @@ the `Start` operation of the `Vm` service:
  * To use this parameter with the Python SDK you can use the
  * following code snippet:
  *
- * ` ` `python
+ * [source,python]
+ * ----
  * # Find the virtual machine:
  * vm = api.vms.get(name="myvm")
  *
@@ -142,39 +147,41 @@ the `Start` operation of the `Vm` service:
  *     pause=True
  *   )
  * )
- * ` ` `
+ * ----
  */
 @In Boolean pause();
-```
+----
 
-## Contributing documentation
+== Contributing documentation
 
-### Cloning the `ovirt-engine-api-model` repository
+=== Cloning the `ovirt-engine-api-model` repository
 
 The mechanism to contribute documentation is to modify the `.java`
 source files. This source code is part of the `ovirt-engine-api-model`
 project, which is hosted in
-[gerrit.ovirt.org](http://gerrit.ovirt.org/ovirt-engine-api-model). So
+http://gerrit.ovirt.org/ovirt-engine-api-model[gerrit.ovirt.org]. So
 the first step to be able to contribute is to register to that system
 and prepare your environment for using `git`. For details see
-[this](http://www.ovirt.org/Working_with_oVirt_Gerrit).
+http://www.ovirt.org/Working_with_oVirt_Gerrit[this].
 
 To summarize, once you have registered and prepared your system to
 use `git`, this is the command that you need to execute in order to
 clone the `ovirt-engine-api-model` source:
 
-```
+[source]
+----
 $ git clone gerrit.ovirt.org:ovirt-engine-api-model
-```
+----
 
-### Locating the source file that you want to modify
+=== Locating the source file that you want to modify
 
 The model source files are all inside the `src/main/java` directory, so
 you will probably want to change to that directory:
 
-```
+[source]
+----
 $ cd src/main/java
-```
+----
 
 This directory contains two sub-directories: `types` and `services`. The
 first is for the specifications of data types and the second for the
@@ -182,51 +189,55 @@ specifications of services.
 
 Files are named like the entities, so they should be easy to locate.
 
-### Modifying the source files
+=== Modifying the source files
 
 You can use your favorite editor to modify the source files. Just make
 sure to modify only the _Javadoc_ comments.
 
-### Submitting the changes
+=== Submitting the changes
 
 Once you are happy with the changes that you made to the documentation
 you can prepare and submit a patch. For example, lets assume that you
 have modified the `Vm.java` file, this is what you will need to do to
 submit the patch:
 
-```
+[source]
+----
 $ git add types/Vm.java
 $ git commit -s
-```
+----
 
 This will open an editor where you can write the commit message. By
 default it will probaby be `vim`, but you can change it with the
 `EDITOR` environment variable:
 
-```
+[source]
+----
 $ export EDITOR=my-favorite-editor
 $ git add types/Vm.java
 $ git commit -s
-```
+----
 
 In that editor you will be asked to write a _commit message_. It is
 important to write good commit messages, describing the reason for the
 change. The first line should be a summary, then a blank line and your
 description of the change. For example:
 
-```
+[source]
+----
 Improve the documentation of vm.start
 
 This patch improves the documentation of the "vm.start"
 operation, so that it is clear that the default value
 of the "pause" parameter is "false".
-```
+----
 
 Write the file, and you are ready to submit it:
 
-```
+[source]
+----
 $ git push origin HEAD:refs/for/master
-```
+----
 
 If this finishes correctly it will give you the URL of the change. Go
 there and make sure that there is at least a reviewer for your change.
@@ -239,7 +250,7 @@ to assist you with any doubts you have with the tools.
 Eventually your patch will be merged and will be part of the reference
 documentation distributed with the next release of the software.
 
-### Testing and previewing your changes
+=== Testing and previewing your changes
 
 If your changes are simple enough there may be no need to test them,
 just submit the patch. But if you are making larger changes you may want
@@ -249,17 +260,19 @@ the API. To do this you need to use _Maven_. Won't go into the details
 of installing and using Maven here, as you can find plenty of resources
 online and you will just need to run one simple command:
 
-```bash
+[source]
+----
 $ mvn validate -Pdescribe
-```
+----
 
 This will analyze the model and create the `model.json` and `model.xml`
 files inside the `target` directory. The important one is `model.json`:
 
-```
+[source]
+----
 $ find . -name model.json
 target/model.json
-```
+----
 
 This file contains a description of the model, including the
 documentation. Take note of the location of this file, as it will be
@@ -268,32 +281,33 @@ needed later.
 The second step is to install the documentation viewer. This is part
 of a different `git` repository:
 
-```
+[source]
+----
 $ git clone https://gerrit.ovirt.org/ovirt-engine-api-explorer
-```
+----
 
 This repository contains a _JavaScript_ application. To use it it needs
 to be hosted in a web server. If you already have a running web server
 you can put the application there. Or you can also use `npm`. For more
-details see
-[here](https://github.com/oVirt/ovirt-engine-api-explorer#using-locally).
+details see https://github.com/oVirt/ovirt-engine-api-explorer#using-locally[here].
 
 Once this application is ready you can replace the `model.json` file
 that it contains with the one that you built in the previous step,
 reload the page and go to the relevant location. For example,
 assuming that you are using `npm`:
 
-```
+[source]
+----
 $ cd ovirt-engine-api-exporer
 $ cp .../model.json app/model.json
 $ npm start
-```
+----
 
 Then go with your browser to the relevant location:
 
 http://localhost:8000/app/#/services/vm/methods/start
 
-# Feedback/questions/issues
+== Feedback/questions/issues
 
 If you have any question, issue, or feedback please
-contact [Juan Hernández](mailto:juan.hernandez@redhat.com).
+contact mailto:juan.hernandez@redhat.com[Juan Hernández].

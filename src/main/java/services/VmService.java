@@ -93,9 +93,10 @@ public interface VmService extends MeasurableService {
      * With the Python SDK the `All-Content` header can be set using the `all_content` parameter of the `get`
      * method:
      *
-     * ```python
+     * [source,python]
+     * ----
      * api.vms.get(name="myvm", all_content=True)
-     * ```
+     * ----
      *
      * Note that the reason for not including these elements is performance: they are seldom used and they require
      * additional queries in the server. So try to use the `All-Content` header only when it is really needed.
@@ -111,15 +112,17 @@ public interface VmService extends MeasurableService {
          * If the parameter is included in the request, but without a value, it is assumed that the value is `true`, so
          * the following request:
          *
-         * ```
+         * [source]
+         * ----
          * GET /vms/{vm:id};next_run
-         * ```
+         * ----
          *
          * Is equivalent to using the value `true`:
          *
-         * ```
+         * [source]
+         * ----
          * GET /vms/{vm:id};next_run=true
-         * ```
+         * ----
          */
         @In Boolean nextRun();
 

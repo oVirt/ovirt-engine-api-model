@@ -191,7 +191,8 @@ public interface HostService extends MeasurableService {
      * you want to configure a new bond using `eth0` and `eth1`, and put a VLAN on top of it. Using a simple shell
      * script and the `curl` command line HTTP client that can be done as follows:
      *
-     * ```bash
+     * [source]
+     * ----
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -254,20 +255,22 @@ public interface HostService extends MeasurableService {
      *  </action>
      * ' \
      * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc/setupnetworks"
-     * ```
+     * ----
      *
      * Note that this is valid for version 4 of the API. In previous versions some elements were represented as XML
      * attributes instead of XML elements. In particular the `options` and `ip` elements were represented as follows:
      *
-     * ```xml
+     * [source,xml]
+     * ----
      * <options name="mode" value="4"/>
      * <options name="miimon" value="100"/>
      * <ip address="192.168.122.10" netmask="255.255.255.0"/>
-     * ```
+     * ----
      *
      * Using the Python SDK the same can be done with the following code:
      *
-     * ```python
+     * [source,python]
+     * ----
      * host.setupnetworks(
      *   params.Action(
      *     modified_bonds=params.HostNics(
@@ -312,7 +315,7 @@ public interface HostService extends MeasurableService {
      *     ),
      *   ),
      * )
-     * ```
+     * ----
      */
     interface SetupNetworks {
         @In NetworkAttachment[] modifiedNetworkAttachments();

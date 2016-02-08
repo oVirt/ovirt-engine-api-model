@@ -27,7 +27,7 @@ public interface Group extends Identified {
   @Link Domain domain();
 
   /**
-   * Used only to represent the initial role assignments for a new group, therafter modification of role assignments
+   * Used only to represent the initial role assignments for a new group, thereafter modification of role assignments
    * are only supported via the `roles` sub-collection.
    */
   @Link Role[] roles();

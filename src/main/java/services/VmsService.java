@@ -31,7 +31,8 @@ public interface VmsService {
      * - From a template. In this case the identifier or name of the template must be provided. For example, using a
      *   plain shell script and XML:
      *
-     * ```bash
+     * [source,bash]
+     * ----
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -56,12 +57,13 @@ public interface VmsService {
      * </vm>
      * ' \
      * "${url}/vms"
-     * ```
+     * ----
      *
      * - From a snapshot. In this case the identifier of the snapshot has to be provided. For example, using a plain
      *   shel script and XML:
      *
-     * ```bash
+     * [source,bash]
+     * ----
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -86,13 +88,14 @@ public interface VmsService {
      * </vm>
      * ' \
      * "${url}/vms"
-     * ```
+     * ----
      *
      * When creating a virtual machine from a template or from a snapshot it is usually useful to explicitly indicate
      * in what storage domain to create the disks for the virtual machine. If the virtual machine is created from
      * a template then this is achieved passing a set of `disk` elements that indicate the mapping:
      *
-     * ```xml
+     * [source,xml]
+     * ----
      * <vm>
      *   ...
      *   <disks>
@@ -103,12 +106,13 @@ public interface VmsService {
      *     </disk>
      *   </disks>
      * </vm>
-     * ```
+     * ----
      *
      * When the virtual machine is created from a snapshot this set of disks is sligthly different, it uses the
      * `imageId` attribute instead of `id`.
      *
-     * ```xml
+     * [source,xml]
+     * ----
      * <vm>
      *   ...
      *   <disks>
@@ -120,14 +124,15 @@ public interface VmsService {
      *     </disk>
      *   </disks>
      * </vm>
-     * ```
+     * ----
      *
      * In all cases the name or identifier of the cluster where the virtual machine will be created is mandatory.
      *
      * This is an example of how creating a virtual machine from a snapshot with the disks in a different storage
      * domain can be done with the Python SDK:
      *
-     * ```python
+     * [source,python]
+     * ----
      * # Find the VM:
      * vm = api.vms.get(name="myvm")
      *
@@ -182,7 +187,7 @@ public interface VmsService {
      *     ),
      *   )
      * )
-     * ```
+     * ----
      */
     interface Add {
         @In @Out Vm vm();
