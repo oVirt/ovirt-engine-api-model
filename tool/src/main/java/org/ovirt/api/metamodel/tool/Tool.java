@@ -16,6 +16,10 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import java.io.File;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -26,10 +30,6 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 import org.ovirt.api.metamodel.analyzer.ModelAnalyzer;
 import org.ovirt.api.metamodel.concepts.Model;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import java.io.File;
 
 @ApplicationScoped
 public class Tool {
@@ -48,6 +48,7 @@ public class Tool {
     @Inject private JaxrsGenerator jaxrsGenerator;
     @Inject private EnumGenerator enumGenerator;
     @Inject private StructsGenerator structsGenerator;
+    @Inject private DocGenerator docGenerator;
 
     // The names of the command line options:
     private static final String MODEL_OPTION = "model";
@@ -58,6 +59,7 @@ public class Tool {
     private static final String JAVA_OPTION = "java";
     private static final String JAXRS_OPTION = "jaxrs";
     private static final String VERSION_PREFIX_OPTION = "version-prefix";
+    private static final String DOCS_OPTION = "docs";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
@@ -193,6 +195,17 @@ public class Tool {
             .build()
         );
 
+        // Options for the generation of documentation:
+        options.addOption(Option.builder()
+            .longOpt(DOCS_OPTION)
+            .desc("The directory where the generated documentation will be created.")
+            .type(File.class)
+            .required(false)
+            .hasArg(true)
+            .argName("DIRECTORY")
+            .build()
+        );
+
         // Parse the command line:
         CommandLineParser parser = new DefaultParser();
         CommandLine line = null;
@@ -215,6 +228,7 @@ public class Tool {
         File outSchemaFile = (File) line.getParsedOptionValue(OUT_SCHEMA_OPTION);
         File jaxrsDir = (File) line.getParsedOptionValue(JAXRS_OPTION);
         File javaDir = (File) line.getParsedOptionValue(JAVA_OPTION);
+        File docsDir = (File) line.getParsedOptionValue(DOCS_OPTION);
 
         // Analyze the model files:
         Model model = new Model();
@@ -286,6 +300,12 @@ public class Tool {
             enumGenerator.generate(model);
             structsGenerator.setOutDir(javaDir);
             structsGenerator.generate(model);
+        }
+
+        // Generate the documentation:
+        if (docsDir != null) {
+            docGenerator.setOutDir(docsDir);
+            docGenerator.generate(model);
         }
     }
 }
