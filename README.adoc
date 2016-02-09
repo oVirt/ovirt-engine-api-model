@@ -50,7 +50,7 @@ interfaces correspond to the names of the operations, and the methods correspond
 to the parameters of the operations.
 
 The Java language supports adding documentation in the code itself, using the
-_Javadoc_ comments. These comments start with `/**` and end with `*/` and can
+_Javadoc_ comments. These comments start with `/\**` and end with `*/` and can
 be added before the definition of any element, like interfaces and methods. These
 _Javadoc_ comments are the mechanism that we use to document the specification. For
 example, the `Vm` type can be documented modifying the `Vm.java` file like this:
@@ -254,58 +254,27 @@ documentation distributed with the next release of the software.
 
 If your changes are simple enough there may be no need to test them,
 just submit the patch. But if you are making larger changes you may want
-to se how they will look like in the generated documentation. The first
-step is to generate a `model.json` file containing the description of
+to se how they will look like in the generated documentation. To do this
+you can generate the `model.html` file containing the description of
 the API. To do this you need to use _Maven_. Won't go into the details
 of installing and using Maven here, as you can find plenty of resources
 online and you will just need to run one simple command:
 
 [source]
 ----
-$ mvn validate -Pdescribe
+$ mvn validate -Pdocument
 ----
 
-This will analyze the model and create the `model.json` and `model.xml`
-files inside the `target` directory. The important one is `model.json`:
+This will analyze the model and create the `model.html` inside the
+`target/generated-html` directory:
 
 [source]
 ----
-$ find . -name model.json
-target/model.json
+$ find . -name model.html
+target/generated-html/model.html
 ----
 
-This file contains a description of the model, including the
-documentation. Take note of the location of this file, as it will be
-needed later.
-
-The second step is to install the documentation viewer. This is part
-of a different `git` repository:
-
-[source]
-----
-$ git clone https://gerrit.ovirt.org/ovirt-engine-api-explorer
-----
-
-This repository contains a _JavaScript_ application. To use it it needs
-to be hosted in a web server. If you already have a running web server
-you can put the application there. Or you can also use `npm`. For more
-details see https://github.com/oVirt/ovirt-engine-api-explorer#using-locally[here].
-
-Once this application is ready you can replace the `model.json` file
-that it contains with the one that you built in the previous step,
-reload the page and go to the relevant location. For example,
-assuming that you are using `npm`:
-
-[source]
-----
-$ cd ovirt-engine-api-exporer
-$ cp .../model.json app/model.json
-$ npm start
-----
-
-Then go with your browser to the relevant location:
-
-http://localhost:8000/app/#/services/vm/methods/start
+Open it with your browser and check your changes.
 
 == Feedback/questions/issues
 

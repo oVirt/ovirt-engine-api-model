@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.0.2</metamodel.version>
+    <metamodel.version>1.0.3</metamodel.version>
 
   </properties>
 
@@ -198,6 +198,78 @@
               </dependency>
             </dependencies>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is used to generate the documentation: -->
+    <profile>
+      <id>document</id>
+      <build>
+        <plugins>
+
+          <!-- Generate the AsciiDoc documentation: -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+              <execution>
+                <id>generate-adoc</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+                <configuration>
+                  <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
+                  <arguments>
+                    <argument>--model</argument>
+                    <argument>${project.basedir}/src/main/java</argument>
+                    <argument>--docs</argument>
+                    <argument>${project.basedir}/target/generated-adoc</argument>
+                  </arguments>
+                  <includePluginDependencies>true</includePluginDependencies>
+                  <includeProjectDependencies>false</includeProjectDependencies>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.ovirt.engine.api</groupId>
+                <artifactId>metamodel-tool</artifactId>
+                <version>${metamodel.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+
+          <!-- Process the generated AsciiDoc documentation: -->
+          <plugin>
+             <groupId>org.asciidoctor</groupId>
+             <artifactId>asciidoctor-maven-plugin</artifactId>
+             <version>1.5.0</version>
+             <executions>
+               <execution>
+                 <id>generate-html</id>
+                 <phase>validate</phase>
+                 <goals>
+                   <goal>process-asciidoc</goal>
+                 </goals>
+               </execution>
+             </executions>
+             <configuration>
+               <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
+               <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
+               <backend>html5</backend>
+               <attributes>
+                 <toc>right</toc>
+                 <sectnums>true</sectnums>
+                 <sectlinks>true</sectlinks>
+                 <sectanchors>true</sectanchors>
+                 <source-highlighter>highlightjs</source-highlighter>
+               </attributes>
+             </configuration>
+          </plugin>
+
         </plugins>
       </build>
     </profile>

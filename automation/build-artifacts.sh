@@ -76,5 +76,9 @@ ${mvn} package -DskipTests
 ${mvn} validate -Pdescribe
 mv target/model.{json,xml} "${artifacts}"
 
+# Generate the documentation:
+${mvn} validate -Pdocument
+mv target/generated-html/model.html "${artifacts}"
+
 # Deploy the artifacts to the artifacts directory:
 ${mvn} deploy -DaltDeploymentRepository="local::default::file://${PWD}/${artifacts}"
