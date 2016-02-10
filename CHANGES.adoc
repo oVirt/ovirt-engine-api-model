@@ -1,9 +1,18 @@
-# Changes
+= Changes
 
 This document describes the relevant changes between releases of the
 API model.
 
-## 4.0.4 / Feb 2 2016
+== 4.0.5 / Feb 10 2016
+
+New features:
+
+* Moved the documentation to AsciiDoc format.
+
+* Added a new `document` Maven profile that generates the AsciiDoc
+  and HTML documentation.
+
+== 4.0.4 / Feb 2 2016
 
 Bug fixes:
 
@@ -16,19 +25,19 @@ Bug fixes:
 * Fix the type of the `Host.hooks` attribute, it should be a list of hooks
   instead of a single hook.
 
-## 4.0.3 / Jan 22 2016
+== 4.0.3 / Jan 22 2016
 
 Bug fixes:
 
 * Fixed the name of the `comment` attribute.
 
-## 4.0.2 / Jan 14 2016
+== 4.0.2 / Jan 14 2016
 
 New features:
 
 * Added `macPool` attribute to cluster.
 
-## 4.0.1 / Jan 7 2016
+== 4.0.1 / Jan 7 2016
 
 Bug fixes:
 
@@ -42,6 +51,6 @@ New features:
 * Added the `caseSensitive` parameter to relevant services.
 * Added the `search` parameter to relevant services.
 
-## 4.0.0 / Dec 18 2015
+== 4.0.0 / Dec 18 2015
 
 Initial release.
