@@ -49,6 +49,9 @@ import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
 import org.ovirt.api.metamodel.concepts.NameParser;
+import org.ovirt.api.metamodel.concepts.Parameter;
+import org.ovirt.api.metamodel.concepts.PrimitiveType;
+import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
@@ -280,7 +283,7 @@ public class SchemaGenerator {
             if (type instanceof StructType && type != identifiedType) {
                 structTypes.add((StructType) type);
             }
-            if (type instanceof EnumType && schemaNames.isSchemaEnum(type)) {
+            if (type instanceof EnumType) {
                 enumTypes.add((EnumType) type);
             }
         }
@@ -470,7 +473,7 @@ public class SchemaGenerator {
             ListType listType = (ListType) memberType;
             Type elementType = listType.getElementType();
             String elementTypeName = getMemberSchemaTypeName(member.getDeclaringType(), elementType, memberName);
-            if (elementTypeName.startsWith("xs:")) {
+            if (elementType instanceof PrimitiveType || elementType instanceof EnumType) {
                 // Attributes that are lists of XML schema scalar types (xs:string, xs:int, etc) are represented with a
                 // wrapper element named like the attribute, and then a sequence of elements named like the attribute
                 // but in singular. For example, if the name of the attribute is "dns_servers" and the values are

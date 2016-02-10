@@ -46,7 +46,6 @@ public class Tool {
     @Inject private JsonDescriptionGenerator jsonDescriptionGenerator;
     @Inject private SchemaGenerator schemaGenerator;
     @Inject private JaxrsGenerator jaxrsGenerator;
-    @Inject private EnumGenerator enumGenerator;
     @Inject private StructsGenerator structsGenerator;
     @Inject private XmlSupportGenerator xmlSupportGenerator;
     @Inject private JsonSupportGenerator jsonSupportGenerator;
@@ -330,8 +329,6 @@ public class Tool {
 
         // Generate the Java source:
         if (javaDir != null) {
-            enumGenerator.setOutDir(javaDir);
-            enumGenerator.generate(model);
             structsGenerator.setOutDir(javaDir);
             structsGenerator.generate(model);
 

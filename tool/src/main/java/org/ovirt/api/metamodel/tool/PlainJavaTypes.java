@@ -23,6 +23,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
@@ -142,7 +143,7 @@ public class PlainJavaTypes implements JavaTypes {
         if (type instanceof PrimitiveType) {
             return getPrimitiveTypeName((PrimitiveType) type, true);
         }
-        if (type instanceof StructType) {
+        if (type instanceof StructType || type instanceof EnumType) {
             Name name = decorateName(type.getName(), prefix, suffix);
             JavaClassName typeName = new JavaClassName();
             typeName.setPackageName(packageName);
@@ -192,6 +193,9 @@ public class PlainJavaTypes implements JavaTypes {
         if (type instanceof StructType) {
             return getStructReference((StructType) type);
         }
+        if (type instanceof EnumType) {
+            return getEnumReference((EnumType) type);
+        }
         if (type instanceof ListType) {
             return getListReference((ListType) type);
         }
@@ -206,11 +210,21 @@ public class PlainJavaTypes implements JavaTypes {
         return reference;
     }
 
+    private JavaTypeReference getEnumReference(EnumType type) {
+        JavaTypeReference reference = new JavaTypeReference();
+        String text = javaNames.getJavaClassStyleName(type.getName());
+        reference.setText(text);
+        reference.addImport(javaPackages.getTypesPackageName(), text);
+        return reference;
+    }
+
     private JavaTypeReference getListReference(ListType type) {
         Type elementType = type.getElementType();
         JavaTypeReference reference = getTypeReference(elementType, true);
-        reference.addImport(List.class);
-        reference.setText("List<" + reference.getText() + ">");
+        if (reference != null) {
+	        reference.addImport(List.class);
+	        reference.setText("List<" + reference.getText() + ">");
+        }
         return reference;
     }
 

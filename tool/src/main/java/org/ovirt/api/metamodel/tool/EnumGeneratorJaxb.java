@@ -1,38 +1,25 @@
-/*
-Copyright (c) 2016 Red Hat, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 package org.ovirt.api.metamodel.tool;
+
+import static java.lang.String.join;
 
 import java.io.IOException;
 import java.util.Iterator;
 import javax.inject.Inject;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Type;
 
-import static java.lang.String.join;
-
-public class EnumGenerator extends JavaGenerator {
+public class EnumGeneratorJaxb extends JavaGenerator {
 
     @Inject
     private JavaPackages javaPackages;
     @Inject
-    @Style("versioned")
-    private VersionedJavaNames versionedJavaNames;
+    private JavaNames javaNames;
 
     // The buffer used to generate the source code:
     private JavaClassBuffer javaBuffer;
@@ -61,25 +48,48 @@ public class EnumGenerator extends JavaGenerator {
 
     private JavaClassName getEnumName(EnumType type) {
         JavaClassName enumName = new JavaClassName();
-        enumName.setPackageName(javaPackages.getTypesPackageName());
-        enumName.setSimpleName(versionedJavaNames.getJavaClassStyleName(type.getName()));
+        enumName.setPackageName(javaPackages.getXjcPackageName());
+        enumName.setSimpleName(javaNames.getJavaClassStyleName(type.getName()));
         return enumName;
     }
 
     private void generateEnumSource(EnumType enumType) {
         String enumName = javaBuffer.getClassName().getSimpleName();
         writeImports();
+        writeAnnotations(enumName);
         writeClassHeader(enumName);
         writeEnumValues(enumType);
-        writeLogger(enumName);
         writeValueMethod();
         writeFromValueMethod(enumName, enumType);
+        writeAdapter(enumName);
         writeClassClose();
     }
 
     private void writeImports() {
-        javaBuffer.addLine("import org.slf4j.Logger;");
-        javaBuffer.addLine("import org.slf4j.LoggerFactory;");
+        javaBuffer.addImport(XmlJavaTypeAdapter.class);
+        javaBuffer.addImport(XmlType.class);
+        javaBuffer.addLine("import org.ovirt.engine.api.utils.InvalidEnumValueException;");
+        javaBuffer.addLine();
+    }
+
+    private void writeAnnotations(String enumName) {
+        javaBuffer.addLine("@XmlType(name = \"%1$s\")", enumName);
+        javaBuffer.addLine("@XmlJavaTypeAdapter(%1$s.Adapter.class)", enumName);
+    }
+
+    private void writeAdapter(String enumName) {
+        javaBuffer.addImport(XmlAdapter.class);
+        javaBuffer.addLine("public static class Adapter extends XmlAdapter<String, %1$s> {", enumName);
+        javaBuffer.addLine(  "@Override");
+        javaBuffer.addLine(  "public %1$s unmarshal(String image) throws Exception {", enumName);
+        javaBuffer.addLine(    "return fromValue(image);");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine();
+        javaBuffer.addLine(  "@Override");
+        javaBuffer.addLine(  "public String marshal(%1$s value) throws Exception {", enumName);
+        javaBuffer.addLine(    "return value.value();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
 
@@ -88,19 +98,14 @@ public class EnumGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void writeLogger(String enumName) {
-        javaBuffer.addLine("private static final Logger LOG = LoggerFactory.getLogger(" + enumName + ".class);");
-        javaBuffer.addLine();
-    }
-
-    private void writeEnumValues(EnumType type) {
+	private void writeEnumValues(EnumType type) {
         Iterator<EnumValue> iterator = type.getValues().iterator();
         while (iterator.hasNext()) {
             EnumValue value = iterator.next();
             javaBuffer.addLine(getEnumValueLine(value, !iterator.hasNext()));
         }
         javaBuffer.addLine();
-    }
+	}
 
     private String getEnumValueLine(EnumValue enumValue, boolean lastValue) {
         String value = join("_", enumValue.getName().getWords()).toUpperCase();
@@ -116,13 +121,12 @@ public class EnumGenerator extends JavaGenerator {
 
     private void writeFromValueMethod(String enumName, EnumType enumType) {
         javaBuffer.addLine("public static " + enumName + " fromValue(String value) {");
-        javaBuffer.addLine("try {");
-        javaBuffer.addLine("return valueOf(value.toUpperCase());");
-        javaBuffer.addLine("}");
-        javaBuffer.addLine("catch (IllegalArgumentException e) {");
-        javaBuffer.addLine("LOG.error(\"" + nonExistingValueMessage(enumName, enumType)  + "\");");
-        javaBuffer.addLine("return null;");
-        javaBuffer.addLine("}");
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return valueOf(value.toUpperCase());");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (IllegalArgumentException e) {");
+        javaBuffer.addLine(    "throw new InvalidEnumValueException(\"" + nonExistingValueMessage(enumName, enumType)  + "\");");
+        javaBuffer.addLine(  "}");
         javaBuffer.addLine("}");
     }
 

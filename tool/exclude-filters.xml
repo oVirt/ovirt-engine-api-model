@@ -19,9 +19,9 @@ limitations under the License.
 <FindBugsFilter>
 
   <!-- The use of the "System.exit" method is acceptable in the
-       main class of the tool: -->
+       main classes of the tools: -->
   <Match>
-    <Class name="org.ovirt.api.metamodel.tool.Tool"/>
+    <Class name="~org\.ovirt\.api\.metamodel\.tool\..*Tool.*"/>
     <Bug code="Dm"/>
   </Match>
 
