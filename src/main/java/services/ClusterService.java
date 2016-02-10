@@ -63,4 +63,10 @@ public interface ClusterService {
     @Service AssignedPermissionsService permissions();
     @Service GlusterHooksService glusterHooks();
     @Service GlusterVolumesService glusterVolumes();
+
+    /**
+     * A sub collection with all the supported network filters for this cluster.
+     */
+    @Service NetworkFiltersService networkFilters();
+
 }
