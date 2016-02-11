@@ -1,5 +1,10 @@
 #!/bin/bash -ex
 
+# Clean and then create the artifacts directory:
+artifacts="exported-artifacts"
+rm -rf "${artifacts}"
+mkdir -p "${artifacts}"
+
 # Create a settings file that uses the our artifactory server as
 # proxy for all repositories:
 settings="$(pwd)/settings.xml"
@@ -43,3 +48,7 @@ ${mvn} test
 # Run findbugs:
 ${mvn} install -DskipTests
 ${mvn} findbugs:findbugs
+
+# Generate the documentation:
+${mvn} validate -Pdocument
+mv target/generated-html/model.html "${artifacts}"
