@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface Display {
-    GraphicsType type();
+    DisplayType type();
     String address();
     Integer port();
     Integer securePort();

@@ -26,5 +26,5 @@ public interface HardwareInformation {
     String productName();
     String uuid();
     String family();
-    String[] supportedRngSources();
+    RngSource[] supportedRngSources();
 }
