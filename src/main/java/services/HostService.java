@@ -19,6 +19,7 @@ package services;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
 import services.externalhostproviders.KatelloErrataService;
 import types.Cluster;
 import types.Host;
@@ -62,6 +63,12 @@ public interface HostService extends MeasurableService {
          * Indicates if the deactivation should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the gluster service should be stopped as part of deactivating the host. It can be used while
+         * performing maintenance operations on the gluster host. Default value for this variable is `false`.
+         */
+        @In Boolean stopGlusterService();
     }
 
     interface EnrollCertificate {
