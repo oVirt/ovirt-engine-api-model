@@ -35,6 +35,7 @@ import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
 
 /**
  * This class takes a model and generates its XML description.
@@ -53,7 +54,7 @@ public class XmlDescriptionGenerator {
         this.model = model;
 
         // Create the XML writer:
-        try (XmlWriter tmp = new XmlWriter(file)) {
+        try (XmlWriter tmp = new XmlWriter(file, true)) {
             writer = tmp;
             writeModel();
         }

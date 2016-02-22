@@ -54,6 +54,7 @@ import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -242,7 +243,7 @@ public class SchemaGenerator {
     private Document generateSchema() {
         Document document = parser.newDocument();
         DOMResult result = new DOMResult(document);
-        try (XmlWriter tmp = new XmlWriter(result)) {
+        try (XmlWriter tmp = new XmlWriter(result, false)) {
             writer = tmp;
             writer.setPrefix(XS_PREFIX, XS_URI);
             writer.setPrefix(JAXB_PREFIX, JAXB_URI);

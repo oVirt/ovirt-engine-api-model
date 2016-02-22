@@ -30,6 +30,11 @@ public interface JavaTypes {
     JavaClassName getInterfaceName(Type type);
 
     /**
+     * Calculates the name of the base class of all the containers.
+     */
+    JavaClassName getBaseContainerName();
+
+    /**
      * Calculates the name of the container class that should be generated for the given type. For example,
      * for the {@code Vm} type it will generate {@code org.ovirt.engine.model} as the package name and
      * {@code V4VmContainer} as the simple class name.
@@ -37,11 +42,56 @@ public interface JavaTypes {
     JavaClassName getContainerName(Type type);
 
     /**
+     * Calculates the name of the base class of all the builders.
+     */
+    JavaClassName getBaseBuilderName();
+
+    /**
      * Calculates the name of the builder class that should be generated for the given type. For example,
      * for the {@code Vm} type it will generate {@code org.ovirt.engine.model} as the package name and
      * {@code V4VmBuilder} as the simple class name.
      */
     JavaClassName getBuilderName(Type type);
+
+    /**
+     * Calculates the name of the base class of all the JSON readers.
+     */
+    JavaClassName getBaseJsonReaderName();
+
+    /**
+     * Calculates the name of the JSON reader that should be generated for the given type.
+     */
+    JavaClassName getJsonReaderName(Type type);
+
+    /**
+     * Calculates the name of the base class of all the JSON writers.
+     */
+    JavaClassName getBaseJsonWriterName();
+
+    /**
+     * Calculates the name of the JSON writer that should be generated for the given type.
+     */
+    JavaClassName getJsonWriterName(Type type);
+
+    /**
+     * Calculates the name of the base class of all the XML readers.
+     */
+    JavaClassName getBaseXmlReaderName();
+
+    /**
+     * Calculates the name of the XML reader that should be generated for the given type.
+     */
+    JavaClassName getXmlReaderName(Type type);
+
+    /**
+     * Calculates the name of the base class of all the XML writers.
+     */
+    JavaClassName getBaseXmlWriterName();
+
+    /**
+     * Calculates the name of the XML writer that should be generated for the given type.
+     */
+    JavaClassName getXmlWriterName(Type type);
 
     /**
      * Calculates the type reference that should be generated for the given type. For example, for the type

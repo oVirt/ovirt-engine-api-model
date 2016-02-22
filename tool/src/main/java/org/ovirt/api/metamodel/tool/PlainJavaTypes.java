@@ -25,6 +25,8 @@ import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
+import org.ovirt.api.metamodel.concepts.Name;
+import org.ovirt.api.metamodel.concepts.NameParser;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
@@ -35,9 +37,14 @@ import org.ovirt.api.metamodel.concepts.Type;
 @ApplicationScoped
 public class PlainJavaTypes implements JavaTypes {
     // Suffixes to add to the different types of classes generated for each type:
-    private static final String INTERFACE_SUFFIX = "";
-    private static final String CONTAINER_SUFFIX = "Container";
-    private static final String BUILDER_SUFFIX = "Builder";
+    private static final Name CONTAINER_NAME = NameParser.parseUsingCase("Container");
+    private static final Name BUILDER_NAME = NameParser.parseUsingCase("Builder");
+    private static final Name READER_NAME = NameParser.parseUsingCase("Reader");
+    private static final Name WRITER_NAME = NameParser.parseUsingCase("Writer");
+
+    // Prefixes for the XML and JSON readers and writers:
+    private static final Name XML_PREFIX = NameParser.parseUsingCase("Xml");
+    private static final Name JSON_PREFIX = NameParser.parseUsingCase("Json");
 
     // Reference to the objects used to calculate package names:
     @Inject
@@ -50,28 +57,97 @@ public class PlainJavaTypes implements JavaTypes {
 
     @Override
     public JavaClassName getInterfaceName(Type type) {
-        return getTypeName(type, javaPackages.getTypesPackageName(), INTERFACE_SUFFIX);
+        return getTypeName(type, javaPackages.getTypesPackageName(), null, null);
+    }
+
+    @Override
+    public JavaClassName getBaseContainerName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getContainersPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(CONTAINER_NAME));
+        return name;
     }
 
     @Override
     public JavaClassName getContainerName(Type type) {
-        return getTypeName(type, javaPackages.getContainersPackageName(), CONTAINER_SUFFIX);
+        return getTypeName(type, javaPackages.getContainersPackageName(), null, CONTAINER_NAME);
+    }
+
+    @Override
+    public JavaClassName getBaseBuilderName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getBuildersPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(BUILDER_NAME));
+        return name;
     }
 
     @Override
     public JavaClassName getBuilderName(Type type) {
-        return getTypeName(type, javaPackages.getBuildersPackageName(), BUILDER_SUFFIX);
+        return getTypeName(type, javaPackages.getBuildersPackageName(), null, BUILDER_NAME);
     }
 
-    private JavaClassName getTypeName(Type type, String packageName, String suffix) {
+    @Override
+    public JavaClassName getBaseJsonReaderName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getJsonPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(decorateName(READER_NAME, JSON_PREFIX, null)));
+        return name;
+    }
+
+    @Override
+    public JavaClassName getJsonReaderName(Type type) {
+        return getTypeName(type, javaPackages.getJsonPackageName(), JSON_PREFIX, READER_NAME);
+    }
+
+    @Override
+    public JavaClassName getBaseJsonWriterName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getJsonPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(decorateName(WRITER_NAME, JSON_PREFIX, null)));
+        return name;
+    }
+
+    @Override
+    public JavaClassName getJsonWriterName(Type type) {
+        return getTypeName(type, javaPackages.getJsonPackageName(), JSON_PREFIX, WRITER_NAME);
+    }
+
+    @Override
+    public JavaClassName getBaseXmlReaderName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getXmlPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(decorateName(READER_NAME, XML_PREFIX, null)));
+        return name;
+    }
+
+    @Override
+    public JavaClassName getXmlReaderName(Type type) {
+        return getTypeName(type, javaPackages.getXmlPackageName(), XML_PREFIX, READER_NAME);
+    }
+
+    @Override
+    public JavaClassName getBaseXmlWriterName() {
+        JavaClassName name = new JavaClassName();
+        name.setPackageName(javaPackages.getXmlPackageName());
+        name.setSimpleName(javaNames.getJavaClassStyleName(decorateName(WRITER_NAME, XML_PREFIX, null)));
+        return name;
+    }
+
+    @Override
+    public JavaClassName getXmlWriterName(Type type) {
+        return getTypeName(type, javaPackages.getXmlPackageName(), XML_PREFIX, WRITER_NAME);
+    }
+
+    private JavaClassName getTypeName(Type type, String packageName, Name prefix, Name suffix) {
         if (type instanceof PrimitiveType) {
             return getPrimitiveTypeName((PrimitiveType) type, true);
         }
         if (type instanceof StructType) {
-            JavaClassName name = new JavaClassName();
-            name.setPackageName(packageName);
-            name.setSimpleName(javaNames.getJavaClassStyleName(type.getName()) + suffix);
-            return name;
+            Name name = decorateName(type.getName(), prefix, suffix);
+            JavaClassName typeName = new JavaClassName();
+            typeName.setPackageName(packageName);
+            typeName.setSimpleName(javaNames.getJavaClassStyleName(name));
+            return typeName;
         }
         throw new RuntimeException("Don't know how to calculate the Java type name for type \"" + type + "\"");
     }
@@ -136,6 +212,20 @@ public class PlainJavaTypes implements JavaTypes {
         reference.addImport(List.class);
         reference.setText("List<" + reference.getText() + ">");
         return reference;
+    }
+
+    /**
+     * Decorates a name with optional prefix and suffix.
+     */
+    private Name decorateName(Name name, Name prefix, Name suffix) {
+        List<String> words = name.getWords();
+        if (prefix != null) {
+            words.addAll(0, prefix.getWords());
+        }
+        if (suffix != null) {
+            words.addAll(suffix.getWords());
+        }
+        return new Name(words);
     }
 }
 

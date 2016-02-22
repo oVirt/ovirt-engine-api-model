@@ -66,6 +66,7 @@ public class StructsGenerator extends JavaGenerator {
 
     private void generateClasses(StructType type) {
         generateInterface(type);
+        generateBaseContainer();
         generateContainer(type);
         generateBuilder(type);
     }
@@ -141,6 +142,25 @@ public class StructsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
+    private void generateBaseContainer() {
+        javaBuffer = new JavaClassBuffer();
+        JavaClassName containerName = javaTypes.getBaseContainerName();
+        javaBuffer.setClassName(containerName);
+        generateBaseContainerSource();
+        try {
+            javaBuffer.write(outDir);
+        }
+        catch (IOException exception) {
+            throw new RuntimeException("Can't write file for base container \"" + containerName + "\"", exception);
+        }
+    }
+
+    private void generateBaseContainerSource() {
+        JavaClassName containerName = javaTypes.getBaseContainerName();
+        javaBuffer.addLine("public class %1$s {", containerName.getSimpleName());
+        javaBuffer.addLine("}");
+    }
+
     private void generateContainer(StructType type) {
         javaBuffer = new JavaClassBuffer();
         JavaClassName containerName = javaTypes.getContainerName(type);
@@ -159,24 +179,11 @@ public class StructsGenerator extends JavaGenerator {
         JavaClassName typeName = javaTypes.getInterfaceName(type);
         JavaClassName containerName = javaTypes.getContainerName(type);
         Type base = type.getBase();
+        JavaClassName baseName = base != null? javaTypes.getContainerName(base): javaTypes.getBaseContainerName();
         javaBuffer.addImport(typeName);
-        if (base != null) {
-            JavaClassName baseName = javaTypes.getContainerName(base);
-            javaBuffer.addImport(baseName);
-            javaBuffer.addLine(
-                "public class %1$s extends %2$s implements %3$s {",
-                containerName.getSimpleName(),
-                baseName.getSimpleName(),
-                typeName.getSimpleName()
-            );
-        }
-        else {
-            javaBuffer.addLine(
-                "public class %1$s implements %2$s {",
-                containerName.getSimpleName(),
-                typeName.getSimpleName()
-            );
-        }
+        javaBuffer.addImport(baseName);
+        javaBuffer.addLine("public class %1$s extends %2$s implements %3$s {",
+            containerName.getSimpleName(), baseName.getSimpleName(), typeName.getSimpleName());
 
         // Fields for attributes and links:
         type.declaredAttributes().sorted().forEach(this::generateContainerFields);
@@ -550,7 +557,7 @@ public class StructsGenerator extends JavaGenerator {
             JavaTypeReference elementReference = javaTypes.getTypeReference(elementType, true);
             javaBuffer.addImports(elementReference.getImports());
 
-            // Add one method that sets the list from another list:
+            // Add one method that sets the list from another list of objects:
             javaBuffer.addImport(ArrayList.class);
             javaBuffer.addLine("public %1$s %3$s(%2$s new%4$s) {", thisName.getSimpleName(), typeReference.getText(),
                 field, property);

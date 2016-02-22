@@ -14,16 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package org.ovirt.api.metamodel.tool;
+package org.ovirt.api.metamodel.runtime.xml;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -41,43 +45,77 @@ public class XmlWriter implements AutoCloseable {
     private XMLStreamWriter writer;
 
     /**
-     * Creates a writer that will write to the given result, using UTF-8 as the encoding.
+     * Thread local used to store the date formats.
+     */
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT = ThreadLocal.withInitial(() -> {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return format;
+    });
+
+    /**
+     * Creates an XML writer that will write to the given result, using UTF-8 as the encoding.
      *
      * @param result the result where the document will be written
-     * @throws XmlWriterException if something fails
+     * @param indent indicates if the output should be indented
      */
-    public XmlWriter(Result result) {
-        init(result);
+    public XmlWriter(Result result, boolean indent) {
+        init(result, indent);
+    }
+
+    /**
+     * Creates an XML writer that will write to the given stream, using UTF-8 as the encoding.
+     *
+     * @param out the stream where the document will be written
+     * @param indent indicates if the output should be indented
+     */
+    public XmlWriter(OutputStream out, boolean indent) {
+        Writer writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
+        Result result = new StreamResult(writer);
+        init(result, indent);
+    }
+
+    /**
+     * Creates an XML writer that will write to the given writer.
+     *
+     * @param out the writer where the document will be written
+     * @param indent indicates if the output should be indented
+     */
+    public XmlWriter(Writer out, boolean indent) {
+        Result result = new StreamResult(out);
+        init(result, indent);
     }
 
     /**
      * Creates a writer that will write to the given file, using UTF-8 as the encoding.
      *
      * @param file the file where the document will be written
-     * @throws XmlWriterException if something fails
+     * @param indent indicates if the output should be indented
      */
-    public XmlWriter(File file) {
+    public XmlWriter(File file, boolean indent) {
         try {
             OutputStream out = new FileOutputStream(file);
             Writer writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
             Result result = new StreamResult(writer);
-            init(result);
+            init(result, indent);
         }
         catch (IOException exception) {
-            throw new XmlWriterException("Can't open file \"" + file.getAbsolutePath() + "\" for writing", exception);
+            throw new XmlException("Can't open file \"" + file.getAbsolutePath() + "\" for writing", exception);
         }
     }
 
-    private void init(Result result) {
+    private void init(Result result, boolean indent) {
         try {
             XMLOutputFactory factory = XMLOutputFactory.newFactory();
             writer = factory.createXMLStreamWriter(result);
-            IndentingXMLStreamWriter indenter = new IndentingXMLStreamWriter(writer);
-            indenter.setIndentStep("  ");
-            writer = indenter;
+            if (indent) {
+                IndentingXMLStreamWriter indenter = new IndentingXMLStreamWriter(writer);
+                indenter.setIndentStep("  ");
+                writer = indenter;
+            }
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't create XML writer", exception);
+            throw new XmlException("Can't create XML writer", exception);
         }
     }
 
@@ -92,7 +130,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeStartDocument(encoding, version);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write start of document", exception);
+            throw new XmlException("Can't write start of document", exception);
         }
     }
 
@@ -104,7 +142,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeEndDocument();
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write end of document", exception);
+            throw new XmlException("Can't write end of document", exception);
         }
     }
 
@@ -119,7 +157,7 @@ public class XmlWriter implements AutoCloseable {
             writer.setPrefix(prefix, uri);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException(
+            throw new XmlException(
                 "Can't associate prefix \"" + prefix + "\" with URI \"" + uri + "\"",
                 exception
             );
@@ -165,7 +203,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeStartElement(uri, name);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write start element for tag \"" + name + "\"", exception);
+            throw new XmlException("Can't write start element for tag \"" + name + "\"", exception);
         }
     }
 
@@ -180,7 +218,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeStartElement(name);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write start element for tag \"" + name + "\"", exception);
+            throw new XmlException("Can't write start element for tag \"" + name + "\"", exception);
         }
     }
 
@@ -192,7 +230,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeEndElement();
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write end element", exception);
+            throw new XmlException("Can't write end element", exception);
         }
     }
 
@@ -208,7 +246,7 @@ public class XmlWriter implements AutoCloseable {
             writer.writeAttribute(name, value);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException(
+            throw new XmlException(
                 "Can't write attribute with name \"" + name + "\" and value \"" + value + "\"",
                 exception
             );
@@ -225,16 +263,56 @@ public class XmlWriter implements AutoCloseable {
             writer.writeCharacters(text);
         }
         catch (XMLStreamException exception) {
-            throw new XmlWriterException("Can't write text \"" + text + "\"", exception);
+            throw new XmlException("Can't write text \"" + text + "\"", exception);
         }
     }
 
     /**
-     * Writes a blank linke.
+     * Writes a blank line.
      *
      */
     public void writeLine() {
         writeCharacters("\n");
+    }
+
+    /**
+     * Writes a boolean value.
+     */
+    public void writeBoolean(String name, boolean value) {
+        writeElement(name, Boolean.toString(value));
+    }
+
+    /**
+     * Writes an integer value.
+     */
+    public void writeInteger(String name, BigInteger value) {
+        writeElement(name, value.toString());
+    }
+
+    /**
+     * Writes a decimal value.
+     */
+    public void writeDecimal(String name, BigDecimal value) {
+        writeElement(name, value.toString());
+    }
+
+    /**
+     * Writes a date.
+     */
+    public void writeDate(String name, Date value) {
+        writeElement(name, DATE_FORMAT.get().format(value));
+    }
+
+    /**
+     * Flushes the output.
+     */
+    public void flush() {
+        try {
+            writer.flush();
+        }
+        catch (XMLStreamException exception) {
+            throw new XmlException("Can't flush", exception);
+        }
     }
 
     /**
@@ -246,7 +324,7 @@ public class XmlWriter implements AutoCloseable {
             writer.close();
         }
         catch (XMLStreamException exception) {
-            // Ignored.
+            throw new XmlException("Can't close", exception);
         }
     }
 }

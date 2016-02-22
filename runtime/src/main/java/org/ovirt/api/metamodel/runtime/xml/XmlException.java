@@ -14,18 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package org.ovirt.api.metamodel.tool;
+package org.ovirt.api.metamodel.runtime.xml;
 
 /**
- * This unchecked exception is used by the {@link XmlWriter} class in order to simplify usage together with streams
- * and lambdas.
+ * Indicates that some exception happened during XML processing.
  */
-public class XmlWriterException extends RuntimeException {
-    public XmlWriterException(String message) {
+public class XmlException extends RuntimeException {
+    public XmlException(String message) {
         super(message);
     }
 
-    public XmlWriterException(String message, Throwable cause) {
+    public XmlException(String message, Throwable cause) {
         super(message, cause);
     }
 }
