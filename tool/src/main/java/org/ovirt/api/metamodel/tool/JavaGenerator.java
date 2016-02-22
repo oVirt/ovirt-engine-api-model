@@ -22,11 +22,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.ovirt.api.metamodel.concepts.Concept;
+import org.ovirt.api.metamodel.concepts.Model;
 
 /**
  * This class contains methods useful for several different kinds of classes that generate Java source code.
  */
-public class JavaGenerator {
+public abstract class JavaGenerator {
     // The buffer used to generate Java code:
     protected JavaClassBuffer javaBuffer;
 
@@ -39,6 +40,11 @@ public class JavaGenerator {
     public void setOutDir(File newOutDir) {
         outDir = newOutDir;
     }
+
+    /**
+     * Generate the code for the given model.
+     */
+    public abstract void generate(Model model);
 
     protected void generateDoc(Concept concept) {
         List<String> lines = new ArrayList<>();

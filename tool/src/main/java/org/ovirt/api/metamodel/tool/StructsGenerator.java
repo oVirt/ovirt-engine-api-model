@@ -20,9 +20,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 
@@ -384,14 +385,14 @@ public class StructsGenerator extends JavaGenerator {
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
                 // Add one method that takes "boolean" as parameter:
-                javaBuffer.addLine("public %1$s set%2$s(boolean new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(boolean new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = Boolean.valueOf(new%2$s);", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
                 javaBuffer.addLine();
 
                 // Add one method that takes "Boolean" as parameter:
-                javaBuffer.addLine("public %1$s set%2$s(Boolean new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Boolean new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -400,7 +401,7 @@ public class StructsGenerator extends JavaGenerator {
             else if (type == model.getIntegerType()) {
                 // Add one method that takes "int" as parameter:
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("public %1$s set%2$s(int new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(int new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = BigInteger.valueOf((long) new%2$s);", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -408,7 +409,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "Integer" as parameter:
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("public %1$s set%2$s(Integer new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Integer new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "if (new%1$s == null) {", property);
                 javaBuffer.addLine(    "%1$s = null;", field);
                 javaBuffer.addLine(  "}");
@@ -421,7 +422,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "long" as parameter:
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("public %1$s set%2$s(long new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(long new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = BigInteger.valueOf(new%2$s);", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -429,7 +430,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "Long" as parameter:
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("public %1$s set%2$s(Long new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Long new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "if (new%1$s == null) {", property);
                 javaBuffer.addLine(    "%1$s = null;", field);
                 javaBuffer.addLine(  "}");
@@ -442,7 +443,8 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "BigInteger" as parameter:
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("public %1$s set%2$s(BigInteger new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(BigInteger new%3$s) {", thisName.getSimpleName(), field,
+                    property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -451,7 +453,7 @@ public class StructsGenerator extends JavaGenerator {
             else if (type == model.getDecimalType()) {
                 // Add one method that takes "float" as parameter:
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("public %1$s set%2$s(float new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(float new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = BigDecimal.valueOf((double) new%2$s);", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -459,7 +461,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "Float" as parameter:
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("public %1$s set%2$s(Float new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Float new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "if (new%1$s == null) {", property);
                 javaBuffer.addLine(    "%1$s = null;", field);
                 javaBuffer.addLine(  "}");
@@ -472,7 +474,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "double" as parameter:
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("public %1$s set%2$s(double new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(double new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = BigDecimal.valueOf(new%2$s);", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -480,7 +482,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "Double" as parameter:
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("public %1$s set%2$s(Double new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Double new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "if (new%1$s == null) {", property);
                 javaBuffer.addLine(    "%1$s = null;", field);
                 javaBuffer.addLine(  "}");
@@ -493,7 +495,7 @@ public class StructsGenerator extends JavaGenerator {
 
                 // Add one method that takes "BigDecimal" as parameter:
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("public %1$s set%2$s(BigDecimal new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(BigDecimal new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -501,7 +503,7 @@ public class StructsGenerator extends JavaGenerator {
             }
             else if (type == model.getStringType()) {
                 // Add one method that takes "String" as parameter:
-                javaBuffer.addLine("public %1$s set%2$s(String new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(String new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -510,7 +512,7 @@ public class StructsGenerator extends JavaGenerator {
             else if (type == model.getDateType()) {
                 // Add one method that takes "Date" as parameter:
                 javaBuffer.addImport(Date.class);
-                javaBuffer.addLine("public %1$s set%2$s(Date new%2$s) {", thisName.getSimpleName(), property);
+                javaBuffer.addLine("public %1$s %2$s(Date new%3$s) {", thisName.getSimpleName(), field, property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
@@ -522,16 +524,16 @@ public class StructsGenerator extends JavaGenerator {
             javaBuffer.addImport(builderName);
 
             // Add one method that takes the interface as parameter:
-            javaBuffer.addLine("public %1$s set%3$s(%2$s new%3$s) {",
-                thisName.getSimpleName(), typeReference.getText(), property);
+            javaBuffer.addLine("public %1$s %3$s(%2$s new%4$s) {", thisName.getSimpleName(), typeReference.getText(),
+                field, property);
             javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
             javaBuffer.addLine(  "return this;");
             javaBuffer.addLine("}");
             javaBuffer.addLine();
 
             // Add one method that takes a builder as parameter:
-            javaBuffer.addLine("public %1$s set%3$s(%2$s new%3$s) {",
-                thisName.getSimpleName(), builderName.getSimpleName(), property);
+            javaBuffer.addLine("public %1$s %3$s(%2$s new%4$s) {", thisName.getSimpleName(),
+                builderName.getSimpleName(), field, property);
             javaBuffer.addLine(  "if (new%1$s == null) {", property);
             javaBuffer.addLine(    "%1$s = null;", field);
             javaBuffer.addLine(  "}");
@@ -550,58 +552,55 @@ public class StructsGenerator extends JavaGenerator {
 
             // Add one method that sets the list from another list:
             javaBuffer.addImport(ArrayList.class);
-            javaBuffer.addLine("public %1$s set%3$s(%2$s new%3$s) {",
-                thisName.getSimpleName(), typeReference.getText(), property);
-            javaBuffer.addLine(  "if (new%1$s == null || new%1$s.isEmpty()) {", property);
-            javaBuffer.addLine(    "%1$s = null;", field);
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "else {");
-            javaBuffer.addLine(    "%1$s = new ArrayList<>(new%2$s);", field, property);
+            javaBuffer.addLine("public %1$s %3$s(%2$s new%4$s) {", thisName.getSimpleName(), typeReference.getText(),
+                field, property);
+            javaBuffer.addLine(  "if (new%1$s != null) {", property);
+            javaBuffer.addLine(    "if (%1$s == null) {", field);
+            javaBuffer.addLine(      "%1$s = new ArrayList<>(new%2$s);", field, property);
+            javaBuffer.addLine(    "}");
+            javaBuffer.addLine(    "else {");
+            javaBuffer.addLine(      "%1$s.addAll(new%2$s);", field, property);
+            javaBuffer.addLine(    "}");
             javaBuffer.addLine(  "}");
             javaBuffer.addLine(  "return this;");
             javaBuffer.addLine("}");
             javaBuffer.addLine();
 
             // Add one method that sets the list from an array:
-            javaBuffer.addImport(Arrays.class);
-            javaBuffer.addLine("public %1$s set%3$s(%2$s... new%3$s) {",
-                thisName.getSimpleName(), elementReference.getText(), property);
-            javaBuffer.addLine(  "if (new%1$s == null || new%1$s.length == 0) {", property);
-            javaBuffer.addLine(    "%1$s = null;", field);
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "else {");
-            javaBuffer.addLine(    "%1$s = Arrays.asList(new%2$s);", field, property);
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "return this;");
-            javaBuffer.addLine("}");
-            javaBuffer.addLine();
-
-            // Add one method that adds a list to the list:
             javaBuffer.addImport(ArrayList.class);
-            javaBuffer.addLine("public %1$s add%3$s(%2$s new%3$s) {",
-                thisName.getSimpleName(), typeReference.getText(), property);
-            javaBuffer.addLine(  "if (new%1$s != null) {", property);
-            javaBuffer.addLine(     "if (%1$s == null) {", field);
-            javaBuffer.addLine(       "%1$s = new ArrayList<>(new%2$s);", field, property);
-            javaBuffer.addLine(     "}");
-            javaBuffer.addLine(     "else {");
-            javaBuffer.addLine(       "%1$s.addAll(new%2$s);", field, property);
-            javaBuffer.addLine(     "}");
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "return this;");
-            javaBuffer.addLine("}");
-            javaBuffer.addLine();
-
-            // Add one method that adds an array to the list:
             javaBuffer.addImport(Collections.class);
-            javaBuffer.addLine("public %1$s add%3$s(%2$s... new%3$s) {",
-                thisName.getSimpleName(), elementReference.getText(), property);
+            javaBuffer.addLine("public %1$s %3$s(%2$s... new%4$s) {", thisName.getSimpleName(),
+                elementReference.getText(), field, property);
             javaBuffer.addLine(  "if (new%1$s != null) {", property);
+            javaBuffer.addLine(    "if (%1$s == null) {", field);
+            javaBuffer.addLine(      "%1$s = new ArrayList<>(new%2$s.length);", field, property);
+            javaBuffer.addLine(    "}");
             javaBuffer.addLine(    "Collections.addAll(%1$s, new%2$s);", field, property);
             javaBuffer.addLine(  "}");
             javaBuffer.addLine(  "return this;");
             javaBuffer.addLine("}");
             javaBuffer.addLine();
+
+            if (elementType instanceof StructType) {
+                JavaClassName builderName = javaTypes.getBuilderName(elementType);
+                javaBuffer.addImport(builderName);
+
+                // Add a method that sets the list from an array of builders:
+                javaBuffer.addImport(ArrayList.class);
+                javaBuffer.addLine("public %1$s %3$s(%2$s... new%4$s) {", thisName.getSimpleName(),
+                    builderName.getSimpleName(), field, property);
+                javaBuffer.addLine(  "if (new%1$s != null) {", property);
+                javaBuffer.addLine(    "if (%1$s == null) {", field);
+                javaBuffer.addLine(      "%1$s = new ArrayList<>(new%2$s.length);", field, property);
+                javaBuffer.addLine(    "}");
+                javaBuffer.addLine(    "for (%1$s builder : new%2$s) {", builderName.getSimpleName(), property);
+                javaBuffer.addLine(      "%1$s.add(builder.build());", field);
+                javaBuffer.addLine(    "}");
+                javaBuffer.addLine(  "}");
+                javaBuffer.addLine(  "return this;");
+                javaBuffer.addLine("}");
+                javaBuffer.addLine();
+            }
         }
         javaBuffer.addLine();
     }
@@ -641,8 +640,8 @@ public class StructsGenerator extends JavaGenerator {
     private void generateBuilderFactoryMethods(StructType type) {
         JavaClassName builderName = javaTypes.getBuilderName(type);
         javaBuffer.addImport(builderName);
-        String methodName = javaNames.getJavaPropertyStyleName(type.getName());
-        javaBuffer.addLine("public static %1$s new%2$s() {", builderName.getSimpleName(), methodName);
+        String methodName = javaNames.getJavaMemberStyleName(type.getName());
+        javaBuffer.addLine("public static %1$s %2$s() {", builderName.getSimpleName(), methodName);
         javaBuffer.addLine(  "return new %1$s();", builderName.getSimpleName());
         javaBuffer.addLine("}");
         javaBuffer.addLine();
