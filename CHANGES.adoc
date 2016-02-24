@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.6 / Feb 24 2016
+
+New features:
+
+* Generate HTML documentation of the module during the build, using the
+  `document` profile.
+
+* Added support for network filters.
+
+* Added the `stop_gluster_service` parameter to the operation that
+  deactivates a host.
+
 == 4.0.5 / Feb 10 2016
 
 New features:
