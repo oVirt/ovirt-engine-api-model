@@ -23,9 +23,6 @@ import types.HostNic;
 
 @Service
 public interface HostNicsService {
-    interface Add {
-        @In @Out HostNic nic();
-    }
 
     interface List {
         @Out HostNic[] nics();

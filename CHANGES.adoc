@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.8
+
+Removed features:
+
+  * Removed the 3.0 API for managing host network interfaces.
+
 == 4.0.7 / Feb 29 2016
 
 New features:

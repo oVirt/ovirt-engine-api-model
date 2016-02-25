@@ -19,46 +19,15 @@ package services;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
 import types.HostNic;
 import types.HostNicVirtualFunctionsConfiguration;
-import types.Network;
 
 @Service
 public interface HostNicService extends MeasurableService {
-    interface Attach {
-        @In Network network();
-
-        /**
-         * Indicates if the attach should be performed asynchronously.
-         */
-        @In Boolean async();
-    }
-
-    interface Detach {
-        /**
-         * Indicates if the detach should be performed asynchronously.
-         */
-        @In Boolean async();
-    }
 
     interface Get {
         @Out HostNic nic();
-    }
-
-    interface Update {
-        @In @Out HostNic nic();
-
-        /**
-         * Indicates if the update should be performed asynchronously.
-         */
-        @In Boolean async();
-    }
-
-    interface Remove {
-        /**
-         * Indicates if the remove should be performed asynchronously.
-         */
-        @In Boolean async();
     }
 
     /**
