@@ -81,9 +81,9 @@ public class SchemaGenerator {
     // Reference to the object used to calculate JAX-RS names:
     @Inject private JaxrsNames jaxrsNames;
 
-    // The type of the model used to represent types that have an identifier, thus they need to extends
-    // the "BaseResource" complex type:
+    // Types that need to extends the "BaseResource" complex type:
     private Type identifiedType;
+    private Type apiType;
 
     // Exceptions to the rules to calculate struct member type names:
     private static final Map<Name, Map<Name, String>> MEMBER_SCHEMA_TYPE_NAME_EXCEPTIONS = new HashMap<>();
@@ -180,6 +180,13 @@ public class SchemaGenerator {
         if (identifiedType == null) {
             throw new RuntimeException(
                 "Can't find the identified type \"" + identifiedTypeName + "\""
+            );
+        }
+        Name apiTypeName = NameParser.parseUsingCase("Api");
+        apiType = model.getType(apiTypeName);
+        if (apiType == null) {
+            throw new RuntimeException(
+                "Can't find the API type \"" + apiTypeName + "\""
             );
         }
 
@@ -337,7 +344,7 @@ public class SchemaGenerator {
 
         // Check if this type is an identified type, one that can appear as the root of a valid XML document, as in that
         // case the complex types must extend "BaseResource" and "BaseResources":
-        boolean isRoot = type.isExtension(identifiedType);
+        boolean isRoot = type.isExtension(identifiedType) || type == apiType;
 
         // Tag for the entity:
         writer.writeStartElement(XS_URI, "element");

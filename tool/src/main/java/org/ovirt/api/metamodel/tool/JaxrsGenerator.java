@@ -159,14 +159,8 @@ public class JaxrsGenerator extends JavaGenerator {
             extendsClause
         );
 
-        // The root service needs these two additional methods that can't be represented in the model:
+        // The root service needs this additional that can't be represented in the model:
         if (isRoot) {
-            javaBuffer.addImport(GET.class);
-            javaBuffer.addImport(Response.class);
-            javaBuffer.addLine("@GET");
-            javaBuffer.addLine("Response get();");
-            javaBuffer.addLine();
-
             javaBuffer.addImport(HEAD.class);
             javaBuffer.addImport(Response.class);
             javaBuffer.addLine("@HEAD");
@@ -290,21 +284,24 @@ public class JaxrsGenerator extends JavaGenerator {
             return;
         }
 
-        // Calculate the Java type of the main parameter:
-        Type mainType = mainParameter.getType();
-        JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
-
-        // Generate the imports:
-        javaBuffer.addImport(GET.class);
-        javaBuffer.addImports(mainTypeReference.getImports());
-
-        // Generate the method:
+        // Most "Get" methods return the type that is declared in the model, but the root resource needs to return
+        // "Response", because it has to be able to return the type declared in the model and also the XML schema and
+        // the RSDL.
+        Service service = method.getDeclaringService();
+        boolean isRoot = service == service.getModel().getRoot();
         generateDoc(method);
+        javaBuffer.addImport(GET.class);
         javaBuffer.addLine("@GET");
-        javaBuffer.addLine(
-            "%s get();",
-            mainTypeReference.getText()
-        );
+        if (isRoot)  {
+            javaBuffer.addImport(Response.class);
+            javaBuffer.addLine("Response get();");
+        }
+        else {
+            Type mainType = mainParameter.getType();
+            JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
+            javaBuffer.addImports(mainTypeReference.getImports());
+            javaBuffer.addLine("%1$s get();", mainTypeReference.getText());
+        }
 
         javaBuffer.addLine();
     }
