@@ -52,6 +52,9 @@ public class Tool {
     @Inject private JsonSupportGenerator jsonSupportGenerator;
     @Inject private DocGenerator docGenerator;
 
+    // Reference to the object used to add built-in types to the model:
+    @Inject private BuiltinTypes builtinTypes;
+
     // The names of the command line options:
     private static final String MODEL_OPTION = "model";
     private static final String IN_SCHEMA_OPTION = "in-schema";
@@ -255,6 +258,9 @@ public class Tool {
         ModelAnalyzer modelAnalyzer = new ModelAnalyzer();
         modelAnalyzer.setModel(model);
         modelAnalyzer.analyzeSource(modelFile);
+
+        // Add the built-in types to the model:
+        builtinTypes.addBuiltinTypes(model);
 
         // Generate the XML representation of the model:
         if (xmlFile != null) {

@@ -22,9 +22,10 @@ import static java.util.stream.Collectors.joining;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -45,12 +46,9 @@ import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.ListType;
-import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
 import org.ovirt.api.metamodel.concepts.NameParser;
-import org.ovirt.api.metamodel.concepts.Parameter;
-import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
@@ -77,9 +75,6 @@ public class SchemaGenerator {
     // Reference to the object used to calculate XML schema names:
     @Inject private Names names;
     @Inject private SchemaNames schemaNames;
-
-    // Reference to the object used to calculate JAX-RS names:
-    @Inject private JaxrsNames jaxrsNames;
 
     // Types that need to extends the "BaseResource" complex type:
     private Type identifiedType;
@@ -132,11 +127,25 @@ public class SchemaGenerator {
         addMemberSchemaTypeNameException("vm-base", "memory", "xs:long");
     }
 
+    // Types that don't need a collection type:
+    private static final Set<Name> TYPES_WITHOUT_COLLECTION = new HashSet<>();
+
+    private static void addTypeWithoutCollection(String name) {
+        TYPES_WITHOUT_COLLECTION.add(NameParser.parseUsingCase(name));
+    }
+
+    static {
+        addTypeWithoutCollection("Action");
+    }
+
     // We will need an XML parser:
     private DocumentBuilder parser;
 
     // The reference to the model:
     private Model model;
+
+    // The set of types that are used as elements of list in struct attributes or in method parameters:
+    private Set<Type> elementTypes;
 
     // The input and output schema files:
     private File inFile;
@@ -250,7 +259,7 @@ public class SchemaGenerator {
     private Document generateSchema() {
         Document document = parser.newDocument();
         DOMResult result = new DOMResult(document);
-        try (XmlWriter tmp = new XmlWriter(result, false)) {
+        try (XmlWriter tmp = new XmlWriter(result, true)) {
             writer = tmp;
             writer.setPrefix(XS_PREFIX, XS_URI);
             writer.setPrefix(JAXB_PREFIX, JAXB_URI);
@@ -285,14 +294,10 @@ public class SchemaGenerator {
         writeEnumValues(enumTypes);
 
         // Write the XML schema for the enum types:
-        for (EnumType enumType : enumTypes) {
-            writeEnumType(enumType);
-        }
+        enumTypes.forEach(this::writeEnumType);
 
         // Write the XML schema for the struct types:
-        for (StructType structType : structTypes) {
-            writeStructType(structType);
-        }
+        structTypes.forEach(this::writeStructType);
 
         // Footer:
         writer.writeEndElement();
@@ -381,35 +386,37 @@ public class SchemaGenerator {
         writer.writeEndElement();
         writer.writeLine();
 
-        // Tag for the collection:
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", schemaNames.getSchemaTagName(typePlural));
-        writer.writeAttribute("type", schemaNames.getSchemaTypeName(typePlural));
-        writer.writeEndElement();
-        writer.writeLine();
+        if (!TYPES_WITHOUT_COLLECTION.contains(type.getName())) {
+            // Tag for the collection:
+            writer.writeStartElement(XS_URI, "element");
+            writer.writeAttribute("name", schemaNames.getSchemaTagName(typePlural));
+            writer.writeAttribute("type", schemaNames.getSchemaTypeName(typePlural));
+            writer.writeEndElement();
+            writer.writeLine();
 
-        // Complex type for the collection:
-        writer.writeStartElement(XS_URI, "complexType");
-        writer.writeAttribute("name", schemaNames.getSchemaTypeName(typePlural));
-        if (isRoot) {
-            writer.writeStartElement(XS_URI, "complexContent");
-            writer.writeStartElement(XS_URI, "extension");
-            writer.writeAttribute("base", "BaseResources");
-        }
-        writer.writeStartElement(XS_URI, "sequence");
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("ref", schemaNames.getSchemaTagName(typeName));
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "unbounded");
-        writeJaxbProperty(schemaNames.getSchemaTypeName(typePlural));
-        writer.writeEndElement();
-        writer.writeEndElement();
-        if (isRoot) {
+            // Complex type for the collection:
+            writer.writeStartElement(XS_URI, "complexType");
+            writer.writeAttribute("name", schemaNames.getSchemaTypeName(typePlural));
+            if (isRoot) {
+                writer.writeStartElement(XS_URI, "complexContent");
+                writer.writeStartElement(XS_URI, "extension");
+                writer.writeAttribute("base", "BaseResources");
+            }
+            writer.writeStartElement(XS_URI, "sequence");
+            writer.writeStartElement(XS_URI, "element");
+            writer.writeAttribute("ref", schemaNames.getSchemaTagName(typeName));
+            writer.writeAttribute("minOccurs", "0");
+            writer.writeAttribute("maxOccurs", "unbounded");
+            writeJaxbProperty(schemaNames.getSchemaTypeName(typePlural));
             writer.writeEndElement();
             writer.writeEndElement();
+            if (isRoot) {
+                writer.writeEndElement();
+                writer.writeEndElement();
+            }
+            writer.writeEndElement();
+            writer.writeLine();
         }
-        writer.writeEndElement();
-        writer.writeLine();
     }
 
     private void writeStructMembers(StructType type) {
@@ -564,54 +571,6 @@ public class SchemaGenerator {
     }
 
     private void writeActionTypes() {
-        // Write the "GracePeriod" complex type:
-        writer.writeStartElement(XS_URI, "complexType");
-        writer.writeAttribute("name", "GracePeriod");
-        writer.writeStartElement(XS_URI, "sequence");
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", "expiry");
-        writer.writeAttribute("type", "xs:long");
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeLine();
-
-        // Write the "Action" element:
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", "action");
-        writer.writeAttribute("type", "Action");
-        writer.writeEndElement();
-        writer.writeLine();
-
-        // Write the "Action" complex type:
-        writer.writeStartElement(XS_URI, "complexType");
-        writer.writeAttribute("name", "Action");
-        writer.writeStartElement(XS_URI, "complexContent");
-        writer.writeStartElement(XS_URI, "extension");
-        writer.writeAttribute("base", "BaseResource");
-        writer.writeStartElement(XS_URI, "sequence");
-        writer.writeStartElement(XS_URI, "group");
-        writer.writeAttribute("ref", "ActionParameterGroup");
-        writer.writeEndElement();
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("ref", "status");
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "1");
-        writer.writeEndElement();
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("ref", "fault");
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "1");
-        writer.writeEndElement();
-        writer.writeStartElement(XS_URI, "group");
-        writer.writeAttribute("ref", "ActionResponseGroup");
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeLine();
-
         // Write the "Actions" complex type:
         writer.writeStartElement(XS_URI, "complexType");
         writer.writeAttribute("name", "Actions");
@@ -625,158 +584,6 @@ public class SchemaGenerator {
         writer.writeEndElement();
         writer.writeEndElement();
         writer.writeLine();
-
-        // Write the parameter groups:
-        writeActionParameterGroup();
-        writeActionResponseGroup();
-    }
-
-    /**
-     * The XML schema {@code ActionParameterGroup} group contains the parameters used by all the action methods.
-     */
-    private void writeActionParameterGroup() {
-        // Find the distinct input parameters of all the action methods, and check that there aren't two parameters
-        // with the same name but different types:
-        Map<Name, Parameter> parameters = new HashMap<>();
-        for (Service service : model.getServices()) {
-            for (Method method : service.getMethods()) {
-                if (jaxrsNames.isActionName(method.getName())) {
-                    for (Parameter parameter : method.getParameters()) {
-                        if (parameter.isIn()) {
-                            Name name = parameter.getName();
-                            Parameter existing = parameters.get(name);
-                            if (existing != null) {
-                                if (!Objects.equals(parameter.getType(), existing.getType())) {
-                                    reportIncompatibleParameterTypes(parameter, existing);
-                                }
-                            }
-                            else {
-                                parameters.put(parameter.getName(), parameter);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Generate the group containing all the input parameters:
-        writer.writeStartElement(XS_URI, "group");
-        writer.writeAttribute("name", "ActionParameterGroup");
-        writer.writeStartElement(XS_URI, "sequence");
-        List<Parameter> list = new ArrayList<>(parameters.values());
-        list.sort(comparing(Parameter::getName));
-        for (Parameter parameter : list) {
-            writeActionParameter(parameter);
-        }
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", "grace_period");
-        writer.writeAttribute("type", "GracePeriod");
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "1");
-        writer.writeEndElement();
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", "job");
-        writer.writeAttribute("type", "Job");
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "1");
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeLine();
-    }
-
-    /**
-     * The XML schema {@code ActionResponseGroup} group contains the parameters used by all the action methods.
-     */
-    private void writeActionResponseGroup() {
-        // Find the distinct output parameters of all the action methods, excluding those that are also input
-        // parameters, and check that there aren't two parameters with the same name but different types:
-        Map<Name, Parameter> parameters = new HashMap<>();
-        for (Service service : model.getServices()) {
-            for (Method method : service.getMethods()) {
-                if (jaxrsNames.isActionName(method.getName())) {
-                    for (Parameter parameter : method.getParameters()) {
-                        if (parameter.isOut() && !parameter.isIn()) {
-                            Name name = parameter.getName();
-                            Parameter existing = parameters.get(name);
-                            if (existing != null) {
-                                if (!Objects.equals(parameter.getType(), existing.getType())) {
-                                    reportIncompatibleParameterTypes(parameter, existing);
-                                }
-                            }
-                            else {
-                                parameters.put(parameter.getName(), parameter);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Generate the group containing all the output parameters:
-        writer.writeStartElement(XS_URI, "group");
-        writer.writeAttribute("name", "ActionResponseGroup");
-        writer.writeStartElement(XS_URI, "sequence");
-        List<Parameter> list = new ArrayList<>(parameters.values());
-        list.sort(comparing(Parameter::getName));
-        for (Parameter parameter : list) {
-            writeActionParameter(parameter);
-        }
-        writer.writeEndElement();
-        writer.writeEndElement();
-        writer.writeLine();
-    }
-
-    private void writeActionParameter(Parameter parameter) {
-        Name name = parameter.getName();
-        Type type = parameter.getType();
-        writer.writeStartElement(XS_URI, "element");
-        writer.writeAttribute("name", schemaNames.getSchemaTagName(name));
-        writer.writeAttribute("minOccurs", "0");
-        writer.writeAttribute("maxOccurs", "1");
-        if (type instanceof ListType) {
-            ListType listType = (ListType) type;
-            Type elementType = listType.getElementType();
-            String elementTypeName = schemaNames.getSchemaTypeName(elementType);
-            if (elementTypeName.startsWith("xs:")) {
-                writer.writeStartElement(XS_URI, "complexType");
-                writeJaxbClass(schemaNames.getSchemaTypeName(name) + "List");
-                writer.writeStartElement(XS_URI, "sequence");
-                writer.writeStartElement(XS_URI, "element");
-                writer.writeAttribute("name", schemaNames.getSchemaTagName(names.getSingular(name)));
-                writer.writeAttribute("type", elementTypeName);
-                writer.writeAttribute("minOccurs", "0");
-                writer.writeAttribute("maxOccurs", "unbounded");
-                writeJaxbProperty(schemaNames.getSchemaTypeName(name));
-                writer.writeEndElement();
-                writer.writeEndElement();
-                writer.writeEndElement();
-            }
-            else {
-                writer.writeAttribute("name", schemaNames.getSchemaTagName(name));
-                writer.writeAttribute("type", schemaNames.getSchemaTypeName(names.getPlural(elementType.getName())));
-                writer.writeAttribute("minOccurs", "0");
-                writer.writeAttribute("maxOccurs", "1");
-            }
-        }
-        else {
-            writer.writeAttribute("name", schemaNames.getSchemaTagName(name));
-            writer.writeAttribute("type", schemaNames.getSchemaTypeName(type));
-            writer.writeAttribute("minOccurs", "0");
-            writer.writeAttribute("maxOccurs", "1");
-        }
-        writer.writeEndElement();
-    }
-
-    private void reportIncompatibleParameterTypes(Parameter offending, Parameter existing) {
-        String message = String.format(
-            "The type \"%s\" of parameter \"%s\" isn't compatible with the type \"%s\" of existing parameter \"%s\"",
-            offending.getType(),
-            offending,
-            existing.getType(),
-            existing
-        );
-        throw new IllegalArgumentException(message);
     }
 
     private void writeJaxbClass(String value) {
