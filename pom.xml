@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.0.3</metamodel.version>
+    <metamodel.version>1.0.4</metamodel.version>
 
   </properties>
 
@@ -180,9 +180,9 @@
                   <arguments>
                     <argument>--model</argument>
                     <argument>${project.basedir}/src/main/java</argument>
-                    <argument>--json</argument>
+                    <argument>--json-description</argument>
                     <argument>${project.basedir}/target/model.json</argument>
-                    <argument>--xml</argument>
+                    <argument>--xml-description</argument>
                     <argument>${project.basedir}/target/model.xml</argument>
                   </arguments>
                   <includePluginDependencies>true</includePluginDependencies>
