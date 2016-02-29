@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.7 / Feb 29 2016
+
+New features:
+
+* Added `Api` and related types.
+
 == 4.0.6 / Feb 24 2016
 
 New features:
