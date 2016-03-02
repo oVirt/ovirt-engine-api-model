@@ -53,6 +53,31 @@ public interface StorageDomainService {
         @In Boolean async();
     }
 
+    /**
+     * This operation forces the update of the `OVF_STORE`
+     * of this storage domain.
+     *
+     * The `OVF_STORE` is a disk image that contains the meta-data
+     * of virtual machines and disks that reside in the
+     * storage domain. This meta-data is used in case the
+     * domain is imported or exported to or from a different
+     * data center or a different installation.
+     *
+     * By default the `OVF_STORE` is updated periodically
+     * (set by default to 60 minutes) but users might want to force an
+     * update after an important change, or when the they believe the
+     * `OVF_STORE` is corrupt.
+     *
+     * When initiated by the user, `OVF_STORE` update will be performed whether
+     * an update is needed or not.
+     */
+    interface UpdateOvfStore {
+        /**
+         * Indicates if the `OVF_STORE` update should be performed asynchronously.
+         */
+        @In Boolean async();
+    }
+
     interface RefreshLuns {
         @In LogicalUnit[] logicalUnits();
 
