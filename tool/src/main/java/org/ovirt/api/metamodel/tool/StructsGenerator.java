@@ -22,8 +22,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 
@@ -225,7 +223,22 @@ public class StructsGenerator extends JavaGenerator {
 
         // Generate the getter:
         javaBuffer.addLine("public %1$s get%2$s() {", typeReference.getText(), property);
-        if (type instanceof ListType) {
+        if (type instanceof PrimitiveType) {
+            Model model = type.getModel();
+            if (type == model.getDateType()) {
+                javaBuffer.addImport(Date.class);
+                javaBuffer.addLine("if (%1$s == null) {", field);
+                javaBuffer.addLine(  "return null;");
+                javaBuffer.addLine("}");
+                javaBuffer.addLine("else {");
+                javaBuffer.addLine(  "return new Date(%1$s.getTime());", field);
+                javaBuffer.addLine("}");
+            }
+            else {
+                javaBuffer.addLine("return %1$s;", field);
+            }
+        }
+        else if (type instanceof ListType) {
             javaBuffer.addImport(Collections.class);
             javaBuffer.addLine("if (%1$s == null) {", field);
             javaBuffer.addLine(  "return Collections.emptyList();");
@@ -271,6 +284,18 @@ public class StructsGenerator extends JavaGenerator {
                 // Generate the method that takes a "Boolean" parameter:
                 javaBuffer.addLine("public void set%1$s(Boolean new%1$s) {", property);
                 javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+                javaBuffer.addLine("}");
+                javaBuffer.addLine();
+            }
+            else if (type == model.getDateType()) {
+                javaBuffer.addImport(Date.class);
+                javaBuffer.addLine("public void set%1$s(Date new%1$s) {", property);
+                javaBuffer.addLine(  "if (new%1$s == null) {", property);
+                javaBuffer.addLine(    "%1$s = null;", field);
+                javaBuffer.addLine(  "}");
+                javaBuffer.addLine(  "else {");
+                javaBuffer.addLine(    "%1$s = new Date(new%2$s.getTime());", field, property);
+                javaBuffer.addLine(  "}");
                 javaBuffer.addLine("}");
                 javaBuffer.addLine();
             }
@@ -520,7 +545,12 @@ public class StructsGenerator extends JavaGenerator {
                 // Add one method that takes "Date" as parameter:
                 javaBuffer.addImport(Date.class);
                 javaBuffer.addLine("public %1$s %2$s(Date new%3$s) {", thisName.getSimpleName(), field, property);
-                javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+                javaBuffer.addLine(  "if (new%1$s == null) {", property);
+                javaBuffer.addLine(    "%1$s = null;", field);
+                javaBuffer.addLine(  "}");
+                javaBuffer.addLine(  "else {");
+                javaBuffer.addLine(    "%1$s = new Date(new%2$s.getTime());", field, property);
+                javaBuffer.addLine(  "}");
                 javaBuffer.addLine(  "return this;");
                 javaBuffer.addLine("}");
                 javaBuffer.addLine();

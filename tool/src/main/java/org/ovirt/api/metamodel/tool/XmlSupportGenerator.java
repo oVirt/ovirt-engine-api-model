@@ -16,6 +16,8 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -113,8 +115,16 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addImport(XmlReader.class);
 
         // Generate the method:
-        javaBuffer.addLine("public static %1$s readOne(XmlReader reader) {",
-            typeName.getSimpleName());
+        List<StructMember> allMembers = new ArrayList<>();
+        allMembers.addAll(type.getAttributes());
+        allMembers.addAll(type.getLinks());
+        List<StructMember> asAttributes = allMembers.stream()
+            .filter(x -> schemaNames.isRepresentedAsAttribute(x.getName()))
+            .collect(toList());
+        List<StructMember> asElements = allMembers.stream()
+            .filter(x -> !schemaNames.isRepresentedAsAttribute(x.getName()))
+            .collect(toList());
+        javaBuffer.addLine("public static %1$s readOne(XmlReader reader) {", typeName.getSimpleName());
         javaBuffer.addLine(  "// Do nothing if there aren't more tags:");
         javaBuffer.addLine(  "if (!reader.forward()) {");
         javaBuffer.addLine(    "return null;");
@@ -123,31 +133,39 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine(  "// Create the object:");
         javaBuffer.addLine(  "%1$s object = new %1$s();", containerName.getSimpleName());
         javaBuffer.addLine();
-        javaBuffer.addLine(  "// Process the attributes:");
-        javaBuffer.addLine(  "for (int i = 0; i < reader.getAttributeCount(); i++) {");
-        javaBuffer.addLine(    "String name = reader.getAttributeLocalName(i);");
-        javaBuffer.addLine(    "String image = reader.getAttributeValue(i);");
-        javaBuffer.addLine(    "switch (name) {");
-        Stream.concat(type.attributes(), type.links())
-            .filter(x -> schemaNames.isRepresentedAsAttribute(x.getName()))
-            .sorted()
-            .forEach(this::generateReadMemberFromAttribute);
-        javaBuffer.addLine(    "}");
-        javaBuffer.addLine(  "}");
-        javaBuffer.addLine();
+        if (!asAttributes.isEmpty()) {
+            javaBuffer.addLine("// Process the attributes:");
+            javaBuffer.addLine("for (int i = 0; i < reader.getAttributeCount(); i++) {");
+            javaBuffer.addLine(  "String name = reader.getAttributeLocalName(i);");
+            javaBuffer.addLine(  "String image = reader.getAttributeValue(i);");
+            javaBuffer.addLine(  "switch (name) {");
+            asAttributes.stream()
+                .sorted()
+                .forEach(this::generateReadMemberFromAttribute);
+            javaBuffer.addLine(  "default:");
+            javaBuffer.addLine(    "break;");
+            javaBuffer.addLine(  "}");
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+        }
         javaBuffer.addLine(  "// Process the inner elements:");
         javaBuffer.addLine(  "reader.next();");
         javaBuffer.addLine(  "while (reader.forward()) {");
-        javaBuffer.addLine(    "String name = reader.getLocalName();");
-        javaBuffer.addLine(    "switch (name) {");
-        Stream.concat(type.attributes(), type.links())
-            .filter(x -> !schemaNames.isRepresentedAsAttribute(x.getName()))
-            .sorted()
-            .forEach(this::generateReadMemberFromElement);
-        javaBuffer.addLine(    "default:");
-        javaBuffer.addLine(      "reader.skip();");
-        javaBuffer.addLine(    "}");
-        javaBuffer.addLine(  "}");
+        if (!asElements.isEmpty()) {
+            javaBuffer.addLine("String name = reader.getLocalName();");
+            javaBuffer.addLine("switch (name) {");
+            asElements.stream()
+                .sorted()
+                .forEach(this::generateReadMemberFromElement);
+            javaBuffer.addLine("default:");
+            javaBuffer.addLine(  "reader.skip();");
+            javaBuffer.addLine(  "break;");
+            javaBuffer.addLine("}");
+        }
+        else {
+            javaBuffer.addLine("reader.skip();");
+        }
+        javaBuffer.addLine("}");
         javaBuffer.addLine();
         javaBuffer.addLine(  "// Discard the end tag:");
         javaBuffer.addLine(  "reader.next();");
@@ -236,7 +254,6 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateReadMany(StructType type) {
         // Get the type name:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
-        JavaClassName readerName = javaTypes.getXmlReaderName(type);
 
         // Add the required imports:
         javaBuffer.addImport(typeName);

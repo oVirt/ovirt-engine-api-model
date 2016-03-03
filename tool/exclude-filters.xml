@@ -25,4 +25,12 @@ limitations under the License.
     <Bug code="Dm"/>
   </Match>
 
+  <!-- Looks like findbugs doesn't consider the Java 8 "forEach"
+       method that uses a list, as a result it says that some
+       lists that we use are useless, but they are't: -->
+  <Match>
+    <Class name="org.ovirt.api.metamodel.tool.SchemaGenerator"/>
+    <Bug code="UC"/>
+  </Match>
+
 </FindBugsFilter>

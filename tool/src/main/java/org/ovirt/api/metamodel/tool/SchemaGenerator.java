@@ -144,9 +144,6 @@ public class SchemaGenerator {
     // The reference to the model:
     private Model model;
 
-    // The set of types that are used as elements of list in struct attributes or in method parameters:
-    private Set<Type> elementTypes;
-
     // The input and output schema files:
     private File inFile;
     private File outFile;

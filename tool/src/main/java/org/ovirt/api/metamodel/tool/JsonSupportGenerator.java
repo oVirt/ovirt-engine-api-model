@@ -121,18 +121,26 @@ public class JsonSupportGenerator extends JavaGenerator {
 
         // Generate the method that receives a boolean parameter indicating if parsing of the object has already
         // started. In that case the start event will have been consumed already.
+        List<StructMember> members = new ArrayList<>();
+        members.addAll(type.getAttributes());
+        members.addAll(type.getLinks());
         javaBuffer.addLine("public static %1$s readOne(JsonReader reader, boolean started) {", typeName.getSimpleName());
         javaBuffer.addLine(  "if (!started) {");
         javaBuffer.addLine(    "reader.expect(Event.START_OBJECT);");
         javaBuffer.addLine(  "}");
         javaBuffer.addLine(  "%1$s object = new %1$s();", containerName.getSimpleName());
         javaBuffer.addLine(  "while (reader.next() == Event.KEY_NAME) {");
-        javaBuffer.addLine(    "String name = reader.getString();");
-        javaBuffer.addLine(    "switch (name) {");
-        Stream.concat(type.attributes(), type.links()).sorted().forEach(this::generateReadMember);
-        javaBuffer.addLine(    "default:");
-        javaBuffer.addLine(      "reader.skip();");
-        javaBuffer.addLine(    "}");
+        if (members.isEmpty()) {
+            javaBuffer.addLine("reader.skip();");
+        }
+        else {
+            javaBuffer.addLine("String name = reader.getString();");
+            javaBuffer.addLine("switch (name) {");
+            members.stream().sorted().forEach(this::generateReadMember);
+            javaBuffer.addLine("default:");
+            javaBuffer.addLine(  "reader.skip();");
+            javaBuffer.addLine("}");
+        }
         javaBuffer.addLine(  "}");
         javaBuffer.addLine(  "return object;");
         javaBuffer.addLine("}");
@@ -272,7 +280,6 @@ public class JsonSupportGenerator extends JavaGenerator {
     private void generateWriteOne(StructType type) {
         // Calculate the name of the type and the XML tag:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
-        String tag = schemaNames.getSchemaTagName(type.getName());
 
         // Add the required imports:
         javaBuffer.addImport(typeName);
