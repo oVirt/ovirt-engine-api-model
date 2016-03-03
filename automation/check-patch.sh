@@ -42,4 +42,4 @@ ${mvn} test
 
 # Run findbugs:
 ${mvn} install -DskipTests
-${mvn} findbugs:findbugs
+${mvn} findbugs:check
