@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.json.stream.JsonParser;
@@ -196,6 +197,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addImport(typeName);
         javaBuffer.addImport(Iterator.class);
         javaBuffer.addImport(JsonReader.class);
+        javaBuffer.addImport(NoSuchElementException.class);
         javaBuffer.addLine("public static Iterator<%1$s> iterateMany(JsonReader reader) {",
             typeName.getSimpleName());
         javaBuffer.addLine(  "return new Iterator<%1$s>() {", typeName.getSimpleName());
@@ -212,7 +214,11 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addLine();
         javaBuffer.addLine(    "@Override");
         javaBuffer.addLine(    "public %1$s next() {", typeName.getSimpleName());
-        javaBuffer.addLine(      "return readOne(reader, true);");
+        javaBuffer.addLine(      "%1$s next = readOne(reader, true);", typeName.getSimpleName());
+        javaBuffer.addLine(      "if (next == null) {");
+        javaBuffer.addLine(        "throw new NoSuchElementException();");
+        javaBuffer.addLine(      "}");
+        javaBuffer.addLine(      "return next;");
         javaBuffer.addLine(    "}");
         javaBuffer.addLine(  "};");
         javaBuffer.addLine("}");

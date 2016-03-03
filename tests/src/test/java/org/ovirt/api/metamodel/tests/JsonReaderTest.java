@@ -31,6 +31,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -288,6 +289,18 @@ public class JsonReaderTest {
         // Check if it took less than a minute (it should take much more less, approx 5, but lets be
         // conservative:
         assertTrue(elapsed < 60_000_000);
+    }
+
+    /**
+     * Checks that iterators throw {@link NoSuchElementException} when there are no more elements to read.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testThrowsNoSuchElement() {
+        try (StringReader buffer = new StringReader("[]"); JsonReader reader = new JsonReader(buffer)) {
+            Iterator<V4Vm> iterator = V4JsonVmReader.iterateMany(reader);
+            iterator.hasNext();
+            iterator.next();
+        }
     }
 
     /**

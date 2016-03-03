@@ -22,6 +22,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 
@@ -242,6 +243,7 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addImport(ArrayList.class);
         javaBuffer.addImport(Iterator.class);
         javaBuffer.addImport(List.class);
+        javaBuffer.addImport(NoSuchElementException.class);
         javaBuffer.addImport(XmlReader.class);
 
         // Iterate method:
@@ -267,7 +269,11 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine();
         javaBuffer.addLine(    "@Override");
         javaBuffer.addLine(    "public %1$s next() {", typeName.getSimpleName());
-        javaBuffer.addLine(      "return %1$s.readOne(reader);", readerName.getSimpleName());
+        javaBuffer.addLine(      "%1$s next = readOne(reader);", typeName.getSimpleName());
+        javaBuffer.addLine(      "if (next == null) {");
+        javaBuffer.addLine(        "throw new NoSuchElementException();");
+        javaBuffer.addLine(      "}");
+        javaBuffer.addLine(      "return next;");
         javaBuffer.addLine(    "}");
         javaBuffer.addLine(  "};");
         javaBuffer.addLine("}");

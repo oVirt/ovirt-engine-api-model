@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import javax.xml.stream.XMLStreamConstants;
 
 import org.junit.Ignore;
@@ -761,6 +762,18 @@ public class XmlReaderTest {
         // Check if it took less than a minute (it should take much more less, approx 10s, but lets be
         // conservative:
         assertTrue(elapsed < 60_000_000);
+    }
+
+    /**
+     * Checks that iterators throw {@link NoSuchElementException} when there are no more elements to read.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testThrowsNoSuchElement() {
+        try (XmlReader reader = openReader("<vms></vms>")) {
+            Iterator<V4Vm> iterator = V4XmlVmReader.iterateMany(reader);
+            iterator.hasNext();
+            iterator.next();
+        }
     }
 
     /**
