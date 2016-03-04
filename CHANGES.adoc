@@ -7,7 +7,8 @@ API model.
 
 Removed features:
 
-  * Removed the 3.0 API for managing host network interfaces.
+* Removed the 3.0 API for managing host network interfaces and the old
+  `setupNetworks` operation.
 
 == 4.0.7 / Feb 29 2016
 

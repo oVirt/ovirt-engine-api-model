@@ -33,17 +33,5 @@ public interface HostNicsService {
         @In Integer max();
     }
 
-    interface SetupNetworks {
-        @In Boolean checkConnectivity();
-        @In Integer connectivityTimeout();
-        @In Boolean force();
-        @In HostNic[] hostNics();
-
-        /**
-         * Indicates if the action should be performed asynchronously.
-         */
-        @In Boolean async();
-    }
-
     @Service HostNicService nic(String id);
 }
