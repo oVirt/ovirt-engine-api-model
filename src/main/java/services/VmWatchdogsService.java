@@ -28,7 +28,7 @@ public interface VmWatchdogsService {
     }
 
     interface List {
-        @Out Watchdog[] watchdog();
+        @Out Watchdog[] watchdogs();
 
         /**
          * Sets the maximum number of watchdogs to return. If not specified all the watchdogs are returned.
