@@ -202,6 +202,11 @@ public interface VmsService {
         @In String search();
 
         /**
+         * The maximum number of results to return.
+         */
+        @In Integer max();
+
+        /**
          * Indicates if the search performed using the `search` parameter should be performed taking case into
          * account. The default value is `true`, which means that case is taken into account. If you want to search
          * ignoring case set it to `false`.
