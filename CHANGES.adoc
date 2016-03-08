@@ -3,12 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
-== 4.0.8
+== 4.0.8 / Mar 8 2016
 
 Removed features:
 
 * Removed the 3.0 API for managing host network interfaces and the old
-  `setupNetworks` operation.
+  `SetupNetworks` operation.
+
+Bug fixes:
+
+* Fix the name of the `watchdogs` parameter.
+
+* Add the `max` parameter to the `List` operation of the service that
+  manages virtual machines.
 
 == 4.0.7 / Feb 29 2016
 
