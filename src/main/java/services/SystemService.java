@@ -63,7 +63,7 @@ public interface SystemService {
     @Service JobsService jobs();
     @Service MacPoolsService macPools();
     @Service NetworksService networks();
-    @Service OpenstackImageProvidersService openstackImageProviers();
+    @Service OpenstackImageProvidersService openstackImageProviders();
     @Service OpenstackNetworkProvidersService openstackNetworkProviders();
     @Service OpenstackVolumeProvidersService openstackVolumeProviders();
     @Service OperatingSystemsService operatingSystems();
