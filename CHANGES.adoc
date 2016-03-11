@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.9 / Mar 11 2016
+
+Bug fixes:
+
+* Fix the name of the `openstackImageProviders` service locator.
+
 == 4.0.8 / Mar 8 2016
 
 Removed features:
