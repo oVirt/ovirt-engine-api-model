@@ -16,14 +16,37 @@ limitations under the License.
 
 package services.openstack;
 
+import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+import types.DataCenter;
 import types.OpenStackNetwork;
+
 
 @Service
 public interface OpenstackNetworkService {
     interface Get {
         @Out OpenStackNetwork network();
+    }
+
+    /**
+     * This operation imports an external network into oVirt.
+     * The network will be added to the data center specified.
+     */
+    interface Import {
+
+        /**
+         * The data center into which the network is to be imported.
+         * Data center is mandatory, and can be specified
+         * using the `id` or `name` attributes, the rest of
+         * the attributes will be ignored.
+         */
+        @In DataCenter dataCenter();
+
+        /**
+         * Indicates if the import should be performed asynchronously.
+         */
+        @In Boolean async();
     }
 
     @Service OpenstackSubnetsService subnets();
