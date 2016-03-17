@@ -159,19 +159,6 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
-    /**
-     * This action is deprecated, use the `move` operation of the disks instead.
-     */
-    @Deprecated
-    interface Move {
-        @In StorageDomain storageDomain();
-
-        /**
-         * Indicates if the move should be performed asynchronously.
-         */
-        @In Boolean async();
-    }
-
     interface PreviewSnapshot {
         @In Disk[] disks();
         @In Boolean restoreMemory();
