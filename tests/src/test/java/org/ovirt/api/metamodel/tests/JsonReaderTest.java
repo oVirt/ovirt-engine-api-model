@@ -53,8 +53,8 @@ public class JsonReaderTest {
     public void testEmpty() {
         V4Vm object = objectFromJson("{}");
         assertNotNull(object);
-        assertNull(object.getId());
-        assertNull(object.getName());
+        assertNull(object.id());
+        assertNull(object.name());
     }
 
     /**
@@ -63,7 +63,7 @@ public class JsonReaderTest {
     @Test
     public void testId() {
         V4Vm object = objectFromJson("{'id':'123'}");
-        assertEquals("123", object.getId());
+        assertEquals("123", object.id());
     }
 
     /**
@@ -72,7 +72,7 @@ public class JsonReaderTest {
     @Test
     public void testIdEmpty() {
         V4Vm object = objectFromJson("{'id':''}");
-        assertEquals("", object.getId());
+        assertEquals("", object.id());
     }
 
     /**
@@ -81,7 +81,7 @@ public class JsonReaderTest {
     @Test
     public void testIdNull() {
         V4Vm object = objectFromJson("{}");
-        assertNull(object.getId());
+        assertNull(object.id());
     }
 
     /**
@@ -90,8 +90,8 @@ public class JsonReaderTest {
     @Test
     public void testMultiple() {
         V4Vm object = objectFromJson("{'fqdn':'myvm.example.com','name':'myvm'}");
-        assertEquals("myvm", object.getName());
-        assertEquals("myvm.example.com", object.getFqdn());
+        assertEquals("myvm", object.name());
+        assertEquals("myvm.example.com", object.fqdn());
     }
 
     /**
@@ -100,8 +100,8 @@ public class JsonReaderTest {
     @Test
     public void testBoolean() {
         V4Vm object = objectFromJson("{'delete_protected':true,'run_once':false}");
-        assertTrue(object.getDeleteProtected());
-        assertFalse(object.getRunOnce());
+        assertTrue(object.deleteProtected());
+        assertFalse(object.runOnce());
     }
 
     /**
@@ -110,7 +110,7 @@ public class JsonReaderTest {
     @Test
     public void test0() {
         V4Vm object = objectFromJson("{'memory':0}");
-        assertEquals(BigInteger.ZERO, object.getMemory());
+        assertEquals(BigInteger.ZERO, object.memory());
     }
 
     /**
@@ -119,7 +119,7 @@ public class JsonReaderTest {
     @Test
     public void test1() {
         V4Vm object = objectFromJson("{'memory':1}");
-        assertEquals(BigInteger.ONE, object.getMemory());
+        assertEquals(BigInteger.ONE, object.memory());
     }
 
     /**
@@ -128,7 +128,7 @@ public class JsonReaderTest {
     @Test
     public void testMinus1() {
         V4Vm object = objectFromJson("{'memory':-1}");
-        assertEquals(BigInteger.ONE.negate(), object.getMemory());
+        assertEquals(BigInteger.ONE.negate(), object.memory());
     }
 
     /**
@@ -137,7 +137,7 @@ public class JsonReaderTest {
     @Test
     public void testLong() {
         V4Vm object = objectFromJson("{'memory':21474836470}");
-        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Integer.MAX_VALUE)), object.getMemory());
+        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Integer.MAX_VALUE)), object.memory());
     }
 
     /**
@@ -146,7 +146,7 @@ public class JsonReaderTest {
     @Test
     public void testVeryLong() {
         V4Vm object = objectFromJson("{'memory':92233720368547758070}");
-        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Long.MAX_VALUE)), object.getMemory());
+        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Long.MAX_VALUE)), object.memory());
     }
 
     /**
@@ -155,8 +155,8 @@ public class JsonReaderTest {
     @Test
     public void testNested() {
         V4Vm object = objectFromJson("{'cpu':{'mode':'mymode'}}");
-        assertNotNull(object.getCpu());
-        assertEquals("mymode", object.getCpu().getMode());
+        assertNotNull(object.cpu());
+        assertEquals("mymode", object.cpu().mode());
     }
 
     @Test
@@ -167,15 +167,15 @@ public class JsonReaderTest {
                 "{'id':'456','alias':'disk2'}" +
             "]}"
         );
-        List<V4Disk> items = object.getDisks();
+        List<V4Disk> items = object.disks();
         assertNotNull(items);
         assertEquals(2, items.size());
         V4Disk item1 = items.get(0);
-        assertEquals("123", item1.getId());
-        assertEquals("disk1", item1.getAlias());
+        assertEquals("123", item1.id());
+        assertEquals("disk1", item1.alias());
         V4Disk item2 = items.get(1);
-        assertEquals("456", item2.getId());
-        assertEquals("disk2", item2.getAlias());
+        assertEquals("456", item2.id());
+        assertEquals("disk2", item2.alias());
     }
 
     /**
@@ -190,7 +190,7 @@ public class JsonReaderTest {
         calendar.set(2015, 12, 17, 16, 18, 23);
         calendar.set(Calendar.MILLISECOND, 123);
         Date date = calendar.getTime();
-        assertEquals(date, object.getCreationTime());
+        assertEquals(date, object.creationTime());
     }
 
     /**

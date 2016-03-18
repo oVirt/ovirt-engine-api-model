@@ -179,26 +179,26 @@ public class XmlSupportGenerator extends JavaGenerator {
         Name name = member.getName();
         Type type = member.getType();
         if (type instanceof PrimitiveType) {
-            String property = javaNames.getJavaPropertyStyleName(name);
+            String field = javaNames.getJavaMemberStyleName(name);
             String tag = schemaNames.getSchemaTagName(name);
             javaBuffer.addLine("case \"%1$s\":", tag);
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
-                javaBuffer.addLine("object.set%1$s(Boolean.parseBoolean(image));", property);
+                javaBuffer.addLine("object.%1$s(Boolean.parseBoolean(image));", field);
             }
             else if (type == model.getIntegerType()) {
                 javaBuffer.addImport(BigInteger.class);
-                javaBuffer.addLine("object.set%1$s(new BigInteger(image));", property);
+                javaBuffer.addLine("object.%1$s(new BigInteger(image));", field);
             }
             else if (type == model.getDecimalType()) {
                 javaBuffer.addImport(BigDecimal.class);
-                javaBuffer.addLine("object.set%1$s(new BigDecimal(image));", property);
+                javaBuffer.addLine("object.%1$s(new BigDecimal(image));", field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("object.set%1$s(image);", property);
+                javaBuffer.addLine("object.%1$s(image);", field);
             }
             else if (type == model.getDateType()) {
-                javaBuffer.addLine("object.set%1$s(DATE_FORMAT.parse(image));", property);
+                javaBuffer.addLine("object.%1$s(DATE_FORMAT.parse(image));", field);
             }
             javaBuffer.addLine("break;");
         }
@@ -207,25 +207,25 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateReadMemberFromElement(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
-        String property = javaNames.getJavaPropertyStyleName(name);
+        String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
         javaBuffer.addLine("case \"%1$s\":", tag);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readBoolean());", property);
+                javaBuffer.addLine("object.%1$s(reader.readBoolean());", field);
             }
             else if (type == model.getIntegerType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readInteger());", property);
+                javaBuffer.addLine("object.%1$s(reader.readInteger());", field);
             }
             else if (type == model.getDecimalType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readDecimal());", property);
+                javaBuffer.addLine("object.%1$s(reader.readDecimal());", field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readString());", property);
+                javaBuffer.addLine("object.%1$s(reader.readString());", field);
             }
             else if (type == model.getDateType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readDate());", property);
+                javaBuffer.addLine("object.%1$s(reader.readDate());", field);
             }
             else {
                 javaBuffer.addLine("reader.skip();");
@@ -234,7 +234,7 @@ public class XmlSupportGenerator extends JavaGenerator {
         else if (type instanceof StructType) {
             JavaClassName readerName = javaTypes.getXmlReaderName(type);
             javaBuffer.addImport(readerName);
-            javaBuffer.addLine("object.set%1$s(%2$s.readOne(reader));", property, readerName.getSimpleName());
+            javaBuffer.addLine("object.%1$s(%2$s.readOne(reader));", field, readerName.getSimpleName());
         }
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
@@ -242,7 +242,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             JavaClassName readerName = javaTypes.getXmlReaderName(elementType);
             javaBuffer.addImport(readerName);
             if (elementType instanceof StructType) {
-                javaBuffer.addLine("object.set%1$s(%2$s.readMany(reader));", property, readerName.getSimpleName());
+                javaBuffer.addLine("object.%1$s(%2$s.readMany(reader));", field, readerName.getSimpleName());
             }
         }
         else {
@@ -372,25 +372,25 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateWriteMemberAsAttribute(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
-        String property = javaNames.getJavaPropertyStyleName(name);
+        String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
-        javaBuffer.addLine("if (object.has%1$s()) {", property);
+        javaBuffer.addLine("if (object.%1$sPresent()) {", field);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
             if (type == model.getBooleanType() || type == model.getIntegerType() || type == model.getDecimalType()) {
-                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.get%2$s().toString());", tag, property);
+                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s().toString());", tag, field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getDateType()) {
                 // TODO: This isn't the XML schema format.
-                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.get%2$s().toString());", tag, property);
+                javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s().toString());", tag, field);
             }
         }
         else if (type instanceof EnumType) {
             // TODO: Should get the value calling the "getValue()" method.
-            javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.get%2$s().toString());", tag, property);
+            javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s().toString());", tag, field);
         }
         javaBuffer.addLine("}");
     }
@@ -398,38 +398,38 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateWriteMemberAsElement(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
-        String property = javaNames.getJavaPropertyStyleName(name);
+        String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
-        javaBuffer.addLine("if (object.has%1$s()) {", property);
+        javaBuffer.addLine("if (object.%1$sPresent()) {", field);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
-                javaBuffer.addLine("writer.writeBoolean(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeBoolean(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getIntegerType()) {
-                javaBuffer.addLine("writer.writeInteger(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeInteger(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getDecimalType()) {
-                javaBuffer.addLine("writer.writeDecimal(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeDecimal(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("writer.writeElement(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeElement(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getDateType()) {
-                javaBuffer.addLine("writer.writeDate(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeDate(\"%1$s\", object.%2$s());", tag, field);
             }
         }
         else if (type instanceof EnumType) {
             // TODO: Should get the value calling the "getValue()" method.
             javaBuffer.addLine("writer.writeStartElement(\"%1$s\");", tag);
-            javaBuffer.addLine("writer.writeCharacters(object.get%1$s().toString());", property);
+            javaBuffer.addLine("writer.writeCharacters(object.%1$s().toString());", field);
             javaBuffer.addLine("writer.writeEndElement();");
         }
         else if (type instanceof StructType) {
             JavaClassName writerName = javaTypes.getXmlWriterName(type);
             javaBuffer.addImport(writerName);
-            javaBuffer.addLine("%1$s.writeOne(object.get%2$s(), \"%3$s\", writer);",
-                writerName.getSimpleName(), property, tag);
+            javaBuffer.addLine("%1$s.writeOne(object.%2$s(), \"%3$s\", writer);", writerName.getSimpleName(), field,
+                tag);
         }
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
@@ -437,8 +437,8 @@ public class XmlSupportGenerator extends JavaGenerator {
             if (elementType instanceof StructType) {
                 JavaClassName writerName = javaTypes.getXmlWriterName(elementType);
                 javaBuffer.addImport(writerName);
-                javaBuffer.addLine("%1$s.writeMany(object.get%2$s().iterator(), writer);",
-                    writerName.getSimpleName(), property);
+                javaBuffer.addLine("%1$s.writeMany(object.%2$s().iterator(), writer);", writerName.getSimpleName(),
+                    field);
             }
         }
         javaBuffer.addLine("}");

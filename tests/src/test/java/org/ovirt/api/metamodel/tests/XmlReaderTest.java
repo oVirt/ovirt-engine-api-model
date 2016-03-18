@@ -408,8 +408,8 @@ public class XmlReaderTest {
     public void testEmpty() {
         V4Vm object = objectFromXml("<vm></vm>");
         assertNotNull(object);
-        assertNull(object.getId());
-        assertNull(object.getName());
+        assertNull(object.id());
+        assertNull(object.name());
     }
 
     /**
@@ -419,8 +419,8 @@ public class XmlReaderTest {
     public void testEmptyNoCloseTag() {
         V4Vm object = objectFromXml("<vm/>");
         assertNotNull(object);
-        assertNull(object.getId());
-        assertNull(object.getName());
+        assertNull(object.id());
+        assertNull(object.name());
     }
 
     /**
@@ -429,7 +429,7 @@ public class XmlReaderTest {
     @Test
     public void testAttr() {
         V4Vm object = objectFromXml("<vm id=\"123\"></vm>");
-        assertEquals("123", object.getId());
+        assertEquals("123", object.id());
     }
 
     /**
@@ -438,7 +438,7 @@ public class XmlReaderTest {
     @Test
     public void testEmptyAttr() {
         V4Vm object = objectFromXml("<vm id=\"\"></vm>");
-        assertEquals("", object.getId());
+        assertEquals("", object.id());
     }
 
     /**
@@ -447,7 +447,7 @@ public class XmlReaderTest {
     @Test
     public void testNullAttr() {
         V4Vm object = objectFromXml("<vm></vm>");
-        assertNull(object.getId());
+        assertNull(object.id());
     }
 
     /**
@@ -456,7 +456,7 @@ public class XmlReaderTest {
     @Test
     public void testSimpleElement() {
         V4Vm object = objectFromXml("<vm><name>myvm</name></vm>");
-        assertEquals("myvm", object.getName());
+        assertEquals("myvm", object.name());
     }
 
     /**
@@ -465,7 +465,7 @@ public class XmlReaderTest {
     @Test
     public void testEmptyElement() {
         V4Vm object = objectFromXml("<vm><name></name></vm>");
-        assertEquals("", object.getName());
+        assertEquals("", object.name());
     }
 
     /**
@@ -474,7 +474,7 @@ public class XmlReaderTest {
     @Test
     public void testNullElement() {
         V4Vm object = objectFromXml("<vm></vm>");
-        assertNull(object.getName());
+        assertNull(object.name());
     }
 
     /**
@@ -484,8 +484,8 @@ public class XmlReaderTest {
     @Test
     public void testAttrAndElement() {
         V4Vm object = objectFromXml("<vm id=\"123\"><name>myvm</name></vm>");
-        assertEquals("123", object.getId());
-        assertEquals("myvm", object.getName());
+        assertEquals("123", object.id());
+        assertEquals("myvm", object.name());
     }
 
     /**
@@ -494,8 +494,8 @@ public class XmlReaderTest {
     @Test
     public void testMultipleElements() {
         V4Vm object = objectFromXml("<vm><name>myvm</name><fqdn>myvm.example.com</fqdn></vm>");
-        assertEquals("myvm", object.getName());
-        assertEquals("myvm.example.com", object.getFqdn());
+        assertEquals("myvm", object.name());
+        assertEquals("myvm.example.com", object.fqdn());
     }
 
     /**
@@ -509,8 +509,8 @@ public class XmlReaderTest {
             "<run_once>false</run_once>" +
             "</vm>"
         );
-        assertTrue(object.getDeleteProtected());
-        assertFalse(object.getRunOnce());
+        assertTrue(object.deleteProtected());
+        assertFalse(object.runOnce());
     }
 
     /**
@@ -519,7 +519,7 @@ public class XmlReaderTest {
     @Test
     public void test0() {
         V4Vm object = objectFromXml("<vm><memory>0</memory></vm>");
-        assertEquals(BigInteger.ZERO, object.getMemory());
+        assertEquals(BigInteger.ZERO, object.memory());
     }
 
     /**
@@ -528,7 +528,7 @@ public class XmlReaderTest {
     @Test
     public void test1() {
         V4Vm object = objectFromXml("<vm><memory>1</memory></vm>");
-        assertEquals(BigInteger.ONE, object.getMemory());
+        assertEquals(BigInteger.ONE, object.memory());
     }
 
     /**
@@ -537,7 +537,7 @@ public class XmlReaderTest {
     @Test
     public void testMinus1() {
         V4Vm object = objectFromXml("<vm><memory>-1</memory></vm>");
-        assertEquals(BigInteger.ONE.negate(), object.getMemory());
+        assertEquals(BigInteger.ONE.negate(), object.memory());
     }
 
     /**
@@ -546,7 +546,7 @@ public class XmlReaderTest {
     @Test
     public void testLong() {
         V4Vm object = objectFromXml("<vm><memory>21474836470</memory></vm>");
-        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Integer.MAX_VALUE)), object.getMemory());
+        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Integer.MAX_VALUE)), object.memory());
     }
 
     /**
@@ -555,7 +555,7 @@ public class XmlReaderTest {
     @Test
     public void testVeryLong() {
         V4Vm object = objectFromXml("<vm><memory>92233720368547758070</memory></vm>");
-        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Long.MAX_VALUE)), object.getMemory());
+        assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Long.MAX_VALUE)), object.memory());
     }
 
     /**
@@ -568,8 +568,8 @@ public class XmlReaderTest {
             "<cpu><mode>mymode</mode></cpu>" +
             "</vm>"
         );
-        assertNotNull(object.getCpu());
-        assertEquals("mymode", object.getCpu().getMode());
+        assertNotNull(object.cpu());
+        assertEquals("mymode", object.cpu().mode());
     }
 
     /**
@@ -632,15 +632,15 @@ public class XmlReaderTest {
               "</disks>" +
             "</vm>"
         );
-        List<V4Disk> items = object.getDisks();
+        List<V4Disk> items = object.disks();
         assertNotNull(items);
         assertEquals(2, items.size());
         V4Disk item1 = items.get(0);
-        assertEquals("123", item1.getId());
-        assertEquals("disk1", item1.getAlias());
+        assertEquals("123", item1.id());
+        assertEquals("disk1", item1.alias());
         V4Disk item2 = items.get(1);
-        assertEquals("456", item2.getId());
-        assertEquals("disk2", item2.getAlias());
+        assertEquals("456", item2.id());
+        assertEquals("disk2", item2.alias());
     }
 
     /**
@@ -655,7 +655,7 @@ public class XmlReaderTest {
         calendar.set(2015, 12, 17, 16, 18, 23);
         calendar.set(Calendar.MILLISECOND, 123);
         Date date = calendar.getTime();
-        assertEquals(date, object.getCreationTime());
+        assertEquals(date, object.creationTime());
     }
 
     /**

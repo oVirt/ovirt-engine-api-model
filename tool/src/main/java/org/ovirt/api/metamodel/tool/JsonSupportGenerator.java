@@ -150,25 +150,25 @@ public class JsonSupportGenerator extends JavaGenerator {
     private void generateReadMember(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
-        String property = javaNames.getJavaPropertyStyleName(name);
+        String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
         javaBuffer.addLine("case \"%1$s\":", tag);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readBoolean());", property);
+                javaBuffer.addLine("object.%1$s(reader.readBoolean());", field);
             }
             else if (type == model.getIntegerType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readInteger());", property);
+                javaBuffer.addLine("object.%1$s(reader.readInteger());", field);
             }
             else if (type == model.getDecimalType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readDecimal());", property);
+                javaBuffer.addLine("object.%1$s(reader.readDecimal());", field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readString());", property);
+                javaBuffer.addLine("object.%1$s(reader.readString());", field);
             }
             else if (type == model.getDateType()) {
-                javaBuffer.addLine("object.set%1$s(reader.readDate());", property);
+                javaBuffer.addLine("object.%1$s(reader.readDate());", field);
             }
             else {
                 javaBuffer.addLine("reader.skip();");
@@ -180,7 +180,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         else if (type instanceof StructType) {
             JavaClassName readerName = javaTypes.getJsonReaderName(type);
             javaBuffer.addImport(readerName);
-            javaBuffer.addLine("object.set%1$s(%2$s.readOne(reader));", property, readerName.getSimpleName());
+            javaBuffer.addLine("object.%1$s(%2$s.readOne(reader));", field, readerName.getSimpleName());
         }
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
@@ -188,7 +188,7 @@ public class JsonSupportGenerator extends JavaGenerator {
             JavaClassName readerName = javaTypes.getJsonReaderName(elementType);
             javaBuffer.addImport(readerName);
             if (elementType instanceof StructType) {
-                javaBuffer.addLine("object.set%1$s(%2$s.readMany(reader));", property, readerName.getSimpleName());
+                javaBuffer.addLine("object.%1$s(%2$s.readMany(reader));", field, readerName.getSimpleName());
             }
         }
         else {
@@ -310,35 +310,35 @@ public class JsonSupportGenerator extends JavaGenerator {
     private void generateWriteMember(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
-        String property = javaNames.getJavaPropertyStyleName(name);
+        String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
-        javaBuffer.addLine("if (object.has%1$s()) {", property);
+        javaBuffer.addLine("if (object.%1$sPresent()) {", field);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
-                javaBuffer.addLine("writer.writeBoolean(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeBoolean(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getIntegerType()) {
-                javaBuffer.addLine("writer.writeInteger(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeInteger(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getDecimalType()) {
-                javaBuffer.addLine("writer.writeDecimal(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeDecimal(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getStringType()) {
-                javaBuffer.addLine("writer.writeString(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeString(\"%1$s\", object.%2$s());", tag, field);
             }
             else if (type == model.getDateType()) {
-                javaBuffer.addLine("writer.writeDate(\"%1$s\", object.get%2$s());", tag, property);
+                javaBuffer.addLine("writer.writeDate(\"%1$s\", object.%2$s());", tag, field);
             }
         }
         else if (type instanceof EnumType) {
-            javaBuffer.addLine("writer.writeString(\"%1$s\", object.get%2$s().value());", tag, property);
+            javaBuffer.addLine("writer.writeString(\"%1$s\", object.get%2$s().value());", tag, field);
         }
         else if (type instanceof StructType) {
             JavaClassName writerName = javaTypes.getJsonWriterName(type);
             javaBuffer.addImport(writerName);
-            javaBuffer.addLine("%1$s.writeOne(object.get%2$s(), \"%3$s\", writer);",
-                writerName.getSimpleName(), property, tag);
+            javaBuffer.addLine("%1$s.writeOne(object.%2$s(), \"%3$s\", writer);", writerName.getSimpleName(), field,
+                tag);
         }
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
@@ -346,8 +346,8 @@ public class JsonSupportGenerator extends JavaGenerator {
             if (elementType instanceof StructType) {
                 JavaClassName writerName = javaTypes.getJsonWriterName(elementType);
                 javaBuffer.addImport(writerName);
-                javaBuffer.addLine("%1$s.writeMany(object.get%2$s().iterator(), \"%3$s\", writer);",
-                    writerName.getSimpleName(), property, tag);
+                javaBuffer.addLine("%1$s.writeMany(object.%2$s().iterator(), \"%3$s\", writer);",
+                    writerName.getSimpleName(), field, tag);
             }
         }
         javaBuffer.addLine("}");
