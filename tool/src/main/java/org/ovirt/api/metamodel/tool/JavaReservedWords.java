@@ -91,6 +91,9 @@ public class JavaReservedWords {
         words.add("volatile");
         words.add("while");
 
+        // These aren't reserved words, but it is better to avoid them, as the class with methods of the "Object" class:
+        words.add("clone");
+
         // Wrap the set so that it is unmodifiable:
         words = Collections.unmodifiableSet(words);
     }
