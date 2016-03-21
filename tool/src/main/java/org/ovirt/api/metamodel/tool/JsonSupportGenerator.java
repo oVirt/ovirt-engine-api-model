@@ -332,7 +332,7 @@ public class JsonSupportGenerator extends JavaGenerator {
             }
         }
         else if (type instanceof EnumType) {
-            javaBuffer.addLine("writer.writeString(\"%1$s\", object.get%2$s().value());", tag, field);
+            javaBuffer.addLine("writer.writeString(\"%1$s\", object.%2$s().value());", tag, field);
         }
         else if (type instanceof StructType) {
             JavaClassName writerName = javaTypes.getJsonWriterName(type);
