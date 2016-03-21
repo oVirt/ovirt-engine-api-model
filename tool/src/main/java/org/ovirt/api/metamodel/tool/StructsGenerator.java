@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -23,8 +24,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.stream.Stream;
-import javax.inject.Inject;
 
+import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
@@ -554,6 +555,14 @@ public class StructsGenerator extends JavaGenerator {
                 javaBuffer.addLine("}");
                 javaBuffer.addLine();
             }
+        }
+        else if (type instanceof EnumType) {
+            javaBuffer.addLine("public %1$s %2$s(%3$s new%4$s) {", thisName.getSimpleName(), field,
+                typeReference.getText(), property);
+            javaBuffer.addLine(  "%1$s = new%2$s;", field, property);
+            javaBuffer.addLine(  "return this;");
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
         else if (type instanceof StructType) {
             JavaClassName builderName = javaTypes.getBuilderName(type);
