@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.10 / Mar 21 2016
+
+New features:
+
+* Add support for importing external network.
+
+Bug fixes:
+
+* Fix use of wrong enums.
+
 == 4.0.9 / Mar 11 2016
 
 Bug fixes:
