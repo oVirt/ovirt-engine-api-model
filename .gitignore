@@ -1,5 +1,6 @@
 *.class
 *.iml
+.idea/
 .bash_history
 exported-artifacts/
 logs*
