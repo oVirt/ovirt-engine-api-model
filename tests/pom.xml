@@ -96,12 +96,10 @@ limitations under the License.
             <configuration>
               <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
               <arguments>
-                <argument>--model</argument>
-                <argument>${project.basedir}/src/main/java</argument>
-                <argument>--java</argument>
-                <argument>${project.basedir}/target/generated-sources/model</argument>
-                <argument>--version-prefix</argument>
-                <argument>V4</argument>
+                <argument>org.ovirt.api.metamodel.tool.Tool</argument>
+                <argument>--model=${project.basedir}/src/main/java</argument>
+                <argument>--java=${project.basedir}/target/generated-sources/model</argument>
+                <argument>--version-prefix=V4</argument>
               </arguments>
               <includePluginDependencies>true</includePluginDependencies>
               <includeProjectDependencies>false</includeProjectDependencies>
@@ -115,14 +113,12 @@ limitations under the License.
               <goal>java</goal>
             </goals>
             <configuration>
-              <mainClass>org.ovirt.api.metamodel.tool.MainEnums</mainClass>
+              <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
               <arguments>
-                <argument>--model</argument>
-                <argument>${project.basedir}/src/main/java</argument>
-                <argument>--java</argument>
-                <argument>${project.basedir}/target/generated-sources/model</argument>
-                <argument>--version-prefix</argument>
-                <argument>V4</argument>
+                <argument>org.ovirt.api.metamodel.tool.EnumGenerationTool</argument>
+                <argument>--model=${project.basedir}/src/main/java</argument>
+                <argument>--java=${project.basedir}/target/generated-sources/model</argument>
+                <argument>--version-prefix=V4</argument>
               </arguments>
               <includePluginDependencies>true</includePluginDependencies>
               <includeProjectDependencies>false</includeProjectDependencies>
