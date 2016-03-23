@@ -23,5 +23,5 @@ public interface Ip {
     String address();
     String netmask();
     String gateway();
-    String version();
+    IpVersion version();
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,13 +13,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The enum defines valid values for the IP protocol version.
+ */
 @Type
-public interface IpAddressAssignment {
-    Ip ip();
-    BootProtocol assignmentMethod();
+public enum IpVersion {
+
+    /**
+     * IPv4.
+     */
+    V4,
+
+    /**
+     * IPv6.
+     */
+    V6;
 }
