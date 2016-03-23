@@ -29,6 +29,7 @@ import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
+import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Link;
@@ -77,9 +78,14 @@ public class DocGenerator {
     }
 
     public void documentModel(Model model) {
-        // Introduction:
+        // Header:
         docBuffer.addLine("= Model");
         docBuffer.addLine();
+
+        // Include all the documents, pushing titles one level down:
+        docBuffer.addLine(":leveloffset: 1");
+        model.documents().sorted().forEach(this::addDocument);
+        docBuffer.addLine(":leveloffset: 0");
 
         // Services:
         docBuffer.addId("services");
@@ -92,6 +98,12 @@ public class DocGenerator {
         docBuffer.addLine("== Types");
         docBuffer.addLine();
         model.types().sorted().forEach(this::documentType);
+    }
+
+    private void addDocument(Document document) {
+        docBuffer.addId(document.getName().toString());
+        docBuffer.addLine(document.getSource());
+        docBuffer.addLine();
     }
 
     private void documentService(Service service) {

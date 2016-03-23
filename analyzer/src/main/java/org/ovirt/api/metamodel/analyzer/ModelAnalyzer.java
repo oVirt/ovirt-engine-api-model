@@ -17,12 +17,15 @@ limitations under the License.
 package org.ovirt.api.metamodel.analyzer;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -40,9 +43,13 @@ import com.thoughtworks.qdox.model.JavaField;
 import com.thoughtworks.qdox.model.JavaMethod;
 import com.thoughtworks.qdox.model.JavaModel;
 import com.thoughtworks.qdox.model.JavaParameter;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.Constraint;
+import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Expression;
@@ -126,17 +133,29 @@ public class ModelAnalyzer {
         // we need to iterate the contents file by file, as QDox doesn't directly support loading .jar files:
         if (sourceFile.isDirectory()) {
             project.addSourceTree(sourceFile);
+            Collection<File> documentFiles = FileUtils.listFiles(sourceFile, new String[] { "adoc" }, true);
+            for (File documentFile : documentFiles) {
+                try (InputStream documentIn = new FileInputStream(documentFile)) {
+                    analyzeDocument(documentFile.getName(), documentIn);
+                }
+            }
         }
         else if (sourceFile.isFile() && sourceFile.getName().endsWith(".jar")) {
             try (ZipFile zipFile = new ZipFile(sourceFile)) {
                 Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
                 while (zipEntries.hasMoreElements()) {
                     ZipEntry zipEntry = zipEntries.nextElement();
-                    if (zipEntry.getName().endsWith(".java")) {
+                    String zipEntryName = zipEntry.getName();
+                    if (zipEntryName.endsWith(".java")) {
                         try (InputStream sourceIn = zipFile.getInputStream(zipEntry)) {
                             try (Reader sourceReader = new InputStreamReader(sourceIn, Charset.forName("UTF-8"))) {
                                 project.addSource(sourceReader);
                             }
+                        }
+                    }
+                    else if (zipEntryName.endsWith(".adoc")) {
+                        try (InputStream documentIn = zipFile.getInputStream(zipEntry)) {
+                            analyzeDocument(zipEntryName, documentIn);
                         }
                     }
                 }
@@ -632,6 +651,30 @@ public class ModelAnalyzer {
         if (serviceSetter != null) {
             serviceSetter.accept(service);
         }
+    }
+
+    /**
+     * Creates a document with the given name and, populates it with the content read from the given input stream, and
+     * adds it to the model.
+     *
+     * @param file the name of file containing the document, including the extension
+     * @param in the input stream that will be used to populate the document
+     * @throws IOException if something fails while reading the content of the document
+     */
+    private void analyzeDocument(String file, InputStream in) throws IOException {
+        // Create the document:
+        Document document = new Document();
+
+        // Compute the name of the document from the name of the file, without the extension:
+        Name name = NameParser.parseUsingCase(FilenameUtils.getBaseName(file));
+        document.setName(name);
+
+        // Read the source of the document:
+        String source = IOUtils.toString(in, StandardCharsets.UTF_8);
+        document.setSource(source);
+
+        // Add the document to the model:
+        model.addDocument(document);
     }
 
     /**

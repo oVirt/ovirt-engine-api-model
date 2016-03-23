@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
+import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Link;
@@ -67,6 +68,9 @@ public class XmlDescriptionGenerator {
         writer.writeEndElement();
         writer.writeStartElement("services");
         model.services().forEach(this::writeService);
+        writer.writeEndElement();
+        writer.writeStartElement("documents");
+        model.documents().forEach(this::writeDocument);
         writer.writeEndElement();
         writer.writeEndElement();
     }
@@ -152,6 +156,20 @@ public class XmlDescriptionGenerator {
         writer.writeElement("in", Boolean.toString(parameter.isIn()));
         writer.writeElement("out", Boolean.toString(parameter.isIn()));
         writeTypeRef(parameter.getType());
+        writer.writeEndElement();
+    }
+
+    private void writeDocument(Document document) {
+        writer.writeStartElement("document");
+        writeName(document);
+        String source = document.getSource();
+        if (source != null) {
+            writer.writeElement("source", source);
+            String html = htmlGenerator.toHtml(source);
+            if (html != null) {
+                writer.writeElement("html", html);
+            }
+        }
         writer.writeEndElement();
     }
 

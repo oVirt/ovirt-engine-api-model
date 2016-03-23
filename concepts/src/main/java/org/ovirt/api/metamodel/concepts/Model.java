@@ -33,6 +33,9 @@ public class Model {
     // The list of services of the model:
     private List<Service> services = new ArrayList<>();
 
+    // The list of documents included in the model:
+    private List<Document> documents = new ArrayList<>();
+
     // The root of the tree of services:
     private Service root;
 
@@ -163,6 +166,29 @@ public class Model {
      */
     public Service getService(Name name) {
         return services.stream().filter(named(name)).findFirst().orElse(null);
+    }
+
+    /**
+     * Returns the list of documents of this model. The returned list is a copy of the one used internally, so it is
+     * safe to modify it in any way. If you aren't going to modify the list consider using the {@link #documents()}
+     * method instead.
+     */
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    /**
+     * Returns a stream that delivers the documents of this model.
+     */
+    public Stream<Document> documents() {
+        return documents.stream();
+    }
+
+    /**
+     * Adds a document to the list of documents of this model.
+     */
+    public void addDocument(Document newDocument) {
+        documents.add(newDocument);
     }
 
     /**

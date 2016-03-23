@@ -31,6 +31,7 @@ import javax.json.stream.JsonGeneratorFactory;
 
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
+import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Link;
@@ -82,6 +83,9 @@ public class JsonDescriptionGenerator {
         writer.writeEnd();
         writer.writeStartArray("services");
         model.services().forEach(this::writeService);
+        writer.writeEnd();
+        writer.writeStartArray("documents");
+        model.documents().forEach(this::writeDocument);
         writer.writeEnd();
         writer.writeEnd();
     }
@@ -184,6 +188,20 @@ public class JsonDescriptionGenerator {
         writer.write("in", parameter.isIn());
         writer.write("out", parameter.isOut());
         writeTypeRef(parameter.getType());
+        writer.writeEnd();
+    }
+
+    private void writeDocument(Document document) {
+        writer.writeStartObject();
+        writeName(document);
+        String source = document.getSource();
+        if (source != null) {
+            writer.write("source", source);
+            String html = htmlGenerator.toHtml(source);
+            if (html != null) {
+                writer.write("html", html);
+            }
+        }
         writer.writeEnd();
     }
 

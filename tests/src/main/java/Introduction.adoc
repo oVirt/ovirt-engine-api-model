@@ -1,0 +1,3 @@
+= Introduction
+
+This is the introduction document, used just to check that it is processed.
