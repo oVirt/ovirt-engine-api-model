@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -37,6 +38,7 @@ import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
+import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
 
@@ -151,8 +153,7 @@ public class DocGenerator {
     }
 
     private void documentParameter(Parameter parameter) {
-        String doc = parameter.getDoc();
-        if (doc != null) {
+        if (!onlyHasSummary(parameter)) {
             docBuffer.addId(getId(parameter));
             docBuffer.addLine("==== %s", getName(parameter));
             docBuffer.addLine();
@@ -209,8 +210,7 @@ public class DocGenerator {
     }
 
     private void documentValue(EnumValue value) {
-        String doc = value.getDoc();
-        if (doc != null) {
+        if (!onlyHasSummary(value)) {
             docBuffer.addId(getId(value));
             docBuffer.addLine("==== %s", getName(value));
             docBuffer.addLine();
@@ -244,7 +244,7 @@ public class DocGenerator {
         }
 
         // Detail of attributes:
-        attributes.stream().sorted().forEach(this::documentAttribute);
+        attributes.stream().sorted().forEach(this::documentMember);
 
         // Table of links:
         List<Link> links = type.getLinks();
@@ -265,26 +265,15 @@ public class DocGenerator {
         }
 
         // Detail of links:
-        links.stream().sorted().forEach(this::documentLink);
+        links.stream().sorted().forEach(this::documentMember);
     }
 
-    private void documentAttribute(Attribute attribute) {
-        String doc = attribute.getDoc();
-        if (doc != null) {
-            docBuffer.addId(getId(attribute));
-            docBuffer.addLine("==== %s", getName(attribute));
+    private void documentMember(StructMember member) {
+        if (!onlyHasSummary(member)) {
+            docBuffer.addId(getId(member));
+            docBuffer.addLine("==== %s", getName(member));
             docBuffer.addLine();
-            addDoc(attribute);
-        }
-    }
-
-    private void documentLink(Link link) {
-        String doc = link.getDoc();
-        if (doc != null) {
-            docBuffer.addId(getId(link));
-            docBuffer.addLine("==== %s", getName(link));
-            docBuffer.addLine();
-            addDoc(link);
+            addDoc(member);
         }
     }
 
@@ -297,7 +286,7 @@ public class DocGenerator {
         if (doc != null) {
             int index = doc.indexOf('.');
             if (index != -1) {
-                return doc.substring(0, index);
+                return doc.substring(0, index + 1);
             }
             return doc;
         }
@@ -325,12 +314,9 @@ public class DocGenerator {
         return "services/" + service.getName();
     }
 
-    private String getId(Attribute attribute) {
-        return getId(attribute.getDeclaringType()) + "/attributes/" + attribute.getName();
-    }
-
-    private String getId(Link link) {
-        return getId(link.getDeclaringType()) + "/links/" + link.getName();
+    private String getId(StructMember member) {
+        String kind = member instanceof Attribute? "attributes": "links";
+        return getId(member.getDeclaringType()) + "/" + kind + "/" + member.getName();
     }
 
     private String getId(Method method) {
@@ -377,6 +363,17 @@ public class DocGenerator {
         }
         lines.stream().forEach(docBuffer::addLine);
         docBuffer.addLine();
+    }
+
+    /**
+     * Checks if the documentation of the given document only has a summary.
+     *
+     * @return {@code true} if the documentation of the concept only has a summary, {@code false} otherwise
+     */
+    private boolean onlyHasSummary(Concept concept) {
+        String doc = concept.getDoc();
+        String summary = getSummary(concept);
+        return Objects.equals(doc, summary);
     }
 }
 
