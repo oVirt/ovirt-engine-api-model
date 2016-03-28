@@ -23,10 +23,12 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface HostNic extends Identified {
     Mac mac();
     Ip ip();
+    Ip ipv6();
     String baseInterface();
     Vlan vlan();
     Bonding bonding();
     BootProtocol bootProtocol();
+    BootProtocol ipv6BootProtocol();
     Statistic[] statistics();
     Boolean checkConnectivity();
     Integer speed();
