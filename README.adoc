@@ -319,10 +319,11 @@ be pushed:
 
 This is also automated using the Maven release plugin. But in this case
 it is necessary to sign the artifacts, as both Sonatype OSSRH and Maven
-Central require signed artifacts. To sign artifacts the `sign` profile
-needs to be activated:
+Central require signed artifacts. To sign artifacts and generate the
+documentation the the `sign` and `document` profiles need to be
+activated:
 
-  $ mvn release:perform -Psign
+  $ mvn release:perform -Psign,document
 
 NOTE: The artifacts will be signed using your default GPG key, so make
 sure you have a valid GPG key available.

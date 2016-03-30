@@ -103,23 +103,6 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.3</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <additionalparam>-Xdoclint:none</additionalparam>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5.2</version>
         <configuration>
@@ -207,6 +190,33 @@
       <id>document</id>
       <build>
         <plugins>
+
+          <!-- Generate the JavaDoc documentation: -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.10.3</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <doclet>org.asciidoctor.Asciidoclet</doclet>
+              <docletArtifact>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoclet</artifactId>
+                <version>1.5.4</version>
+              </docletArtifact>
+              <additionalparam>
+                -Xdoclint:none
+                --base-dir ${project.basedir}
+              </additionalparam>
+            </configuration>
+          </plugin>
 
           <!-- Generate the AsciiDoc documentation: -->
           <plugin>
