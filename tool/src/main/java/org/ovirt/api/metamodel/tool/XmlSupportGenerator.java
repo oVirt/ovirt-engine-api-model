@@ -64,23 +64,34 @@ public class XmlSupportGenerator extends JavaGenerator {
     @Inject private SchemaNames schemaNames;
 
     public void generate(Model model) {
-        // Generate classes for each type:
+        // Generate classes for each struct type:
         model.types()
             .filter(StructType.class::isInstance)
             .map(StructType.class::cast)
-            .forEach(this::generateClasses);
+            .forEach(this::generateStructSupportClasses);
+
+        // Generate classes for each enum type:
+        model.types()
+            .filter(EnumType.class::isInstance)
+            .map(EnumType.class::cast)
+            .forEach(this::generateEnumSupportClasses);
     }
 
-    private void generateClasses(StructType type) {
-        generateReader(type);
-        generateWriter(type);
+    private void generateStructSupportClasses(StructType type) {
+        generateStructReader(type);
+        generateStructWriter(type);
     }
 
-    private void generateReader(StructType type) {
+    private void generateEnumSupportClasses(EnumType type) {
+        generateEnumReader(type);
+        generateEnumWriter(type);
+    }
+
+    private void generateStructReader(StructType type) {
         javaBuffer = new JavaClassBuffer();
         JavaClassName readerName = javaTypes.getXmlReaderName(type);
         javaBuffer.setClassName(readerName);
-        generateReaderSource(type);
+        generateStructReaderSource(type);
         try {
             javaBuffer.write(outDir);
         }
@@ -89,22 +100,22 @@ public class XmlSupportGenerator extends JavaGenerator {
         }
     }
 
-    private void generateReaderSource(StructType type) {
+    private void generateStructReaderSource(StructType type) {
         // Begin class:
         JavaClassName readerName = javaTypes.getXmlReaderName(type);
         javaBuffer.addLine("public class %1$s {", readerName.getSimpleName());
         javaBuffer.addLine();
 
         // Generate methods to read one instance and a list of instances:
-        generateReadOne(type);
-        generateReadMany(type);
+        generateStructReadOne(type);
+        generateStructReadMany(type);
 
         // End class:
         javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
 
-    private void generateReadOne(StructType type) {
+    private void generateStructReadOne(StructType type) {
         // Get the type and container name:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
         JavaClassName containerName = javaTypes.getContainerName(type);
@@ -141,7 +152,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine(  "switch (name) {");
             asAttributes.stream()
                 .sorted()
-                .forEach(this::generateReadMemberFromAttribute);
+                .forEach(this::generateStructReadMemberFromAttribute);
             javaBuffer.addLine(  "default:");
             javaBuffer.addLine(    "break;");
             javaBuffer.addLine(  "}");
@@ -156,7 +167,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine("switch (name) {");
             asElements.stream()
                 .sorted()
-                .forEach(this::generateReadMemberFromElement);
+                .forEach(this::generateStructReadMemberFromElement);
             javaBuffer.addLine("default:");
             javaBuffer.addLine(  "reader.skip();");
             javaBuffer.addLine(  "break;");
@@ -175,7 +186,7 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateReadMemberFromAttribute(StructMember member) {
+    private void generateStructReadMemberFromAttribute(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
         if (type instanceof PrimitiveType) {
@@ -204,7 +215,7 @@ public class XmlSupportGenerator extends JavaGenerator {
         }
     }
 
-    private void generateReadMemberFromElement(StructMember member) {
+    private void generateStructReadMemberFromElement(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
         String field = javaNames.getJavaMemberStyleName(name);
@@ -231,7 +242,7 @@ public class XmlSupportGenerator extends JavaGenerator {
                 javaBuffer.addLine("reader.skip();");
             }
         }
-        else if (type instanceof StructType) {
+        else if (type instanceof StructType || type instanceof EnumType) {
             JavaClassName readerName = javaTypes.getXmlReaderName(type);
             javaBuffer.addImport(readerName);
             javaBuffer.addLine("object.%1$s(%2$s.readOne(reader));", field, readerName.getSimpleName());
@@ -241,7 +252,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             Type elementType = listType.getElementType();
             JavaClassName readerName = javaTypes.getXmlReaderName(elementType);
             javaBuffer.addImport(readerName);
-            if (elementType instanceof StructType) {
+            if (elementType instanceof StructType || elementType instanceof EnumType) {
                 javaBuffer.addLine("object.%1$s(%2$s.readMany(reader));", field, readerName.getSimpleName());
             }
         }
@@ -251,7 +262,15 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine("break;");
     }
 
-    private void generateReadMany(StructType type) {
+    private void generateStructReadMany(StructType type) {
+        generateReadMany(type);
+    }
+
+    private void generateEnumReadMany(EnumType type) {
+        generateReadMany(type);
+    }
+
+    private void generateReadMany(Type type) {
         // Get the type name:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
 
@@ -309,11 +328,59 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateWriter(StructType type) {
+    private void generateEnumReader(EnumType type) {
+        javaBuffer = new JavaClassBuffer();
+        JavaClassName readerName = javaTypes.getXmlReaderName(type);
+        javaBuffer.setClassName(readerName);
+        generateEnumReaderSource(type);
+        try {
+            javaBuffer.write(outDir);
+        }
+        catch (IOException exception) {
+            throw new RuntimeException("Can't write file for XML reader \"" + readerName + "\"", exception);
+        }
+    }
+    private void generateEnumReaderSource(EnumType type) {
+        // Begin class:
+        JavaClassName readerName = javaTypes.getXmlReaderName(type);
+        javaBuffer.addLine("public class %1$s {", readerName.getSimpleName());
+        javaBuffer.addLine();
+
+        // Generate methods to read one instance and a list of instances:
+        generateEnumReadOne(type);
+        generateEnumReadMany(type);
+
+        // End class:
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateEnumReadOne(EnumType type) {
+        // Get the type and container name:
+        JavaClassName typeName = javaTypes.getInterfaceName(type);
+
+        // Add the required imports:
+        javaBuffer.addImport(typeName);
+        javaBuffer.addImport(XmlReader.class);
+
+        // Generate the method:
+        javaBuffer.addLine("public static %1$s readOne(XmlReader reader) {", typeName.getSimpleName());
+        javaBuffer.addLine(  "// Do nothing if there aren't more tags:");
+        javaBuffer.addLine(  "if (!reader.forward()) {");
+        javaBuffer.addLine(    "return null;");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine();;
+        javaBuffer.addLine(  "// Process the value of enum:");
+        javaBuffer.addLine(  "return %1$s.fromValue(reader.readString());", typeName.getSimpleName());
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateStructWriter(StructType type) {
         javaBuffer = new JavaClassBuffer();
         JavaClassName writerName = javaTypes.getXmlWriterName(type);
         javaBuffer.setClassName(writerName);
-        generateWriterSource(type);
+        generateStructWriterSource(type);
         try {
             javaBuffer.write(outDir);
         }
@@ -322,22 +389,22 @@ public class XmlSupportGenerator extends JavaGenerator {
         }
     }
 
-    private void generateWriterSource(StructType type) {
+    private void generateStructWriterSource(StructType type) {
         // Begin class:
         JavaClassName writerName = javaTypes.getXmlWriterName(type);
         javaBuffer.addLine("public class %1$s {", writerName.getSimpleName());
         javaBuffer.addLine();
 
         // Generate methods to write one instance and a list of instances:
-        generateWriteOne(type);
-        generateWriteMany(type);
+        generateStructWriteOne(type);
+        generateStructWriteMany(type);
 
         // End class:
         javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
 
-    private void generateWriteOne(StructType type) {
+    private void generateStructWriteOne(StructType type) {
         // Calculate the name of the type and the XML tag:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
         String tag = schemaNames.getSchemaTagName(type.getName());
@@ -359,17 +426,17 @@ public class XmlSupportGenerator extends JavaGenerator {
         Stream.concat(type.attributes(), type.links())
             .filter(x -> schemaNames.isRepresentedAsAttribute(x.getName()))
             .sorted()
-            .forEach(this::generateWriteMemberAsAttribute);
+            .forEach(this::generateStructWriteMemberAsAttribute);
         Stream.concat(type.attributes(), type.links())
             .filter(x -> !schemaNames.isRepresentedAsAttribute(x.getName()))
             .sorted()
-            .forEach(this::generateWriteMemberAsElement);
+            .forEach(this::generateStructWriteMemberAsElement);
         javaBuffer.addLine("writer.writeEndElement();");
         javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
 
-    private void generateWriteMemberAsAttribute(StructMember member) {
+    private void generateStructWriteMemberAsAttribute(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
         String field = javaNames.getJavaMemberStyleName(name);
@@ -389,13 +456,12 @@ public class XmlSupportGenerator extends JavaGenerator {
             }
         }
         else if (type instanceof EnumType) {
-            // TODO: Should get the value calling the "getValue()" method.
-            javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s().toString());", tag, field);
+            javaBuffer.addLine("writer.writeAttribute(\"%1$s\", object.%2$s().value());", tag, field);
         }
         javaBuffer.addLine("}");
     }
 
-    private void generateWriteMemberAsElement(StructMember member) {
+    private void generateStructWriteMemberAsElement(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
         String field = javaNames.getJavaMemberStyleName(name);
@@ -419,13 +485,7 @@ public class XmlSupportGenerator extends JavaGenerator {
                 javaBuffer.addLine("writer.writeDate(\"%1$s\", object.%2$s());", tag, field);
             }
         }
-        else if (type instanceof EnumType) {
-            // TODO: Should get the value calling the "getValue()" method.
-            javaBuffer.addLine("writer.writeStartElement(\"%1$s\");", tag);
-            javaBuffer.addLine("writer.writeCharacters(object.%1$s().toString());", field);
-            javaBuffer.addLine("writer.writeEndElement();");
-        }
-        else if (type instanceof StructType) {
+        else if (type instanceof StructType || type instanceof EnumType) {
             JavaClassName writerName = javaTypes.getXmlWriterName(type);
             javaBuffer.addImport(writerName);
             javaBuffer.addLine("%1$s.writeOne(object.%2$s(), \"%3$s\", writer);", writerName.getSimpleName(), field,
@@ -434,7 +494,7 @@ public class XmlSupportGenerator extends JavaGenerator {
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
             Type elementType = listType.getElementType();
-            if (elementType instanceof StructType) {
+            if (elementType instanceof StructType || elementType instanceof EnumType) {
                 JavaClassName writerName = javaTypes.getXmlWriterName(elementType);
                 javaBuffer.addImport(writerName);
                 javaBuffer.addLine("%1$s.writeMany(object.%2$s().iterator(), writer);", writerName.getSimpleName(),
@@ -444,7 +504,15 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine("}");
     }
 
-    private void generateWriteMany(StructType type) {
+    private void generateStructWriteMany(StructType type) {
+        generateWriteMany(type);
+    }
+
+    private void generateEnumWriteMany(EnumType type) {
+        generateWriteMany(type);
+    }
+
+    private void generateWriteMany(Type type) {
         // Calculate the tag names:
         Name singularName = type.getName();
         Name pluralName = names.getPlural(singularName);
@@ -480,4 +548,56 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
+
+    private void generateEnumWriter(EnumType type) {
+        javaBuffer = new JavaClassBuffer();
+        JavaClassName writerName = javaTypes.getXmlWriterName(type);
+        javaBuffer.setClassName(writerName);
+        generateEnumWriterSource(type);
+        try {
+            javaBuffer.write(outDir);
+        }
+        catch (IOException exception) {
+            throw new RuntimeException("Can't write file for XML writer \"" + writerName + "\"", exception);
+        }
+    }
+
+    private void generateEnumWriterSource(EnumType type) {
+        // Begin class:
+        JavaClassName writerName = javaTypes.getXmlWriterName(type);
+        javaBuffer.addLine("public class %1$s {", writerName.getSimpleName());
+        javaBuffer.addLine();
+
+        // Generate methods to write one instance and a list of instances:
+        generateEnumWriteOne(type);
+        generateEnumWriteMany(type);
+
+        // End class:
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateEnumWriteOne(EnumType type) {
+        // Calculate the name of the type and the XML tag:
+        JavaClassName typeName = javaTypes.getEnumName(type);
+        String tag = schemaNames.getSchemaTagName(type.getName());
+
+        // Add the required imports:
+        javaBuffer.addImport(typeName);
+        javaBuffer.addImport(XmlWriter.class);
+
+        // Generate the method that uses the default tag name:
+        javaBuffer.addLine("public static void writeOne(%1$s object, XmlWriter writer) {", typeName.getSimpleName());
+        javaBuffer.addLine(  "writeOne(object, \"%1$s\", writer);", tag);
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Generate the method that receives the tag name as parameter:
+        javaBuffer.addLine( "public static void writeOne(%1$s object, String tag, XmlWriter writer) {",
+                typeName.getSimpleName());
+        javaBuffer.addLine("writer.writeElement(tag, object.value());");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
 }

@@ -62,6 +62,11 @@ public class PlainJavaTypes implements JavaTypes {
     }
 
     @Override
+    public JavaClassName getEnumName(Type type) {
+        return getTypeName(type, javaPackages.getTypesPackageName(), null, null);
+    }
+
+    @Override
     public JavaClassName getBaseContainerName() {
         JavaClassName name = new JavaClassName();
         name.setPackageName(javaPackages.getContainersPackageName());

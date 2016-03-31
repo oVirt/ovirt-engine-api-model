@@ -30,6 +30,11 @@ public interface JavaTypes {
     JavaClassName getInterfaceName(Type type);
 
     /**
+     * Calculates the name of the enum that should be generated for the given type.
+     */
+    JavaClassName getEnumName(Type type);
+
+    /**
      * Calculates the name of the base class of all the containers.
      */
     JavaClassName getBaseContainerName();
