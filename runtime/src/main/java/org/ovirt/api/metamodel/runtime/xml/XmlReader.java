@@ -185,7 +185,10 @@ public class XmlReader implements AutoCloseable {
     }
 
     /**
-     * Skips the current element, and all the inner elements.
+     * Skips the current element, and all the inner elements. The reader will be positioned at the event after the
+     * the current one. For example, if the input text is {@code <root><current>...</current><next/></root>} and the
+     * reader is positioned at the start of the {@code current} element, then the method will skip all the content
+     * of the {@code current} element, and will leave the reader positioned at the start of the {@code next} element.
      */
     public void skip() {
         int depth = 0;
@@ -197,6 +200,12 @@ public class XmlReader implements AutoCloseable {
                 case XMLStreamConstants.END_ELEMENT:
                     depth--;
                     if (depth <= 0) {
+                        try {
+                            reader.next();
+                        }
+                        catch (XMLStreamException exception) {
+                            throw new XmlException("Can't get next event", exception);
+                        }
                         return;
                     }
                     break;

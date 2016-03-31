@@ -150,14 +150,15 @@ public class XmlReaderTest {
     }
 
     /**
-     * Checks that {@code skip} method moves to the next end element.
+     * Checks that {@code skip} method moves to next element.
      */
     @Test
-    public void testSkipMovesToMatchingCloseElement() {
-        XmlReader reader = openReader("<first><second><third>fourth</third></second></first>");
+    public void testSkipMovesToNextElement() {
+        XmlReader reader = openReader("<root><current><inner>text</inner></current><next/></root>");
+        reader.next();
         reader.skip();
-        assertEquals(XMLStreamConstants.END_ELEMENT, reader.getEventType());
-        assertEquals("first", reader.getLocalName());
+        assertEquals(XMLStreamConstants.START_ELEMENT, reader.getEventType());
+        assertEquals("next", reader.getLocalName());
     }
 
     /**
@@ -578,6 +579,7 @@ public class XmlReaderTest {
     @Test
     public void testReadOneMovesToNextEvent() {
         XmlReader reader = openReader("<root><vm></vm><next/></root>");
+        reader.next();
         V4XmlVmReader.readOne(reader);
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.getEventType());
         assertEquals("next", reader.getLocalName());
@@ -590,6 +592,7 @@ public class XmlReaderTest {
     @Test
     public void testReadOneMovesToNextEventWithNestedElements() {
         XmlReader reader = openReader("<root><vm><name>myvm</name></vm><next/></root>");
+        reader.next();
         V4XmlVmReader.readOne(reader);
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.getEventType());
         assertEquals("next", reader.getLocalName());
@@ -614,9 +617,25 @@ public class XmlReaderTest {
               "<next/>" +
             "</root>"
         );
+        reader.next();
         V4XmlVmReader.readOne(reader);
         assertEquals(XMLStreamConstants.START_ELEMENT, reader.getEventType());
         assertEquals("next", reader.getLocalName());
+    }
+
+    /**
+     * Checks that unknonwn elements are skipped and ignored.
+     */
+    @Test
+    public void testReadOneSkipsAndIngoresUnknownElements() {
+        XmlReader reader = openReader(
+            "<vm>" +
+              "<junk>ugly</junk>" +
+              "<name>myvm</name>" +
+            "</vm>"
+        );
+        V4Vm vm = V4XmlVmReader.readOne(reader);
+        assertEquals("myvm", vm.name());
     }
 
     /**
