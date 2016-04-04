@@ -38,6 +38,7 @@ import org.junit.Test;
 import org.ovirt.api.metamodel.runtime.json.JsonWriter;
 import org.ovirt.engine.api.json.V4JsonVmWriter;
 import org.ovirt.engine.api.types.V4Vm;
+import org.ovirt.engine.api.types.V4VmType;
 
 /**
  * Tests for the classes that convert V4 objects to JSON. Note that the tests are centered around an specific class,
@@ -237,6 +238,18 @@ public class JsonWriterTest {
         V4Vm object = vm().creationTime(date).build();
         assertEquals(
             "{'creation_time':'2016-01-17T16:18:23.123Z'}",
+            objectToJson(object)
+        );
+    }
+
+    /**
+     * Checks that enum values are written correctly.
+     */
+    @Test
+    public void testEnum() {
+        V4Vm object = vm().type(V4VmType.DESKTOP).build();
+        assertEquals(
+            "{'type':'desktop'}",
             objectToJson(object)
         );
     }

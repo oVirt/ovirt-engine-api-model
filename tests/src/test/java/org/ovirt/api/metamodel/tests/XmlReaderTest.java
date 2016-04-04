@@ -28,6 +28,7 @@ import java.io.PipedWriter;
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -41,6 +42,8 @@ import org.ovirt.api.metamodel.runtime.xml.XmlException;
 import org.ovirt.api.metamodel.runtime.xml.XmlReader;
 import org.ovirt.engine.api.types.V4Disk;
 import org.ovirt.engine.api.types.V4Vm;
+import org.ovirt.engine.api.types.V4VmDisplayType;
+import org.ovirt.engine.api.types.V4VmType;
 import org.ovirt.engine.api.xml.V4XmlVmReader;
 
 /**
@@ -557,6 +560,50 @@ public class XmlReaderTest {
     public void testVeryLong() {
         V4Vm object = objectFromXml("<vm><memory>92233720368547758070</memory></vm>");
         assertEquals(BigInteger.TEN.multiply(BigInteger.valueOf(Long.MAX_VALUE)), object.memory());
+    }
+
+    /**
+     * Checks that lower case enums are read correctly.
+     */
+    @Test
+    public void testLowerCaseEnum() {
+        V4Vm object = objectFromXml("<vm><type>desktop</type></vm>");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that upper case enums are read correctly.
+     */
+    @Test
+    public void testUpperCaseEnum() {
+        V4Vm object = objectFromXml("<vm><type>DESKTOP</type></vm>");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that mixed case enums are read correctly.
+     */
+    @Test
+    public void testMixedCaseEnum() {
+        V4Vm object = objectFromXml("<vm><type>DeskTop</type></vm>");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that list of enums are read correctly.
+     */
+    @Test
+    public void testEnumReadMany() {
+        V4Vm object = objectFromXml(
+            "<vm>" +
+              "<display_types>" +
+                "<display_type>spice</display_type>" +
+                "<display_type>VNC</display_type>" +
+              "</display_types>" +
+            "</vm>"
+        );
+        List<V4VmDisplayType> expected = Arrays.asList(V4VmDisplayType.SPICE, V4VmDisplayType.VNC);
+        assertEquals(expected, object.displayTypes());
     }
 
     /**

@@ -37,6 +37,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
 import org.ovirt.engine.api.types.V4Vm;
+import org.ovirt.engine.api.types.V4VmType;
 import org.ovirt.engine.api.xml.V4XmlVmWriter;
 
 /**
@@ -253,6 +254,18 @@ public class XmlWriterTest {
         V4Vm object = vm().creationTime(date).build();
         assertEquals(
             "<vm><creation_time>2016-01-17T16:18:23.123Z</creation_time></vm>",
+            objectToXml(object)
+        );
+    }
+
+    /**
+     * Checks that enum values are written correctly.
+     */
+    @Test
+    public void testEnum() {
+        V4Vm object = vm().type(V4VmType.DESKTOP).build();
+        assertEquals(
+            "<vm><type>desktop</type></vm>",
             objectToXml(object)
         );
     }

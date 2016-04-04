@@ -27,6 +27,7 @@ import java.io.PipedReader;
 import java.io.PipedWriter;
 import java.io.StringReader;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -39,6 +40,8 @@ import org.ovirt.api.metamodel.runtime.json.JsonReader;
 import org.ovirt.engine.api.json.V4JsonVmReader;
 import org.ovirt.engine.api.types.V4Disk;
 import org.ovirt.engine.api.types.V4Vm;
+import org.ovirt.engine.api.types.V4VmDisplayType;
+import org.ovirt.engine.api.types.V4VmType;
 
 /**
  * Tests for the classes that convert JSON to objects. Note that the tests are centered around an specific class,
@@ -191,6 +194,43 @@ public class JsonReaderTest {
         calendar.set(Calendar.MILLISECOND, 123);
         Date date = calendar.getTime();
         assertEquals(date, object.creationTime());
+    }
+
+    /**
+     * Checks that lower case enums are read correctly.
+     */
+    @Test
+    public void testLowerCaseEnum() {
+        V4Vm object = objectFromJson("{'type':'desktop'}");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that upper case enums are read correctly.
+     */
+    @Test
+    public void testUpperCaseEnum() {
+        V4Vm object = objectFromJson("{'type':'DESKTOP'}");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that mixed case enums are read correctly.
+     */
+    @Test
+    public void testMixedCaseEnum() {
+        V4Vm object = objectFromJson("{'type':'DeskTop'}");
+        assertEquals(V4VmType.DESKTOP, object.type());
+    }
+
+    /**
+     * Checks that list of enums are read correctly.
+     */
+    @Test
+    public void testEnumReadMany() {
+        V4Vm object = objectFromJson("{'display_types': {'display_type': ['spice', 'VNC']}}");
+        List<V4VmDisplayType> expected = Arrays.asList(V4VmDisplayType.SPICE, V4VmDisplayType.VNC);
+        assertEquals(expected, object.displayTypes());
     }
 
     /**
