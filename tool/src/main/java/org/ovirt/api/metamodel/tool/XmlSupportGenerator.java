@@ -263,14 +263,6 @@ public class XmlSupportGenerator extends JavaGenerator {
     }
 
     private void generateStructReadMany(StructType type) {
-        generateReadMany(type);
-    }
-
-    private void generateEnumReadMany(EnumType type) {
-        generateReadMany(type);
-    }
-
-    private void generateReadMany(Type type) {
         // Get the type name:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
 
@@ -323,6 +315,39 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine(  "while (iterator.hasNext()) {");
         javaBuffer.addLine(    "list.add(iterator.next());");
         javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "return list;");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateEnumReadMany(EnumType type) {
+        // Get the type name:
+        JavaClassName typeName = javaTypes.getInterfaceName(type);
+
+        // Add the required imports:
+        javaBuffer.addImport(typeName);
+        javaBuffer.addImport(ArrayList.class);
+        javaBuffer.addImport(List.class);
+        javaBuffer.addImport(NoSuchElementException.class);
+        javaBuffer.addImport(XmlReader.class);
+
+        // Read method:
+        javaBuffer.addLine("public static List<%1$s> readMany(XmlReader reader) {",
+            typeName.getSimpleName());
+        javaBuffer.addLine(  "List<%1$s> list = new ArrayList<>();", typeName.getSimpleName());
+        javaBuffer.addLine(  "if (!reader.forward()) {");
+        javaBuffer.addLine(    "return list;");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "reader.next();");
+        javaBuffer.addLine(  "while (reader.forward()) {");
+        javaBuffer.addLine(    "String v = reader.readString();");
+        javaBuffer.addLine(    "%1$s next = %1$s.fromValue(v);", typeName.getSimpleName());
+        javaBuffer.addLine(    "if (next == null) {");
+        javaBuffer.addLine(      "break;");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(    "list.add(next);");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "reader.next();");
         javaBuffer.addLine(  "return list;");
         javaBuffer.addLine("}");
         javaBuffer.addLine();

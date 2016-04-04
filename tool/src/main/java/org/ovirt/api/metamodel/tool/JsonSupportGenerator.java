@@ -206,14 +206,6 @@ public class JsonSupportGenerator extends JavaGenerator {
     }
 
     private void generateStructReadMany(StructType type) {
-        generateReadMany(type);
-    }
-
-    private void generateEnumReadMany(EnumType type) {
-        generateReadMany(type);
-    }
-
-    private void generateReadMany(Type type) {
         // Get the type name:
         JavaClassName typeName = javaTypes.getInterfaceName(type);
 
@@ -265,6 +257,45 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
+    private void generateEnumReadMany(EnumType type) {
+        // Get the type name:
+        JavaClassName typeName = javaTypes.getInterfaceName(type);
+
+        // Read method:
+        javaBuffer.addImport(typeName);
+        javaBuffer.addImport(ArrayList.class);
+        javaBuffer.addImport(JsonReader.class);
+        javaBuffer.addImport(List.class);
+        javaBuffer.addImport(JsonParser.Event.class);
+        javaBuffer.addImport(JsonParser.class);
+
+        javaBuffer.addLine("public static List<%1$s> readMany(JsonReader reader) {", typeName.getSimpleName());
+        javaBuffer.addLine(  "List<%1$s> list = new ArrayList<>();", typeName.getSimpleName());
+        javaBuffer.addLine(  "while (reader.next() != Event.START_ARRAY) {");
+        javaBuffer.addLine(  "// Empty on purpose");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine();
+        javaBuffer.addLine(  "boolean enumArrayEnd = false;");
+        javaBuffer.addLine(  "while (!enumArrayEnd) {");
+        javaBuffer.addLine(    "JsonParser.Event next = reader.next();");
+        javaBuffer.addLine(    "switch (next) {");
+        javaBuffer.addLine(    "case VALUE_STRING:");
+        javaBuffer.addLine(    "  String value = reader.getString();");
+        javaBuffer.addLine(    "  list.add(%1$s.fromValue(value));", typeName.getSimpleName());
+        javaBuffer.addLine(    "  break;");
+        javaBuffer.addLine(    "case END_ARRAY:");
+        javaBuffer.addLine(    "  enumArrayEnd = true;");
+        javaBuffer.addLine(    "  break;");
+        javaBuffer.addLine(    "default:");
+        javaBuffer.addLine(    "  reader.skip();");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "reader.next();");
+        javaBuffer.addLine(  "return list;");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
     private void generateEnumReader(EnumType type) {
         javaBuffer = new JavaClassBuffer();
         JavaClassName readerName = javaTypes.getJsonReaderName(type);
@@ -301,17 +332,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addImport(JsonReader.class);
         javaBuffer.addImport(JsonParser.Event.class);
 
-        // Generate the that assumes that parsing of the object hasn't started yet, so it will expect the start of the
-        // object as the first event:
         javaBuffer.addLine("public static %1$s readOne(JsonReader reader) {", typeName.getSimpleName());
-        javaBuffer.addLine(  "return readOne(reader, false);");
-        javaBuffer.addLine("}");
-        javaBuffer.addLine();
-
-        javaBuffer.addLine("public static %1$s readOne(JsonReader reader, boolean started) {", typeName.getSimpleName());
-        javaBuffer.addLine(  "if (!started) {");
-        javaBuffer.addLine(    "reader.expect(Event.START_OBJECT);");
-        javaBuffer.addLine(  "}");
         javaBuffer.addLine(  "return %1$s.fromValue(reader.readString());", typeName.getSimpleName());
         javaBuffer.addLine("}");
         javaBuffer.addLine();
@@ -399,7 +420,12 @@ public class JsonSupportGenerator extends JavaGenerator {
                 javaBuffer.addLine("writer.writeDate(\"%1$s\", object.%2$s());", tag, field);
             }
         }
-        else if (type instanceof StructType || type instanceof EnumType) {
+        else if (type instanceof EnumType) {
+            JavaClassName writerName = javaTypes.getJsonWriterName(type);
+            javaBuffer.addImport(writerName);
+            javaBuffer.addLine("writer.writeString(\"%1$s\", object.%2$s().value());", tag, field);
+        }
+        else if (type instanceof StructType) {
             JavaClassName writerName = javaTypes.getJsonWriterName(type);
             javaBuffer.addImport(writerName);
             javaBuffer.addLine("%1$s.writeOne(object.%2$s(), \"%3$s\", writer);", writerName.getSimpleName(), field,
@@ -493,7 +519,6 @@ public class JsonSupportGenerator extends JavaGenerator {
     private void generateEnumWriteOne(EnumType type) {
         // Calculate the name of the type and the XML tag:
         JavaClassName typeName = javaTypes.getEnumName(type);
-        String tag = schemaNames.getSchemaTagName(type.getName());
 
         // Add the required imports:
         javaBuffer.addImport(typeName);
@@ -514,7 +539,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addLine(  "else {");
         javaBuffer.addLine(    "writer.writeStartObject();");
         javaBuffer.addLine(  "}");
-        javaBuffer.addLine(  "writer.writeString(\"%1$s\", object.value());", tag);
+        javaBuffer.addLine(  "writer.writeString(name, object.value());");
         javaBuffer.addLine(  "writer.writeEnd();");
         javaBuffer.addLine("}");
         javaBuffer.addLine();
