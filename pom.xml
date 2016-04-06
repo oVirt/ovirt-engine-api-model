@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.0.6</metamodel.version>
+    <metamodel.version>1.0.7</metamodel.version>
 
   </properties>
 
@@ -161,12 +161,10 @@
                 <configuration>
                   <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
                   <arguments>
-                    <argument>--model</argument>
-                    <argument>${project.basedir}/src/main/java</argument>
-                    <argument>--json-description</argument>
-                    <argument>${project.basedir}/target/model.json</argument>
-                    <argument>--xml-description</argument>
-                    <argument>${project.basedir}/target/model.xml</argument>
+                    <argument>org.ovirt.api.metamodel.tool.Tool</argument>
+                    <argument>--model=${project.basedir}/src/main/java</argument>
+                    <argument>--json-description=${project.basedir}/target/model.json</argument>
+                    <argument>--xml-description=${project.basedir}/target/model.xml</argument>
                   </arguments>
                   <includePluginDependencies>true</includePluginDependencies>
                   <includeProjectDependencies>false</includeProjectDependencies>
@@ -233,10 +231,9 @@
                 <configuration>
                   <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
                   <arguments>
-                    <argument>--model</argument>
-                    <argument>${project.basedir}/src/main/java</argument>
-                    <argument>--docs</argument>
-                    <argument>${project.basedir}/target/generated-adoc</argument>
+                    <argument>org.ovirt.api.metamodel.tool.Tool</argument>
+                    <argument>--model=${project.basedir}/src/main/java</argument>
+                    <argument>--docs=${project.basedir}/target/generated-adoc</argument>
                   </arguments>
                   <includePluginDependencies>true</includePluginDependencies>
                   <includeProjectDependencies>false</includeProjectDependencies>
