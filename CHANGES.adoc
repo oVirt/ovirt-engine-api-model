@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.12 / Apr 6 2016
+
+New features:
+
+* Add operation to update OVF store to the storage domains service.
+
+* Add IPv6 fields to host NIC.
+
 == 4.0.11 / Mar 29 2016
 
 New features:
