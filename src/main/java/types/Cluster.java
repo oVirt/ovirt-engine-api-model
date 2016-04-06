@@ -43,6 +43,11 @@ public interface Cluster extends Identified {
     FencingPolicy fencingPolicy();
     MigrationOptions migration();
 
+    /**
+     * Type of switch which will be used by all networks in given cluster.
+     */
+    SwitchType switchType();
+
     @Link DataCenter dataCenter();
     @Link Network managementNetwork();
 
