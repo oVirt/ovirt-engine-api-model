@@ -42,6 +42,7 @@ import org.ovirt.api.metamodel.concepts.Type;
 public class SchemaNames {
     // Well known names:
     private static final Name ID = NameParser.parseUsingCase("Id");
+    private static final Name HREF = NameParser.parseUsingCase("Href");
 
     // Exceptions to the rules to calculate complex type names:
     private static final Map<String, String> TYPE_NAME_EXCEPTIONS = new HashMap<>();
@@ -215,14 +216,14 @@ public class SchemaNames {
 
     /**
      * Checks if the struct member with the given name should be represented in the XML schema as an attribute instead
-     * of an nested element. Currently this is necessary only for the {@code id} attribute.
+     * of an nested element. Currently this is necessary for the {@code id} and {@code href} attribute.
      *
      * @param name the name to check
      * @return {@code true} if the attribute with the given name should be represented as an XML attribute,
      *     {@code false} otherwise
      */
     public boolean isRepresentedAsAttribute(Name name) {
-        return ID.equals(name);
+        return ID.equals(name) || HREF.equals(name);
     }
 }
 
