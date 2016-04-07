@@ -22,4 +22,13 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface OpenStackNetworkProvider extends OpenStackProvider {
     NetworkPluginType pluginType();
     AgentConfiguration agentConfiguration();
+
+    /**
+     * Indicates whether the provider is read only.
+     * A read-only provider does not allow adding, modifying or deleting of
+     * networks or subnets.
+     * Port-related operations are allowed, as they are required for the
+     * provisioning of virtual nics.
+     */
+    Boolean readOnly();
 }
