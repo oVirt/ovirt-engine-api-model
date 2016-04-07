@@ -255,6 +255,27 @@ public class XmlSupportGenerator extends JavaGenerator {
             if (elementType instanceof StructType || elementType instanceof EnumType) {
                 javaBuffer.addLine("object.%1$s(%2$s.readMany(reader));", field, readerName.getSimpleName());
             }
+            else if(elementType instanceof PrimitiveType) {
+                Model model = type.getModel();
+                if (elementType == model.getBooleanType()) {
+                    javaBuffer.addLine("object.%1$s(reader.readBooleans());", field);
+                }
+                else if (elementType == model.getIntegerType()) {
+                    javaBuffer.addLine("object.%1$s(reader.readIntegers());", field);
+                }
+                else if (elementType == model.getDecimalType()) {
+                    javaBuffer.addLine("object.%1$s(reader.readDecimals());", field);
+                }
+                else if (elementType == model.getStringType()) {
+                    javaBuffer.addLine("object.%1$s(reader.readStrings());", field);
+                }
+                else if (elementType == model.getDateType()) {
+                    javaBuffer.addLine("object.%1$s(reader.readDates());", field);
+                }
+                else {
+                    javaBuffer.addLine("reader.skip();");
+                }
+            }
         }
         else {
             javaBuffer.addLine("reader.skip();");
@@ -524,6 +545,24 @@ public class XmlSupportGenerator extends JavaGenerator {
                 javaBuffer.addImport(writerName);
                 javaBuffer.addLine("%1$s.writeMany(object.%2$s().iterator(), writer);", writerName.getSimpleName(),
                     field);
+            }
+            else if (elementType instanceof PrimitiveType) {
+                Model model = type.getModel();
+                if (elementType == model.getBooleanType()) {
+                    javaBuffer.addLine("writer.writeBooleans(\"%1$s\", object.%2$s());", tag, field);
+                }
+                else if (elementType == model.getIntegerType()) {
+                    javaBuffer.addLine("writer.writeIntegers(\"%1$s\", object.%2$s());", tag, field);
+                }
+                else if (elementType == model.getDecimalType()) {
+                    javaBuffer.addLine("writer.writeDecimals(\"%1$s\", object.%2$s());", tag, field);
+                }
+                else if (elementType == model.getStringType()) {
+                    javaBuffer.addLine("writer.writeElements(\"%1$s\", object.%2$s());", tag, field);
+                }
+                else if (elementType == model.getDateType()) {
+                    javaBuffer.addLine("writer.writeDates(\"%1$s\", object.%2$s());", tag, field);
+                }
             }
         }
         javaBuffer.addLine("}");

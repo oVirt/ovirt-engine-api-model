@@ -16,6 +16,12 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.runtime.xml;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,14 +33,12 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * This class wraps the {@link XMLStreamReader} class so that the methods don't send checked exceptions, in order to
@@ -226,16 +230,7 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the boolean.
      */
     public boolean readBoolean() {
-        String image = readString();
-        if (image.equalsIgnoreCase("false") || image.equals("0")) {
-            return false;
-        }
-        else if (image.equalsIgnoreCase("true") || image.equals("1")) {
-            return true;
-        }
-        else {
-            throw new XmlException("The text \"" + image + "\" isn't a valid boolean value");
-        }
+        return parseBoolean(readString());
     }
 
     /**
@@ -243,13 +238,7 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the integer.
      */
     public BigInteger readInteger() {
-        String image = readString();
-        try {
-            return new BigInteger(image);
-        }
-        catch (NumberFormatException exception) {
-            throw new XmlException("The text \"" + image + "\" isn't a valid integer value");
-        }
+        return parseInteger(readString());
     }
 
     /**
@@ -257,13 +246,7 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the decimal.
      */
     public BigDecimal readDecimal() {
-        String image = readString();
-        try {
-            return new BigDecimal(image).stripTrailingZeros();
-        }
-        catch (NumberFormatException exception) {
-            throw new XmlException("The text \"" + image + "\" isn't a valid decimal value");
-        }
+        return parseDecimal(readString());
     }
 
     /**
@@ -292,12 +275,106 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the date.
      */
     public Date readDate() {
-        String image = readString();
+        return parseDate(readString());
+    }
+
+    /**
+     * Reads an list of booleans elements with same element name, assuming that the cursor is positioned at the start
+     * element that contains the value of the boolean and ends when different element name found.
+     */
+    public List<Boolean> readBooleans() {
+        return readStrings().stream()
+            .map(this::parseBoolean)
+            .collect(toList());
+    }
+
+    /**
+     * Reads an list of integers elements with same element name, assuming that the cursor is positioned at the start
+     * element that contains the value of the integers and ends when different element name found.
+     */
+    public List<BigInteger> readIntegers() {
+        return readStrings().stream()
+            .map(this::parseInteger)
+            .collect(toList());
+    }
+
+    /**
+     * Reads an list of decimals elements with same element name, assuming that the cursor is positioned at the start
+     * element that contains the value of the decimal and ends when different element name found.
+     */
+    public List<BigDecimal> readDecimals() {
+        return readStrings().stream()
+            .map(this::parseDecimal)
+            .collect(toList());
+    }
+
+    /**
+     * Reads an list of dates elements with same element name, assuming that the cursor is positioned at the start
+     * element that contains the value of the date and ends when different element name found.
+     */
+    public List<Date> readDates() {
+        return readStrings().stream()
+            .map(this::parseDate)
+            .collect(toList());
+    }
+
+    /**
+     * Reads an list of string elements with same element name, assuming that the cursor is positioned at the start
+     * element that contains the value of the string and ends when different element name found.
+     */
+    public List<String> readStrings() {
+        List<String> values = new ArrayList<>();
+        String startingLocalName = reader.getLocalName();
+        String currentLocalName = startingLocalName;
+
+        while (forward()) {
+            currentLocalName = reader.getLocalName();
+            if (currentLocalName.equals(startingLocalName)) {
+                values.add(readString());
+            }
+            else {
+                skip();
+            }
+        }
+        return values;
+    }
+
+    public BigInteger parseInteger(String image) {
+        try {
+            return new BigInteger(image);
+        }
+        catch (NumberFormatException exception) {
+            throw new XmlException("The text \"" + image + "\" isn't a valid integer value");
+        }
+    }
+
+    public BigDecimal parseDecimal(String image) {
+        try {
+            return new BigDecimal(image).stripTrailingZeros();
+        }
+        catch (NumberFormatException exception) {
+            throw new XmlException("The text \"" + image + "\" isn't a valid decimal value");
+        }
+    }
+
+    public Date parseDate(String image) {
         try {
             return DATE_FORMAT.get().parse(image);
         }
         catch(ParseException exception) {
             throw new XmlException("The text \"" + image + "\" isn't a valid date value");
+        }
+    }
+
+    public boolean parseBoolean(String image) {
+        if (image.equalsIgnoreCase("false") || image.equals("0")) {
+            return false;
+        }
+        else if (image.equalsIgnoreCase("true") || image.equals("1")) {
+            return true;
+        }
+        else {
+            throw new XmlException("The text \"" + image + "\" isn't a valid boolean value");
         }
     }
 

@@ -406,6 +406,55 @@ public class XmlReaderTest {
     }
 
     /**
+     * Checks that {@code readStrings} leaves the cursor positioned at the end element that contains the value.
+     */
+    @Test
+    public void testReadStringListEndElement() {
+        XmlReader reader = openReader("<action><value>1</value><value>2</value></action>");
+        reader.next();
+        reader.readStrings();
+        assertEquals(XMLStreamConstants.END_ELEMENT, reader.getEventType());
+        assertEquals("action", reader.getLocalName());
+    }
+
+    /**
+     * Checks that {@code readBooleans} leaves the cursor positioned at the end element that contains the value.
+     */
+    @Test
+    public void testReadBooleanListEndElement() {
+        XmlReader reader = openReader("<action><value>true</value><value>false</value></action>");
+        reader.next();
+        reader.readBooleans();
+        assertEquals(XMLStreamConstants.END_ELEMENT, reader.getEventType());
+        assertEquals("action", reader.getLocalName());
+
+    }
+
+    /**
+     * Checks that {@code readStrings} read all elements correctly
+     */
+    @Test
+    public void testReadStringList() {
+        List<String> expected = Arrays.asList("1", "2");
+        XmlReader reader = openReader("<action><value>1</value><value>2</value></action>");
+        reader.next();
+        List<String> strings = reader.readStrings();
+        assertEquals(expected, strings);
+    }
+
+    /**
+     * Checks that {@code readBooleans} read all elements correctly
+     */
+    @Test
+    public void testReadBooleanList() {
+        List<Boolean> expected = Arrays.asList(true, false);
+        XmlReader reader = openReader("<action><value>true</value><value>false</value></action>");
+        reader.next();
+        List<Boolean> booleans = reader.readBooleans();
+        assertEquals(expected, booleans);
+    }
+
+    /**
      * Checks that reading an empty element generates an empty, but not {@code null}, object.
      */
     @Test

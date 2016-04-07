@@ -27,6 +27,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -279,28 +280,115 @@ public class XmlWriter implements AutoCloseable {
      * Writes a boolean value.
      */
     public void writeBoolean(String name, boolean value) {
-        writeElement(name, Boolean.toString(value));
+        writeElement(name, renderBoolean(value));
     }
 
     /**
      * Writes an integer value.
      */
     public void writeInteger(String name, BigInteger value) {
-        writeElement(name, value.toString());
+        writeElement(name, renderInteger(value));
     }
 
     /**
      * Writes a decimal value.
      */
     public void writeDecimal(String name, BigDecimal value) {
-        writeElement(name, value.toString());
+        writeElement(name, renderDecimal(value));
     }
 
     /**
      * Writes a date.
      */
     public void writeDate(String name, Date value) {
-        writeElement(name, DATE_FORMAT.get().format(value));
+        writeElement(name, renderDate(value));
+    }
+
+    /**
+     * Writes a string.
+     */
+    public void writeString(String name, String value) {
+        writeElement(name, renderString(value));
+    }
+
+    /**
+     * Writes a list of boolean values.
+     */
+    public void writeBooleans(String name, List<Boolean> values) {
+        for (Boolean value : values) {
+            writeBoolean(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of integer values.
+     */
+    public void writeIntegers(String name, List<BigInteger> values) {
+        for (BigInteger value : values) {
+            writeInteger(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of decimal values.
+     */
+    public void writeDecimals(String name, List<BigDecimal> values) {
+        for (BigDecimal value : values) {
+            writeDecimal(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of date values.
+     */
+    public void writeDates(String name, List<Date> values) {
+        for (Date value : values) {
+            writeDate(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of string values.
+     */
+    public void writeElements(String name, List<String> values) {
+        for (String value : values) {
+            writeElement(name, value);
+        }
+    }
+
+    /**
+     * Render a string representation of string value
+     */
+    public static String renderString(String value) {
+        return value;
+    }
+
+    /**
+     * Render a string representation of boolean value
+     */
+    public static String renderBoolean(boolean value) {
+        return Boolean.toString(value);
+    }
+
+    /**
+     * Render a string representation of BigInteger value
+     */
+    public static String renderInteger(BigInteger value) {
+        return value.toString();
+    }
+
+    /**
+     * Render a string representation of BigDecimal value
+     */
+    public static String renderDecimal(BigDecimal value) {
+        return value.toString();
+    }
+
+    /**
+     * Render a string representation of Date value
+     */
+    public static String renderDate(Date value) {
+        return DATE_FORMAT.get().format(value);
     }
 
     /**

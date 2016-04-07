@@ -27,7 +27,9 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import javax.json.Json;
 import javax.json.JsonException;
@@ -195,17 +197,140 @@ public class JsonReader implements AutoCloseable {
     public Date readDate() {
         JsonParser.Event event = parser.next();
         switch (event) {
-        case VALUE_STRING:
-            String image = parser.getString();
-            try {
-                return DATE_FORMAT.get().parse(image);
-            }
-            catch (ParseException exception) {
-                throw new JsonException("The text \"" + image + "\" isn't a valid date", exception);
-            }
-        default:
-            throw new JsonException("Expected date value");
+            case VALUE_STRING:
+                String image = parser.getString();
+                try {
+                    return DATE_FORMAT.get().parse(image);
+                }
+                catch (ParseException exception) {
+                    throw new JsonException("The text \"" + image + "\" isn't a valid date", exception);
+                }
+            default:
+                throw new JsonException("Expected date value");
         }
+    }
+
+    /**
+     * Reads a list of booleans from JSON parser. Skips unexpected values.
+     */
+    public List<Boolean> readBooleans() {
+        List<Boolean> list = new ArrayList<>();
+        expect(JsonParser.Event.START_ARRAY);
+        boolean listEnd = false;
+        while (!listEnd) {
+            JsonParser.Event next = next();
+            switch (next) {
+                case VALUE_FALSE:
+                    list.add(false);
+                    break;
+                case VALUE_TRUE:
+                    list.add(true);
+                    break;
+                case END_ARRAY:
+                    listEnd = true;
+                    break;
+                default:
+                    continue;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Reads a list of integers from JSON parser. Skips unexpected values.
+     */
+    public List<BigInteger> readIntegers() {
+        List<BigInteger> list = new ArrayList<>();
+        expect(JsonParser.Event.START_ARRAY);
+        boolean listEnd = false;
+        while (!listEnd) {
+            JsonParser.Event next = next();
+            switch (next) {
+                case VALUE_NUMBER:
+                    list.add(parser.getBigDecimal().toBigInteger());
+                    break;
+                case END_ARRAY:
+                    listEnd = true;
+                    break;
+                default:
+                    continue;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Reads a list of decimals from JSON parser. Skips unexpected values.
+     */
+    public List<BigDecimal> readDecimals() {
+        List<BigDecimal> list = new ArrayList<>();
+        expect(JsonParser.Event.START_ARRAY);
+        boolean listEnd = false;
+        while (!listEnd) {
+            JsonParser.Event next = next();
+            switch (next) {
+                case VALUE_NUMBER:
+                    list.add(parser.getBigDecimal());
+                    break;
+                case END_ARRAY:
+                    listEnd = true;
+                    break;
+                default:
+                    continue;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Reads a list of dates from JSON parser. Skips unexpected values.
+     */
+    public List<Date> readDates() {
+        List<Date> list = new ArrayList<>();
+        expect(JsonParser.Event.START_ARRAY);
+        boolean listEnd = false;
+        while (!listEnd) {
+            JsonParser.Event next = next();
+            switch (next) {
+                case VALUE_STRING:
+                    String image = parser.getString();
+                    try {
+                        list.add(DATE_FORMAT.get().parse(image));
+                    }
+                    catch (ParseException exception) {
+                        throw new JsonException("The text \"" + image + "\" isn't a valid date", exception);
+                    }
+                case END_ARRAY:
+                    listEnd = true;
+                    break;
+                default:
+                    continue;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Reads a list of strings from JSON parser. Skips unexpected values.
+     */
+    public List<String> readStrings() {
+        List<String> list = new ArrayList<>();
+        expect(JsonParser.Event.START_ARRAY);
+        boolean listEnd = false;
+        while (!listEnd) {
+            JsonParser.Event next = next();
+            switch (next) {
+                case VALUE_STRING:
+                    list.add(getString());
+                    break;
+                case END_ARRAY:
+                    listEnd = true;
+                    break;
+                default:
+                    continue;
+            }
+        }
+        return list;
     }
 
     /**

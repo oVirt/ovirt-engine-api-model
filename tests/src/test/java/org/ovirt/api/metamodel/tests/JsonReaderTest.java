@@ -270,6 +270,26 @@ public class JsonReaderTest {
     }
 
     /**
+     * Checks that lists of primitive types is read correctly.
+     */
+    @Test
+    public void testReadStrings() {
+        V4Vm object = objectFromJson("{'properties': ['spice', 'VNC']}");
+        List<String> expected = Arrays.asList("spice", "VNC");
+        assertEquals(expected, object.properties());
+    }
+
+    /**
+     * Check that if list has element of unexpected type it's skipped
+     */
+    @Test
+    public void testReadStringsWithIncorrectType() {
+        V4Vm object = objectFromJson("{'properties': [false, 'string', true]}");
+        List<String> expected = Arrays.asList("string");
+        assertEquals(expected, object.properties());
+    }
+
+    /**
      * Checks that one million of VMs can be deserialize in a reasonable time and without exhausting the memory of the
      * virtual machine. Note that the test is currently disabled because if it fails it will block other tests, but it
      * is still useful to run it manually, so please don't remove it.

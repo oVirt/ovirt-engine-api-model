@@ -36,4 +36,5 @@ public interface Vm {
     Disk[] disks();
     VmType type();
     VmDisplayType[] displayTypes();
+    String[] properties();
 }

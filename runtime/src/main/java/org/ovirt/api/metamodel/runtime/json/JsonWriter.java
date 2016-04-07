@@ -28,15 +28,13 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import javax.json.Json;
 import javax.json.JsonException;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
-
-import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * This class wraps the {@link JsonGenerator} class so that the methods don't send checked exceptions, in order to
@@ -186,6 +184,51 @@ public class JsonWriter implements AutoCloseable {
      */
     public void writeDate(String name, Date value) {
         generator.write(name, DATE_FORMAT.get().format(value));
+    }
+
+    /**
+     * Writes a list of boolean values.
+     */
+    public void writeBooleans(String name, List<Boolean> values) {
+        for (Boolean value : values) {
+            writeBoolean(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of integer values.
+     */
+    public void writeIntegers(String name, List<BigInteger> values) {
+        for (BigInteger value : values) {
+            writeInteger(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of decimal values.
+     */
+    public void writeDecimals(String name, List<BigDecimal> values) {
+        for (BigDecimal value : values) {
+            writeDecimal(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of date values.
+     */
+    public void writeDates(String name, List<Date> values) {
+        for (Date value : values) {
+            writeDate(name, value);
+        }
+    }
+
+    /**
+     * Writes a list of string values.
+     */
+    public void writeStrings(String name, List<String> values) {
+        for (String value : values) {
+            writeString(name, value);
+        }
     }
 
     /**

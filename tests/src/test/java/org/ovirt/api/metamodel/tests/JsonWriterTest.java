@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -321,6 +322,19 @@ public class JsonWriterTest {
         assertEquals(
             "[{},{}]",
             listToJson(list.iterator())
+        );
+    }
+
+    /**
+     * Test that list of string is written correctly
+     */
+    @Test
+    public void testWriteListOfStrings() {
+        List<String> strings = Arrays.asList("value1", "value2", "value3");
+        V4Vm object = vm().properties(strings).build();
+        assertEquals(
+            "{'properties':'value1','properties':'value2','properties':'value3'}",
+            objectToJson(object)
         );
     }
 
