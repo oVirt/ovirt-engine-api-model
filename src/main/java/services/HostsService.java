@@ -35,6 +35,23 @@ public interface HostsService {
          * is returned.
          */
         @In @Out Host host();
+
+        /**
+         * When set to `true` it means this host should deploy also hosted
+         * engine components. Missing value is treated as `true` i.e deploy.
+         * Omitting this parameter means `false` and will perform no operation
+         * in hosted engine area.
+         */
+        @In Boolean deployHostedEngine();
+
+        /**
+         * When set to `true` it means this host should un-deploy hosted engine
+         * components and this host will not function as part of the High
+         * Availability cluster. Missing value is treated as `true` i.e un-deploy.
+         * Omitting this parameter means `false` and will perform no operation
+         * in hosted engine area.
+         */
+        @In Boolean undeployHostedEngine();
     }
 
     interface List {
