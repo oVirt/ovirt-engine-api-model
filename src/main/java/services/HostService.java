@@ -372,4 +372,9 @@ public interface HostService extends MeasurableService {
     @Service NetworkAttachmentsService networkAttachments();
     @Service StorageServerConnectionExtensionsService storageConnectionExtensions();
     @Service UnmanagedNetworksService unmanagedNetworks();
+
+    /**
+     * List of scheduling labels assigned to this host.
+     */
+    @Service AssignedAffinityLabelsService affinityLabels();
 }

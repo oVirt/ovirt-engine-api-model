@@ -283,4 +283,9 @@ public interface VmService extends MeasurableService {
      * List of disks attached to this virtual machine.
      */
     @Service DiskAttachmentsService diskAttachments();
+
+    /**
+     * List of scheduling labels assigned to this VM.
+     */
+    @Service AssignedAffinityLabelsService affinityLabels();
 }

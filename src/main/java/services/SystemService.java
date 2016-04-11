@@ -63,6 +63,11 @@ public interface SystemService {
     @Service IconsService icons();
     @Service InstanceTypesService instanceTypes();
     @Service JobsService jobs();
+
+    /**
+     * List all known affinity labels.
+     */
+    @Service AffinityLabelsService affinityLabels();
     @Service MacPoolsService macPools();
 
     /**
