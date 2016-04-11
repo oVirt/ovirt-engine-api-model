@@ -32,5 +32,11 @@ public interface VmPool extends Identified {
 
     @Link Cluster cluster();
     @Link Template template();
+
+    /**
+     * Reference to the instance type on which this pool is based on. It can be
+     * set only on pool creation and can not be edited.
+     */
+    @Link InstanceType instanceType();
     @Link Vm vm();
 }
