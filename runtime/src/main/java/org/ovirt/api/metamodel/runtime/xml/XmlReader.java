@@ -38,8 +38,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import static java.util.stream.Collectors.toList;
-
 /**
  * This class wraps the {@link XMLStreamReader} class so that the methods don't send checked exceptions, in order to
  * simplify its usage together with streams and lambdas.
@@ -51,11 +49,14 @@ public class XmlReader implements AutoCloseable {
     /**
      * Thread local used to store the date formats.
      */
-    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT = ThreadLocal.withInitial(() -> {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return format;
-    });
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT = new ThreadLocal<SimpleDateFormat>(){
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
     /**
      * Creates an XML reader that will read from the given source.
@@ -283,9 +284,12 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the boolean and ends when different element name found.
      */
     public List<Boolean> readBooleans() {
-        return readStrings().stream()
-            .map(this::parseBoolean)
-            .collect(toList());
+        List<Boolean> booleans = new ArrayList<>();
+        for (String string : readStrings()) {
+            booleans.add(parseBoolean(string));
+        }
+
+        return booleans;
     }
 
     /**
@@ -293,9 +297,12 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the integers and ends when different element name found.
      */
     public List<BigInteger> readIntegers() {
-        return readStrings().stream()
-            .map(this::parseInteger)
-            .collect(toList());
+        List<BigInteger> integers = new ArrayList<>();
+        for (String string : readStrings()) {
+            integers.add(parseInteger(string));
+        }
+
+        return integers;
     }
 
     /**
@@ -303,9 +310,12 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the decimal and ends when different element name found.
      */
     public List<BigDecimal> readDecimals() {
-        return readStrings().stream()
-            .map(this::parseDecimal)
-            .collect(toList());
+        List<BigDecimal> decimals = new ArrayList<>();
+        for (String string : readStrings()) {
+            decimals.add(parseDecimal(string));
+        }
+
+        return decimals;
     }
 
     /**
@@ -313,9 +323,12 @@ public class XmlReader implements AutoCloseable {
      * element that contains the value of the date and ends when different element name found.
      */
     public List<Date> readDates() {
-        return readStrings().stream()
-            .map(this::parseDate)
-            .collect(toList());
+        List<Date> dates = new ArrayList<>();
+        for (String string : readStrings()) {
+            dates.add(parseDate(string));
+        }
+
+        return dates;
     }
 
     /**

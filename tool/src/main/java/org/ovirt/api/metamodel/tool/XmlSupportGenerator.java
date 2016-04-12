@@ -296,9 +296,14 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addImport(XmlReader.class);
 
         // Iterate method:
-        javaBuffer.addLine("public static Iterator<%1$s> iterateMany(XmlReader reader) {", typeName.getSimpleName());
+        javaBuffer.addLine("public static Iterator<%1$s> iterateMany(final XmlReader reader) {", typeName.getSimpleName());
         javaBuffer.addLine(  "return new Iterator<%1$s>() {", typeName.getSimpleName());
         javaBuffer.addLine(    "private boolean first = true;");
+        javaBuffer.addLine();
+        javaBuffer.addLine(    "@Override");
+        javaBuffer.addLine(    "public void remove() {");
+        javaBuffer.addLine(      "// Empty on purpose");
+        javaBuffer.addLine(    "}");
         javaBuffer.addLine();
         javaBuffer.addLine(    "@Override");
         javaBuffer.addLine(    "public boolean hasNext() {");

@@ -125,17 +125,6 @@ public class StructsGenerator extends JavaGenerator {
         javaBuffer.addLine("%1$s %2$s();", typeReference, field);
         javaBuffer.addLine();
 
-        // If the type is a list then generate an additional getter that returns an stream:
-        if (type instanceof ListType) {
-            ListType listType = (ListType) type;
-            Type elementType = listType.getElementType();
-            JavaTypeReference elementReference = javaTypes.getTypeReference(elementType, true);
-            javaBuffer.addImports(elementReference.getImports());
-            javaBuffer.addImport(Stream.class);
-            javaBuffer.addLine("Stream<%1$s> %2$sStream();", elementReference, field);
-            javaBuffer.addLine();
-        }
-
         // Generate the checker:
         javaBuffer.addLine("boolean %1$sPresent();", field);
         javaBuffer.addLine();
@@ -253,24 +242,6 @@ public class StructsGenerator extends JavaGenerator {
         }
         javaBuffer.addLine("}");
         javaBuffer.addLine();
-
-        // If the type is a list then generate an additional getter that returns an stream:
-        if (type instanceof ListType) {
-            ListType listType = (ListType) type;
-            Type elementType = listType.getElementType();
-            JavaClassName elementName = javaTypes.getInterfaceName(elementType);
-            javaBuffer.addImport(elementName);
-            javaBuffer.addImport(Stream.class);
-            javaBuffer.addLine("public Stream<%1$s> %2$sStream() {", elementName.getSimpleName(), field);
-            javaBuffer.addLine(  "if (%1$s == null) {", field);
-            javaBuffer.addLine(    "return Stream.empty();");
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "else {");
-            javaBuffer.addLine(    "return %1$s.stream();", field);
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine("}");
-            javaBuffer.addLine();
-        }
 
         // Generate the setter:
         if (type instanceof PrimitiveType) {

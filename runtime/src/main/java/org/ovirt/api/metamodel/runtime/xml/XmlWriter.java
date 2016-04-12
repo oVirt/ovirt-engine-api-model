@@ -48,11 +48,14 @@ public class XmlWriter implements AutoCloseable {
     /**
      * Thread local used to store the date formats.
      */
-    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT = ThreadLocal.withInitial(() -> {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return format;
-    });
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT = new ThreadLocal<SimpleDateFormat>(){
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
     /**
      * Creates an XML writer that will write to the given result, using UTF-8 as the encoding.
