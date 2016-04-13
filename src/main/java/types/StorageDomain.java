@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -37,15 +37,16 @@ public interface StorageDomain extends Identified {
 
     /**
      * Host is only relevant at creation time.
-     * @return
      */
     @Link Host host();
+
     /**
      * This is used to link to the data center that the storage domain is attached to. It is preserved for backwards
      * compatibility, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
      * the `dataCenters` element instead.
      */
     @Link DataCenter dataCenter();
+
     /**
      * This is a set of links to the data centers that the storage domain is attached to.
      */
