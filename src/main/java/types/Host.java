@@ -68,7 +68,6 @@ public interface Host extends Identified {
     SeLinux selinux();
     AutoNumaStatus autoNumaStatus();
     Boolean numaSupported();
-    Boolean liveSnapshotSupport();
     KatelloErratum[] katelloErrata();
     Boolean updateAvailable();
     HostDevicePassthrough devicePassthrough();
