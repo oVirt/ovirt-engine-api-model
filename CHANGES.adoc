@@ -3,12 +3,16 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.14 / Apr 19 2016
 
-== 4.0.14
+New features:
+
+* Add `reportStatus` parameter to the operations that list and get host
+  storage details.
 
 Removed features:
 
-* Removed the liveSnapshotSupported properpty of Host
+* Removed the `liveSnapshotSupported` attribute of host.
 
 == 4.0.13 / Apr 13 2016
 
