@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,15 +17,13 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-import org.ovirt.api.metamodel.annotations.Link;
 
+/**
+ * A policy describing how the migration is going to be treated (convergence,
+ * how many parallel migrations allowed).
+ */
 @Type
-public interface MigrationOptions {
-    InheritableBoolean autoConverge();
-    InheritableBoolean compressed();
-
-    /**
-     * Reference to the migration policy as defined using `engine-config`.
-     */
-    @Link MigrationPolicy policy();
+public interface MigrationPolicy extends Identified {
+// Currently empty since the policies are normally not supposed to be modified and are exposed only using `engine-config`.
+// In future we may decide to expose them also using REST - in that case all the configuration is going to be here.
 }
