@@ -23,6 +23,11 @@ import types.OpenStackNetworkProvider;
 
 @Service
 public interface OpenstackNetworkProvidersService {
+
+    /**
+     * The operation adds a new network provider to the system.
+     * If the `type` property is not present, a default value of `NEUTRON` will be used.
+     */
     interface Add {
         @In @Out OpenStackNetworkProvider provider();
     }
