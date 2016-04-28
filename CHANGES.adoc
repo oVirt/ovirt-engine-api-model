@@ -3,6 +3,21 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.15 / Apr 28 2016
+
+New features:
+
+* Add new `MigrationPolicy` type, and new `policy` attribute to the
+  existing `MigrationOptions` type.
+
+* Add new `OpenStackNetworkProviderType` enum type, and new `type`
+  attribute to the existing `OpenStackNetworkProvider` type.
+
+Bug fixes:
+
+* Fix the name of the parameter of the operation to list storage
+  domains, should be `storageDomains`, in plural.
+
 == 4.0.14 / Apr 19 2016
 
 New features:
