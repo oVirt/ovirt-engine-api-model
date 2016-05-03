@@ -17,9 +17,12 @@ limitations under the License.
 package org.ovirt.api.metamodel.tool;
 
 import java.io.File;
+import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.ovirt.api.metamodel.concepts.Annotation;
+import org.ovirt.api.metamodel.concepts.AnnotationParameter;
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.Document;
@@ -31,6 +34,7 @@ import org.ovirt.api.metamodel.concepts.Locator;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
+import org.ovirt.api.metamodel.concepts.Named;
 import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
@@ -175,11 +179,12 @@ public class XmlDescriptionGenerator {
 
     private void writeCommon(Concept concept) {
         writeDoc(concept);
+        writeAnnotations(concept);
         writeName(concept);
     }
 
-    private void writeName(Concept concept) {
-        Name name = concept.getName();
+    private void writeName(Named named) {
+        Name name = named.getName();
         if (name != null) {
             writer.writeElement("name", name.toString());
         }
@@ -194,6 +199,39 @@ public class XmlDescriptionGenerator {
                 writer.writeElement("html", html);
             }
         }
+    }
+
+    private void writeAnnotations(Concept concept) {
+        List<Annotation> annotations = concept.getAnnotations();
+        if (!annotations.isEmpty()) {
+            writer.writeStartElement("annotations");
+            annotations.forEach(this::writeAnnotation);
+            writer.writeEndElement();
+        }
+    }
+
+    private void writeAnnotation(Annotation annotation) {
+        writer.writeStartElement("annotation");
+        writeName(annotation);
+        List<AnnotationParameter> parameters = annotation.getParameters();
+        if (!parameters.isEmpty()) {
+            writer.writeStartElement("parameters");
+            annotation.parameters().forEach(this::writeAnnotationParameter);
+            writer.writeEndElement();
+        }
+        writer.writeEndElement();
+    }
+
+    private void writeAnnotationParameter(AnnotationParameter parameter) {
+        writer.writeStartElement("parameter");
+        writeName(parameter);
+        List<String> values = parameter.getValues();
+        if (!values.isEmpty()) {
+            writer.writeStartElement("values");
+            values.forEach(x -> writer.writeElement("value", x));
+            writer.writeEndElement();
+        }
+        writer.writeEndElement();
     }
 
     private void writeTypeRef(Type type) {

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -29,17 +30,21 @@ import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 import javax.json.stream.JsonGeneratorFactory;
 
+import org.ovirt.api.metamodel.concepts.Annotation;
+import org.ovirt.api.metamodel.concepts.AnnotationParameter;
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
+import org.ovirt.api.metamodel.concepts.Expression;
 import org.ovirt.api.metamodel.concepts.Link;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Locator;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
+import org.ovirt.api.metamodel.concepts.Named;
 import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
@@ -207,11 +212,12 @@ public class JsonDescriptionGenerator {
 
     private void writeCommon(Concept concept) {
         writeDoc(concept);
+        writeAnnotations(concept);
         writeName(concept);
     }
 
-    private void writeName(Concept concept) {
-        Name name = concept.getName();
+    private void writeName(Named named) {
+        Name name = named.getName();
         if (name != null) {
             writer.write("name", name.toString());
         }
@@ -226,6 +232,39 @@ public class JsonDescriptionGenerator {
                 writer.write("html", html);
             }
         }
+    }
+
+    private void writeAnnotations(Concept concept) {
+        List<Annotation> annotations = concept.getAnnotations();
+        if (!annotations.isEmpty()) {
+            writer.writeStartArray("annotations");
+            annotations.forEach(this::writeAnnotation);
+            writer.writeEnd();
+        }
+    }
+
+    private void writeAnnotation(Annotation annotation) {
+        writer.writeStartObject();
+        writeName(annotation);
+        List<AnnotationParameter> parameters = annotation.getParameters();
+        if (!parameters.isEmpty()) {
+            writer.writeStartArray("parameters");
+            parameters.forEach(this::writeAnnotationParameter);
+            writer.writeEnd();
+        }
+        writer.writeEnd();
+    }
+
+    private void writeAnnotationParameter(AnnotationParameter parameter) {
+        writer.writeStartObject();
+        writeName(parameter);
+        List<String> values = parameter.getValues();
+        if (!values.isEmpty()) {
+            writer.writeStartArray("values");
+            values.forEach(writer::write);
+            writer.writeEnd();
+        }
+        writer.writeEnd();
     }
 
     private void writeTypeRef(Type type) {

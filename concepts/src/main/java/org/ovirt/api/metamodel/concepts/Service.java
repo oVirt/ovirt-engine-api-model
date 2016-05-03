@@ -16,6 +16,8 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import static org.ovirt.api.metamodel.concepts.Named.named;
+
 import static java.util.stream.Stream.concat;
 
 import java.util.ArrayList;

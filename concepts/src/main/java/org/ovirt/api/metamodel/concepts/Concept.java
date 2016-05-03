@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,20 +16,25 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Stream;
 
 /**
  * This class represents a concept of the metamodel.
  */
-public abstract class Concept implements Comparable<Concept> {
+public abstract class Concept implements Named {
     private Name name;
     private String doc;
     private String source;
+    private List<Annotation> annotations = new ArrayList<>();
 
     /**
      * Returns the name of this concept.
      */
+    @Override
     public Name getName() {
         return name;
     }
@@ -71,6 +76,47 @@ public abstract class Concept implements Comparable<Concept> {
         source = newSource;
     }
 
+    /**
+     * Returns the list of annotations that are applied to this concept. The returned list is a copy of the one used
+     * internally, so it is safe to modify it in any way. If you aren't going to modify the list consider using the
+     * {@link #annotations()} method instead.
+     */
+    public List<Annotation> getAnnotations() {
+        return new CopyOnWriteArrayList<>(annotations);
+    }
+
+    /**
+     * Returns a stream that delivers the annotations that are applied to this concept.
+     */
+    public Stream<Annotation> annotations() {
+        return annotations.stream();
+    }
+
+    /**
+     * Returns the annotations with given name that are applied to this concept, or {@code null} if there is no such
+     * annotation.
+     */
+    public Annotation getAnnotation(Name name) {
+        return annotations.stream().filter(Named.named(name)).findFirst().orElse(null);
+    }
+
+    /**
+     * Applies an annotation to this concept.
+     */
+    public void addAnnotation(Annotation newAnnotation) {
+        annotations.add(newAnnotation);
+    }
+
+    /**
+     * Applies a list of annotations to this concept.
+     */
+    public void addAnnotations(List<Annotation> newAnnotations) {
+        annotations.addAll(newAnnotations);
+    }
+
+    /**
+     * Generates a string representation of this concept, usually just its name.
+     */
     @Override
     public String toString() {
         return name != null? name.toString(): "";
@@ -99,35 +145,6 @@ public abstract class Concept implements Comparable<Concept> {
             return name.hashCode();
         }
         return super.hashCode();
-    }
-
-    /**
-     * Compares this concept to another concept. Only the name is taken into account for this comparison, and the
-     * result is intended only for sorting concepts by name. In particular if the result is 0 it only means that
-     * both concepts have the same name, not that they are equal.
-     */
-    @Override
-    public int compareTo(Concept that) {
-        return this.getName().compareTo(that.getName());
-    }
-
-    /**
-     * This method creates a predicate useful for filtering streams of concepts and keeping only the ones that have a
-     * given name. For example, if you need to find the a parameter of a method that has a given name you can do the
-     * following:
-     *
-     * <pre>
-     * Name name = ...;
-     * Optional<Parameter> parameter = method.getParameters().stream()
-     *     .filter(named(name))
-     *     .findFirst();
-     * </pre>
-     *
-     * @param name the name that the predicate will accept
-     * @return a predicate that accepts concepts with the given name
-     */
-    public static Predicate<Concept> named(Name name) {
-        return x -> Objects.equals(x.getName(), name);
     }
 }
 

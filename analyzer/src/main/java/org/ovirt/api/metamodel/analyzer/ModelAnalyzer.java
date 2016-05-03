@@ -22,10 +22,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +49,9 @@ import com.thoughtworks.qdox.model.JavaParameter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.ovirt.api.metamodel.annotations.Root;
+import org.ovirt.api.metamodel.concepts.Annotation;
+import org.ovirt.api.metamodel.concepts.AnnotationParameter;
 import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.Constraint;
@@ -201,6 +207,7 @@ public class ModelAnalyzer {
         analyzeSource(javaClass, type);
         analyzeModule(javaClass, type);
         analyzeName(javaClass, type);
+        analyzeAnnotations(javaClass, type);
         analyzeDocumentation(javaClass, type);
 
         // Get the values:
@@ -215,6 +222,7 @@ public class ModelAnalyzer {
         EnumValue value = new EnumValue();
         analyzeSource(javaField, value);
         analyzeName(javaField, value);
+        analyzeAnnotations(javaField, type);
         analyzeDocumentation(javaField, value);
 
         // Add the value to the type:
@@ -227,6 +235,7 @@ public class ModelAnalyzer {
         StructType type = new StructType();
         analyzeModule(javaClass, type);
         analyzeName(javaClass, type);
+        analyzeAnnotations(javaClass, type);
         analyzeDocumentation(javaClass, type);
 
         // Analyze the base type:
@@ -266,6 +275,7 @@ public class ModelAnalyzer {
         // Create the model:
         Link link = new Link();
         analyzeName(javaMethod, link);
+        analyzeAnnotations(javaMethod, link);
         analyzeDocumentation(javaMethod, link);
 
         // Get the type:
@@ -280,6 +290,7 @@ public class ModelAnalyzer {
         // Create the model:
         Attribute attribute = new Attribute();
         analyzeName(javaMethod, attribute);
+        analyzeAnnotations(javaMethod, attribute);
         analyzeDocumentation(javaMethod, attribute);
 
         // Get the type:
@@ -295,6 +306,7 @@ public class ModelAnalyzer {
         Service service = new Service();
         analyzeModule(javaClass, service);
         analyzeName(javaClass, service);
+        analyzeAnnotations(javaClass, service);
         analyzeDocumentation(javaClass, service);
 
         // Analyze the base service:
@@ -347,6 +359,7 @@ public class ModelAnalyzer {
         // Create the method:
         Method method = new Method();
         analyzeName(javaClass, method);
+        analyzeAnnotations(javaClass, method);
         analyzeDocumentation(javaClass, method);
 
         // Analyze the members:
@@ -370,6 +383,7 @@ public class ModelAnalyzer {
         // Create the parameter:
         Parameter parameter = new Parameter();
         analyzeName(javaMethod, parameter);
+        analyzeAnnotations(javaMethod, parameter);
         analyzeDocumentation(javaMethod, parameter);
 
         // Get the direction:
@@ -399,6 +413,7 @@ public class ModelAnalyzer {
         // Create the constraint:
         Constraint constraint = new Constraint();
         analyzeName(javaMethod, constraint);
+        analyzeAnnotations(javaMethod, constraint);
         analyzeDocumentation(javaMethod, constraint);
 
         // Get the direction:
@@ -425,6 +440,7 @@ public class ModelAnalyzer {
         // Create the locator:
         Locator locator = new Locator();
         analyzeName(javaMethod, locator);
+        analyzeAnnotations(javaMethod, locator);
         analyzeDocumentation(javaMethod, locator);
 
         // Analyze the parameters:
@@ -441,6 +457,7 @@ public class ModelAnalyzer {
         // Create the parameter:
         Parameter parameter = new Parameter();
         analyzeName(javaParameter, parameter);
+        analyzeAnnotations(javaParameter, parameter);
         analyzeDocumentation(javaParameter, parameter);
 
         // Get the type:
@@ -469,6 +486,57 @@ public class ModelAnalyzer {
             model.addModule(module);
         }
         moduleSetter.accept(module);
+    }
+
+    private void analyzeAnnotations(JavaAnnotatedElement javaElement, Concept concept) {
+        // Model annotations like @Type and @Service shouldn't be considered as annotations applied to concepts so
+        // we need to check the package name and exclude them:
+        javaElement.getAnnotations().stream()
+             .filter(x -> !Objects.equals(x.getType().getPackageName(), Root.class.getPackage().getName()))
+             .forEach(x -> this.analyzeAnnotation(x, concept));
+    }
+
+    @SuppressWarnings("unchecked")
+    private void analyzeAnnotation(JavaAnnotation javaAnnotation, Concept concept) {
+        // Create the annotation:
+        Annotation annotation = new Annotation();
+        analyzeName(javaAnnotation, annotation);
+
+        // Get the parameters and their values:
+        Map<String, Object> parameters = javaAnnotation.getNamedParameterMap();
+        for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            AnnotationParameter parameter = new AnnotationParameter();
+            parameter.setName(NameParser.parseUsingCase(key));
+
+            // Get the values of the parameter:
+            List<String> values = new ArrayList<>();
+            if (value instanceof List) {
+                values.addAll((List<String>) value);
+            }
+            else {
+                values.add(value.toString());
+            }
+
+            // QDox returns the values of parameters surrounded by double quotes. This is probably a bug, but we need
+            // to live with it, so we need to remove them.
+            for (int i = 0; i < values.size(); i++) {
+                String current = values.get(i);
+                if (current.startsWith("\"") && current.endsWith("\"")) {
+                    current = current.substring(1, current.length() - 1);
+                    values.set(i, current);
+                }
+            }
+
+            // Set the values of the parameter:
+            parameter.addValues(values);
+
+            annotation.addParameter(parameter);
+        }
+
+        // Add the annotation to the concept:
+        concept.addAnnotation(annotation);
     }
 
     private void analyzeName(JavaClass javaClass, Service service) {
@@ -514,6 +582,12 @@ public class ModelAnalyzer {
         String javaName = javaParameter.getName();
         Name name = parseJavaName(javaName);
         concept.setName(name);
+    }
+
+    private void analyzeName(JavaAnnotation javaAnnotation, Annotation annotation) {
+        String javaName = javaAnnotation.getType().getName();
+        Name name = parseJavaName(javaName);
+        annotation.setName(name);
     }
 
     private void analyzeDocumentation(JavaAnnotatedElement javaElement, Concept concept) {
