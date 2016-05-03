@@ -32,4 +32,11 @@ public enum HostType {
      * The host contains a small scaled version of RHEL, CentOS or Fedora, used solely to host virtual machines.
      */
     RHEV_H,
+
+    /**
+     * The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.
+     * The main difference between NGN and legacy RHEV-H is that NGN has a writeable file system and will handle its installation
+     * instead of pushing RPMs to it by the engine in legacy RHEV-H.
+     */
+    OVIRT_NODE,
 }
