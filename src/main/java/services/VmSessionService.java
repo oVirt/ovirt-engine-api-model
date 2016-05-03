@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Session;
 
 @Service
+@Area("Virtualization")
 public interface VmSessionService {
     interface Get {
         @Out Session session();

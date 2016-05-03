@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.gluster;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GlusterBrick;
 
 @Service
+@Area("Gluster")
 public interface GlusterBricksService {
     interface Activate {
         @In GlusterBrick[] bricks();

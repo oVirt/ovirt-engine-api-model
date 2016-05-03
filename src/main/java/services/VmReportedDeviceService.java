@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ReportedDevice;
 
 @Service
+@Area("Virtualization")
 public interface VmReportedDeviceService {
     interface Get {
         @Out ReportedDevice reportedDevice();

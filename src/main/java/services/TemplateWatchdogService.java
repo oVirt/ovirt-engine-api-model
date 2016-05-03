@@ -16,13 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-import types.Bookmark;
 import types.Watchdog;
 
 @Service
+@Area("Virtualization")
 public interface TemplateWatchdogService {
     interface Get {
         @Out Watchdog watchdog();

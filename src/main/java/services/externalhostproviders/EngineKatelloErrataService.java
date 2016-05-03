@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.externalhostproviders;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Service;
 
 /**
@@ -23,5 +24,6 @@ import org.ovirt.api.metamodel.annotations.Service;
  * resource that manages the Katello errata assigned to the engine.
  */
 @Service
+@Area("Infrastructure")
 public interface EngineKatelloErrataService extends KatelloErrataService {
 }

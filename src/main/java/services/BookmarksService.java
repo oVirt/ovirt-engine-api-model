@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Bookmark;
 
 @Service
+@Area("Infrastructure")
 public interface BookmarksService {
     interface Add {
         @In @Out Bookmark bookmark();

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.gluster;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GlusterVolume;
 
 @Service
+@Area("Gluster")
 public interface GlusterVolumesService {
     /**
      * Creates a new Gluster volume and adds it to the database. The volume is created based on properties of the

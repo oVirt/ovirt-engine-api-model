@@ -16,11 +16,13 @@ limitations under the License.
 
 package services.externalhostproviders;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.KatelloErratum;
 
 @Service
+@Area("Infrastructure")
 public interface KatelloErratumService {
     interface Get {
         @Out KatelloErratum erratum();

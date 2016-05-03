@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.gluster;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -23,6 +24,7 @@ import services.MeasurableService;
 import types.GlusterBrick;
 
 @Service
+@Area("Gluster")
 public interface GlusterBrickService extends MeasurableService {
     interface Get {
         @Out GlusterBrick brick();

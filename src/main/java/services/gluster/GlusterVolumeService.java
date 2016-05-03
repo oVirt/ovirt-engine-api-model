@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.gluster;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -25,6 +26,7 @@ import types.GlusterVolumeProfileDetails;
 import types.Option;
 
 @Service
+@Area("Gluster")
 public interface GlusterVolumeService extends MeasurableService {
     interface Get {
         @Out GlusterVolume volume();

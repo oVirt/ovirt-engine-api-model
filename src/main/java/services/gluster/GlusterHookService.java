@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.gluster;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -23,6 +24,7 @@ import types.GlusterHook;
 import types.Host;
 
 @Service
+@Area("Gluster")
 public interface GlusterHookService {
     /**
      * Resolves status conflict of hook among servers in cluster by disabling Gluster hook in all servers of the

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Image;
 
 @Service
+@Area("Storage")
 public interface ImagesService {
     interface List {
         @Out Image[] images();

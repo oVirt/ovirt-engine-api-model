@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.openstack;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -23,6 +24,7 @@ import services.ExternalProviderService;
 import types.OpenStackNetworkProvider;
 
 @Service
+@Area("Network")
 public interface OpenstackNetworkProviderService extends ExternalProviderService {
     interface Get {
         @Out OpenStackNetworkProvider provider();

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Host;
 
 @Service
+@Area("Infrastructure")
 public interface HostsService {
     /**
      * Creates a new host and adds it to the database. The host is created based on the properties of the `host`

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.aaa;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.User;
 
 @Service
+@Area("Infrastructure")
 public interface DomainUsersService {
     interface List {
         @Out User[] users();

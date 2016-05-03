@@ -16,9 +16,11 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Service;
 
 @Service
+@Area("Infrastructure")
 public interface MeasurableService {
     @Service StatisticsService statistics();
 }

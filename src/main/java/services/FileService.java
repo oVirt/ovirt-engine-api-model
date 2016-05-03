@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.File;
 
 @Service
+@Area("Virtualization")
 public interface FileService {
     interface Get {
         @Out File file();

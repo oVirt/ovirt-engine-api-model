@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Permit;
 
 @Service
+@Area("Infrastructure")
 public interface PermitsService {
     /**
      * Adds a permit to the set aggregated by parent role. The permit must be one retrieved from the capabilities

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.externalhostproviders;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ExternalHostGroup;
 
 @Service
+@Area("Infrastructure")
 public interface ExternalHostGroupsService {
     interface List {
         @Out ExternalHostGroup[] groups();

@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.openstack;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OpenstackVolumeAuthenticationKey;
 
 @Service
+@Area("Storage")
 public interface OpenstackVolumeAuthenticationKeyService {
     interface Get {
         @Out OpenstackVolumeAuthenticationKey key();

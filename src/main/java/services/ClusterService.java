@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -24,6 +25,7 @@ import services.gluster.GlusterVolumesService;
 import types.Cluster;
 
 @Service
+@Area("Virtualization")
 public interface ClusterService {
     interface Get {
         @Out Cluster cluster();

@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.NumaNode;
 
 @Service
+@Area("SLA")
 public interface HostNumaNodeService extends MeasurableService {
     interface Get {
         @Out NumaNode node();

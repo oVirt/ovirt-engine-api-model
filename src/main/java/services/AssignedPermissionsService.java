@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -25,6 +26,7 @@ import types.Permission;
  * Represents a permission sub-collection, scoped by User or some entity type.
  */
 @Service
+@Area("Infrastructure")
 public interface AssignedPermissionsService {
     interface Add {
         @In @Out Permission permission();

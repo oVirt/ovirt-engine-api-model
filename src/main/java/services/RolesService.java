@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -25,6 +26,7 @@ import types.Role;
  * Provides read-only access to the global set of roles
  */
 @Service
+@Area("Infrastructure")
 public interface RolesService {
     interface Add {
         @In @Out Role role();

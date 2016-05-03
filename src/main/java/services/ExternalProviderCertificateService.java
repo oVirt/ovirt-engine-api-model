@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Certificate;
 
 @Service
+@Area("Infrastructure")
 public interface ExternalProviderCertificateService {
     interface Get {
         @Out Certificate certificate();

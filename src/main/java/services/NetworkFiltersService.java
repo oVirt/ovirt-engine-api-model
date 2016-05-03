@@ -16,12 +16,11 @@ limitations under the License.
 
 package services;
 
-import org.ovirt.api.metamodel.annotations.In;
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import types.NetworkFilter;
-import types.Version;
 
 /**
  * Represents a readonly network filters sub-collection.
@@ -87,6 +86,7 @@ import types.Version;
  * ----
  */
 @Service
+@Area("Network")
 public interface NetworkFiltersService {
 
     /**

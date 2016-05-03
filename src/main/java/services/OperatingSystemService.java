@@ -16,11 +16,13 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OperatingSystemInfo;
 
 @Service
+@Area("Virtualization")
 public interface OperatingSystemService {
     interface Get {
         @Out OperatingSystemInfo operatingSystem();

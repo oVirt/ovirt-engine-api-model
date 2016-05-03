@@ -16,12 +16,14 @@ limitations under the License.
 
 package services.openstack;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OpenStackVolumeType;
 
 @Service
+@Area("Storage")
 public interface OpenstackVolumeTypesService {
     interface List {
         @Out OpenStackVolumeType[] types();

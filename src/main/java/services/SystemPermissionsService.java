@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Service;
 
 /**
@@ -23,5 +24,6 @@ import org.ovirt.api.metamodel.annotations.Service;
  * resource that manages the permissions assigned to the system object.
  */
 @Service
+@Area("Infrastructure")
 public interface SystemPermissionsService extends AssignedPermissionsService {
 }

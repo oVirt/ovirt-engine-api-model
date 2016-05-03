@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Job;
 
 @Service
+@Area("Infrastructure")
 public interface JobsService {
     interface Add {
         @In @Out Job job();

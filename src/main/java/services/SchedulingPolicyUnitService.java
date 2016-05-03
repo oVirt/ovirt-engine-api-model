@@ -16,12 +16,14 @@ limitations under the License.
 
 package services;
 
+import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.SchedulingPolicyUnit;
 
 @Service
+@Area("SLA")
 public interface SchedulingPolicyUnitService {
     interface Get {
         @Out SchedulingPolicyUnit unit();
