@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.16 / May 4 2016
+
+New features:
+
+* Add new `OVIRT_NODE` value for the Next Generation Node to the
+  `HostType` enum type.
+
 == 4.0.15 / Apr 28 2016
 
 New features:
