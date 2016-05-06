@@ -74,6 +74,13 @@ public interface VmDiskService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Detach the disk from the virtual machine.
+     *
+     * NOTE: In version 3 of the API this used to also remove the disk completely from the system, but starting with
+     * version 4 it doesn't. If you need to remove it completely use the <<services/disk/methods/remove,remove
+     * method of the top level disk service>>.
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
