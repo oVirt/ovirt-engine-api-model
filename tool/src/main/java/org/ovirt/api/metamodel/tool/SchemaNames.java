@@ -49,7 +49,6 @@ public class SchemaNames {
 
     static {
         TYPE_NAME_EXCEPTIONS.put("Device", "BaseDevice");
-        TYPE_NAME_EXCEPTIONS.put("SeLinux", "SELinux");
     }
 
     // Exceptions to the rules to calculate tag names:
