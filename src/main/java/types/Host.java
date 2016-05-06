@@ -65,7 +65,7 @@ public interface Host extends Identified {
 
     HostedEngine hostedEngine();
     KdumpStatus kdumpStatus();
-    SeLinux selinux();
+    SeLinux seLinux();
     AutoNumaStatus autoNumaStatus();
     Boolean numaSupported();
     KatelloErratum[] katelloErrata();
