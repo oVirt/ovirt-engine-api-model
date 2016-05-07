@@ -76,14 +76,14 @@ ${mvn} package -DskipTests
 ${mvn} validate -Pdescribe
 for format in json xml
 do
-  mv "target/model.${format}" "${artifacts}"
+  mv target/model.${format} "${artifacts}"
 done
 
 # Generate the documentation:
 ${mvn} validate -Pdocument
 for format in adoc html pdf
 do
-  mv "target/generated-${format}/model.${format}" "${artifacts}"
+  mv target/generated-${format}/* "${artifacts}"
 done
 
 # Deploy the artifacts to the artifacts directory:

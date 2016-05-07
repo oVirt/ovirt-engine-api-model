@@ -53,5 +53,5 @@ ${mvn} findbugs:findbugs
 ${mvn} validate -Pdocument
 for format in adoc html pdf
 do
-  mv "target/generated-${format}/model.${format}" "${artifacts}"
+  mv target/generated-${format}/* "${artifacts}"
 done

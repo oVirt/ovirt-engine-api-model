@@ -275,6 +275,7 @@
                    <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
                    <backend>html5</backend>
                    <attributes>
+                     <linkcss/>
                      <toc>right</toc>
                      <sectnums>true</sectnums>
                      <sectlinks>true</sectlinks>
