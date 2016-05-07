@@ -51,4 +51,7 @@ ${mvn} findbugs:findbugs
 
 # Generate the documentation:
 ${mvn} validate -Pdocument
-mv target/generated-html/model.html "${artifacts}"
+for format in adoc html pdf
+do
+  mv "target/generated-${format}/model.${format}" "${artifacts}"
+done

@@ -74,11 +74,17 @@ ${mvn} package -DskipTests
 
 # Generate the JSON and XML descriptions of the model:
 ${mvn} validate -Pdescribe
-mv target/model.{json,xml} "${artifacts}"
+for format in json xml
+do
+  mv "target/model.${format}" "${artifacts}"
+done
 
 # Generate the documentation:
 ${mvn} validate -Pdocument
-mv target/generated-html/model.html "${artifacts}"
+for format in adoc html pdf
+do
+  mv "target/generated-${format}/model.${format}" "${artifacts}"
+done
 
 # Deploy the artifacts to the artifacts directory:
 ${mvn} deploy -DaltDeploymentRepository="local::default::file://${PWD}/${artifacts}"
