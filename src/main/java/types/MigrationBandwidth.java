@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,20 +17,20 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-import org.ovirt.api.metamodel.annotations.Link;
 
+/**
+ * Defines the bandwidth used by migration.
+ */
 @Type
-public interface MigrationOptions {
-    InheritableBoolean autoConverge();
-    InheritableBoolean compressed();
+public interface MigrationBandwidth {
 
     /**
-     * The bandwidth which is allowed to be used by the migrations.
+     * The way how the bandwidth is assigned.
      */
-    MigrationBandwidth bandwidth();
+    MigrationBandwidthAssignmentMethod assignmentMethod();
 
     /**
-     * Reference to the migration policy as defined using `engine-config`.
+     * Custom bandwidth in Mbit/s. Will be applied only if the `assignmentMethod` attribute is `custom`.
      */
-    @Link MigrationPolicy policy();
+    Integer customValue();
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,20 +17,27 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-import org.ovirt.api.metamodel.annotations.Link;
 
+/**
+ * Defines the method how the migration bandwidth is assigned.
+ */
 @Type
-public interface MigrationOptions {
-    InheritableBoolean autoConverge();
-    InheritableBoolean compressed();
+public enum MigrationBandwidthAssignmentMethod {
 
     /**
-     * The bandwidth which is allowed to be used by the migrations.
+     * Takes the bandwidth from QoS if QoS defined.
+     * If not, taken from detected link speed being used.
+     * If nothing detected, falls back to hypervisor_default value.
      */
-    MigrationBandwidth bandwidth();
+    AUTO,
 
     /**
-     * Reference to the migration policy as defined using `engine-config`.
+     * Custom defined bandwidth in Mbit/s.
      */
-    @Link MigrationPolicy policy();
+    CUSTOM,
+
+    /**
+     * Takes the value as configured on the hypervisor.
+     */
+    HYPERVISOR_DEFAULT
 }
