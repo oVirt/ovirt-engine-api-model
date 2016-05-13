@@ -114,7 +114,7 @@ public class BuiltinTypes {
         // Add the "status" attribute:
         Attribute statusAttribute = new Attribute();
         statusAttribute.setName(NameParser.parseUsingCase("Status"));
-        statusAttribute.setType(model.getType(NameParser.parseUsingCase("Status")));
+        statusAttribute.setType(model.getStringType());
         statusAttribute.setDeclaringType(actionType);
         actionType.addAttribute(statusAttribute);
 
