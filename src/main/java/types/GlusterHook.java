@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
+import services.gluster.GlusterHookStatus;
 
 @Type
 public interface GlusterHook extends Identified {
@@ -28,7 +29,7 @@ public interface GlusterHook extends Identified {
     String content();
     Integer conflictStatus();
     String conflicts();
-    Status status();
+    GlusterHookStatus status();
 
     @Link Cluster cluster();
     @Link GlusterServerHook[] serverHooks();

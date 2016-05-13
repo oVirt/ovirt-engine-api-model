@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,15 +16,13 @@ limitations under the License.
 
 package types;
 
-import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
-import services.gluster.GlusterHookStatus;
 
 @Type
-public interface GlusterServerHook extends Identified {
-  HookContentType contentType();
-  GlusterHookStatus status();
-  String checksum();
-
-  @Link Host host();
+public enum StepStatus {
+    ABORTED,
+    FAILED,
+    FINISHED,
+    STARTED,
+    UNKNOWN;
 }

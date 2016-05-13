@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import java.util.Date;
 
 @Type
 public interface Vm extends VmBase {
+    VmStatus status();
+    String statusDetail();
     String stopReason();
     Date startTime();
     Date stopTime();

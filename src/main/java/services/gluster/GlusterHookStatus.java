@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,17 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package types;
+package services.gluster;
 
-import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
-import services.gluster.GlusterHookStatus;
 
 @Type
-public interface GlusterServerHook extends Identified {
-  HookContentType contentType();
-  GlusterHookStatus status();
-  String checksum();
+public enum GlusterHookStatus {
+    /**
+     * Hook is enabled in the cluster.
+     */
+    ENABLED,
 
-  @Link Host host();
+    /**
+     * Hook is disabled in the cluster.
+     */
+    DISABLED,
+
+    /**
+     * Unknown/missing hook status.
+     */
+    MISSING,
 }

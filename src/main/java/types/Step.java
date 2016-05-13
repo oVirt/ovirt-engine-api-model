@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,16 +16,16 @@ limitations under the License.
 
 package types;
 
+import java.util.Date;
+
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
-
-import java.util.Date;
 
 @Type
 public interface Step extends Identified {
     StepEnum type();
     Integer number();
-    Status status();
+    StepStatus status();
     Date startTime();
     Date endTime();
     Boolean external();

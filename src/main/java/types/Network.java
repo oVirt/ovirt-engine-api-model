@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ public interface Network extends Identified {
     Ip ip();
     Vlan vlan();
     Boolean stp();
-    Status status();
+    NetworkStatus status();
     Boolean display();
     Integer mtu();
     String[] usages();

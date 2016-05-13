@@ -20,6 +20,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface Template extends VmBase {
+    TemplateStatus status();
     Vm vm();
     TemplateVersion version();
 }

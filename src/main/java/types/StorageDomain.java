@@ -22,8 +22,8 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface StorageDomain extends Identified {
     StorageDomainType type();
-    Status status();
-    Status externalStatus();
+    StorageDomainStatus status();
+    ExternalStatus externalStatus();
     Boolean master();
     HostStorage storage();
     Integer available();
