@@ -3,6 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.17 / May 13 2016
+
+New features:
+
+* Renamed `SELinuxMode` to `SeLinuxMode`.
+
+* Removed the `Status` type and replaced with the corresponding enum
+  types.
+
+* Add new `MigrationBandwidth` and `MigrationBandwidthAssignmentMethod`
+  types, as well as a new `bandwidth` attribute to the existing
+  `MigrationOptions` type.
+
 == 4.0.16 / May 4 2016
 
 New features:
