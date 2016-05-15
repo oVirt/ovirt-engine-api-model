@@ -28,4 +28,9 @@ public interface VnicProfile extends Identified {
 
     @Link Network network();
     @Link Qos qos();
+
+    /**
+     * Network filter will enhance the admin ability to manage the network packets traffic from/to the participated VMs.
+     */
+    @Link NetworkFilter networkFilter();
 }

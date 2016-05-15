@@ -62,6 +62,12 @@ public interface SystemService {
     @Service InstanceTypesService instanceTypes();
     @Service JobsService jobs();
     @Service MacPoolsService macPools();
+
+    /**
+     * Network filters will enhance the admin ability to manage the network packets traffic from/to the participated
+     * VMs.
+     */
+    @Service NetworkFiltersService networkFilters();
     @Service NetworksService networks();
     @Service OpenstackImageProvidersService openstackImageProviders();
     @Service OpenstackNetworkProvidersService openstackNetworkProviders();
