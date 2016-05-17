@@ -276,4 +276,9 @@ public interface VmService extends MeasurableService {
     @Service VmReportedDevicesService reportedDevices();
     @Service VmSessionsService sessions();
     @Service VmWatchdogsService watchdogs();
+
+    /**
+     * List of disks attached to this virtual machine.
+     */
+    @Service DiskAttachmentsService diskAttachments();
 }

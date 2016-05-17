@@ -29,7 +29,6 @@ public interface Disk extends Device {
     DiskInterface _interface();
     DiskFormat format();
     Boolean sparse();
-    Boolean bootable();
     Boolean shareable();
     Boolean wipeAfterDelete();
     Boolean propagateErrors();
