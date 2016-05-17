@@ -37,7 +37,7 @@ public interface HostNic extends Identified {
     Boolean bridged();
     Boolean customConfiguration();
     Boolean overrideConfiguration();
-    Label[] labels();
+    NetworkLabel[] networkLabels();
     Property[] properties();
     /**
      * For a SR-IOV physical function NIC describes its virtual functions configuration.

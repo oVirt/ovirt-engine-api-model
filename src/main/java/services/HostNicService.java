@@ -48,14 +48,14 @@ public interface HostNicService extends MeasurableService {
         @In Boolean async();
     }
 
-    @Service LabelsService labels();
+    @Service NetworkLabelsService networkLabels();
     @Service NetworkAttachmentsService networkAttachments();
 
     /**
      * Retrieves sub-collection resource of network labels that are allowed on an the virtual functions
      * in case that the current resource represents an SR-IOV physical function NIC.
      */
-    @Service LabelsService virtualFunctionAllowedLabels();
+    @Service NetworkLabelsService virtualFunctionAllowedLabels();
 
     /**
      * Retrieves sub-collection resource of networks that are allowed on an the virtual functions

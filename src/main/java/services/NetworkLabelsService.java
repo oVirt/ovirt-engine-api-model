@@ -19,16 +19,16 @@ package services;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-import types.Label;
+import types.NetworkLabel;
 
 @Service
-public interface LabelsService {
+public interface NetworkLabelsService {
     interface Add {
-        @In @Out Label label();
+        @In @Out NetworkLabel label();
     }
 
     interface List {
-        @Out Label[] labels();
+        @Out NetworkLabel[] labels();
 
         /**
          * Sets the maximum number of labels to return. If not specified all the labels are returned.
@@ -36,5 +36,5 @@ public interface LabelsService {
         @In Integer max();
     }
 
-    @Service LabelService label(String id);
+    @Service NetworkLabelService label(String id);
 }

@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
-public interface Label extends Identified {
+public interface NetworkLabel extends Identified {
     @Link Network network();
     @Link HostNic hostNic();
 }

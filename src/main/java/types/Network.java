@@ -30,7 +30,7 @@ public interface Network extends Identified {
     String[] usages();
     Boolean required();
     Boolean profileRequired();
-    Label[] labels();
+    NetworkLabel[] networkLabels();
 
     @Link DataCenter dataCenter();
     @Link Cluster cluster();

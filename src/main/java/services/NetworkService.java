@@ -45,5 +45,5 @@ public interface NetworkService {
 
     @Service AssignedPermissionsService permissions();
     @Service AssignedVnicProfilesService vnicProfiles();
-    @Service LabelsService labels();
+    @Service NetworkLabelsService networkLabels();
 }

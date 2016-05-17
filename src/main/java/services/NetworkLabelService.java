@@ -19,12 +19,12 @@ package services;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-import types.Label;
+import types.NetworkLabel;
 
 @Service
-public interface LabelService {
+public interface NetworkLabelService {
     interface Get {
-        @Out Label label();
+        @Out NetworkLabel label();
     }
 
     interface Remove {

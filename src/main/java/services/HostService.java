@@ -25,7 +25,7 @@ import types.Cluster;
 import types.Host;
 import types.HostNic;
 import types.IscsiDetails;
-import types.Label;
+import types.NetworkLabel;
 import types.NetworkAttachment;
 import types.PowerManagement;
 import types.Ssh;
@@ -330,8 +330,8 @@ public interface HostService extends MeasurableService {
         @In NetworkAttachment[] synchronizedNetworkAttachments();
         @In HostNic[] modifiedBonds();
         @In HostNic[] removedBonds();
-        @In Label[] modifiedLabels();
-        @In Label[] removedLabels();
+        @In NetworkLabel[] modifiedLabels();
+        @In NetworkLabel[] removedLabels();
         @In Boolean checkConnectivity();
         @In Integer connectivityTimeout();
 
