@@ -26,8 +26,10 @@ public interface Disk extends Device {
     Integer provisionedSize();
     Integer actualSize();
     DiskStatus status();
+    DiskInterface _interface();
     DiskFormat format();
     Boolean sparse();
+    Boolean bootable();
     Boolean shareable();
     Boolean wipeAfterDelete();
     Boolean propagateErrors();
