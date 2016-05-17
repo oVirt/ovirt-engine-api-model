@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.18 / May 17 2016
+
+New features:
+
+* Add new `DiskAttachment` type and services, intended to manage the
+  set of disks attached to a virtual machine. Eventually this will
+  replace the existing `/vms/{vm:id}/disks` sub-collection.
+
+* Add locator for the networks filter service to the VNIC profile
+  service.
+
 == 4.0.17 / May 13 2016
 
 New features:
