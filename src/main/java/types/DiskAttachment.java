@@ -30,6 +30,11 @@ public interface DiskAttachment extends Identified {
     Boolean bootable();
 
     /**
+     * This indicates the disk interface of the disk.
+     */
+    DiskInterface _interface();
+
+    /**
      * Reference to the disk.
      */
     @Link Disk disk();

@@ -24,7 +24,8 @@ import types.DiskAttachment;
 
 /**
  * This service manages the set of disks attached to a virtual machine. Each attached disk is represented by a
- * <<DiskAttachment,types/disk-attachment>>, containing the bootable flag and the reference to the disk.
+ * <<DiskAttachment,types/disk-attachment>>, containing the bootable flag, the disk interface and the reference to
+ * the disk.
  */
 @Service
 public interface DiskAttachmentsService {
@@ -36,6 +37,7 @@ public interface DiskAttachmentsService {
      * ----
      * <disk_attachment>
      *   <bootable>true</bootable>
+     *   <interface>ide</interface>
      *   <disk id="123"/>
      * </disk_attachment>
      * ----
@@ -46,6 +48,7 @@ public interface DiskAttachmentsService {
      * ----
      * <disk_attachment>
      *   <bootable>true</bootable>
+     *   <interface>ide</interface>
      *   <disk>
      *     <name>mydisk</name>
      *     <provisioned_size>1024</provisioned_size>
