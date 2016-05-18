@@ -38,4 +38,9 @@ public interface DiskAttachment extends Identified {
      * Reference to the disk.
      */
     @Link Disk disk();
+
+    /**
+     * Reference to the virtual machine.
+     */
+    @Link Vm vm();
 }

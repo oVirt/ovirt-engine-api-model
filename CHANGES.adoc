@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.19 / May 18 2016
+
+Bug fixes:
+
+* Added `vm` link to the `DiskAttachment` type.
+
+Other changes:
+
+* Renamed the `Label` type and services to `NetworkLabel`.
+
 == 4.0.18 / May 17 2016
 
 New features:
