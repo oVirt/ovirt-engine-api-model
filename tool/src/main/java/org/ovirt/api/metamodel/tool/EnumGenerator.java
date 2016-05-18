@@ -25,6 +25,7 @@ import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Type;
 
 import static java.lang.String.join;
+import static java.util.stream.Collectors.joining;
 
 public class EnumGenerator extends JavaGenerator {
 
@@ -141,12 +142,16 @@ public class EnumGenerator extends JavaGenerator {
         StringBuilder builder = new StringBuilder();
         for (EnumValue enumValue : enumType.getValues()) {
             builder.append("'")
-            .append(enumValue.getName().toString().toLowerCase())
+            .append(getValueText(enumValue))
             .append("', ");
         }
         builder.deleteCharAt(builder.length()-1);
         builder.deleteCharAt(builder.length()-1);
         return builder.toString();
+    }
+
+    private String getValueText(EnumValue value) {
+        return value.getName().words().collect(joining("_"));
     }
 
     private void writeClassClose() {
