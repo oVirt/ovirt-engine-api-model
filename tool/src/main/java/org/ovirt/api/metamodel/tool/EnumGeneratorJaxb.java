@@ -155,7 +155,7 @@ public class EnumGeneratorJaxb extends JavaGenerator {
     }
 
     private String getValueText(EnumValue value) {
-        return value.getName().words().collect(joining("_"));
+        return value.getName().words().map(String::toLowerCase).collect(joining("_"));
     }
 
     private void writeClassClose() {
