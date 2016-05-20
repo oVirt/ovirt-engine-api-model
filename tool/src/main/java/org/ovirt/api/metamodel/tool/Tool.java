@@ -49,7 +49,7 @@ public class Tool {
     @Inject private StructsGenerator structsGenerator;
     @Inject private XmlSupportGenerator xmlSupportGenerator;
     @Inject private JsonSupportGenerator jsonSupportGenerator;
-    @Inject private DocGenerator docGenerator;
+    @Inject private AsciiDocGenerator docGenerator;
 
     // Reference to the object used to add built-in types to the model:
     @Inject private BuiltinTypes builtinTypes;

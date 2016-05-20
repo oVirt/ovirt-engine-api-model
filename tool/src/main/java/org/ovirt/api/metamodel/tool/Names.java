@@ -16,6 +16,8 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -43,6 +45,27 @@ public class Names {
         last = words.getSingular(last);
         all.set(all.size() - 1, last);
         return new Name(all);
+    }
+
+    /**
+     * Capitalizes the words of the name and joins them together.
+     */
+    public String getCapitalized(Name name) {
+        return name.words().map(words::capitalize).collect(joining());
+    }
+
+    /**
+     * Converts the words of the given name to upper case and joins them using the given separator.
+     */
+    public String getUpperJoined(Name name, String separator) {
+        return name.words().map(String::toUpperCase).collect(joining(separator));
+    }
+
+    /**
+     * Converts the words of the given name to lower case and joins them using the given separator.
+     */
+    public String getLowerJoined(Name name, String separator) {
+        return name.words().map(String::toLowerCase).collect(joining(separator));
     }
 }
 

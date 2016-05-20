@@ -16,8 +16,6 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
-import static java.util.stream.Collectors.joining;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,9 +45,9 @@ import org.ovirt.api.metamodel.concepts.Type;
  * This class takes a model and generates the corresponding AsciiDoc documentation.
  */
 @ApplicationScoped
-public class DocGenerator {
+public class AsciiDocGenerator {
     // Reference to the object used to calculate names:
-    @Inject private Words words;
+    @Inject private Names names;
 
     // The directory were the output will be generated:
     private File outDir;
@@ -65,7 +63,7 @@ public class DocGenerator {
     }
 
     public void generate(Model model) {
-        // Generate the AscciiDoc file:
+        // Generate the AsciiDoc file:
         docBuffer = new AsciiDocBuffer();
         docBuffer.setName("model");
         documentModel(model);
@@ -122,7 +120,7 @@ public class DocGenerator {
             docBuffer.addLine("|Name |Summary");
             docBuffer.addLine();
             methods.stream().sorted().forEach(method -> {
-                docBuffer.addLine("|%s", getName(method));
+                docBuffer.addLine("|`%s`", getName(method));
                 docBuffer.addLine("|%s", getSummary(method));
                 docBuffer.addLine();
             });
@@ -150,7 +148,7 @@ public class DocGenerator {
             docBuffer.addLine("|Name |Type |Direction |Summary");
             docBuffer.addLine();
             parameters.stream().sorted().forEach(parameter -> {
-                docBuffer.addLine("|%s", getName(parameter));
+                docBuffer.addLine("|`%s`", getName(parameter));
                 docBuffer.addLine("|%s", getLink(parameter.getType()));
                 docBuffer.addLine("|%s", getDirection(parameter));
                 docBuffer.addLine("|%s", getSummary(parameter));
@@ -167,7 +165,7 @@ public class DocGenerator {
     private void documentParameter(Parameter parameter) {
         if (!onlyHasSummary(parameter)) {
             docBuffer.addId(getId(parameter));
-            docBuffer.addLine("==== %s", getName(parameter));
+            docBuffer.addLine("===== %s", getName(parameter));
             docBuffer.addLine();
             addDoc(parameter);
         }
@@ -209,7 +207,7 @@ public class DocGenerator {
             docBuffer.addLine("|Name |Summary");
             docBuffer.addLine();
             values.stream().sorted().forEach(value -> {
-                docBuffer.addLine("|%s", getName(value));
+                docBuffer.addLine("|`%s`", getName(value));
                 docBuffer.addLine("|%s", getSummary(value));
                 docBuffer.addLine();
             });
@@ -246,7 +244,7 @@ public class DocGenerator {
             docBuffer.addLine("|Name |Type |Summary");
             docBuffer.addLine();
             attributes.stream().sorted().forEach(attribute -> {
-                docBuffer.addLine("|%s", getName(attribute));
+                docBuffer.addLine("|`%s`", getName(attribute));
                 docBuffer.addLine("|%s", getLink(attribute.getType()));
                 docBuffer.addLine("|%s", getSummary(attribute));
                 docBuffer.addLine();
@@ -267,7 +265,7 @@ public class DocGenerator {
             docBuffer.addLine("|Name |Type |Summary");
             docBuffer.addLine();
             links.stream().sorted().forEach(link -> {
-                docBuffer.addLine("|%s", getName(link));
+                docBuffer.addLine("|`%s`", getName(link));
                 docBuffer.addLine("|%s", getLink(link.getType()));
                 docBuffer.addLine("|%s", getSummary(link));
                 docBuffer.addLine();
@@ -289,8 +287,28 @@ public class DocGenerator {
         }
     }
 
-    private String getName(Concept concept) {
-        return concept.getName().words().map(words::capitalize).collect(joining());
+    private String getName(Type type) {
+        return names.getCapitalized(type.getName());
+    }
+
+    private String getName(StructMember member) {
+        return names.getLowerJoined(member.getName(), "_");
+    }
+
+    private String getName(EnumValue value) {
+        return names.getLowerJoined(value.getName(), "_");
+    }
+
+    private String getName(Service service) {
+        return names.getCapitalized(service.getName());
+    }
+
+    private String getName(Method method) {
+        return names.getLowerJoined(method.getName(), "");
+    }
+
+    private String getName(Parameter parameter) {
+        return names.getLowerJoined(parameter.getName(), "_");
     }
 
     private String getSummary(Concept concept) {
@@ -319,28 +337,28 @@ public class DocGenerator {
     }
 
     private String getId(Type type) {
-        return "types/" + type.getName();
+        return "types/" + names.getLowerJoined(type.getName(), "_");
     }
 
     private String getId(Service service) {
-        return "services/" + service.getName();
+        return "services/" + names.getLowerJoined(service.getName(), "_");
     }
 
     private String getId(StructMember member) {
         String kind = member instanceof Attribute? "attributes": "links";
-        return getId(member.getDeclaringType()) + "/" + kind + "/" + member.getName();
+        return getId(member.getDeclaringType()) + "/" + kind + "/" + names.getLowerJoined(member.getName(), "_");
     }
 
     private String getId(Method method) {
-        return getId(method.getDeclaringService()) + "/methods/" + method.getName();
+        return getId(method.getDeclaringService()) + "/methods/" + names.getLowerJoined(method.getName(), "");
     }
 
     private String getId(Parameter parameter) {
-        return getId(parameter.getDeclaringMethod()) + "/parameters/" + parameter.getName();
+        return getId(parameter.getDeclaringMethod()) + "/parameters/" + names.getLowerJoined(parameter.getName(), "_");
     }
 
     private String getId(EnumValue value) {
-        return getId(value.getDeclaringType()) + "/values/" + value.getName();
+        return getId(value.getDeclaringType()) + "/values/" + names.getLowerJoined(value.getName(), "_");
     }
 
     private String getLink(Type type) {
@@ -384,7 +402,13 @@ public class DocGenerator {
      */
     private boolean onlyHasSummary(Concept concept) {
         String doc = concept.getDoc();
+        if (doc == null || doc.isEmpty()) {
+            return true;
+        }
         String summary = getSummary(concept);
+        if (summary == null || summary.isEmpty()) {
+            return true;
+        }
         return Objects.equals(doc, summary);
     }
 }
