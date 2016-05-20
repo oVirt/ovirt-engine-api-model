@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,23 +45,27 @@ public class ModelServlet extends HttpServlet {
         // Decide what is the requested MIME type:
         MimeType requestType = getRequestType(request);
         if (requestType == null) {
-            requestType = MimeTypes.APPLICATION_XML;
+            requestType = MimeTypes.TEXT_HTML;
         }
 
         // Calculate the name of the resource:
         String resourceName = "model.";
         MimeType resourceType;
-        if (requestType.match(MimeTypes.APPLICATION_XML)) {
-            resourceName += "xml";
-            resourceType = MimeTypes.APPLICATION_XML;
-        }
-        else if (requestType.match(MimeTypes.APPLICATION_JSON)) {
+        if (requestType.match(MimeTypes.APPLICATION_JSON)) {
             resourceName += "json";
             resourceType = MimeTypes.APPLICATION_JSON;
         }
         else if (requestType.match(MimeTypes.APPLICATION_OCTET_STREAM)) {
             resourceName += "jar";
             resourceType = MimeTypes.APPLICATION_OCTET_STREAM;
+        }
+        else if (requestType.match(MimeTypes.APPLICATION_XML)) {
+            resourceName += "xml";
+            resourceType = MimeTypes.APPLICATION_XML;
+        }
+        else if (requestType.match(MimeTypes.TEXT_HTML)) {
+            resourceName += "html";
+            resourceType = MimeTypes.TEXT_HTML;
         }
         else {
             log.warn("Can't calculate resource name for MIME type \"{}\", will return a 404 response.", requestType);
@@ -125,13 +129,15 @@ public class ModelServlet extends HttpServlet {
             if (last != -1) {
                 String extension = path.substring(last + 1).toLowerCase();
                 switch (extension) {
-                case "xml":
-                    return MimeTypes.APPLICATION_XML;
                 case "json":
-                    return MimeTypes.APPLICATION_JSON;
+                     return MimeTypes.APPLICATION_JSON;
                 case "jar":
                 case "zip":
                     return MimeTypes.APPLICATION_OCTET_STREAM;
+                case "xml":
+                    return MimeTypes.APPLICATION_XML;
+                case "html":
+                    return MimeTypes.TEXT_HTML;
                 }
             }
         }

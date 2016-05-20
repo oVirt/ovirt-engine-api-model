@@ -33,6 +33,7 @@ public class MimeTypes {
     public static final MimeType APPLICATION_JSON = parseMimeType("application/json");
     public static final MimeType APPLICATION_OCTET_STREAM = parseMimeType("application/octet-stream");
     public static final MimeType APPLICATION_XML = parseMimeType("application/xml");
+    public static final MimeType TEXT_HTML = parseMimeType("text/html");
 
     /**
      * Converts the given text to a MIME type.
