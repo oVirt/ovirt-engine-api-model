@@ -66,4 +66,21 @@ public class Method extends ServiceMember {
     public void addConstraints(List<Constraint> constraints) {
         this.constraints.addAll(constraints);
     }
+
+    /**
+     * Determines if this is an action method, i.e., any method whose name isn't {@code Add}, {@code Get}, {@code List},
+     * {@code Update} or {@code Remove}.
+     */
+    public boolean isAction() {
+        switch (getName().toString().toLowerCase()) {
+        case "add":
+        case "get":
+        case "list":
+        case "update":
+        case "remove":
+            return false;
+        default:
+            return true;
+        }
+    }
 }

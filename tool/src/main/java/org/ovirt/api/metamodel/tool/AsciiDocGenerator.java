@@ -16,12 +16,15 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.Comparator.comparing;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -32,9 +35,12 @@ import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.Link;
 import org.ovirt.api.metamodel.concepts.ListType;
+import org.ovirt.api.metamodel.concepts.Locator;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
+import org.ovirt.api.metamodel.concepts.Name;
 import org.ovirt.api.metamodel.concepts.Parameter;
+import org.ovirt.api.metamodel.concepts.Point;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructMember;
@@ -85,15 +91,31 @@ public class AsciiDocGenerator {
         model.documents().sorted().forEach(this::addDocument);
         docBuffer.addLine(":leveloffset: 0");
 
+        // Requests:
+        docBuffer.addId("requests");
+        docBuffer.addLine("== Requests");
+        docBuffer.addLine();
+        docBuffer.addLine("This section enumerates all the requests that are available in the API.");
+        docBuffer.addLine();
+        model.points()
+            .sorted(comparing(this::getSortKey))
+            .forEach(this::documentRequest);
+        docBuffer.addLine();
+
         // Services:
         docBuffer.addId("services");
         docBuffer.addLine("== Services");
+        docBuffer.addLine();
+        docBuffer.addLine("This section enumerates all the services that are available in the API.");
+        docBuffer.addLine();
         docBuffer.addLine();
         model.services().sorted().forEach(this::documentService);
 
         // Types:
         docBuffer.addId("types");
         docBuffer.addLine("== Types");
+        docBuffer.addLine();
+        docBuffer.addLine("This section enumerates all the data types that are available in the API.");
         docBuffer.addLine();
         model.types().sorted().forEach(this::documentType);
     }
@@ -102,6 +124,24 @@ public class AsciiDocGenerator {
         docBuffer.addId(document.getName().toString());
         docBuffer.addLine(document.getSource());
         docBuffer.addLine();
+    }
+
+    private void documentRequest(Point point) {
+        Method method = point.getMethod();
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(String.format("* <<%s,%s>> ", getId(method), getHttpMethod(method)));
+        point.path().forEach(locator -> {
+            buffer.append("/");
+            Service service = locator.getService();
+            String link = String.format("<<%s,%s>>", getId(service), getUrlSegment(locator));
+            buffer.append(link);
+        });
+        if (method.isAction()) {
+            buffer.append("/");
+            String link = String.format("<<%s,%s>>", getId(method), getUrlSegment(method));
+            buffer.append(link);
+        }
+        docBuffer.addLine(buffer.toString());
     }
 
     private void documentService(Service service) {
@@ -135,7 +175,7 @@ public class AsciiDocGenerator {
     private void documentMethod(Method method) {
         // General description:
         docBuffer.addId(getId(method));
-        docBuffer.addLine("==== %s", getName(method));
+        docBuffer.addLine("==== %s [small]#%s#", getName(method), getHttpMethod(method));
         docBuffer.addLine();
         addDoc(method);
 
@@ -410,6 +450,48 @@ public class AsciiDocGenerator {
             return true;
         }
         return Objects.equals(doc, summary);
+    }
+
+    private String getSortKey(Point point) {
+        StringBuilder buffer = new StringBuilder();
+        point.path().forEach(locator -> {
+            buffer.append("/");
+            buffer.append(getUrlSegment(locator));
+        });
+        Method method = point.getMethod();
+        if (method.isAction()) {
+            buffer.append("/");
+            buffer.append(getUrlSegment(method));
+        }
+        return buffer.toString();
+    }
+
+    private String getUrlSegment(Locator locator) {
+        Optional<Parameter> parameter = locator.parameters().findFirst();
+        String segment = names.getLowerJoined(locator.getName(), "");
+        if (parameter.isPresent()) {
+            segment = String.format("{%s:%s}", segment, names.getLowerJoined(parameter.get().getName(), ""));
+        }
+        return segment;
+    }
+
+    private String getUrlSegment(Method method) {
+        return names.getLowerJoined(method.getName(), "");
+    }
+
+    private String getHttpMethod(Method method) {
+        Name name = method.getName();
+        switch (name.toString().toLowerCase()) {
+        case "get":
+        case "list":
+            return "GET";
+        case "update":
+            return "PUT";
+        case "remove":
+            return "DELETE";
+        default:
+            return "POST";
+        }
     }
 }
 

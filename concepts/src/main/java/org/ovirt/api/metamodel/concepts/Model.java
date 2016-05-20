@@ -16,9 +16,13 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import static java.util.stream.Collectors.toCollection;
 import static org.ovirt.api.metamodel.concepts.Named.named;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
@@ -35,6 +39,9 @@ public class Model {
 
     // The list of documents included in the model:
     private List<Document> documents = new ArrayList<>();
+
+    // The list of points of the model. It will be calculated lazily.
+    private volatile List<Point> points;
 
     // The root of the tree of services:
     private Service root;
@@ -238,6 +245,77 @@ public class Model {
      */
     public Type getDecimalType() {
         return decimalType;
+    }
+
+    /**
+     * Returns the list of points of this model. A point is a pair containing a list of locators and a method. If the
+     * list of locators is invoked in sequence, starting from the root service, the result is a service that contains
+     * the method. The returned list is a copy of the one used internally, so it is safe to modify it. If you don't
+     * plan to modify it consider using the {@link #points()} method instead.
+     */
+    public List<Point> getPoints() {
+        if (points == null) {
+            synchronized (this) {
+                if (points == null) {
+                    points = calculatePoints();
+                }
+            }
+        }
+        return points;
+    }
+
+    /**
+     * Returns an stream that delivers the points of this model.
+     */
+    public Stream<Point> points() {
+        if (points == null) {
+            synchronized (this) {
+                if (points == null) {
+                    points = calculatePoints();
+                }
+            }
+        }
+        return points.stream();
+    }
+
+    private List<Point> calculatePoints() {
+        // First we need to find all the possible paths:
+        List<List<Locator>> paths = new ArrayList<>();
+
+        // We will start the walk with a simple path for each locator of the root service:
+        Deque<List<Locator>> pending = root.locators()
+            .map(Collections::singletonList)
+            .collect(toCollection(ArrayDeque::new));
+
+        // Extract paths from the pending queue and expand them, till the queue is empty:
+        while (!pending.isEmpty()) {
+            List<Locator> current = pending.removeFirst();
+            paths.add(current);
+            int size = current.size();
+            Service service = current.get(size - 1).getService();
+            service.locators().forEach(locator -> {
+                List<Locator> next = new ArrayList<>(current);
+                next.add(locator);
+                pending.addLast(next);
+            });
+        }
+
+        // Now, for each path, we need to create a point for each method:
+        List<Point> points = new ArrayList<>(paths.size());
+        paths.forEach(path -> {
+            int size = path.size();
+            if (size > 0) {
+                Service service = path.get(size -1).getService();
+                service.methods().forEach(method -> {
+                    Point point = new Point();
+                    point.setPath(path);
+                    point.setMethod(method);
+                    points.add(point);
+                });
+            }
+        });
+
+        return points;
     }
 }
 
