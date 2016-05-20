@@ -98,7 +98,7 @@ public class Name implements Comparable<Name> {
      */
     @Override
     public String toString() {
-        return join("-", words);
+        return join("_", words);
     }
 
     @Override
