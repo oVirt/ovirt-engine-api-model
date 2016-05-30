@@ -33,7 +33,7 @@ public interface VmPoolsService {
         @Out VmPool[] pools();
 
         /**
-         * Sets the maximum number of pools to return. If not specified all the pool are returned.
+         * Sets the maximum number of pools to return. If this value is not specified, all of the pools are returned.
          */
         @In Integer max();
 
