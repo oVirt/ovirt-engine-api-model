@@ -301,7 +301,7 @@ public class StructsGenerator extends JavaGenerator {
         // Generate the checker:
         javaBuffer.addLine("public boolean %1$sPresent() {", field);
         if (type instanceof ListType) {
-            javaBuffer.addLine("return !%1$s.isEmpty();", field);
+            javaBuffer.addLine("return %1$s != null && !%1$s.isEmpty();", field);
         }
         else {
             javaBuffer.addLine("return %1$s != null;", field);
