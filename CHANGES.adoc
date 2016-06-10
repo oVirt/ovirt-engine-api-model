@@ -1,0 +1,16 @@
+= Changes
+
+This document describes the relevant changes between releases of the
+API model.
+
+== 1.0.15 / Jun 10 2016
+
+Bug fixes:
+
+* Avoid null pointer exception when attributes of list type are null.
+
+* Generate correctly XML tags for lists of struct or enum types.
+
+New features:
+
+* Added support for HTML to the model servlet.
