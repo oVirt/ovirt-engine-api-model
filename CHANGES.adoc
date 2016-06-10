@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.21 / Jun 10 2016
+
+New features:
+
+* Add `stateful` attribute to the `VmPool` type.
+
 == 4.0.20 / Jun 1 2016
 
 New features:
