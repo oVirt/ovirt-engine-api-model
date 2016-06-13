@@ -377,28 +377,28 @@ public class AsciiDocGenerator {
     }
 
     private String getId(Type type) {
-        return "types/" + names.getLowerJoined(type.getName(), "_");
+        return "types-" + names.getLowerJoined(type.getName(), "_");
     }
 
     private String getId(Service service) {
-        return "services/" + names.getLowerJoined(service.getName(), "_");
+        return "services-" + names.getLowerJoined(service.getName(), "_");
     }
 
     private String getId(StructMember member) {
         String kind = member instanceof Attribute? "attributes": "links";
-        return getId(member.getDeclaringType()) + "/" + kind + "/" + names.getLowerJoined(member.getName(), "_");
+        return getId(member.getDeclaringType()) + "-" + kind + "-" + names.getLowerJoined(member.getName(), "_");
     }
 
     private String getId(Method method) {
-        return getId(method.getDeclaringService()) + "/methods/" + names.getLowerJoined(method.getName(), "");
+        return getId(method.getDeclaringService()) + "-methods-" + names.getLowerJoined(method.getName(), "");
     }
 
     private String getId(Parameter parameter) {
-        return getId(parameter.getDeclaringMethod()) + "/parameters/" + names.getLowerJoined(parameter.getName(), "_");
+        return getId(parameter.getDeclaringMethod()) + "-parameters-" + names.getLowerJoined(parameter.getName(), "_");
     }
 
     private String getId(EnumValue value) {
-        return getId(value.getDeclaringType()) + "/values/" + names.getLowerJoined(value.getName(), "_");
+        return getId(value.getDeclaringType()) + "-values-" + names.getLowerJoined(value.getName(), "_");
     }
 
     private String getLink(Type type) {
