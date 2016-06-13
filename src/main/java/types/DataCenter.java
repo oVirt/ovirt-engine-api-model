@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
@@ -26,4 +27,9 @@ public interface DataCenter extends Identified {
     Version[] supportedVersions();
     DataCenterStatus status();
     QuotaModeType quotaMode();
+
+    /**
+     * Reference to the MAC pool used by this data center.
+     */
+    @Link MacPool macPool();
 }
