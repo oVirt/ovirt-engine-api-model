@@ -49,6 +49,11 @@ public interface SystemService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to the service that provides information about the cluster levels supported by the system.
+     */
+    @Service ClusterLevelsService clusterLevels();
+
     @Service BookmarksService bookmarks();
     @Service ClustersService clusters();
     @Service CpuProfilesService cpuProfiles();
