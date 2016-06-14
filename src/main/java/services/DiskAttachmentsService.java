@@ -37,6 +37,7 @@ public interface DiskAttachmentsService {
      * ----
      * <disk_attachment>
      *   <bootable>true</bootable>
+     *   <passDiscard>true</passDiscard>
      *   <interface>ide</interface>
      *   <disk id="123"/>
      * </disk_attachment>
@@ -48,6 +49,7 @@ public interface DiskAttachmentsService {
      * ----
      * <disk_attachment>
      *   <bootable>true</bootable>
+     *   <passDiscard>true</passDiscard>
      *   <interface>ide</interface>
      *   <disk>
      *     <name>mydisk</name>

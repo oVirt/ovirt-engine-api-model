@@ -30,6 +30,12 @@ public interface DiskAttachment extends Identified {
     Boolean bootable();
 
     /**
+     * This flag indicates if the virtual machine passes discard commands to the storage.
+     */
+    // @Since("4.1")
+    Boolean passDiscard();
+
+    /**
      * This indicates the disk interface of the disk.
      */
     DiskInterface _interface();
