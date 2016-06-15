@@ -45,4 +45,25 @@ public interface DiskAttachmentService {
          */
         @In Boolean detachOnly();
     }
+
+    /**
+     * Update the disk attachment and the disk properties within it.
+     *
+     * [source]
+     * ----
+     * PUT /vms/{vm:id}/disksattachments/{attachment:id}
+     * <disk_attachment>
+     *   <bootable>true</bootable>
+     *   <interface>ide</interface>
+     *   <disk>
+     *     <name>mydisk</name>
+     *     <provisioned_size>1024</provisioned_size>
+     *     ...
+     *   </disk>
+     * </disk_attachment>
+     * ----
+     */
+    interface Update {
+        @In @Out DiskAttachment diskAttachment();
+    }
 }
