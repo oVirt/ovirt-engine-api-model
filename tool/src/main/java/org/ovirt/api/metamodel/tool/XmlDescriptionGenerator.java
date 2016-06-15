@@ -150,6 +150,7 @@ public class XmlDescriptionGenerator {
     private void writeServiceLocator(Locator locator) {
         writer.writeStartElement("locator");
         writeCommon(locator);
+        writeServiceRef(locator.getService());
         locator.parameters().forEach(this::writeParameter);
         writer.writeEndElement();
     }
@@ -248,6 +249,14 @@ public class XmlDescriptionGenerator {
             return getTypeRef(elementType) + "[]";
         }
         return "";
+    }
+
+    private void writeServiceRef(Service service) {
+        writer.writeElement("service", getServiceRef(service));
+    }
+
+    private String getServiceRef(Service service) {
+        return service.getName().toString();
     }
 }
 

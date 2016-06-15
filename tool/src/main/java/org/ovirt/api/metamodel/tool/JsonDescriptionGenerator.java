@@ -181,6 +181,7 @@ public class JsonDescriptionGenerator {
     private void writeServiceLocator(Locator locator) {
         writer.writeStartObject();
         writeCommon(locator);
+        writeServiceRef(locator.getService());
         writer.writeStartArray("parameters");
         locator.parameters().forEach(this::writeParameter);
         writer.writeEnd();
@@ -281,6 +282,14 @@ public class JsonDescriptionGenerator {
             return getTypeRef(elementType) + "[]";
         }
         return "";
+    }
+
+    private void writeServiceRef(Service service) {
+        writer.write("service", getServiceRef(service));
+    }
+
+    private String getServiceRef(Service service) {
+        return service.getName().toString();
     }
 }
 
