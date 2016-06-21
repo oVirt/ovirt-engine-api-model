@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.0 / Jun 21 2016
+
+New features:
+
+* Add `Update` method to the `DiskAttachment` service.
+
+* Add types and services for cluster levels support.
+
 == 4.0.22 / Jun 14 2016
 
 Buf fixes:
