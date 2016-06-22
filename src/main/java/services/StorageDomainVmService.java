@@ -32,7 +32,18 @@ public interface StorageDomainVmService {
     }
 
     interface Import {
+        /**
+         * Indicates if the identifiers of the imported virtual machine
+         * should be regenerated.
+         *
+         * By default when a virtual machine is imported the identifiers
+         * are preserved. This means that the same virtual machine can't
+         * be imported multiple times, as that identifiers needs to be
+         * unique. To allow importing the same machine multiple times set
+         * this parameter to `true`, as the default is `false`.
+         */
         @In Boolean clone();
+
         @In Cluster cluster();
         @In StorageDomain storageDomain();
         @In Vm vm();
