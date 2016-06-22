@@ -38,6 +38,16 @@ public interface StorageDomainVmService {
         @In Vm vm();
 
         /**
+         * Indicates of the snapshots of the virtual machine that is imported
+         * should be collapsed, so that the result will be a virtual machine
+         * without snapshots.
+         *
+         * This parameter is optional, and if it isn't explicity specified the
+         * default value is `false`.
+         */
+        @In Boolean collapseSnapshots();
+
+        /**
          * Indicates if the import should be performed asynchronously.
          */
         @In Boolean async();
