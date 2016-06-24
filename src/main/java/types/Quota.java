@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
@@ -28,4 +29,8 @@ public interface Quota extends Identified {
     Integer clusterHardLimitPct();
     Integer storageSoftLimitPct();
     Integer storageHardLimitPct();
+
+    @Link Permission[] permissions();
+    @Link QuotaClusterLimit[] quotaClusterLimits();
+    @Link QuotaStorageLimit[] quotaStorageLimits();
 }

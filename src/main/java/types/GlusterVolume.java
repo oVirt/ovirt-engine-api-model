@@ -33,4 +33,5 @@ public interface GlusterVolume extends Identified {
 
     @Link Cluster cluster();
     @Link GlusterBrick[] bricks();
+    @Link Statistic[] statistics();
 }

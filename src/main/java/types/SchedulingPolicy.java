@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
@@ -23,4 +24,8 @@ public interface SchedulingPolicy extends Identified {
     Boolean locked();
     Boolean defaultPolicy();
     Property[] properties();
+
+    @Link Balance[] balances();
+    @Link Filter[] filters();
+    @Link Weight[] weight();
 }

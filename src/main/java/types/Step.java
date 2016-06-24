@@ -33,4 +33,5 @@ public interface Step extends Identified {
 
     @Link Step parentStep();
     @Link Job job();
+    @Link Statistic[] statistics();
 }

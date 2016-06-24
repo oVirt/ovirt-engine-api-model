@@ -33,4 +33,5 @@ public interface VnicProfile extends Identified {
      * Network filter will enhance the admin ability to manage the network packets traffic from/to the participated VMs.
      */
     @Link NetworkFilter networkFilter();
+    @Link Permission[] permissions();
 }

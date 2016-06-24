@@ -31,4 +31,5 @@ public interface Job extends Identified {
     Boolean autoCleared();
 
     @Link User owner();
+    @Link Step[] steps();
 }

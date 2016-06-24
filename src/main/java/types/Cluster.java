@@ -53,4 +53,12 @@ public interface Cluster extends Identified {
      * engine.
      */
     @Link MacPool macPool();
+
+    @Link AffinityGroup[] affinityGroups();
+    @Link CpuProfile[] cpuProfiles();
+    @Link GlusterHook[] glusterHooks();
+    @Link GlusterVolume[] glusterVolumes();
+    @Link NetworkFilter[] networkFilters();
+    @Link Network[] networks();
+    @Link Permission[] permissions();
 }

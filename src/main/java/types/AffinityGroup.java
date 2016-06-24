@@ -26,4 +26,6 @@ public interface AffinityGroup extends Identified {
 
     @Link
     Cluster cluster();
+
+    @Link Vm[] vms();
 }

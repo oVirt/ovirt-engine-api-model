@@ -18,6 +18,7 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
+import services.VirtualFunctionAllowedNetworksService;
 
 @Type
 public interface Nic extends Device {
@@ -25,7 +26,6 @@ public interface Nic extends Device {
     NicInterface _interface();
     Mac mac();
     Boolean plugged();
-    ReportedDevice[] reportedDevices();
     BootProtocol bootProtocol();
     Boolean onBoot();
 
@@ -37,4 +37,10 @@ public interface Nic extends Device {
     @Link Network network();
     @Link Statistic[] statistics();
     @Link VnicProfile vnicProfile();
+
+    @Link NetworkLabel[] networkLabels();
+    @Link NetworkAttachment[] networkAttachments();
+    @Link NetworkLabel[] virtualFunctionAllowedLabels();
+    @Link Network[] virtualFunctionAllowedNetworks();
+    @Link ReportedDevice[] reportedDevices();
 }

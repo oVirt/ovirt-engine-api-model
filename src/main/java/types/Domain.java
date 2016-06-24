@@ -16,9 +16,12 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface Domain extends Identified {
     User user();
+    @Link Group[] groups();
+    @Link User[] users();
 }

@@ -31,4 +31,6 @@ public interface Group extends Identified {
    * are only supported via the `roles` sub-collection.
    */
   @Link Role[] roles();
+  @Link Permission[] permissions();
+  @Link Tag[] tags();
 }

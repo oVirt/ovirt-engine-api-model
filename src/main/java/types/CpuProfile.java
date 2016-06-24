@@ -23,4 +23,5 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface CpuProfile extends Identified {
     @Link Qos qos();
     @Link Cluster cluster();
+    @Link Permission[] permissions();
 }

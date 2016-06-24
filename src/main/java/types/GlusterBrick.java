@@ -27,4 +27,5 @@ public interface GlusterBrick extends GlusterBrickAdvancedDetails {
     String brickDir();
     GlusterBrickStatus status();
     @Link GlusterVolume glusterVolume();
+    @Link Statistic[] statistics();
 }
