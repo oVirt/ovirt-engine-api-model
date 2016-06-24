@@ -3,6 +3,21 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.1 / Jun 24 2016
+
+New features:
+
+* Add `collapseSnapshots` parameter to the operation that imports a
+  virtual machine from an export storage domain.
+
+* Add `passDiscard` attribute to the `DiskAttachment` type.
+
+* Add `reportedKernelCmdline` and `customKernelCmdLine` attributes to
+  the `OperatingSystem` type.
+
+* Add the `host`, `destroy` and `format` parameters to the operation
+  that removes a storage domain.
+
 == 4.1.0 / Jun 21 2016
 
 New features:
