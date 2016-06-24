@@ -30,8 +30,7 @@ public interface Vm extends VmBase {
     Date stopTime();
     Boolean runOnce();
     Payload[] payloads();
-    Statistic[] statistics();
-    Tag[] tags();
+
     VmPlacementPolicy placementPolicy();
     String fqdn();
     Boolean useLatestTemplateVersion();
@@ -54,5 +53,14 @@ public interface Vm extends VmBase {
     @Link Watchdog[] watchdogs();
     @Link Permission[] permissions();
     @Link ExternalHostProvider externalHostProvider();
+    @Link AffinityLabel[] affinityLabels();
+    @Link Application[] applications();
+    @Link DiskAttachment[] diskAttachments();
+    @Link GraphicsConsole[] graphicsConsoles();
+    @Link HostDevice[] hostDevices();
     @Link KatelloErratum[] katelloErrata();
+    @Link NumaNode[] numaNodes();
+    @Link Session[] sessions();
+    @Link Statistic[] statistics();
+    @Link Tag[] tags();
 }

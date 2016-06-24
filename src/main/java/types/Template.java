@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
@@ -23,4 +24,12 @@ public interface Template extends VmBase {
     TemplateStatus status();
     Vm vm();
     TemplateVersion version();
+
+    @Link Disk[] disks();
+    @Link Cdrom[] cdroms();
+    @Link GraphicsConsole[] graphicsConsoles();
+    @Link Nic[] nics();
+    @Link Permission[] permissions();
+    @Link Tag[] tags();
+    @Link Watchdog[] watchdogs();
 }

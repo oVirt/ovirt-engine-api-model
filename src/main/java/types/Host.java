@@ -49,7 +49,6 @@ public interface Host extends Identified {
     String rootPassword();
 
     Ssh ssh();
-    Statistic[] statistics();
     Cpu cpu();
     Integer memory();
     Integer maxSchedulingMemory();
@@ -69,7 +68,6 @@ public interface Host extends Identified {
     SeLinux seLinux();
     AutoNumaStatus autoNumaStatus();
     Boolean numaSupported();
-    KatelloErratum[] katelloErrata();
     Boolean updateAvailable();
     HostDevicePassthrough devicePassthrough();
 
@@ -77,4 +75,16 @@ public interface Host extends Identified {
     @Link Hook[] hooks();
     @Link ExternalHostProvider externalHostProvider();
     @Link StorageConnectionExtension[] storageConnectionExtensions();
+    @Link AffinityLabel[] affinityLabels();
+    @Link Device[] devices();
+    @Link Agent[] agents();
+    @Link KatelloErratum[] katelloErrata();
+    @Link NetworkAttachment[] networkAttachments();
+    @Link Nic[] nics();
+    @Link NumaNode[] numaNodes();
+    @Link Permission[] permissions();
+    @Link Statistic[] statistics();
+    @Link HostStorage[] storages();
+    @Link Tag[] tags();
+    @Link UnmanagedNetwork[] unmanagedNetworks();
 }

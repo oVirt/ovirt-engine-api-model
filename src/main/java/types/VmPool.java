@@ -48,4 +48,5 @@ public interface VmPool extends Identified {
      */
     @Link InstanceType instanceType();
     @Link Vm vm();
+    @Link Permission[] permissions();
 }

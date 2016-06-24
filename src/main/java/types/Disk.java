@@ -33,7 +33,6 @@ public interface Disk extends Device {
     Boolean shareable();
     Boolean wipeAfterDelete();
     Boolean propagateErrors();
-    Statistic[] statistics();
     Boolean active();
     Boolean readOnly();
     HostStorage lunStorage();
@@ -48,4 +47,6 @@ public interface Disk extends Device {
     @Link DiskProfile diskProfile();
     @Link Snapshot snapshot();
     @Link OpenStackVolumeType openstackVolumeType();
+    @Link Permission[] permissions();
+    @Link Statistic[] statistics();
 }

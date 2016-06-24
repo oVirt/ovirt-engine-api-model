@@ -51,4 +51,13 @@ public interface StorageDomain extends Identified {
      * This is a set of links to the data centers that the storage domain is attached to.
      */
     @Link DataCenter[] dataCenters();
+    @Link Disk[] disks();
+    @Link DiskProfile[] diskProfiles();
+    @Link DiskSnapshot[] diskSnapshots();
+    @Link File[] files();
+    @Link Image[] images();
+    @Link Permission[] permissions();
+    @Link StorageConnection[] storageConnections();
+    @Link Template[] templates();
+    @Link Vm[] vms();
 }

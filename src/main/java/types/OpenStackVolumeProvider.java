@@ -22,4 +22,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface OpenStackVolumeProvider extends OpenStackProvider {
     @Link DataCenter dataCenter();
+    @Link Certificate[] certificates();
+    @Link OpenStackVolumeType[] volumeTypes();
+    @Link OpenstackVolumeAuthenticationKey[] authenticationKeys();
 }

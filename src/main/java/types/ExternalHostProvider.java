@@ -16,8 +16,14 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface ExternalHostProvider extends ExternalProvider {
+    @Link Certificate[] certificates();
+    @Link ExternalComputeResource[] computeResources();
+    @Link ExternalDiscoveredHost[] discoveredHosts();
+    @Link ExternalHostGroup[] hostGroups();
+    @Link Host[] hosts();
 }

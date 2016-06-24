@@ -37,4 +37,7 @@ public interface User extends Identified {
     @Link Domain domain();
     @Link Role[] roles();
     @Link Group[] groups();
+    @Link Permission[] permissions();
+    @Link Tag[] tags();
+    @Link SshPublicKey[] sshPublicKeys();
 }

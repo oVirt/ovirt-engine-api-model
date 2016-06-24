@@ -30,9 +30,11 @@ public interface Network extends Identified {
     String[] usages();
     Boolean required();
     Boolean profileRequired();
-    NetworkLabel[] networkLabels();
 
     @Link DataCenter dataCenter();
     @Link Cluster cluster();
     @Link Qos qos();
+    @Link NetworkLabel[] networkLabels();
+    @Link Permission[] permissions();
+    @Link VnicProfile[] vnicProfiles();
 }

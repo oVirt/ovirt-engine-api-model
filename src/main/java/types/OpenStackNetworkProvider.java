@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
@@ -36,4 +37,8 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * The type of provider.
      */
     OpenStackNetworkProviderType type();
+
+    @Link Certificate[] certificates();
+    @Link OpenStackNetwork[] networks();
+    @Link OpenStackSubnet[] subnets();
 }

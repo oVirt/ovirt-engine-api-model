@@ -16,8 +16,11 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface OpenStackImageProvider extends OpenStackProvider {
+    @Link Certificate[] certificates();
+    @Link OpenStackImage[] images();
 }

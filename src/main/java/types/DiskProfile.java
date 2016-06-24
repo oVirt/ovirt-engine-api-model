@@ -23,4 +23,5 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface DiskProfile extends Identified {
     @Link Qos qos();
     @Link StorageDomain storageDomain();
+    @Link Permission[] permissions();
 }
