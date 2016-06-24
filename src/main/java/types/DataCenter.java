@@ -32,4 +32,39 @@ public interface DataCenter extends Identified {
      * Reference to the MAC pool used by this data center.
      */
     @Link MacPool macPool();
+
+    /**
+     * Reference to storage domains attached to this data center.
+     */
+    @Link StorageDomain[] storageDomains();
+
+    /**
+     * Reference to clusters inside this data center.
+     */
+    @Link Cluster[] clusters();
+
+    /**
+     * Reference to networks attached to this data center.
+     */
+    @Link Network[] networks();
+
+    /**
+     * Reference to permissions assigned to this data center.
+     */
+    @Link Permission[] permissions();
+
+    /**
+     * Reference to quotas assigned to this datacenter.
+     */
+    @Link Quota[] quotas();
+
+    /**
+     * Reference to quality of service used by this data center.
+     */
+    @Link Qos[] qoss();
+
+    /**
+     * Reference to ISCSI bonds used by this data center.
+     */
+    @Link IscsiBond[] iscsiBonds();
 }
