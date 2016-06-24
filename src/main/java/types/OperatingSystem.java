@@ -47,7 +47,7 @@ public interface OperatingSystem {
      * in the previous host deploy procedure are removed using
      * `grubby --update-kernel DEFAULT --remove-args <previous_custom_params>` and the current
      * kernel command line customization is applied using
-     * `grubby --update-kernel DEFAULT --args <custom_params>. The Engine internally keeps track of the
+     * `grubby --update-kernel DEFAULT --args <custom_params>`. The Engine internally keeps track of the
      * last applied kernel parameters customization.
      *
      * NOTE: This attribute is currently only used for hosts.
