@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.2 / Jun 28 2016
+
+New features:
+
+* Added `switchType` attribute to `Host` type.
+
 == 4.1.1 / Jun 24 2016
 
 New features:
