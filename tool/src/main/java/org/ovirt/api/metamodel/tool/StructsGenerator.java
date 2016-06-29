@@ -16,14 +16,15 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Stream;
+import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.ListType;
@@ -34,6 +35,9 @@ import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.runtime.util.ArrayListWithHref;
+import org.ovirt.api.metamodel.runtime.util.ListWithHref;
+import org.ovirt.api.metamodel.runtime.util.UnmodifiableListWithHref;
 
 /**
  * This class generates the interfaces and classes corresponding to the struct types of the model.
@@ -144,8 +148,38 @@ public class StructsGenerator extends JavaGenerator {
     }
 
     private void generateBaseContainerSource() {
+        javaBuffer.addImport(ArrayList.class);
+        javaBuffer.addImport(ArrayListWithHref.class);
+        javaBuffer.addImport(Collections.class);
+        javaBuffer.addImport(List.class);
+        javaBuffer.addImport(ListWithHref.class);
+        javaBuffer.addImport(UnmodifiableListWithHref.class);
+
         JavaClassName containerName = javaTypes.getBaseContainerName();
         javaBuffer.addLine("public class %1$s {", containerName.getSimpleName());
+        javaBuffer.addLine(  "protected static <E> List<E> makeUnmodifiableList(List<E> original) {");
+        javaBuffer.addLine(    "if (original == null) {");
+        javaBuffer.addLine(      "return Collections.emptyList();");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(    "else {");
+        javaBuffer.addLine(      "if (original instanceof ListWithHref) {");
+        javaBuffer.addLine(        "return new UnmodifiableListWithHref((ListWithHref) original);");
+        javaBuffer.addLine(      "}");
+        javaBuffer.addLine(      "return Collections.unmodifiableList(original);");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine();
+        javaBuffer.addLine(  "protected static <E> List<E> makeArrayList(List<E> original) {");
+        javaBuffer.addLine(    "if (original == null) {");
+        javaBuffer.addLine(      "return Collections.emptyList();");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(    "else {");
+        javaBuffer.addLine(      "if (original instanceof ListWithHref) {");
+        javaBuffer.addLine(        "return new ArrayListWithHref<E>((ListWithHref) original);");
+        javaBuffer.addLine(      "}");
+        javaBuffer.addLine(      "return new ArrayList<E>(original);");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(  "}");
         javaBuffer.addLine("}");
     }
 
@@ -229,13 +263,7 @@ public class StructsGenerator extends JavaGenerator {
             }
         }
         else if (type instanceof ListType) {
-            javaBuffer.addImport(Collections.class);
-            javaBuffer.addLine("if (%1$s == null) {", field);
-            javaBuffer.addLine(  "return Collections.emptyList();");
-            javaBuffer.addLine("}");
-            javaBuffer.addLine("else {");
-            javaBuffer.addLine(  "return Collections.unmodifiableList(%1$s);", field);
-            javaBuffer.addLine("}");
+            javaBuffer.addLine("return makeUnmodifiableList(%1$s);", field);
         }
         else {
             javaBuffer.addLine("return %1$s;", field);
@@ -279,15 +307,8 @@ public class StructsGenerator extends JavaGenerator {
             }
         }
         else if (type instanceof ListType) {
-            javaBuffer.addImport(Collections.class);
-            javaBuffer.addImport(ArrayList.class);
             javaBuffer.addLine("public void %1$s(%2$s new%3$s) {", field, typeReference.getText(), property);
-            javaBuffer.addLine(  "if (new%1$s == null) {", property);
-            javaBuffer.addLine(    "%1$s = Collections.emptyList();", field);
-            javaBuffer.addLine(  "}");
-            javaBuffer.addLine(  "else {");
-            javaBuffer.addLine(    "%1$s = new ArrayList<>(new%2$s);", field, property);
-            javaBuffer.addLine(  "}");
+            javaBuffer.addLine(  "%1$s = makeArrayList(new%2$s);", field, property);
             javaBuffer.addLine("}");
             javaBuffer.addLine();
         }

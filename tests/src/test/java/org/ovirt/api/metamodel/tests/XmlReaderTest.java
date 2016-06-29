@@ -38,6 +38,7 @@ import javax.xml.stream.XMLStreamConstants;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.ovirt.api.metamodel.runtime.util.ListWithHref;
 import org.ovirt.api.metamodel.runtime.xml.XmlException;
 import org.ovirt.api.metamodel.runtime.xml.XmlReader;
 import org.ovirt.engine.api.types.V4Disk;
@@ -819,6 +820,49 @@ public class XmlReaderTest {
         assertEquals(1, list.size());
         V4Vm item1 = list.get(0);
         assertNotNull(item1);
+    }
+
+    /**
+     * Checks that href is read correctly in link element
+     */
+    @Test
+    public void testLinkHrefAttribute() {
+        V4Vm vm = objectFromXml("<vm><link rel=\"permissions\" href=\"123\"/></vm>");
+        assertNotNull(vm);
+        assertNotNull(vm.permissions());
+        assertTrue(vm.permissions() instanceof ListWithHref);
+        assertEquals("123", ((ListWithHref) vm.permissions()).href());
+    }
+
+    /**
+     * Checks that link element is read correctly if href is not present
+     */
+    @Test
+    public void testLinkWithoutHref() {
+        V4Vm vm = objectFromXml("<vm><link rel=\"permissions\"/></vm>");
+        assertNotNull(vm);
+        assertNotNull(vm.permissions());
+        assertTrue(vm.disks() instanceof List);
+    }
+
+    /**
+     * Checks that non-related rel attribute is skipped
+     */
+    @Test
+    public void testLinkIncorrectRelElement() {
+        V4Vm vm = objectFromXml("<vm><link rel=\"ugly\" href=\"123\"/></vm>");
+        assertNotNull(vm);
+        assertTrue(vm.permissions().isEmpty());
+    }
+
+    /**
+     * Checks that readLink don't fail if link element is not present
+     */
+    @Test
+    public void testLinkIsNotPresent() {
+        V4Vm vm = objectFromXml("<vm></vm>");
+        assertNotNull(vm);
+        assertTrue(vm.permissions().isEmpty());
     }
 
     /**

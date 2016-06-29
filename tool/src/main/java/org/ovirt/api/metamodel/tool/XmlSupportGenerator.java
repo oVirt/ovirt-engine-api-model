@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
@@ -25,10 +26,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.EnumType;
+import org.ovirt.api.metamodel.concepts.Link;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
@@ -36,6 +39,8 @@ import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.StructMember;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.runtime.util.ArrayListWithHref;
+import org.ovirt.api.metamodel.runtime.util.ListWithHref;
 import org.ovirt.api.metamodel.runtime.xml.XmlReader;
 import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
 
@@ -109,10 +114,69 @@ public class XmlSupportGenerator extends JavaGenerator {
         // Generate methods to read one instance and a list of instances:
         generateStructReadOne(type);
         generateStructReadMany(type);
+        generateReadLink(type);
 
         // End class:
         javaBuffer.addLine("}");
         javaBuffer.addLine();
+    }
+
+    private void generateReadLink(StructType type) {
+        // Get the type and container name:
+        JavaClassName containerName = javaTypes.getContainerName(type);
+
+        javaBuffer.addImport(ArrayListWithHref.class);
+        javaBuffer.addImport(ListWithHref.class);
+        javaBuffer.addLine(
+            "private static void readLink(XmlReader reader, %1$s object) {",
+            containerName.getSimpleName()
+        );
+        javaBuffer.addLine("// Process the attributes:");
+        javaBuffer.addLine("String rel = null;");
+        javaBuffer.addLine("String href = null;");
+        javaBuffer.addLine("for (int i = 0; i < reader.getAttributeCount(); i++) {");
+        javaBuffer.addLine(  "String attrName = reader.getAttributeLocalName(i);");
+        javaBuffer.addLine(  "String attrVal = reader.getAttributeValue(i);");
+        javaBuffer.addLine(  "switch (attrName) {");
+        javaBuffer.addLine(  "case \"href\":");
+        javaBuffer.addLine(    "href = attrVal;");
+        javaBuffer.addLine(    "break;");
+        javaBuffer.addLine(  "case \"rel\":");
+        javaBuffer.addLine(    "rel = attrVal;");
+        javaBuffer.addLine(    "break;");
+        javaBuffer.addLine(  "default:");
+        javaBuffer.addLine(    "reader.skip();");
+        javaBuffer.addLine(    "break;");
+        javaBuffer.addLine(  "}");  // End switch
+        javaBuffer.addLine("}");  // End for cycle
+
+        List<Link> links = type.links()
+            .sorted()
+            .filter(link -> link.getType() instanceof ListType)
+            .collect(toList());
+
+        if (!links.isEmpty()) {
+            javaBuffer.addLine("if (href != null) {");
+            javaBuffer.addLine(  "ListWithHref list = new ArrayListWithHref();");
+            javaBuffer.addLine(  "list.href(href);");
+            javaBuffer.addLine(  "switch (rel) {");
+            links.forEach(
+                link -> {
+                    String field = javaNames.getJavaMemberStyleName(link.getName());
+                    String rel = link.getName().words().map(String::toLowerCase).collect(joining());
+                    javaBuffer.addLine("case \"%1$s\":", rel);
+                    javaBuffer.addLine(  "object.%1$s(list);", field);
+                    javaBuffer.addLine(  "break;");
+                }
+            );
+            javaBuffer.addLine(  "default:");
+            javaBuffer.addLine(    "break;");
+            javaBuffer.addLine(  "}");  // End switch
+            javaBuffer.addLine("}"); // End if
+        }
+        javaBuffer.addLine("reader.skip();");
+
+        javaBuffer.addLine("}");  // End method
     }
 
     private void generateStructReadOne(StructType type) {
@@ -168,6 +232,9 @@ public class XmlSupportGenerator extends JavaGenerator {
             asElements.stream()
                 .sorted()
                 .forEach(this::generateStructReadMemberFromElement);
+            javaBuffer.addLine("case \"link\":");
+            javaBuffer.addLine(  "readLink(reader, object);");
+            javaBuffer.addLine(  "break;");
             javaBuffer.addLine("default:");
             javaBuffer.addLine(  "reader.skip();");
             javaBuffer.addLine(  "break;");
