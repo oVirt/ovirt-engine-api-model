@@ -271,7 +271,6 @@ public interface VmService extends MeasurableService {
     @Service SnapshotsService snapshots();
     @Service VmApplicationsService applications();
     @Service VmCdromsService cdroms();
-    @Service VmDisksService disks();
     @Service VmHostDevicesService hostDevices();
     @Service VmNicsService nics();
     @Service VmNumaNodesService numaNodes();
