@@ -3,6 +3,26 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 1.1.0 / Jun 30 2016
+
+New features:
+
+* Use underscores instead of dashes to separate words in the string
+  representation of names.
+
+* Improve the generated AsciiDoc documentation, so that names of
+  attributes and enum values apper in lower case, exactly like they
+  need to be used in XML or JSON documents in the API.
+
+* Add a new _requests_ section to the HTML documentation that lists all
+  the available HTTP requests.
+
+* Add the reference to the target service of locators in the XML and
+  JSON descriptions of the model.
+
+* Add support for reading `link` elements of collections (currently only
+  for XML, JSON support will be added later).
+
 == 1.0.15 / Jun 10 2016
 
 Bug fixes:
