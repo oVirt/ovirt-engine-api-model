@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.0.9</metamodel.version>
+    <metamodel.version>1.0.15</metamodel.version>
 
   </properties>
 
