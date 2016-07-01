@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,13 +22,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +36,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
+import com.thoughtworks.qdox.model.DocletTag;
 import com.thoughtworks.qdox.model.JavaAnnotatedElement;
 import com.thoughtworks.qdox.model.JavaAnnotation;
 import com.thoughtworks.qdox.model.JavaClass;
@@ -80,6 +78,11 @@ public class ModelAnalyzer {
      * This suffix will removed from service names.
      */
     private static final String SERVICE_SUFFIX = "Service";
+
+    /**
+     * Name of the {@code value} parameter of annotations created from Javadoc tags.
+     */
+    private static final Name VALUE = NameParser.parseUsingCase("Value");
 
     /**
      * Reference to the model that will be populated.
@@ -591,9 +594,47 @@ public class ModelAnalyzer {
     }
 
     private void analyzeDocumentation(JavaAnnotatedElement javaElement, Concept concept) {
+        // Copy the text of the documentation (without the doclet tags):
         String javaComment = javaElement.getComment();
-        if (javaComment != null && !javaComment.isEmpty()) {
-            concept.setDoc(javaComment);
+        if (javaComment != null) {
+            javaComment = javaComment.trim();
+            if (!javaComment.isEmpty()) {
+                concept.setDoc(javaComment);
+            }
+        }
+
+        // Make annotations for the javadoc tags:
+        javaElement.getTags().stream().forEach(docTag -> {
+            this.analyzeDocletTag(docTag, concept);
+        });
+
+    }
+
+    private void analyzeDocletTag(DocletTag docTag, Concept concept) {
+        // Calculate the name:
+        Name name = NameParser.parseUsingCase(docTag.getName());
+
+        // Create the annotation if it doesn't exist in the concept yet:
+        Annotation annotation = concept.getAnnotation(name);
+        if (annotation == null) {
+            annotation = new Annotation();
+            annotation.setName(name);
+            concept.addAnnotation(annotation);
+        }
+
+        // Create the "value" parameter if it doesn't exist yet:
+        String value = docTag.getValue();
+        if (value != null) {
+            value = value.trim();
+            if (!value.isEmpty()) {
+                AnnotationParameter parameter = annotation.getParameter(VALUE);
+                if (parameter == null) {
+                    parameter = new AnnotationParameter();
+                    parameter.setName(VALUE);
+                    annotation.addParameter(parameter);
+                }
+                parameter.addValue(docTag.getValue());
+            }
         }
     }
 
