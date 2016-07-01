@@ -50,6 +50,7 @@ public class Tool {
     @Inject private XmlSupportGenerator xmlSupportGenerator;
     @Inject private JsonSupportGenerator jsonSupportGenerator;
     @Inject private AsciiDocGenerator docGenerator;
+    @Inject private DocReportGenerator reportGenerator;
 
     // Reference to the object used to add built-in types to the model:
     @Inject private BuiltinTypes builtinTypes;
@@ -64,6 +65,7 @@ public class Tool {
     private static final String JAXRS_OPTION = "jaxrs";
     private static final String VERSION_PREFIX_OPTION = "version-prefix";
     private static final String DOCS_OPTION = "docs";
+    private static final String REPORT_OPTION = "report";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
@@ -227,6 +229,15 @@ public class Tool {
             .argName("DIRECTORY")
             .build()
         );
+        options.addOption(Option.builder()
+            .longOpt(REPORT_OPTION)
+            .desc("The file where the documentation report be created.")
+            .type(File.class)
+            .required(false)
+            .hasArg(true)
+            .argName("FILE")
+            .build()
+        );
 
         // Parse the command line:
         CommandLineParser parser = new DefaultParser();
@@ -251,6 +262,7 @@ public class Tool {
         File jaxrsDir = (File) line.getParsedOptionValue(JAXRS_OPTION);
         File javaDir = (File) line.getParsedOptionValue(JAVA_OPTION);
         File docsDir = (File) line.getParsedOptionValue(DOCS_OPTION);
+        File reportFile = (File) line.getParsedOptionValue(REPORT_OPTION);
 
         // Analyze the model files:
         Model model = new Model();
@@ -345,6 +357,10 @@ public class Tool {
         if (docsDir != null) {
             docGenerator.setOutDir(docsDir);
             docGenerator.generate(model);
+        }
+        if (reportFile != null) {
+            reportGenerator.setOutFile(reportFile);
+            reportGenerator.generate(model);
         }
     }
 }
