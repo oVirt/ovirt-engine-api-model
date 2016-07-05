@@ -109,4 +109,14 @@ public interface SystemService {
     @Service VmPoolsService vmPools();
     @Service VmsService vms();
     @Service VnicProfilesService vnicProfiles();
+
+    /**
+     * List of all image transfers being performed for image I/O in oVirt.
+     *
+     * @author Amit Aviram <aaviram@redhat.com>
+     * @date 30 Aug 2016
+     * @status added
+     * @since 4.0.4
+     */
+    @Service ImageTransfersService imageTransfers();
 }
