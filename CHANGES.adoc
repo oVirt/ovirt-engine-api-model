@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 1.1.1 / Jul 6 2016
+
+New features:
+
+* Convert Javadoc tags into model annotations.
+
+* Add tool to generate report about the status of documentation.
+
 == 1.1.0 / Jun 30 2016
 
 New features:
