@@ -33,6 +33,26 @@ public interface EventsService {
         @Out Event[] events();
 
         /**
+         * Indicates the identifier of the the first event that should be returned. The identifiers of events are
+         * strictly increasing, so when this parameter is used only the events with that identifiers equal or greater
+         * than the given value will be returned. For example, the following request will return only the events
+         * with identifiers greater or equal than `123`:
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/events?from=123
+         * ----
+         *
+         * This parameter is optional, and if not specified then the first event returned will be most recently
+         * generated.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 6 Jul 2016
+         * @status added
+         */
+        @In Integer from();
+
+        /**
          * Sets the maximum number of events to return. If not specified all the events are returned.
          */
         @In Integer max();
