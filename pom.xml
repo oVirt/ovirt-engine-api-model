@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.1.0</metamodel.version>
+    <metamodel.version>1.1.1</metamodel.version>
 
   </properties>
 
@@ -234,6 +234,7 @@
                     <argument>org.ovirt.api.metamodel.tool.Tool</argument>
                     <argument>--model=${project.basedir}/src/main/java</argument>
                     <argument>--docs=${project.basedir}/target/generated-adoc</argument>
+                    <argument>--report=${project.basedir}/target/generated-csv/model.csv</argument>
                   </arguments>
                   <includePluginDependencies>true</includePluginDependencies>
                   <includeProjectDependencies>false</includeProjectDependencies>
