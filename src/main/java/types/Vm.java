@@ -42,7 +42,6 @@ public interface Vm extends VmBase {
     @Link Host host();
     @Link Template template();
     @Link InstanceType instanceType();
-    @Link Disk[] disks();
     @Link Nic[] nics();
     @Link Snapshot[] snapshots();
     @Link Quota quota();
@@ -55,7 +54,6 @@ public interface Vm extends VmBase {
     @Link ExternalHostProvider externalHostProvider();
     @Link AffinityLabel[] affinityLabels();
     @Link Application[] applications();
-    @Link DiskAttachment[] diskAttachments();
     @Link GraphicsConsole[] graphicsConsoles();
     @Link HostDevice[] hostDevices();
     @Link KatelloErratum[] katelloErrata();
@@ -63,4 +61,9 @@ public interface Vm extends VmBase {
     @Link Session[] sessions();
     @Link Statistic[] statistics();
     @Link Tag[] tags();
+
+    /**
+     * References to the disks attached to the virtual machine.
+     */
+    @Link DiskAttachment[] diskAttachments();
 }

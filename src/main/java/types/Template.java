@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,11 +25,15 @@ public interface Template extends VmBase {
     Vm vm();
     TemplateVersion version();
 
-    @Link Disk[] disks();
     @Link Cdrom[] cdroms();
     @Link GraphicsConsole[] graphicsConsoles();
     @Link Nic[] nics();
     @Link Permission[] permissions();
     @Link Tag[] tags();
     @Link Watchdog[] watchdogs();
+
+    /**
+     * References to the disks attached to the template.
+     */
+    @Link DiskAttachment[] diskAttachments();
 }
