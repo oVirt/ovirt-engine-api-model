@@ -24,7 +24,7 @@ import types.DiskAttachment;
 
 /**
  * This service manages the set of disks attached to a virtual machine. Each attached disk is represented by a
- * <<DiskAttachment,types/disk-attachment>>, containing the bootable flag, the disk interface and the reference to
+ * <<types/disk_attachment,DiskAttachment>>, containing the bootable flag, the disk interface and the reference to
  * the disk.
  */
 @Service

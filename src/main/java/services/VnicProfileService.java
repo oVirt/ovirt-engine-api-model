@@ -27,7 +27,7 @@ import types.VnicProfile;
  * Since 4.0 it is possible to have a customized network filter to each VNIC profile.
  * Please note that there is a default network filter to each VNIC profile.
  * For more details of how the default network filter is calculated please refer to
- * the documentation in <<services/network-filters, NetworkFilters>>.
+ * the documentation in <<services/network_filters,NetworkFilters>>.
  *
  * The basic POST command of adding a new VNIC profile is as follows:
  *

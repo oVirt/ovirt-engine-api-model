@@ -21,7 +21,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ClusterLevel;
 
 /**
- * Provides information about a specific cluster level. See the <<ClusterLevels,services/cluster-levels>> service for
+ * Provides information about a specific cluster level. See the <<services/cluster_levels,ClusterLevels>> service for
  * more information.
  */
 @Service
