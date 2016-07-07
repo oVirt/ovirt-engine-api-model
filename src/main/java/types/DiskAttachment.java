@@ -34,6 +34,19 @@ public interface DiskAttachment extends Identified {
      */
     DiskInterface _interface();
 
+
+    /**
+     * This flag indicates if the disk is active in the virtual machine it's attached to.
+     *
+     * A disk attached to a virtual machine in an active status is connected to the virtual machine at run time and
+     * can be used.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 7 Jul 2017
+     * @status added
+     */
+    Boolean active();
+
     /**
      * Reference to the disk.
      */
