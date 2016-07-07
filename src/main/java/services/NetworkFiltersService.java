@@ -26,7 +26,7 @@ import types.NetworkFilter;
  * Represents a readonly network filters sub-collection.
  *
  * The network filter enables to filter packets send to/from the VM's nic according to defined rules.
- * For more information please refer to <<services/network-filter,NetworkFilter>> service documentation
+ * For more information please refer to <<services/network_filter,NetworkFilter>> service documentation
  *
  * Network filters are supported in different versions, starting from version 3.0.
  *
