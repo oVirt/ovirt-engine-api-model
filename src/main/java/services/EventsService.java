@@ -25,6 +25,47 @@ import types.Event;
 @Service
 @Area("Infrastructure")
 public interface EventsService {
+    /**
+     * Adds an external event to the internal audit log.
+     *
+     * This is intended for integration with external systems that detect or produce events relevant for the
+     * administrator of the system. For example, an external monitoring tool may be able to detect that a file system
+     * is full inside the guest operating system of a virtual machine. This event can be added to the internal audit
+     * log sending a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/events
+     * <event>
+     *   <description>File system /home is full</description>
+     *   <severity>alert</severity>
+     *   <origin>mymonitor</origin>
+     *   <custom_id>1467879754</custom_id>
+     * </event>
+     * ----
+     *
+     * Events can also be linked to specific objects. For example, the above event could be linked to the specific
+     * virtual machine where it happened, using the `vm` link:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/events
+     * <event>
+     *   <description>File system /home is full</description>
+     *   <severity>alert</severity>
+     *   <origin>mymonitor</origin>
+     *   <custom_id>1467879754</custom_id>
+     *   <vm id="aae98225-5b73-490d-a252-899209af17e9"/>
+     * </event>
+     * ----
+     *
+     * NOTE: When using links, like the `vm` in the previous example, only the `id` attribute is accepted. The `name`
+     * attribute, if provided, is simply ignored.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 7 Jul 2016
+     * @status added
+     */
     interface Add {
         @In @Out Event event();
     }
