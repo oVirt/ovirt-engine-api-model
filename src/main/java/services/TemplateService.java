@@ -16,10 +16,11 @@ limitations under the License.
 
 package services;
 
-import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
+import annotations.Area;
 import types.StorageDomain;
 import types.Template;
 
@@ -60,7 +61,16 @@ public interface TemplateService {
     @Service AssignedTagsService tags();
     @Service GraphicsConsolesService graphicsConsoles();
     @Service TemplateCdromsService cdroms();
-    @Service TemplateDisksService disks();
     @Service TemplateNicsService nics();
     @Service TemplateWatchdogsService watchdogs();
+
+    /**
+     * Reference to the service that manages a specific
+     * disk attachment of the template.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 7 Jul 2016
+     * @status added
+     */
+    @Service TemplateDiskAttachmentsService diskAttachments();
 }
