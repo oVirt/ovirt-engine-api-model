@@ -62,4 +62,13 @@ public interface DiskAttachment extends Identified {
      * Reference to the virtual machine.
      */
     @Link Vm vm();
+
+    /**
+     * Reference to the template.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 7 Jul 2017
+     * @status added
+     */
+    @Link Template template();
 }
