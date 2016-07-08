@@ -41,6 +41,22 @@ public interface Vm extends VmBase {
 
     @Link Host host();
     @Link Template template();
+
+    /**
+     * References to the original template the virtual machine was created from.
+     *
+     * If the virtual machine is cloned from a template or another virtual machine,
+     * the `template` links to the Blank template and the `original_template`
+     * is used to track history.
+     *
+     * Otherwise the `template` and `original_template` are the same.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 8 Jul 2016
+     * @state added
+     */
+    @Link Template originalTemplate();
+
     @Link InstanceType instanceType();
     @Link Nic[] nics();
     @Link Snapshot[] snapshots();
