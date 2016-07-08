@@ -25,8 +25,32 @@ import types.GraphicsConsole;
 @Service
 @Area("Virtualization")
 public interface GraphicsConsoleService {
+
+    /**
+     * Gets the configuration of the graphics console.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 8 Jul 2016
+     * @status added
+     */
     interface Get {
         @Out GraphicsConsole console();
+
+        /**
+         * Use the following query to obtain the current run-time configuration of the graphics console.
+         *
+         * [source]
+         * ----
+         * GET /ovit-engine/api/vms/{vm:id}/graphicsconsoles/{console:id}?current=true
+         * ----
+         *
+         * The default value is `false`.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 8 Jul 2016
+         * @status added
+         */
+        @In Boolean current();
     }
 
     interface Remove {

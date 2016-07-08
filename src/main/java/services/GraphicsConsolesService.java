@@ -29,6 +29,13 @@ public interface GraphicsConsolesService {
         @In @Out GraphicsConsole console();
     }
 
+    /**
+     * Lists all the configured graphics consoles of the virtual machine.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 8 Jul 2016
+     * @status added
+     */
     interface List {
         @Out GraphicsConsole[] consoles();
 
@@ -36,6 +43,23 @@ public interface GraphicsConsolesService {
          * Sets the maximum number of consoles to return. If not specified all the consoles are returned.
          */
         @In Integer max();
+
+        /**
+         * Use the following query to obtain the current run-time configuration of the graphics consoles.
+         *
+         * [source]
+         * ----
+         * GET /ovit-engine/api/vms/{vm:id}/graphicsconsoles?current=true
+         * ----
+         *
+         * The default value is `false`.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 8 Jul 2016
+         * @status added
+         */
+        @In Boolean current();
+
     }
 
     @Service GraphicsConsoleService console(String id);
