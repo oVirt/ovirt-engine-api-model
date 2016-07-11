@@ -194,6 +194,48 @@ Files are named like the entities, so they should be easy to locate.
 You can use your favorite editor to modify the source files. Just make
 sure to modify only the _Javadoc_ comments.
 
+You must also add or update in each _Javadoc_ comment the following three
+tags, which are used to track updates to the documentation:
+
+. `@author` - The name and email of the person writing or updating
+the documentation item.
+For example: _@author Juan Hernández <juan.hernandez@redhat.com>_
+
+. `@date` - The date on which the documentation was added or updated.
+For example: _@date 06 Jul 2016_
+
+. `@status` - The status of the documentation item. The following
+values are accepted:
+
+.. `requires_text` - This status is to be added to items that do not
+have any documentation at all.
+
+.. `added` - Added by an engineering team member or other contributor
+after they provide initial documentation.
+
+.. `updated_by_docs` - Added by a documentation team member after the
+documentation item has been reviewed.
+
+.. `complete` - Added by the project maintainer when both engineering
+and documentation agree that the item is complete, and the update
+can be merged.
+
+Add these tags below the documentation in the _Javadoc_ comment:
+
+[source,java]
+----
+/**
+ * Represents a virtual machine.
+ * @author Juan Hernández <juan.hernandez@redhat.com>
+ * @date 11 Jul 2016
+ * @status added
+ */
+@Type
+public interface Vm extends VmBase {
+    ...
+}
+----
+
 === Submitting the changes
 
 Once you are happy with the changes that you made to the documentation
