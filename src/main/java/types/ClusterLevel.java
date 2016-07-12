@@ -27,4 +27,13 @@ public interface ClusterLevel extends Identified {
      * The CPU types supported by this cluster level.
      */
     CpuType[] cpuTypes();
+
+    /**
+     * The permits supported by this cluster level.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 12 Jul 2016
+     * @status added
+     */
+    Permit[] permits();
 }
