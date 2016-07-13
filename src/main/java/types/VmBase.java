@@ -58,15 +58,15 @@ public interface VmBase extends Identified {
     MemoryPolicy memoryPolicy();
 
     /**
-     * VM's custom compatibility version.
+     * Virtual machine custom compatibility version.
      *
-     * This field allows to customize a VM to its own compatibility version.
-     * If `customCompatibilityVersion` is set, it overrides cluster's
-     * compatibility version for this particular VM.
+     * This field allows to customize a virtual machine to its own compatibility version.  If
+     * `custom_compatibility_version` is set, it overrides the cluster's compatibility version
+     * for this particular virtual machine.
      *
-     * VM's compatibility version is limited by the Data Center the VM resides
-     * in and checked against capabilities of the host the VM is planned to
-     * run on.
+     * The compatibility version of a virtual machine is limited by the data center the virtual
+     * machine resides in and is checked against capabilities of the host the virtual machine is
+     * planned to run on.
      */
     Version customCompatibilityVersion();
 
