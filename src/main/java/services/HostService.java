@@ -230,6 +230,7 @@ public interface HostService extends MeasurableService {
      * --cacert /etc/pki/ovirt-engine/ca.pem \
      * --user "${user}:${password}" \
      * --request POST \
+     * --header "Version: 4" \
      * --header "Content-Type: application/xml" \
      * --header "Accept: application/xml" \
      * --data '
