@@ -22,8 +22,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityLabel;
 
 /**
- * Top level affinitylabels collection used to navigate
- * all affinity labels and their assignments.
+ * Manages the affinity labels available in the system.
  */
 @Service
 public interface AffinityLabelsService {
@@ -42,7 +41,7 @@ public interface AffinityLabelsService {
         @Out AffinityLabel[] labels();
 
         /**
-         * Sets the maximum number of labels to return. If not specified all the tags are returned.
+         * Sets the maximum number of labels to return. If not specified all the labels are returned.
          */
         @In Integer max();
     }
