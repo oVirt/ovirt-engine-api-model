@@ -30,7 +30,7 @@ public interface AffinityGroupsService {
     }
 
     interface List {
-        @Out AffinityGroup[] list();
+        @Out AffinityGroup[] groups();
 
         /**
          * Sets the maximum number of affinity groups to return. If not specified all the affinity groups are returned.
