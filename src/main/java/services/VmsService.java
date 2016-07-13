@@ -94,102 +94,45 @@ public interface VmsService {
      *
      * When creating a virtual machine from a template or from a snapshot it is usually useful to explicitly indicate
      * in what storage domain to create the disks for the virtual machine. If the virtual machine is created from
-     * a template then this is achieved passing a set of `disk` elements that indicate the mapping:
+     * a template then this is achieved passing a set of `disk_attachment` elements that indicate the mapping:
      *
      * [source,xml]
      * ----
      * <vm>
      *   ...
-     *   <disks>
-     *     <disk id="8d4bd566-6c86-4592-a4a7-912dbf93c298">
-     *       <storage_domains>
-     *         <storage_domain id="9cb6cb0a-cf1d-41c2-92ca-5a6d665649c9"/>
-     *       </storage_domains>
-     *     </disk>
-     *   </disks>
+     *   <disk_attachments>
+     *     <disk_attachment>
+     *       <disk id="8d4bd566-6c86-4592-a4a7-912dbf93c298">
+     *         <storage_domains>
+     *           <storage_domain id="9cb6cb0a-cf1d-41c2-92ca-5a6d665649c9"/>
+     *         </storage_domains>
+     *       </disk>
+     *     <disk_attachment>
+     *   </disk_attachments>
      * </vm>
      * ----
      *
-     * When the virtual machine is created from a snapshot this set of disks is sligthly different, it uses the
-     * `imageId` attribute instead of `id`.
+     * When the virtual machine is created from a snapshot this set of disks is slightly different, it uses the
+     * `image_id` attribute instead of `id`.
      *
      * [source,xml]
      * ----
      * <vm>
      *   ...
-     *   <disks>
-     *     <disk>
-     *       <image_id>8d4bd566-6c86-4592-a4a7-912dbf93c298</image_id>
-     *       <storage_domains>
-     *         <storage_domain id="9cb6cb0a-cf1d-41c2-92ca-5a6d665649c9"/>
-     *       </storage_domains>
-     *     </disk>
-     *   </disks>
+     *   <disk_attachments>
+     *     <disk_attachment>
+     *       <disk>
+     *         <image_id>8d4bd566-6c86-4592-a4a7-912dbf93c298</image_id>
+     *         <storage_domains>
+     *           <storage_domain id="9cb6cb0a-cf1d-41c2-92ca-5a6d665649c9"/>
+     *         </storage_domains>
+     *       </disk>
+     *     <disk_attachment>
+     *   </disk_attachments>
      * </vm>
      * ----
      *
      * In all cases the name or identifier of the cluster where the virtual machine will be created is mandatory.
-     *
-     * This is an example of how creating a virtual machine from a snapshot with the disks in a different storage
-     * domain can be done with the Python SDK:
-     *
-     * [source,python]
-     * ----
-     * # Find the VM:
-     * vm = api.vms.get(name="myvm")
-     *
-     * # Find the snapshot:
-     * snapshot = None
-     * for current in vm.snapshots.list():
-     *   if current.get_description() == 'mysnap':
-     *     snapshot = current
-     *     break
-     *
-     * # Find the identifiers of the disks of the snapshot, as we need them in
-     * # order to explicitly indicate that we want them created in a different storage
-     * # domain:
-     * disk_ids = []
-     * for current in snapshot.disks.list():
-     *   disk_ids.append(current.get_id())
-     *
-     * # Find the storage domain where the disks should be created:
-     * sd = api.storagedomains.get(name="yourdata")
-     *
-     * # Prepare the list of disks for the operation to create the snapshot,
-     * # explicitly indicating for each of them the storage domain where it should be
-     * # created:
-     * disk_list = []
-     * for disk_id in disk_ids:
-     *   disk = params.Disk(
-     *     image_id=disk_id,
-     *     storage_domains=params.StorageDomains(
-     *       storage_domain=[
-     *         params.StorageDomain(
-     *           id=sd.get_id(),
-     *         ),
-     *       ],
-     *     ),
-     *   )
-     *   disk_list.append(disk)
-     *
-     * # Create the VM from the snapshot:
-     * api.vms.add(
-     *   params.VM(
-     *     name="myclone",
-     *     cluster=params.Cluster(name="mycluster"),
-     *     snapshots=params.Snapshots(
-     *       snapshot=[
-     *         params.Snapshot(
-     *           id=snapshot.get_id(),
-     *         ),
-     *       ],
-     *     ),
-     *     disks=params.Disks(
-     *       disk=disk_list,
-     *     ),
-     *   )
-     * )
-     * ----
      */
     interface Add {
         @In @Out Vm vm();
