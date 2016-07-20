@@ -63,6 +63,17 @@ public interface SystemService {
     @Service DomainsService domains();
     @Service EventsService events();
     @Service ExternalHostProvidersService externalHostProviders();
+
+    /**
+     * Reference to service facilitating import of external virtual machines.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 27 Jul 2016
+     * @status added
+     * @since 4.0.4
+     */
+    @Service ExternalVmImportsService externalVmImports();
+
     @Service GroupsService groups();
     @Service HostsService hosts();
     @Service IconsService icons();
