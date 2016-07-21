@@ -53,7 +53,7 @@ public interface Vm extends VmBase {
      *
      * @author Marek Libra <mlibra@redhat.com>
      * @date 8 Jul 2016
-     * @state added
+     * @status added
      */
     @Link Template originalTemplate();
 
