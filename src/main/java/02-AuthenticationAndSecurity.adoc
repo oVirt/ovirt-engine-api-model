@@ -1,0 +1,221 @@
+# Authentication and Security
+
+## TLS/SSL Certification
+
+The {product-name} API requires Hypertext Transfer Protocol Secure
+(HTTPS) footnote:[HTTPS is described in
+http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS.]] for secure
+interaction with client software, such as the SDK and CLI components.
+This involves a process of obtaining a certificate from the
+{engine-name} and importing it into the certificate store of your
+client.
+
+IMPORTANT: Obtain your certificate from the {engine-name} using a secure
+network connection.
+
+### Obtaining a Certificate
+
+You can obtain a certificate from the {engine-name} and transfer it to
+the client machine using one of three methods:
+
+. *Method 1* - Use a command line tool to download the certificate from the
+engine. Examples of command line tools include `curl` and `wget`, both of
+which are available on multiple platforms.
++
+.. If using `curl`:
++
+[source,bash]
+----
+$ curl -o ca.crt http://[ovirt-server]/ca.crt
+----
++
+.. If using `wget`:
++
+[source,bash]
+----
+$ wget -O ca.crt http://[ovirt-server]/ca.crt
+----
+
+. *Method 2* - Use a web browser to navigate to the certificate located
+at:
++
+[source]
+----
+http://[ovirt-server]/ca.crt
+----
++
+Depending on the chosen browser, the certificate either downloads or
+imports into the browser's keystore.
++
+.. *If the browser downloads the certificate*: save the file as
+`ca.crt`.
++
+.. *If the browser imports the certificate*: export it from the
+browser's certification options and save it as `ca.crt`.
+
+. *Method 3* - Log in to the engine, export the certificate from the
+truststore and copy it to your client machine.
++
+.. Log in to the engine machine as the `root` user.
++
+.. Export the certificate from the truststore using the Java
+`keytool` management utility:
++
+[source,bash]
+----
+$ keytool \
+-exportcert \
+-keystore \
+/etc/pki/ovirt-engine/.truststore \
+-alias cacert \
+-storepass mypass \
+-file ca.crt
+----
++
+This creates a certificate file called `ca.crt`.
++
+.. Copy the certificate to the client machine using the `scp`
+command:
++
+[source,bash]
+----
+$ scp ca.cer [username]@[client-machine]:[directory]
+----
+
+Each of these methods results in a certificate file named `ca.crt` on
+your client machine. An API user imports this file into the certificate
+store of the client.  ⁠
+
+### Importing a Certificate to a Client
+
+Importing a certificate to a client relies on how the client itself
+stores and interprets certificates. This guide contains some examples on
+importing certificates. For clients not using Network Security Services
+(NSS) or Java KeyStore (JKS), see your client documentation for more
+information on importing a certificate.
+
+## HTTP Authentication
+
+Any user with an {engine-name} account has access to the API. An API
+user submits a mandatory {engine-name} user name and password with all
+requests to the API. Each request uses HTTP Basic Authentication
+footnote:[Basic Authentication is described in
+http://tools.ietf.org/html/rfc2617[RFC 2617 HTTP Authentication: Basic
+and Digest Access Authentication].] to encode these credentials. If a
+request does not include an appropriate `Authorization` header, the API
+sends a `401 Authorization Required` as a result:
+
+....
+HEAD [base] HTTP/1.1
+Host: [host]
+
+HTTP/1.1 401 Authorization Required
+....
+
+Request are issued with an `Authorization` header for the specified
+realm. An API user encodes an appropriate {engine-name} domain and user
+in the supplied credentials with the `username@domain:password`
+convention.
+
+The following table shows the process for encoding credentials in
+https://tools.ietf.org/html/rfc4648[Base64].
+
+.Encoding credentials for API access
+|===
+|Item |Value
+
+|User name
+|`admin`
+
+|Domain
+|`domain.example.com`
+
+|Password
+|`123456`
+
+|Unencoded credentials
+|`admin@domain.example.com:123456`
+
+|Base64 encoded credentials
+|`YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==`
+|===
+
+An API user provides the Base64 encoded credentials as shown:
+
+....
+HEAD [base] HTTP/1.1
+Host: [host]
+Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+
+HTTP/1.1 200 OK
+....
+
+IMPORTANT: Basic authentication involves potentially sensitive
+information, such as passwords, sent as plain text. API requires
+Hypertext Transfer Protocol Secure (HTTPS) for transport-level
+encryption of plain-text requests.
+
+IMPORTANT: Some Base64 libraries break the result into multiple lines
+and terminate each line with a newline character. This breaks the header
+and causes a faulty request. The `Authorization` header requires the
+encoded credentials on a single line within the header.
+
+## Authentication Sessions
+
+The API also provides the ability for authentication session support. An
+API user sends an initial request with authentication details, then
+sends all subsequent requests using a session cookie to authenticate.
+The following procedure demonstrates how to use an authenticated
+session.
+
+
+### Requesting an authenticated session
+
+. Send a request with the `Authorization` and `Prefer: persistent-auth`
+headers:
++
+....
+HEAD [base] HTTP/1.1
+Host: [host]
+Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+Prefer: persistent-auth
+
+HTTP/1.1 200 OK
+...
+....
++
+This returns a response with the following header:
++
+....
+Set-Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK; Path=/ovirt-engine/api; Secure
+....
++
+Note the `JSESSIONID=` value. In this example the value is
+`5dQja5ubr4yvI2MM2z+LZxrK`.
+
+. Send all subsequent requests with the `Prefer: persistent-auth` and
+`Cookie` headers with the `JSESSIONID=` value. The `Authorization header
+is no longer needed when using an authenticated session.
++
+....
+HEAD [base] HTTP/1.1
+Host: [host]
+Prefer: persistent-auth
+Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK
+
+HTTP/1.1 200 OK
+...
+....
++
+. When the session is no longer required, perform a request to the
+sever without the `Prefer: persistent-auth` header.
++
+....
+HEAD [base] HTTP/1.1
+Host: [host]
+Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+
+HTTP/1.1 200 OK
+...
+....
++
