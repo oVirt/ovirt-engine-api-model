@@ -38,6 +38,6 @@ public interface AffinityLabelVmService {
      * Retrieves details about a vm that has this label assigned.
      */
     interface Get {
-        @Out Vm host();
+        @Out Vm vm();
     }
 }
