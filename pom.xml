@@ -52,7 +52,12 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.1.1</metamodel.version>
+    <metamodel.version>1.1.4</metamodel.version>
+
+    <!-- The name of the product and the engine that will be used in the generated
+         documentation: -->
+    <product.name>oVirt</product.name>
+    <engine.name>oVirt Engine</engine.name>
 
   </properties>
 
@@ -163,6 +168,8 @@
                   <arguments>
                     <argument>org.ovirt.api.metamodel.tool.Tool</argument>
                     <argument>--model=${project.basedir}/src/main/java</argument>
+                    <argument>--adoc-attribute=product-name:${product.name}</argument>
+                    <argument>--adoc-attribute=engine-name:${engine.name}</argument>
                     <argument>--json-description=${project.basedir}/target/model.json</argument>
                     <argument>--xml-description=${project.basedir}/target/model.xml</argument>
                   </arguments>
@@ -234,6 +241,8 @@
                     <argument>org.ovirt.api.metamodel.tool.Tool</argument>
                     <argument>--model=${project.basedir}/src/main/java</argument>
                     <argument>--docs=${project.basedir}/target/generated-adoc</argument>
+                    <argument>--adoc-attribute=product-name:${product.name}</argument>
+                    <argument>--adoc-attribute=engine-name:${engine.name}</argument>
                     <argument>--report=${project.basedir}/target/generated-csv/model.csv</argument>
                   </arguments>
                   <includePluginDependencies>true</includePluginDependencies>
