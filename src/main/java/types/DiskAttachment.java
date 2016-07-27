@@ -54,6 +54,35 @@ public interface DiskAttachment extends Identified {
     Boolean active();
 
     /**
+     * The logical name of the virtual machine's disk, i.e the
+     * name of the disk as seen from inside the virtual machine.
+     * Note that the logical name of a disk is reported only
+     * when the guest agent is installed and running inside the
+     * virtual machine.
+     *
+     * For example, if the guest operating system is Linux and
+     * the disk is connected via a VirtIO interface, the logical
+     * name will be reported as `/dev/vda`:
+     *
+     * [source,xml]
+     * ----
+     * <disk_attachment>
+     *   ...
+     *   <logical_name>/dev/vda</logical_name>
+     * </disk_attachment>
+     * ----
+     *
+     * If the guest operating system is Windows, the logical
+     * name will be reported as `\\.\PHYSICALDRIVE0`.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 27 Jul 2016
+     * @status added
+     * @since 4.0.2
+     */
+    String logicalName();
+
+    /**
      * Reference to the disk.
      */
     @Link Disk disk();
