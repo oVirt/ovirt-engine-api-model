@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.8 / Aug 2 2016
+
+Bug fixes:
+
+* Remove the "active" property from Disk.
+
 == 4.1.7 / Jul 28 2016
 
 Bug fixes:
