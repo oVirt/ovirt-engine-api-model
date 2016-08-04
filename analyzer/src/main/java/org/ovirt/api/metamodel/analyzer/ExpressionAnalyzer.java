@@ -56,11 +56,11 @@ import org.ovirt.api.metamodel.analyzer.ExpressionParser.StatementAssertContext;
 import org.ovirt.api.metamodel.analyzer.ExpressionParser.StatementCallContext;
 import org.ovirt.api.metamodel.analyzer.ExpressionParser.StatementReturnContext;
 import org.ovirt.api.metamodel.analyzer.ExpressionParser.StatementsContext;
-import org.ovirt.api.metamodel.concepts.NameParser;
 import org.ovirt.api.metamodel.concepts.ArrayExpression;
 import org.ovirt.api.metamodel.concepts.BinaryExpression;
 import org.ovirt.api.metamodel.concepts.Expression;
 import org.ovirt.api.metamodel.concepts.LiteralExpression;
+import org.ovirt.api.metamodel.concepts.NameParser;
 import org.ovirt.api.metamodel.concepts.Operator;
 import org.ovirt.api.metamodel.concepts.UnaryExpression;
 
@@ -203,8 +203,9 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
     @Override
     public void exitRelationalExpression(RelationalExpressionContext context) {
         BinaryExpression result = new BinaryExpression();
-        Operator operator = null;
-        switch (context.operator.getText()) {
+        Operator operator;
+        String text = context.operator.getText();
+        switch (text) {
         case "==":
             operator = Operator.EQUAL;
             break;
@@ -224,7 +225,7 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
             operator = Operator.LESS_THAN_OR_EQUAL;
             break;
         default:
-            throw new IllegalArgumentException("The string \"" + operator + "\" isn't a valid relational operator");
+            throw new IllegalArgumentException("The string \"" + text + "\" isn't a valid relational operator");
         }
         result.setOperator(operator);
         result.setLeft(context.left.result);
@@ -245,8 +246,9 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
     @Override
     public void exitArithmeticBinaryTerm(ArithmeticBinaryTermContext context) {
         BinaryExpression result = new BinaryExpression();
-        Operator operator = null;
-        switch (context.operator.getText()) {
+        Operator operator;
+        String text = context.operator.getText();
+        switch (text) {
         case "+":
             operator = Operator.ADD;
             break;
@@ -254,7 +256,7 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
             operator = Operator.SUBTRACT;
             break;
         default:
-            throw new IllegalArgumentException("The string \"" + operator + "\" isn't valid additive operator");
+            throw new IllegalArgumentException("The string \"" + text + "\" isn't valid additive operator");
         }
         result.setOperator(operator);
         result.setLeft(context.left.result);
@@ -270,8 +272,9 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
     @Override
     public void exitArithmeticBinaryFactor(ArithmeticBinaryFactorContext context) {
         BinaryExpression result = new BinaryExpression();
-        Operator operator = null;
-        switch (context.operator.getText()) {
+        Operator operator;
+        String text = context.operator.getText();
+        switch (text) {
         case "*":
             operator = Operator.MULTIPLY;
             break;
@@ -282,7 +285,7 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
             operator = Operator.REMAINDER;
             break;
         default:
-            throw new IllegalArgumentException("The string \"" + operator + "\" isn't valid multiplicative operator");
+            throw new IllegalArgumentException("The string \"" + text + "\" isn't valid multiplicative operator");
         }
         result.setOperator(operator);
         result.setLeft(context.left.result);
@@ -349,8 +352,9 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
 
     @Override
     public void exitLiteralBoolean(LiteralBooleanContext context) {
-        Boolean result = null;
-        switch (context.getText()) {
+        Boolean result;
+        String text = context.getText();
+        switch (text) {
         case "false":
             result = Boolean.FALSE;
             break;
@@ -358,9 +362,7 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
             result = Boolean.TRUE;
             break;
         default:
-            throw new IllegalArgumentException(
-                "The string \"" + context.getText() + "\" isn't a valid boolean literal"
-            );
+            throw new IllegalArgumentException("The string \"" + text + "\" isn't a valid boolean literal");
         }
         context.result = result;
     }
