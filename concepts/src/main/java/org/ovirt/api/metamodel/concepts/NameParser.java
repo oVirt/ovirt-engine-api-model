@@ -44,15 +44,12 @@ public class NameParser {
      * those words.
      *
      * @param text the text to process
-     * @return
      */
     public static Name parseUsingCase(String text) {
         Name name = new Name();
         StringBuilder wordBuffer = new StringBuilder();
-        Boolean previousCase = false;
         for (char current : text.toCharArray()) {
-            boolean currentCase = Character.isUpperCase(current);
-            if (currentCase != previousCase) {
+            if (Character.isUpperCase(current)) {
                 if (wordBuffer.length() > 0) {
                     name.addWord(wordBuffer.toString());
                     wordBuffer.setLength(0);
