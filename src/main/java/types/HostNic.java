@@ -44,6 +44,26 @@ public interface HostNic extends Identified {
      */
     HostNicVirtualFunctionsConfiguration virtualFunctionsConfiguration();
 
+    /**
+     * The `ad_aggregator_id` property of a bond or bond slave, for bonds in mode 4.
+     * Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation -
+     * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia]
+     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation].
+     * This is only valid for bonds in mode 4, or NICs (NIC - network interface card) which are part of a bond.
+     * It is not present for bonds in other modes, or NICs which are not part in a bond in mode 4.
+     * The `ad_aggregator_id` property indicates which of the bond slaves are active. The value of the
+     * `ad_aggregator_id` of an active slave is the same the value of the  `ad_aggregator_id` property of the bond.
+     * This parameter is read only. Setting it will have no effect on the bond/NIC.
+     * It is retrieved from `/sys/class/net/bondX/bonding/ad_aggregator` file for a bond, and the
+     * `/sys/class/net/ensX/bonding_slave/ad_aggregator_id` file for a NIC.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 10 Aug 2016
+     * @status added
+     * @since 4.0.3
+     */
+    Integer adAggregatorId();
+
     @Link Host host();
     @Link Network network();
     @Link Qos qos();
