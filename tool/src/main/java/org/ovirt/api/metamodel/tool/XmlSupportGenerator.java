@@ -584,7 +584,6 @@ public class XmlSupportGenerator extends JavaGenerator {
         Type type = member.getType();
         String field = javaNames.getJavaMemberStyleName(name);
         String tag = schemaNames.getSchemaTagName(name);
-        String singularTag = schemaNames.getSchemaTagName(names.getSingular(name));
         javaBuffer.addLine("if (object.%1$sPresent()) {", field);
         if (type instanceof PrimitiveType) {
             Model model = type.getModel();
@@ -615,12 +614,13 @@ public class XmlSupportGenerator extends JavaGenerator {
             Type elementType = listType.getElementType();
             if (elementType instanceof StructType || elementType instanceof EnumType) {
                 JavaClassName writerName = javaTypes.getXmlWriterName(elementType);
+                String elementTag = schemaNames.getSchemaTagName(elementType.getName());
                 javaBuffer.addImport(writerName);
                 javaBuffer.addLine(
                     "%1$s.writeMany(object.%2$s().iterator(), \"%3$s\", \"%4$s\", writer);",
                     writerName.getSimpleName(),
                     field,
-                    singularTag,
+                    elementTag,
                     tag
                 );
             }
