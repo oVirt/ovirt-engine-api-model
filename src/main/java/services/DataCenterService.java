@@ -43,7 +43,36 @@ public interface DataCenterService {
         @In Boolean async();
     }
 
+    /**
+     * Removes the data center.
+     *
+     * Without any special parameters, the storage domains attached to the data center are detached and then removed
+     * from the storage. If something fails when performing this operation, for example if there is no host available to
+     * remove the storage domains from the storage, the complete operation will fail.
+     *
+     * If the `force` parameter is `true` then the operation will always succeed, even if something fails while removing
+     * one storage domain, for example. The failure is just ignored and the data center is removed from the database
+     * anyway.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Aug 2016
+     * @status added
+     * @since 4.0.0
+     */
     interface Remove {
+        /**
+         * Indicates if the operation should succeed, and the storage domain removed from the database, even if
+         * something fails during the operation.
+         *
+         * This parameter is optional, and the default value is `false`.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 15 Aug 2016
+         * @status added
+         * @since 4.0.4
+         */
+        @In Boolean force();
+
         /**
          * Indicates if the remove should be performed asynchronously.
          */

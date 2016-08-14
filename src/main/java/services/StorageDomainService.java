@@ -92,7 +92,7 @@ public interface StorageDomainService {
     /**
      * Removes the storage domain.
      *
-     * Without any special parameters, the storage domain is detached from the system and removed fro the database. The
+     * Without any special parameters, the storage domain is detached from the system and removed from the database. The
      * storage domain can then be imported to the same or different setup, with all the data on it. If the storage isn't
      * accessible the operation will fail.
      *
@@ -107,7 +107,7 @@ public interface StorageDomainService {
          * Indicates what host should be used to remove the storage domain.
          *
          * This parameter is mandatory, and it can contain the name or the identifier of the host. For example, to use
-         * the host named `myhost` to remove the storage domain with identifer `123` send a request like this:
+         * the host named `myhost` to remove the storage domain with identifier `123` send a request like this:
          *
          * [source]
          * ----
@@ -128,7 +128,7 @@ public interface StorageDomainService {
          * Indicates if the operation should succeed, and the storage domain removed from the database, even if the
          * storage isn't accessible.
          *
-         * This parameter is optiona, and the default value is `false`.
+         * This parameter is optional, and the default value is `false`.
          */
         // TODO: Consider renaming this to `force`, or `ignore_errors`, as that describes better what it actually means.
         @In Boolean destroy();
