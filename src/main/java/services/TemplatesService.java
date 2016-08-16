@@ -27,6 +27,37 @@ import types.Template;
 public interface TemplatesService {
     interface Add {
         @In @Out Template template();
+
+        /**
+         * Specifies if the permissions of the virtual machine should be copied to the template.
+         *
+         * If this optional parameter is provided, and its values is `true` then the permissions of the virtual machine
+         * (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
+         * a template from the `myvm` virtual machine copying its permissions, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/templates?clone_permissions=true
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <template>
+         *   <name>mytemplate<name>
+         *   <vm>
+         *     <name>myvm<name>
+         *   </vm>
+         * </template>
+         * ----
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 16 Aug 2016
+         * @status added
+         * @since 4.0.0
+         */
+        @In Boolean clonePermissions();
     }
 
     interface List {
