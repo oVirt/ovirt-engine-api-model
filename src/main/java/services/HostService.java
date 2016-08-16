@@ -203,6 +203,21 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Check if there are upgrades available for the host. If there are upgrades
+     * available an icon will be displayed next to host status icon in the webadmin.
+     * Audit log messages are also added to indicate the availability of upgrades.
+     * The upgrade can be started from the webadmin or by using the
+     * <<services/host/methods/upgrade, upgrade>> host action.
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 16 Aug 2016
+     * @status added
+     * @since 4.1
+     */
+    interface UpgradeCheck {
+    }
+
     interface Refresh {
         /**
          * Indicates if the refresh should be performed asynchronously.
