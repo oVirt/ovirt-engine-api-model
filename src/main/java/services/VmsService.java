@@ -139,6 +139,40 @@ public interface VmsService {
         @In @Out Vm vm();
 
         /**
+         * Specifies if the virtual machine should be independent of the template.
+         *
+         * When a virtual machine is created from a template by default the disks of the virtual machine depend on
+         * the disks of the template, they are using the https://en.wikipedia.org/wiki/Copy-on-write[_copy on write_]
+         * mechanism so that only the differences from the template take up real storage space. If this parameter is
+         * specified and the value is `true` then the disks of the created virtual machine will be _cloned_, and
+         * independent of the template. For example, to create an independent virtual machine, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/vms?clone=true
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <vm>
+         *   <name>myvm<name>
+         *   <template>
+         *     <name>mytemplate<name>
+         *   </template>
+         *   <cluster>
+         *     <name>mycluster<name>
+         *   </cluster>
+         * </vm>
+         * ----
+         *
+         * NOTE: When this parameter is `true` the permissions of the template will also be copied, as when using
+         * `clone_permissions=true`.
+         */
+        @In Boolean clone();
+
+        /**
          * Specifies if the permissions of the template should be copied to the virtual machine.
          *
          * If this optional parameter is provided, and its values is `true` then the permissions of the template (only
