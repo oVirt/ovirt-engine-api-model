@@ -51,6 +51,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Marks the network configuration as good and persists it inside the host.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 16 Aug 2016
+     * @status added
+     */
     interface CommitNetConfig {
         /**
          * Indicates if the action should be performed asynchronously.
@@ -343,6 +350,9 @@ public interface HostService extends MeasurableService {
      *   ),
      * )
      * ----
+     *
+     * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
+     * when the host is rebooted, remember to call <<services/host/methods/commitnetconfig, commitnetconfig>>.
      */
     interface SetupNetworks {
         @In NetworkAttachment[] modifiedNetworkAttachments();
