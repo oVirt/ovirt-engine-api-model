@@ -137,6 +137,40 @@ public interface VmsService {
      */
     interface Add {
         @In @Out Vm vm();
+
+        /**
+         * Specifies if the permissions of the template should be copied to the virtual machine.
+         *
+         * If this optional parameter is provided, and its values is `true` then the permissions of the template (only
+         * the direct ones, not the inherited ones) will be copied to the created virtual machine. For example, to
+         * create a virtual machine from the `mytemplate` template copying its permissions, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vms?clone_permissions=true
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <vm>
+         *   <name>myvm<name>
+         *   <template>
+         *     <name>mytemplate<name>
+         *   </template>
+         *   <cluster>
+         *     <name>mycluster<name>
+         *   </cluster>
+         * </vm>
+         * ----
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 16 Aug 2016
+         * @status added
+         * @since 4.0.0
+         */
+        @In Boolean clonePermissions();
     }
 
     interface List {
