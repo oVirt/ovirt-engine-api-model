@@ -33,6 +33,7 @@ public interface Disk extends Device {
     Boolean shareable();
     Boolean wipeAfterDelete();
     Boolean propagateErrors();
+    Boolean active();
     Boolean readOnly();
     HostStorage lunStorage();
     ScsiGenericIO sgio();
