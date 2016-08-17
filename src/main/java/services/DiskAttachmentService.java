@@ -23,7 +23,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.DiskAttachment;
 
 /**
- * This disk manages the attachment of a disk to a virtual machine.
+ * This service manages the attachment of a disk to a virtual machine.
  */
 @Service
 public interface DiskAttachmentService {
