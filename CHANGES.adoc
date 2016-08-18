@@ -1,7 +1,21 @@
 = Changes
 
 This document describes the relevant changes between releases of the
-API model.
+API metamodel.
+
+== 1.1.2 / Aug 18 2016
+
+New features:
+
+* Use dash as section id separator in the generated AsciiDoc
+  documentation.
+
+Bug fixes:
+
+* Report correctly incorrect operators in expressions.
+
+* Generate XML tag name for list elements from the name of the type of
+  the elements instead of from the name of the elements.
 
 == 1.1.1 / Jul 6 2016
 
