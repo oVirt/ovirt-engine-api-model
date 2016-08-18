@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.32 / Aug 18 2016
+
+Bug fixes:
+
+* Add the missing `@Out` annotation to the primary parameter of the
+  service that imports virtual machines from external systems.
+
 == 4.0.31 / Aug 18 2016
 
 New features:
