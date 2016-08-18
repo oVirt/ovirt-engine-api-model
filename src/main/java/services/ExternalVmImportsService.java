@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import annotations.Area;
@@ -70,6 +71,6 @@ public interface ExternalVmImportsService {
      * @since 4.0
      */
     interface Add {
-        @In ExternalVmImport _import();
+        @In @Out ExternalVmImport _import();
     }
 }
