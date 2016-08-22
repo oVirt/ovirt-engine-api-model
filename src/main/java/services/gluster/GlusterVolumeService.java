@@ -32,7 +32,6 @@ public interface GlusterVolumeService extends MeasurableService {
         @Out GlusterVolume volume();
     }
 
-    // TODO: Should also support "application/pdf"
     interface GetProfileStatistics {
         @Out GlusterVolumeProfileDetails details();
     }
