@@ -23,7 +23,6 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface Cluster extends Identified {
     Cpu cpu();
     MemoryPolicy memoryPolicy();
-    SchedulingPolicy schedulingPolicy();
     Version version();
     Version[] supportedVersions();
     ErrorHandling errorHandling();
@@ -44,9 +43,65 @@ public interface Cluster extends Identified {
     MigrationOptions migration();
 
     /**
+     * Custom scheduling policy properties of the cluster.
+     * These optional properties override the properties of the
+     * scheduling policy specified by the `scheduling_policy` link
+     * and apply only for this specific cluster.
+     *
+     * For example, to update the custom properties of the cluster
+     * send a request:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/clusters/123
+     * ----
+     *
+     * With a request body:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   <custom_scheduling_policy_properties>
+     *     <property>
+     *       <name>HighUtilization</name>
+     *       <value>70</value>
+     *     </property>
+     *   </custom_scheduling_policy_properties>
+     * </cluster>
+     * ----
+     *
+     * Update operations using `custom_scheduling_policy_properties` attribute
+     * will not update the the properties of the scheduling policy specified by
+     * the `scheduling_policy` link,
+     * they will only be reflected on this specific cluster.
+     *
+     * @author Yanir Quinn <yquinn@redhat.com>
+     * @date 29 Aug 2016
+     * @status added
+     * @since 4.0.6
+     */
+    Property[] customSchedulingPolicyProperties();
+
+    /**
      * Type of switch which will be used by all networks in given cluster.
      */
     SwitchType switchType();
+
+    /**
+     * Reference to the scheduling policy used by default by
+     * this cluster.
+     *
+     * NOTE: The scheduling policy properties are taken by
+     * default from the referenced scheduling policy, but
+     * they are overridden by the properties specified in
+     * the `custom_scheduling_policy_properties` attribute
+     * for this cluster.
+     *
+     * @author Yanir Quinn <yquinn@redhat.com>
+     * @date 29 Aug 2016
+     * @status added
+     */
+    @Link SchedulingPolicy schedulingPolicy();
 
     @Link DataCenter dataCenter();
     @Link Network managementNetwork();
