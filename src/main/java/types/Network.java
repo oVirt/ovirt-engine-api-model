@@ -27,7 +27,7 @@ public interface Network extends Identified {
     NetworkStatus status();
     Boolean display();
     Integer mtu();
-    String[] usages();
+    NetworkUsage[] usages();
     Boolean required();
     Boolean profileRequired();
 
