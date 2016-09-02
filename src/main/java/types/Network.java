@@ -118,6 +118,17 @@ public interface Network extends Identified {
     Boolean required();
     Boolean profileRequired();
 
+    /*
+     * DNS resolver configuration. Will be reported when retrieving network using GET.
+     * Optional both when creating a new network or updating existing one.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 19 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    DnsResolverConfiguration dnsResolverConfiguration();
+
     /**
      * A reference to the data center of which the network is a member.
      *

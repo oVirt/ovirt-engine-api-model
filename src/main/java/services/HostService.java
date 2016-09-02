@@ -20,14 +20,13 @@ import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-
 import services.externalhostproviders.KatelloErrataService;
 import types.Cluster;
 import types.Host;
 import types.HostNic;
 import types.IscsiDetails;
-import types.NetworkLabel;
 import types.NetworkAttachment;
+import types.NetworkLabel;
 import types.PowerManagement;
 import types.Ssh;
 import types.StorageDomain;
@@ -515,6 +514,12 @@ public interface HostService extends MeasurableService {
      *           </ip>
      *         </ip_address_assignment>
      *       </ip_address_assignments>
+     *       <dns_resolver_configuration>
+     *         <name_servers>
+     *           <name_server>1.1.1.1</name_server>
+     *           <name_server>2.2.2.2</name_server>
+     *         </name_servers>
+     *       </dns_resolver_configuration>
      *     </network_attachment>
      *   </modified_network_attachments>
      *  </action>

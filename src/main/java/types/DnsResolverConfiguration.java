@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,29 +16,25 @@ limitations under the License.
 
 package types;
 
-import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents configuration of DNS resolver.
+ *
+ * @author Martin Mucha <mmucha@redhat.com>
+ * @date 19 Oct 2016
+ * @status added
+ * @since 4.1
+ */
 @Type
-public interface NetworkAttachment extends Identified {
-    IpAddressAssignment[] ipAddressAssignments();
-    Property[] properties();
-    Boolean inSync();
-    ReportedConfiguration[] reportedConfigurations();
-
+public interface DnsResolverConfiguration {
     /**
-     * DNS resolver configuration. Will be reported when retrieving network attachment using GET.
-     * Optional both when creating a new network attachment or updating existing one.
+     * Array of addresses of namer servers. Either IPv4 or IPv6 addresses might be specified.
      *
      * @author Martin Mucha <mmucha@redhat.com>
      * @date 19 Oct 2016
      * @status added
      * @since 4.1
      */
-    DnsResolverConfiguration dnsResolverConfiguration();
-
-    @Link Network network();
-    @Link HostNic hostNic();
-    @Link Host host();
-    @Link Qos qos();
+    String[] nameServers();
 }
