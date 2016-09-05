@@ -34,11 +34,21 @@ public abstract class JavaGenerator {
     // The directory were the output will be generated:
     protected File outDir;
 
+    // The directory were the resources file will be generated:
+    protected File resourcesDir;
+
     /**
      * Set the directory were the output will be generated.
      */
     public void setOutDir(File newOutDir) {
         outDir = newOutDir;
+    }
+
+    /**
+     * Set the directory were the resources files will be generated.
+     */
+    public void setResourcesDir(File newResourcesDir) {
+        resourcesDir = newResourcesDir;
     }
 
     /**

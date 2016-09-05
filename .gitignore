@@ -10,3 +10,4 @@ release.properties
 repository/
 settings.xml
 target/
+**/methods.properties

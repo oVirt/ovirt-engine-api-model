@@ -46,6 +46,11 @@ limitations under the License.
       <artifactId>javax.json</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>

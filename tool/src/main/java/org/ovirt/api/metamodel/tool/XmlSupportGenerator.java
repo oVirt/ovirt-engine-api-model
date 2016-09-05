@@ -19,6 +19,7 @@ package org.ovirt.api.metamodel.tool;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -80,6 +81,8 @@ public class XmlSupportGenerator extends JavaGenerator {
             .filter(EnumType.class::isInstance)
             .map(EnumType.class::cast)
             .forEach(this::generateEnumSupportClasses);
+
+        generateXmlTagsPropertiesFile(model);
     }
 
     private void generateStructSupportClasses(StructType type) {
@@ -90,6 +93,35 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateEnumSupportClasses(EnumType type) {
         generateEnumReader(type);
         generateEnumWriter(type);
+    }
+
+    private void generateXmlTagsPropertiesFile(Model model) {
+        PropertiesBuffer propertiesBuffer = new PropertiesBuffer();
+
+        // Path of the methods.properties file:
+        String methods = XmlReader.class.getPackage().getName().replaceAll("\\.", "/") + "/" + XmlReader.METHODS_FILE;
+
+        // Generate properties to register for every tag appropriate reader method:
+        model.types()
+            .filter(StructType.class::isInstance)
+            .map(StructType.class::cast)
+            .sorted()
+            .forEach(type -> {
+                Name typeName = type.getName();
+                String singularTag = schemaNames.getSchemaTagName(typeName);
+                String pluralTag = schemaNames.getSchemaTagName(names.getPlural(typeName));
+                JavaClassName className = javaTypes.getXmlReaderName(type);
+
+                propertiesBuffer.addProperty(singularTag, String.format("%1$s.readOne", className));
+                propertiesBuffer.addProperty(pluralTag, String.format("%1$s.readMany", className));
+            });
+
+        try {
+            propertiesBuffer.write(new File(resourcesDir, methods));
+        }
+        catch (IOException exception) {
+            throw new RuntimeException("Can't write file for XML generic methods reader.", exception);
+        }
     }
 
     private void generateStructReader(StructType type) {

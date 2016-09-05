@@ -74,6 +74,7 @@ public class Tool {
     private static final String REPORT_OPTION = "report";
     private static final String ADOC_ATTRIBUTE_OPTION = "adoc-attribute";
     private static final String ADOC_SEPARATOR_OPTION = "adoc-separator";
+    private static final String RESOURCES_OPTION = "resources";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
@@ -268,6 +269,15 @@ public class Tool {
             .argName("FILE")
             .build()
         );
+        options.addOption(Option.builder()
+            .longOpt(RESOURCES_OPTION)
+            .desc("The directory where the resources files will be created.")
+            .type(File.class)
+            .required(false)
+            .hasArg(true)
+            .argName("DIRECTORY")
+            .build()
+        );
 
         // Parse the command line:
         CommandLineParser parser = new DefaultParser();
@@ -293,6 +303,7 @@ public class Tool {
         File javaDir = (File) line.getParsedOptionValue(JAVA_OPTION);
         File docsDir = (File) line.getParsedOptionValue(DOCS_OPTION);
         File reportFile = (File) line.getParsedOptionValue(REPORT_OPTION);
+        File resourcesDir = (File) line.getParsedOptionValue(RESOURCES_OPTION);
 
         // Analyze the model files:
         Model model = new Model();
@@ -403,6 +414,7 @@ public class Tool {
 
             // Generate XML support classes:
             xmlSupportGenerator.setOutDir(javaDir);
+            xmlSupportGenerator.setResourcesDir(resourcesDir);
             xmlSupportGenerator.generate(model);
         }
 

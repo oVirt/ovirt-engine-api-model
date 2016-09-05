@@ -16,18 +16,14 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.runtime.xml;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -35,14 +31,70 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.TimeZone;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class wraps the {@link XMLStreamReader} class so that the methods don't send checked exceptions, in order to
  * simplify its usage together with streams and lambdas.
  */
 public class XmlReader implements AutoCloseable {
+
+    private static final Logger log = LoggerFactory.getLogger(XmlReader.class);
+
+    /**
+     * This dictionary stores for each known tag a reference to the method that read the object corresponding for that
+     * tag. For example, for the {@code vm} tag it will contain a reference to the {@code VmReader.readOne} method,
+     * and for the {@code vms} tag it will contain a reference to the {@code VmReader.readMany} method.
+     */
+    private static Map<String, Method> readers = new HashMap<>();
+
+    public static final String METHODS_FILE = "methods.properties";
+
+    /**
+     * This static block is needed to initialize with proper data the {@code readers} variable. Those data are stored
+     * in @{code methods.properties} of the result .jar file and should be of the following format:
+     *   tag=Full.Class.Name.methodName
+     * This block parses the properties values of the properties file and store them in the {@code readers} variable.
+     */
+    static {
+        try (
+            InputStream in = XmlReader.class.getResourceAsStream(METHODS_FILE);
+            java.io.Reader reader = new InputStreamReader(in, StandardCharsets.UTF_8)
+        ) {
+            Properties props = new Properties();
+            props.load(reader);
+
+            Enumeration propertiesEnumeration = props.propertyNames();
+            while (propertiesEnumeration.hasMoreElements()) {
+                String key = (String) propertiesEnumeration.nextElement();
+                String value = props.getProperty(key);
+                String className = value.substring(0, value.lastIndexOf("."));
+                String methodName = value.substring(value.lastIndexOf(".") + 1);
+
+                Class<?> clazz = Class.forName(className);
+                register(key, clazz.getDeclaredMethod(methodName, XmlReader.class));
+            }
+        } catch (Exception e) {
+            log.error("methods.properties file wasn't found: {}", e.getMessage());
+            log.debug("Exception:", e);
+        }
+    }
+
     // The wrapped XML reader:
     private XMLStreamReader reader;
 
@@ -400,6 +452,57 @@ public class XmlReader implements AutoCloseable {
         }
         catch (XMLStreamException exception) {
             throw new XmlException("Can't close", exception);
+        }
+    }
+
+
+    /**
+     * Registers a read method.
+     *
+     * @param tag The tag name.
+     * @param reader The reference to the method that reads the object corresponding to the `tag`.
+     */
+    public static void register(String tag, Method reader) {
+        readers.put(tag, reader);
+    }
+
+
+    /**
+     * Reads one object, determining the reader method to use based on the tag name of the first element. For example,
+     * if the first tag name is {@code vm} then it will create a {@code Vm} object, if it the tag is {@code vms} it
+     * will create an array of {@code Vm} objects, so on.
+     */
+    public Object read() {
+        String tag = null;
+        Method method = null;
+
+        try {
+            // Do nothing if there aren't more tags:
+            if (!forward()) {
+                return null;
+            }
+
+            tag = getLocalName();
+            method = readers.get(tag);
+
+            // Select the specific reader according to the tag:
+            if (method == null) {
+                throw new RuntimeException(
+                    String.format("Can't find a reader for tag '%s'", tag)
+                );
+            }
+
+            // Read the object using the specific reader:
+            return method.invoke(null, this);
+        }
+        catch (IllegalAccessException | InvocationTargetException exception) {
+            throw new RuntimeException(
+                String.format("Failed to invoke method '%1$s' to read element for tag '%2$s'", method, tag),
+                exception
+            );
+        }
+        finally {
+            close();
         }
     }
 }
