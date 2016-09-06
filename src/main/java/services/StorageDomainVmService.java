@@ -83,4 +83,14 @@ public interface StorageDomainVmService {
     }
 
     @Service StorageDomainContentDisksService disks();
+
+    /**
+     * Returns a reference to the service that manages the disk attachments of the virtual machine.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 6 Sep 2016
+     * @status added
+     * @since 4.0.4
+     */
+    @Service StorageDomainVmDiskAttachmentsService diskAttachments();
 }
