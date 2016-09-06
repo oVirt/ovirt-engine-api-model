@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.34 / Sep 6 2016
+
+New features:
+
+* Add services to support disk attachments of virtual machines available
+  for import from storage domains.
+
 == 4.0.33 / Aug 31 2016
 
 New features:
