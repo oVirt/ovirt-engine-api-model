@@ -80,5 +80,22 @@ public interface DiskService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Sparsify the disk.
+     *
+     * Sparsification frees space in the disk image that is not used by its
+     * filesystem. As a result, the image will occupy less space on the storage.
+     *
+     * Currently sparsification works only on disks without snapshots. Disks
+     * having derived disks are also not allowed.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 12 Sep 2016
+     * @status added
+     * @since 4.1
+     */
+    interface Sparsify {
+    }
+
     @Service AssignedPermissionsService permissions();
 }
