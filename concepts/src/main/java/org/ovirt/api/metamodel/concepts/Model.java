@@ -220,7 +220,7 @@ public class Model {
     }
 
     /**
-     * Returns a referene to the built-in integer type of this model.
+     * Returns a reference to the built-in integer type of this model.
      */
     public Type getIntegerType() {
         return integerType;
