@@ -105,15 +105,6 @@ public interface Cluster extends Identified {
 
     @Link DataCenter dataCenter();
     @Link Network managementNetwork();
-
-    /**
-     * A reference to the MAC pool used by this cluster.
-     *
-     * NOTE: This will be available only with version 4.0.1 or newer of the
-     * engine.
-     */
-    @Link MacPool macPool();
-
     @Link AffinityGroup[] affinityGroups();
     @Link CpuProfile[] cpuProfiles();
     @Link GlusterHook[] glusterHooks();
