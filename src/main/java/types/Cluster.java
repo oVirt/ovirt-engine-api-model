@@ -109,8 +109,10 @@ public interface Cluster extends Identified {
     /**
      * A reference to the MAC pool used by this cluster.
      *
-     * NOTE: This will be available only with version 4.0.1 or newer of the
-     * engine.
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 12 Sep 2016
+     * @status added
+     * @since 4.1
      */
     @Link MacPool macPool();
 
