@@ -3,7 +3,7 @@
 This document describes the relevant changes between releases of the
 API model.
 
-== 4.1.12 / Sel 6 2016
+== 4.1.12 / Sep 6 2016
 
 New features:
 
