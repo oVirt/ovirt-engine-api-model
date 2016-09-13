@@ -25,6 +25,27 @@ import types.StorageDomain;
 @Service
 @Area("Storage")
 public interface AttachedStorageDomainService {
+    /**
+     * This operation activates an attached storage domain.
+     * Once the storage domain is activated it is ready for use with the data center.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/activate
+     * ----
+     *
+     * The activate action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Activate {
         /**
          * Indicates if the activation should be performed asynchronously.
