@@ -80,7 +80,45 @@ public interface StorageDomainService {
         @In Boolean async();
     }
 
+    /**
+     * This operation refreshes the LUN size.
+     *
+     * After increasing the size of the underlying LUN on the storage server,
+     * the user can refresh the LUN size.
+     * This action forces a rescan of the provided LUNs and
+     * updates the database with the new size if required.
+     *
+     * For example, in order to refresh the size of two LUNs send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storagedomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     *  <action>
+     *    <logical_units>
+     *      <logical_unit id="1IET_00010001"/>
+     *      <logical_unit id="1IET_00010002"/>
+     *    </logical_units>
+     *  </action>
+     * ----
+     *
+     * @author Fred Rolland <frolland@redhat.com>
+     * @date 13 Sep 2016
+     * @status added
+     */
     interface RefreshLuns {
+        /**
+         * The LUNs that need to be refreshed.
+         *
+         * @author Fred Rolland <frolland@redhat.com>
+         * @date 13 Sep 2016
+         * @status added
+         */
         @In LogicalUnit[] logicalUnits();
 
         /**
