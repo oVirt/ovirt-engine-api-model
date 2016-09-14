@@ -46,6 +46,11 @@ public interface DataCenterService {
     /**
      * Removes the data center.
      *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/datacenters/123
+     * ----
+     *
      * Without any special parameters, the storage domains attached to the data center are detached and then removed
      * from the storage. If something fails when performing this operation, for example if there is no host available to
      * remove the storage domains from the storage, the complete operation will fail.
