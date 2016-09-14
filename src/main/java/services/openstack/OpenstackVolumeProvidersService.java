@@ -25,10 +25,48 @@ import types.OpenStackVolumeProvider;
 @Service
 @Area("Storage")
 public interface OpenstackVolumeProvidersService {
+    /**
+     * Adds a new volume provider.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/openstackvolumeproviders
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <openstack_volume_provider>
+     *   <name>mycinder</name>
+     *   <url>https://mycinder.example.com:8776</url>
+     *   <data_center>
+     *     <name>mydc</name>
+     *   </data_center>
+     *   <requires_authentication>true</requires_authentication>
+     *   <username>admin</username>
+     *   <password>mypassword</password>
+     *   <tenant_name>mytenant</tenant_name>
+     * </openstack_volume_provider>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out OpenStackVolumeProvider provider();
     }
 
+    /**
+     * Retrieves the list of volume providers.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out OpenStackVolumeProvider[] providers();
 
