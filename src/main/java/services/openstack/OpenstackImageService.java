@@ -64,7 +64,16 @@ public interface OpenstackImageService {
      */
     interface Import {
         @In Disk disk();
+
+        /**
+         * Indicates whether the image should be imported as a template.
+         *
+         * @author Daniel Erez <derez@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean importAsTemplate();
+
         @In StorageDomain storageDomain();
         @In Template template();
 
