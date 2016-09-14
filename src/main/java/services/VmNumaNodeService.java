@@ -29,6 +29,35 @@ public interface VmNumaNodeService {
         @Out VirtualNumaNode node();
     }
 
+    /**
+     * Updates a virtual NUMA node.
+     *
+     * An example of pinning a virtual NUMA node to a physical NUMA node on the host:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123/numanodes/456
+     * ----
+     *
+     * The request body should contain the following:
+     *
+     * [source,xml]
+     * ----
+     * <vm_numa_node>
+     *   <numa_node_pins>
+     *     <numa_node_pin>
+     *       <host_numa_node id="789"/>
+     *       <index>0</index>
+     *       <pinned>true</pinned>
+     *     </numa_node_pin>
+     *   </numa_node_pins>
+     * </vm_numa_node>
+     * ----
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out VirtualNumaNode node();
 
@@ -38,6 +67,20 @@ public interface VmNumaNodeService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a virtual NUMA node.
+     *
+     * An example of removing a virtual NUMA node:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/vms/123/numanodes/456
+     * ----
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
