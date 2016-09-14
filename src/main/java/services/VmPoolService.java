@@ -25,6 +25,26 @@ import types.VmPool;
 @Service
 @Area("Virtualization")
 public interface VmPoolService {
+    /**
+     * This operation allocates a virtual machine in the virtual machine pool.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vmpools/123/allocatevm
+     * ----
+     *
+     * The allocate virtual machine action does not take any action specific parameters, so the request body should
+     * contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface AllocateVm {
         /**
          * Indicates if the allocation should be performed asynchronously.
