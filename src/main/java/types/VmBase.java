@@ -25,6 +25,40 @@ import java.util.Date;
 public interface VmBase extends Identified {
     VmType type();
     Integer memory();
+
+    /**
+     * The configuration of the CPU of the virtual machine.
+     *
+     * The sockets configuration can be updated without rebooting the virtual machine. The cores and the threads require
+     * a reboot in order to take place.
+     *
+     * For example, to change the number of sockets to 4 immediately and the number of cores and threads to 2 after
+     * reboot send a request:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123
+     * ----
+     *
+     * With a request body:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   <cpu>
+     *     <topology>
+     *       <sockets>4</sockets>
+     *       <cores>2</cores>
+     *       <threads>2</threads>
+     *     </topology>
+     *   </cpu>
+     * </vm>
+     * ----
+     *
+     * @author Jenny Tokar <jtokar@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Cpu cpu();
     Integer cpuShares();
     Bios bios();
