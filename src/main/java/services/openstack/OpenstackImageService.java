@@ -20,6 +20,7 @@ import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+import types.Cluster;
 import types.Disk;
 import types.OpenStackImage;
 import types.StorageDomain;
@@ -66,6 +67,16 @@ public interface OpenstackImageService {
         @In Boolean importAsTemplate();
         @In StorageDomain storageDomain();
         @In Template template();
+
+        /**
+         * This parameter is mandatory in case of using `import_as_template` and indicates which cluster should be used
+         * for import glance image as template.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
+        @In Cluster cluster();
 
         /**
          * Indicates if the import should be performed asynchronously.
