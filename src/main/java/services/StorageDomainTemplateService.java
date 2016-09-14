@@ -32,7 +32,45 @@ public interface StorageDomainTemplateService {
         @Out Template template();
     }
 
+    /**
+     * Action to import a template from an export storage domain.
+     *
+     * For example, to import the template `456` from the storage domain `123` send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storagedomains/123/templates/456/import
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source, xml]
+     * ----
+     * <action>
+     *   <storage_domain>
+     *     <name>myexport</name>
+     *   </storage_domain>
+     *   <cluster>
+     *     <name>mycluster</name>
+     *   </cluster>
+     * </action>
+     * ----
+     *
+     * @author Amit Aviram <aaviram@redhat.com>
+     * @date 16 Sep 2016
+     * @status added
+     */
     interface Import {
+        /**
+         * Use the optional `clone` parameter to generate new UUIDs for the imported template and its entities.
+         *
+         * The user might want to import a template with the `clone` parameter set to `false` when importing a template
+         * from an export domain, with templates that was exported by a different {product-name} environment.
+         *
+         * @author Amit Aviram <aaviram@redhat.com>
+         * @date 16 Sep 2016
+         * @status added
+         */
         @In Boolean clone();
         @In Cluster cluster();
         @In Boolean exclusive();
