@@ -19,6 +19,28 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a quota object.
+ *
+ * An example XML representation of a quota:
+ *
+ * [source,xml]
+ * ----
+ * <quota href="/ovirt-engine/api/datacenters/7044934e/quotas/dcad5ddc" id="dcad5ddc">
+ *   <name>My Quota</name>
+ *   <description>A quota for my oVirt environment</description>
+ *   <cluster_hard_limit_pct>0</cluster_hard_limit_pct>
+ *   <cluster_soft_limit_pct>0</cluster_soft_limit_pct>
+ *   <data_center href="/ovirt-engine/api/datacenters/7044934e" id="7044934e"/>
+ *   <storage_hard_limit_pct>0</storage_hard_limit_pct>
+ *   <storage_soft_limit_pct>0</storage_soft_limit_pct>
+ * </quota>
+ * ----
+ *
+ * @author Andrej Krejcir <akrejcir@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface Quota extends Identified {
     DataCenter dataCenter();
