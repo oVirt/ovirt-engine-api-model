@@ -195,5 +195,40 @@ public interface Disk extends Device {
     @Link Snapshot snapshot();
     @Link OpenStackVolumeType openstackVolumeType();
     @Link Permission[] permissions();
+
+    /**
+     * Statistics exposed by the disk. For example:
+     *
+     * [source,xml]
+     * ----
+     * <statistics>
+     *   <statistic href="/ovirt-engine/api/disks/123/statistics/456" id="456">
+     *     <name>data.current.read</name>
+     *     <description>Read data rate</description>
+     *     <kind>gauge</kind>
+     *     <type>decimal</type>
+     *     <unit>bytes_per_second</unit>
+     *     <values>
+     *       <value>
+     *         <datum>1052</datum>
+     *       </value>
+     *     </values>
+     *     <disk href="/ovirt-engine/api/disks/123" id="123"/>
+     *   </statistic>
+     *   ...
+     * </statistics>
+     * ----
+     *
+     * These statistics aren't directly included when the disk is retrieved, only a link. To obtain the statistics
+     * follow that link:
+     *
+     * ....
+     * GET /ovirt-engine/api/disks/123/statistics
+     * ....
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Statistic[] statistics();
 }

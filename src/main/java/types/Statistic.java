@@ -19,14 +19,62 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * A generic type used for all kinds of statistics.
+ *
+ * @author Shmuel Melamud <smelamud@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface Statistic extends Identified {
+
+    /**
+     * A data set that contains `datum`.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Value[] values();
+
+    /**
+     * The type of statistic measures.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     StatisticKind kind();
+
+    /**
+     * The data type for the statistical values that follow.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     ValueType type();
+
+    /**
+     * The unit or rate to measure of the statistical values.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     StatisticUnit unit();
 
+
+    /**
+     * A relationship to the containing `disk` resource.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Disk disk();
+
     @Link Host host();
     @Link HostNic hostNic();
     @Link NumaNode hostNumaNode();
