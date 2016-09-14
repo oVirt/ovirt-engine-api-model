@@ -29,6 +29,20 @@ public interface EventService {
         @Out Event event();
     }
 
+    /**
+     * Removes an event from internal audit log.
+     *
+     * An event can be removed by sending following request
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/events/123
+     * ----
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

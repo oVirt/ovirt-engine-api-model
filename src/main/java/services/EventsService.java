@@ -70,6 +70,54 @@ public interface EventsService {
         @In @Out Event event();
     }
 
+    /**
+     * Get list of events.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/events
+     * ----
+     *
+     * To the above request we get following reponse:
+     *
+     * [source,xml]
+     * ----
+     * <events>
+     *   <event href="/ovirt-engine/api/events/2" id="2">
+     *     <description>User admin@internal-authz logged out.</description>
+     *     <code>31</code>
+     *     <correlation_id>1e892ea9</correlation_id>
+     *     <custom_id>-1</custom_id>
+     *     <flood_rate>30</flood_rate>
+     *     <origin>oVirt</origin>
+     *     <severity>normal</severity>
+     *     <time>2016-09-14T12:14:34.541+02:00</time>
+     *     <user href="/ovirt-engine/api/users/57d91d48-00da-0137-0138-000000000244" id="57d91d48-00da-0137-0138-000000000244"/>
+     *   </event>
+     *   <event href="/ovirt-engine/api/events/1" id="1">
+     *     <description>User admin logged in.</description>
+     *     <code>30</code>
+     *     <correlation_id>1fbd81f4</correlation_id>
+     *     <custom_id>-1</custom_id>
+     *     <flood_rate>30</flood_rate>
+     *     <origin>oVirt</origin>
+     *     <severity>normal</severity>
+     *     <time>2016-09-14T11:54:35.229+02:00</time>
+     *     <user href="/ovirt-engine/api/users/57d91d48-00da-0137-0138-000000000244" id="57d91d48-00da-0137-0138-000000000244"/>
+     *   </event>
+     * </events>
+     * ----
+     *
+     * The following events occur:
+     *
+     * * id="1" - The API logs in the admin user account.
+     * * id="2" - The API logs out of the admin user account.
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     *
+     */
     interface List {
         @Out Event[] events();
 
@@ -99,7 +147,72 @@ public interface EventsService {
         @In Integer max();
 
         /**
-         * A query string used to restrict the returned events.
+         * The events service provides search queries similar to other resource services.
+         *
+         * We can search by providing specific severity.
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/events?search=severity%3Dnormal
+         * ----
+         *
+         * To the above request we get a list of events which severity is equal to `normal`:
+         *
+         * [source,xml]
+         * ----
+         * <events>
+         *   <event href="/ovirt-engine/api/events/2" id="2">
+         *     <description>User admin@internal-authz logged out.</description>
+         *     <code>31</code>
+         *     <correlation_id>1fbd81f4</correlation_id>
+         *     <custom_id>-1</custom_id>
+         *     <flood_rate>30</flood_rate>
+         *     <origin>oVirt</origin>
+         *     <severity>normal</severity>
+         *     <time>2016-09-14T11:54:35.229+02:00</time>
+         *     <user href="/ovirt-engine/api/users/57d91d48-00da-0137-0138-000000000244" id="57d91d48-00da-0137-0138-000000000244"/>
+         *   </event>
+         *   <event href="/ovirt-engine/api/events/1" id="1">
+         *     <description>Affinity Rules Enforcement Manager started.</description>
+         *     <code>10780</code>
+         *     <custom_id>-1</custom_id>
+         *     <flood_rate>30</flood_rate>
+         *     <origin>oVirt</origin>
+         *     <severity>normal</severity>
+         *     <time>2016-09-14T11:52:18.861+02:00</time>
+         *   </event>
+         * </events>
+         * ----
+         *
+         * A virtualization environment generates a large amount of events after
+         * a period of time. However, the API only displays a default number of
+         * events for one search query. To display more than the default, the API
+         * separates results into pages with the page command in a search query.
+         * The following search query tells the API to paginate results using a
+         * page value in combination with the sortby clause:
+         *
+         * [source]
+         * ----
+         * sortby time asc page 1
+         * ----
+         *
+         * Below example paginates event resources. The URL-encoded request is:
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%201
+         * ----
+         *
+         * Increase the page value to view the next page of results.
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%202
+         * ----
+         *
+         * @author Piotr Kliczewski <pkliczew@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
          */
         @In String search();
 
