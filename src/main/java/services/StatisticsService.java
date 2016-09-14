@@ -25,6 +25,65 @@ import types.Statistic;
 @Service
 @Area("Infrastructure")
 public interface StatisticsService {
+    /**
+     * Retrieves a list of statistics.
+     *
+     * For example, to retrieve the statistics for virtual machine `123` send a
+     * request like this:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/statistics
+     * ----
+     *
+     * The result will be like this:
+     *
+     * [source,xml]
+     * ----
+     * <statistics>
+     *   <statistic href="/ovirt-engine/api/vms/123/statistics/456" id="456">
+     *     <name>memory.installed</name>
+     *     <description>Total memory configured</description>
+     *     <kind>gauge</kind>
+     *     <type>integer</type>
+     *     <unit>bytes</unit>
+     *     <values>
+     *       <value>
+     *         <datum>1073741824</datum>
+     *       </value>
+     *     </values>
+     *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     *   </statistic>
+     *   ...
+     * </statistics>
+     * ----
+     *
+     * Just a single part of the statistics can be retrieved by specifying its id at the end of the URI. That means:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/statistics/456
+     * ----
+     *
+     * Outputs:
+     *
+     * [source,xml]
+     * ----
+     * <statistic href="/ovirt-engine/api/vms/123/statistics/456" id="456">
+     *   <name>memory.installed</name>
+     *   <description>Total memory configured</description>
+     *   <kind>gauge</kind>
+     *   <type>integer</type>
+     *   <unit>bytes</unit>
+     *   <values>
+     *     <value>
+     *       <datum>1073741824</datum>
+     *     </value>
+     *   </values>
+     *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     * </statistic>
+     * ----
+     */
     interface List {
         @Out Statistic[] statistics();
 
