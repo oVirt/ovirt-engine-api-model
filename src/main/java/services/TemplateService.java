@@ -118,6 +118,18 @@ public interface TemplateService {
         @In Boolean async();
     }
 
+    /**
+     * Removas a virtual machine template.
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/templates/123
+     * ----
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
