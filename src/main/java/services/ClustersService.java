@@ -25,6 +25,34 @@ import types.Cluster;
 @Service
 @Area("Virtualization")
 public interface ClustersService {
+    /**
+     * Creates a new cluster.
+     *
+     * This requires the `name`, `cpu.type` and `data_center` attributes. Identify the data center with either the `id`
+     * or `name` attributes.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/clusters
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   <name>mycluster</name>
+     *   <cpu>
+     *     <type>Intel Penryn Family</type>
+     *   </cpu>
+     *   <data_center id="123"/>
+     * </cluster>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Cluster cluster();
     }
