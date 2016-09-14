@@ -34,7 +34,39 @@ public interface DataCenterService {
         @In Boolean filter();
     }
 
+    /**
+     * Updates the data center.
+     *
+     * The `name`, `description`, `storage_type`, `version`, `storage_format` and `mac_pool` elements are updatable
+     * post-creation. For example, to change the name and description of data center `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/datacenters/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <data_center>
+     *   <name>myupdatedname</name>
+     *   <description>An updated description for the data center</description>
+     * </data_center>
+     * ----
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
+        /**
+         * The data center that is being updated.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In @Out DataCenter dataCenter();
 
         /**
