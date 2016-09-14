@@ -28,6 +28,37 @@ import types.Role;
 @Service
 @Area("Infrastructure")
 public interface RolesService {
+
+    /**
+     * Create a new role. The role can be administrative or non-administrative and can have different permits.
+     *
+     * For example, to add the `MyRole` non-administrative role with permits to login and create virtual machines
+     * send a request like this (note that you have to pass permit id):
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/roles
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <role>
+     *   <name>MyRole</name>
+     *   <description>My custom role to create virtual machines</description>
+     *   <administrative>false</administrative>
+     *   <permits>
+     *     <permit id="1"/>
+     *     <permit id="1300"/>
+     *   </permits>
+     * </group>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Role role();
     }
