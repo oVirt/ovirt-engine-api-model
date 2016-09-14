@@ -37,6 +37,28 @@ public interface SnapshotService {
         @In Boolean async();
     }
 
+    /**
+     * Restores a virtual machine snapshot.
+     *
+     * For example, to restore the snapshot with identifier `456` of virtual machine with identifier `123` send a
+     * request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/snapshots/456/restore
+     * ----
+     *
+     * With an empty `action` in the body:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Restore {
         @In Disk[] disks();
         @In Boolean restoreMemory();
