@@ -19,7 +19,31 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public enum PowerManagementStatus {
+
+    /**
+     * Host is ON.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     ON,
+
+    /**
+     * Host is OFF.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     OFF,
+
+    /**
+     * Unknown status.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     UNKNOWN;
 }
