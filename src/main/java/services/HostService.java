@@ -159,6 +159,25 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Manually set a host as the storage pool manager (SPM).
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/forceselectspm
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface ForceSelectSpm {
         /**
          * Indicates if the action should be performed asynchronously.
