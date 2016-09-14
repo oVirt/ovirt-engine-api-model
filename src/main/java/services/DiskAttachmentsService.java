@@ -58,6 +58,17 @@ public interface DiskAttachmentsService {
      * ----
      *
      * In this case the disk will be created and then attached to the virtual machine.
+     *
+     * In both cases, use the following URL for a virtual machine with an id `345`:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/345/diskattachments
+     * ----
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 15 Sep 2016
+     * @status added
      */
     interface Add {
         @In @Out DiskAttachment attachment();
