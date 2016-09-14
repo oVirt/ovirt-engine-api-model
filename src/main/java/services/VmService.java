@@ -31,6 +31,26 @@ import types.Vm;
 @Service
 @Area("Virtualization")
 public interface VmService extends MeasurableService {
+    /**
+     * This operation stops any migration of a virtual machine to another physical host.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/cancelmigration
+     * ----
+     *
+     * The cancel migration action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface CancelMigration {
         /**
          * Indicates if the migration should cancelled asynchronously.
