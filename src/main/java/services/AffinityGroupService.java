@@ -22,14 +22,59 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityGroup;
 
+/**
+ * This service manages a single affinity group.
+ *
+ * @author Martin Sivak <msivak@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface AffinityGroupService {
+    /**
+     * Retrieve the affinity group details.
+     *
+     * [source,xml]
+     * ----
+     * <affinity_group id="00000000-0000-0000-0000-000000000000">
+     *   <name>AF_GROUP_001</name>
+     *   <cluster id="00000000-0000-0000-0000-000000000000"/>
+     *   <positive>true</positive>
+     *   <enforcing>true</enforcing>
+     * </affinity_group>
+     * ----
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The affinity group.
+         *
+         * @author Martin Sivak <msivak@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @Out AffinityGroup group();
     }
 
+    /**
+     * Update the affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
+        /**
+         * The affinity group.
+         *
+         * @author Martin Sivak <msivak@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In @Out AffinityGroup group();
 
         /**
@@ -38,6 +83,18 @@ public interface AffinityGroupService {
         @In Boolean async();
     }
 
+    /**
+     * Remove the affinity group.
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/clusters/000-000/affinitygroups/123-456
+     * ----
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
@@ -45,5 +102,14 @@ public interface AffinityGroupService {
         @In Boolean async();
     }
 
+    /**
+     * Returns a reference to the service that manages the
+     * list of all virtual machines attached to this affinity
+     * group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service AffinityGroupVmsService vms();
 }

@@ -19,13 +19,51 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * An affinity group represents a group of virtual machines with a defined relationship.
+ *
+ * @author Martin Sivak <msivak@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface AffinityGroup extends Identified {
+    /**
+     * Specifies whether the affinity group applies positive affinity or negative affinity to virtual machines that are
+     * members of that affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Boolean positive();
+
+    /**
+     * Specifies whether the affinity group uses hard or soft enforcement of the affinity applied to virtual machines
+     * that are members of that affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Boolean enforcing();
 
+    /**
+     * A reference to the cluster to which the affinity group applies.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link
     Cluster cluster();
 
+    /**
+     * List of all virtual machines assigned to this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Vm[] vms();
 }
