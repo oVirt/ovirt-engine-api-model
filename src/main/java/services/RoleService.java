@@ -28,6 +28,21 @@ public interface RoleService {
         @Out Role role();
     }
 
+    /**
+     * Removes the role.
+     *
+     * To remove the role you need to know its id, then send request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/roles/{role_id}
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     *
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
