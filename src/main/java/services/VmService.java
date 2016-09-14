@@ -490,7 +490,7 @@ public interface VmService extends MeasurableService {
      * @status added
      */
     interface Ticket {
-        @In @Out Ticket ticket();
+        @In @Out types.Ticket ticket();
 
         /**
          * Indicates if the generation of the ticket should be performed asynchronously.
