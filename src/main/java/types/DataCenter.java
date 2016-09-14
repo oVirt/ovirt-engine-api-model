@@ -23,6 +23,56 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface DataCenter extends Identified {
     Boolean local();
     StorageFormat storageFormat();
+
+    /**
+     * The compatibility version of the data center.
+     *
+     * All clusters in this data center have to be already set to at least this compatibility version.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenters/123
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <data_center>
+     *   ...
+     *   <version>
+     *     <major>4</major>
+     *     <minor>0</minor>
+     *   </version>
+     *   ...
+     * </data_center>
+     * ----
+     *
+     * To update the compatibility version, use:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/datacenters/123
+     * ----
+     *
+     * With a request body:
+     *
+     * [source,xml]
+     * ----
+     * <data_center>
+     *   <version>
+     *     <major>4</major>
+     *     <minor>1</minor>
+     *   </version>
+     * </data_center>
+     * ----
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sept 2016
+     * @status added
+     */
     Version version();
     Version[] supportedVersions();
     DataCenterStatus status();
