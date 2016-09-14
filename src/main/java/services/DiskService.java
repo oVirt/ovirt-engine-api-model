@@ -26,8 +26,35 @@ import types.StorageDomain;
 @Service
 @Area("Storage")
 public interface DiskService extends MeasurableService {
+    /**
+     * This operation copies a disk to the specified storage domain.
+     *
+     * For example, copy of a disk can be facilitated using the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks/123/copy
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     *   <disk>
+     *     <name>mydisk</name>
+     *   </disk>
+     * </action>
+     * ----
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Copy {
         @In Disk disk();
+
         @In StorageDomain storageDomain();
 
         /**
