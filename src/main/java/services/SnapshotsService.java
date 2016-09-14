@@ -25,6 +25,29 @@ import types.Snapshot;
 @Service
 @Area("Storage")
 public interface SnapshotsService {
+    /**
+     * Creates a virtual machine snapshot.
+     *
+     * For example, to create a new snapshot for virtual machine `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/snapshots
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <snapshot>
+     *   <description>My snapshot</description>
+     * </snapshot>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Snapshot snapshot();
     }
