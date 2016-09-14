@@ -22,6 +22,17 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Network;
 
+/**
+ * Manages logical networks.
+ *
+ * The engine creates a default `ovirtmgmt` network on installation. This network acts as the management network for
+ * access to hypervisor hosts. This network is associated with the `Default` cluster and is a member of the `Default`
+ * data center.
+ *
+ * @author Ori Ben Sasson <obensass@redhat.com>
+ * @date 20 Sep 2016
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface NetworksService {
@@ -55,6 +66,42 @@ public interface NetworksService {
         @In @Out Network network();
     }
 
+    /**
+     * List logical networks.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/networks
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <networks>
+     *   <network href="/ovirt-engine/api/networks/123" id="123">
+     *     <name>ovirtmgmt</name>
+     *     <description>Default Management Network</description>
+     *     <link href="/ovirt-engine/api/networks/123/permissions" rel="permissions"/>
+     *     <link href="/ovirt-engine/api/networks/123/vnicprofiles" rel="vnicprofiles"/>
+     *     <link href="/ovirt-engine/api/networks/123/networklabels" rel="networklabels"/>
+     *     <mtu>0</mtu>
+     *     <stp>false</stp>
+     *     <usages>
+     *       <usage>vm</usage>
+     *     </usages>
+     *     <data_center href="/ovirt-engine/api/datacenters/456" id="456"/>
+     *   </network>
+     *   ...
+     * </networks>
+     * ----
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out Network[] networks();
 
