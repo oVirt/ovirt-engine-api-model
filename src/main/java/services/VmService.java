@@ -167,6 +167,13 @@ public interface VmService extends MeasurableService {
      * additional queries in the server. So try to use the `All-Content` header only when it is really needed.
      */
     interface Get {
+        /**
+         * Description of the virtual machine.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @Out Vm vm();
 
         /**
