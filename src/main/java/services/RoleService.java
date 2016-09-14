@@ -50,6 +50,33 @@ public interface RoleService {
         @In Boolean async();
     }
 
+    /**
+     * Updates a role. You are allowed to update `name`, `description` and `administrative` attributes after role is
+     * created. Within this endpoint you can't add or remove roles permits you need to use
+     * <<services/roles/permits, service>> that manages permits of role.
+     *
+     * For example to update role's `name`, `description` and `administrative` attributes send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/roles/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <role>
+     *   <name>MyNewRoleName</name>
+     *   <description>My new description of the role</description>
+     *   <administrative>true</administrative>
+     * </group>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Role role();
 
