@@ -74,6 +74,26 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Detaches a virtual machine from a pool.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/detach
+     * ----
+     *
+     * The detach action does not take any action specific parameters, so the request body should contain an
+     * empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Detach {
         /**
          * Indicates if the detach should be performed asynchronously.
