@@ -25,6 +25,35 @@ import types.StorageConnection;
 @Service
 @Area("Storage")
 public interface StorageServerConnectionsService {
+    /**
+     * Creates a new storage connection.
+     *
+     * For example, to create a new storage connection for the NFS server `mynfs.example.com` and NFS share
+     * `/export/mydata` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storageconnections
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_connection>
+     *   <type>nfs</type>
+     *   <address>mynfs.example.com</address>
+     *   <path>/export/mydata</path>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     * </storage_connection>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out StorageConnection connection();
     }
