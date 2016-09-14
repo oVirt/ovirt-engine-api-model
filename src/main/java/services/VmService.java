@@ -203,6 +203,26 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * This operation sends a shutdown request to a virtual machine.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/shutdown
+     * ----
+     *
+     * The shutdown action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Shutdown {
         /**
          * Indicates if the shutdown should be performed asynchronously.
