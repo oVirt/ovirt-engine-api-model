@@ -29,6 +29,13 @@ public interface StorageDomainServerConnectionService {
         @Out StorageConnection connection();
     }
 
+    /**
+     * Detaches a storage connection from storage.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the action should be performed asynchronously.
