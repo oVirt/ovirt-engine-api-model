@@ -25,7 +25,40 @@ import types.DataCenter;
 @Service
 @Area("Virtualization")
 public interface DataCentersService {
+
+    /**
+     * Creates a new data center.
+     *
+     * Creation of a new data center requires the `name` and `local` elements. For example, to create a data center
+     * named `mydc` that uses shared storage (NFS, iSCSI or fibre channel) send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <data_center>
+     *   <name>mydc</name>
+     *   <local>false</local>
+     * </data_center>
+     * ----
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The data center that is being added.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In @Out DataCenter dataCenter();
     }
 
