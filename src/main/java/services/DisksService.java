@@ -25,6 +25,38 @@ import types.Disk;
 @Service
 @Area("Storage")
 public interface DisksService {
+
+    /**
+     * Adds a new floating disk.
+     * When creating a new floating <<types/disk,Disk>>, the API requires the `storage_domain`, `provisioned_size` and
+     * `format` attributes.
+     *
+     * To create a new floating disk with specified `provisioned_size`, `format` and `name` on a storage domain with an
+     * id `e9fedf39-5edc-4e0a-8628-253f1b9c5693`, send a request as follows:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <disk>
+     *   <storage_domains>
+     *     <storage_domain id="e9fedf39-5edc-4e0a-8628-253f1b9c5693"/>
+     *   </storage_domains>
+     *   <name>disk1</name>
+     *   <provisioned_size>1048576</provisioned_size>
+     *   <format>cow</format>
+     * </disk>
+     * ----
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Disk disk();
     }
