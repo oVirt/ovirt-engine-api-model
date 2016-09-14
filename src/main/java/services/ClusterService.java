@@ -36,6 +36,33 @@ public interface ClusterService {
         @In Boolean filter();
     }
 
+    /**
+     * Updates information about the cluster.
+     *
+     * Only specified fields are updated, others remain unchanged.
+     *
+     * E.g. update cluster's CPU:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/clusters/123
+     * ----
+     *
+     * With request body like:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   <cpu>
+     *     <type>Intel Haswell-noTSX Family</type>
+     *   </cpu>
+     * </cluster>
+     * ----
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Cluster cluster();
 
