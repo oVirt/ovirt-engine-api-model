@@ -22,13 +22,48 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Vm;
 
+/**
+ * This service manages a collection of all virtual machines assigned to an affinity group.
+ *
+ * @author Martin Sivak <msivak@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface AffinityGroupVmsService {
+    /**
+     * Add a virtual machine to the affinity group.
+     *
+     * For example to add the virtual machine 000-000 to affinity group 123-456 send a request to:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/clusters/000-000/affinitygroups/123-456/vms
+     * ----
+     *
+     * With the following body:
+     *
+     * [source,xml]
+     * ----
+     * <vm id="000-000"/>
+     * ----
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Vm vm();
     }
 
+    /**
+     * List all virtual machines assigned to this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out Vm[] vms();
 
@@ -39,5 +74,12 @@ public interface AffinityGroupVmsService {
         @In Integer max();
     }
 
+    /**
+     * Access the service that manages the virtual machine assignment to this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service AffinityGroupVmService vm(String id);
 }

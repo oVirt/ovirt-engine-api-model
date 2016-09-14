@@ -22,14 +22,67 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityGroup;
 
+/**
+ * Affinity groups service manages virtual machine relationships and dependencies.
+ *
+ * @author Martin Sivak <msivak@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface AffinityGroupsService {
+    /**
+     * Create a new affinity group.
+     *
+     * Post a request like in the example below to create a new affinity group:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/clusters/000-000/affinitygroups
+     * ----
+     *
+     * And use the following example in its body:
+     *
+     * [source,xml]
+     * ----
+     * <affinity_group>
+     *   <name>AF_GROUP_001</name>
+     *   <positive>true</positive>
+     *   <enforcing>true</enforcing>
+     * </affinity_group>
+     * ----
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The affinity group object to create.
+         *
+         * @author Martin Sivak <msivak@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In @Out AffinityGroup group();
     }
 
+    /**
+     * List existing affinity groups.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of existing affinity groups.
+         *
+         * @author Martin Sivak <msivak@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @Out AffinityGroup[] groups();
 
         /**
@@ -38,5 +91,12 @@ public interface AffinityGroupsService {
         @In Integer max();
     }
 
+    /**
+     * Access affinity group service that manages the affinity group specified by an id.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service AffinityGroupService group(String id);
 }

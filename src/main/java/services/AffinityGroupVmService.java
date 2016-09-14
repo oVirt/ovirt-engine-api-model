@@ -20,9 +20,23 @@ import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Service;
 
+/**
+ * This service manages a single virtual machine to affinity group assignment.
+ *
+ * @author Martin Sivak <msivak@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface AffinityGroupVmService {
+    /**
+     * Remove this virtual machine from the affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
