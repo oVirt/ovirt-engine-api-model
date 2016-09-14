@@ -247,6 +247,26 @@ public interface VmService extends MeasurableService {
         @In Boolean filter();
     }
 
+    /**
+     * This operation forces a virtual machine to power-off.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/stop
+     * ----
+     *
+     * The stop action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Stop {
         /**
          * Indicates if the action should be performed asynchronously.
