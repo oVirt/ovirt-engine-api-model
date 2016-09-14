@@ -254,6 +254,27 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * This operation saves the virtual machine state to disk and stops it.
+     * Start a suspended virtual machine and restore the virtual machine state with the start action.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/suspend
+     * ----
+     *
+     * The suspend action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Suspend {
         /**
          * Indicates if the action should be performed asynchronously.
