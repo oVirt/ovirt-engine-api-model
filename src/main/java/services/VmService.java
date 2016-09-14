@@ -463,6 +463,32 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Generates a time-sensitive authentication token for accessing a virtual machine's display.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/ticket
+     * ----
+     *
+     * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
+     *
+     * In any case, the response specifies the actual ticket value and expiry used.
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <ticket>
+     *     <value>abcd12345</value>
+     *     <expiry>120</expiry>
+     *   </ticket>
+     * </action>
+     * ----
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Ticket {
         @In @Out types.Ticket ticket();
 
