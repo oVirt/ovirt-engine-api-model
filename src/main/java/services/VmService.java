@@ -475,10 +475,87 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Starts the virtual machine.
+     *
+     * If the virtual environment is complete and the virtual machine contains all necessary components to function,
+     * it can be started.
+     *
+     * This example starts the virtual machine:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/start
+     * ----
+     *
+     * With a request body:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Start {
+        /**
+         * If set to `true`, start the virtual machine in paused mode. Default is `false`.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean pause();
+
+        /**
+         * The definition of the virtual machine for this specific run.
+         *
+         * For example:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <vm>
+         *     <os>
+         *       <boot>
+         *         <devices>
+         *           <device>cdrom</device>
+         *         </devices>
+         *       </boot>
+         *     </os>
+         *   </vm>
+         * </action>
+         * ----
+         *
+         * This will set the boot device to the CDROM only for this specific start. After the virtual machine will be
+         * powered off, this definition will be reverted.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Vm vm();
+
+        /**
+         * If set to `true`, the initialization type is set to _cloud-init_. The default value is `false`.
+         * See https://cloudinit.readthedocs.io/en/latest[this] for details.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean useCloudInit();
+
+        /**
+         * If set to `true`, the initialization type is set to _Sysprep_. The default value is `false`.
+         * See https://en.wikipedia.org/wiki/Sysprep[this] for details.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean useSysprep();
 
         /**
