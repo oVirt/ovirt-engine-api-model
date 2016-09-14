@@ -22,6 +22,19 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.File;
 
+
+/**
+ * Provides a way for clients to list available files.
+ *
+ * This services is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
+ * (VFDs) that an administrator uploads.
+ *
+ * The addition of a CDROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.
+ *
+ * @author Maor Lipchuk <mlipchuk@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface FilesService {
