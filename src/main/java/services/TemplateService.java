@@ -98,10 +98,22 @@ public interface TemplateService {
      *
      * With the following request body:
      *
-     * [source, xml]
+     * [source,xml]
      * ----
      * <template>
      *   <memory>1073741824</memory>
+     * </template>
+     * ----
+     *
+     * The `version_name` name attribute is the only one that can be updated within the `version` attribute used for
+     * template versions:
+     *
+     * [source,xml]
+     * ----
+     * <template>
+     *   <version>
+     *     <version_name>mytemplate_2</version_name>
+     *   </version>
      * </template>
      * ----
      *
