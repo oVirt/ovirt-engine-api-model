@@ -25,6 +25,34 @@ import types.Group;
 @Service
 @Area("Infrastructure")
 public interface GroupsService {
+
+    /**
+     * Add group from a directory service. Please note that domain name is name of the authorization provider.
+     *
+     * For example, to add the `Developers` group from the `internal-authz` authorization provider send a request
+     * like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/groups
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <group>
+     *   <name>Developers</name>
+     *   <domain>
+     *     <name>internal-authz</name>
+     *   </domain>
+     * </group>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Group group();
     }
