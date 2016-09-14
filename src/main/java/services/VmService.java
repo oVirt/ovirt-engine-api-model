@@ -112,6 +112,29 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Freeze virtual machine file systems.
+     *
+     * This operation freezes a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of
+     * a running virtual machine. Normally, this is done automatically by the manager, but this must be executed
+     * manually with the API for virtual machines using OpenStack Volume (Cinder) disks.
+     *
+     * Example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/freezefilesystems
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface FreezeFilesystems {
         /**
          * Indicates if the freeze should be performed asynchronously.
@@ -410,6 +433,29 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Thaw virtual machine file systems.
+     *
+     * This operation thaws a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of a
+     * running virtual machine. Normally, this is done automatically by the manager, but this must be executed manually
+     * with the API for virtual machines using OpenStack Volume (Cinder) disks.
+     *
+     * Example:
+     *
+     * [source]
+     * ----
+     * POST /api/vms/123/thawfilesystems
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface ThawFilesystems {
         /**
          * Indicates if the action should be performed asynchronously.
