@@ -29,6 +29,32 @@ public interface StorageServerConnectionService {
         @Out StorageConnection conection();
     }
 
+    /**
+     * Updates the storage connection.
+     *
+     * For example, to change the address of the storage server send a request like this:
+     *
+     * [source,xml]
+     * ----
+     * PUT /ovirt-engine/api/storageconnections/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_connection>
+     *   <address>mynewnfs.example.com</address>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     * </storage_connection>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out StorageConnection connection();
 
