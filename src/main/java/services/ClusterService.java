@@ -45,6 +45,18 @@ public interface ClusterService {
         @In Boolean async();
     }
 
+    /**
+     * Removes cluster from the system.
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/clusters/00000000-0000-0000-0000-000000000000
+     * ----
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
