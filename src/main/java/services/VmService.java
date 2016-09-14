@@ -204,6 +204,33 @@ public interface VmService extends MeasurableService {
         @In Boolean filter();
     }
 
+    /**
+     * Initiates the automatic user logon to access a virtual machine from an external console.
+     *
+     * This action requires the `ovirt-guest-agent-gdm-plugin` and the `ovirt-guest-agent-pam-module` packages to be
+     * installed and the `ovirt-guest-agent` service to be running on the virtual machine.
+     *
+     * Users require the appropriate user permissions for the virtual machine in order to access the virtual machine
+     * from an external console.
+     *
+     * This is how an example request would look like:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/logon
+     * ----
+     *
+     * Request body:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Vinzenz Feenstra <vfeenstr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Logon {
         /**
          * Indicates if the logon should be performed asynchronously.
