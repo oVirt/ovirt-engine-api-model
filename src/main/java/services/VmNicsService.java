@@ -25,6 +25,54 @@ import types.Nic;
 @Service
 @Area("Network")
 public interface VmNicsService {
+    /**
+     * Adds a network interface to the virtual machine.
+     *
+     * The following example adds a network interface named `mynic` using `virtio` and the `ovirtmgmt` network to the
+     * virtual machine.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/nics
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <nic>
+     *   <interface>virtio</interface>
+     *   <name>mynic</name>
+     *   <network>
+     *     <name>ovirtmgmt</name>
+     *   </network>
+     * </nic>
+     * ----
+     *
+     * The following example sends that request using `curl`:
+     *
+     * [source,bash]
+     * ----
+     * curl \
+     * --request POST \
+     * --header "Version: 4" \
+     * --header "Content-Type: application/xml" \
+     * --header "Accept: application/xml" \
+     * --user "admin@internal:mypassword" \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --data '
+     * <nic>
+     *   <name>mynic</name>
+     *   <network>
+     *     <name>ovirtmgmt</name>
+     *   </network>
+     * </nic>
+     * ' \
+     * https://myengine.example.com/ovirt-engine/api/vms/123/nics
+     * ----
+     *
+     * @author Vinzenz Feenstra <vfeenstr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Nic nic();
     }
