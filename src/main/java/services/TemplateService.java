@@ -41,6 +41,32 @@ public interface TemplateService {
         @In Boolean filter();
     }
 
+    /**
+     * Updates the template.
+     *
+     * The `name`, `description`, `type`, `memory`, `cpu`, `topology`, `os`, `high_availability`, `display`,
+     * `stateless`, `usb` and `timezone` elements can be updated after a template has been created.
+     *
+     * For example, to update a template to so that it has 1 GiB of memory send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/templates/123
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source, xml]
+     * ----
+     * <template>
+     *   <memory>1073741824</memory>
+     * </template>
+     * ----
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Template template();
 
