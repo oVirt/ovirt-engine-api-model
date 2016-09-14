@@ -133,7 +133,56 @@ public interface VmsService {
      * </vm>
      * ----
      *
+     * It is possible to specify additional virtual machine parameters in the XML description, e.g. a virtual machine
+     * of `desktop` type, with 2 GiB of RAM and additional description can be added sending a request body like the
+     * following:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   <name>myvm</name>
+     *   <description>My Desktop Virtual Machine</description>
+     *   <type>desktop</type>
+     *   <memory>2147483648</memory>
+     *   ...
+     * </vm>
+     * ----
+     *
+     * A bootable CDROM device can be set like this:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   ...
+     *   <os>
+     *     <boot dev="cdrom"/>
+     *   </os>
+     * </vm>
+     * ----
+     *
+     * In order to boot from CDROM, you first need to insert a disk, as described in the
+     * <<services/vm_cdrom, CDROM service>>. Then booting from that CDROM can be specified using the `os.boot.devices`
+     * attribute:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   ...
+     *   <os>
+     *     <boot>
+     *       <devices>
+     *         <device>cdrom</device>
+     *       </devices>
+     *     </boot>
+     *   </os>
+     * </vm>
+     * ----
+     *
      * In all cases the name or identifier of the cluster where the virtual machine will be created is mandatory.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
      */
     interface Add {
         @In @Out Vm vm();
