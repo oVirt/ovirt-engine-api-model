@@ -226,7 +226,49 @@ public interface HostService extends MeasurableService {
     /**
      * Install VDSM and related software on the host. The host type defines additional parameters for the action.
      *
+     * Example of installing a host, using `curl` and JSON, plain:
+     *
+     * [source,bash]
+     * ----
+     * curl \
+     * --verbose \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --request PUT \
+     * --header "Content-Type: application/json" \
+     * --header "Accept: application/json" \
+     * --header "Version: 4" \
+     * --user "admin@internal:..." \
+     * --data '
+     * {
+     *   "root_password": "myrootpassword"
+     * }
+     * ' \
+     * "https://engine.example.com/ovirt-engine/api/hosts/123"
+     * ----
+     *
+     * Example of installing a host, using `curl` and JSON, with hosted engine components:
+     *
+     * [source,bash]
+     * ----
+     * curl \
+     * curl \
+     * --verbose \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --request PUT \
+     * --header "Content-Type: application/json" \
+     * --header "Accept: application/json" \
+     * --header "Version: 4" \
+     * --user "admin@internal:..." \
+     * --data '
+     * {
+     *   "root_password": "myrootpassword"
+     * }
+     * ' \
+     * "https://engine.example.com/ovirt-engine/api/hosts/123?deploy_hosted_engine=true"
+     * ----
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
+     * @author Roy Golan <rgolan@redhat.com>
      * @date 14 Sep 2016
      * @status added
      */

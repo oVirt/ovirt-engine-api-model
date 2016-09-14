@@ -26,29 +26,41 @@ import types.Host;
 @Area("Infrastructure")
 public interface HostsService {
     /**
-     * Creates a new host and adds it to the database. The host is created based on the properties of the `host`
-     * parameter. The `name`, `address` `root_password` properties are required.
+     * Creates a new host.
+     *
+     * The host is created based on the attributes of the `host` parameter. The `name`, `address` and `root_password`
+     * properties are required.
+     *
+     * For example, to add a host send the following request:
      *
      * [source]
      * ----
      * POST /ovirt-engine/api/hosts
      * ----
      *
-     * with body:
+     * With the following request body:
      *
-     * [source, xml]
+     * [source,xml]
      * ----
      * <host>
-     *   <name>Host1</name>
-     *   <address>192.168.122.154</address>
-     *   <root_password>***</root_password>
+     *   <name>myhost</name>
+     *   <address>myhost.example.com</address>
+     *   <root_password>myrootpassword</root_password>
      * </host>
      * ----
      *
-     * The `root_password` element is only included in the client-provided initial representation and is not exposed
-     * in the representations returned from subsequent requests.
+     * NOTE: The `root_password` element is only included in the client-provided initial representation and is not
+     * exposed in the representations returned from subsequent requests.
+     *
+     * To add a hosted engine host, use the optional `deploy_hosted_engine` parameter:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true
+     * ----
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Roy Golan <rgolan@redhat.com>
      * @date 14 Sep 2016
      * @status added
      */
@@ -60,19 +72,16 @@ public interface HostsService {
         @In @Out Host host();
 
         /**
-         * When set to `true` it means this host should deploy also hosted
-         * engine components. Missing value is treated as `true` i.e deploy.
-         * Omitting this parameter means `false` and will perform no operation
-         * in hosted engine area.
+         * When set to `true` it means this host should deploy also hosted engine components. Missing value is treated
+         * as `true` i.e deploy. Omitting this parameter means `false` and will perform no operation in hosted engine
+         * area.
          */
         @In Boolean deployHostedEngine();
 
         /**
-         * When set to `true` it means this host should un-deploy hosted engine
-         * components and this host will not function as part of the High
-         * Availability cluster. Missing value is treated as `true` i.e un-deploy.
-         * Omitting this parameter means `false` and will perform no operation
-         * in hosted engine area.
+         * When set to `true` it means this host should un-deploy hosted engine components and this host will not
+         * function as part of the High Availability cluster. Missing value is treated as `true` i.e un-deploy.
+         * Omitting this parameter means `false` and will perform no operation in hosted engine area.
          */
         @In Boolean undeployHostedEngine();
     }
