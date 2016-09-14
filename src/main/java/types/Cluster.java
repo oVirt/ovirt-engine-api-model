@@ -23,7 +23,61 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface Cluster extends Identified {
     Cpu cpu();
     MemoryPolicy memoryPolicy();
+
+    /**
+     * The compatibility version of the cluster.
+     *
+     * All hosts in this cluster have to support at least this compatibility version.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/clusters/123
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   ...
+     *   <version>
+     *     <major>4</major>
+     *     <minor>0</minor>
+     *   </version>
+     *   ...
+     * </cluster>
+     * ----
+     *
+     * To update the compatibility version, use:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/clusters/123
+     * ----
+     *
+     * With a request body:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   <version>
+     *     <major>4</major>
+     *     <minor>1</minor>
+     *   </version>
+     * </cluster>
+     * ----
+     *
+     * In order to be able to update the cluster compatibility version, all hosts in the cluster have to support the new
+     * compatibility version.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sept 2016
+     * @status added
+     */
     Version version();
+
     Version[] supportedVersions();
     ErrorHandling errorHandling();
     Boolean virtService();

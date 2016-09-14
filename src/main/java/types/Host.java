@@ -35,6 +35,38 @@ public interface Host extends Identified {
     HostType type();
 
     Spm spm();
+
+    /**
+     * The version of VDSM.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/hosts/123
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <host>
+     *   ...
+     *   <version>
+     *     <build>999</build>
+     *     <full_version>vdsm-4.18.999-419.gitcf06367.el7</full_version>
+     *     <major>4</major>
+     *     <minor>18</minor>
+     *     <revision>0</revision>
+     *   </version>
+     *   ...
+     * </host>
+     * ----
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sept 2016
+     * @status added
+     */
     Version version();
     HardwareInformation hardwareInformation();
     PowerManagement powerManagement();
