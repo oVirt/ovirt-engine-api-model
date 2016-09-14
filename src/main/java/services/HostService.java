@@ -285,6 +285,25 @@ public interface HostService extends MeasurableService {
     /**
      * Update the host properties.
      *
+     * For example, to update a the kernel command line of a host send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/hosts/123
+     * ----
+     *
+     * With request body like this:
+     *
+     * [source, xml]
+     * ----
+     * <host>
+     *   <os>
+     *     <custom_kernel_cmdline>vfio_iommu_type1.allow_unsafe_interrupts=1</custom_kernel_cmdline>
+     *   </os>
+     * </host>
+     * ----
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 14 Sep 2016
      * @status added
