@@ -32,6 +32,35 @@ public interface OpenstackImageService {
         @Out OpenStackImage image();
     }
 
+    /**
+     * Imports a virtual machine from a Glance image storage domain.
+     *
+     * For example, to import the image with identifier `456` from the
+     * storage domain with identifier `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/openstackimageproviders/123/images/456/import
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain>
+     *     <name>images0</name>
+     *   </storage_domain>
+     *   <cluster>
+     *     <name>images0</name>
+     *   </cluster>
+     * </action>
+     * ----
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Import {
         @In Disk disk();
         @In Boolean importAsTemplate();
