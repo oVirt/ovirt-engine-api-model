@@ -399,11 +399,46 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Removes the virtual machine, including the virtual disks attached to it.
+     *
+     * For example, to remove the virtual machine with identifier `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/vms/123
+     * ----
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the attached virtual disks should be detached first and preserved instead of being removed.
+         *
+         * @author Milan Zamazal <mzamazal@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
+        @In Boolean detachOnly();
+
+        /**
+         * Indicates if the virtual machine should be forcibly removed.
+         *
+         * Locked virtual machines and virtual machines with locked disk images
+         * cannot be removed without this flag set to true.
+         *
+         * @author Milan Zamazal <mzamazal@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
+        @In Boolean force();
     }
 
     interface ReorderMacAddresses {
