@@ -46,6 +46,36 @@ public interface StorageDomainService {
         @In Boolean async();
     }
 
+    /**
+     * Updates a storage domain.
+     *
+     * Not all of the <<types/storage_domain,StorageDomain>>'s attributes are updatable post-creation. Those that can be
+     * updated are: `name`, `description`, `comment`, `warning_low_space_indicator`, `critical_space_action_blocker` and
+     * `wipe_after_delete` (note that changing the `wipe_after_delete` attribute will not change the wipe after delete
+     * property of disks that already exist).
+     *
+     * To update the `name` and `wipe_after_delete` attributes of a storage domain with an identifier `123`, send a
+     * request as follows:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/storagedomains/123
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <storage_domain>
+     *   <name>data2</name>
+     *   <wipe_after_delete>true</wipe_after_delete>
+     * </storage_domain>
+     * ----
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out StorageDomain storageDomain();
 
