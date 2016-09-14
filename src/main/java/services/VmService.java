@@ -550,7 +550,16 @@ public interface VmService extends MeasurableService {
     @Service VmNicsService nics();
     @Service VmNumaNodesService numaNodes();
     @Service VmReportedDevicesService reportedDevices();
+
+    /**
+     * Reference to the service that provides information about virtual machine user sessions.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service VmSessionsService sessions();
+
     @Service VmWatchdogsService watchdogs();
 
     /**
