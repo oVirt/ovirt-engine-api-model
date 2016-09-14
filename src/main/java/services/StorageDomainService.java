@@ -205,7 +205,16 @@ public interface StorageDomainService {
          * Indicates if the operation should succeed, and the storage domain removed from the database, even if the
          * storage isn't accessible.
          *
+         * [source]
+         * ----
+         * DELETE /ovirt-engine/api/storagedomains/123?destroy=true
+         * ----
+         *
          * This parameter is optional, and the default value is `false`.
+         *
+         * @author Allon Mureinik <amureini@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
          */
         // TODO: Consider renaming this to `force`, or `ignore_errors`, as that describes better what it actually means.
         @In Boolean destroy();
