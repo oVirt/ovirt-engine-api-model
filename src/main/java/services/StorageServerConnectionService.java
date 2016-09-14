@@ -64,7 +64,35 @@ public interface StorageServerConnectionService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a storage connection.
+     *
+     * A storage connection can only be deleted if neither storage domain nor LUN disks reference it. The host name or
+     * id is optional; providing it disconnects (unmounts) the connection from that host.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
+        /**
+         * The name or identifier of the host from which the connection would be unmounted (disconnected). If not
+         * provided, no host will be disconnected.
+         *
+         * For example, to use the host with identifier `456` to delete the storage connection with identifier `123`
+         * send a request like this:
+         *
+         * [source]
+         * ----
+         * DELETE /ovirt-engine/api/storageconnections/123?host=456
+         * ----
+         *
+         * @author Daniel Erez <derez@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
+        @In String host();
+
         /**
          * Indicates if the remove should be performed asynchronously.
          */
