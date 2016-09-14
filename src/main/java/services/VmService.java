@@ -170,9 +170,57 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * This operation migrates a virtual machine to another physical host.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/migrate
+     * ----
+     *
+     * One can specify a specific host to migrate the virtual machine to:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <host id="2ab5e1da-b726-4274-bbf7-0a42b16a0fc3"/>
+     * </action>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Migrate {
+        /**
+         * Specifies the cluster the virtual machine should migrate to. This is an optional parameter. By default, the
+         * virtual machine is migrated to another host within the same cluster.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Cluster cluster();
+
+        /**
+         * Specifies the virtual machine should migrate although it might be defined as non migratable. This is an
+         * optional parameter. By default, it is set to `false`.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean force();
+
+        /**
+         * Specifies a specific host the virtual machine should migrate to. This is an optional parameters. By default,
+         * the oVirt Engine automatically selects a default host for migration within the same cluster. If an API user
+         * requires a specific host, the user can specify the host with either an `id` or `name` parameter.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Host host();
 
         /**
