@@ -75,8 +75,61 @@ public interface Host extends Identified {
     Version version();
     HardwareInformation hardwareInformation();
     PowerManagement powerManagement();
+
+    /**
+     * Kernel SamePage Merging (KSM) reduces references to memory pages from multiple identical pages to a single page
+     * reference. This helps with optimization for memory density.
+     *
+     * For example, to enable KSM for host `123`, send a request like this:
+     *
+     * ....
+     * PUT /ovirt-engine/api/hosts/123
+     * ....
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <host>
+     *   <ksm>
+     *     <enabled>true</enabled>
+     *   </ksm>
+     * </host>
+     * ----
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sept 2016
+     * @status added
+     */
     Ksm ksm();
+
+    /**
+     * Transparent huge page support expands the size of memory pages beyond the standard 4 KiB limit. This reduces
+     * memory consumption and increases host performance.
+     *
+     * For example, to enable transparent huge page support for host `123`, send a request like this:
+     *
+     * ....
+     * PUT /ovirt-engine/api/hosts/123
+     * ....
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <host>
+     *   <transparent_hugepages>
+     *     <enabled>true</enabled>
+     *   </transparent_hugepages>
+     * </host>
+     * ----
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Sept 2016
+     * @status added
+     */
     TransparentHugePages transparentHugePages();
+
     IscsiDetails iscsi();
 
     /**
