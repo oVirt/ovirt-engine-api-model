@@ -61,7 +61,41 @@ public interface VmPoolService {
         @In Boolean filter();
     }
 
+    /**
+     * Update the virtual machine pool.
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vmpools/123
+     * ----
+     *
+     * The `name`, `description`, `size`, `prestarted_vms` and `max_user_vms`
+     * attributes can be updated after the virtual machine pool has been
+     * created.
+     *
+     * [source,xml]
+     * ----
+     * <vmpool>
+     *   <name>VM_Pool_B</name>
+     *   <description>Virtual Machine Pool B</description>
+     *   <size>3</size>
+     *   <prestarted_vms>1</size>
+     *   <max_user_vms>2</size>
+     * </vmpool>
+     * ----
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
+        /**
+         * The virtual machine pool that is being updated.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In @Out VmPool pool();
 
         /**
