@@ -29,6 +29,69 @@ public interface DataCentersService {
         @In @Out DataCenter dataCenter();
     }
 
+    /**
+     * Lists the data centers.
+     *
+     * The following request retrieves a representation of the data centers:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenters
+     * ----
+     *
+     * The above request performed with `curl`:
+     *
+     * [source,bash]
+     * ----
+     * curl \
+     * --request GET \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --header "Version: 4" \
+     * --header "Accept: application/xml" \
+     * --user "admin@internal:mypassword" \
+     * https://myengine.example.com/ovirt-engine/api/datacenters
+     * ----
+     *
+     * This is what an example response could look like:
+     *
+     * [source,xml]
+     * ----
+     * <data_center href="/ovirt-engine/api/datacenters/123" id="123">
+     *   <name>Default</name>
+     *   <description>The default Data Center</description>
+     *   <link href="/ovirt-engine/api/datacenters/123/networks" rel="networks"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/storagedomains" rel="storagedomains"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/permissions" rel="permissions"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/clusters" rel="clusters"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/qoss" rel="qoss"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/iscsibonds" rel="iscsibonds"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/quotas" rel="quotas"/>
+     *   <local>false</local>
+     *   <quota_mode>disabled</quota_mode>
+     *   <status>up</status>
+     *   <supported_versions>
+     *     <version>
+     *       <major>4</major>
+     *       <minor>0</minor>
+     *     </version>
+     *   </supported_versions>
+     *   <version>
+     *     <major>4</major>
+     *     <minor>0</minor>
+     *   </version>
+     * </data_center>
+     * ----
+     *
+     * Note the `id` code of your `Default` data center. This code identifies this data center in relation to other
+     * resources of your virtual environment.
+     *
+     * The data center also contains a link to the storage domains collection. The data center uses this collection to
+     * attach storage domains from the storage domains main collection.
+     *
+     * @author Vinzenz Feenstra <vfeenstr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out DataCenter[] dataCenters();
 
