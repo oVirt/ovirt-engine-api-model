@@ -21,15 +21,45 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface User extends Identified {
+
     String domainEntryId();
     String department();
     Boolean loggedIn();
+
+    /**
+     * Name space where user resides. When using the authorization provider that stores users in the LDAP
+     * (see https://github.com/oVirt/ovirt-engine-extension-aaa-ldap[here] for details) this attribute equals to naming
+     * context of the LDAP. When using the built-in authorization provider that stores users in the database
+     * (see https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc[here] for details) this attribute is ignored.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     String namespace();
     String lastName();
+
     /**
-     * Generally `name@domain`.
+     * Username of the user. The format depends on authorization provider type. In case of most LDAP providers it is
+     * value of the `uid` LDAP attribute. In case of Active Directory it is the user principal name (UPN). `UPN` or
+     * `uid` must be followed by authorization provider name. For example in case of LDAP using `uid` attribute it is:
+     * `myuser@myextension-authz`. In case of Active Directory using `UPN` it is:
+     * `myuser@mysubdomain.mydomain.com@myextension-authz`. This attribute is required parameter when adding new user.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
      */
     String userName();
+
+    /**
+     * Same as `user_name` principal has different formats based on LDAP provider. In case of most LDAP providers it is
+     * value of the `uid` LDAP attribute. In case of Active Directory it is the user principal name (UPN).
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     String principal();
     String password();
     String email();
