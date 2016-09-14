@@ -35,6 +35,13 @@ import types.StorageDomain;
 @Service
 @Area("Infrastructure")
 public interface HostService extends MeasurableService {
+    /**
+     * Activate the host for use, such as running virtual machines.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Activate {
         /**
          * Indicates if the activation should be performed asynchronously.
@@ -42,6 +49,15 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Approve a pre-installed Hypervisor host for usage in the virtualization environment.
+     *
+     * This action also accepts an optional cluster element to define the target cluster for this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Approve {
         @In Cluster cluster();
 
@@ -65,6 +81,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Deactivate the host to perform maintenance tasks.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Deactivate {
         @In String reason();
 
@@ -80,6 +103,13 @@ public interface HostService extends MeasurableService {
         @In Boolean stopGlusterService();
     }
 
+    /**
+     * Enroll certificate of the host. Useful in case you get a warning that it is about to, or already expired.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface EnrollCertificate {
         /**
          * Indicates if the enrollment should be performed asynchronously.
@@ -87,6 +117,38 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Controls host's power management device.
+     *
+     * For example, let's assume you want to start the host. This can be done via:
+     *
+     * [source]
+     * ----
+     * #!/bin/sh -ex
+     *
+     * url="https://engine.example.com/ovirt-engine/api"
+     * user="admin@internal"
+     * password="..."
+     *
+     * curl \
+     * --verbose \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --user "${user}:${password}" \
+     * --request POST \
+     * --header "Version: 4" \
+     * --header "Content-Type: application/xml" \
+     * --header "Accept: application/xml" \
+     * --data '
+     * <action>
+     *   <fence_type>start</fence_type>
+     * </action>
+     * ' \
+     * "${url}/hosts/123/fence"
+     * ----
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Fence {
         @In String fenceType();
         @Out PowerManagement powerManagement();
@@ -104,6 +166,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Get the host details.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Get {
         @Out Host host();
 
@@ -113,6 +182,13 @@ public interface HostService extends MeasurableService {
         @In Boolean filter();
     }
 
+    /**
+     * Install VDSM and related software on the host. The host type defines additional parameters for the action.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Install {
         /**
          * The password of of the `root` user, used to connect to the host via SSH.
@@ -187,6 +263,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Update the host properties.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Host host();
 
@@ -196,6 +279,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Upgrade VDSM and selected software on the host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Upgrade {
         /**
          * Indicates if the upgrade should be performed asynchronously.
@@ -210,6 +300,30 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Remove the host from the system.
+     *
+     * [source]
+     * ----
+     * #!/bin/sh -ex
+     *
+     * url="https://engine.example.com/ovirt-engine/api"
+     * user="admin@internal"
+     * password="..."
+     *
+     * curl \
+     * --verbose \
+     * --cacert /etc/pki/ovirt-engine/ca.pem \
+     * --user "${user}:${password}" \
+     * --request DELETE \
+     * --header "Version: 4" \
+     * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc"
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
