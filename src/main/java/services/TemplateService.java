@@ -27,8 +27,50 @@ import types.Template;
 @Service
 @Area("Virtualization")
 public interface TemplateService {
+    /**
+     * Exports a template to the data center export domain.
+     *
+     * For example, the operation can be facilitated using the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/templates/123/export
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     *   <exclusive>true<exclusive/>
+     * </action>
+     * ----
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Export {
+        /**
+         * Indicates if the existing templates with the same name should be overwritten.
+         *
+         * The export action reports a failed action if a template of the same name exists in the destination domain.
+         * Set this parameter to `true` to change this behavior and overwrite any existing template.
+         *
+         * @author Liron Aravot <laravot@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In Boolean exclussive();
+
+        /**
+         * Specifies the destination export storage domain.
+         *
+         * @author Liron Aravot <laravot@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
+         */
         @In StorageDomain storageDomain();
     }
 
