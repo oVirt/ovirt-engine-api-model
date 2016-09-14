@@ -19,6 +19,65 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Logical network.
+ *
+ * An example of the JSON representation of a logical network:
+ *
+ * [source,json]
+ * ----
+ * {
+ *   "network" : [ {
+ *     "data_center" : {
+ *       "href" : "/ovirt-engine/api/datacenters/123",
+ *       "id" : "123"
+ *     },
+ *     "stp" : "false",
+ *     "mtu" : "0",
+ *     "usages" : {
+ *       "usage" : [ "vm" ]
+ *     },
+ *     "name" : "ovirtmgmt",
+ *     "description" : "Management Network",
+ *     "href" : "/ovirt-engine/api/networks/456",
+ *     "id" : "456",
+ *     "link" : [ {
+ *       "href" : "/ovirt-engine/api/networks/456/permissions",
+ *       "rel" : "permissions"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/networks/456/vnicprofiles",
+ *       "rel" : "vnicprofiles"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/networks/456/labels",
+ *       "rel" : "labels"
+ *     } ]
+ *   } ]
+ * }
+ * ----
+ *
+ * An example of the XML representation of the same logical network:
+ *
+ * [source,xml]
+ * ----
+ * <network href="/ovirt-engine/api/networks/456" id="456">
+ *   <name>ovirtmgmt</name>
+ *   <description>Management Network</description>
+ *   <link href="/ovirt-engine/api/networks/456/permissions" rel="permissions"/>
+ *   <link href="/ovirt-engine/api/networks/456/vnicprofiles" rel="vnicprofiles"/>
+ *   <link href="/ovirt-engine/api/networks/456/labels" rel="labels"/>
+ *   <data_center href="/ovirt-engine/api/datacenters/123" id="123"/>
+ *   <stp>false</stp>
+ *   <mtu>0</mtu>
+ *   <usages>
+ *     <usage>vm</usage>
+ *   </usages>
+ * </network>
+ * ----
+ *
+ * @author Martin Mucha <mmucha@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface Network extends Identified {
     Ip ip();

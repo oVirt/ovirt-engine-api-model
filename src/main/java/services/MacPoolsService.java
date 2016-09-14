@@ -25,6 +25,40 @@ import types.MacPool;
 @Service
 @Area("Network")
 public interface MacPoolsService {
+    /**
+     * Creates a new MAC address pool.
+     *
+     * Creation of a MAC address pool requires values for the `name` and `ranges` attributes.
+     *
+     * For example, to create MAC address pool send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/macpools
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <mac_pool>
+     *   <name>MACPool</name>
+     *   <description>A MAC address pool</description>
+     *   <allow_duplicates>true</allow_duplicates>
+     *   <default_pool>false</default_pool>
+     *   <ranges>
+     *     <range>
+     *       <from>00:1A:4A:16:01:51</from>
+     *       <to>00:1A:4A:16:01:e6</to>
+     *     </range>
+     *   </ranges>
+     * </mac_pool>
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out MacPool pool();
     }

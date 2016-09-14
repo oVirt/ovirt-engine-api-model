@@ -25,6 +25,32 @@ import types.Network;
 @Service
 @Area("Network")
 public interface NetworksService {
+    /**
+     * Creates new logical network.
+     *
+     * Creation of a new network requires the `name` and `data_center` elements.
+     *
+     * For example, to create a network named `mynetwork` for data center `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/networks
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <network>
+     *   <name>mynetwork</name>
+     *   <data_center id="123"/>
+     * </network>
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Network network();
     }
