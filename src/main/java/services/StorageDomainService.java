@@ -229,6 +229,14 @@ public interface StorageDomainService {
     @Service AssignedPermissionsService permissions();
     @Service DiskSnapshotsService diskSnapshots();
     @Service DisksService disks();
+
+    /**
+     * Returns a reference to the service that manages the files available in the storage domain.
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service FilesService files();
     @Service ImagesService images();
 
