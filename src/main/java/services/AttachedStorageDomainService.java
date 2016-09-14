@@ -53,6 +53,27 @@ public interface AttachedStorageDomainService {
         @In Boolean async();
     }
 
+    /**
+     * This operation deactivates an attached storage domain.
+     * Once the storage domain is deactivated it will not be used with the data center.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
+     * ----
+     *
+     * The deactivate action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Deactivate {
         /**
          * Indicates if the deactivation should be performed asynchronously.
