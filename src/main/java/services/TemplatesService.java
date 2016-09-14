@@ -25,6 +25,47 @@ import types.Template;
 @Service
 @Area("Virtualization")
 public interface TemplatesService {
+    /**
+     * Creates a new template.
+     *
+     * This requires the `name` and `vm` elements. Identify the virtual machine with the `id` `name` attributes.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/templates
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <vm id="123"/>
+     * </template>
+     * ----
+     *
+     * The template can be created as a sub version of an existing template.This requires the `name` and `vm` attributes
+     * for the new template, and the `base_template` and `version_name` attributes for the new template version. The
+     * `base_template` and `version_name` attributes must be specified within a `version` section enclosed in the
+     * `template` section. Identify the virtual machine with the `id` or `name` attributes.
+     *
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <vm id="123"/>
+     *   <version>
+     *     <base_template id="456"/>
+     *     <version_name>mytemplate_001</version_name>
+     *   </version>
+     * </template>
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Template template();
 
