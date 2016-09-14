@@ -186,9 +186,18 @@ public interface StorageDomainService {
 
         /**
          * Indicates if the actual storage should be formatted, removing all the metadata from the underlying LUN or
-         * directory.
+         * directory:
+         *
+         * [source]
+         * ----
+         * DELETE /ovirt-engine/api/storagedomains/123?format=true
+         * ----
          *
          * This parameter is optional, and the default value is `false`.
+         *
+         * @author Allon Mureinik <amureini@redhat.com>
+         * @date 14 Sep 2016
+         * @status added
          */
         @In Boolean format();
 
