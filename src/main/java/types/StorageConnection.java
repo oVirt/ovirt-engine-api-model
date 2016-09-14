@@ -19,6 +19,24 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a storage server connection.
+ *
+ * Example:
+ *
+ * [source,xml]
+ * ----
+ * <storage_connection id="123">
+ *   <address>mynfs.example.com</address>
+ *   <type>nfs</type>
+ *   <path>/exports/mydata</path>
+ * </storage_connection>
+ * ----
+ *
+ * @author Daniel Erez <derez@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface StorageConnection extends Identified {
     // Common to all types of storage connections:
