@@ -86,6 +86,30 @@ public interface DiskService extends MeasurableService {
         @Out Disk disk();
     }
 
+    /**
+     * Moves a disk to another storage domain.
+     *
+     * For example, to move the disk with identifier `123` to a storage domain with identifier `456` send the following
+     * request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks/123/move
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     * </action>
+     * ----
+     *
+     * @author Amit Aviram <aaviram@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Move {
         @In StorageDomain storageDomain();
 
