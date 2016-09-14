@@ -116,6 +116,36 @@ public interface DataCenterService {
         @In Boolean async();
     }
 
+    /**
+    * Attach and detach storage domains to and from a data center.
+    *
+    * For attaching a single storage domain we should use the folowing POST request:
+    *
+    * [source]
+    * ----
+    * POST /ovirt-engine/api/datacenters/123/storagedomains
+    * ----
+    *
+    * With a request body like this:
+    *
+    * [source,xml]
+    * ----
+    * <storage_domain>
+    *   <name>data1</name>
+    * </storage_domain>
+    * ----
+    *
+    * For detaching a single storage domain we should use the folowing DELETE request:
+    *
+    * [source]
+    * ----
+    * DELETE /ovirt-engine/api/datacenters/123/storagedomains/123
+    * ----
+    *
+    * @author Maor Lipchuk <mlipchuk@redhat.com>
+    * @date 14 Sep 2016
+    * @status added
+    */
     @Service AttachedStorageDomainsService storageDomains();
     @Service ClustersService clusters();
     @Service NetworksService networks();
