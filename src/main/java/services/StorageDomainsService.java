@@ -25,7 +25,6 @@ import types.StorageDomain;
 @Service
 @Area("Storage")
 public interface StorageDomainsService {
-
     /**
      * Adds a new storage domain.
      *
@@ -79,8 +78,29 @@ public interface StorageDomainsService {
      * </storage_domain>
      * ----
      *
+     * To create a new iSCSI storage domain send a request like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_domain>
+     *   <name>myiscsi</name>
+     *   <type>data</type>
+     *   <storage>
+     *     <type>iscsi</type>
+     *     <logical_units>
+     *       <logical_unit id="3600144f09dbd050000004eedbd340001"/>
+     *       <logical_unit id="3600144f09dbd050000004eedbd340002"/>
+     *     </logical_units>
+     *   </storage>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     * </storage_domain>
+     * ----
+     *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tal Nisan <tnisan@redhat.com>
+     * @author Amit Aviram <aaviram@redhat.com>
      * @date 14 Sep 2016
      * @status added
      */
