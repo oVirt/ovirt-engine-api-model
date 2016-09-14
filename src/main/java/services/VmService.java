@@ -270,6 +270,26 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * This operation sends a reboot request to a virtual machine.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/reboot
+     * ----
+     *
+     * The reboot action does not take any action specific parameters, so the request body should contain an
+     * empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Reboot {
         /**
          * Indicates if the reboot should be performed asynchronously.
