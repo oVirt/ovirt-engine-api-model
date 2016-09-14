@@ -31,6 +31,71 @@ public interface StorageDomainVmService {
         @Out Vm vm();
     }
 
+    /**
+     * Imports a virtual machine from an export storage domain.
+     *
+     * For example, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storagedomains/123/vms/456/import
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain>
+     *     <name>mydata</name>
+     *   </storage_domain>
+     *   <cluster>
+     *     <name>mycluster</name>
+     *   </cluster>
+     * </action>
+     * ----
+     *
+     * To import a virtual machine as a new entity add the `clone` parameter:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain>
+     *     <name>mydata</name>
+     *   </storage_domain>
+     *   <cluster>
+     *     <name>mycluster</name>
+     *   </cluster>
+     *   <clone>true</clone>
+     *   <vm>
+     *     <name>myvm</name>
+     *   </vm>
+     * </action>
+     * ----
+     *
+     * Include an optional `disks` parameter to choose which disks to import. For example, to import the disks
+     * of the template that have the identifiers `123` and `456` send the followign request body:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <cluster>
+     *     <name>mycluster</name>
+     *   </cluster>
+     *   <vm>
+     *     <name>myvm</name>
+     *   </vm>
+     *   <disks>
+     *     <disk id="123"/>
+     *     <disk id="456"/>
+     *   </disks>
+     * </action>
+     * ----
+     *
+     * @author Amit Aviram <aaviram@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Import {
         /**
          * Indicates if the identifiers of the imported virtual machine
