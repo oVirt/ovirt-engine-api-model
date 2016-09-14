@@ -70,6 +70,18 @@ public interface VmPoolService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a virtual machine pool.
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/vmpools/123
+     * ----
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
