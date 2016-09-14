@@ -27,7 +27,30 @@ import types.Host;
 public interface HostsService {
     /**
      * Creates a new host and adds it to the database. The host is created based on the properties of the `host`
-     * parameter. The `name`, `address` `rootPassword` properties are required.
+     * parameter. The `name`, `address` `root_password` properties are required.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts
+     * ----
+     *
+     * with body:
+     *
+     * [source, xml]
+     * ----
+     * <host>
+     *   <name>Host1</name>
+     *   <address>192.168.122.154</address>
+     *   <root_password>***</root_password>
+     * </host>
+     * ----
+     *
+     * The `root_password` element is only included in the client-provided initial representation and is not exposed
+     * in the representations returned from subsequent requests.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
      */
     interface Add {
         /**
