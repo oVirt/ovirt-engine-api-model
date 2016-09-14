@@ -29,6 +29,43 @@ public interface MacPoolService {
         @Out MacPool pool();
     }
 
+    /**
+     * Updates a MAC address pool.
+     *
+     * The `name`, `description`, `allow_duplicates`, and `ranges` attributes can be updated.
+     *
+     * For example, to update the MAC address pool of id `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/macpools/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <mac_pool>
+     *   <name>UpdatedMACPool</name>
+     *   <description>An updated MAC address pool</description>
+     *   <allow_duplicates>false</allow_duplicates>
+     *   <ranges>
+     *     <range>
+     *       <from>00:1A:4A:16:01:51</from>
+     *       <to>00:1A:4A:16:01:e6</to>
+     *     </range>
+     *     <range>
+     *       <from>02:1A:4A:01:00:00</from>
+     *       <to>02:1A:4A:FF:FF:FF</to>
+     *     </range>
+     *   </ranges>
+     * </mac_pool>
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out MacPool pool();
 
@@ -38,6 +75,20 @@ public interface MacPoolService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a MAC address pool.
+     *
+     * For example, to remove the MAC address pool having id `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/macpools/123
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

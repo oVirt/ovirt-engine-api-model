@@ -25,6 +25,30 @@ import types.NetworkLabel;
 @Service
 @Area("Network")
 public interface NetworkLabelsService {
+    /**
+     * Attaches label to logical network.
+     *
+     * You can attach labels to a logical network to automate the association of that logical network with physical host
+     * network interfaces to which the same label has been attached.
+     * ⁠
+     * For example, to attach the label `mylabel` to a logical network having id `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/networks/123/labels
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <label id="mylabel"/>
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out NetworkLabel label();
     }

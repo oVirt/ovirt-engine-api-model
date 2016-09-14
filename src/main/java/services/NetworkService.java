@@ -29,6 +29,31 @@ public interface NetworkService {
         @Out Network network();
     }
 
+    /**
+     * Updates a logical network.
+     *
+     * The `name`, `description`, `ip`, `vlan`, `stp` and `display` attributes can be updated.
+     * ⁠
+     * For example, to update the description of the logcial network `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/networks/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <network>
+     *   <description>My updated description</description>
+     * </network>
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Network network();
 
@@ -38,6 +63,20 @@ public interface NetworkService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a logical network.
+     *
+     * For example, to remove the logical network `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/networks/123
+     * ----
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

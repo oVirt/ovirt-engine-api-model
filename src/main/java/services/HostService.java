@@ -70,7 +70,29 @@ public interface HostService extends MeasurableService {
     /**
      * Marks the network configuration as good and persists it inside the host.
      *
+     * An API user commits the network configuration to persist a host network interface attachment or detachment, or
+     * persist the creation and deletion of a bonded interface.
+     *
+     * IMPORTANT: Networking configuration is only committed after the engine has established that host connectivity is
+     * not lost as a result of the configuration changes. If host connectivity is lost, the host requires a reboot and
+     * automatically reverts to the previous networking configuration.
+     *
+     * For example, to commit the network configuration of host with id `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/commitnetconfig
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @author Martin Mucha <mmucha@redhat.com>
      * @date 16 Aug 2016
      * @status added
      */
