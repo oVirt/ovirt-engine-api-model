@@ -25,6 +25,13 @@ import types.OpenStackImage;
 @Service
 @Area("Storage")
 public interface OpenstackImagesService {
+    /**
+     * Lists the images of a Glance image storage domain.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out OpenStackImage[] images();
 
@@ -34,5 +41,12 @@ public interface OpenstackImagesService {
         @In Integer max();
     }
 
+    /**
+     * Returns a reference to the service that manages a specific image.
+     *
+     * @author @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service OpenstackImageService image(String id);
 }
