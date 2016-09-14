@@ -25,6 +25,32 @@ import types.VmPool;
 @Service
 @Area("Virtualization")
 public interface VmPoolsService {
+    /**
+     * Creates a new virtual machine pool.
+     *
+     * A new pool requires the `name`, `cluster` and `template` attributes. Identify the cluster and template with the
+     * `id` or `name` nested attributes:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vmpools
+     * ----
+     *
+     * With the following body:
+     *
+     * [source,xml]
+     * ----
+     * <vmpool>
+     *   <name>mypool</name>
+     *   <cluster id="123"/>
+     *   <template id="456"/>
+     * </vmpool>
+     * ----
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out VmPool pool();
     }
