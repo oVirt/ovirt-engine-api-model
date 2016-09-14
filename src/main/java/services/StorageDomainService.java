@@ -213,6 +213,14 @@ public interface StorageDomainService {
     @Service DisksService disks();
     @Service FilesService files();
     @Service ImagesService images();
+
+    /**
+     * Returns a reference to the service that manages the storage connections.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service StorageDomainServerConnectionsService storageConnections();
     @Service StorageDomainTemplatesService templates();
     @Service StorageDomainVmsService vms();
