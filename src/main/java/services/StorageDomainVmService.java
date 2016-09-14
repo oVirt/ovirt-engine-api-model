@@ -75,6 +75,20 @@ public interface StorageDomainVmService {
         @In Boolean async();
     }
 
+    /**
+     * Deletes a virtual machine from an export storage domain.
+     *
+     * For example, to delete the virtual machine `456` from the storage domain `123`, send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/storagedomains/123/vms/456
+     * ----
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
