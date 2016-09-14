@@ -22,11 +22,50 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Session;
 
+/**
+ * Provides information about virtual machine user sessions.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmSessionsService {
+
+    /**
+     * Lists all user sessions for this virtual machine.
+     *
+     * For example, to retrieve the session information for virtual machine `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/sessions
+     * ----
+     *
+     * The response body will contain something like this:
+     *
+     * [source,xml]
+     * ----
+     * <sessions>
+     *   <session href="/ovirt-engine/api/vms/123/sessions/456" id="456">
+     *     <console_user>true</console_user>
+     *     <ip>
+     *       <address>192.168.122.1</address>
+     *     </ip>
+     *     <user href="/ovirt-engine/api/users/789" id="789"/>
+     *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     *   </session>
+     *   ...
+     * </sessions>
+     * ----
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
-        @Out Session[] session();
+        @Out Session[] sessions();
 
         /**
          * Sets the maximum number of sessions to return. If not specified all the sessions are returned.
@@ -34,5 +73,12 @@ public interface VmSessionsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that manages a specific session.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service VmSessionService session(String id);
 }
