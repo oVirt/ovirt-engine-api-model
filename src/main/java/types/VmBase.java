@@ -24,6 +24,36 @@ import java.util.Date;
 @Type
 public interface VmBase extends Identified {
     VmType type();
+
+    /**
+     * The virtual machine's memory, in bytes.
+     *
+     * For example, in order to update a virtual machine to contain 1 GiB of memory send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   <memory>1073741824</memory>
+     * </vm>
+     * ----
+     *
+     * NOTE: Memory in the previous example is converted to bytes using the following formula: +
+     * 1 GiB = 2^30^ bytes = 1073741824 bytes.
+     *
+     * NOTE: Memory hot plug is supported from oVirt 3.6 onwards.
+     * You can use the example above to increase memory while the virtual machine is running.
+     *
+     * @author Yanir Quinn <yquinn@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Integer memory();
 
     /**
