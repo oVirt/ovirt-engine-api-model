@@ -16,19 +16,50 @@ limitations under the License.
 
 package services;
 
-import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
+import annotations.Area;
 import types.Quota;
 
 @Service
 @Area("SLA")
 public interface QuotasService {
+
+    /**
+     * Creates a new quota.
+     *
+     * An example of creating a new quota:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/quotas
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <quota>
+     *   <name>myquota</name>
+     *   <description>My new quota for virtual machines</description>
+     * </quota>
+     * ----
+     *
+     * @author Roman Mohr <rmohr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out Quota quota();
     }
 
+    /**
+     * Lists quotas of a data center
+     *
+     * @author Roman Mohr <rmohr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out Quota[] quotas();
 

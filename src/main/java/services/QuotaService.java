@@ -16,19 +16,71 @@ limitations under the License.
 
 package services;
 
-import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
+import annotations.Area;
 import types.Quota;
 
 @Service
 @Area("SLA")
 public interface QuotaService {
+
+    /**
+     * Retrieves a quota.
+     *
+     * An example of retrieving a quota:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenters/123/quotas/456
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <quota id="456">
+     *   <name>myquota</name>
+     *   <description>My new quota for virtual machines</description>
+     *   <cluster_hard_limit_pct>20</cluster_hard_limit_pct>
+     *   <cluster_soft_limit_pct>80</cluster_soft_limit_pct>
+     *   <storage_hard_limit_pct>20</storage_hard_limit_pct>
+     *   <storage_soft_limit_pct>80</storage_soft_limit_pct>
+     * </quota>
+     * ----
+     *
+     * @author Roman Mohr <rmohr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Get {
         @Out Quota quota();
     }
 
+    /**
+     * Updates a quota.
+     *
+     * An example of updating a quota:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/datacenters/123/quotas/456
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <quota>
+     *   <cluster_hard_limit_pct>30</cluster_hard_limit_pct>
+     *   <cluster_soft_limit_pct>70</cluster_soft_limit_pct>
+     *   <storage_hard_limit_pct>20</storage_hard_limit_pct>
+     *   <storage_soft_limit_pct>80</storage_soft_limit_pct>
+     * </quota>
+     * ----
+     *
+     * @author Roman Mohr <rmohr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Quota quota();
 
@@ -36,8 +88,26 @@ public interface QuotaService {
          * Indicates if the update should be performed asynchronously.
          */
         @In Boolean async();
+
     }
 
+    /**
+     * Delete a quota.
+     *
+     * An example of deleting a quota:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/datacenters/123-456/quotas/654-321
+     * -0472718ab224 HTTP/1.1
+     * Accept: application/xml
+     * Content-type: application/xml
+     * ----
+     *
+     * @author Roman Mohr <rmohr@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
