@@ -25,10 +25,48 @@ import types.VirtualNumaNode;
 @Service
 @Area("SLA")
 public interface VmNumaNodesService {
+    /**
+     * Creates a new virtual NUMA node for the virtual machine.
+     *
+     * An example of creating a NUMA node:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/c7ecd2dc/numanodes
+     * Accept: application/xml
+     * Content-type: application/xml
+     * ----
+     * The request body can contain the following:
+     * [source,xml]
+     * ----
+     * <vm_numa_node>
+     *   <cpu>
+     *     <cores>
+     *       <core>
+     *         <index>0</index>
+     *       </core>
+     *     </cores>
+     *   </cpu>
+     *   <index>0</index>
+     *   <memory>1024</memory>
+     * </vm_numa_node>
+     * ----
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out VirtualNumaNode node();
     }
 
+    /**
+     * Lists virtual NUMA nodes of a virtual machine.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface List {
         @Out VirtualNumaNode[] nodes();
 
