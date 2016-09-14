@@ -25,73 +25,8 @@ import types.Cdrom;
 /**
  * Manages a CDROM device of a virtual machine.
  *
- * If there is a disk inserted then the `file` attribute will contain a reference to the ISO image:
- *
- * [source,xml]
- * ----
- * <cdrom>
- *   <file id="mycd.iso"/>
- * </cdrom>
- * ----
- *
- * If there is no disk inserted then the `file` attribute won't be reported:
- *
- * [source,xml]
- * ----
- * <cdrom>
- * </cdrom>
- * ----
- *
- * Changing and ejecting the disk is done using always the `update` method, to change the value of the `file` attribute.
- * For example, to insert or change the disk send a request like this:
- *
- * [source]
- * ----
- * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000
- * ----
- *
- * The body should contain the new value for the `file` attribute:
- *
- * [source,xml]
- * ----
- * <cdrom>
- *   <file id="mycd.iso"/>
- * </cdrom>
- * ----
- *
- * The value of the `id` attribute, `mycd.iso` in this example, should correspond to a file available in an attached
- * ISO storage domain.
- *
- * To eject the disk use a `file` with an empty `id`:
- *
- * [source,xml]
- * ----
- * <cdrom>
- *   <file id=""/>
- * </cdrom>
- * ----
- *
- * By default the above operations change permanently the disk that will be visible to the virtual machine after the
- * next boot, but they don't have any effect on the currently running virtual machine. If you want to change the disk
- * that is visible to the current running virtual machine, add the `current=true` parameter. For example, to eject the
- * current disk send a request like this:
- *
- * [source]
- * ----
- * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000?current=true
- * ----
- *
- * With a request body like this:
- *
- * [source,xml]
- * ----
- * <cdrom>
- *   <file id=""/>
- * </cdrom>
- * ----
- *
- * IMPORTANT: The changes made with the `current=true` parameter are never persisted, so they won't have any effect
- * after the virtual machine is rebooted.
+ * Changing and ejecting the disk is done using always the `update` method, to change the value of the `file`
+ * attribute.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
  * @date 25 Aug 2016
@@ -103,8 +38,31 @@ public interface VmCdromService {
     /**
      * Returns the information about this CDROM device.
      *
+     * The information consists of `cdrom` attribute containing reference to the CDROM device, the virtual machine,
+     * and optionally the inserted disk.
+     *
+     * If there is a disk inserted then the `file` attribute will contain a reference to the ISO image:
+     *
+     * [source,xml]
+     * ----
+     * <cdrom href="..." id="00000000-0000-0000-0000-000000000000">
+     *   <file id="mycd.iso"/>
+     *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     * </cdrom>
+     * ----
+     *
+     * If there is no disk inserted then the `file` attribute won't be reported:
+     *
+     * [source,xml]
+     * ----
+     * <cdrom href="..." id="00000000-0000-0000-0000-000000000000">
+     *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     * </cdrom>
+     * ----
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 25 Aug 2016
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 14 Sep 2016
      * @status added
      */
     interface Get {
@@ -131,8 +89,60 @@ public interface VmCdromService {
     /**
      * Updates the information about this CDROM device.
      *
+     * It allows to change or eject the disk by changing the value of the `file` attribute.
+     * For example, to insert or change the disk send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000
+     * ----
+     *
+     * The body should contain the new value for the `file` attribute:
+     *
+     * [source,xml]
+     * ----
+     * <cdrom>
+     *   <file id="mycd.iso"/>
+     * </cdrom>
+     * ----
+     *
+     * The value of the `id` attribute, `mycd.iso` in this example, should correspond to a file available in an
+     * attached ISO storage domain.
+     *
+     * To eject the disk use a `file` with an empty `id`:
+     *
+     * [source,xml]
+     * ----
+     * <cdrom>
+     *   <file id=""/>
+     * </cdrom>
+     * ----
+     *
+     * By default the above operations change permanently the disk that will be visible to the virtual machine
+     * after the next boot, but they don't have any effect on the currently running virtual machine. If you want
+     * to change the disk that is visible to the current running virtual machine, add the `current=true` parameter.
+     * For example, to eject the current disk send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000?current=true
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <cdrom>
+     *   <file id=""/>
+     * </cdrom>
+     * ----
+     *
+     * IMPORTANT: The changes made with the `current=true` parameter are never persisted, so they won't have any
+     * effect after the virtual machine is rebooted.
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 25 Aug 2016
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 14 Sep 2016
      * @status added
      */
     interface Update {
