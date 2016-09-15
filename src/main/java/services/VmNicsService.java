@@ -26,7 +26,7 @@ import types.Nic;
 @Area("Network")
 public interface VmNicsService {
     /**
-     * Adds a network interface to the virtual machine.
+     * Adds a NIC to the virtual machine.
      *
      * The following example adds a network interface named `mynic` using `virtio` and the `ovirtmgmt` network to the
      * virtual machine.
@@ -69,6 +69,18 @@ public interface VmNicsService {
      * https://myengine.example.com/ovirt-engine/api/vms/123/nics
      * ----
      *
+     * [IMPORTANT]
+     * ====
+     * The hotplugging feature only supports virtual machine operating systems with hotplugging operations.
+     * Example operating systems include:
+     *
+     * - Red Hat Enterprise Linux 6
+     * - Red Hat Enterprise Linux 5
+     * - Windows Server 2008 and
+     * - Windows Server 2003
+     * ====
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
      * @author Vinzenz Feenstra <vfeenstr@redhat.com>
      * @date 14 Sep 2016
      * @status added

@@ -45,6 +45,42 @@ public interface VmNicService extends MeasurableService {
         @Out Nic nic();
     }
 
+    /**
+     * Updates the NIC.
+     *
+     * For example, to update the NIC having with `456` belonging to virtual the machine with id `123` send a request
+     * like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123/nics/456
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <nic>
+     *   <name>mynic</name>
+     *   <type>e1000</type>
+     * </nic>
+     * ----
+     *
+     * [IMPORTANT]
+     * ====
+     * The hotplugging feature only supports virtual machine operating systems with hotplugging operations.
+     * Example operating systems include:
+     *
+     * - Red Hat Enterprise Linux 6
+     * - Red Hat Enterprise Linux 5
+     * - Windows Server 2008 and
+     * - Windows Server 2003
+     * ====
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out Nic nic();
 
@@ -54,6 +90,31 @@ public interface VmNicService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Removes the NIC.
+     *
+     * For example, to remove the NIC with id `456` from the virtual machine with id `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/vms/123/nics/456
+     * ----
+     *
+     * [IMPORTANT]
+     * ====
+     * The hotplugging feature only supports virtual machine operating systems with hotplugging operations.
+     * Example operating systems include:
+     *
+     * - Red Hat Enterprise Linux 6
+     * - Red Hat Enterprise Linux 5
+     * - Windows Server 2008 and
+     * - Windows Server 2003
+     * ====
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

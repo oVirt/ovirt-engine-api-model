@@ -607,6 +607,14 @@ public interface HostService extends MeasurableService {
     @Service FenceAgentsService fenceAgents();
     @Service HostDevicesService devices();
     @Service HostHooksService hooks();
+
+    /**
+     * Reference to the service that manages the network interface devices on the host.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Service HostNicsService nics();
     @Service HostNumaNodesService numaNodes();
     @Service HostStorageService storage();
