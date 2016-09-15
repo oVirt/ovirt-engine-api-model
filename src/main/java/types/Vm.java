@@ -85,7 +85,16 @@ public interface Vm extends VmBase {
     @Link Host host();
     @Link Template template();
     @Link InstanceType instanceType();
+
+    /**
+     * Link to the the list of network interface devices on the virtual machine.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Nic[] nics();
+
     @Link Snapshot[] snapshots();
     @Link VmPool vmPool();
     @Link Cdrom[] cdroms();

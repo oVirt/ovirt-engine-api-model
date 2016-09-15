@@ -19,9 +19,53 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a host NIC.
+ *
+ * For example, the XML representation of a host NIC looks like this:
+ *
+ * [source,xml]
+ * ----
+ * <host_nic href="/ovirt-engine/api/hosts/123/nics/456" id="456">
+ *   <name>eth0</name>
+ *   <boot_protocol>static</boot_protocol>
+ *   <bridged>true</bridged>
+ *   <custom_configuration>true</custom_configuration>
+ *   <ip>
+ *     <address>192.168.122.39</address>
+ *     <gateway>192.168.122.1</gateway>
+ *     <netmask>255.255.255.0</netmask>
+ *     <version>v4</version>
+ *   </ip>
+ *   <ipv6>
+ *     <gateway>::</gateway>
+ *     <version>v6</version>
+ *   </ipv6>
+ *   <ipv6_boot_protocol>none</ipv6_boot_protocol>
+ *   <mac>
+ *     <address>52:54:00:0c:79:1d</address>
+ *   </mac>
+ *   <mtu>1500</mtu>
+ *   <status>up</status>
+ * </host_nic>
+ * ----
+ *
+ * @author Martin Mucha <mmucha@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface HostNic extends Identified {
+    /**
+     *
+     * The MAC address of the NIC.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Mac mac();
+
     Ip ip();
     Ip ipv6();
     String baseInterface();
@@ -29,7 +73,16 @@ public interface HostNic extends Identified {
     Bonding bonding();
     BootProtocol bootProtocol();
     BootProtocol ipv6BootProtocol();
+
+    /**
+     * A link to the statistics of the NIC.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Statistic[] statistics();
+
     Boolean checkConnectivity();
     Integer speed();
     NicStatus status();
@@ -39,10 +92,6 @@ public interface HostNic extends Identified {
     Boolean overrideConfiguration();
     NetworkLabel[] networkLabels();
     Property[] properties();
-    /**
-     * For a SR-IOV physical function NIC describes its virtual functions configuration.
-     */
-    HostNicVirtualFunctionsConfiguration virtualFunctionsConfiguration();
 
     /**
      * The `ad_aggregator_id` property of a bond or bond slave, for bonds in mode 4.
@@ -65,11 +114,33 @@ public interface HostNic extends Identified {
     Integer adAggregatorId();
 
     @Link Host host();
+
+    /**
+     * A reference to the network which the interface should be connected. A blank network id is allowed.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Network network();
+
     @Link Qos qos();
 
     /**
      * For a SR-IOV virtual function NIC references to its physical function NIC.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
      */
     @Link HostNic physicalFunction();
+
+    /**
+     * For a SR-IOV physical function NIC describes its virtual functions configuration.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
+    HostNicVirtualFunctionsConfiguration virtualFunctionsConfiguration();
 }
