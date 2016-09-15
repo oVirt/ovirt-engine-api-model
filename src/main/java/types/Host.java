@@ -43,8 +43,8 @@ public interface Host extends Identified {
     IscsiDetails iscsi();
 
     /**
-     * When creating a new host, a root password is required, but this is not
-     * subsequently included in the representation.
+     * When creating a new host, a root password is required in case password authentication method is chosen,
+     * but this is not subsequently included in the representation.
      */
     String rootPassword();
 
