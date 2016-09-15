@@ -82,18 +82,78 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface Network extends Identified {
     Ip ip();
     Vlan vlan();
+
+    /**
+     * Specifies whether spanning tree protocol is enabled for the network.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Boolean stp();
+
     NetworkStatus status();
     Boolean display();
+
+    /**
+     * Specifies the maximum transmission unit for the network.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     Integer mtu();
+
+    /**
+     * Defines a set of usage elements for the network.
+     *
+     * Users can, for example, specify that the network is to be used for virtual machine traffic and also for
+     * display traffic with the `vm` and `display` values.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     NetworkUsage[] usages();
     Boolean required();
     Boolean profileRequired();
 
+    /**
+     * A reference to the data center of which the network is a member.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link DataCenter dataCenter();
+
     @Link Cluster cluster();
     @Link Qos qos();
+
+    /**
+     * A reference to the labels assigned to the network.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link NetworkLabel[] networkLabels();
+
+    /**
+     * A reference to the permissions of the network.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link Permission[] permissions();
+
+    /**
+     * A reference to the profiles of the network.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     @Link VnicProfile[] vnicProfiles();
 }
