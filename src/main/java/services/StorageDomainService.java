@@ -158,6 +158,48 @@ public interface StorageDomainService {
     }
 
     /**
+     * This operation reduces logical units from the storage domain.
+     *
+     * In order to do so the data stored on the provided logical units will be moved to other logical units of the
+     * storage domain and only then they will be reduced from the storage domain.
+     *
+     * For example, in order to reduce two logical units from a storage domain send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storagedomains/123/reduceluns
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     *  <action>
+     *    <logical_units>
+     *      <logical_unit id="1IET_00010001"/>
+     *      <logical_unit id="1IET_00010002"/>
+     *    </logical_units>
+     *  </action>
+     * ----
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    interface ReduceLuns {
+        /**
+         * The logical units that needs to be reduced from the storage domain.
+         *
+         * @author Liron Aravot <laravot@redhat.com>
+         * @date 30 Nov 2016
+         * @status added
+         * @since 4.1
+         */
+        @In LogicalUnit[] logicalUnits();
+    }
+
+    /**
      * Removes the storage domain.
      *
      * Without any special parameters, the storage domain is detached from the system and removed from the database. The
