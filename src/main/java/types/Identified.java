@@ -24,7 +24,23 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface Identified {
     String id();
+
+    /**
+     * A human readable name in plain text.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     String name();
+
+    /**
+     * A human readable description in plain text.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     String description();
 
     /**
