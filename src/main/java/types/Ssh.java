@@ -22,6 +22,6 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface Ssh extends Identified {
     Integer port();
     String fingerprint();
-    String authenticationMethod();
+    SshAuthenticationMethod authenticationMethod();
     User user();
 }
