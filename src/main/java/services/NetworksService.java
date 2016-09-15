@@ -37,7 +37,7 @@ import types.Network;
 @Area("Network")
 public interface NetworksService {
     /**
-     * Creates new logical network.
+     * Creates a new logical network, or associates an existing network with a data center.
      *
      * Creation of a new network requires the `name` and `data_center` elements.
      *
@@ -58,8 +58,26 @@ public interface NetworksService {
      * </network>
      * ----
      *
+     *
+     * To associate the existing network `456` with the data center `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/networks
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <network>
+     *   <name>ovirtmgmt</name>
+     * </network>
+     * ----
+     *
+     *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
+     * @date 24 Oct 2016
      * @status added
      */
     interface Add {

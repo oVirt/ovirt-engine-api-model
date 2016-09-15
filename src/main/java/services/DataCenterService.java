@@ -148,6 +148,14 @@ public interface DataCenterService {
     */
     @Service AttachedStorageDomainsService storageDomains();
     @Service ClustersService clusters();
+
+    /**
+     * Returns a reference to the service, that manages the networks, that are associated with the data center.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 24 Oct 2016
+     * @status added
+     */
     @Service NetworksService networks();
     @Service AssignedPermissionsService permissions();
     @Service QuotasService quotas();

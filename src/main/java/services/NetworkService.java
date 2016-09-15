@@ -50,8 +50,28 @@ public interface NetworkService {
      * </network>
      * ----
      *
+     *
+     * The maximum transmission unit of a network is set using a PUT request to
+     * specify the integer value of the `mtu` attribute.⁠
+     *
+     * For example, to set the maximum transmission unit send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/datacenters/123/networks/456
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <network>
+     *   <mtu>1500</mtu>
+     * </network>
+     * ----
+     *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
+     * @date 24 Oct 2016
      * @status added
      */
     interface Update {
@@ -64,7 +84,7 @@ public interface NetworkService {
     }
 
     /**
-     * Removes a logical network.
+     * Removes a logical network, or the association of a logical network to a data center.
      *
      * For example, to remove the logical network `123` send a request like this:
      *
@@ -73,8 +93,19 @@ public interface NetworkService {
      * DELETE /ovirt-engine/api/networks/123
      * ----
      *
+     * Each network is bound exactly to one data center. So if we disassociate network with data center it has the same
+     * result as if we would just remove that network. However it might be more specific to say we're removing network
+     * `456` of data center `123`.
+     *
+     * For example, to remove the association of network `456` to data center `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/datacenters/123/networks/456
+     * ----
+     *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
+     * @date 24 Oct 2016
      * @status added
      */
     interface Remove {
