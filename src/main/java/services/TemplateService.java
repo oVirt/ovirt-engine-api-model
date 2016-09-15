@@ -62,7 +62,7 @@ public interface TemplateService {
          * @date 14 Sep 2016
          * @status added
          */
-        @In Boolean exclussive();
+        @In Boolean exclusive();
 
         /**
          * Specifies the destination export storage domain.
