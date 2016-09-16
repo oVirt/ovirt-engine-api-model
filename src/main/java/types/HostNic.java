@@ -50,6 +50,46 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </host_nic>
  * ----
  *
+ * A bonded interface is represented as a <<types/host_nic, HostNic>> object
+ * containing the `bonding` and `slaves` attributes.
+ *
+ * For example, the XML representation of a bonded host NIC looks like this:
+ *
+ * [source,xml]
+ * ----
+ * <host_nic href="/ovirt-engine/api/hosts/123/nics/456" id="456">
+ *   <name>bond0</name>
+ *   <mac address="00:00:00:00:00:00"/>
+ *   <ip>
+ *     <address>192.168.122.39</address>
+ *     <gateway>192.168.122.1</gateway>
+ *     <netmask>255.255.255.0</netmask>
+ *     <version>v4</version>
+ *   </ip>
+ *   <boot_protocol>dhcp</boot_protocol>
+ *   <bonding>
+ *     <options>
+ *       <option>
+ *         <name>mode</name>
+ *         <value>4</value>
+ *         <type>Dynamic link aggregation (802.3ad)</type>
+ *       </option>
+ *       <option>
+ *         <name>miimon</name>
+ *         <value>100</value>
+ *       </option>
+ *     </options>
+ *     <slaves>
+ *       <host_nic id="123"/>
+ *       <host_nic id="456"/>
+ *     </slaves>
+ *   </bonding>
+ *   <mtu>1500</mtu>
+ *   <bridged>true</bridged>
+ *   <custom_configuration>false</custom_configuration>
+ * </host_nic>
+ * ----
+ *
  * @author Martin Mucha <mmucha@redhat.com>
  * @date 14 Sep 2016
  * @status added
@@ -125,6 +165,15 @@ public interface HostNic extends Identified {
     /**
      * A link to the statistics of the NIC.
      *
+     * The data types for HostNic statistical values:
+     *
+     * * data.current.rx - The rate in bytes per second of data received.
+     * * data.current.tx - The rate in bytes per second of data transmitted.
+     * * data.total.rx - Total received data.
+     * * data.total.tx - Total transmitted data.
+     * * errors.total.rx - Total errors from receiving data.
+     * * errors.total.tx - Total errors from transmitting data.
+     *
      * @author Martin Mucha <mmucha@redhat.com>
      * @date 14 Sep 2016
      * @status added
@@ -134,11 +183,38 @@ public interface HostNic extends Identified {
     Boolean checkConnectivity();
     Integer speed();
     NicStatus status();
+
+    /**
+     * The maximum transmission unit for the interface.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 22 Sept 2016
+     * @status added
+     */
     Integer mtu();
+
+    /**
+     * Defines the bridged network status. Set to `true` for a bridged network
+     * and `false` for a bridgeless network.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 22 Sept 2016
+     * @status added
+     */
     Boolean bridged();
+
     Boolean customConfiguration();
     Boolean overrideConfiguration();
+
+    /**
+     * The labels that are applied to this NIC.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 22 Sept 2016
+     * @status added
+     */
     NetworkLabel[] networkLabels();
+
     Property[] properties();
 
     /**

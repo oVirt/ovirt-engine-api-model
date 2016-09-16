@@ -27,7 +27,25 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface Bonding {
+
+    /**
+     * A list of option elements for a bonded interface. Each option contains property name and value attributes.
+     * Only required when adding bonded interfaces.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 22 Sept 2016
+     * @status added
+     */
     Option[] options();
+
+    /**
+     * A list of slave NICs for a bonded interface.
+     * Only required when adding bonded interfaces.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 22 Sept 2016
+     * @status added
+     */
     HostNic[] slaves();
 
     /**

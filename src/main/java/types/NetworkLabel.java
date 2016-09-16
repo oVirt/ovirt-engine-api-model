@@ -19,6 +19,13 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a label which can be added to a host network interface.
+ *
+ * @author Marcin Mirecki <mmirecki@redhat.com>
+ * @date 14 Sept 2016
+ * @status added
+ */
 @Type
 public interface NetworkLabel extends Identified {
     @Link Network network();
