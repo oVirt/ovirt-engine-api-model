@@ -17,10 +17,10 @@ limitations under the License.
 package org.ovirt.api.metamodel.tool;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.asciidoctor.Asciidoctor;
-import org.asciidoctor.Attributes;
 import org.asciidoctor.Options;
 
 /**
@@ -28,20 +28,23 @@ import org.asciidoctor.Options;
  */
 @Named("asciidoc")
 public class AsciiDocHtmlGenerator implements HtmlGenerator {
-    private Attributes attributes;
-    private Options options;
+    // Reference to the object that stores the global AsciiDoc configuration:
+    @Inject private AsciiDocConfiguration configuration;
+
+    // The state of generator:
     private Asciidoctor doctor;
 
     @PostConstruct
     public void init() {
-        attributes = new Attributes();
-        attributes.setSourceHighlighter("highlightjs");
-        options = new Options();
-        options.setAttributes(attributes);
         doctor = Asciidoctor.Factory.create();
     }
 
     public String toHtml(String text) {
+        // Create the options:
+        Options options = new Options();
+        options.setAttributes(configuration.getAttributes());
+
+        // Perform the rendering:
         return doctor.convert(text, options);
     }
 }

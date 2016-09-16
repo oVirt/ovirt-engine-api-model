@@ -55,6 +55,9 @@ public class AsciiDocGenerator {
     // Reference to the object used to calculate names:
     @Inject private Names names;
 
+    // Reference to the object that stores the AsciiDoc configuration:
+    @Inject private AsciiDocConfiguration configuration;
+
     // The directory were the output will be generated:
     private File outDir;
 
@@ -85,6 +88,16 @@ public class AsciiDocGenerator {
         // Header:
         docBuffer.addLine("= Model");
         docBuffer.addLine();
+
+        // Copy the attributes from the configuration:
+        configuration.getAttributes().map().forEach((name, value) -> {
+            if (value != null) {
+                docBuffer.addLine(":%1$s: %2$s", name, value);
+            }
+            else {
+                docBuffer.addLine(":%1$s:", name);
+            }
+        });
 
         // Include all the documents, pushing titles one level down:
         docBuffer.addLine(":leveloffset: 1");

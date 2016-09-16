@@ -17,6 +17,8 @@ limitations under the License.
 package org.ovirt.api.metamodel.tool;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -33,6 +35,9 @@ import org.ovirt.api.metamodel.concepts.Model;
 
 @ApplicationScoped
 public class Tool {
+    // Regular expression used to extract name and value from documentation attribute options:
+    private static final Pattern ADOC_ATTRIBUTE_RE = Pattern.compile("^(?<name>[^:]+):(?<value>.*)?$");
+
     // References to the objects that implement the rules to generate names for Java concepts:
     @Inject private JavaPackages javaPackages;
 
@@ -51,6 +56,7 @@ public class Tool {
     @Inject private JsonSupportGenerator jsonSupportGenerator;
     @Inject private AsciiDocGenerator docGenerator;
     @Inject private DocReportGenerator reportGenerator;
+    @Inject private AsciiDocConfiguration adocConfiguration;
 
     // Reference to the object used to add built-in types to the model:
     @Inject private BuiltinTypes builtinTypes;
@@ -66,6 +72,7 @@ public class Tool {
     private static final String VERSION_PREFIX_OPTION = "version-prefix";
     private static final String DOCS_OPTION = "docs";
     private static final String REPORT_OPTION = "report";
+    private static final String ADOC_ATTRIBUTE_OPTION = "adoc-attribute";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
@@ -230,6 +237,17 @@ public class Tool {
             .build()
         );
         options.addOption(Option.builder()
+            .longOpt(ADOC_ATTRIBUTE_OPTION)
+            .desc(
+                "An attribute to be included in the generated AsciiDoc documentation. The value of the argument " +
+                "should be the name attribute, followed by an optional colon and the value of the attribute."
+            )
+            .required(false)
+            .hasArg(true)
+            .argName("ATTRIBUTE")
+            .build()
+        );
+        options.addOption(Option.builder()
             .longOpt(REPORT_OPTION)
             .desc("The file where the documentation report be created.")
             .type(File.class)
@@ -273,20 +291,6 @@ public class Tool {
         // Add the built-in types to the model:
         builtinTypes.addBuiltinTypes(model);
 
-        // Generate the XML representation of the model:
-        if (xmlFile != null) {
-            File xmlDir = xmlFile.getParentFile();
-            FileUtils.forceMkdir(xmlDir);
-            xmlDescriptionGenerator.generate(model, xmlFile);
-        }
-
-        // Generate the JSON representation of the model:
-        if (jsonFile != null) {
-            File jsonDir = jsonFile.getParentFile();
-            FileUtils.forceMkdir(jsonDir);
-            jsonDescriptionGenerator.generate(model, jsonFile);
-        }
-
         // Extract the version prefix from the command line and copy it to the object that manages names:
         String versionPrefix = line.getOptionValue(VERSION_PREFIX_OPTION);
         if (versionPrefix != null) {
@@ -323,6 +327,37 @@ public class Tool {
         String xmlPackage = line.getOptionValue(XML_PACKAGE_OPTION);
         if (xmlPackage != null) {
             javaPackages.setXmlPackageName(xmlPackage);
+        }
+
+        // Extract the documentation attributes:
+        String[] adocAttributeArgs = line.getOptionValues(ADOC_ATTRIBUTE_OPTION);
+        if (adocAttributeArgs != null) {
+            for (String adocAttributeArg : adocAttributeArgs) {
+                Matcher adocAttributeMatch = ADOC_ATTRIBUTE_RE.matcher(adocAttributeArg);
+                if (!adocAttributeMatch.matches()) {
+                    throw new IllegalArgumentException(
+                        "The AsciiDoc attribute \"" + adocAttributeArg + "\" doesn't match regular " +
+                        "expression \"" + ADOC_ATTRIBUTE_RE.pattern() + "\"."
+                    );
+                }
+                String adocAttributeName = adocAttributeMatch.group("name");
+                String adocAttributeValue = adocAttributeMatch.group("value");
+                adocConfiguration.setAttribute(adocAttributeName, adocAttributeValue);
+            }
+        }
+
+        // Generate the XML representation of the model:
+        if (xmlFile != null) {
+            File xmlDir = xmlFile.getParentFile();
+            FileUtils.forceMkdir(xmlDir);
+            xmlDescriptionGenerator.generate(model, xmlFile);
+        }
+
+        // Generate the JSON representation of the model:
+        if (jsonFile != null) {
+            File jsonDir = jsonFile.getParentFile();
+            FileUtils.forceMkdir(jsonDir);
+            jsonDescriptionGenerator.generate(model, jsonFile);
         }
 
         // Generate the XML schema:
