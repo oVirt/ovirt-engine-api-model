@@ -23,5 +23,13 @@ public interface ReportedConfiguration {
     String name();
     String expectedValue();
     String actualValue();
+
+    /**
+     * `false` when the network attachment contains uncommitted network configuration.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean inSync();
 }
