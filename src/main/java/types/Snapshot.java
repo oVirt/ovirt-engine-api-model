@@ -21,6 +21,27 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Represents a snapshot object.
+ *
+ * [source,xml]
+ * ----
+ * <snapshot id="456" href="/ovirt-engine/api/vms/123/snapshots/456">
+ *   <actions>
+ *     <link rel="restore" href="/ovirt-engine/api/vms/123/snapshots/456/restore"/>
+ *   </actions>
+ *   <vm id="123" href="/ovirt-engine/api/vms/123"/>
+ *   <description>Virtual Machine 1 - Snapshot A</description>
+ *   <type>active</type>
+ *   <date>2010-08-16T14:24:29</date>
+ *   <persist_memorystate>false</persist_memorystate>
+ * </snapshot>
+ * ----
+ *
+ * @author Daniel Erez <derez@redhat.com>
+ * @date 14 Sep 2016
+ * @status added
+ */
 @Type
 public interface Snapshot extends Vm {
     Date date();
