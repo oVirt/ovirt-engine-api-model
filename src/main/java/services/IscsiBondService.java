@@ -29,6 +29,31 @@ public interface IscsiBondService {
         @Out IscsiBond bond();
     }
 
+    /**
+     * Updates an iSCSI bond.
+     *
+     * Updating of an iSCSI bond can be done on the `name` and the `description` attributes only. For example, to
+     * update the iSCSI bond `456` of data center `123`, send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/datacenters/123/iscsibonds/1234
+     * ----
+     *
+     * The request body should look like this:
+     *
+     * [source,xml]
+     * ----
+     * <iscsi_bond>
+     *    <name>mybond</name>
+     *    <description>My iSCSI bond</description>
+     * </iscsi_bond>
+     * ----
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Update {
         @In @Out IscsiBond bond();
 
