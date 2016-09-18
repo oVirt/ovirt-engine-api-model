@@ -25,6 +25,38 @@ import types.IscsiBond;
 @Service
 @Area("Storage")
 public interface IscsiBondsService {
+
+    /**
+     * Create a new iSCSI bond on a data center.
+     *
+     * For example, to create a new iSCSI bond on data center `123` using storage connections `456` and `789`, send a
+     * request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/iscsibonds
+     * ----
+     *
+     * The request body should look like this:
+     *
+     * [source,xml]
+     * ----
+     * <iscsi_bond>
+     *   <name>mybond</name>
+     *   <storage_connections>
+     *     <storage_connection id="456"/>
+     *     <storage_connection id="789"/>
+     *   </storage_connections>
+     *   <networks>
+     *     <network id="abc"/>
+     *   </networks>
+     * </iscsi_bond>
+     * ----
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out IscsiBond bond();
     }
