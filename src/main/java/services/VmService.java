@@ -101,9 +101,54 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Export a virtual machine to an export domain.
+     *
+     * For example to export virtual machine `123` to the export domain `myexport`, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/export
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain>
+     *     <name>myexport</name>
+     *   </storage_domain>
+     *   <exclusive>true</exclusive>
+     *   <discard_snapshots>true</discard_snapshots>
+     * </action>
+     * ----
+     *
+     * @author Tal Nisan <tisan@redhat.com>
+     * @date 19 Sep 2016
+     * @status added
+     */
     interface Export {
+        /**
+         * The `discard_snapshots` parameter is to be used when the virtual machine should be exported with all its
+         * snapshots collapsed.
+         *
+         * @author Tal Nisan <tisan@redhat.com>
+         * @date 19 Sep 2016
+         * @status added
+         */
         @In Boolean discardSnapshots();
+
+        /**
+         * The `exclusive` parameter is to be used when the virtual machine should be exported even if another copy of
+         * it already exists in the export domain (override).
+         *
+         * @author Tal Nisan <tisan@redhat.com>
+         * @date 19 Sep 2016
+         * @status added
+         */
         @In Boolean exclusive();
+
         @In StorageDomain storageDomain();
 
         /**
