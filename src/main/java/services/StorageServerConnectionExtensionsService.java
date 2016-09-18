@@ -25,6 +25,34 @@ import types.StorageConnectionExtension;
 @Service
 @Area("Storage")
 public interface StorageServerConnectionExtensionsService {
+
+    /**
+     * Creates a new storage server connection extension for the given host.
+     *
+     * The extension lets the user define credentials for an iSCSI target for a specific host. For example to use
+     * `myuser` and `mypassword` as the credentials when connecting to the iSCSI target from host `123` send a request
+     * like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/storageconnectionextensions
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_connection_extension>
+     *   <target>iqn.2016-01.com.example:mytarget</target>
+     *   <username>myuser</username>
+     *   <password>mypassword</password>
+     * </storage_connection_extension>
+     * ----
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 20 Sep 2016
+     * @status added
+     */
     interface Add {
         @In @Out StorageConnectionExtension extension();
     }
