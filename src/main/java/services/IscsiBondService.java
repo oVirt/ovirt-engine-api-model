@@ -63,6 +63,20 @@ public interface IscsiBondService {
         @In Boolean async();
     }
 
+    /**
+     * Removes of an exisitng iSCSI bond.
+     *
+     * For example, to remove the iSCSI bond `456` send a request like this:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/datacenters/123/iscsibonds/456
+     * ----
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
