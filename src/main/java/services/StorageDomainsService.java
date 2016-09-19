@@ -48,18 +48,39 @@ public interface StorageDomainsService {
      * [source,xml]
      * ----
      * <storage_domain>
-     *   <name>data1</name>
+     *   <name>mydata</name>
      *   <type>data</type>
-     *   <host id="123"/>
      *   <storage>
      *     <type>nfs</type>
-     *     <address>172.31.0.6</address>
-     *     <path>/exports/ovirt/images/0</path>
+     *     <address>mynfs.example.com</address>
+     *     <path>/exports/mydata</path>
      *   </storage>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     * </storage_domain>
+     * ----
+     *
+     * To create a new NFS ISO storage domain send a request like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_domain>
+     *   <name>myisos</name>
+     *   <type>iso</type>
+     *   <storage>
+     *     <type>nfs</type>
+     *     <address>mynfs.example.com</address>
+     *     <path>/export/myisos</path>
+     *   </storage>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
      * </storage_domain>
      * ----
      *
      * @author Idan Shaby <ishaby@redhat.com>
+     * @author Tal Nisan <tnisan@redhat.com>
      * @date 14 Sep 2016
      * @status added
      */
