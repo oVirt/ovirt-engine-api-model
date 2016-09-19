@@ -73,6 +73,7 @@ public class Tool {
     private static final String DOCS_OPTION = "docs";
     private static final String REPORT_OPTION = "report";
     private static final String ADOC_ATTRIBUTE_OPTION = "adoc-attribute";
+    private static final String ADOC_SEPARATOR_OPTION = "adoc-separator";
 
     // Names of options for Java package names:
     private static final String JAXRS_PACKAGE_OPTION = "jaxrs-package";
@@ -248,6 +249,17 @@ public class Tool {
             .build()
         );
         options.addOption(Option.builder()
+            .longOpt(ADOC_SEPARATOR_OPTION)
+            .desc(
+                "The character to use as the separator of section identifiers in the generated AsciiDoc " +
+                "documentation. If not specified the forward slash character will be used."
+            )
+            .required(false)
+            .hasArg(true)
+            .argName("SEPARATOR")
+            .build()
+        );
+        options.addOption(Option.builder()
             .longOpt(REPORT_OPTION)
             .desc("The file where the documentation report be created.")
             .type(File.class)
@@ -344,6 +356,12 @@ public class Tool {
                 String adocAttributeValue = adocAttributeMatch.group("value");
                 adocConfiguration.setAttribute(adocAttributeName, adocAttributeValue);
             }
+        }
+
+        // Get the AsciiDoc section id separator:
+        String adocSeparator = line.getOptionValue(ADOC_SEPARATOR_OPTION);
+        if (adocSeparator != null) {
+            adocConfiguration.setSeparator(adocSeparator);
         }
 
         // Generate the XML representation of the model:

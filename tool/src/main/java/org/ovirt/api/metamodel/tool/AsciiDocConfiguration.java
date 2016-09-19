@@ -27,11 +27,16 @@ import org.asciidoctor.Attributes;
 @ApplicationScoped
 public class AsciiDocConfiguration {
     private Attributes attributes;
+    private String separator;
 
     @PostConstruct
     private void init() {
+        // Set the default attributes:
         attributes = new Attributes();
         attributes.setSourceHighlighter("highlightjs");
+
+        // Set the default separator:
+        separator = "/";
     }
 
     public Attributes getAttributes() {
@@ -40,6 +45,14 @@ public class AsciiDocConfiguration {
 
     public void setAttribute(String name, String value) {
         attributes.setAttribute(name, value);
+    }
+
+    public String getSeparator() {
+        return separator;
+    }
+
+    public void setSeparator(String newSeparator) {
+        separator = newSeparator;
     }
 }
 

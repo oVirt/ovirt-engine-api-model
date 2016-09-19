@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -39,6 +41,7 @@ import org.ovirt.api.metamodel.concepts.Locator;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
+import org.ovirt.api.metamodel.concepts.Named;
 import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.Point;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
@@ -52,6 +55,9 @@ import org.ovirt.api.metamodel.concepts.Type;
  */
 @ApplicationScoped
 public class AsciiDocGenerator {
+    // The regular expression to detect internal cross references:
+    private static final Pattern CROSS_REFERENCE_RE = Pattern.compile("<<(?<id>(\\w|/)+)(?<rest>,.*)??>>");
+
     // Reference to the object used to calculate names:
     @Inject private Names names;
 
@@ -134,7 +140,7 @@ public class AsciiDocGenerator {
     }
 
     private void addDocument(Document document) {
-        docBuffer.addId(document.getName().toString());
+        docBuffer.addId(getId(document));
         docBuffer.addLine(document.getSource());
         docBuffer.addLine();
     }
@@ -367,10 +373,16 @@ public class AsciiDocGenerator {
     private String getSummary(Concept concept) {
         String doc = concept.getDoc();
         if (doc != null) {
+            // The summary is the first sentence of the documentation, or the complete documentation if there is no dot
+            // to end the first sentence.
             int index = doc.indexOf('.');
             if (index != -1) {
                 return doc.substring(0, index + 1);
             }
+
+            // Replace the forward slash with the id separator inside cross references:
+            doc = fixCrossReferences(doc);
+
             return doc;
         }
         return "";
@@ -389,29 +401,41 @@ public class AsciiDocGenerator {
         return "";
     }
 
+    private String getId(Document document) {
+        return joinIds("documents", getIdSegment(document));
+    }
+
     private String getId(Type type) {
-        return "types-" + names.getLowerJoined(type.getName(), "_");
+        return joinIds("types", getIdSegment(type));
     }
 
     private String getId(Service service) {
-        return "services-" + names.getLowerJoined(service.getName(), "_");
+        return joinIds("services", getIdSegment(service));
     }
 
     private String getId(StructMember member) {
         String kind = member instanceof Attribute? "attributes": "links";
-        return getId(member.getDeclaringType()) + "-" + kind + "-" + names.getLowerJoined(member.getName(), "_");
+        return joinIds(getId(member.getDeclaringType()), kind, getIdSegment(member));
     }
 
     private String getId(Method method) {
-        return getId(method.getDeclaringService()) + "-methods-" + names.getLowerJoined(method.getName(), "");
+        return joinIds(getId(method.getDeclaringService()), "methods", getIdSegment(method));
     }
 
     private String getId(Parameter parameter) {
-        return getId(parameter.getDeclaringMethod()) + "-parameters-" + names.getLowerJoined(parameter.getName(), "_");
+        return joinIds(getId(parameter.getDeclaringMethod()), "parameters", getIdSegment(parameter));
     }
 
     private String getId(EnumValue value) {
-        return getId(value.getDeclaringType()) + "-values-" + names.getLowerJoined(value.getName(), "_");
+        return joinIds(getId(value.getDeclaringType()), "values", getIdSegment(value));
+    }
+
+    private String joinIds(String... ids) {
+        return String.join(configuration.getSeparator(), ids);
+    }
+
+    private String getIdSegment(Named named) {
+        return names.getLowerJoined(named.getName(), "_");
     }
 
     private String getLink(Type type) {
@@ -439,13 +463,37 @@ public class AsciiDocGenerator {
     }
 
     private void addDoc(Concept concept) {
-        List<String> lines = new ArrayList<>();
+        // Do nothing if the concept doesn't have documentation:
         String doc = concept.getDoc();
-        if (doc != null) {
-            Collections.addAll(lines, doc.split("\n"));
+        if (doc == null) {
+            return;
         }
-        lines.stream().forEach(docBuffer::addLine);
+
+        // Replace the forward slash with the id separator inside cross references:
+        doc = fixCrossReferences(doc);
+
+        // Split the documentation into lines, and add them to the buffer:
+        List<String> lines = new ArrayList<>();
+        Collections.addAll(lines, doc.split("\n"));
+        lines.forEach(docBuffer::addLine);
         docBuffer.addLine();
+    }
+
+    private String fixCrossReferences(String doc) {
+        Matcher matcher = CROSS_REFERENCE_RE.matcher(doc);
+        StringBuffer buffer = new StringBuffer();
+        if (matcher.find()) {
+            String id = matcher.group("id");
+            id = id.replace("/", configuration.getSeparator());
+            String rest = matcher.group("rest");
+            if (rest == null) {
+                rest = "";
+            }
+            String replacement = "<<" + id + rest + ">>";
+            matcher.appendReplacement(buffer, replacement);
+        }
+        matcher.appendTail(buffer);
+        return buffer.toString();
     }
 
     /**
