@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -47,6 +48,7 @@ import com.thoughtworks.qdox.model.JavaParameter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Root;
 import org.ovirt.api.metamodel.concepts.Annotation;
 import org.ovirt.api.metamodel.concepts.AnnotationParameter;
@@ -177,30 +179,53 @@ public class ModelAnalyzer {
             );
         }
 
-        // Process the classes, discarding inner classes als they will be processed as part of the processing of the
-        // class containing them:
-        project.getClasses().stream().filter(x -> !x.isInner()).forEach(this::analyzeClass);
+        //Separate classes into 'types' (Vm, Disk..) and 'services' (HostService, DisksService...)
+        //Types are processed before services, because they are referenced during the processing of services.
+        List<JavaClass> types = new ArrayList<>();
+        List<JavaClass> services = new ArrayList<>();
+        separateClasses(project, types, services);
 
-        // Fix the places where undefined types and services have been used, replacing them with the corresponding
-        // completely defined ones:
-        fixUndefinedTypeUsages();
-        fixUndefinedServiceUsages();
+        //Process the types.
+        analyzeTypes(types);
+
+        //Process the services
+        analyzeServices(services);
 
         // Analyze constraints:
         parseConstraints();
     }
 
-    private void analyzeClass(JavaClass javaClass) {
-        if (isAnnotatedWith(javaClass, ModelAnnotations.TYPE)) {
+    private void analyzeServices(List<JavaClass> services) {
+        services.stream().filter(x -> !x.isInner()).forEach(this::analyzeService);
+        //at the end of this process, some services are still 'Undefined'
+        //complete their definition.
+        redefineUndefinedServices();
+    }
+
+    private void analyzeTypes(List<JavaClass> types) {
+        for (JavaClass javaClass : types) {
             if (javaClass.isEnum()) {
                 analyzeEnum(javaClass);
-            }
-            else {
+            } else {
                 analyzeStruct(javaClass);
             }
         }
-        if (isAnnotatedWith(javaClass, ModelAnnotations.SERVICE) || isAnnotatedWith(javaClass, ModelAnnotations.ROOT)) {
-            analyzeService(javaClass);
+        //at the end of this process, some types are still 'Undefined'
+        //complete their definition.
+        redefineUndefinedTypes();
+    }
+
+    private void separateClasses(JavaProjectBuilder project, List<JavaClass> types, List<JavaClass> services) {
+        for (JavaClass javaClass : project.getClasses()) {
+            //Inner classes are discarded as they will be processed as part of
+            //the processing of the class containing them).
+            if (!javaClass.isInner()) {
+                if (isAnnotatedWith(javaClass, ModelAnnotations.TYPE)) {
+                    types.add(javaClass);
+                } else {
+                    services.add(javaClass);
+                }
+            }
         }
     }
 
@@ -330,7 +355,7 @@ public class ModelAnalyzer {
         }
 
         // Analyze the members:
-        javaClass.getNestedClasses().forEach(x -> analyzeServiceMember(x, service));
+        javaClass.getNestedClasses().forEach(x -> analyzeNestedClass(x, service));
         javaClass.getMethods().forEach(x -> analyzeServiceMember(x, service));
 
         // Add the type to the model:
@@ -354,12 +379,22 @@ public class ModelAnalyzer {
         }
     }
 
-    private void analyzeServiceMember(JavaClass javaClass, Service service) {
-        analyzeMethod(javaClass, service);
+    /**
+     * Analyze a nested interface in a Service. A nested interface in a
+     * service represents a method of the service.
+     */
+    private void analyzeNestedClass(JavaClass javaClass, Service service) {
+        // Create the method:
+        Method method = createMethod(javaClass, service);
+
+        // After all other members have been analyzed, handle input detail information.
+        analyzeInputDetail(javaClass, method, service);
+
+        // Add the method to the model
+        service.addMethod(method);
     }
 
-    private void analyzeMethod(JavaClass javaClass, Service service) {
-        // Create the method:
+    public Method createMethod(JavaClass javaClass, Service service) {
         Method method = new Method();
         analyzeName(javaClass, method);
         analyzeAnnotations(javaClass, method);
@@ -370,7 +405,57 @@ public class ModelAnalyzer {
 
         // Add the member to the service:
         method.setDeclaringService(service);
-        service.addMethod(method);
+
+        createSignatures(javaClass, service, method);
+        return method;
+    }
+
+    public void createSignatures(JavaClass javaClass, Service service, Method method) {
+        for (JavaClass innerClass : javaClass.getNestedClasses()) {
+            //an inner class is expected to be an interface
+            assert innerClass.isInterface();
+            Method childMethod = createMethod(innerClass, service);
+            copyParameters(childMethod, method);
+            analyzeInputDetail(innerClass, childMethod, service);
+            childMethod.setBase(method);
+            service.addMethod(childMethod);
+        }
+    }
+
+    /**
+     * For method 'signatures' (e:g FromStorageDomain, DirectLun) Parameters should
+     * be mostly copied from the base method (e.g: add). This method does this.
+     */
+    private void copyParameters(Method childMethod, Method method) {
+        for (Parameter parameter : method.getParameters()) {
+            Parameter newParameter = new Parameter();
+            //copy from base parameter. Member-involvement-trees not copied on purpose.
+            newParameter.setIn(parameter.isIn());
+            newParameter.setOut(parameter.isOut());
+            newParameter.setType(parameter.getType());            
+            newParameter.setName(parameter.getName());
+            newParameter.setDoc(parameter.getDoc());
+            newParameter.setSource(parameter.getSource());
+            newParameter.getAnnotations().addAll(parameter.getAnnotations());
+
+            //set the child-method as the declaring method
+            newParameter.setDeclaringMethod(childMethod);
+
+            childMethod.addParameter(newParameter);
+        }
+    }
+
+    public void analyzeInputDetail(JavaClass javaClass, Method method, Service service) {
+        JavaMethod inputDetailMethod = getInputDetailMethod(javaClass);
+        if (inputDetailMethod!=null) {
+            InputDetailAnalyzer inputDetailAnalyzer = new InputDetailAnalyzer();
+            inputDetailAnalyzer.analyzeInput(inputDetailMethod.getSourceCode(), method.getParameters());
+        }
+    }
+
+    private JavaMethod getInputDetailMethod(JavaClass javaClass) {
+        Optional<JavaMethod> method = javaClass.getMethods().stream().filter(x -> isAnnotatedWith(x, InputDetail.class.getCanonicalName())).findFirst();
+        return method.isPresent() ? method.get() : null;
     }
 
     private void analyzeMethodMember(JavaMethod javaMethod, Method method) {
@@ -814,7 +899,7 @@ public class ModelAnalyzer {
     /**
      * Finds the references to unresolved types and replace them with the real type definitions.
      */
-    private void fixUndefinedTypeUsages() {
+    private void redefineUndefinedTypes() {
         for (TypeUsage usage : undefinedTypeUsages) {
             Name name = usage.getName();
             Type type = model.getType(name);
@@ -830,7 +915,7 @@ public class ModelAnalyzer {
     /**
      * Finds the references to unresolved services and replace them with the real service definitions.
      */
-    private void fixUndefinedServiceUsages() {
+    private void redefineUndefinedServices() {
         for (ServiceUsage usage : undefinedServiceUsages) {
             Name name = usage.getName();
             Service service = model.getService(name);

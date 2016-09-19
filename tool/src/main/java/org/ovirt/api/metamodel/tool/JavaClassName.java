@@ -21,6 +21,16 @@ package org.ovirt.api.metamodel.tool;
  * name.
  */
 public class JavaClassName {
+    public JavaClassName() {
+        super();
+    }
+
+    public JavaClassName(String packageName, String simpleName) {
+        super();
+        this.packageName = packageName;
+        this.simpleName = simpleName;
+    }
+
     private String packageName;
     private String simpleName;
 

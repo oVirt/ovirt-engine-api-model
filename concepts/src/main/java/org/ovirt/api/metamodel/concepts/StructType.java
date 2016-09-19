@@ -186,4 +186,26 @@ public class StructType extends Type {
     public void addLinks(List<Link> newLinks) {
         links.addAll(newLinks);
     }
+
+    /**
+     * Returns all the links and attributes of this type
+     */
+    public List<StructMember> getMembers() {
+        List<StructMember> result = new ArrayList<>();
+        result.addAll(attributes);
+        result.addAll(links);
+        if (base != null && base instanceof StructType) {
+            result.addAll(((StructType) base).getMembers());
+        }
+        return result;
+    }
+
+    /**
+     * Returns the member (link or attribute) with the given name,
+     * or an empty Option otherwise.
+     */
+    public Optional<StructMember> getMember(Name name) {
+        return getMembers().stream().filter(named(name)).findFirst();
+    }
+
 }

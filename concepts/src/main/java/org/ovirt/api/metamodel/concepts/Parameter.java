@@ -16,7 +16,15 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Parameter extends Concept {
+
+    public Parameter() {
+        super();
+    }
+
     // The method that declared this parameter:
     private Method declaringMethod;
 
@@ -29,6 +37,51 @@ public class Parameter extends Concept {
 
     // The default value of this parameter:
     private Expression defaultValue;
+
+    // Is this parameter mandatory? Relevant only for simple parameters
+    // (booleans, integers, string...) the mandatory-ness of complex
+    // parameters is handled by member-involvement-trees (see below).
+    // (A simple parameter being mandatory is a scenario which happens only in 'Action's).
+    private boolean mandatory = false;
+
+    /*
+     * For parameters which are complex and contain numerous inner fields (as opposed
+     * to simpler parameters, such as booleans, integers or strings), we need to state
+     * which inner fields (or 'members') are mandatory, which are optional and which
+     * are irrelevant for the flow in which this parameter participates.
+     *
+     * These attributes will be represented by trees, e.g:
+     *
+     *    (cluster)
+     *        name                              (string, mandatory)
+     *        -----------------------------------------------------
+     *        version
+     *            major                         (int, mandatory)
+     *            minor                         (int, mandatory)
+     *        -----------------------------------------------------
+     *        cpu
+     *            type                          (string, mandatory)
+     *        -----------------------------------------------------
+     *        data_center
+     *            id                            (string, mandatory)
+     *        -----------------------------------------------------
+     *        fencing_policy
+     *            enabled                       (boolean, optional)
+     *            skip_if_connectivity_broken
+     *                 enabled                  (boolean, optional)
+     *                 threshold                (int, optional)
+     *            skip_if_sd_active
+     *                 enabled                  (boolean, optional)
+     *        -----------------------------------------------------
+     *        ...
+     * for simple parameters, such as 'max', 'search', 'case-sensitive',
+     * who's type is not a structured type, this tree will be 'null'.
+     */
+    private List<MemberInvolvementTree> memberInvolvementTrees = new ArrayList<>();
+
+    public List <MemberInvolvementTree> getMemberInvolvementTrees() {
+        return memberInvolvementTrees;
+    }
 
     /**
      * Returns the method where this parameter is declared.
@@ -74,6 +127,30 @@ public class Parameter extends Concept {
 
     public void setDefaultValue(Expression value) {
         this.defaultValue = value;
+    }
+
+    public MemberInvolvementTree getMemberInvolvemnetTree(Name name) {
+        for (MemberInvolvementTree tree : memberInvolvementTrees) {
+            if (tree.getName().equals(name)) {
+                return tree;
+            }
+        }
+        return null;
+    }
+    public boolean isMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(Boolean mandatory) {
+        this.mandatory = mandatory;
+    }
+
+    public List<MemberInvolvementTree> getMandatoryAttributes() {
+        List<MemberInvolvementTree> mandatoryAttributes = new ArrayList<>();
+        for (MemberInvolvementTree memberInvolvementTree : memberInvolvementTrees) {
+            mandatoryAttributes.addAll(memberInvolvementTree.getMandatoryAttributes());
+        }
+        return mandatoryAttributes;
     }
 
     @Override

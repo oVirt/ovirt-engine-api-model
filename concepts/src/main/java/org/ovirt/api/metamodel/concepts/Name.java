@@ -34,6 +34,19 @@ public class Name implements Comparable<Name> {
      */
     private ArrayList<String> words = new ArrayList<>(1);
 
+    public Name() {
+        super();
+    }
+
+    @SuppressWarnings("unchecked")
+    /**
+     * Copy Constructor
+     */
+    public Name(Name nameToClone) {
+        super();
+        words = (ArrayList<String>)nameToClone.words.clone();
+    }
+
     /**
      * Creates a new word using the given list of words.
      *
@@ -84,6 +97,15 @@ public class Name implements Comparable<Name> {
      */
     public void addWord(String newWord) {
         words.add(newWord.toLowerCase());
+    }
+
+    /**
+     * Adds a new word to the end of the list of words of this name.
+     *
+     * @param newWord the world that will be added
+     */
+    public void addWords(List<String> words) {
+        this.words.addAll(words);
     }
 
     /**

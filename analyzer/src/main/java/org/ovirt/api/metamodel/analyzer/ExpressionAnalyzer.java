@@ -19,7 +19,9 @@ package org.ovirt.api.metamodel.analyzer;
 import static java.util.stream.Collectors.toList;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -61,6 +63,7 @@ import org.ovirt.api.metamodel.concepts.BinaryExpression;
 import org.ovirt.api.metamodel.concepts.Expression;
 import org.ovirt.api.metamodel.concepts.LiteralExpression;
 import org.ovirt.api.metamodel.concepts.NameParser;
+import org.ovirt.api.metamodel.concepts.Name;
 import org.ovirt.api.metamodel.concepts.Operator;
 import org.ovirt.api.metamodel.concepts.UnaryExpression;
 
@@ -69,6 +72,19 @@ import org.ovirt.api.metamodel.concepts.UnaryExpression;
  * constraints.
  */
 public class ExpressionAnalyzer extends ExpressionBaseListener {
+
+    /**
+     * This map contains keywords which should be handled differently
+     * while analyzing expressions.
+     */
+    private static Map<String, Name> keywords = new HashMap<>();
+    static {
+        //COLLECTION is a keyword used for 'live documentation'.
+        //(e.g: mandatory(disk().lunStorage().logicalUnits()[COLLECTION].address());)
+        //"COLLECTION" would be broken down to C-O-L-L-E-C-T-I-O-N because all letters
+        //are capitals. We don't want that, so we want "collection" returned instead.
+        keywords.put("COLLECTION", new Name("Collection"));
+    }
     /**
      * Analyzes the given source code and returns the contained expressions. The source may contain multiple
      * expressions, each terminated with a semicolon and optionally preceded by the {@code return} or {@code assert}
@@ -392,7 +408,8 @@ public class ExpressionAnalyzer extends ExpressionBaseListener {
 
     @Override
     public void exitIdentifier(IdentifierContext context) {
-        context.name = NameParser.parseUsingCase(context.IDENTIFIER().getText());
+        String name = context.IDENTIFIER().getText();
+        context.name = keywords.containsKey(name) ? keywords.get(name) : NameParser.parseUsingCase(name);
     }
 
     @Override

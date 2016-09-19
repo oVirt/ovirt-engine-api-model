@@ -27,6 +27,12 @@ import java.util.stream.Stream;
  * This class represents a method of a service.
  */
 public class Method extends ServiceMember {
+
+    //API methods with several signatures have a Method instance for each
+    //signature and a base Method instance, containing common parameters.
+    //for non-signature methods, 'base' will be null.
+    private Method base;
+
     // The constraints that apply to this method:
     private List<Constraint> constraints = new ArrayList<>();
 
@@ -82,5 +88,22 @@ public class Method extends ServiceMember {
         default:
             return true;
         }
+    }
+
+    public Method getBase() {
+        return base;
+    }
+
+    public void setBase(Method base) {
+        this.base = base;
+    }
+
+    public boolean isMandatoryAttributeExists() {
+        for (Parameter parameter : getParameters()) {
+            if (parameter.isMandatory() || !parameter.getMandatoryAttributes().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
