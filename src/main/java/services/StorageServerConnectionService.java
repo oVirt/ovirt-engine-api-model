@@ -62,6 +62,19 @@ public interface StorageServerConnectionService {
          * Indicates if the update should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the operation should succeed regardless to the relevant storage domain's status
+         * (i.e. updating is also applicable when storage domain's status is not maintenance).
+         *
+         * This parameter is optional, and the default value is `false`.
+         *
+         * @author Daniel Erez <derez@redhat.com>
+         * @date 21 Sep 2016
+         * @status added
+         * @since 4.0.6
+         */
+        @In Boolean force();
     }
 
     /**
