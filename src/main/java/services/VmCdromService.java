@@ -47,7 +47,7 @@ import types.Cdrom;
  *
  * [source]
  * ----
- * PUT /ovirt-engine/api/vms/123/00000000-0000-0000-0000-000000000000
+ * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000
  * ----
  *
  * The body should contain the new value for the `file` attribute:
@@ -78,7 +78,7 @@ import types.Cdrom;
  *
  * [source]
  * ----
- * PUT /ovirt-engine/api/vms/123/00000000-0000-0000-0000-000000000000?current=true
+ * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000?current=true
  * ----
  *
  * With a request body like this:
