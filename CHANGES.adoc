@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.1.5 / Sep 22 2016
+
+New features:
+
+* Make AsciiDoc section identifier separator configurable.
+
+Bug fixes:
+
+* Avoid duplicated AsciiDoc section identifiers.
+
+* Don't automatically document primitive types.
+
 == 1.1.4 / Sep 16 2016
 
 New features:
