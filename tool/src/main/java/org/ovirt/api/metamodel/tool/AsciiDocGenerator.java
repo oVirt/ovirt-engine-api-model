@@ -231,23 +231,12 @@ public class AsciiDocGenerator {
     }
 
     private void documentType(Type type) {
-        if (type instanceof PrimitiveType) {
-            documentPrimitive((PrimitiveType) type);
-        }
         if (type instanceof EnumType) {
             documentEnum((EnumType) type);
         }
         else if (type instanceof StructType) {
             documentStruct((StructType) type);
         }
-    }
-
-    private void documentPrimitive(PrimitiveType type) {
-        // General description:
-        docBuffer.addId(getId(type));
-        docBuffer.addLine("=== %s [small]#primitive#", getName(type));
-        docBuffer.addLine();
-        addDoc(type);
     }
 
     private void documentEnum(EnumType type) {
