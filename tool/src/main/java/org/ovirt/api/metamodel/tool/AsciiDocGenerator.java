@@ -147,17 +147,17 @@ public class AsciiDocGenerator {
 
     private void documentRequest(Point point) {
         Method method = point.getMethod();
+        Service service = method.getDeclaringService();
         StringBuilder buffer = new StringBuilder();
-        buffer.append(String.format("* <<%s,%s>> ", getId(method), getHttpMethod(method)));
+        buffer.append(String.format("* <<%s,%s>> ", getId(service, method), getHttpMethod(method)));
         point.path().forEach(locator -> {
             buffer.append("/");
-            Service service = locator.getService();
-            String link = String.format("<<%s,%s>>", getId(service), getUrlSegment(locator));
+            String link = String.format("<<%s,%s>>", getId(locator.getService()), getUrlSegment(locator));
             buffer.append(link);
         });
         if (method.isAction()) {
             buffer.append("/");
-            String link = String.format("<<%s,%s>>", getId(method), getUrlSegment(method));
+            String link = String.format("<<%s,%s>>", getId(service), getUrlSegment(method));
             buffer.append(link);
         }
         docBuffer.addLine(buffer.toString());
@@ -188,12 +188,12 @@ public class AsciiDocGenerator {
         }
 
         // Methods detail:
-        methods.stream().sorted().forEach(this::documentMethod);
+        methods.stream().sorted().forEach(method -> documentMethod(service, method));
     }
 
-    private void documentMethod(Method method) {
+    private void documentMethod(Service service, Method method) {
         // General description:
-        docBuffer.addId(getId(method));
+        docBuffer.addId(getId(service, method));
         docBuffer.addLine("==== %s [small]#%s#", getName(method), getHttpMethod(method));
         docBuffer.addLine();
         addDoc(method);
@@ -218,12 +218,12 @@ public class AsciiDocGenerator {
         }
 
         // Detail of parameters:
-        parameters.stream().sorted().forEach(this::documentParameter);
+        parameters.stream().sorted().forEach(parameter-> documentParameter(service, method, parameter));
     }
 
-    private void documentParameter(Parameter parameter) {
+    private void documentParameter(Service service, Method method, Parameter parameter) {
         if (!onlyHasSummary(parameter)) {
-            docBuffer.addId(getId(parameter));
+            docBuffer.addId(getId(service, method, parameter));
             docBuffer.addLine("===== %s", getName(parameter));
             docBuffer.addLine();
             addDoc(parameter);
@@ -313,7 +313,7 @@ public class AsciiDocGenerator {
         }
 
         // Detail of attributes:
-        attributes.stream().sorted().forEach(this::documentMember);
+        attributes.stream().sorted().forEach(attribute -> documentMember(type, attribute));
 
         // Table of links:
         List<Link> links = type.getLinks();
@@ -334,12 +334,12 @@ public class AsciiDocGenerator {
         }
 
         // Detail of links:
-        links.stream().sorted().forEach(this::documentMember);
+        links.stream().sorted().forEach(link -> documentMember(type, link));
     }
 
-    private void documentMember(StructMember member) {
+    private void documentMember(StructType type, StructMember member) {
         if (!onlyHasSummary(member)) {
-            docBuffer.addId(getId(member));
+            docBuffer.addId(getId(type, member));
             docBuffer.addLine("==== %s", getName(member));
             docBuffer.addLine();
             addDoc(member);
@@ -413,17 +413,17 @@ public class AsciiDocGenerator {
         return joinIds("services", getIdSegment(service));
     }
 
-    private String getId(StructMember member) {
+    private String getId(Type type, StructMember member) {
         String kind = member instanceof Attribute? "attributes": "links";
-        return joinIds(getId(member.getDeclaringType()), kind, getIdSegment(member));
+        return joinIds(getId(type), kind, getIdSegment(member));
     }
 
-    private String getId(Method method) {
-        return joinIds(getId(method.getDeclaringService()), "methods", getIdSegment(method));
+    private String getId(Service service, Method method) {
+        return joinIds(getId(service), "methods", getIdSegment(method));
     }
 
-    private String getId(Parameter parameter) {
-        return joinIds(getId(parameter.getDeclaringMethod()), "parameters", getIdSegment(parameter));
+    private String getId(Service service, Method method, Parameter parameter) {
+        return joinIds(getId(service, method), "parameters", getIdSegment(parameter));
     }
 
     private String getId(EnumValue value) {
