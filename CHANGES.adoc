@@ -3,6 +3,31 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.13 / Sep 22 2016
+
+New features:
+
+* Add the `sparsify` method to `DiskService`.
+
+* Add the `discardMaxSize` and `discardZeroesData` to the `LogicalUnit`
+  type.
+
+Bug fixes:
+
+* Fix the type of the `ticket` parameter of the `VmService.ticket`
+  method.
+
+* Fix the type of the `authentication_method` attribute of the `Ssh`
+  type.
+
+* Rename the `AuthenticationMethod` enum type to `SshAuthenticationMethod`.
+
+* Fix the name of the `exclusive` parameter o the `TemplateService.export`
+  method.
+
+* Add the missing `cluster` parameter to the `OpenstackImageService.import`
+  method.
+
 == 4.1.12 / Sep 6 2016
 
 New features:
