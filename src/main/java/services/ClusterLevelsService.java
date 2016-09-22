@@ -22,17 +22,17 @@ import types.ClusterLevel;
 
 /**
  * Provides information about the capabilities of different cluster levels supported by the engine. Version 4.0 of the
- * engine supports levels 4.0 and 3.6. Each of these levels different sets of CPU types, for example. This service
- * provides that information. For example, to find what CPU types are supported by level 3.6 the you can send a request
- * like this:
+ * engine supports levels 4.0 and 3.6. Each of these levels support different sets of CPU types, for example. This
+ * service provides that information. For example, to find what CPU types are supported by level 3.6 the you can send
+ * a request like this:
  *
  * [source]
  * ----
  * GET /ovirt-engine/api/clusterlevels/3.6
  * ----
  *
- * That will return a `ClusterLevel` object containing the CPU types, and other information describing the cluster
- * level:
+ * That will return a <<types/cluster_level, ClusterLevel>> object containing the supported CPU types, and other
+ * information describing the cluster level:
  *
  * [source,xml]
  * ----
