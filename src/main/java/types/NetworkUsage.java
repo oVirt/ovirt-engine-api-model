@@ -21,6 +21,16 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public enum NetworkUsage {
     DISPLAY,
+
+    /**
+     * The network will be used for Gluster(bricks) data traffic.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @date 23 Sep 2016
+     * @status added
+     */
+    GLUSTER,
+
     MANAGEMENT,
     MIGRATION,
     VM;
