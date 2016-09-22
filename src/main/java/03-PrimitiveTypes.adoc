@@ -1,0 +1,141 @@
+[appendix]
+# Primitive types
+
+This section describes the primitive data types supported by the API.
+
+[id="types/string"]
+## String [small]#primitive#
+
+A finite sequence of http://unicode.org[Unicode] characters.
+
+[id="types/boolean"]
+## Boolean [small]#primitive#
+
+Represents the _false_ and _true_ concepts used in mathematical logic.
+
+The valid values are the strings `false` and `true`.
+
+Case is ignored by the engine, so for example `False` and `FALSE` also
+valid values. However the server will always return lower case values.
+
+For backwards compatibility with older versions of the engine, the
+values `0` and `1` are also accepted. The value `0` has the same meaning
+than `false`, and `1` has the same meaning than `true`. Try to avoid
+using these values, as support for them may be removed in the future.
+
+[id="types/integer"]
+## Integer [small]#primitive#
+
+Represents the mathematical concept of integer number.
+
+The valid values are finite sequences of decimal digits.
+
+Currently the engine implements this type using a signed 32 bit
+integer, so the minimum value is -2^31^ (-2147483648) and the maximum
+value is 2^31^-1 (2147483647).
+
+However, there are some attributes in the system where the range of
+values possible with 32 bit isn't enough. In those exceptional cases
+the engine uses 64 bit integers, in particular for the following
+attributes:
+
+- <<types/disk/attributes/actual_size, Disk.actual_size>>
+- <<types/disk/attributes/provisioned_size, Disk.provisioned_size>>
+- <<types/gluster_client/attributes/bytes_read, GlusterClient.bytes_read>>
+- <<types/gluster_client/attributes/bytes_written, GlusterClient.bytes_written>>
+- <<types/host/attributes/max_scheduling_memory, Host.max_scheduling_memory>>
+- <<types/host/attributes/memory, Host.memory>>
+- <<types/host_nic/attributes/speed, HostNic.speed>>
+- <<types/logical_unit/attributes/size, LogicalUnit.size>>
+- <<types/memory_policy/attributes/guaranteed, MemoryPolicy.guaranteed>>
+- <<types/numa_node/attributes/memory, NumaNode.memory>>
+- <<types/quota_storage_limit/attributes/limit, QuotaStorageLimit.limit>>
+- <<types/storage_domain/attributes/available, StorageDomain.available>>
+- <<types/storage_domain/attributes/used, StorageDomain.used>>
+- <<types/storage_domain/attributes/commited, StorageDomain.committed>>
+- <<types/vm_base/attributes/memory, VmBase.memory>>
+
+For these exception cases the minimum value is -2^63^
+(-9223372036854775808) and the maximum value is 2^63^-1
+(9223372036854775807).
+
+NOTE: In the future the integer type will be implemented using
+unlimited precission integers, so the above limitations and exceptions
+will eventually disappear.
+
+[id="types/decimal"]
+## Decimal [small]#primitive#
+
+Represents the mathematical concept of real number.
+
+Currently the engine implements this type using 32 bit
+https://en.wikipedia.org/wiki/IEEE_floating_point[IEEE 754] single
+precission floating point numbers.
+
+For some attributes this isn't enough precission. In those exceptional
+cases the engine uses 64 bit double precission floating point numbers,
+in particular for the following attributes:
+
+- <<types/quota_storage_limit/attributes/usage, QuotaStorageLimit.usage>>
+- <<types/quota_cluster_limit/attributes/memory_limit, QuotaStorageLimit.memory_limit>>
+- <<types/quota-cluster-limit/attributes/memory_usage, QuotaStorageLimit.memory_usage>>
+
+NOTE: In the future the decimal type will be implemented using unlimited
+precission decimal numbers, so the above limitations and exceptions will
+eventually disappear.
+
+[id="types/date"]
+## Date [small]#primitive#
+
+Represents a date and time.
+
+The format returned by the engine is the one described in the
+https://www.w3.org/TR/xmlschema11-2/#dateTime[XML Schema specification]
+when requesting XML. For example, if you send a request like this to
+retrieve the XML representation of a virtual machine:
+
+[source]
+----
+GET /ovirt-engine/api/vms/123
+Accept: application/xml
+----
+
+The response body will contain the following XML document:
+
+[source,xml]
+----
+<vm id="123" href="/ovirt-engine/api/vms/123">
+  ...
+  <creation_time>2016-09-08T09:53:35.138+02:00</creation_time>
+  ...
+</vm>
+----
+
+When requesting the JSON representation the engine uses a different,
+format: an integer containg the number of seconds since Jan 1^st^ 1970,
+also know as https://en.wikipedia.org/wiki/Unix_time[_epoch time_]. For
+example, if you send a request like this to retrieve the JSON
+representation of a virtual machine:
+
+[source]
+----
+GET /ovirt-engine/api/vms/123
+Accept: application/json
+----
+
+The response body will contain the following JSON document:
+
+[source,json]
+----
+{
+  "id": "123",
+  "href="/ovirt-engine/api/vms/123",
+  ...
+  "creation_time": 1472564909990,
+  ...
+}
+----
+
+NOTE: In both cases, the dates returned by the engine use the time zone
+configured in the server where it is running, in the above examples it
+is UTC+2.
