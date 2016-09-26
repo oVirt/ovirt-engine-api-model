@@ -118,7 +118,7 @@ public interface StorageDomainVmService {
          * should be collapsed, so that the result will be a virtual machine
          * without snapshots.
          *
-         * This parameter is optional, and if it isn't explicity specified the
+         * This parameter is optional, and if it isn't explicitly specified the
          * default value is `false`.
          */
         @In Boolean collapseSnapshots();
