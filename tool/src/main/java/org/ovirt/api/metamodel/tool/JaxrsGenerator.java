@@ -65,6 +65,11 @@ public class JaxrsGenerator extends JavaGenerator {
     private static final Name REMOVE = NameParser.parseUsingCase("Remove");
     private static final Name UPDATE = NameParser.parseUsingCase("Update");
 
+    // This constant represents the default format for the interface generated methods.
+    // We need default methods so in case of newly added APIs to the model, we'll
+    // have backward compatibility with previous implementations.
+    private static final String DEFAULT_METHOD_FORMAT = "default %s %s { throw new UnsupportedOperationException(); }";
+
     // List of JAX-RS interfaces that support asynchronous creation:
     private static final Set<Name> ASYNCHRONOUS = new HashSet<>();
 
@@ -103,6 +108,14 @@ public class JaxrsGenerator extends JavaGenerator {
 
     public void generate(Model model) {
         model.getServices().forEach(this::generateInterface);
+    }
+
+    private void addMethod(String returnType, String methodNameWithArgs, Object ... args) {
+        javaBuffer.addLine(String.format(DEFAULT_METHOD_FORMAT, returnType, String.format(methodNameWithArgs, args)));
+    }
+
+    private void addResponseReturnMethod(String methodNameWithArgs, Object ... args) {
+        addMethod("Response", methodNameWithArgs, args);
     }
 
     private void generateInterface(Service service) {
@@ -263,11 +276,9 @@ public class JaxrsGenerator extends JavaGenerator {
         generateDoc(method);
         javaBuffer.addLine("@POST");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
-        javaBuffer.addLine(
-            "Response add(%s %s);",
-            mainTypeReference.getText(),
-            javaNames.getJavaMemberStyleName(mainParameter.getName())
-        );
+
+        addResponseReturnMethod("add(%s %s)", mainTypeReference.getText(),
+                javaNames.getJavaMemberStyleName(mainParameter.getName()));
 
         javaBuffer.addLine();
     }
@@ -294,13 +305,13 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@GET");
         if (isRoot)  {
             javaBuffer.addImport(Response.class);
-            javaBuffer.addLine("Response get();");
+            addResponseReturnMethod("get()");
         }
         else {
             Type mainType = mainParameter.getType();
             JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
             javaBuffer.addImports(mainTypeReference.getImports());
-            javaBuffer.addLine("%1$s get();", mainTypeReference.getText());
+            addMethod(mainTypeReference.getText(), "get()");
         }
 
         javaBuffer.addLine();
@@ -329,11 +340,7 @@ public class JaxrsGenerator extends JavaGenerator {
         // Generate the method:
         generateDoc(method);
         javaBuffer.addLine("@GET");
-        javaBuffer.addLine(
-            "%s list();",
-            mainTypeReference.getText()
-        );
-
+        addMethod(mainTypeReference.getText(), "list()");
         javaBuffer.addLine();
     }
 
@@ -352,10 +359,10 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@DELETE");
         if (needsAction) {
             javaBuffer.addImport(javaPackages.getXjcPackageName(), "Action");
-            javaBuffer.addLine("Response remove(Action action);");
+            addResponseReturnMethod("remove(Action action)");
         }
         else {
-            javaBuffer.addLine("Response remove();");
+            addResponseReturnMethod("remove()");
         }
 
         javaBuffer.addLine();
@@ -386,12 +393,9 @@ public class JaxrsGenerator extends JavaGenerator {
         generateDoc(method);
         javaBuffer.addLine("@PUT");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
-        javaBuffer.addLine(
-            "%s update(%s %s);",
-            mainTypeReference.getText(),
-            mainTypeReference.getText(),
-            javaNames.getJavaMemberStyleName(mainParameter.getName())
-        );
+        addMethod(mainTypeReference.getText(), "update(%s %s)",
+                mainTypeReference.getText(),
+                javaNames.getJavaMemberStyleName(mainParameter.getName()));
 
         javaBuffer.addLine();
     }
@@ -414,10 +418,7 @@ public class JaxrsGenerator extends JavaGenerator {
             "@Path(\"%s\")",
             jaxrsNames.getActionPath(method.getName())
         );
-        javaBuffer.addLine(
-            "Response %s(Action action);",
-            jaxrsNames.getMethodName(method.getName())
-        );
+        addResponseReturnMethod(jaxrsNames.getMethodName(method.getName()) + "(Action action)");
 
         javaBuffer.addLine();
     }
