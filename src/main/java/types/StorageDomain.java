@@ -31,6 +31,48 @@ public interface StorageDomain extends Identified {
     Integer committed();
     StorageFormat storageFormat();
     Boolean wipeAfterDelete();
+
+    /**
+     * Indicates whether a block storage domain supports discard operations.
+     * A <<types/storage_domain,storage domain>> supports discard if and only
+     * if all of the <<types/logical_unit, logical unit>>s that it is built
+     * from support discard, i.e each logical unit's `discard_max_size` value
+     * is bigger than 0.
+     * This is a necessary but not a sufficient condition for a virtual
+     * machine's disk that is a part of this storage domain to have its
+     * `pass_discard` attribute enabled.
+     * Since the engine cannot check if the underlying block device supports
+     * discard for file storage domains, this attribute will not be reported
+     * for them at all.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 27 September 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean supportsDiscard();
+
+    /**
+     * Indicates whether a block storage domain supports the property that
+     * discard zeroes the data.
+     * A <<types/storage_domain,storage domain>> supports the property that
+     * discard zeroes the data if and only if all of the
+     * <<types/logical_unit, logical unit>>s that it is built from support it,
+     * i.e each logical unit's `discard_zeroes_data` value is true.
+     * This is a necessary but not a sufficient condition for a virtual
+     * machine's disk that is a part of this storage domain to have both
+     * `wipe_after_delete` and `pass_discard` attributes enabled.
+     * Since the engine cannot check if the underlying block device supports
+     * the property that discard zeroes the data for file storage domains,
+     * this attribute will not be reported for them at all.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 27 September 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean supportsDiscardZeroesData();
+
     Boolean _import(); // TODO: Should be an action parameter.
     Integer warningLowSpaceIndicator();
     Integer criticalSpaceActionBlocker();
