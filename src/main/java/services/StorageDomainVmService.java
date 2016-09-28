@@ -74,7 +74,7 @@ public interface StorageDomainVmService {
      * ----
      *
      * Include an optional `disks` parameter to choose which disks to import. For example, to import the disks
-     * of the template that have the identifiers `123` and `456` send the followign request body:
+     * of the template that have the identifiers `123` and `456` send the following request body:
      *
      * [source,xml]
      * ----
