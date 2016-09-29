@@ -103,7 +103,6 @@ public interface Vm extends VmBase {
     @Link InstanceType instanceType();
     @Link Nic[] nics();
     @Link Snapshot[] snapshots();
-    @Link Quota quota();
     @Link VmPool vmPool();
     @Link Cdrom[] cdroms();
     @Link Floppy[] floppies();
