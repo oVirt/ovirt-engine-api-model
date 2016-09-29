@@ -137,4 +137,5 @@ public interface VmBase extends Identified {
     @Link Cluster cluster();
     @Link StorageDomain storageDomain();
     @Link CpuProfile cpuProfile();
+    @Link Quota quota();
 }
