@@ -3,6 +3,27 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.14 / Oct 5 2016
+
+New features:
+
+* Add `gluster` value to the `NetworkUsage` enum.
+
+* Add `force` parameter to the operation that updates a storage server
+  connection.
+
+* Add `supportsDiscard` and `supportsDiscardZeroesData` attributes to the
+  `StorageDomain` type.
+
+* Add `VnicProfileMapping` type.
+
+* Add `vnicProfileMappings` and `reassignBadMacs` parameters to the
+  operation that imports a storage domain.
+
+Bug fixes:
+
+* Move the `quota` link from the `Vm` type to the `VmBase` type.
+
 == 4.1.13 / Sep 22 2016
 
 New features:
