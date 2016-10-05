@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.1.6 / Oct 5 2016
+
+New features:
+
+* Generate default empty implementations for JAX-RS interfaces.
+
+* Add generic XML reader.
+
 == 1.1.5 / Sep 22 2016
 
 New features:
