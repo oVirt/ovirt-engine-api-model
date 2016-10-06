@@ -1,0 +1,1027 @@
+# Quick start example
+
+This chapter provides an example to demonstrate the REST API's ability
+to setup a basic {product-name} environment and create a virtual machine.
+In addition to the standard prerequisites, this example requires the
+following:
+
+* A networked and configured {product-name} installation;
+
+* An ISO file containing a desired virtual machine operating system to
+install. This chapter uses https://www.centos.org[CentOS] 7 for our
+installation ISO example; and
+
+* {product-name}'s `engine-iso-uploader` tool to upload your chosen
+operating system ISO file.
+
+This example uses https://curl.haxx.se[`curl`] to demonstrate API
+requests with a client application. Note that any application capable of
+HTTP requests can substitute for `curl`.
+
+IMPORTANT: For simplicity, the HTTP request headers in this example omit
+the `Host` and `Authorization` headers. However, these fields are mandatory
+and require data specific to your installation of {product-name}.
+
+IMPORTANT: All `curl` examples include placeholders for authentication
+details (`USER:PASS`) and certificate location (`CERT`). Ensure all
+requests performed with `curl` fulfill certification and authentication
+requirements.
+
+NOTE: {product-name} generates an unique identifier for the `id`
+attribute for each resource. Identifier codes in this example might
+appear different to the identifier codes in your {product-name}
+environment.
+
+NOTE: In many examples of this section some of the attributes of results
+returned by the API have been omitted, to make them shorter. You can
+always use the reference to find the complete list of attributes. For
+example, if you want to see the complete list of attributes of the
+`Cluster` type, just go <<types/cluster, here>>.
+
+## Example: Access API entry point
+
+The following request retrieves a representation of the main entry point
+for version 4 of of the API:
+
+....
+GET /ovirt-engine/api HTTP/1.1
+Version: 4
+Accept: application/xml
+....
+
+Same request, but using the `/v4` URL prefix instead of the `Version`
+header:
+
+....
+GET /ovirt-engine/api/v4 HTTP/1.1
+Accept: application/xml
+....
+
+Same request, using the `curl` command:
+
+....
+curl \
+--cacert [CERT] \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+--user '[USER:PASS]' \
+https://[HOST]/ovirt-engine/api
+....
+
+The result will be an object of type <<types/api, Api>>:
+
+[source,xml]
+----
+<api>
+  <link href="/ovirt-engine/api/clusters" rel="clusters"/>
+  <link href="/ovirt-engine/api/datacenters" rel="datacenters"/>
+  ...
+  <product_info>
+    <name>oVirt Engine</name>
+    <vendor>ovirt.org</vendor>
+    <version>
+      <build>0</build>
+      <full_version>4.0.0-0.0.el7</full_version>
+      <major>4</major>
+      <minor>0</minor>
+      <revision>0</revision>
+    </version>
+  </product_info>
+  <special_objects>
+    <blank_template href="..." id="..."/>
+    <root_tag href="..." id="..."/>
+  </special_objects>
+  <summary>
+    <hosts>
+      <active>23</active>
+      <total>30</total>
+    </hosts>
+    <storage_domains>
+      <active>5</active>
+      <total>6</total>
+    </storage_domains>
+    <users>
+      <active>12</active>
+      <total>102</total>
+    </users>
+    <vms>
+      <active>253</active>
+      <total>545</total>
+    </vms>
+  </summary>
+  <time>2016-10-06T15:38:18.548+02:00</time>
+</api>
+----
+
+[IMPORTANT]
+====
+When neither the header nor the URL prefix are used, the server will
+automatically select a version. The default is version `4`. You can change
+the default version using the `ENGINE_API_DEFAULT_VERSION` configuration
+parameter:
+
+....
+# echo "ENGINE_API_DEFAULT_VERSION=3" > \
+/etc/ovirt-engine/engine.conf.d/99-set-default-version.conf
+# systemctl restart ovirt-engine
+....
+
+Changing this parameter affects all users of the API that don't
+specify the version explicitly.
+====
+
+The entry point provides a user with links to the collections in a
+virtualization environment. The `rel` attribute of each collection link
+provides a reference point for each link. The next step in this example
+examines the data center collection, which is available through the
+`datacenters` link.
+
+The entry point also contains other data such as <<types/product_info,
+product_info>>, <<types/special_objects, special_objects>> and
+<<types/api_summary, summary>>. This data is covered in chapters
+outside this example.
+
+## Example: List data centers
+
+{product-name} creates a `Default` data center on installation. This
+example uses the `Default` data center as the basis for our virtual
+environment.
+
+The following request retrieves a representation of the data centers:
+
+....
+GET /ovirt-engine/api/datacenters HTTP/1.1
+Accept: application/xml
+....
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+--user '[USER:PASS]' \
+https://[HOST]/ovirt-engine/api/datacenters
+....
+
+The result will be a list of objects of type <<types/data_center,
+DataCenter>>:
+
+[source,xml]
+----
+<data_centers>
+  <data_center href="/ovirt-engine/api/datacenters/001" id="001">
+    <name>Default</name>
+    <description>The default Data Center</description>
+    <link href="/ovirt-engine/api/datacenters/001/clusters" rel="clusters"/>
+    <link href="/ovirt-engine/api/datacenters/001/storagedomains" rel="storagedomains"/>
+    ...
+    <local>false</local>
+    <quota_mode>disabled</quota_mode>
+    <status>up</status>
+    <supported_versions>
+      <version>
+        <major>4</major>
+        <minor>0</minor>
+      </version>
+    </supported_versions>
+    <version>
+      <major>4</major>
+      <minor>0</minor>
+    </version>
+  </data_center>
+  ...
+</data_centers>
+----
+
+Note the `id` of your `Default` data center. It identifies this data
+center in relation to other resources of your virtual environment.
+
+The data center also contains a link to the
+<<services/attached_storage_domains, service>> that manages the storage
+domains attached to the data center:
+
+....
+<link href="/ovirt-engine/api/datacenters/001/storagedomains" rel="storagedomains"/>
+....
+
+That service is used to attach storage domains from the main
+`storagedomains` collection, which this example covers later.
+
+## Example: List host clusters
+
+{product-name} creates a `Default` hosts cluster on installation. This
+example uses the `Default` cluster to group resources in your
+{product-name} environment.
+
+The following request retrieves a representation of the cluster
+collection:
+
+....
+GET /ovirt-engine/api/clusters HTTP/1.1
+Accept: application/xml
+....
+
+Same request, using the `curl` command:
+
+....
+curl \
+--cacert [CERT] \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+--user '[USER:PASS]' \
+https://[HOST]/ovirt-engine/api/clusters
+....
+
+The result will be a list of objects of type <<types/cluster, Cluster>>:
+
+[source,xml]
+----
+<clusters>
+  <cluster href="/ovirt-engine/api/clusters/002" id="002">
+    <name>Default</name>
+    <description>The default server cluster</description>
+    <link href="/ovirt-engine/api/clusters/002/networks" rel="networks"/>
+    <link href="/ovirt-engine/api/clusters/002" rel="permissions"/>
+    ...
+    <cpu>
+      <architecture>x86_64</architecture>
+      <type>Intel Conroe Family</type>
+    </cpu>
+    <version>
+      <major>4</major>
+      <minor>0</minor>
+    </version>
+    <data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
+  </cluster>
+  ...
+</clusters>
+----
+
+Note the `id` of your `Default` host cluster. It identifies this host
+cluster in relation to other resources of your virtual environment.
+
+The `Default` cluster is associated with the `Default` data center
+through a relationship using the `id` and `href` attributes of the
+`data_center` link:
+
+....
+<data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
+....
+
+The `networks` link is a reference to the <<services/assigned_networks,
+service>> that manages the networks associated to this cluster. The next
+section examines the networks collection in more detail.
+
+## Example: List logical networks
+
+{product-name} creates a default `ovirtmgmt` network on installation.
+This network acts as the management network for {engine-name} to access
+hosts.
+
+This network is associated with our `Default` cluster and is a member of
+the `Default` data center. This example uses the `ovirtmgmt` network to
+connect our virtual machines.
+
+The following request retrieves the list of logical networks:
+
+....
+GET /ovirt-engine/api/networks HTTP/1.1
+Accept: application/xml
+....
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+--user '[USER:PASS]' \
+https://[HOST]/ovirt-engine/api/networks
+....
+
+The result will be a list of objects of type <<types/network, Network>>:
+
+[source,xml]
+----
+<networks>
+  <network href="/ovirt-engine/api/networks/003" id="003">
+    <name>ovirtmgmt</name>
+    <description>Management Network</description>
+    <link href="/ovirt-engine/api/networks/003/permissions" rel="permissions"/>
+    <link href="/ovirt-engine/api/networks/003/vnicprofiles" rel="vnicprofiles"/>
+    <link href="/ovirt-engine/api/networks/003/networklabels" rel="networklabels"/>
+    <mtu>0</mtu>
+    <stp>false</stp>
+    <usages>
+      <usage>vm</usage>
+    </usages>
+    <data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
+  </network>
+  ...
+</networks>
+----
+
+The `ovirtmgmt` network is attached to the `Default` data center through a
+relationship using the data center's `id`.
+
+The `ovirtmgmt` network is also attached to the `Default` cluster through a
+relationship in the cluster's network sub-collection.
+
+## Example: List hosts
+
+This example retrieves the list of hosts and shows a host named `myhost`
+registered with the virtualization environment:
+
+....
+GET /ovirt-engine/api/hosts HTTP/1.1
+Accept: application/xml
+....
+
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+--user '[USER:PASS]' \
+https://[HOST]/ovirt-engine/api/hosts
+....
+
+The result will be a list of objects of type <<types/host, Host>>:
+
+[source,xml]
+----
+<hosts>
+  <host href="/ovirt-engine/api/hosts/004" id="004">
+    <name>myhost</name>
+    <link href="/ovirt-engine/api/hosts/004/nics" rel="nics"/>
+    ...
+    <address>node40.example.com</address>
+    <cpu>
+      <name>Intel Core Processor (Haswell, no TSX)</name>
+      <speed>3600</speed>
+      <topology>
+        <cores>1</cores>
+        <sockets>2</sockets>
+        <threads>1</threads>
+      </topology>
+    </cpu>
+    <memory>8371830784</memory>
+    <os>
+      <type>RHEL</type>
+      <version>
+        <full_version>7 - 2.1511.el7.centos.2.10</full_version>
+        <major>7</major>
+      </version>
+    </os>
+    <port>54321</port>
+    <status>up</status>
+    <cluster href="/ovirt-engine/api/clusters/002" id="002"/>
+  </host>
+  ...
+</hosts>
+----
+
+Note the `id` of your host. It identifies this host in relation to other
+resources of your virtual environment.
+
+This host is a member of the `Default` cluster and accessing the `nics`
+sub-collection shows this host has a connection to the `ovirtmgmt`
+network.
+
+## Example: Create NFS data storage
+
+An NFS data storage domain is an exported NFS share attached to a data
+center and provides storage for virtualized guest images. Creation of a
+new storage domain requires a `POST` request, with the storage domain
+representation included, sent to the URL of the storage domain
+collection.
+
+You can enable the wipe after delete option by default on the storage
+domain. To configure this specify `wipe_after_delete` in the POST
+request. This option can be edited after the domain is created, but
+doing so will not change the wipe after delete property of disks that
+already exist.
+
+The request should be like this:
+
+....
+POST /ovirt-engine/api/storagedomains HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+And the request body should be like this:
+
+[source,xml]
+----
+<storage_domain>
+  <name>mydata</name>
+  <type>data</type>
+  <description>My data</description>
+  <storage>
+    <type>nfs</type>
+    <address>mynfs.example.com</address>
+    <path>/exports/mydata</path>
+  </storage>
+  <host>
+    <name>myhost</name>
+  </host>
+</storage_domain>
+----
+
+The same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<storage_domain>
+  <name>mydata</name>
+  <description>My data</description>
+  <type>data</type>
+  <storage>
+    <type>nfs</type>
+    <address>mynfs.example.com</address>
+    <path>/exports/mydata</path>
+  </storage>
+  <host>
+    <name>myhost</name>
+  </host>
+</storage_domain>
+' \
+https://[HOST]/ovirt-engine/api/storagedomains
+....
+
+The server uses host `myhost` to create a NFS data storage domain called
+`mydata` with an export path of `mynfs.example.com:/exports/mydata`. The
+API also returns the following representation of the newly created
+storage domain resource (of type <<types/storage_domain, StorageDomain>>):
+
+[source,xml]
+----
+<storage_domain href="/ovirt-engine/api/storagedomains/005" id="005">
+  <name>mydata</name>
+  <description>My data</description>
+  <available>42949672960</available>
+  <committed>0</committed>
+  <master>false</master>
+  <status>unattached</status>
+  <storage>
+    <address>mynfs.example.com</address>
+    <path>/exports/mydata</path>
+    <type>nfs</type>
+  </storage>
+  <storage_format>v3</storage_format>
+  <type>data</type>
+  <used>9663676416</used>
+</storage_domain>
+----
+
+## Example: Create NFS ISO storage
+
+An NFS ISO storage domain is a mounted NFS share attached to a data
+center and provides storage for DVD/CD-ROM ISO and virtual floppy disk
+(VFD) image files. Creation of a new storage domain requires a `POST`
+request, with the storage domain representation included, sent to the
+URL of the storage domain collection:
+
+The request should be like this:
+
+....
+POST /ovirt-engine/api/storagedomains HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+And the request body should be like this:
+
+[source,xml]
+----
+<storage_domain>
+  <name>myisos</name>
+  <description>My ISOs</description>
+  <type>iso</type>
+  <storage>
+    <type>nfs</type>
+    <address>mynfs.example.com</address>
+    <path>/exports/myisos</path>
+  </storage>
+  <host>
+    <name>myhost</name>
+  </host>
+</storage_domain>
+----
+
+The same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<storage_domain>
+  <name>myisos</name>
+  <description>My ISOs</description>
+  <type>iso</type>
+  <storage>
+    <type>nfs</type>
+    <address>mynfs.example.com</address>
+    <path>/exports/myisos</path>
+  </storage>
+  <host>
+    <name>myhost</name>
+  </host>
+</storage_domain>
+' \
+https://[HOST]/ovirt-engine/api/storagedomains
+....
+
+The server uses host `myhost` to create a NFS ISO storage domain called
+`myisos` with an export path of `mynfs.example.com:/exports/myisos`. The
+API also returns the following representation of the newly created
+storage domain resource (of type <<types/storage_domain, StorageDomain>>):
+
+[source,xml]
+----
+<storage_domain href="/ovirt-engine/api/storagedomains/006" id="006">
+  <name>myiso</name>
+  <description>My ISOs</description>
+  <available>42949672960</available>
+  <committed>0</committed>
+  <master>false</master>
+  <status>unattached</status>
+  <storage>
+    <address>mynfs.example.com</address>
+    <path>/exports/myisos</path>
+    <type>nfs</type>
+  </storage>
+  <storage_format>v1</storage_format>
+  <type>iso</type>
+  <used>9663676416</used>
+</storage_domain>
+----
+
+## Example: Attach storage domains to data center
+
+The following example attaches the `mydata` and `myisos` storage domains
+to the `Default` data center.
+
+To attach the `mydata` storage domain, send a request like this:
+
+....
+POST /ovirt-engine/api/datacenters/001/storagedomains HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+With a request body like this:
+
+[source,xml]
+----
+<storage_domain>
+  <name>mydata</name>
+</storage_domain>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<storage_domain>
+  <name>mydata</name>
+</storage_domain>
+' \
+https://[HOST]/ovirt-engine/api/datacenters/001/storagedomains
+....
+
+To attach the `myisos` storage domain, send a request like this:
+
+....
+POST /ovirt-engine/api/datacenters/001/storagedomains HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+With a request body like this:
+
+[source,xml]
+----
+<storage_domain>
+  <name>myisos</name>
+</storage_domain>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<storage_domain>
+  <name>myisos</name>
+</storage_domain>
+' \
+https://[HOST]/ovirt-engine/api/datacenters/001/storagedomains
+....
+
+## Example: Create virtual machine
+
+The following example creates a virtual machine called `myvm` on the
+`Default` cluster using the virtualization environment's `Blank`
+template as a basis. The request also defines the virtual machine's
+memory as 512 MiB and sets the boot device to a virtual hard disk.
+
+The request should be contain an object of type <<types/vm, Vm>>
+describing the virtual machine to create:
+
+[source,xml]
+----
+POST /ovirt-engine/api/vms HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+----
+
+And the request body should be like this:
+
+[source,xml]
+----
+<vm>
+  <name>myvm</name>
+  <description>My VM</description>
+  <cluster>
+    <name>Default</name>
+  </cluster>
+  <template>
+    <name>Blank</name>
+  </template>
+  <memory>536870912</memory>
+  <os>
+    <boot>
+      <devices>
+        <device>hd</device>
+      </devices>
+    </boot>
+  </os>
+</vm>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<vm>
+  <name>myvm</name>
+  <description>My VM</description>
+  <cluster>
+    <name>Default</name>
+  </cluster>
+  <template>
+    <name>Blank</name>
+  </template>
+  <memory>536870912</memory>
+  <os>
+    <boot>
+      <devices>
+        <device>hd</device>
+      </devices>
+    </boot>
+  </os>
+</vm>
+' \
+https://[HOST]/ovirt-engine/api/vms
+....
+
+The response body will be an object of the <<types/vm, Vm>> type:
+
+[source,xml]
+----
+<vm href="/ovirt-engine/api/vms/007" id="007">
+  <name>myvm</name>
+  <link href="/ovirt-engine/api/vms/007/diskattachments" rel="diskattachments"/>
+  <link href="/ovirt-engine/api/vms/007/nics" rel="nics"/>
+  ...
+  <cpu>
+    <architecture>x86_64</architecture>
+    <topology>
+      <cores>1</cores>
+      <sockets>1</sockets>
+      <threads>1</threads>
+    </topology>
+  </cpu>
+  <memory>1073741824</memory>
+  <os>
+    <boot>
+      <devices>
+        <device>hd</device>
+      </devices>
+    </boot>
+    <type>other</type>
+  </os>
+  <type>desktop</type>
+  <cluster href="/ovirt-engine/api/clusters/002" id="002"/>
+  <status>down</status>
+  <original_template href="/ovirt-engine/api/templates/000" id="00"/>
+  <template href="/ovirt-engine/api/templates/000" id="000"/>
+</vm>
+----
+
+## Example: Create a virtual machine NIC
+
+The following example creates a virtual network interface to connect the
+example virtual machine to the `ovirtmgmt` network.
+
+The request should be like this:
+
+....
+POST /ovirt-engine/api/vms/007/nics HTTP/1.1
+Content-Type: application/xml
+Accept: application/xml
+....
+
+The request body should contain an object of type <<types/nic, Nic>>
+describing the NIC to be created:
+
+[source,xml]
+----
+<nic>
+  <name>mynic</name>
+  <description>My network interface card</description>
+</nic>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<nic>
+  <name>mynic</name>
+  <description>My network interface card</description>
+</nic>
+' \
+https://[HOST]/ovirt-engine/api/vms/007/nics
+....
+
+## Example: Create virtual machine disk
+
+The following example creates an 8 GiB _copy-on-write_ disk for the
+example virtual machine.
+
+The request should be like this:
+
+....
+POST /ovirt-engine/api/vms/007/diskattachments HTTP/1.1
+Content-Type: application/xml
+Accept: application/xml
+....
+
+The request body should be an object of type <<types/disk_attachment,
+DiskAttachment>> describing the disk and how it will be attached to the
+virtual machine:
+
+[source,xml]
+----
+<disk_attachment>
+  <bootable>false</bootable>
+  <interface>virtio</interface>
+  <disk>
+    <description>My disk</description>
+    <format>cow</format>
+    <name>mydisk</name>
+    <provisioned_size>8589934592</provisioned_size>
+    <storage_domains>
+      <storage_domain>
+        <name>mydata</name>
+      </storage_domain>
+    </storage_domains>
+  </disk>
+</disk_attachment>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<disk_attachment>
+  <bootable>false</bootable>
+  <interface>virtio</interface>
+  <disk>
+    <description>My disk</description>
+    <format>cow</format>
+    <name>mydisk</name>
+    <provisioned_size>8589934592</provisioned_size>
+    <storage_domains>
+      <storage_domain>
+        <name>mydata</name>
+      </storage_domain>
+    </storage_domains>
+  </disk>
+</disk_attachment>
+' \
+https://[HOST]/ovirt-engine/api/vms/007/diskattachments
+....
+
+The `storage_domains` attribute tells the API to store the disk on the
+`mydata` storage domain.
+
+## Example: Attach ISO image to virtual machine
+
+The boot media for our example virtual machine requires an CD-ROM or DVD
+ISO image for an operating system installation. This example uses a
+CentOS 7 image for installation.
+
+ISO images must be available in the `myisos` ISO domain for the virtual
+machines to use. {product-name} provides an uploader tool that ensures
+that the ISO images are uploaded into the correct directory path with
+the correct user permissions.
+
+Once the ISO is uploaded, an API can be used to request the list of
+files from the ISO storage domain:
+
+....
+GET /ovirt-engine/api/storagedomains/006/files HTTP/1.1
+Accept: application/xml
+....
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request GET \
+--header 'Version: 4' \
+--header 'Accept: application/xml' \
+https://[HOST]/ovirt-engine/api/storagedomains/006/files
+....
+
+The server returns the following list of objects of type <<types/file,
+File>>, one for each available ISO (or floppy) image:
+
+[source,xml]
+----
+<files>
+  <file href="..." id="CentOS-7-x86_64-Minimal.iso">
+    <name>CentOS-7-x86_64-Minimal.iso</name>
+  </file>
+  ...
+</files>
+----
+
+An API user attaches the `CentOS-7-x86_64-Minimal.iso` to our example
+virtual machine. Attaching an ISO image is equivalent to using the
+_Change CD_ button in the administration or user portal applications.
+
+The request should be like this:
+
+....
+PUT /ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000 HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+The request body should be an object of type <<types/cdrom, Cdrom>>
+containing an inner `file` attribute to indicate the identifier of the
+ISO (or floppy) image:
+
+[source,xml]
+----
+<cdrom>
+  <file id="CentOS-7-x86_64-Minimal.iso"/>
+</cdrom>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request PUT \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<cdrom>
+  <file id="CentOS-7-x86_64-Minimal.iso"/>
+</cdrom>
+' \
+https://[HOST]/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000
+....
+
+For more details see the documentation of the <<services/vm_cdrom,
+service>> that manages virtual machine CD-ROMS.
+
+## Example: Start the virtual machine
+
+The virtual environment is complete and the virtual machine contains all
+necessary components to function. This example starts the virtual
+machine using the <<services/vm/methods/start, start>> method.
+
+The request should be like this:
+
+....
+POST /ovirt-engine/api/vms/007/start HTTP/1.1
+Accept: application/xml
+Content-type: application/xml
+....
+
+The request body should be like this:
+
+[source,xml]
+----
+<action>
+  <vm>
+    <os>
+      <boot>
+        <devices>
+          <device>cdrom</device>
+        </devices>
+      </boot>
+    </os>
+  </vm>
+</action>
+----
+
+Same request, using the `curl` command:
+
+....
+# curl \
+--cacert [CERT] \
+--user '[USER:PASS]' \
+--request POST \
+--header 'Version: 4' \
+--header 'Content-Type: application/xml' \
+--header 'Accept: application/xml' \
+--data '
+<action>
+  <vm>
+    <os>
+      <boot>
+        <devices>
+          <device>cdrom</device>
+        </devices>
+      </boot>
+    </os>
+  </vm>
+</action>
+' \
+https://[HOST]/ovirt-engine/api/vms/007/start
+....
+
+The additional request body sets the virtual machine's boot device to
+CD-ROM for this boot only. This enables the virtual machine to install
+the operating system from the attached ISO image. The boot device
+reverts back to disk for all future boots.
