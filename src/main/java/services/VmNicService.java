@@ -62,7 +62,7 @@ public interface VmNicService extends MeasurableService {
      * ----
      * <nic>
      *   <name>mynic</name>
-     *   <type>e1000</type>
+     *   <interface>e1000</interface>
      * </nic>
      * ----
      *
