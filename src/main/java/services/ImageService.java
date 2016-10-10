@@ -23,6 +23,8 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
 import types.Disk;
 import types.Image;
+import types.StorageDomain;
+import types.Template;
 
 @Service
 @Area("Storage")
@@ -32,9 +34,53 @@ public interface ImageService {
     }
 
     interface Import {
+
+        /**
+         * Cluster where the image should be imported. Has effect only in case `import_as_template` parameter
+         * is set to `true`.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         */
         @In Cluster cluster();
+
+        /**
+         * The disk which should be imported.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         */
         @In Disk disk();
+
+        /**
+         * Specify if template should be created from the imported disk.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         */
         @In Boolean importAsTemplate();
+
+        /**
+         * Name of the template, which should be created. Has effect only in case `import_as_template` parameter
+         * is set to `true`.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         */
+        @In Template template();
+
+        /**
+         * Storage domain where disk should be imported.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         */
+        @In StorageDomain storageDomain();
 
         /**
          * Indicates if the import should be performed asynchronously.
