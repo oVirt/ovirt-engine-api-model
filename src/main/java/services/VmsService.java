@@ -280,6 +280,33 @@ public interface VmsService {
          * Indicates if the results should be filtered according to the permissions of the user.
          */
         @In Boolean filter();
+
+        /**
+         * Indicates if all the attributes of the virtual machines should be included in the response.
+         *
+         * By default the following attributes are excluded:
+         *
+         * - `console`
+         * - `initialization.configuration.data` - The OVF document describing the virtual machine.
+         * - `rng_source`
+         * - `soundcard`
+         * - `virtio_scsi`
+         *
+         * For example, to retrieve the complete representation of the virtual machines send a request like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/vms?all_content=true
+         * ....
+         *
+         * NOTE: The reason for not including these attributes is performance: they are seldom used and they require
+         * additional queries to the database. So try to use the this parameter only when it is really needed.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         * @since 4.0.6
+         */
+        @In Boolean allContent();
     }
 
     @Service VmService vm(String id);
