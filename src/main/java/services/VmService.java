@@ -190,26 +190,9 @@ public interface VmService extends MeasurableService {
     /**
      * Retrieves the description of the virtual machine.
      *
-     * Note that some elements of the description of the virtual machine won't be returned unless the `All-Content`
-     * header is present in the request and has the value `true`. The elements that aren't currently returned are
-     * the following:
-     *
-     * - `console`
-     * - `initialization.configuration.data` - The OVF document describing the virtual machine.
-     * - `rng_source`
-     * - `soundcard`
-     * - `virtio_scsi`
-     *
-     * With the Python SDK the `All-Content` header can be set using the `all_content` parameter of the `get`
-     * method:
-     *
-     * [source,python]
-     * ----
-     * api.vms.get(name="myvm", all_content=True)
-     * ----
-     *
-     * Note that the reason for not including these elements is performance: they are seldom used and they require
-     * additional queries in the server. So try to use the `All-Content` header only when it is really needed.
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 11 Oct 2016
+     * @status added
      */
     interface Get {
         /**
@@ -242,6 +225,33 @@ public interface VmService extends MeasurableService {
          * ----
          */
         @In Boolean nextRun();
+
+        /**
+         * Indicates if all the attributes of the virtual machine should be included in the response.
+         *
+         * By default the following attributes are excluded:
+         *
+         * - `console`
+         * - `initialization.configuration.data` - The OVF document describing the virtual machine.
+         * - `rng_source`
+         * - `soundcard`
+         * - `virtio_scsi`
+         *
+         * For example, to retrieve the complete representation of the virtual machine '123' send a request like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/vms/123?all_content=true
+         * ....
+         *
+         * NOTE: The reason for not including these attributes is performance: they are seldom used and they require
+         * additional queries to the database. So try to use the this parameter only when it is really needed.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 11 Oct 2016
+         * @status added
+         * @since 4.0.6
+         */
+        @In Boolean allContent();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
