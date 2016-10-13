@@ -367,6 +367,17 @@ public interface VmService extends MeasurableService {
         @In @Out Vm vm();
 
         /**
+         * Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
+         * when the virtual machine is restarted. The default value is `false`, so by default changes are applied
+         * immediately.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 13 Oct 2016
+         * @status added
+         */
+        @In Boolean nextRun();
+
+        /**
          * Indicates if the update should be performed asynchronously.
          */
         @In Boolean async();
