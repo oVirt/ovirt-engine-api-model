@@ -105,9 +105,12 @@ public class AsciiDocGenerator {
             }
         });
 
-        // Include all the documents, pushing titles one level down:
+        // Include the documents that aren't appendixes, pushing titles one level down:
         docBuffer.addLine(":leveloffset: 1");
-        model.documents().sorted().forEach(this::addDocument);
+        model.documents()
+            .filter(document -> !document.isAppendix())
+            .sorted()
+            .forEach(this::addDocument);
         docBuffer.addLine(":leveloffset: 0");
 
         // Requests:
@@ -137,6 +140,14 @@ public class AsciiDocGenerator {
         docBuffer.addLine("This section enumerates all the data types that are available in the API.");
         docBuffer.addLine();
         model.types().sorted().forEach(this::documentType);
+
+        // Include the appendixes, pushing titles one level down:
+        docBuffer.addLine(":leveloffset: 1");
+        model.documents()
+            .filter(Document::isAppendix)
+            .sorted()
+            .forEach(this::addDocument);
+        docBuffer.addLine(":leveloffset: 0");
     }
 
     private void addDocument(Document document) {

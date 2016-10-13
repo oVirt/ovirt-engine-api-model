@@ -780,8 +780,27 @@ public class ModelAnalyzer {
         // Create the document:
         Document document = new Document();
 
-        // Compute the name of the document from the name of the file, without the extension:
-        Name name = NameParser.parseUsingCase(FilenameUtils.getBaseName(file));
+        // Remove the extension from the file name:
+        file = FilenameUtils.getBaseName(file);
+
+        // The name of the document can contain a prefix to explicitly indicate the order of the document relative to
+        // the other documents of the model. This prefix should be separated from the rest of the name using a dash, and
+        // that dash should be ignored.
+        String prefix = null;
+        int index = file.indexOf('-');
+        if (index > 0) {
+            prefix = file.substring(0, index);
+            file = file.substring(index + 1);
+        }
+        Name name = NameParser.parseUsingCase(file);
+        if (prefix != null && !prefix.isEmpty()) {
+            List<String> words = name.getWords();
+            words.add(0, prefix);
+            name.setWords(words);
+            if (Character.isAlphabetic(prefix.charAt(0))) {
+                document.setAppendix(true);
+            }
+        }
         document.setName(name);
 
         // Read the source of the document:
