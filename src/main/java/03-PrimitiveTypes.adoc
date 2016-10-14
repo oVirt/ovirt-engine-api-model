@@ -39,21 +39,21 @@ values possible with 32 bit isn't enough. In those exceptional cases
 the engine uses 64 bit integers, in particular for the following
 attributes:
 
-- <<types/disk/attributes/actual_size, Disk.actual_size>>
-- <<types/disk/attributes/provisioned_size, Disk.provisioned_size>>
-- <<types/gluster_client/attributes/bytes_read, GlusterClient.bytes_read>>
-- <<types/gluster_client/attributes/bytes_written, GlusterClient.bytes_written>>
-- <<types/host/attributes/max_scheduling_memory, Host.max_scheduling_memory>>
-- <<types/host/attributes/memory, Host.memory>>
-- <<types/host_nic/attributes/speed, HostNic.speed>>
-- <<types/logical_unit/attributes/size, LogicalUnit.size>>
-- <<types/memory_policy/attributes/guaranteed, MemoryPolicy.guaranteed>>
-- <<types/numa_node/attributes/memory, NumaNode.memory>>
-- <<types/quota_storage_limit/attributes/limit, QuotaStorageLimit.limit>>
-- <<types/storage_domain/attributes/available, StorageDomain.available>>
-- <<types/storage_domain/attributes/used, StorageDomain.used>>
-- <<types/storage_domain/attributes/commited, StorageDomain.committed>>
-- <<types/vm_base/attributes/memory, VmBase.memory>>
+- `Disk.actual_size`
+- `Disk.provisioned_size`
+- `GlusterClient.bytes_read`
+- `GlusterClient.bytes_written`
+- `Host.max_scheduling_memory`
+- `Host.memory`
+- `HostNic.speed`
+- `LogicalUnit.size`
+- `MemoryPolicy.guaranteed`
+- `NumaNode.memory`
+- `QuotaStorageLimit.limit`
+- `StorageDomain.available`
+- `StorageDomain.used`
+- `StorageDomain.committed`
+- `VmBase.memory`
 
 For these exception cases the minimum value is -2^63^
 (-9223372036854775808) and the maximum value is 2^63^-1
@@ -76,9 +76,9 @@ For some attributes this isn't enough precission. In those exceptional
 cases the engine uses 64 bit double precission floating point numbers,
 in particular for the following attributes:
 
-- <<types/quota_storage_limit/attributes/usage, QuotaStorageLimit.usage>>
-- <<types/quota_cluster_limit/attributes/memory_limit, QuotaStorageLimit.memory_limit>>
-- <<types/quota-cluster-limit/attributes/memory_usage, QuotaStorageLimit.memory_usage>>
+- `QuotaStorageLimit.usage`
+- `QuotaStorageLimit.memory_limit`
+- `QuotaStorageLimit.memory_usage`
 
 NOTE: In the future the decimal type will be implemented using unlimited
 precission decimal numbers, so the above limitations and exceptions will
