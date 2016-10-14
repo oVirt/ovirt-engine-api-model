@@ -31,7 +31,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface ImageTransfer extends Identified {
     /**
      * The URL of the proxy server which the user should do I/O to. This attribute is
-     * available only if the image transfer entity is in <<types/image_transfer_phase/transferring, transferring>>
+     * available only if the image transfer entity is in <<types/image_transfer_phase, transferring>>
      * phase. See `phase` for details.
      *
      * @author Amit Aviram <aaviram@redhat.com>
