@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -289,12 +288,12 @@ public class AsciiDocGenerator {
         }
 
         // Detail of values:
-        values.stream().sorted().forEach(this::documentValue);
+        values.stream().sorted().forEach(value -> documentValue(type, value));
     }
 
-    private void documentValue(EnumValue value) {
+    private void documentValue(EnumType type, EnumValue value) {
         if (!onlyHasSummary(value)) {
-            docBuffer.addId(getId(value));
+            docBuffer.addId(getId(type, value));
             docBuffer.addLine("==== %s", getName(value));
             docBuffer.addLine();
             addDoc(value);
@@ -428,7 +427,10 @@ public class AsciiDocGenerator {
     }
 
     private String getId(Type type, StructMember member) {
-        String kind = member instanceof Attribute? "attributes": "links";
+        if (onlyHasSummary(member)) {
+            return getId(type);
+        }
+        String kind = member instanceof Attribute ? "attributes" : "links";
         return joinIds(getId(type), kind, getIdSegment(member));
     }
 
@@ -440,7 +442,10 @@ public class AsciiDocGenerator {
         return joinIds(getId(service, method), "parameters", getIdSegment(parameter));
     }
 
-    private String getId(EnumValue value) {
+    private String getId(EnumType type, EnumValue value) {
+        if (onlyHasSummary(value)) {
+            return getId(type);
+        }
         return joinIds(getId(value.getDeclaringType()), "values", getIdSegment(value));
     }
 
@@ -536,14 +541,14 @@ public class AsciiDocGenerator {
      */
     private boolean onlyHasSummary(Concept concept) {
         String doc = concept.getDoc();
-        if (doc == null || doc.isEmpty()) {
+        if (doc == null) {
             return true;
         }
-        String summary = getSummary(concept);
-        if (summary == null || summary.isEmpty()) {
+        int index = doc.indexOf('.');
+        if (index == -1) {
             return true;
         }
-        return Objects.equals(doc, summary);
+        return index == doc.length() - 1;
     }
 
     private String getSortKey(Point point) {
