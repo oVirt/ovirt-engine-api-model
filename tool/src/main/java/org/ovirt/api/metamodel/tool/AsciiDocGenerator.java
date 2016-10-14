@@ -56,7 +56,16 @@ import org.ovirt.api.metamodel.concepts.Type;
 @ApplicationScoped
 public class AsciiDocGenerator {
     // The regular expression to detect internal cross references:
-    private static final Pattern CROSS_REFERENCE_RE = Pattern.compile("<<(?<id>(\\w|/)+)(?<rest>,.*)??>>");
+    private static final Pattern CROSS_REFERENCE_RE = Pattern.compile(
+        "<<(?<id>(\\w|/)+)(?<rest>,.*)??>>",
+        Pattern.MULTILINE
+    );
+
+    // The regular expression to detect section identifiers:
+    private static final Pattern SECTION_ID_RE = Pattern.compile(
+        "^\\[id=\"(?<id>[^\"]*)\"\\]$",
+        Pattern.MULTILINE
+    );
 
     // Reference to the object used to calculate names:
     @Inject private Names names;
@@ -152,7 +161,12 @@ public class AsciiDocGenerator {
 
     private void addDocument(Document document) {
         docBuffer.addId(getId(document));
-        docBuffer.addLine(document.getSource());
+
+        // Apply document fixes, like replacing the forward slash with the id separator:
+        String doc = document.getSource();
+        doc = fixDoc(doc);
+
+        docBuffer.addLine(doc);
         docBuffer.addLine();
     }
 
@@ -380,8 +394,8 @@ public class AsciiDocGenerator {
                 return doc.substring(0, index + 1);
             }
 
-            // Replace the forward slash with the id separator inside cross references:
-            doc = fixCrossReferences(doc);
+            // Apply document fixes, like replacing the forward slash with the id separator:
+            doc = fixDoc(doc);
 
             return doc;
         }
@@ -469,8 +483,8 @@ public class AsciiDocGenerator {
             return;
         }
 
-        // Replace the forward slash with the id separator inside cross references:
-        doc = fixCrossReferences(doc);
+        // Apply document fixes, like replacing the forward slash with the id separator:
+        doc = fixDoc(doc);
 
         // Split the documentation into lines, and add them to the buffer:
         List<String> lines = new ArrayList<>();
@@ -479,10 +493,16 @@ public class AsciiDocGenerator {
         docBuffer.addLine();
     }
 
+    private String fixDoc(String doc) {
+        doc = fixCrossReferences(doc);
+        doc = fixSectionIds(doc);
+        return doc;
+    }
+
     private String fixCrossReferences(String doc) {
         Matcher matcher = CROSS_REFERENCE_RE.matcher(doc);
         StringBuffer buffer = new StringBuffer();
-        if (matcher.find()) {
+        while (matcher.find()) {
             String id = matcher.group("id");
             id = id.replace("/", configuration.getSeparator());
             String rest = matcher.group("rest");
@@ -490,6 +510,19 @@ public class AsciiDocGenerator {
                 rest = "";
             }
             String replacement = "<<" + id + rest + ">>";
+            matcher.appendReplacement(buffer, replacement);
+        }
+        matcher.appendTail(buffer);
+        return buffer.toString();
+    }
+
+    private String fixSectionIds(String doc) {
+        Matcher matcher = SECTION_ID_RE.matcher(doc);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            String id = matcher.group("id");
+            id = id.replace("/", configuration.getSeparator());
+            String replacement = "[id=\"" + id + "\"]";
             matcher.appendReplacement(buffer, replacement);
         }
         matcher.appendTail(buffer);
