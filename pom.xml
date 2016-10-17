@@ -91,10 +91,58 @@
           </configuration>
         </plugin>
 
+        <plugin>
+          <groupId>org.asciidoctor</groupId>
+          <artifactId>asciidoctor-maven-plugin</artifactId>
+          <version>1.5.3</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.4.0</version>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
     <plugins>
+
+      <!-- Generate the AsciiDoc documentation: -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-adoc</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
+              <arguments>
+                <argument>org.ovirt.api.metamodel.tool.Tool</argument>
+                <argument>--model=${project.basedir}/src/main/java</argument>
+                <argument>--docs=${project.basedir}/target/generated-adoc</argument>
+                <argument>--adoc-separator=${adoc.separator}</argument>
+                <argument>--adoc-attribute=product-name:${product.name}</argument>
+                <argument>--adoc-attribute=engine-name:${engine.name}</argument>
+                <argument>--report=${project.basedir}/target/generated-csv/model.csv</argument>
+              </arguments>
+              <includePluginDependencies>true</includePluginDependencies>
+              <includeProjectDependencies>false</includeProjectDependencies>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.ovirt.engine.api</groupId>
+            <artifactId>metamodel-tool</artifactId>
+            <version>${metamodel.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -159,7 +207,6 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>1.4.0</version>
             <executions>
               <execution>
                 <id>describe</id>
@@ -195,13 +242,114 @@
       </build>
     </profile>
 
-    <!-- This profile is used to generate the documentation: -->
+    <!-- This profile is used to generate the HTML documentation: -->
     <profile>
       <id>document</id>
       <build>
         <plugins>
+          <plugin>
+             <groupId>org.asciidoctor</groupId>
+             <artifactId>asciidoctor-maven-plugin</artifactId>
+             <executions>
+               <execution>
+                 <id>generate-html</id>
+                 <phase>validate</phase>
+                 <goals>
+                   <goal>process-asciidoc</goal>
+                 </goals>
+                 <configuration>
+                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
+                   <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
+                   <backend>html5</backend>
+                   <attributes>
+                     <linkcss/>
+                     <toc>right</toc>
+                     <sectnums>true</sectnums>
+                     <sectlinks>true</sectlinks>
+                     <sectanchors>true</sectanchors>
+                     <source-highlighter>highlightjs</source-highlighter>
+                   </attributes>
+                 </configuration>
+               </execution>
+             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-          <!-- Generate the JavaDoc documentation: -->
+    <!-- This profile is used to generate the DocBook documentation: -->
+    <profile>
+      <id>docbook</id>
+      <build>
+        <plugins>
+          <plugin>
+             <groupId>org.asciidoctor</groupId>
+             <artifactId>asciidoctor-maven-plugin</artifactId>
+             <executions>
+               <execution>
+                 <id>generate-docbook</id>
+                 <phase>validate</phase>
+                 <goals>
+                   <goal>process-asciidoc</goal>
+                 </goals>
+                 <configuration>
+                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
+                   <outputDirectory>${project.basedir}/target/generated-docbook</outputDirectory>
+                   <backend>docbook5</backend>
+                 </configuration>
+               </execution>
+             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is used to generate the PDF documentation: -->
+    <profile>
+      <id>pdf</id>
+      <build>
+        <plugins>
+          <plugin>
+             <groupId>org.asciidoctor</groupId>
+             <artifactId>asciidoctor-maven-plugin</artifactId>
+             <dependencies>
+               <dependency>
+                 <groupId>org.asciidoctor</groupId>
+                 <artifactId>asciidoctorj-pdf</artifactId>
+                 <version>1.5.0-alpha.11</version>
+               </dependency>
+             </dependencies>
+             <executions>
+               <execution>
+                 <id>generate-pdf</id>
+                 <phase>validate</phase>
+                 <goals>
+                   <goal>process-asciidoc</goal>
+                 </goals>
+                 <configuration>
+                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
+                   <outputDirectory>${project.basedir}/target/generated-pdf</outputDirectory>
+                   <backend>pdf</backend>
+                   <attributes>
+                     <toc/>
+                     <sectnums>true</sectnums>
+                     <sectlinks>true</sectlinks>
+                     <sectanchors>true</sectanchors>
+                     <source-highlighter>rouge</source-highlighter>
+                   </attributes>
+                 </configuration>
+               </execution>
+             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile is used to generate the Javadoc documentation: -->
+    <profile>
+      <id>javadoc</id>
+      <build>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -227,104 +375,6 @@
               </additionalparam>
             </configuration>
           </plugin>
-
-          <!-- Generate the AsciiDoc documentation: -->
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.4.0</version>
-            <executions>
-              <execution>
-                <id>generate-adoc</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-                <configuration>
-                  <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
-                  <arguments>
-                    <argument>org.ovirt.api.metamodel.tool.Tool</argument>
-                    <argument>--model=${project.basedir}/src/main/java</argument>
-                    <argument>--docs=${project.basedir}/target/generated-adoc</argument>
-                    <argument>--adoc-separator=${adoc.separator}</argument>
-                    <argument>--adoc-attribute=product-name:${product.name}</argument>
-                    <argument>--adoc-attribute=engine-name:${engine.name}</argument>
-                    <argument>--report=${project.basedir}/target/generated-csv/model.csv</argument>
-                  </arguments>
-                  <includePluginDependencies>true</includePluginDependencies>
-                  <includeProjectDependencies>false</includeProjectDependencies>
-                </configuration>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.ovirt.engine.api</groupId>
-                <artifactId>metamodel-tool</artifactId>
-                <version>${metamodel.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-
-          <!-- Process the generated AsciiDoc documentation: -->
-          <plugin>
-             <groupId>org.asciidoctor</groupId>
-             <artifactId>asciidoctor-maven-plugin</artifactId>
-             <version>1.5.3</version>
-             <dependencies>
-               <dependency>
-                 <groupId>org.asciidoctor</groupId>
-                 <artifactId>asciidoctorj-pdf</artifactId>
-                 <version>1.5.0-alpha.11</version>
-               </dependency>
-             </dependencies>
-             <executions>
-
-               <!-- Generate HTML: -->
-               <execution>
-                 <id>generate-html</id>
-                 <phase>validate</phase>
-                 <goals>
-                   <goal>process-asciidoc</goal>
-                 </goals>
-                 <configuration>
-                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
-                   <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
-                   <backend>html5</backend>
-                   <attributes>
-                     <linkcss />
-                     <toc>right</toc>
-                     <sectnums>true</sectnums>
-                     <sectlinks>true</sectlinks>
-                     <sectanchors>true</sectanchors>
-                     <source-highlighter>highlightjs</source-highlighter>
-                   </attributes>
-                 </configuration>
-               </execution>
-
-               <!-- Generate PDF: -->
-               <execution>
-                 <id>generate-pdf</id>
-                 <phase>validate</phase>
-                 <goals>
-                   <goal>process-asciidoc</goal>
-                 </goals>
-                 <configuration>
-                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
-                   <outputDirectory>${project.basedir}/target/generated-pdf</outputDirectory>
-                   <backend>pdf</backend>
-                   <attributes>
-                     <toc />
-                     <sectnums>true</sectnums>
-                     <sectlinks>true</sectlinks>
-                     <sectanchors>true</sectanchors>
-                     <source-highlighter>rouge</source-highlighter>
-                   </attributes>
-                 </configuration>
-               </execution>
-
-             </executions>
-          </plugin>
-
         </plugins>
       </build>
     </profile>
