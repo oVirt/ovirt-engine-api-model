@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.1.7 / Oct 17 2016
+
+Bug fixes:
+
+* Handle appendixes correctly.
+
+* Automatically fix section identifiers.
+
+* Don't generate cross references to non existing sections.
+
+* Fix cross references inside summaries.
+
 == 1.1.6 / Oct 5 2016
 
 New features:
