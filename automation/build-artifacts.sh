@@ -80,11 +80,13 @@ do
 done
 
 # Generate the documentation:
-${mvn} validate -Pdocument,pdf
-for format in adoc html pdf csv
+${mvn} validate -Pdocument
+for format in adoc html csv
 do
   mv target/generated-${format}/* "${artifacts}"
 done
 
-# Deploy the artifacts to the artifacts directory:
-${mvn} deploy -DaltDeploymentRepository="local::default::file://${PWD}/${artifacts}"
+# Generate the Publican documentation:
+${mvn} validate -Ppublican
+mkdir -p "${artifacts}/publican"
+mv target/generated-publican/publish/* "${artifacts}/publican"
