@@ -56,7 +56,7 @@ import org.ovirt.api.metamodel.concepts.Type;
 public class AsciiDocGenerator {
     // The regular expression to detect internal cross references:
     private static final Pattern CROSS_REFERENCE_RE = Pattern.compile(
-        "<<(?<id>(\\w|/)+)(?<rest>,.*)??>>",
+        "<<(?<id>(\\w|/)+)(?<rest>,[^>]*)?>>",
         Pattern.MULTILINE
     );
 
@@ -384,21 +384,23 @@ public class AsciiDocGenerator {
     }
 
     private String getSummary(Concept concept) {
+        // If there is no documentation then consider it empty:
         String doc = concept.getDoc();
-        if (doc != null) {
-            // The summary is the first sentence of the documentation, or the complete documentation if there is no dot
-            // to end the first sentence.
-            int index = doc.indexOf('.');
-            if (index != -1) {
-                return doc.substring(0, index + 1);
-            }
-
-            // Apply document fixes, like replacing the forward slash with the id separator:
-            doc = fixDoc(doc);
-
-            return doc;
+        if (doc == null) {
+            doc = "";
         }
-        return "";
+
+        // The summary is the first sentence of the documentation, or the complete documentation if there is no dot
+        // to end the first sentence.
+        int index = doc.indexOf('.');
+        if (index != -1) {
+            doc = doc.substring(0, index + 1);
+        }
+
+        // Apply document fixes, like replacing the forward slash with the id separator:
+        doc = fixDoc(doc);
+
+        return doc;
     }
 
     private String getDirection(Parameter parameter) {
