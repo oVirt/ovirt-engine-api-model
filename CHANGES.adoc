@@ -3,6 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.37 / Oct 18 2016
+
+Bug fixes:
+
+* Add missing `template` and `storage_domain` parameters to the
+  operation that imports an image.
+
+* Add the `next_run` parameter to the operation that updates a virtual
+  machine.
+
+* Add the `all_content` parameters to the operations that list and
+  retrieve virtual machines.
+
 == 4.0.36 / Oct 5 2016
 
 New features:
