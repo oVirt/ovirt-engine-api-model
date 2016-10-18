@@ -6,7 +6,7 @@
 
   <groupId>org.ovirt.engine.api</groupId>
   <artifactId>model</artifactId>
-  <version>4.0.37-SNAPSHOT</version>
+  <version>4.0.37</version>
 
   <name>oVirt API Model</name>
 
@@ -42,7 +42,7 @@
     <connection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</connection>
     <developerConnection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</developerConnection>
     <url>git://gerrit.ovirt.org/ovirt-engine-api-model.git</url>
-    <tag>HEAD</tag>
+    <tag>4.0.37</tag>
   </scm>
 
   <properties>
@@ -268,7 +268,7 @@
                    <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
                    <backend>html5</backend>
                    <attributes>
-                     <linkcss/>
+                     <linkcss />
                      <toc>right</toc>
                      <sectnums>true</sectnums>
                      <sectlinks>true</sectlinks>
@@ -331,19 +331,16 @@
                 </goals>
                 <configuration>
                   <target>
-                    <mkdir dir="${project.basedir}/target/generated-publican"/>
+                    <mkdir dir="${project.basedir}/target/generated-publican" />
                     <copy todir="${project.basedir}/target/generated-publican">
-                      <fileset dir="${project.basedir}/src/main/publican"/>
+                      <fileset dir="${project.basedir}/src/main/publican" />
                     </copy>
-                    <xslt
-                      in="${project.basedir}/target/generated-docbook/model.xml"
-                      style="${project.basedir}/target/generated-publican/en-US/API_Guide.xsl"
-                      out="${project.basedir}/target/generated-publican/en-US/API_Guide.xml"/>
+                    <xslt in="${project.basedir}/target/generated-docbook/model.xml" style="${project.basedir}/target/generated-publican/en-US/API_Guide.xsl" out="${project.basedir}/target/generated-publican/en-US/API_Guide.xml" />
                     <exec executable="publican" dir="${project.basedir}/target/generated-publican">
-                      <arg value="build"/>
-                      <arg value="--langs=en-US"/>
-                      <arg value="--formats=html"/>
-                      <arg value="--publish"/>
+                      <arg value="build" />
+                      <arg value="--langs=en-US" />
+                      <arg value="--formats=html" />
+                      <arg value="--publish" />
                     </exec>
                   </target>
                 </configuration>
@@ -382,7 +379,7 @@
                    <outputDirectory>${project.basedir}/target/generated-pdf</outputDirectory>
                    <backend>pdf</backend>
                    <attributes>
-                     <toc/>
+                     <toc />
                      <sectnums>true</sectnums>
                      <sectlinks>true</sectlinks>
                      <sectanchors>true</sectanchors>
