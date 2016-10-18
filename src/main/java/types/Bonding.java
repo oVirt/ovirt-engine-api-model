@@ -17,11 +17,49 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
+import org.ovirt.api.metamodel.annotations.Link;
 
 @Type
 public interface Bonding {
     Option[] options();
     HostNic[] slaves();
+
+    /**
+     * The `active_slave` property of the bond in modes that support it (active-backup, balance-alb and balance-tlb).
+     * See the https://www.kernel.org/doc/Documentation/networking/bonding.txt[Linux documentation] for further details.
+     * This parameter is read only. Setting it will have no effect on the bond.
+     * It is retrieved from `/sys/class/net/bondX/bonding/active_slave` file on the system where the bond is located.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/hosts/123/nics/321
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <host_nic href="/ovirt-engine/api/hosts/123/nics/321" id="321">
+     *   ...
+     *   <bonding>
+     *     <slaves>
+     *       <host_nic href="/ovirt-engine/api/hosts/123/nics/456" id="456" />
+     *       ...
+     *     </slaves>
+     *     <active_slave href="/ovirt-engine/api/hosts/123/nics/456" id="456" />
+     *   </bonding>
+     *   ...
+     * </host_nic>
+     * ----
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 18 Oct 2016
+     * @status added
+     * @since 4.1.0
+     */
+    @Link HostNic activeSlave();
 
     /**
      * The `ad_partner_mac` property of the partner bond in mode 4. Bond mode 4 is the 802.3ad standard,
