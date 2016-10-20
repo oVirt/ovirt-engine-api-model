@@ -92,7 +92,26 @@ public interface Cluster extends Identified {
     Display display();
     Ksm ksm();
     SerialNumber serialNumber();
+
+    /**
+     * Set of random number generator (RNG) sources required from each host in the cluster.
+     *
+     * When read it returns the implicit `random` plus additional selected RNG sources. When written the implicit
+     * `random` RNG source cannot be removed.
+     *
+     * [IMPORTANT]
+     * ====
+     * Before version 4.1 of the engine the set of required random number generators was completely controllable by the
+     * administrator: any source could be added or removed, including the `random` source. But starting with version 4.1
+     * the `random` source will always be part of the set, and can't be removed.
+     * ====
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 20 Oct 2016
+     * @status added
+     */
     RngSource[] requiredRngSources();
+
     FencingPolicy fencingPolicy();
     MigrationOptions migration();
 
