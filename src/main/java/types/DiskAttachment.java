@@ -31,8 +31,12 @@ public interface DiskAttachment extends Identified {
 
     /**
      * This flag indicates if the virtual machine passes discard commands to the storage.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 23 Jun 2016
+     * @status added
+     * @since 4.1
      */
-    // @Since("4.1")
     Boolean passDiscard();
 
     /**
