@@ -27,7 +27,7 @@ public interface Cluster extends Identified {
     /**
      * The compatibility version of the cluster.
      *
-     * All hosts in this cluster have to support at least this compatibility version.
+     * All hosts in this cluster must support at least this compatibility version.
      *
      * For example:
      *
@@ -69,12 +69,12 @@ public interface Cluster extends Identified {
      * </cluster>
      * ----
      *
-     * In order to be able to update the cluster compatibility version, all hosts in the cluster have to support the new
-     * compatibility version.
+     * In order to update the cluster compatibility version, all hosts in the cluster must support the new compatibility version.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sept 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     Version version();
 
@@ -96,19 +96,20 @@ public interface Cluster extends Identified {
     /**
      * Set of random number generator (RNG) sources required from each host in the cluster.
      *
-     * When read it returns the implicit `random` plus additional selected RNG sources. When written the implicit
+     * When read, it returns the implicit `random` plus additional selected RNG sources. When written, the implicit
      * `random` RNG source cannot be removed.
      *
      * [IMPORTANT]
      * ====
-     * Before version 4.1 of the engine the set of required random number generators was completely controllable by the
-     * administrator: any source could be added or removed, including the `random` source. But starting with version 4.1
+     * Before version 4.1 of the engine, the set of required random number generators was completely controllable by the
+     * administrator; any source could be added or removed, including the `random` source. But starting with version 4.1,
      * the `random` source will always be part of the set, and can't be removed.
      * ====
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 20 Oct 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     RngSource[] requiredRngSources();
 
@@ -118,10 +119,10 @@ public interface Cluster extends Identified {
     /**
      * Custom scheduling policy properties of the cluster.
      * These optional properties override the properties of the
-     * scheduling policy specified by the `scheduling_policy` link
+     * scheduling policy specified by the `scheduling_policy` link,
      * and apply only for this specific cluster.
      *
-     * For example, to update the custom properties of the cluster
+     * For example, to update the custom properties of the cluster,
      * send a request:
      *
      * [source]
@@ -143,25 +144,30 @@ public interface Cluster extends Identified {
      * </cluster>
      * ----
      *
-     * Update operations using `custom_scheduling_policy_properties` attribute
+     * Update operations using the `custom_scheduling_policy_properties` attribute
      * will not update the the properties of the scheduling policy specified by
      * the `scheduling_policy` link,
      * they will only be reflected on this specific cluster.
      *
      * @author Yanir Quinn <yquinn@redhat.com>
-     * @date 29 Aug 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      * @since 4.0.6
      */
     Property[] customSchedulingPolicyProperties();
 
     /**
-     * Type of switch which will be used by all networks in given cluster.
+     * Type of switch to be used by all networks in given cluster.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     SwitchType switchType();
 
     /**
-     * Reference to the scheduling policy used by default by
+     * Reference to the default scheduling policy used by
      * this cluster.
      *
      * NOTE: The scheduling policy properties are taken by
@@ -171,8 +177,9 @@ public interface Cluster extends Identified {
      * for this cluster.
      *
      * @author Yanir Quinn <yquinn@redhat.com>
-     * @date 29 Aug 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     @Link SchedulingPolicy schedulingPolicy();
 
@@ -183,8 +190,9 @@ public interface Cluster extends Identified {
      * A reference to the MAC pool used by this cluster.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 12 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     @Link MacPool macPool();
