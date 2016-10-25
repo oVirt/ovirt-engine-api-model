@@ -27,7 +27,7 @@ public interface Cluster extends Identified {
     /**
      * The compatibility version of the cluster.
      *
-     * All hosts in this cluster have to support at least this compatibility version.
+     * All hosts in this cluster must support at least this compatibility version.
      *
      * For example:
      *
@@ -69,12 +69,12 @@ public interface Cluster extends Identified {
      * </cluster>
      * ----
      *
-     * In order to be able to update the cluster compatibility version, all hosts in the cluster have to support the new
-     * compatibility version.
+     * In order to update the cluster compatibility version, all hosts in the cluster must support the new compatibility version.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sept 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     Version version();
 
@@ -99,10 +99,10 @@ public interface Cluster extends Identified {
     /**
      * Custom scheduling policy properties of the cluster.
      * These optional properties override the properties of the
-     * scheduling policy specified by the `scheduling_policy` link
+     * scheduling policy specified by the `scheduling_policy` link,
      * and apply only for this specific cluster.
      *
-     * For example, to update the custom properties of the cluster
+     * For example, to update the custom properties of the cluster,
      * send a request:
      *
      * [source]
@@ -124,25 +124,30 @@ public interface Cluster extends Identified {
      * </cluster>
      * ----
      *
-     * Update operations using `custom_scheduling_policy_properties` attribute
+     * Update operations using the `custom_scheduling_policy_properties` attribute
      * will not update the the properties of the scheduling policy specified by
      * the `scheduling_policy` link,
      * they will only be reflected on this specific cluster.
      *
      * @author Yanir Quinn <yquinn@redhat.com>
-     * @date 29 Aug 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      * @since 4.0.6
      */
     Property[] customSchedulingPolicyProperties();
 
     /**
-     * Type of switch which will be used by all networks in given cluster.
+     * Type of switch to be used by all networks in given cluster.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     SwitchType switchType();
 
     /**
-     * Reference to the scheduling policy used by default by
+     * Reference to the default scheduling policy used by
      * this cluster.
      *
      * NOTE: The scheduling policy properties are taken by
@@ -152,8 +157,9 @@ public interface Cluster extends Identified {
      * for this cluster.
      *
      * @author Yanir Quinn <yquinn@redhat.com>
-     * @date 29 Aug 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 25 Oct 2016
+     * @status updated_by_docs
      */
     @Link SchedulingPolicy schedulingPolicy();
 
