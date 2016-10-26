@@ -20,5 +20,19 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public enum RngSource {
     RANDOM,
+
+    /**
+     * Obtains random data from the `/dev/urandom` device.
+     *
+     * This RNG source is meant to replace `random` RNG source for non-cluster-aware entities (i.e. Blank template and
+     * instance types) and entities associated with clusters with compatibility version 4.1 or higher.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 26 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    URANDOM,
+
     HWRNG;
 }

@@ -96,20 +96,27 @@ public interface Cluster extends Identified {
     /**
      * Set of random number generator (RNG) sources required from each host in the cluster.
      *
-     * When read, it returns the implicit `random` plus additional selected RNG sources. When written, the implicit
-     * `random` RNG source cannot be removed.
+     * When read, it returns the implicit `urandom` (for cluster version 4.1 and higher) or `random` (for cluster
+     * version 4.0 and lower) plus additional selected RNG sources. When written, the implicit `urandom` and `random`
+     * RNG sources cannot be removed.
      *
      * [IMPORTANT]
      * ====
      * Before version 4.1 of the engine, the set of required random number generators was completely controllable by the
      * administrator; any source could be added or removed, including the `random` source. But starting with version 4.1,
-     * the `random` source will always be part of the set, and can't be removed.
+     * the `urandom` and `random` sources will always be part of the set, and can't be removed.
+     * ====
+     *
+     * [IMPORTANT]
+     * ====
+     * Engine version 4.1 introduces a new RNG source `urandom` that replaces `random` RNG source in clusters with
+     * compatibility version 4.1 or higher.
      * ====
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 25 Oct 2016
-     * @status updated_by_docs
+     * @date 26 Oct 2016
+     * @status added
      */
     RngSource[] requiredRngSources();
 
