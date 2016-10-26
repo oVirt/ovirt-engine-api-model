@@ -44,6 +44,20 @@ public interface DiskAttachment extends Identified {
      */
     DiskInterface _interface();
 
+    /**
+     * This flag indicates if SCSI reservation is enabled for this disk.
+     * Virtual machines that have VIRTIO-SCSI passthrough enabled can set persistent SCSI reservations on disks.
+     * If they do then they can't be migrated to a different host because they would then loss access to the disk,
+     * as SCSI reservations are specific to SCSI initiators, and thus hosts.
+     * The system can't detect this situation automatically, so to avoid these unwanted migrations the user can tell
+     * the system that the virtual machine is using SCSI reservations setting this attribute to `true`.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 19 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean usesScsiReservation();
 
     /**
      * This flag indicates if the disk is active in the virtual machine it's attached to.
