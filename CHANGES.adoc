@@ -3,6 +3,23 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.16 / Oct 27 2016
+
+New features:
+
+* Make `Ip.version` optional.
+
+* Add the `active_slave` link to the `Bonding` type.
+
+* Add DNS configuration support to `Network` and `NetworkAttachment`.
+
+* Add `remote_viewer_connection_file` attribute to the `GraphicsConsole`
+  type, and the `populate_remote_viewer_connection_file` parameter to
+  the operations that retrive the representation ov graphics consoles.
+
+* Add the `uses_scsi_reservation` attribute to the `DiskAttachment`
+  type.
+
 == 4.1.15 / Oct 18 2016
 
 Bug fixes:
