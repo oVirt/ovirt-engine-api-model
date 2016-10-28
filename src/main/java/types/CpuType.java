@@ -20,21 +20,37 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Describes a supported CPU type.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 28 Oct 2016
+ * @status updated_by_docs
  */
 @Type
 public interface CpuType {
     /**
      * The name of the CPU type, for example `Intel Conroe Family`.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Oct 2016
+     * @status updated_by_docs
      */
     String name();
 
     /**
      * The level of the CPU type.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Oct 2016
+     * @status updated_by_docs
      */
     Integer level();
 
     /**
      * The architecture of the CPU.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Oct 2016
+     * @status updated_by_docs
      */
     Architecture architecture();
 }
