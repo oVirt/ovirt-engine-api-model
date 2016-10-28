@@ -211,4 +211,16 @@ public interface Cluster extends Identified {
     @Link NetworkFilter[] networkFilters();
     @Link Network[] networks();
     @Link Permission[] permissions();
+
+    /**
+     * The name of the https://fedorahosted.org/tuned[tuned] profile
+     * to set on all the hosts in the cluster. This is not mandatory
+     * and relevant only for clusters with gluster service.
+     *
+     * @author Ramesh Nachimuthu <rnachimu@rednat.com>
+     * @date 28 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    String glusterTunedProfile();
 }
