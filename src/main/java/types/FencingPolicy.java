@@ -23,4 +23,27 @@ public interface FencingPolicy {
     Boolean enabled();
     SkipIfSdActive skipIfSdActive();
     SkipIfConnectivityBroken skipIfConnectivityBroken();
+
+    /**
+     * A flag indicating if fencing should be skipped if Gluster bricks are up and running in the host being fenced.
+     * This flag is optional, and the default value is `false`.
+     *
+     * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+     * @date 28 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean skipIfGlusterBricksUp();
+
+    /**
+     * A flag indicating if fencing should be skipped if Gluster bricks are up and running and Gluster quorum will not
+     * be met without those bricks.
+     * This flag is optional, and the default value is `false`.
+     *
+     * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+     * @date 28 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean skipIfGlusterQuorumNotMet();
 }
