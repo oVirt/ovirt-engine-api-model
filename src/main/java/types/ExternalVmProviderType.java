@@ -19,11 +19,12 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Describes type of external hypervisor system.
+ * Describes the type of external hypervisor system.
  *
  * @author Martin Betak <mbetak@redhat.com>
- * @date 27 Jul 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 28 Oct 2016
+ * @status updated_by_docs
  * @since 4.0.4
  */
 @Type
