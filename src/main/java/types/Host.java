@@ -29,8 +29,12 @@ public interface Host extends Identified {
     Integer port();
 
     /**
-     * Indicates if the host contains a full installation of the operating system or a scaled down version intended
+     * Indicates if the host contains a full installation of the operating system or a scaled-down version intended
      * only to host virtual machines.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     HostType type();
 
@@ -46,7 +50,7 @@ public interface Host extends Identified {
      * GET /ovirt-engine/api/hosts/123
      * ----
      *
-     * Will respond:
+     * This `GET` request will return the following output:
      *
      * [source,xml]
      * ----
@@ -64,8 +68,9 @@ public interface Host extends Identified {
      * ----
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sept 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Version version();
     HardwareInformation hardwareInformation();
@@ -75,8 +80,12 @@ public interface Host extends Identified {
     IscsiDetails iscsi();
 
     /**
-     * When creating a new host, a root password is required in case password authentication method is chosen,
+     * When creating a new host, a root password is required if the password authentication method is chosen,
      * but this is not subsequently included in the representation.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     String rootPassword();
 
@@ -92,6 +101,10 @@ public interface Host extends Identified {
 
     /**
      * Optionally specify the display address of this host explicitly.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Display display();
 
