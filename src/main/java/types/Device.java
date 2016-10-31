@@ -26,13 +26,21 @@ public interface Device extends Identified {
     @Link InstanceType instanceType();
 
     /**
-     * Rerefences to the virtual machines that are using this device (a device may be used by several virtual machines,
-     * for example a shared disk my be used by two or more virtual machines simultaneously).
+     * References to the virtual machines that are using this device. A device may be used by several virtual machines;
+     * for example, a shared disk my be used simultaneously by two or more virtual machines.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Vm[] vms();
 
     /**
      * Don't use this element, use `vms` instead.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Deprecated
     @Link Vm vm();
