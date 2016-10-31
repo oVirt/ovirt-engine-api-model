@@ -58,28 +58,6 @@ public interface VmGraphicsConsoleService {
          * @status added
          */
         @In Boolean current();
-
-        /**
-         * Specify if the API should return the attribute `remote_viewer_connection_file`, which contains the content
-         * of the file which is compatible with `remote-viewer` client. For more information about this attribute
-         * please take a look <<types/graphics_console/attributes/remote_viewer_connection_file, here>>.
-         *
-         * Use the following request to obtain the `remote_viewer_connection_file` attribute of the graphics console.
-         * Note that the attribute `remote_viewer_connection_file` is generated only if the virtual machine is running.
-         *
-         * [source]
-         * ----
-         * GET /ovit-engine/api/vms/123/graphicsconsoles/456?populate_remote_viewer_connection_file=true
-         * ----
-         *
-         * The default value is `false`.
-         *
-         * @author Ondra Machacek <omachace@redhat.com>
-         * @date 25 Oct 2016
-         * @status added
-         * @since 4.1
-         */
-        @In Boolean populateRemoteViewerConnectionFile();
     }
 
     interface ProxyTicket {
@@ -89,6 +67,109 @@ public interface VmGraphicsConsoleService {
          * Indicates if the generation of the ticket should be performed asynchronously.
          */
         @In Boolean async();
+    }
+
+    /**
+     * Generates the file which is compatible with `remote-viewer` client.
+     *
+     * Use the following request to generate remote viewer connection file of the graphics console.
+     * Note that this action generates the file only if virtual machine is running.
+     *
+     * [source]
+     * ----
+     * POST /ovit-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile
+     * ----
+     *
+     * The `remoteviewerconnectionfile` action does not take any action specific parameters,
+     * so the request body should contain an empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * The response contains the file, which can be used with `remote-viewer` client.
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <remote_viewer_connection_file>
+     *     [virt-viewer]
+     *     type=spice
+     *     host=192.168.1.101
+     *     port=-1
+     *     password=123456789
+     *     delete-this-file=1
+     *     fullscreen=0
+     *     toggle-fullscreen=shift+f11
+     *     release-cursor=shift+f12
+     *     secure-attention=ctrl+alt+end
+     *     tls-port=5900
+     *     enable-smartcard=0
+     *     enable-usb-autoshare=0
+     *     usb-filter=null
+     *     tls-ciphers=DEFAULT
+     *     host-subject=O=local,CN=example.com
+     *     ca=...
+     *   </remote_viewer_connection_file>
+     * </action>
+     * ----
+     *
+     * E.g., to fetch the content of remote viewer connection file and save it into temporary file, user can use
+     * oVirt Python SDK as follows:
+     *
+     * [source,python]
+     * ----
+     * # Find the virtual machine:
+     * vm = vms_service.list(search='name=myvm')[0]
+     *
+     * # Locate the service that manages the virtual machine, as that is where
+     * # the locators are defined:
+     * vm_service = vms_service.vm_service(vm.id)
+     *
+     * # Find the graphic console of the virtual machine:
+     * graphics_consoles_service = vm_service.graphics_consoles_service()
+     * graphics_console = graphics_consoles_service.list()[0]
+     *
+     * # Generate the remote viewer connection file:
+     * console_service = graphics_consoles_service.console_service(graphics_console.id)
+     * remote_viewer_connection_file = console_service.remote_viewer_connection_file()
+     *
+     * # Write the content to file "/tmp/remote_viewer_connection_file.vv"
+     * path = "/tmp/remote_viewer_connection_file.vv"
+     * with open(path, "w") as f:
+     *     f.write(remote_viewer_connection_file)
+     * ----
+     *
+     * When you create the remote viewer connection file, then you can connect to virtual machine graphic console,
+     * as follows:
+     *
+     * [source,bash]
+     * ----
+     * #!/bin/sh -ex
+     *
+     * remote-viewer --ovirt-ca-file=/etc/pki/ovirt-engine/ca.pem /tmp/remote_viewer_connection_file.vv
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 31 Oct 2016
+     * @status added
+     * @since 4.1
+     */
+    interface RemoteViewerConnectionFile {
+
+        /**
+         * Contains the file which is compatible with `remote-viewer` client.
+         *
+         * User can use the content of this attribute to create a file, which can be passed to `remote-viewer` client to
+         * connect to virtual machine graphic console.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 31 Oct 2016
+         * @status added
+         * @since 4.1
+         */
+        @Out String remoteViewerConnectionFile();
     }
 
     /**
