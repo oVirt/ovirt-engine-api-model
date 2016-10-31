@@ -151,7 +151,7 @@ public interface TemplateService {
 
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
-    @Service GraphicsConsolesService graphicsConsoles();
+    @Service TemplateGraphicsConsolesService graphicsConsoles();
     @Service TemplateCdromsService cdroms();
     @Service TemplateNicsService nics();
     @Service TemplateWatchdogsService watchdogs();

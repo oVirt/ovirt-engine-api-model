@@ -719,7 +719,7 @@ public interface VmService extends MeasurableService {
 
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
-    @Service GraphicsConsolesService graphicsConsoles();
+    @Service VmGraphicsConsolesService graphicsConsoles();
     @Service KatelloErrataService katelloErrata();
     @Service SnapshotsService snapshots();
     @Service VmApplicationsService applications();

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -20,32 +20,45 @@ import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-import types.InstanceType;
+import types.GraphicsConsole;
 
 @Service
 @Area("Virtualization")
-public interface InstanceTypeService {
+public interface InstanceTypeGraphicsConsoleService {
+
+    /**
+     * Gets graphics console configuration of the instance type.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 31 Oct 2016
+     * @status added
+     */
     interface Get {
-        @Out InstanceType instanceType();
-    }
-
-    interface Update {
-        @In @Out InstanceType instanceType();
-
         /**
-         * Indicates if the update should be performed asynchronously.
+         * The information about the graphics console of the instance type.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 25 Oct 2016
+         * @status added
          */
-        @In Boolean async();
+        @Out GraphicsConsole console();
     }
 
+    /**
+     * Remove the graphics console from the instance type.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 31 Oct 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 31 Oct 2016
+         * @status added
          */
         @In Boolean async();
     }
-
-    @Service InstanceTypeNicsService nics();
-    @Service InstanceTypeWatchdogsService watchdogs();
-    @Service InstanceTypeGraphicsConsolesService graphicsConsoles();
 }
