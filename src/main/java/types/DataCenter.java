@@ -27,7 +27,7 @@ public interface DataCenter extends Identified {
     /**
      * The compatibility version of the data center.
      *
-     * All clusters in this data center have to be already set to at least this compatibility version.
+     * All clusters in this data center must already be set to at least this compatibility version.
      *
      * For example:
      *
@@ -70,8 +70,9 @@ public interface DataCenter extends Identified {
      * ----
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sept 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Version version();
     Version[] supportedVersions();
@@ -80,41 +81,73 @@ public interface DataCenter extends Identified {
 
     /**
      * Reference to the MAC pool used by this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link MacPool macPool();
 
     /**
      * Reference to storage domains attached to this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link StorageDomain[] storageDomains();
 
     /**
      * Reference to clusters inside this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Cluster[] clusters();
 
     /**
      * Reference to networks attached to this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Network[] networks();
 
     /**
      * Reference to permissions assigned to this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Permission[] permissions();
 
     /**
-     * Reference to quotas assigned to this datacenter.
+     * Reference to quotas assigned to this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Quota[] quotas();
 
     /**
      * Reference to quality of service used by this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Qos[] qoss();
 
     /**
      * Reference to ISCSI bonds used by this data center.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link IscsiBond[] iscsiBonds();
 }
