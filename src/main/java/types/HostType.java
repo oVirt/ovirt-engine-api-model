@@ -19,24 +19,42 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This enumerated type is used to what type of operating system is used by the host.
+ * This enumerated type is used to determine which type of operating system is used by the host.
+ *
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 31 Oct 2016
+ * @status updated_by_docs
  */
 @Type
 public enum HostType {
     /**
-     * The host contains a full RHEL, CentOS or Fedora installation.
+     * The host contains a full Red Hat Enterprise Linux, CentOS, or Fedora installation.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     RHEL,
 
     /**
-     * The host contains a small scaled version of RHEL, CentOS or Fedora, used solely to host virtual machines.
+     * The host contains Red Hat Enterprise Virtualization Hypervisor (RHEV-H), a small-scaled version of Red Hat
+     * Enterprise Linux, CentOS, or Fedora, used solely to host virtual machines.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     RHEV_H,
 
     /**
-     * The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.
-     * The main difference between NGN and legacy RHEV-H is that NGN has a writeable file system and will handle its installation
-     * instead of pushing RPMs to it by the engine in legacy RHEV-H.
+     * The host contains Red Hat Virtualization Host (RHVH): a new implementation of
+     * Red Hat Enterprise Virtualization Hypervisor (RHEV-H) which uses the same installer as Red Hat Enterprise Linux,
+     * CentOS, or Fedora. The main difference between RHVH and legacy RHEV-H is that RHVH has a writeable file system
+     * and will handle its own installation instead of having RPMs pushed to it by the Manager like in legacy RHEV-H.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 04 Nov 2016
+     * @status updated_by_docs
      */
     OVIRT_NODE,
 }
