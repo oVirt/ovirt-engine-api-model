@@ -19,22 +19,39 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Describes virtual functions configuration for an SR-IOV enabled physical function NIC.
+ * Describes the virtual functions configuration of an SR-IOV-enabled physical function NIC.
+ *
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 31 Oct 2016
+ * @status updated_by_docs
  */
 @Type
 public interface HostNicVirtualFunctionsConfiguration {
     /**
-     * Maximum number of virtual functions the NIC supports. Read-only property.
+     * The maximum number of virtual functions the NIC supports. This property is read-only.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Integer maxNumberOfVirtualFunctions();
 
     /**
-     * Number of currently defined virtual functions. User-defined value between 0 and `maxNumberOfVirtualFunctions`.
+     * The number of virtual functions currently defined. A user-defined value between 0 and
+     * `max_number_of_virtual_functions`.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Integer numberOfVirtualFunctions();
 
     /**
-     * Defines whether all networks are allowed to be defined on the related virtual functions or specified ones only.
+     * Defines whether all networks are allowed to be defined on the related virtual functions, or specified ones only.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Boolean allNetworksAllowed();
 }
