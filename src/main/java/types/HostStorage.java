@@ -33,21 +33,23 @@ public interface HostStorage extends Identified {
 
   /**
    * The time in tenths of a second to wait for a response before retrying NFS requests. The value must be in the
-   * range 0 to 65535. For more details see the description of the `timeo` mount option in the `nfs` man page.
+   * range of 0 to 65535. For more details see the description of the `timeo` mount option in the `nfs` man page.
    *
    * @author Juan Hernandez <juan.hernandez@redhat.com>
-   * @date 8 Sep 2016
-   * @status added
+   * @author Tahlia Richardson <trichard@redhat.com>
+   * @date 31 Oct 2016
+   * @status updated_by_docs
    */
   Integer nfsTimeo();
 
   /**
    * The number of times to retry a request before attempting further recovery actions. The value must be in the
-   * range 0 to 65535. For more details see the description of the `retrans` mount option in the `nfs` man page.
+   * range of 0 to 65535. For more details see the description of the `retrans` mount option in the `nfs` man page.
    *
    * @author Juan Hernandez <juan.hernandez@redhat.com>
-   * @date 8 Sep 2016
-   * @status added
+   * @author Tahlia Richardson <trichard@redhat.com>
+   * @date 31 Oct 2016
+   * @status updated_by_docs
    */
   Integer nfsRetrans();
 
