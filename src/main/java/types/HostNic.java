@@ -91,8 +91,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Martin Mucha <mmucha@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 31 Oct 2016
+ * @status updated_by_docs
  */
 @Type
 public interface HostNic extends Identified {
@@ -101,8 +102,9 @@ public interface HostNic extends Identified {
      * The MAC address of the NIC.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Mac mac();
 
@@ -175,8 +177,9 @@ public interface HostNic extends Identified {
      * * errors.total.tx - Total errors from transmitting data.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     Statistic[] statistics();
 
@@ -219,20 +222,21 @@ public interface HostNic extends Identified {
 
     /**
      * The `ad_aggregator_id` property of a bond or bond slave, for bonds in mode 4.
-     * Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation -
-     * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia]
-     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation].
-     * This is only valid for bonds in mode 4, or NICs (NIC - network interface card) which are part of a bond.
-     * It is not present for bonds in other modes, or NICs which are not part in a bond in mode 4.
+     * Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation.
+     * (See https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
+     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information).
+     * This is only valid for bonds in mode 4, or NICs which are part of a bond.
+     * It is not present for bonds in other modes, or NICs which are not part of a bond in mode 4.
      * The `ad_aggregator_id` property indicates which of the bond slaves are active. The value of the
-     * `ad_aggregator_id` of an active slave is the same the value of the  `ad_aggregator_id` property of the bond.
+     * `ad_aggregator_id` of an active slave is the same as the value of the `ad_aggregator_id` property of the bond.
      * This parameter is read only. Setting it will have no effect on the bond/NIC.
-     * It is retrieved from `/sys/class/net/bondX/bonding/ad_aggregator` file for a bond, and the
+     * It is retrieved from the `/sys/class/net/bondX/bonding/ad_aggregator` file for a bond, and the
      * `/sys/class/net/ensX/bonding_slave/ad_aggregator_id` file for a NIC.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 10 Aug 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      * @since 4.0.3
      */
     Integer adAggregatorId();
@@ -240,11 +244,12 @@ public interface HostNic extends Identified {
     @Link Host host();
 
     /**
-     * A reference to the network which the interface should be connected. A blank network id is allowed.
+     * A reference to the network to which the interface should be connected. A blank network ID is allowed.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link Network network();
 
@@ -258,20 +263,22 @@ public interface HostNic extends Identified {
     @Link Qos qos();
 
     /**
-     * For a SR-IOV virtual function NIC references to its physical function NIC.
+     * A reference to the physical function NIC of a SR-IOV virtual function NIC.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     @Link HostNic physicalFunction();
 
     /**
-     * For a SR-IOV physical function NIC describes its virtual functions configuration.
+     * Describes the virtual functions configuration of a physical function NIC.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 31 Oct 2016
+     * @status updated_by_docs
      */
     HostNicVirtualFunctionsConfiguration virtualFunctionsConfiguration();
 }
