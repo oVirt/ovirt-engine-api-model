@@ -58,12 +58,14 @@ public interface Group extends Identified {
 
   /**
    * A link to the roles sub-collection for roles attached to this group.
-   * Used only to represent the initial role assignments for a new group, thereafter modification of role assignments
-   * are only supported via the `roles` sub-collection.
+   *
+   * Used only to represent the initial role assignments for a new group; thereafter, modification of role assignments
+   * is only supported via the `roles` sub-collection.
    *
    * @author Irit Goihman <igoihman@redhat.com>
+   * @author Tahlia Richardson <trichard@redhat.com>
    * @date 12 Dec 2016
-   * @status added
+   * @status updated_by_docs
    */
   @Link Role[] roles();
 
