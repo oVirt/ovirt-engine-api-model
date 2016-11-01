@@ -26,6 +26,22 @@ public interface VnicProfile extends Identified {
 
     VnicPassThrough passThrough();
 
+    /**
+     * Marks, whether `pass_through` NIC is migratable or not.
+     *
+     * If `pass_through.mode` is set to `disabled` this option has no meaning, and it will be considered to be `true`.
+     * If you omit this option from request, by default, this will be set to `true`.
+     *
+     * When migrating virtual machine, this virtual machine will be migrated only if all `pass_through` NICs are
+     * flagged as `migratable`.
+     *
+     * @author Martin Mucha <mmucha@redhat.com>
+     * @date 1 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean migratable();
+
     @Link Network network();
     @Link Qos qos();
 
