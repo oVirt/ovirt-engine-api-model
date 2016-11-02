@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.17 / Nov 2 2016
+
+New features:
+
+* Added `urandom` to the `RngSource` enumerated type.
+
+* Added `migratable` flag to the `VnicProfile` type.
+
 == 4.1.16 / Oct 27 2016
 
 New features:
