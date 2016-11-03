@@ -113,6 +113,7 @@ public class SchemaGenerator {
         addMemberSchemaTypeNameException("host", "max-scheduling-memory", "xs:long");
         addMemberSchemaTypeNameException("host", "memory", "xs:long");
         addMemberSchemaTypeNameException("host-nic", "speed", "xs:long");
+        addMemberSchemaTypeNameException("logical-unit", "discard-max-size", "xs:long");
         addMemberSchemaTypeNameException("logical-unit", "size", "xs:long");
         addMemberSchemaTypeNameException("memory-policy", "guaranteed", "xs:long");
         addMemberSchemaTypeNameException("numa-node", "memory", "xs:long");
