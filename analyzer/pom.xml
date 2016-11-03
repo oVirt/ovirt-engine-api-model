@@ -23,7 +23,7 @@ limitations under the License.
   <parent>
     <groupId>org.ovirt.engine.api</groupId>
     <artifactId>metamodel-parent</artifactId>
-    <version>1.1.8</version>
+    <version>1.1.9-SNAPSHOT</version>
   </parent>
 
   <name>oVirt API Metamodel Analyzer</name>
