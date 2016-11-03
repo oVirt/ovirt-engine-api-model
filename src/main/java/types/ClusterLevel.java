@@ -20,11 +20,19 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Describes the capabilities supported by a specific cluster level.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 3 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface ClusterLevel extends Identified {
     /**
      * The CPU types supported by this cluster level.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     CpuType[] cpuTypes();
 
@@ -32,8 +40,9 @@ public interface ClusterLevel extends Identified {
      * The permits supported by this cluster level.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 12 Jul 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     Permit[] permits();
 }
