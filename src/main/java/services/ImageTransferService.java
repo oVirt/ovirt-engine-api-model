@@ -45,6 +45,25 @@ import annotations.Area;
  * )
  * ----
  *
+ * If the user wishes to download a disk rather than upload, he/she should specify
+ * `download` as the <<types/image_transfer_direction, direction>> attribute of the transfer.
+ * This will grant a read permission from the image, instead of a write permission.
+ *
+ * E.g:
+ *
+ * [source,python]
+ * ----
+ * transfers_service = system_service.image_transfers_service()
+ * transfer = transfers_service.add(
+ *    types.ImageTransfer(
+ *       image=types.Image(
+ *          id='52cb593f-837c-4633-a444-35a0a0383706'
+ *       ),
+ *       direction=types.ImageTransferDirection.DOWNLOAD
+ *    )
+ * )
+ * ----
+ *
  * Transfers have phases, which govern the flow of the upload/download.
  * A client implementing such a flow should poll/check the transfer's phase and
  * act accordingly. All the possible phases can be found in
@@ -80,12 +99,12 @@ import annotations.Area;
  * - `signed_ticket` is the content that needs to be added to the `Authentication`
  *    header in the HTTPS request, in order to perform a trusted communication.
  *
- * For example, Python's HTTPSConnection can be used in order to perform an upload,
- * so an `upload_headers` dict is set for the upcoming upload:
+ * For example, Python's HTTPSConnection can be used in order to perform a transfer,
+ * so an `transfer_headers` dict is set for the upcoming transfer:
  *
  * [source,python]
  * ----
- * upload_headers = {
+ * transfer_headers = {
  *    'Authorization' :  transfer.signed_ticket,
  * }
  * ----
@@ -95,7 +114,7 @@ import annotations.Area;
  * [source,python]
  * ----
  * # Extract the URI, port, and path from the transfer's proxy_url.
- * url = urlparse(transfer.proxy_url)
+ * url = urlparse.urlparse(transfer.proxy_url)
  *
  * # Create a new instance of the connection.
  * proxy_connection = HTTPSConnection(
@@ -105,7 +124,7 @@ import annotations.Area;
  * )
  * ----
  *
- * The specific content range being sent must be noted in the `Content-Range` HTTPS
+ * For upload, the specific content range being sent must be noted in the `Content-Range` HTTPS
  * header. This can be used in order to split the transfer into several requests for
  * a more flexible process.
  *
@@ -126,16 +145,42 @@ import annotations.Area;
  *    pos = 0
  *    while (pos < size):
  *       transfer_service.extend()
- *       upload_headers['Content-Range'] = "bytes %d-%d/%d" % (pos, min(pos + chunk_size, size)-1, size)
+ *       transfer_headers['Content-Range'] = "bytes %d-%d/%d" % (pos, min(pos + chunk_size, size)-1, size)
  *       proxy_connection.request(
  *          'PUT',
  *          url.path,
  *          disk.read(chunk_size),
- *          headers=upload_headers
+ *          headers=transfer_headers
  *       )
  *       r = proxy_connection.getresponse()
  *       print r.status, r.reason, "Completed", "{:.0%}".format(pos/ float(size))
  *       pos += chunk_size
+ * ----
+ *
+ * Similarly, for a download transfer, a `Range` header must be sent, making the download process
+ * more easily managed by downloading the disk in chunks.
+ *
+ * E.g., the client will again iterate on chunks of the disk image, but this time he/she will download
+ * it to a local file, rather than uploading its own file to the image:
+ *
+ * [source,python]
+ * ----
+ * output_file = "/home/user/downloaded_image"
+ * MiB_per_request = 32
+ * chunk_size = 1024*1024*MiB_per_request
+ * total = disk_size
+ *
+ * with open(output_file, "wb") as disk:
+ *    pos = 0
+ *    while pos < total:
+ *       transfer_service.extend()
+ *       transfer_headers['Range'] = "bytes=%d-%d" %  (pos, min(total, pos + chunk_size) - 1)
+ *       proxy_connection.request('GET', proxy_url.path, headers=transfer_headers)
+ *       r = proxy_connection.getresponse()
+ *       disk.write(r.read())
+ *       print "Completed", "{:.0%}".format(pos/ float(total))
+ *       pos += chunk_size
+ *
  * ----
  *
  * When finishing the transfer, the user should call

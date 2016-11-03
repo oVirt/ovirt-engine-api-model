@@ -29,6 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface ImageTransfer extends Identified {
+
     /**
      * The URL of the proxy server which the user should do I/O to. This attribute is
      * available only if the image transfer entity is in <<types/image_transfer_phase, transferring>>
@@ -64,6 +65,20 @@ public interface ImageTransfer extends Identified {
      * @since 4.0.4
      */
     ImageTransferPhase phase();
+
+    /**
+     * The direction states whether the transfer is sending data to an image (`upload`) or
+     * receiving data from an image (`download`).
+     *
+     * If a direction is not set during an addition of a new transfer,
+     * The default direction for the transfer will be `upload`.
+     *
+     * @author Amit Aviram <aaviram@redhat.com>
+     * @date 7 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    ImageTransferDirection direction();
 
     /**
      * The image which is targeted for I/O.
