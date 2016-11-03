@@ -21,24 +21,29 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Describes how a disk is attached to a virtual machine.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 2 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface DiskAttachment extends Identified {
     /**
-     * Indicates if the disk is marked as bootable.
+     * Defines whether the disk is bootable.
      *
-     * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 2 Nov 2016
+     * @status updated_by_docs
      */
     Boolean bootable();
 
     /**
-     * This flag indicates if the virtual machine passes discard commands to the storage.
+     * Defines whether the virtual machine passes discard commands to the storage.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 23 Jun 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 2 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean passDiscard();
@@ -53,42 +58,43 @@ public interface DiskAttachment extends Identified {
     DiskInterface _interface();
 
     /**
-     * This flag indicates if SCSI reservation is enabled for this disk.
-     * Virtual machines that have VIRTIO-SCSI passthrough enabled can set persistent SCSI reservations on disks.
-     * If they do then they can't be migrated to a different host because they would then loss access to the disk,
-     * as SCSI reservations are specific to SCSI initiators, and thus hosts.
-     * The system can't detect this situation automatically, so to avoid these unwanted migrations the user can tell
-     * the system that the virtual machine is using SCSI reservations setting this attribute to `true`.
+     * Defines whether SCSI reservation is enabled for this disk.
+     *
+     * Virtual machines with VIRTIO-SCSI passthrough enabled can set persistent SCSI reservations on disks. If they set
+     * persistent SCSI reservations, those virtual machines cannot be migrated to a different host because they would
+     * lose access to the disk, because SCSI reservations are specific to SCSI initiators, and therefore hosts. This
+     * scenario cannot be automatically detected. To avoid migrating these virtual machines, the user can set this
+     * attribute to `true`, to indicate the virtual machine is using SCSI reservations.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 19 Oct 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean usesScsiReservation();
 
     /**
-     * This flag indicates if the disk is active in the virtual machine it's attached to.
+     * Defines whether the disk is active in the virtual machine it's attached to.
      *
      * A disk attached to a virtual machine in an active status is connected to the virtual machine at run time and
      * can be used.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 7 Jul 2017
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     Boolean active();
 
     /**
-     * The logical name of the virtual machine's disk, i.e the
-     * name of the disk as seen from inside the virtual machine.
-     * Note that the logical name of a disk is reported only
-     * when the guest agent is installed and running inside the
-     * virtual machine.
+     * The logical name of the virtual machine's disk, as seen from inside the virtual machine.
      *
-     * For example, if the guest operating system is Linux and
-     * the disk is connected via a VirtIO interface, the logical
-     * name will be reported as `/dev/vda`:
+     * The logical name of a disk is reported only when the guest agent is installed and running inside the virtual
+     * machine.
+     *
+     * For example, if the guest operating system is Linux and the disk is connected via a VirtIO interface, the
+     * logical name will be reported as `/dev/vda`:
      *
      * [source,xml]
      * ----
@@ -98,32 +104,41 @@ public interface DiskAttachment extends Identified {
      * </disk_attachment>
      * ----
      *
-     * If the guest operating system is Windows, the logical
-     * name will be reported as `\\.\PHYSICALDRIVE0`.
+     * If the guest operating system is Windows, the logical name will be reported as `\\.\PHYSICALDRIVE0`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 27 Jul 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      * @since 4.0.2
      */
     String logicalName();
 
     /**
-     * Reference to the disk.
+     * The reference to the disk.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Disk disk();
 
     /**
-     * Reference to the virtual machine.
+     * The reference to the virtual machine.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Vm vm();
 
     /**
-     * Reference to the template.
+     * The reference to the template.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 7 Jul 2017
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Template template();
 }
