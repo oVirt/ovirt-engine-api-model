@@ -33,7 +33,7 @@ public interface NetworkService {
      * Updates a logical network.
      *
      * The `name`, `description`, `ip`, `vlan`, `stp` and `display` attributes can be updated.
-     * ⁠
+     *
      * For example, to update the description of the logcial network `123` send a request like this:
      *
      * [source]
@@ -52,7 +52,7 @@ public interface NetworkService {
      *
      *
      * The maximum transmission unit of a network is set using a PUT request to
-     * specify the integer value of the `mtu` attribute.⁠
+     * specify the integer value of the `mtu` attribute.
      *
      * For example, to set the maximum transmission unit send a request like this:
      *
