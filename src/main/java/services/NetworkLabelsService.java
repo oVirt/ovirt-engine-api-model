@@ -30,7 +30,7 @@ public interface NetworkLabelsService {
      *
      * You can attach labels to a logical network to automate the association of that logical network with physical host
      * network interfaces to which the same label has been attached.
-     * ⁠
+     *
      * For example, to attach the label `mylabel` to a logical network having id `123` send a request like this:
      *
      * [source]
