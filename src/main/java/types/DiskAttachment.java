@@ -21,15 +21,19 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Describes how a disk is attached to a virtual machine.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 2 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface DiskAttachment extends Identified {
     /**
-     * Indicates if the disk is marked as bootable.
+     * Defines whether the disk is bootable.
      *
-     * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 2 Nov 2016
+     * @status updated_by_docs
      */
     Boolean bootable();
 
@@ -49,21 +53,20 @@ public interface DiskAttachment extends Identified {
      * can be used.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 7 Jul 2017
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     Boolean active();
 
     /**
-     * The logical name of the virtual machine's disk, i.e the
-     * name of the disk as seen from inside the virtual machine.
-     * Note that the logical name of a disk is reported only
-     * when the guest agent is installed and running inside the
-     * virtual machine.
+     * The logical name of the virtual machine's disk, as seen from inside the virtual machine.
      *
-     * For example, if the guest operating system is Linux and
-     * the disk is connected via a VirtIO interface, the logical
-     * name will be reported as `/dev/vda`:
+     * The logical name of a disk is reported only when the guest agent is installed and running inside the virtual
+     * machine.
+     *
+     * For example, if the guest operating system is Linux and the disk is connected via a VirtIO interface, the
+     * logical name will be reported as `/dev/vda`:
      *
      * [source,xml]
      * ----
@@ -73,32 +76,41 @@ public interface DiskAttachment extends Identified {
      * </disk_attachment>
      * ----
      *
-     * If the guest operating system is Windows, the logical
-     * name will be reported as `\\.\PHYSICALDRIVE0`.
+     * If the guest operating system is Windows, the logical name will be reported as `\\.\PHYSICALDRIVE0`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 27 Jul 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      * @since 4.0.2
      */
     String logicalName();
 
     /**
-     * Reference to the disk.
+     * The reference to the disk.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Disk disk();
 
     /**
-     * Reference to the virtual machine.
+     * The reference to the virtual machine.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Vm vm();
 
     /**
-     * Reference to the template.
+     * The reference to the template.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 7 Jul 2017
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 3 Nov 2016
+     * @status updated_by_docs
      */
     @Link Template template();
 }
