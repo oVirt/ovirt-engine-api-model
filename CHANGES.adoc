@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.1.8 / Nov 3 2016
+
+Bug fixes:
+
+* Add `LogicalUnit.discardMaxSize` to the list of exceptions of integer
+  attributes that are represented using `xs:long` instead of `xs:int`.
+
 == 1.1.7 / Oct 17 2016
 
 Bug fixes:
