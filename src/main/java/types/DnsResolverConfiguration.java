@@ -19,21 +19,23 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents configuration of DNS resolver.
+ * Represents the DNS resolver configuration.
  *
  * @author Martin Mucha <mmucha@redhat.com>
- * @date 19 Oct 2016
- * @status added
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 4 Nov 2016
+ * @status updated_by_docs
  * @since 4.1
  */
 @Type
 public interface DnsResolverConfiguration {
     /**
-     * Array of addresses of namer servers. Either IPv4 or IPv6 addresses might be specified.
+     * Array of addresses of name servers. Either IPv4 or IPv6 addresses may be specified.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 19 Oct 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 4 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     String[] nameServers();
