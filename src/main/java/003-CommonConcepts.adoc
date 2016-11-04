@@ -1,0 +1,554 @@
+== Common concepts
+
+=== Types
+
+The API uses the _type_ concept to describe the different kinds of objects
+accepted and returned.
+
+There are three relevant kinds of types:
+
+Primitive types:: Describe simple kinds of objects, like <<types/string, strings>> or
+<<types/integer, integers>>.
+
+Enumerated types:: Describe lists of valid values like <<types/vm_status, VmStatus>>
+or <<types/disk_format, DiskFormat>>.
+
+Structured types:: Describe structured objects, with multiple attributes and
+links, like <<types/vm, Vm>> or <<types/disk, Disk>>.
+
+=== Identified types
+
+Many of the types used by the API represent _identified_ objects, objects
+that have an unique identifier and exist independently of other objects.
+The types used to describe those objects extend the <<types/identified, Identified>>
+type, which contains the following set of common attributes:
+
+[cols="20,20,60"]
+|===
+|Attribute |Type |Description
+
+|`id`
+|<<types/string, String>>
+|Each object in the virtualization infrastructure contains an `id`, which
+acts as an unique identifier.
+
+|`href`
+|<<types/string, String>>
+|The canonical location of the object as an absolute path.
+
+|`name`
+|<<types/string, String>>
+|A user-supplied human readable name for the object. The `name` name is
+unique across all objects of the same type.
+
+|`description`
+|<<types/string, String>>
+|A free-form user-supplied human readable description of the object.
+
+|===
+
+IMPORTANT: Currently for most types of objects the `id` attribute is actually a
+randomly generated https://en.wikipedia.org/wiki/Universally_unique_identifier[UUID],
+but this is an implementation detail, and users should not rely on that, as
+it may change in the future. Instead users should assume that these
+identifiers are just strings.
+
+=== Objects
+
+Objects are the individual instances of the types supported by the API.
+For example, the virtual machine with identifier `123` is an object of
+the <<types/vm, Vm>> type.
+
+=== Collections
+
+A collection is a set of objects of the same type.
+
+=== Representations
+
+The state of objects needs to be represented when it is transferred
+beetween the client and the server. The API supports XML and JSON as the
+representation of the state of objects, both for input and output.
+
+==== XML representation
+
+The XML representation of an object consists of an XML element
+corresponding to the type of the object, XML attributes for the `id` and
+`href` attributes, and nested XML elements for the rest of the
+attributes. For example, the XML representation for a virtual machine
+appears as follows:
+
+[source,xml]
+----
+<vm id="123" href="/ovirt-engine/api/vms/123">
+  <name>myvm</name>
+  <description>My VM</description>
+  <memory>1073741824</memory>
+  ...
+</vm>
+----
+
+The XML representation of a collection of objects consists of an XML
+element, named after the type of the objects, in plural. This contains
+the representations of the objects of the collection. For example, the
+XML respresentation for a collection of virtual machines appears as
+follows:
+
+[source,xml]
+----
+<vms>
+  <vm id="123" href="/ovirt-engine/api/vms/123">
+    <name>yourvm</name>
+    <description>Your VM</description>
+    <memory>1073741824</memory>
+    ...
+  </vm>
+  <vm id="456" href="/ovirt-engine/api/vms/456">
+    <name>myname</name>
+    <description>My description</description>
+    <memory>2147483648</memory>
+    ...
+  </vm>
+  ...
+</vms>
+----
+
+IMPORTANT: In the XML representation of objects the `id` and `href`
+attributes are the only ones that are represented as XML attributes, the
+rest are represented as nested XML elements.
+
+==== JSON representation
+
+The JSON representation of an object consists of a JSON document
+containing a name/value pair for each attribute (including `id` and
+`href`). For example, the JSON representation of a virtual machine
+appears as follows:
+
+....
+{
+  "id": "123",
+  "href": "/ovirt-engine/api/vms/123",
+  "name": "myvm",
+  "description": "My VM",
+  "memory": 1073741824,
+  ...
+}
+....
+
+The JSON representation of a collection of objects consists of a JSON
+document containg a name/value pair (named ater the type of the objects,
+in singular) which in turn contains an array with the representations of
+the objects of the collection. For example, the JSON respresentation for
+a collection of virtual machines appears as follows:
+
+....
+{
+  "vm": [
+    {
+      "id": "123",
+      "href": "/ovirt-engine/api/vms/123",
+      "name": "myvm",
+      "description": "My VM",
+      "memory": 1073741824,
+      ...
+    },
+    {
+      "id": "456",
+      "href": "/ovirt-engine/api/vms/456",
+      "name": "yourvm",
+      "description": "Your VM",
+      "memory": 2147483648,
+      ...
+    },
+  ]
+}
+....
+
+=== Services
+
+Services are the parts of the server responsible for retrieving, adding
+updating, removing and executing actions on the objects supported by the
+API.
+
+There are two relevant kinds of services:
+
+Services that manage a collection of objects:: These services are
+reponsible for listing existing objects and adding new objects. For
+example, the <<services/vms, Vms>> service is responsible for managing
+the collection of virtual machines available in the system.
+
+Services that manage a specific object:: These services are responsible
+for retrieving, updating, deleting and executing actions in specific
+objects. For example, the <<services/vm, Vm>> service is responsible for
+managing a specific virtual machine.
+
+Each service is accessible via a particular _path_ within the server.
+For example, the service that manages the collection of virtual machines
+available in the system is available in the via the path `/vms`, and the
+service that manages the virtual machine `123` is available via the path
+`/vms/123`.
+
+All kinds of services have a set of _methods_ that represent the
+operations that they can perform. The services that manage collections
+of objects usually have the `list` and `add` methods. The services that
+manage specific objects usually have the `get`, `update` and `remove`
+methods. In addition, services may also have _action_ methods, that
+represent less common operations. For example, the <<services/vm, Vm>>
+service has a <<services/vm/methods/start, start>> method that is used
+to start a virtual machine.
+
+For the more usual methods there is a direct mapping between the name of
+the method and the name of the HTTP method:
+
+[cols="50,50"]
+|===
+|Method name |HTTP method
+
+|`add` |POST
+|`get` |GET
+|`list` |GET
+|`update` |PUT
+|`remove` |DELETE
+|===
+
+The path used in the HTTP request is the path of the service, with the
+`/ovirt-engine/api` prefix.
+
+For example, the request to `list` the virtual machines should be like
+this, using the HTTP `GET` method and the path `/vms`:
+
+....
+GET /ovirt-engine/api/vms
+....
+
+For action methods the HTTP method is always `POST`, and the name of the
+method is added as a suffix to the path. For example, the request to
+start virtual machine `123` should look like this, using the HTTP `POST`
+method and the path `/vms/123/start`:
+
+....
+POST /ovirt-engine/api/vms/123/start
+....
+
+Each method has a set of parameters.
+
+Parameters are classified into two categories:
+
+Main parameter:: The main parameter corresponds the object or collection
+that is retrieved, added or updated. This only applies to the `add`,
+`get`, `list` and `update` methods, and there will be exactly one such
+main parameter per method.
+
+Secondary parameters:: The rest of the parameters.
+
+For example, the operation that adds a virtual machine (see
+<<services/vms/methods/add, here>>) has three parameters: `vm`, `clone`
+and `clone_permissions`. The main parameter is `vm`, as it describes the
+object that is added. The `clone` and `clone_permissions` parameters are
+secondary parameters.
+
+The main parameter, when used for input, must be included in the body of
+the HTTP request. For example, when adding a virtual machine, the `vm`
+parameter, of type <<types/vm, Vm>>, must be included in the request
+body. So the complete request to add a virtual machine, including all
+the HTTP details, must look like this:
+
+....
+POST /ovirt-engine/api/vms HTTP/1.1
+Host: myengine.example.com
+Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
+Content-Type: application/xml
+Accept: application/xml
+
+<vm>
+  <name>myvm</name>
+  <description>My VM</description>
+  <cluster>
+    <name>Default</name>
+  </cluster>
+  <template>
+    <name>Blank</name>
+  </template>
+</vm>
+....
+
+When used for output, the main parameters are included in the response
+body. For example, when adding a virtual machine, the `vm` parameter
+will be included in the response body. So the complete response body
+will look like this:
+
+....
+HTTP/1.1 201 Created
+Content-Type: application/xml
+
+<vm href="/ovirt-engine/api/vms/123" id="123">
+  <name>myvm</name>
+  <description>My VM</description>
+  ...
+</vm>
+....
+
+Secondary parameters are only allowed for input (except for action
+methods, which are described later), and they must be included as query
+parameters. For example, when adding a virtual machine with the `clone`
+parameter set to `true`, the complete request must look like this:
+
+....
+POST /ovirt-engine/api/vms?clone=true HTTP/1.1
+Host: myengine.example.com
+Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
+Content-Type: application/xml
+Accept: application/xml
+
+<vm>
+  <name>myvm</name>
+  <description>My VM</description>
+  <cluster>
+    <name>Default</name>
+  </cluster>
+  <template>
+    <name>Blank</name>
+  </template>
+</vm>
+....
+
+Action methods only have secondary parameters. They can be used for
+input and output, and they should be included in the request body,
+wrapped with an `action` element. For action method used to start a
+virtual machine (see <<services/vm/methods/start, here>>) has a `vm`
+parameter to describe how the virtual machine should be started, and a
+`use_cloud_init` parameter to specify if
+https://cloudinit.readthedocs.io[cloud-init] should be used to configure
+the guest operating system. So the complete request to start virtual
+machine `123` using _cloud-init_ will look like this when using XML:
+
+....
+POST /ovirt-engine/api/vms/123/start HTTP/1.1
+Host: myengine.example.com
+Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
+Content-Type: application/xml
+Accept: application/xml
+
+<action>
+  <use_cloud_init>true</use_cloud_init>
+  <vm>
+    <initialization>
+      <nic_configurations>
+        <nic_configuration>
+          <name>eth0</name>
+          <on_boot>true</on_boot>
+          <boot_protocol>static</boot_protocol>
+          <ip>
+            <address>192.168.0.100</address>
+            <netmask>255.255.255.0</netmask>
+            <gateway>192.168.0.1</netmask>
+          </ip>
+        </nic_configuration>
+      </nic_configurations>
+      <dns_servers>192.168.0.1</dns_servers>
+    </initialization>
+  </vm>
+</action>
+....
+
+=== Searching
+
+The `list` method of some services has a `search` parameter that can be
+used to specify a search criteria. When used, the server will only
+returns objects within the collection that satisfy those criteria. For
+example, the following request will return only the virtual machine
+named `myvm`:
+
+....
+GET /ovirt-engine/api/vms?search=name%3Dmyvm
+....
+
+==== Maximum results parameter
+
+Use the `max` parameter to limit the number of objects returned. For
+example, the following request will only return one virtual machine,
+regardless of how many are available in the system:
+
+....
+GET /ovirt-engine/api/vms?max=1
+....
+
+A search request without the `max` parameter will return all the
+objects. Specifying the `max` parameter is recommended to reduce the
+impact of requests in the overall performance of the system.
+
+==== Case sensitivity
+
+By default queries are not case sensitive. For example, the following
+request will return the virtual machines named `myvm`, `MyVM` and `MYVM`:
+
+....
+GET /ovirt-engine/api/vms?search=name%3Dmyvm
+....
+
+The optional `case_sensitive` boolean parameter can be used to change this
+behaviour. For example, to get exactly the virtual machine named `myhost`, and
+not `MyHost` or `MYHOST`, send a request like this:
+
+....
+GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true
+....
+
+==== Search syntax
+
+The `search` parameters uses the same format as the {product-name} query
+language:
+
+....
+(criteria) [sortby (element) asc|desc]
+....
+
+The `sortby` clause is optional and only needed when ordering results.
+
+Example search queries:
+
+[cols="20,20,60"]
+|===
+|Collection |Criteria |Result
+
+|`hosts`
+|`vms.status=up`
+|Returns a list of all hosts running virtual machines that are `up`.
+
+|`vms`
+|`domain=example.com`
+|Returns a list of all virtual machines running on the specified domain.
+
+|`vms`
+|`users.name=mary`
+|Returns a list of all virtual machines belonging to users with the user
+name `mary`.
+
+|`events`
+|`severity > normal sortby time`
+|Returns a list of all events with severity higher than `normal` and
+sorted by the the value of their `time` attribute.
+
+|`events`
+|`severity > normal sortby time desc`
+|Returns a list of all events with severity higher than `normal` and
+sorted by the the value of their `time` attribute in descending order.
+
+|===
+
+The value of the `search` parameter must be
+https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded] to translate
+reserved characters, such as operators and spaces. For example, the
+equals sign should be encoded as `%3D`:
+
+....
+GET /ovirt-engine/api/vms?search=name%3Dmyvm
+....
+
+==== Wildcards
+
+The asterisk can be used as part of a value, to indicate that any string
+matches, including the emtpy string. For example, the following request
+will return all the virtual machines with names beginning with `myvm`
+such as `myvm`, `myvm2`, `myvma` or `myvm-webserver`:
+
+....
+GET /ovirt-engine/api/vms?search=name%3Dmyvm*
+....
+
+==== Pagination
+
+Some {product-name} environments contain large collections of objects.
+Retrieving all of them with one request isn't practical, and hurts
+performace. To allow retrieving them page by page the `search` parameter
+supports an optional `page` clause. This, combined with the `max`
+parameter, is the basis for paging. For example, to get the first page
+of virtual machines, with a page size of 10 virtual machines, send
+request like this:
+
+....
+GET /ovirt-engine/api/vms?search=page%201&max=10
+....
+
+NOTE: The search parameter is URL-encoded, the actual value of the
+`search` parameter, before encoding, is `page 1`, so this is actually
+requesting the first page.
+
+Increase the `page` value to retrieve the next page:
+
+....
+GET /ovirt-engine/api/vms?search=page%202&max=10
+....
+
+The `page` clause can be used in conjunction with other clauses inside
+the `search` parameter. For example, the following request will return
+the second page of virtual machines, but sorting by name:
+
+....
+GET /ovirt-engine/api/vms?search=sortby%20name%20page%202&max=10
+....
+
+[IMPORTANT]
+====
+The API is stateless; it is not possible to retain a state between
+different requests since all requests are independent from each other.
+As a result, if a status change occurs between your requests, then the
+page results may be inconsistent.
+
+For example, if you request a specific page from a list of virtual
+machines, and virtual machines are created or removed before you request
+the next page, then your results may be missing some of them, or contain
+duplicates.
+====
+
+=== Permissions
+
+Many of the services that manage a single object provide a reference to
+a `permissions` service that manages the permissions assigned to that
+object. Each permission contains links to the user or group, the role
+and the object. For example, the permissions assigned to a specific
+virtual machine can be retrieved sending a request like this:
+
+....
+GET /ovirt-engine/api/vms/123/permissions
+....
+
+The response body will look like this:
+
+[source,xml]
+----
+<permissions>
+  <permission id="456" href="/ovirt-engien/api/vms/123/permissions/456">
+    <user id="789" href="/ovirt-engine/api/users/789"/>
+    <role id="abc" href="/ovirt-engine/api/roles/abc"/>
+    <vm id="123" href="/ovirt-engine/api/vms/123"/>
+  </permission>
+  ...
+</permissions>
+----
+
+A permission is added to an object sending a `POST` request with a
+permission representation to this service. Each new permission requires
+a role and a user.
+
+=== Handling errors
+
+Some errors require further explanation beyond a standard HTTP status
+code. For example, the API reports an unsuccessful object state update
+or action with a `fault` in the response body. The fault contains the
+`reason` and `detail` attributes. For example, when the server receives
+a request to create a virtual machine without the mandatory `name`
+attribute it will respond with the following HTTP response line:
+
+....
+HTTP/1.1 400 Bad Request
+....
+
+And the following response body:
+
+[source,xml]
+----
+<fault>
+  <reason>Incomplete parameters</reason>
+  <detail>Vm [name] required for add</detail>
+</fault>
+----
