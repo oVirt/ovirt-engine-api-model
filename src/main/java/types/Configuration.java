@@ -111,8 +111,9 @@ public interface Configuration {
      * ----
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 4 Nov 2016
+     * @status updated_by_docs
      */
     String data();
 }
