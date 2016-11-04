@@ -25,7 +25,11 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface DiskAttachment extends Identified {
     /**
-     * This flag indicates if the disk is bootable.
+     * Indicates if the disk is marked as bootable.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Nov 2016
+     * @status added
      */
     Boolean bootable();
 
@@ -40,7 +44,11 @@ public interface DiskAttachment extends Identified {
     Boolean passDiscard();
 
     /**
-     * This indicates the disk interface of the disk.
+     * The type of interface driver used to connect the disk device to the virtual machine.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Nov 2016
+     * @status added
      */
     DiskInterface _interface();
 

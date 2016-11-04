@@ -23,6 +23,13 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 import types.StorageDomain;
 
+/**
+ * Manages a single disk.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 4 Nov 2016
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface DiskService extends MeasurableService {

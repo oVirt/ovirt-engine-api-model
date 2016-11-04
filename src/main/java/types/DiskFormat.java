@@ -18,8 +18,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The underlying storage format of disks.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 4 Nov 2016
+ * @status added
+ */
 @Type
 public enum DiskFormat {
+    /**
+     * The _Copy On Write_ format allows snapshots, with a small performance overhead.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Nov 2016
+     * @status added
+     */
     COW,
+
+    /**
+     * The raw format does not allow snapshots, but offers improved performance.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Nov 2016
+     * @status added
+     */
     RAW;
 }
