@@ -253,6 +253,8 @@
       <id>document</id>
       <build>
         <plugins>
+
+          <!-- Generate the HTML documentation: -->
           <plugin>
              <groupId>org.asciidoctor</groupId>
              <artifactId>asciidoctor-maven-plugin</artifactId>
@@ -279,6 +281,34 @@
                </execution>
              </executions>
           </plugin>
+
+          <!-- Generate a .jar file containing the generared AsciiDoc
+               and HTML documentation, and attach it as the Javadoc
+               artifact: -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-docjar</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <property name="docjar" value="${projects.basedir}/target/doc.jar"/>
+                    <zip destfile="${docjar}">
+                      <fileset dir="${project.basedir}/target/generated-adoc"/>
+                      <fileset dir="${project.basedir}/target/generated-html"/>
+                    </zip>
+                    <attachartifact file="${docjar}" classifier="javadoc" type="jar"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
         </plugins>
       </build>
     </profile>
@@ -296,7 +326,7 @@
       <build>
         <plugins>
 
-         <!-- Generate the DockBook file: -->
+          <!-- Generate the DockBook file: -->
           <plugin>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctor-maven-plugin</artifactId>
@@ -388,40 +418,6 @@
                  </configuration>
                </execution>
              </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- This profile is used to generate the Javadoc documentation: -->
-    <profile>
-      <id>javadoc</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.3</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <doclet>org.asciidoctor.Asciidoclet</doclet>
-              <docletArtifact>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoclet</artifactId>
-                <version>1.5.4</version>
-              </docletArtifact>
-              <additionalparam>
-                -Xdoclint:none
-                --base-dir ${project.basedir}
-              </additionalparam>
-            </configuration>
           </plugin>
         </plugins>
       </build>
