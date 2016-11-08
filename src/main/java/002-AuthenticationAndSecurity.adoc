@@ -26,14 +26,18 @@ which are available on multiple platforms.
 +
 [source,bash]
 ----
-$ curl -o ca.crt http://[ovirt-server]/ca.crt
+$ curl \
+-o ca.crt \
+'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
 ----
 +
 .. If using `wget`:
 +
 [source,bash]
 ----
-$ wget -O ca.crt http://[ovirt-server]/ca.crt
+$ wget \
+-O ca.crt \
+'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
 ----
 
 . *Method 2* - Use a web browser to navigate to the certificate located
@@ -41,7 +45,7 @@ at:
 +
 [source]
 ----
-http://[ovirt-server]/ca.crt
+https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA
 ----
 +
 Depending on the chosen browser, the certificate either downloads or
@@ -79,7 +83,7 @@ command:
 +
 [source,bash]
 ----
-$ scp ca.cer [username]@[client-machine]:[directory]
+$ scp ca.cer myuser@myclient.example.com:/home/myuser/.
 ----
 
 Each of these methods results in a certificate file named `ca.crt` on
@@ -106,8 +110,8 @@ request does not include an appropriate `Authorization` header, the API
 sends a `401 Authorization Required` as a result:
 
 ....
-HEAD [base] HTTP/1.1
-Host: [host]
+HEAD /ovirt-engine/api HTTP/1.1
+Host: myengine.example.com
 
 HTTP/1.1 401 Authorization Required
 ....
@@ -128,24 +132,24 @@ https://tools.ietf.org/html/rfc4648[Base64].
 |`admin`
 
 |Domain
-|`domain.example.com`
+|`internal`
 
 |Password
-|`123456`
+|`mypassword`
 
 |Unencoded credentials
-|`admin@domain.example.com:123456`
+|`admin@internal:mypassword`
 
 |Base64 encoded credentials
-|`YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==`
+|`YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==`
 |===
 
 An API user provides the Base64 encoded credentials as shown:
 
 ....
-HEAD [base] HTTP/1.1
-Host: [host]
-Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+HEAD /ovirt-engine/api HTTP/1.1
+Host: myengine.example.com
+Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
 
 HTTP/1.1 200 OK
 ....
@@ -175,9 +179,9 @@ session.
 headers:
 +
 ....
-HEAD [base] HTTP/1.1
-Host: [host]
-Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+HEAD /ovirt-engine/api HTTP/1.1
+Host: myengine.example.com
+Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
 Prefer: persistent-auth
 
 HTTP/1.1 200 OK
@@ -198,8 +202,8 @@ Note the `JSESSIONID=` value. In this example the value is
 is no longer needed when using an authenticated session.
 +
 ....
-HEAD [base] HTTP/1.1
-Host: [host]
+HEAD /ovirt-engine/api HTTP/1.1
+Host: myengine.example.com
 Prefer: persistent-auth
 Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK
 
@@ -211,9 +215,9 @@ HTTP/1.1 200 OK
 sever without the `Prefer: persistent-auth` header.
 +
 ....
-HEAD [base] HTTP/1.1
-Host: [host]
-Authorization: Basic YWRtaW5AZG9tYWluLmV4YW1wbGUuY29tOjEyMzQ1Ng==
+HEAD /ovirt-engine/api HTTP/1.1
+Host: myengine.example.com
+Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
 
 HTTP/1.1 200 OK
 ...
