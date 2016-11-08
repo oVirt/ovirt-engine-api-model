@@ -387,6 +387,39 @@ a message, write something like _Release 4.0.5_ and then _OK_. The
 release is now ready, and it will be propagated to Maven Central later,
 it usually takes around 30 minutes.
 
+== Branding
+
+The build system provides some branding properties that can be used to
+customize the generated documentation:
+
+`adoc.separator`:: This indicates the separator that should be used in
+the section identifiers generated for the AsciiDoc documentation. By
+default the separator is the forward slash, but this isn't compatible
+with some publication systems, like https://fedorahosted.org/publican[Publican],
+so this property can be used to change it.
+
+`product.name`:: The value of this property will be used where the
+source AsciiDoc files contain the `{product-name}` variable. The default
+value is `oVirt`.
+
+`engine.name`:: The value of this property will be used where the
+source AsciiDoc files contain the `{engine-name}` variable. The default
+value is `oVirt Engine`.
+
+For example, https://www.redhat.com[_Red Hat_] uses the following
+command to build their branded version of the documentation for their
+https://www.redhat.com/en/technologies/virtualization[_RHV_] product:
+
+[source]
+----
+$ mvn \
+validate \
+-Pdocument \
+-Dadoc.separator='-' \
+-Dproduct.name='Red Hat Virtualization' \
+-Dengine.name='Red Hat Virtualization Manager'
+----
+
 == Feedback/questions/issues
 
 If you have any question, issue, or feedback please
