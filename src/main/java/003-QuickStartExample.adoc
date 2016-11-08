@@ -22,10 +22,11 @@ IMPORTANT: For simplicity, the HTTP request headers in this example omit
 the `Host` and `Authorization` headers. However, these fields are mandatory
 and require data specific to your installation of {product-name}.
 
-IMPORTANT: All `curl` examples include placeholders for authentication
-details (`USER:PASS`) and certificate location (`CERT`). Ensure all
-requests performed with `curl` fulfill certification and authentication
-requirements.
+IMPORTANT: All the `curl` examples use `admin@internal` as the user
+name, `mypassword` as the password, `/etc/pki/ovirt-engine/ca.pem` as the
+certificate location and `myengine.example.com` as the host name. These
+are just examples, Make sure to replace them with valid values for your
+environment.
 
 NOTE: {product-name} generates an unique identifier for the `id`
 attribute for each resource. Identifier codes in this example might
@@ -61,12 +62,12 @@ Same request, using the `curl` command:
 
 ....
 curl \
---cacert [CERT] \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
---user '[USER:PASS]' \
-https://[HOST]/ovirt-engine/api
+--user 'admin@internal:mypassword' \
+https://myengine.example.com/ovirt-engine/api
 ....
 
 The result will be an object of type <<types/api, Api>>:
@@ -159,12 +160,12 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
---user '[USER:PASS]' \
-https://[HOST]/ovirt-engine/api/datacenters
+--user 'admin@internal:mypassword' \
+https://myengine.example.com/ovirt-engine/api/datacenters
 ....
 
 The result will be a list of objects of type <<types/data_center,
@@ -229,12 +230,12 @@ Same request, using the `curl` command:
 
 ....
 curl \
---cacert [CERT] \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
---user '[USER:PASS]' \
-https://[HOST]/ovirt-engine/api/clusters
+--user 'admin@internal:mypassword' \
+https://myengine.example.com/ovirt-engine/api/clusters
 ....
 
 The result will be a list of objects of type <<types/cluster, Cluster>>:
@@ -298,12 +299,12 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
---user '[USER:PASS]' \
-https://[HOST]/ovirt-engine/api/networks
+--user 'admin@internal:mypassword' \
+https://myengine.example.com/ovirt-engine/api/networks
 ....
 
 The result will be a list of objects of type <<types/network, Network>>:
@@ -349,12 +350,12 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
---user '[USER:PASS]' \
-https://[HOST]/ovirt-engine/api/hosts
+--user 'admin@internal:mypassword' \
+https://myengine.example.com/ovirt-engine/api/hosts
 ....
 
 The result will be a list of objects of type <<types/host, Host>>:
@@ -444,8 +445,8 @@ The same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -465,7 +466,7 @@ The same request, using the `curl` command:
   </host>
 </storage_domain>
 ' \
-https://[HOST]/ovirt-engine/api/storagedomains
+https://myengine.example.com/ovirt-engine/api/storagedomains
 ....
 
 The server uses host `myhost` to create a NFS data storage domain called
@@ -532,8 +533,8 @@ The same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -553,7 +554,7 @@ The same request, using the `curl` command:
   </host>
 </storage_domain>
 ' \
-https://[HOST]/ovirt-engine/api/storagedomains
+https://myengine.example.com/ovirt-engine/api/storagedomains
 ....
 
 The server uses host `myhost` to create a NFS ISO storage domain called
@@ -607,8 +608,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -618,7 +619,7 @@ Same request, using the `curl` command:
   <name>mydata</name>
 </storage_domain>
 ' \
-https://[HOST]/ovirt-engine/api/datacenters/001/storagedomains
+https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
 ....
 
 To attach the `myisos` storage domain, send a request like this:
@@ -642,8 +643,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -653,7 +654,7 @@ Same request, using the `curl` command:
   <name>myisos</name>
 </storage_domain>
 ' \
-https://[HOST]/ovirt-engine/api/datacenters/001/storagedomains
+https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
 ....
 
 ## Example: Create virtual machine
@@ -701,8 +702,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -727,7 +728,7 @@ Same request, using the `curl` command:
   </os>
 </vm>
 ' \
-https://[HOST]/ovirt-engine/api/vms
+https://myengine.example.com/ovirt-engine/api/vms
 ....
 
 The response body will be an object of the <<types/vm, Vm>> type:
@@ -792,8 +793,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -804,7 +805,7 @@ Same request, using the `curl` command:
   <description>My network interface card</description>
 </nic>
 ' \
-https://[HOST]/ovirt-engine/api/vms/007/nics
+https://myengine.example.com/ovirt-engine/api/vms/007/nics
 ....
 
 ## Example: Create virtual machine disk
@@ -847,8 +848,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -870,7 +871,7 @@ Same request, using the `curl` command:
   </disk>
 </disk_attachment>
 ' \
-https://[HOST]/ovirt-engine/api/vms/007/diskattachments
+https://myengine.example.com/ovirt-engine/api/vms/007/diskattachments
 ....
 
 The `storage_domains` attribute tells the API to store the disk on the
@@ -899,12 +900,12 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request GET \
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
-https://[HOST]/ovirt-engine/api/storagedomains/006/files
+https://myengine.example.com/ovirt-engine/api/storagedomains/006/files
 ....
 
 The server returns the following list of objects of type <<types/file,
@@ -947,8 +948,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request PUT \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -958,7 +959,7 @@ Same request, using the `curl` command:
   <file id="CentOS-7-x86_64-Minimal.iso"/>
 </cdrom>
 ' \
-https://[HOST]/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000
+https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000
 ....
 
 For more details see the documentation of the <<services/vm_cdrom,
@@ -999,8 +1000,8 @@ Same request, using the `curl` command:
 
 ....
 # curl \
---cacert [CERT] \
---user '[USER:PASS]' \
+--cacert '/etc/pki/ovirt-engine/ca.pem' \
+--user 'admin@internal:mypassword' \
 --request POST \
 --header 'Version: 4' \
 --header 'Content-Type: application/xml' \
@@ -1018,7 +1019,7 @@ Same request, using the `curl` command:
   </vm>
 </action>
 ' \
-https://[HOST]/ovirt-engine/api/vms/007/start
+https://myengine.example.com/ovirt-engine/api/vms/007/start
 ....
 
 The additional request body sets the virtual machine's boot device to
