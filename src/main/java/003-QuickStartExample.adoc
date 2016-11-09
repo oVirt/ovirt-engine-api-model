@@ -830,6 +830,7 @@ virtual machine:
 <disk_attachment>
   <bootable>false</bootable>
   <interface>virtio</interface>
+  <active>true</active>
   <disk>
     <description>My disk</description>
     <format>cow</format>
@@ -858,6 +859,7 @@ Same request, using the `curl` command:
 <disk_attachment>
   <bootable>false</bootable>
   <interface>virtio</interface>
+  <active>true</active>
   <disk>
     <description>My disk</description>
     <format>cow</format>
