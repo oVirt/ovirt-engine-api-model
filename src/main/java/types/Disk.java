@@ -147,6 +147,18 @@ public interface Disk extends Device {
      */
     Boolean propagateErrors();
 
+    /**
+     * Indicates if the disk is visible to the virtual machine.
+     *
+     * IMPORTANT: When adding a disk attachment to a virtual machine, the server accepts requests that don't contain
+     * this attribute, but the effect is then undefined. In some cases the disk will be automatically activated
+     * and in other cases it won't. To avoid issues it is strongly recommended to always include the this attribute
+     * with the desired value.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 9 Nov 2016
+     * @status added
+     */
     Boolean active();
 
     /**

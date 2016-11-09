@@ -55,6 +55,7 @@ public interface DiskAttachmentService {
      * <disk_attachment>
      *   <bootable>true</bootable>
      *   <interface>ide</interface>
+     *   <active>true</active>
      *   <disk>
      *     <name>mydisk</name>
      *     <provisioned_size>1024</provisioned_size>

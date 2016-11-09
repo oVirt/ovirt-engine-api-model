@@ -39,6 +39,7 @@ public interface DiskAttachmentsService {
      *   <bootable>true</bootable>
      *   <pass_discard>true</pass_discard>
      *   <interface>ide</interface>
+     *   <active>true</active>
      *   <disk id="123"/>
      * </disk_attachment>
      * ----
@@ -51,6 +52,7 @@ public interface DiskAttachmentsService {
      *   <bootable>true</bootable>
      *   <pass_discard>true</pass_discard>
      *   <interface>ide</interface>
+     *   <active>true</active>
      *   <disk>
      *     <name>mydisk</name>
      *     <provisioned_size>1024</provisioned_size>
@@ -67,6 +69,11 @@ public interface DiskAttachmentsService {
      * ----
      * POST /ovirt-engine/api/vms/345/diskattachments
      * ----
+     *
+     * IMPORTANT: The server accepts requests that don't contain the `active` attribute, but the effect is
+     * undefined. In some cases the disk will be automatically activated and in other cases it won't. To
+     * avoid issues it is strongly recommended to always include the `active` attribute with the desired
+     * value.
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @date 15 Sep 2016
