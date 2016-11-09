@@ -116,6 +116,7 @@ public class SchemaGenerator {
         addMemberSchemaTypeNameException("logical-unit", "discard-max-size", "xs:long");
         addMemberSchemaTypeNameException("logical-unit", "size", "xs:long");
         addMemberSchemaTypeNameException("memory-policy", "guaranteed", "xs:long");
+        addMemberSchemaTypeNameException("memory-policy", "max", "xs:long");
         addMemberSchemaTypeNameException("numa-node", "memory", "xs:long");
         addMemberSchemaTypeNameException("quota-cluster-limit", "memory-limit", "xs:double");
         addMemberSchemaTypeNameException("quota-cluster-limit", "memory-usage", "xs:double");
