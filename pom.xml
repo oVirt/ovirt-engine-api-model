@@ -63,6 +63,11 @@
          generated AsciiDoc: -->
     <adoc.separator>/</adoc.separator>
 
+    <!-- Do not generate Javadoc, as we explicitly generate a documentation
+         artifact containing the AsciiDoc and HTML generated from the
+         model: -->
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+
   </properties>
 
   <dependencies>
