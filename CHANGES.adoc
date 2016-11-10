@@ -3,6 +3,24 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.18 / Nov 10 2016
+
+New features:
+
+* Add `gluster_tuned_profile` to the `Cluster` type.
+
+* Add `skip_if_gluster_bricks_up` and `skip_if_gluster_quorum_not_met`
+  attributes to the `FencingPolicy` type.
+
+* Add the `ImageTransferDirection` enumerated type and the `direction`
+  attribute to the `ImageTransfer` type.
+
+Bug fixes:
+
+* Replace the generic `GraphicsConsole` and `GraphicsConsoles` with
+  specific services for virtual machines, templates and instance
+  types.
+
 == 4.1.17 / Nov 2 2016
 
 New features:
