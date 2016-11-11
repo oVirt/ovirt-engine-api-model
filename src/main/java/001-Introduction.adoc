@@ -1,4 +1,4 @@
-# Introduction
+== Introduction
 
 The {engine-name} provides a *Representational State Transfer (REST)
 API*. The API provides software developers and system administrators
@@ -36,7 +36,7 @@ aims to provide developers and administrators with instructions and
 examples to help harness the functionality of their {product-name}
 environment through the API either directly or using the provided SDKs.
 
-## Representational State Transfer
+=== Representational State Transfer
 
 *Representational State Transfer (REST)* is a design architecture that
 focuses on resources for a specific service and their representations. A
@@ -49,7 +49,7 @@ between the client and server where each request acts independent of any
 other request and contains all necessary information to complete the
 request.
 
-## API Prerequisites
+=== API Prerequisites
 
 Prerequisites for using the {product-name} API:
 

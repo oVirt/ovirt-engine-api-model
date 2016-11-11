@@ -1,6 +1,6 @@
-# Authentication and Security
+== Authentication and Security
 
-## TLS/SSL Certification
+=== TLS/SSL Certification
 
 The {product-name} API requires Hypertext Transfer Protocol Secure
 (HTTPS) footnote:[HTTPS is described in
@@ -13,7 +13,7 @@ client.
 IMPORTANT: Obtain your certificate from the {engine-name} using a secure
 network connection.
 
-### Obtaining a Certificate
+==== Obtaining a Certificate
 
 You can obtain a certificate from the {engine-name} and transfer it to
 the client machine using one of three methods:
@@ -90,7 +90,7 @@ Each of these methods results in a certificate file named `ca.crt` on
 your client machine. An API user imports this file into the certificate
 store of the client.  ⁠
 
-### Importing a Certificate to a Client
+==== Importing a Certificate to a Client
 
 Importing a certificate to a client relies on how the client itself
 stores and interprets certificates. This guide contains some examples on
@@ -98,7 +98,7 @@ importing certificates. For clients not using Network Security Services
 (NSS) or Java KeyStore (JKS), see your client documentation for more
 information on importing a certificate.
 
-## HTTP Authentication
+=== HTTP Authentication
 
 Any user with an {engine-name} account has access to the API. An API
 user submits a mandatory {engine-name} user name and password with all
@@ -164,7 +164,7 @@ and terminate each line with a newline character. This breaks the header
 and causes a faulty request. The `Authorization` header requires the
 encoded credentials on a single line within the header.
 
-## Authentication Sessions
+=== Authentication Sessions
 
 The API also provides the ability for authentication session support. An
 API user sends an initial request with authentication details, then
@@ -173,7 +173,7 @@ The following procedure demonstrates how to use an authenticated
 session.
 
 
-### Requesting an authenticated session
+==== Requesting an authenticated session
 
 . Send a request with the `Authorization` and `Prefer: persistent-auth`
 headers:
