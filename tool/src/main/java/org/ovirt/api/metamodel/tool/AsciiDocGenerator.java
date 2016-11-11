@@ -179,7 +179,7 @@ public class AsciiDocGenerator {
         // Table of methods:
         List<Method> methods = service.getMethods();
         if (!methods.isEmpty()) {
-            docBuffer.addLine(".Methods summary (%d)", methods.size());
+            docBuffer.addLine(".Methods summary");
             docBuffer.addLine("[cols=\"20,80\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Summary");
@@ -207,7 +207,7 @@ public class AsciiDocGenerator {
         // Table of parameters:
         List<Parameter> parameters = method.getParameters();
         if (!parameters.isEmpty()) {
-            docBuffer.addLine(".Parameters summary (%d)", parameters.size());
+            docBuffer.addLine(".Parameters summary");
             docBuffer.addLine("[cols=\"15,15,10,60\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Type |Direction |Summary");
@@ -255,7 +255,7 @@ public class AsciiDocGenerator {
         // Table of values:
         List<EnumValue> values = type.getValues();
         if (!values.isEmpty()) {
-            docBuffer.addLine(".Values summary (%d)", values.size());
+            docBuffer.addLine(".Values summary");
             docBuffer.addLine("[cols=\"20,89\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Summary");
@@ -292,7 +292,7 @@ public class AsciiDocGenerator {
         // Table of attributes:
         List<Attribute> attributes = type.getAttributes();
         if (!attributes.isEmpty()) {
-            docBuffer.addLine(".Attributes summary (%d)", attributes.size());
+            docBuffer.addLine(".Attributes summary");
             docBuffer.addLine("[cols=\"20,20,60\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Type |Summary");
@@ -313,7 +313,7 @@ public class AsciiDocGenerator {
         // Table of links:
         List<Link> links = type.getLinks();
         if (!links.isEmpty()) {
-            docBuffer.addLine(".Links summary (%d)", links.size());
+            docBuffer.addLine(".Links summary");
             docBuffer.addLine("[cols=\"20,20,60\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Type |Summary");
