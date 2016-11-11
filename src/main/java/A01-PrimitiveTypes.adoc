@@ -1,15 +1,15 @@
 [appendix]
-# Primitive types
+== Primitive types
 
 This section describes the primitive data types supported by the API.
 
 [id="types/string"]
-## String [small]#primitive#
+=== String [small]#primitive#
 
 A finite sequence of http://unicode.org[Unicode] characters.
 
 [id="types/boolean"]
-## Boolean [small]#primitive#
+=== Boolean [small]#primitive#
 
 Represents the _false_ and _true_ concepts used in mathematical logic.
 
@@ -24,7 +24,7 @@ than `false`, and `1` has the same meaning than `true`. Try to avoid
 using these values, as support for them may be removed in the future.
 
 [id="types/integer"]
-## Integer [small]#primitive#
+=== Integer [small]#primitive#
 
 Represents the mathematical concept of integer number.
 
@@ -64,7 +64,7 @@ unlimited precission integers, so the above limitations and exceptions
 will eventually disappear.
 
 [id="types/decimal"]
-## Decimal [small]#primitive#
+=== Decimal [small]#primitive#
 
 Represents the mathematical concept of real number.
 
@@ -85,7 +85,7 @@ precission decimal numbers, so the above limitations and exceptions will
 eventually disappear.
 
 [id="types/date"]
-## Date [small]#primitive#
+=== Date [small]#primitive#
 
 Represents a date and time.
 

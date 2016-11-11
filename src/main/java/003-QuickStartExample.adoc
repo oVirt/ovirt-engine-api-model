@@ -1,4 +1,4 @@
-# Quick start example
+== Quick start example
 
 This chapter provides an example to demonstrate the REST API's ability
 to setup a basic {product-name} environment and create a virtual machine.
@@ -39,7 +39,7 @@ always use the reference to find the complete list of attributes. For
 example, if you want to see the complete list of attributes of the
 `Cluster` type, just go <<types/cluster, here>>.
 
-## Example: Access API entry point
+=== Example: Access API entry point
 
 The following request retrieves a representation of the main entry point
 for version 4 of of the API:
@@ -143,7 +143,7 @@ product_info>>, <<types/special_objects, special_objects>> and
 <<types/api_summary, summary>>. This data is covered in chapters
 outside this example.
 
-## Example: List data centers
+=== Example: List data centers
 
 {product-name} creates a `Default` data center on installation. This
 example uses the `Default` data center as the basis for our virtual
@@ -212,7 +212,7 @@ domains attached to the data center:
 That service is used to attach storage domains from the main
 `storagedomains` collection, which this example covers later.
 
-## Example: List host clusters
+=== Example: List host clusters
 
 {product-name} creates a `Default` hosts cluster on installation. This
 example uses the `Default` cluster to group resources in your
@@ -278,7 +278,7 @@ The `networks` link is a reference to the <<services/assigned_networks,
 service>> that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.
 
-## Example: List logical networks
+=== Example: List logical networks
 
 {product-name} creates a default `ovirtmgmt` network on installation.
 This network acts as the management network for {engine-name} to access
@@ -335,7 +335,7 @@ relationship using the data center's `id`.
 The `ovirtmgmt` network is also attached to the `Default` cluster through a
 relationship in the cluster's network sub-collection.
 
-## Example: List hosts
+=== Example: List hosts
 
 This example retrieves the list of hosts and shows a host named `myhost`
 registered with the virtualization environment:
@@ -400,7 +400,7 @@ This host is a member of the `Default` cluster and accessing the `nics`
 sub-collection shows this host has a connection to the `ovirtmgmt`
 network.
 
-## Example: Create NFS data storage
+=== Example: Create NFS data storage
 
 An NFS data storage domain is an exported NFS share attached to a data
 center and provides storage for virtualized guest images. Creation of a
@@ -494,7 +494,7 @@ storage domain resource (of type <<types/storage_domain, StorageDomain>>):
 </storage_domain>
 ----
 
-## Example: Create NFS ISO storage
+=== Example: Create NFS ISO storage
 
 An NFS ISO storage domain is a mounted NFS share attached to a data
 center and provides storage for DVD/CD-ROM ISO and virtual floppy disk
@@ -582,7 +582,7 @@ storage domain resource (of type <<types/storage_domain, StorageDomain>>):
 </storage_domain>
 ----
 
-## Example: Attach storage domains to data center
+=== Example: Attach storage domains to data center
 
 The following example attaches the `mydata` and `myisos` storage domains
 to the `Default` data center.
@@ -657,7 +657,7 @@ Same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
 ....
 
-## Example: Create virtual machine
+=== Example: Create virtual machine
 
 The following example creates a virtual machine called `myvm` on the
 `Default` cluster using the virtualization environment's `Blank`
@@ -765,7 +765,7 @@ The response body will be an object of the <<types/vm, Vm>> type:
 </vm>
 ----
 
-## Example: Create a virtual machine NIC
+=== Example: Create a virtual machine NIC
 
 The following example creates a virtual network interface to connect the
 example virtual machine to the `ovirtmgmt` network.
@@ -808,7 +808,7 @@ Same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/vms/007/nics
 ....
 
-## Example: Create virtual machine disk
+=== Example: Create virtual machine disk
 
 The following example creates an 8 GiB _copy-on-write_ disk for the
 example virtual machine.
@@ -877,7 +877,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/diskattachments
 The `storage_domains` attribute tells the API to store the disk on the
 `mydata` storage domain.
 
-## Example: Attach ISO image to virtual machine
+=== Example: Attach ISO image to virtual machine
 
 The boot media for our example virtual machine requires an CD-ROM or DVD
 ISO image for an operating system installation. This example uses a
@@ -965,7 +965,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-
 For more details see the documentation of the <<services/vm_cdrom,
 service>> that manages virtual machine CD-ROMS.
 
-## Example: Start the virtual machine
+=== Example: Start the virtual machine
 
 The virtual environment is complete and the virtual machine contains all
 necessary components to function. This example starts the virtual
