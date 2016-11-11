@@ -99,27 +99,11 @@ public class AsciiDocGenerator {
     }
 
     public void documentModel(Model model) {
-        // Header:
-        docBuffer.addLine("= Model");
-        docBuffer.addLine();
-
-        // Copy the attributes from the configuration:
-        configuration.getAttributes().map().forEach((name, value) -> {
-            if (value != null) {
-                docBuffer.addLine(":%1$s: %2$s", name, value);
-            }
-            else {
-                docBuffer.addLine(":%1$s:", name);
-            }
-        });
-
-        // Include the documents that aren't appendixes, pushing titles one level down:
-        docBuffer.addLine(":leveloffset: 1");
+        // Include the documents that aren't appendixes:
         model.documents()
             .filter(document -> !document.isAppendix())
             .sorted()
             .forEach(this::addDocument);
-        docBuffer.addLine(":leveloffset: 0");
 
         // Requests:
         docBuffer.addId("requests");
@@ -149,13 +133,11 @@ public class AsciiDocGenerator {
         docBuffer.addLine();
         model.types().sorted().forEach(this::documentType);
 
-        // Include the appendixes, pushing titles one level down:
-        docBuffer.addLine(":leveloffset: 1");
+        // Include the appendixes:
         model.documents()
             .filter(Document::isAppendix)
             .sorted()
             .forEach(this::addDocument);
-        docBuffer.addLine(":leveloffset: 0");
     }
 
     private void addDocument(Document document) {
