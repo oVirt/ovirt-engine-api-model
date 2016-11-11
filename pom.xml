@@ -302,7 +302,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <property name="docjar" value="${projects.basedir}/target/doc.jar"/>
+                    <property name="docjar" value="${project.basedir}/target/doc.jar"/>
                     <zip destfile="${docjar}">
                       <fileset dir="${project.basedir}/target/generated-adoc"/>
                       <fileset dir="${project.basedir}/target/generated-html"/>
