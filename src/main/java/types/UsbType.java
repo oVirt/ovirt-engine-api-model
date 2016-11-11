@@ -19,6 +19,21 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public enum UsbType {
+    /**
+     * A legacy USB type.
+     *
+     * This USB type has been deprecated since version 3.6 of the
+     * engine, and has been completely removed in version 4.1. It
+     * is preserved only to avoid syntax errors in existing
+     * scripts. If it is used it will be automatically replaced
+     * by `native`.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 14 Nov 2016
+     * @status added
+     */
+    @Deprecated
     LEGACY,
+
     NATIVE;
 }
