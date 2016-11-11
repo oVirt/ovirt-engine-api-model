@@ -1,4 +1,4 @@
-== Authentication and Security
+== Authentication and security
 
 === TLS/SSL Certification
 
@@ -13,7 +13,7 @@ client.
 IMPORTANT: Obtain your certificate from the {engine-name} using a secure
 network connection.
 
-==== Obtaining a Certificate
+==== Obtaining a certificate
 
 You can obtain a certificate from the {engine-name} and transfer it to
 the client machine using one of three methods:
@@ -24,29 +24,28 @@ which are available on multiple platforms.
 +
 .. If using `curl`:
 +
-[source,bash]
-----
+....
 $ curl \
--o ca.crt \
+--insecure \
+--output ca.crt \
 'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
-----
+....
 +
 .. If using `wget`:
 +
-[source,bash]
-----
+....
 $ wget \
--O ca.crt \
+--no-check-certificate \
+--output-document ca.crt \
 'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
-----
+....
 
 . *Method 2* - Use a web browser to navigate to the certificate located
 at:
 +
-[source]
-----
+....
 https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA
-----
+....
 +
 Depending on the chosen browser, the certificate either downloads or
 imports into the browser's keystore.
@@ -65,32 +64,30 @@ truststore and copy it to your client machine.
 .. Export the certificate from the truststore using the Java
 `keytool` management utility:
 +
-[source,bash]
-----
-$ keytool \
--exportcert \
--keystore \
-/etc/pki/ovirt-engine/.truststore \
--alias cacert \
+....
+# keytool \
+-keystore /etc/pki/ovirt-engine/.truststore \
 -storepass mypass \
+-exportcert \
+-alias cacert \
+-rfc \
 -file ca.crt
-----
+....
 +
 This creates a certificate file called `ca.crt`.
 +
 .. Copy the certificate to the client machine using the `scp`
 command:
 +
-[source,bash]
-----
-$ scp ca.cer myuser@myclient.example.com:/home/myuser/.
-----
+....
+$ scp ca.crt myuser@myclient.example.com:/home/myuser/.
+....
 
 Each of these methods results in a certificate file named `ca.crt` on
 your client machine. An API user imports this file into the certificate
 store of the client.  ⁠
 
-==== Importing a Certificate to a Client
+==== Importing a certificate to a client
 
 Importing a certificate to a client relies on how the client itself
 stores and interprets certificates. This guide contains some examples on
@@ -98,16 +95,121 @@ importing certificates. For clients not using Network Security Services
 (NSS) or Java KeyStore (JKS), see your client documentation for more
 information on importing a certificate.
 
-=== HTTP Authentication
+=== Authentication
 
-Any user with an {engine-name} account has access to the API. An API
-user submits a mandatory {engine-name} user name and password with all
-requests to the API. Each request uses HTTP Basic Authentication
-footnote:[Basic Authentication is described in
-http://tools.ietf.org/html/rfc2617[RFC 2617 HTTP Authentication: Basic
-and Digest Access Authentication].] to encode these credentials. If a
-request does not include an appropriate `Authorization` header, the API
-sends a `401 Authorization Required` as a result:
+Any user with an {engine-name} account has access to the API. All
+requests need to be authenticated using either _OAuth_ or basic
+authentication, as described below.
+
+==== OAuth authentication
+
+Since version 4.0 of {product-name} the preferred authentication
+mechanism is https://oauth.net/2[_OAuth 2.0_], as described in
+https://tools.ietf.org/html/rfc6749[RFC 6749].
+
+_OAuth_ is a sophisticated protocol, with several mechanism to obtain
+authorization and access tokens. But for usage with the {product-name}
+API the only supported one is the _resource owner password credentials
+grant_, as described in https://tools.ietf.org/html/rfc6749#section-4.3[section 4.3]
+of that RFC.
+
+The first step in the _OAuth_ authentication process is to obtain a
+_token_, sending the user name and password to the single sign-on
+service of the engine:
+
+....
+POST /ovirt-engine/sso/oauth/token HTTP/1.1
+Host: myengine.example.com
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+....
+
+The request body must contain the `grant_type`, `scope`, `username`
+and `password` parameters:
+
+.OAuth token request parameters
+|===
+|Name |Value
+
+|`grant_type`
+|`password`
+
+|`scope`
+|`ovirt-app-api`
+
+|`username`
+|`admin@internal`
+
+|`password`
+|`mypassword`
+
+|===
+
+These parameters must be
+https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example
+the `@` character in the user name needs to be encoded as `%40`. So the
+resulting request body will be something like this:
+
+....
+grant_type=password&scope=ovirt-app-api&username=admin%40internal&password=mypassword
+....
+
+IMPORTANT: The `scope` parameter is described as optional in the _OAuth_
+RFC, but when using it with the {product-name} API it is mandatory, and
+its value must be `ovirt-app-api`.
+
+If the user name and password are valid the single sign-on service of
+the engine will respond with a JSON document similar to this one:
+
+....
+{
+  "access_token": "fqbR1ftzh8wBCviLxJcYuV5oSDI=",
+  "token_type": "bearer",
+  "scope": "...",
+  ...
+}
+....
+
+For API authentication purposes the only relevant name/value pair is the
+`access_token`. Don't manipulate this in any way, use it exactly as
+provided by the SSO service.
+
+Once the token has been obtained, it can be used to perform requests to
+the API, including it in the HTTP `Authorization` header, and using the
+`Bearer` scheme. For example, to get the list of virtual machines using
+this token, send a request like this:
+
+....
+GET /ovirt-engine/api/vms HTTP/1.1
+Host: myengine.example.com
+Accept: application/xml
+Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
+....
+
+The token can be used multiple times, for multiple requests, but it will
+eventually expire. When it expires the server will reject the request,
+and will use the 401 HTTP response code to indicate so:
+
+....
+HTTP/1.1 401 Unauthorized
+....
+
+When this happens a new token is needed, and can be requested using the
+same procedure described above, as the single sign-on service of the
+engine doesn't currently support refresh tokens.
+
+==== Basic authentication
+
+IMPORTANT: Basic authentication is still supported only for backwards
+compatibility, but it is deprecated since version 4.0 of {product-name},
+and will be removed in the future.
+
+Each request uses HTTP Basic Authentication footnote:[Basic
+Authentication is described in http://tools.ietf.org/html/rfc2617[RFC
+2617 HTTP Authentication: Basic and Digest Access Authentication].] to
+encode the credentials. If a request does not include an appropriate
+`Authorization` header, the server sends a `401 Authorization Required` as
+a result:
 
 ....
 HEAD /ovirt-engine/api HTTP/1.1
@@ -164,7 +266,7 @@ and terminate each line with a newline character. This breaks the header
 and causes a faulty request. The `Authorization` header requires the
 encoded credentials on a single line within the header.
 
-=== Authentication Sessions
+==== Authentication sessions
 
 The API also provides the ability for authentication session support. An
 API user sends an initial request with authentication details, then
@@ -172,8 +274,7 @@ sends all subsequent requests using a session cookie to authenticate.
 The following procedure demonstrates how to use an authenticated
 session.
 
-
-==== Requesting an authenticated session
+===== Requesting an authenticated session
 
 . Send a request with the `Authorization` and `Prefer: persistent-auth`
 headers:
