@@ -21,9 +21,9 @@ import java.util.Date;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The summary of the API.
+ * This type contains the information returned by the root service of the API.
  *
- * To get the summary of the API send a request like this:
+ * To get that information send a request like this:
  *
  * ....
  * GET /ovirt-engine/api
@@ -75,28 +75,45 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @author Megan Lewis <melewis@redhat.com>
  * @date 12 Dec 2016
- * @status added
+ * @status updated_by_docs
  */
 @Type
 public interface Api {
     /**
-     * References to special objects, like the blank template and the root of the hierarchy of tags.
+     * References to special objects, such as the blank template and the root of the hierarchy of tags.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     SpecialObjects specialObjects();
 
     /**
-     * Information about the product, like its name, the name of the vendor and the version.
+     * Information about the product, such as its name, the name of the vendor, and the version.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      */
     ProductInfo productInfo();
 
     /**
-     * A summary containing the total number of relevant objects, like virtual machines, hosts and storage domains.
+     * A summary containing the total number of relevant objects, such as virtual machines, hosts, and storage domains.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     ApiSummary summary();
 
     /**
      * The date and time when this information was generated.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * status updated_by_docs
      */
     Date time();
 }
