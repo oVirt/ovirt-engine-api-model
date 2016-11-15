@@ -19,7 +19,11 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This interface is intended to be the base for all types of the model that represents objects with an identifier.
+ * This interface is the base model for all types that represent objects with an identifier.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 2 Dec 2016
+ * @status updated_by_docs
  */
 @Type
 public interface Identified {
@@ -33,25 +37,30 @@ public interface Identified {
     String id();
 
     /**
-     * A human readable name in plain text.
+     * A human-readable name in plain text.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      */
     String name();
 
     /**
-     * A human readable description in plain text.
+     * A human-readable description in plain text.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      */
     String description();
 
     /**
      * Free text containing comments about this object.
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     String comment();
 }
