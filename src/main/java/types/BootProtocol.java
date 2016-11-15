@@ -18,32 +18,56 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The enum defines the options of the IP address assignment method to a NIC.
+ * Defines the options of the IP address assignment method to a NIC.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 2 Dec 2016
+ * @status updated_by_docs
  */
 @Type
 public enum BootProtocol {
     /**
-     * Stateless Address Auto-Configuration.
-     * The mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862].
-     * Please refer to https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[this wikipedia article].
+     * Stateless address auto-configuration.
+     *
+     * The mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862]. Please refer to
+     * https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[this wikipedia article] for more
+     * information.
      *
      * NOTE: The value is valid for IPv6 addresses only.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     AUTOCONF,
 
     /**
-     * Dynamic Host Configuration Protocol.
-     * Please refer to https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[this wikipedia article].
+     * Dynamic host configuration protocol.
+     *
+     * Please refer to https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[this wikipedia article] for
+     * more information.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     DHCP,
 
     /**
-     * Statically (by user) defined address, mask and gateway.
+     * Statically-defined address, mask and gateway.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      */
     STATIC,
 
     /**
      * No address configuration.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     NONE;
 }
