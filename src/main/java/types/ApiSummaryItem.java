@@ -21,16 +21,28 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * This type contains an item of the API summary. Each item contains the total and active number of some kind of
  * object.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 15 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface ApiSummaryItem {
     /**
      * The total number of objects.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     Integer total();
 
     /**
      * The total number of active objects.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     Integer active();
 }
