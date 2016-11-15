@@ -36,12 +36,13 @@ public interface Bonding {
      * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia],
      * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation].
      * `ad_partner_mac` is the MAC address of the system (switch) at the other end of a bond.
-     * This parameter is read only. Setting it will have no effect on the bond.
+     * This parameter is read-only. Setting it will have no effect on the bond.
      * It is retrieved from `/sys/class/net/bondX/bonding/ad_partner_mac` file on the system where the bond is located.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 10 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      * @since 4.0.3
      */
     Mac adPartnerMac();
