@@ -20,24 +20,40 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Affinity label is a label that can influence the VM scheduling.
- * It is most often used to create a sub-cluster from available hosts.
+ * The affinity label can influence virtual machine scheduling.
+ * It is most frequently used to create a sub-cluster from the available hosts.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 2 Dec 2016
+ * @status updated_by_docs
  */
 @Type
 public interface AffinityLabel extends Identified {
     /**
-     * List of hosts that were labeled using this scheduling label.
+     * A list of hosts that were labeled using this scheduling label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016 
+     * @status updated_by_docs
      */
     @Link Host[] hosts();
 
     /**
-     * List of vms that were labeled using this scheduling label.
+     * A list of virtual machines that were labeled using this scheduling label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     @Link Vm[] vms();
 
     /**
-     * The `readOnly` property marks a label that can't be modified.
-     * This is mostly the case when listing internally generated labels.
+     * The `read_only` property marks a label that can not be modified.
+     * This is usually the case when listing internally-generated labels.
+     *
+     * @author Megan Lewis <melewis@redhat.com> 
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     Boolean readOnly();
 }
