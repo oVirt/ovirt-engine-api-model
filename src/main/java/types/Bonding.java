@@ -33,8 +33,8 @@ public interface Bonding {
 
     /**
      * The `active_slave` property of the bond in modes that support it (active-backup, balance-alb and balance-tlb).
-     * See the https://www.kernel.org/doc/Documentation/networking/bonding.txt[Linux documentation] for further details.
-     * This parameter is read only. Setting it will have no effect on the bond.
+     * See https://www.kernel.org/doc/Documentation/networking/bonding.txt[Linux documentation] for further details.
+     * This parameter is read-only. Setting it will have no effect on the bond.
      * It is retrieved from `/sys/class/net/bondX/bonding/active_slave` file on the system where the bond is located.
      *
      * For example:
@@ -62,24 +62,26 @@ public interface Bonding {
      * ----
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 18 Oct 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      * @since 4.1.0
      */
     @Link HostNic activeSlave();
 
     /**
-     * The `ad_partner_mac` property of the partner bond in mode 4. Bond mode 4 is the 802.3ad standard,
-     * also called dynamic link aggregation -
-     * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia],
-     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation].
+     * The `ad_partner_mac` property of the partner bond in mode 4. Bond mode 4 is the 802.3ad standard, which is
+     * also called dynamic link aggregation. See
+     * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
+     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information.
      * `ad_partner_mac` is the MAC address of the system (switch) at the other end of a bond.
-     * This parameter is read only. Setting it will have no effect on the bond.
+     * This parameter is read-only. Setting it will have no effect on the bond.
      * It is retrieved from `/sys/class/net/bondX/bonding/ad_partner_mac` file on the system where the bond is located.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 10 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      * @since 4.0.3
      */
     Mac adPartnerMac();
