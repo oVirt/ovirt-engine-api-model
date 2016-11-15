@@ -23,8 +23,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * An affinity group represents a group of virtual machines with a defined relationship.
  *
  * @author Martin Sivak <msivak@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 15 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface AffinityGroup extends Identified {
@@ -36,9 +37,9 @@ public interface AffinityGroup extends Identified {
      * and will be removed in the future. Use the `vms_rule` attribute from now on.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 6 Dec 2016
-     * @status added
-     * @deprecated
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     Boolean positive();
 
@@ -50,9 +51,9 @@ public interface AffinityGroup extends Identified {
      * and will be removed in the future. Use the `vms_rule` attribute from now on.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 6 Dec 2016
-     * @status added
-     * @deprecated
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     Boolean enforcing();
 
@@ -80,23 +81,25 @@ public interface AffinityGroup extends Identified {
      * A reference to the cluster to which the affinity group applies.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 15 Nov 2016
+     * @status updated_by_docs
      */
     @Link
     Cluster cluster();
 
     /**
-     * List of all virtual machines assigned to this affinity group.
+     * A list of all virtual machines assigned to this affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 2 Dec 2016
+     * @status updated_by_docs
      */
     @Link Vm[] vms();
 
     /**
-     * List of all hosts assigned to this affinity group.
+     * A list of all hosts assigned to this affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @date 6 Dec 2016
