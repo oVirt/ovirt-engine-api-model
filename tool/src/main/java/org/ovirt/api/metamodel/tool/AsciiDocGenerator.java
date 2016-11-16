@@ -208,7 +208,7 @@ public class AsciiDocGenerator {
         List<Parameter> parameters = method.getParameters();
         if (!parameters.isEmpty()) {
             docBuffer.addLine(".Parameters summary");
-            docBuffer.addLine("[cols=\"15,15,10,60\"]");
+            docBuffer.addLine("[cols=\"15,15,20,50\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Type |Direction |Summary");
             docBuffer.addLine();
