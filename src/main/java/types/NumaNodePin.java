@@ -19,40 +19,44 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents pinning of a virtual NUMA node to a physical NUMA node.
+ * Represents the pinning of a virtual NUMA node to a physical NUMA node.
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 16 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface NumaNodePin {
     /**
-     * Deprecated - has no function.
+     * Deprecated. Has no function.
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     @Deprecated
     NumaNode hostNumaNode();
 
     /**
-     * Deprecated - should always be true.
+     * Deprecated. Should always be `true`.
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     @Deprecated
     Boolean pinned();
 
     /**
-     * Index of a physical NUMA node to which the virtual NUMA node is pinned.
+     * The index of a physical NUMA node to which the virtual NUMA node is pinned.
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     Integer index();
 }
