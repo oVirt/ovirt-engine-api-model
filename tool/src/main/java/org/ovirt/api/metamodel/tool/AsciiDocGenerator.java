@@ -256,7 +256,7 @@ public class AsciiDocGenerator {
         List<EnumValue> values = type.getValues();
         if (!values.isEmpty()) {
             docBuffer.addLine(".Values summary");
-            docBuffer.addLine("[cols=\"20,89\"]");
+            docBuffer.addLine("[cols=\"20,80\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Summary");
             docBuffer.addLine();
