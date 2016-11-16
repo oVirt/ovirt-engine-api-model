@@ -49,17 +49,22 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
     /**
      * Indicates whether the provider is read-only.
      *
-     * A read-only provider does not allow adding, modifying or deleting of networks or subnets. Port-related operations
-     * are allowed, as they are required for the provisioning of virtual NICs.
+     * A read-only provider does not allow adding, modifying, or deleting of networks or subnets. Port-related
+     * operations are allowed, as they are required for the provisioning of virtual NICs.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     Boolean readOnly();
 
     /**
      * The type of provider.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     OpenStackNetworkProviderType type();
 
