@@ -42,8 +42,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 16 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface NumaNode extends Identified {
@@ -53,8 +54,9 @@ public interface NumaNode extends Identified {
      * Memory of the NUMA node in MB.
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     Integer memory();
     Cpu cpu();
