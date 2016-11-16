@@ -19,14 +19,33 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 /**
- * Enum representing boolean value that can be either set or inherited from higher level.
- * Usual inheritance order is VM -> Cluster -> engine-config.
+ * Enum representing the boolean value that can be either set, or inherited from a higher level.
+ * The inheritance order is virtual machine -> cluster -> engine-config.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 17 Nov 2016
+ * @status updated_by_docs
  */
 public enum InheritableBoolean {
-    /** Set value to true on this level. */
+    /** Set the value to true on this level.
+    *
+    * @author Byron Gravenorst <bgraveno@redhat.com>
+    * @date 17 Nov 2016
+    * @status updated_by_docs
+    */
     TRUE,
-    /** Set value to false on this level. */
+    /** Set the value to false on this level.
+    *
+    * @author Byron Gravenorst <bgraveno@redhat.com>
+    * @date 17 Nov 2016
+    * @status updated_by_docs
+    */
     FALSE,
-    /** Inherit value from higher level. */
+    /** Inherit the value from higher level.
+    *
+    * @author Byron Gravenorst <bgraveno@redhat.com>
+    * @date 17 Nov 2016
+    * @status updated_by_docs
+    */
     INHERIT;
 }
