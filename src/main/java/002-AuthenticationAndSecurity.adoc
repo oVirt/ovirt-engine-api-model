@@ -6,41 +6,95 @@ The {product-name} API requires Hypertext Transfer Protocol Secure
 (HTTPS) footnote:[HTTPS is described in
 http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS.]] for secure
 interaction with client software, such as the SDK and CLI components.
-This involves a process of obtaining a certificate from the
-{engine-name} and importing it into the certificate store of your
-client.
+This involves a process of obtaining the certificate of the
+https://en.wikipedia.org/wiki/Certificate_authority[CA] used by the
+server, and importing it into the certificate store of your client.
 
-IMPORTANT: Obtain your certificate from the {engine-name} using a secure
-network connection.
+==== Obtaining the CA certificate
 
-==== Obtaining a certificate
+You can obtain the CA certificate from the {engine-name} and transfer it
+to the client machine using one of these methods:
 
-You can obtain a certificate from the {engine-name} and transfer it to
-the client machine using one of three methods:
-
-. *Method 1* - Use a command line tool to download the certificate from the
-engine. Examples of command line tools include `curl` and `wget`, both of
-which are available on multiple platforms.
+Method 1:: The preferred method to obtain the CA certificate used by the
+{product-name} server is to use the `openssl s_client` command line tool
+to perform a real TLS handshake with the server, and then extract the
+certificates that it presents. Run a command like this:
 +
-.. If using `curl`:
+....
+$ openssl s_client \
+-connect myengine.example.com:443 \
+-showcerts \
+< /dev/null
+....
++
+That will connect to the server and will display an output similar to
+this:
++
+....
+CONNECTED(00000003)
+depth=1 C = US, O = Example Inc., CN = myengine.example.com.23416
+verify error:num=19:self signed certificate in certificate chain
+---
+Certificate chain
+ 0 s:/C=US/O=Example Inc./CN=myengine.example.com
+   i:/C=US/O=Example Inc./CN=myengine.example.com.23416
+-----BEGIN CERTIFICATE-----
+MIIEaTCCA1GgAwIBAgICEAQwDQYJKoZIhvcNAQEFBQAwSTELMAkGA1UEBhMCVVMx
+FTATBgNVBAoTDEV4YW1wbGUgSW5jLjEjMCEGA1UEAxMaZW5naW5lNDEuZXhhbXBs
+SVlJe7e5FTEtHJGTAeWWM6dGbsFhip5VXM0gfqg=
+-----END CERTIFICATE-----
+ 1 s:/C=US/O=Example Inc./CN=myengine.example.com.23416
+   i:/C=US/O=Example Inc./CN=myengine.example.com.23416
+-----BEGIN CERTIFICATE-----
+MIIDxjCCAq6gAwIBAgICEAAwDQYJKoZIhvcNAQEFBQAwSTELMAkGA1UEBhMCVVMx
+FTATBgNVBAoTDEV4YW1wbGUgSW5jLjEjMCEGA1UEAxMaZW5naW5lNDEuZXhhbXBs
+Pkyg1rQHR6ebGQ==
+-----END CERTIFICATE-----
+....
++
+The text between the `-----BEGIN CERTIFICATE-----` and `-----END
+CERTIFICATE-----` marks are the certificates presented by the server.
+The first one is the certificate of the server itself, and the last one
+is the certificate of the CA. Copy that CA certificate, including the
+marks, to the `ca.crt` file. The result should look like this:
++
+....
+-----BEGIN CERTIFICATE-----
+MIIDxjCCAq6gAwIBAgICEAAwDQYJKoZIhvcNAQEFBQAwSTELMAkGA1UEBhMCVVMx
+FTATBgNVBAoTDEV4YW1wbGUgSW5jLjEjMCEGA1UEAxMaZW5naW5lNDEuZXhhbXBs
+Pkyg1rQHR6ebGQ==
+-----END CERTIFICATE-----
+....
++
+IMPORTANT: This is most reliable method to obtain the CA certificate
+actually used by the server. The rest of the methods described here will
+work in most cases, but they won't obtain the correct CA certificate if
+it has been manually replaced by the administrator of the server.
+
+Method 2:: If you can't use the `openssl s_client` method described
+above, you can instead use a command line tool to download the CA
+certificate from the engine.
++
+Examples of command line tools include `curl` and `wget`, both of which
+are available on multiple platforms.
++
+If using `curl`:
 +
 ....
 $ curl \
---insecure \
 --output ca.crt \
-'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
+'http://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
 ....
 +
-.. If using `wget`:
+If using `wget`:
 +
 ....
 $ wget \
---no-check-certificate \
 --output-document ca.crt \
-'https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
+'http://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
 ....
 
-. *Method 2* - Use a web browser to navigate to the certificate located
+Method 3:: Use a web browser to navigate to the certificate located
 at:
 +
 ....
@@ -50,18 +104,18 @@ https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-cert
 Depending on the chosen browser, the certificate either downloads or
 imports into the browser's keystore.
 +
-.. *If the browser downloads the certificate*: save the file as
+. *If the browser downloads the certificate*: save the file as
 `ca.crt`.
 +
-.. *If the browser imports the certificate*: export it from the
+. *If the browser imports the certificate*: export it from the
 browser's certification options and save it as `ca.crt`.
 
-. *Method 3* - Log in to the engine, export the certificate from the
+Method 4:: Log in to the engine, export the certificate from the
 truststore and copy it to your client machine.
 +
-.. Log in to the engine machine as the `root` user.
+. Log in to the engine machine as the `root` user.
 +
-.. Export the certificate from the truststore using the Java
+. Export the certificate from the truststore using the Java
 `keytool` management utility:
 +
 ....
@@ -76,7 +130,7 @@ truststore and copy it to your client machine.
 +
 This creates a certificate file called `ca.crt`.
 +
-.. Copy the certificate to the client machine using the `scp`
+. Copy the certificate to the client machine using the `scp`
 command:
 +
 ....
@@ -85,7 +139,7 @@ $ scp ca.crt myuser@myclient.example.com:/home/myuser/.
 
 Each of these methods results in a certificate file named `ca.crt` on
 your client machine. An API user imports this file into the certificate
-store of the client.  ⁠
+store of the client.
 
 ==== Importing a certificate to a client
 
