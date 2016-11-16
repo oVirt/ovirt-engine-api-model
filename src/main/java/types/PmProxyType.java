@@ -21,29 +21,32 @@ import org.ovirt.api.metamodel.annotations.Type;
 public enum PmProxyType {
 
     /**
-     * Fence proxy is selected from the same cluster as fenced host.
+     * The fence proxy is selected from the same cluster as the fenced host.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     CLUSTER,
 
     /**
-     * Fence proxy is selected from the same data center as fenced host.
+     * The fence proxy is selected from the same data center as the fenced host.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     DC,
 
     /**
-     * Fence proxy is selected from a different data center than fenced host.
+     * The fence proxy is selected from a different data center than the fenced host.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 16 Nov 2016
+     * @status updated_by_docs
      */
     OTHER_DC;
 }
