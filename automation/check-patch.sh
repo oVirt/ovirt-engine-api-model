@@ -50,7 +50,7 @@ ${mvn} install -DskipTests
 ${mvn} findbugs:findbugs
 
 # Generate the documentation:
-${mvn} validate -Pdocument
+${mvn} validate -Pdocument -Dadoc.linkcss=true
 for format in adoc html csv
 do
   mv target/generated-${format}/* "${artifacts}"

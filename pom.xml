@@ -63,6 +63,10 @@
          generated AsciiDoc: -->
     <adoc.separator>/</adoc.separator>
 
+    <!-- Flag indicating if the CSS of the generated HTML documentation
+         should be linked or embedded: -->
+    <adoc.linkcss>false</adoc.linkcss>
+
     <!-- Do not generate Javadoc, as we explicitly generate a documentation
          artifact containing the AsciiDoc and HTML generated from the
          model: -->
@@ -236,7 +240,7 @@
                    <attributes>
                      <product-name>${product.name}</product-name>
                      <engine-name>${engine.name}</engine-name>
-                     <linkcss />
+                     <linkcss>${adoc.linkcss}</linkcss>
                      <toc>right</toc>
                      <sectnums>true</sectnums>
                      <sectlinks>true</sectlinks>
