@@ -18,18 +18,30 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The enum defines valid values for the IP protocol version.
+ * Defines the values for the IP protocol version.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 17 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public enum IpVersion {
 
     /**
      * IPv4.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 17 Nov 2016
+     * @status updated_by_docs
      */
     V4,
 
     /**
      * IPv6.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 17 Nov 2016
+     * @status updated_by_docs
      */
     V6;
 }
