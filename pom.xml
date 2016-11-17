@@ -6,7 +6,7 @@
 
   <groupId>org.ovirt.engine.api</groupId>
   <artifactId>model</artifactId>
-  <version>4.0.38-SNAPSHOT</version>
+  <version>4.0.38</version>
 
   <name>oVirt API Model</name>
 
@@ -42,7 +42,7 @@
     <connection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</connection>
     <developerConnection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-model.git</developerConnection>
     <url>git://gerrit.ovirt.org/ovirt-engine-api-model.git</url>
-    <tag>HEAD</tag>
+    <tag>4.0.38</tag>
   </scm>
 
   <properties>
@@ -302,12 +302,12 @@
                 </goals>
                 <configuration>
                   <target>
-                    <property name="docjar" value="${project.basedir}/target/doc.jar"/>
+                    <property name="docjar" value="${project.basedir}/target/doc.jar" />
                     <zip destfile="${docjar}">
-                      <fileset dir="${project.basedir}/target/generated-adoc"/>
-                      <fileset dir="${project.basedir}/target/generated-html"/>
+                      <fileset dir="${project.basedir}/target/generated-adoc" />
+                      <fileset dir="${project.basedir}/target/generated-html" />
                     </zip>
-                    <attachartifact file="${docjar}" classifier="javadoc" type="jar"/>
+                    <attachartifact file="${docjar}" classifier="javadoc" type="jar" />
                   </target>
                 </configuration>
               </execution>
