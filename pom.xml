@@ -119,13 +119,13 @@
 
     <plugins>
 
-      <!-- Generate the AsciiDoc documentation: -->
+      <!-- Generate the documentation: -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>generate-adoc</id>
+            <id>generate-doc</id>
             <phase>validate</phase>
             <goals>
               <goal>java</goal>
@@ -135,8 +135,13 @@
               <arguments>
                 <argument>org.ovirt.api.metamodel.tool.Tool</argument>
                 <argument>--model=${project.basedir}/src/main/java</argument>
-                <argument>--docs=${project.basedir}/target/generated-adoc</argument>
                 <argument>--adoc-separator=${adoc.separator}</argument>
+                <argument>--adoc-attribute=product-name:${product.name}</argument>
+                <argument>--adoc-attribute=engine-name:${engine.name}</argument>
+                <argument>--adoc-separator=${adoc.separator}</argument>
+                <argument>--docs=${project.basedir}/target/generated-adoc</argument>
+                <argument>--json-description=${project.basedir}/target/generated-json/model.json</argument>
+                <argument>--xml-description=${project.basedir}/target/generated-xml/model.xml</argument>
                 <argument>--report=${project.basedir}/target/generated-csv/model.csv</argument>
               </arguments>
               <includePluginDependencies>true</includePluginDependencies>
@@ -207,50 +212,6 @@
       </build>
     </profile>
 
-    <!-- This profile is used to generate the JSON and XML descriptions
-         of the model: -->
-    <profile>
-      <id>describe</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>describe</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-                <configuration>
-                  <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
-                  <arguments>
-                    <argument>org.ovirt.api.metamodel.tool.Tool</argument>
-                    <argument>--model=${project.basedir}/src/main/java</argument>
-                    <argument>--adoc-separator=${adoc.separator}</argument>
-                    <argument>--adoc-attribute=product-name:${product.name}</argument>
-                    <argument>--adoc-attribute=engine-name:${engine.name}</argument>
-                    <argument>--json-description=${project.basedir}/target/model.json</argument>
-                    <argument>--xml-description=${project.basedir}/target/model.xml</argument>
-                  </arguments>
-                  <includePluginDependencies>true</includePluginDependencies>
-                  <includeProjectDependencies>false</includeProjectDependencies>
-                </configuration>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.ovirt.engine.api</groupId>
-                <artifactId>metamodel-tool</artifactId>
-                <version>${metamodel.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <!-- This profile is used to generate the HTML documentation: -->
     <profile>
       <id>document</id>
@@ -306,6 +267,8 @@
                     <zip destfile="${docjar}">
                       <fileset dir="${project.basedir}/target/generated-adoc" />
                       <fileset dir="${project.basedir}/target/generated-html" />
+                      <fileset dir="${project.basedir}/target/generated-json" />
+                      <fileset dir="${project.basedir}/target/generated-xml" />
                     </zip>
                     <attachartifact file="${docjar}" classifier="javadoc" type="jar" />
                   </target>
