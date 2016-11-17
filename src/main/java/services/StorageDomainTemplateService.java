@@ -53,6 +53,20 @@ public interface StorageDomainTemplateService {
         @In Template template();
 
         /**
+         * Indicates whether a template is allowed to be registered with only some of its disks.
+         *
+         * If this flag is `true`, the engine will not fail in the validation process if an image is not found, but
+         * instead it will allow the template to be registered without the missing disks. This is mainly used during
+         * registration of a template when some of the storage domains are not available. The default value is `false`.
+         *
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @date 17 Nov 2016
+         * @status added
+         * @since 4.1
+         */
+        @In Boolean allowPartialImport();
+
+        /**
          * Indicates if the registration should be performed asynchronously.
          */
         @In Boolean async();
