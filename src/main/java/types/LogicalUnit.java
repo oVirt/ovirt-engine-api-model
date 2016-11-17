@@ -42,27 +42,30 @@ public interface LogicalUnit {
      * The maximum number of bytes that can be discarded by the logical unit's
      * underlying storage in a single operation.
      * A value of 0 means that the device does not support discard functionality.
-     * Note that this is the software limit, and not the hardware limit, as noted in the
+     *
+     * NOTE: This is the software limit, and not the hardware limit, as noted in the
      * https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[documentation] of
      * `queue-sysfs` for `discard_max_bytes`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 18 September 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 17 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Integer discardMaxSize();
 
     /**
-     * True if and only if previously discarded blocks in the logical
-     * unit's underlying storage are read back as zeros from it.
+     * True, if previously discarded blocks in the logical
+     * unit's underlying storage are read back as zeros.
      * For more information please see the
      * https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[documentation]
      * of `queue-sysfs` for `discard_zeroes_data`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 18 September 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 17 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean discardZeroesData();
