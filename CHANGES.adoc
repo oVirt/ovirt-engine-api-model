@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.20 / Nov 17 2016
+
+New features:
+
+* Deprecate the `legacy` USB type.
+
+* Add `remoteviewerconnectionfile` action to the `GraphicsConsole`
+  service.
+
+* Add `max` attribute to the `MemoryPolicy` type.
+
 == 4.1.19 / Nov 10 2016
 
 Bug fixes:
