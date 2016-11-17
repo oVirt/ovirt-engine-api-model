@@ -149,6 +149,24 @@ public interface TemplateService {
         @In Boolean async();
     }
 
+    /**
+     * Seal the template.
+     *
+     * Sealing erases all host-specific configuration from the filesystem:
+     * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
+     * thus making easy to use the template to create multiple virtual
+     * machines without manual intervention.
+     *
+     * Currently sealing is supported only for Linux OS.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 17 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    interface Seal {
+    }
+
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
     @Service TemplateGraphicsConsolesService graphicsConsoles();
