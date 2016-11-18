@@ -18,7 +18,11 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This enum holds the types of all internal policy units types
+ * Holds the types of all internal policy unit types.
+ *
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 18 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public enum PolicyUnitType {
