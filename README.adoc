@@ -173,6 +173,20 @@ clone the `ovirt-engine-api-model` source:
 $ git clone gerrit.ovirt.org:ovirt-engine-api-model
 ----
 
+=== Creating a working brach for your changes
+
+Create a working branch off `master` in which to make your changes.
+
+[source]
+----
+$ git checkout master
+$ git checkout -b my_working_branch
+----
+
+Working branches allow you to keep your changes separate from the `master`
+branch while they are being reviewed, and work on multiple unrelated
+patches at the same time.
+
 === Locating the source file that you want to modify
 
 The model source files are all inside the `src/main/java` directory, so
@@ -200,7 +214,10 @@ tags, which are used to track updates to the documentation:
 . `@author` - The name and email of the person writing or updating
 the documentation item.
 For example: _@author Juan Hernández <juan.hernandez@redhat.com>_
-
++
+NOTE: Do not overwrite any existing value in this field. Add an additional
+`@author` field with your own name on the line below.
++
 . `@date` - The date on which the documentation was added or updated.
 For example: _@date 06 Jul 2016_
 
