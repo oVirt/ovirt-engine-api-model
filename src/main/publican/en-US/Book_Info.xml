@@ -37,9 +37,8 @@ limitations under the License.
   <productnumber>4.0</productnumber>
 
   <abstract>
-    <para>
-      This guide describes the oVirt engine application programming interface.
-    </para>
+    <para>This guide describes the oVirt Engine Representational State Transfer Application Programming Interface.</para>
+   <para>This guide is generated from documentation comments in the <literal>ovirt-engine-api-model</literal> code, and is currently partially complete. Updated versions of this documentation will be published as new content becomes available. To contribute documentation to the <literal>ovirt-engine-api-model</literal> project, see <ulink url="https://github.com/oVirt/ovirt-engine-api-model">oVirt Engine API Model</ulink>.</para>
   </abstract>
 
   <orgname>
