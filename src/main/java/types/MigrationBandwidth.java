@@ -20,17 +20,29 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Defines the bandwidth used by migration.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 21 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface MigrationBandwidth {
 
     /**
-     * The way how the bandwidth is assigned.
+     * The method used to assign the bandwidth.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     MigrationBandwidthAssignmentMethod assignmentMethod();
 
     /**
-     * Custom bandwidth in Mbit/s. Will be applied only if the `assignmentMethod` attribute is `custom`.
+     * Custom bandwidth in Mbps. Will be applied only if the `assignmentMethod` attribute is `custom`.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     Integer customValue();
 }
