@@ -34,4 +34,14 @@ public interface Step extends Identified {
     @Link Step parentStep();
     @Link Job job();
     @Link Statistic[] statistics();
+
+    /**
+     * The step progress (if reported) in percentages.
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 21 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    Integer progress();
 }
