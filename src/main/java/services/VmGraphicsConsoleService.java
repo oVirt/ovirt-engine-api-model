@@ -70,6 +70,46 @@ public interface VmGraphicsConsoleService {
     }
 
     /**
+     * Generates a time-sensitive authentication token for accessing this virtual machine's console.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
+     * ----
+     *
+     * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
+     *
+     * In any case, the response specifies the actual ticket value and expiry used.
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <ticket>
+     *     <value>abcd12345</value>
+     *     <expiry>120</expiry>
+     *   </ticket>
+     * </action>
+     * ----
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 21 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    interface Ticket {
+
+        /**
+         * The generated ticket that can be used to access this console.
+         *
+         * @author Martin Betak <mbetak@redhat.com>
+         * @date 21 Nov 2016
+         * @status added
+         * @since 4.1
+         */
+        @In @Out types.Ticket ticket();
+    }
+
+    /**
      * Generates the file which is compatible with `remote-viewer` client.
      *
      * Use the following request to generate remote viewer connection file of the graphics console.

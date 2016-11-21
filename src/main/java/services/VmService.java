@@ -697,6 +697,25 @@ public interface VmService extends MeasurableService {
      * </action>
      * ----
      *
+     * [IMPORTANT]
+     * ====
+     * If the virtual machine is configured to support only one graphics protocol
+     * then the generated authentication token will be valid for that protocol.
+     * But if the virtual machine is configured to support multiple protocols,
+     * VNC and SPICE, then the authentication token will only be valid for
+     * the SPICE protocol.
+     *
+     * In order to obtain an authentication token for a specific protocol, for
+     * example for VNC, use the `ticket` method of the <<services/graphics_console,
+     * service>> that manages the graphics consoles of the virtual machine, sending
+     * a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
+     * ----
+     * ====
+     *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 14 Sep 2016
      * @status added
