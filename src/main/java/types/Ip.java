@@ -22,8 +22,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Represents the IP configuration of a network interface.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
- * @date 3 Oct 2016
- * @staus added
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 21 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface Ip {
@@ -51,8 +52,9 @@ public interface Ip {
      * ----
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 3 Oct 2016
-     * @staus added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     String address();
 
@@ -60,8 +62,9 @@ public interface Ip {
      * The network mask.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 3 Oct 2016
-     * @staus added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     String netmask();
 
@@ -69,24 +72,22 @@ public interface Ip {
      * The address of the default gateway.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 3 Oct 2016
-     * @staus added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     String gateway();
 
     /**
      * The version of the IP protocol.
      *
-     * This attribute is optional, and when it isn't given the value will be inferred from the value of the `address`
-     * attribute. If that value is a valid IPv4 address, then it will be assumed that the value of this attribute is
-     * `v4`. If it is a valid IPv6 address, then it will be assumed that the value of this attribute is `v6`.
-     *
-     * NOTE: This inference of the IP version from the value of the `address` is implemented since version 4.1 of the
-     * engine, before that this attribute was mandatory.
+     * NOTE: From version 4.1 of the Manager this attribute will be optional, and when a value is not provided, it will
+     * be inferred from the value of the `address` attribute.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 3 Oct 2016
-     * @staus added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 21 Nov 2016
+     * @status updated_by_docs
      */
     IpVersion version();
 }
