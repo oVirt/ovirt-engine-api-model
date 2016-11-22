@@ -87,6 +87,21 @@ public interface Disk extends Device {
     DiskFormat format();
 
     /**
+     * The underlying QCOW version of a QCOW volume.
+     * The QCOW version specifies to the qemu which qemu version the volume supports.
+     * This field can be updated using the update API and will be reported only for QCOW volumes,
+     * it is determined by the storage domain's version which the disk is created on.
+     * Storage domains with version lower than V4 support QCOW2 volumes, while V4 storage domains also support QCOW2v3.
+     * For more information about features of the different QCOW versions, see http://wiki.qemu.org/Features/Qcow3[here].
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 21 Nov 2016
+     * @status added
+     * @since 4.1
+     */
+    QcowVersion qcowVersion();
+
+    /**
      * Indicates if the physical storage for the disk should not be preallocated.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
