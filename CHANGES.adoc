@@ -3,6 +3,20 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.21 / Nov 23 2016
+
+New features:
+
+* Add `seal` operation to the service that manages templates.
+
+* Add `progress` attribute to the `Disk` and `Step` types.
+
+* Add `allow_partial_import` parameter to the operations that import
+  virtual machines and templates.
+
+* Add `ticket` operation to the service that manages the graphics
+  console of a virtual machine.
+
 == 4.1.20 / Nov 17 2016
 
 New features:
