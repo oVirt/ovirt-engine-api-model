@@ -72,16 +72,9 @@ mv "${tarball}" "${artifacts}"
 # Build the artifacts:
 ${mvn} package -DskipTests
 
-# Generate the JSON and XML descriptions of the model:
-${mvn} validate -Pdescribe
-for format in json xml
-do
-  mv target/model.${format} "${artifacts}"
-done
-
 # Generate the documentation:
-${mvn} validate -Pdocument -Dadoc.linkdss=true
-for format in adoc html csv
+${mvn} validate -Pdocument -Dadoc.linkcss=true
+for format in adoc csv html json xml
 do
   mv target/generated-${format}/* "${artifacts}"
 done

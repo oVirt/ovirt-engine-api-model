@@ -51,7 +51,7 @@ ${mvn} findbugs:findbugs
 
 # Generate the documentation:
 ${mvn} validate -Pdocument -Dadoc.linkcss=true
-for format in adoc html csv
+for format in adoc csv html json xml
 do
   mv target/generated-${format}/* "${artifacts}"
 done
