@@ -38,8 +38,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 28 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface Quota extends Identified {
