@@ -112,6 +112,10 @@ public interface Template extends VmBase {
 
     /**
      * References to the disks attached to the template.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Dec 2016
+     * @status updated_by_docs
      */
     @Link DiskAttachment[] diskAttachments();
 }
