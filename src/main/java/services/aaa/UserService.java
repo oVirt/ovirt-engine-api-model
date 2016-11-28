@@ -25,6 +25,16 @@ import services.AssignedRolesService;
 import services.AssignedTagsService;
 import types.User;
 
+/**
+ * A service to manage a user in the system.
+ * Use this service to either get users details or remove users.
+ * In order to add new users please use
+ * <<services/users>>.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 28 Nov 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface UserService {
