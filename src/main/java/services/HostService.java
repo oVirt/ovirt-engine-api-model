@@ -395,6 +395,13 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Refresh the host devices and capabilities.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     interface Refresh {
         /**
          * Indicates if the refresh should be performed asynchronously.
@@ -587,10 +594,54 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to the host permission service.
+     * Use this service to manage permissions on the host object.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
+
+    /**
+     * Reference to the host tags service.
+     * Use this service to manage tags on the host object.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service AssignedTagsService tags();
+
+    /**
+     * Reference to the fence agents service.
+     * Use this service to manage fence and power management agents on the host object.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service FenceAgentsService fenceAgents();
+
+    /**
+     * Reference to the host devices service.
+     * Use this service to view the devices of the host object.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service HostDevicesService devices();
+
+    /**
+     * Reference to the host hooks service.
+     * Use this service to view the hooks available in the host object.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service HostHooksService hooks();
 
     /**
@@ -603,7 +654,25 @@ public interface HostService extends MeasurableService {
     @Service HostNicsService nics();
     @Service HostNumaNodesService numaNodes();
     @Service HostStorageService storage();
+
+    /**
+     * Reference to the service that can show the applicable errata available on the host.
+     * This information is taken from Katello.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service KatelloErrataService katelloErrata();
+
+    /**
+     * Reference to the network attachments service. You can use this service to attach
+     * Logical networks to host interfaces.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     @Service NetworkAttachmentsService networkAttachments();
     @Service StorageServerConnectionExtensionsService storageConnectionExtensions();
     @Service UnmanagedNetworksService unmanagedNetworks();
