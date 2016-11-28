@@ -18,17 +18,29 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Enumerated type describing all switch types currently supported by engine.
+ * Describes all switch types supported by the Manager.
+ *
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 28 Dec 2016
+ * @status updated_by_docs
  */
 @Type
 public enum SwitchType {
     /**
-     * Type representing native switch.
+     * The native switch type.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Nov 2016
+     * @status updated_by_docs
      */
     LEGACY,
 
     /**
-     * Type representing Open vSwitch.
+     * The Open vSwitch type.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 28 Nov 2016
+     * @status updated_by_docs
      */
     OVS,
 }
