@@ -317,8 +317,30 @@ public interface HostService extends MeasurableService {
         @In Boolean undeployHostedEngine();
     }
 
+    /**
+     * Discover iSCSI targets on the host, using the initiator details.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     interface IscsiDiscover {
+        /**
+         * The target iSCSI device.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 28 Nov 2016
+         * @status added
+         */
         @In IscsiDetails iscsi();
+
+        /**
+         * The iSCSI targets.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 28 Nov 2016
+         * @status added
+         */
         @Out String[] iscsiTargets();
 
         /**
@@ -327,7 +349,21 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Login to iSCSI targets on the host, using the target details.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 28 Nov 2016
+     * @status added
+     */
     interface IscsiLogin {
+        /**
+         * The target iSCSI device.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 28 Nov 2016
+         * @status added
+         */
         @In IscsiDetails iscsi();
 
         /**
