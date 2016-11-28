@@ -42,16 +42,12 @@ mvn="mvn -s ${settings} -Dmaven.repo.local=${repository}"
 # it is required by the code generator:
 export JAVA_HOME="/usr/lib/jvm/java-1.8.0"
 
-# Run the unit tests:
-${mvn} test
-
-# Run findbugs:
-${mvn} install -DskipTests
-${mvn} findbugs:findbugs
-
-# Generate the documentation:
-${mvn} validate -Pdocument -Dadoc.linkcss=true
+# Build the artifacts:
+${mvn} install -Dadoc.linkcss=true
 for format in adoc csv html json xml
 do
   mv target/generated-${format}/* "${artifacts}"
 done
+
+# Run findbugs:
+${mvn} findbugs:findbugs
