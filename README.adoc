@@ -321,7 +321,7 @@ online and you will just need to run one simple command:
 
 [source]
 ----
-$ mvn validate -Pdocument
+$ mvn package
 ----
 
 This will analyze the model and create the `model.html` inside the
@@ -430,8 +430,7 @@ https://www.redhat.com/en/technologies/virtualization[_RHV_] product:
 [source]
 ----
 $ mvn \
-validate \
--Pdocument \
+package \
 -Dadoc.separator='-' \
 -Dproduct.name='Red Hat Virtualization' \
 -Dengine.name='Red Hat Virtualization Manager'

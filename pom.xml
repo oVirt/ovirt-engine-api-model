@@ -123,14 +123,14 @@
 
     <plugins>
 
-      <!-- Generate the documentation: -->
+      <!-- Generate the AsciiDoc documentation: -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
           <execution>
             <id>generate-doc</id>
-            <phase>validate</phase>
+            <phase>generate-sources</phase>
             <goals>
               <goal>java</goal>
             </goals>
@@ -160,6 +160,65 @@
             <version>${metamodel.version}</version>
           </dependency>
         </dependencies>
+      </plugin>
+
+      <!-- Generate the HTML documentation: -->
+      <plugin>
+         <groupId>org.asciidoctor</groupId>
+         <artifactId>asciidoctor-maven-plugin</artifactId>
+         <executions>
+           <execution>
+             <id>generate-html</id>
+             <phase>compile</phase>
+             <goals>
+               <goal>process-asciidoc</goal>
+             </goals>
+             <configuration>
+               <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
+               <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
+               <backend>html5</backend>
+               <attributes>
+                 <product-name>${product.name}</product-name>
+                 <engine-name>${engine.name}</engine-name>
+                 <linkcss>${adoc.linkcss}</linkcss>
+                 <toc>right</toc>
+                 <sectnums>true</sectnums>
+                 <sectlinks>true</sectlinks>
+                 <sectanchors>true</sectanchors>
+                 <source-highlighter>highlightjs</source-highlighter>
+               </attributes>
+             </configuration>
+           </execution>
+         </executions>
+      </plugin>
+
+      <!-- Generate a .jar file containing the generared AsciiDoc
+           and HTML documentation, and attach it as the Javadoc
+           artifact: -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-docjar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <property name="docjar" value="${project.basedir}/target/doc.jar" />
+                <zip destfile="${docjar}">
+                  <fileset dir="${project.basedir}/target/generated-adoc" />
+                  <fileset dir="${project.basedir}/target/generated-html" />
+                  <fileset dir="${project.basedir}/target/generated-json" />
+                  <fileset dir="${project.basedir}/target/generated-xml" />
+                </zip>
+                <attachartifact file="${docjar}" classifier="javadoc" type="jar" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -216,75 +275,6 @@
       </build>
     </profile>
 
-    <!-- This profile is used to generate the HTML documentation: -->
-    <profile>
-      <id>document</id>
-      <build>
-        <plugins>
-
-          <!-- Generate the HTML documentation: -->
-          <plugin>
-             <groupId>org.asciidoctor</groupId>
-             <artifactId>asciidoctor-maven-plugin</artifactId>
-             <executions>
-               <execution>
-                 <id>generate-html</id>
-                 <phase>validate</phase>
-                 <goals>
-                   <goal>process-asciidoc</goal>
-                 </goals>
-                 <configuration>
-                   <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
-                   <outputDirectory>${project.basedir}/target/generated-html</outputDirectory>
-                   <backend>html5</backend>
-                   <attributes>
-                     <product-name>${product.name}</product-name>
-                     <engine-name>${engine.name}</engine-name>
-                     <linkcss>${adoc.linkcss}</linkcss>
-                     <toc>right</toc>
-                     <sectnums>true</sectnums>
-                     <sectlinks>true</sectlinks>
-                     <sectanchors>true</sectanchors>
-                     <source-highlighter>highlightjs</source-highlighter>
-                   </attributes>
-                 </configuration>
-               </execution>
-             </executions>
-          </plugin>
-
-          <!-- Generate a .jar file containing the generared AsciiDoc
-               and HTML documentation, and attach it as the Javadoc
-               artifact: -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-docjar</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <property name="docjar" value="${project.basedir}/target/doc.jar" />
-                    <zip destfile="${docjar}">
-                      <fileset dir="${project.basedir}/target/generated-adoc" />
-                      <fileset dir="${project.basedir}/target/generated-html" />
-                      <fileset dir="${project.basedir}/target/generated-json" />
-                      <fileset dir="${project.basedir}/target/generated-xml" />
-                    </zip>
-                    <attachartifact file="${docjar}" classifier="javadoc" type="jar" />
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-        </plugins>
-      </build>
-    </profile>
-
     <!-- This profile is used to generate the DocBook documentation: -->
     <profile>
       <id>publican</id>
@@ -305,7 +295,7 @@
             <executions>
               <execution>
                 <id>generate-docbook</id>
-                <phase>validate</phase>
+                <phase>compile</phase>
                 <goals>
                   <goal>process-asciidoc</goal>
                 </goals>
@@ -326,8 +316,8 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>prepare-publican</id>
-                <phase>validate</phase>
+                <id>run-publican</id>
+                <phase>compile</phase>
                 <goals>
                   <goal>run</goal>
                 </goals>
@@ -372,7 +362,7 @@
              <executions>
                <execution>
                  <id>generate-pdf</id>
-                 <phase>validate</phase>
+                 <phase>compile</phase>
                  <goals>
                    <goal>process-asciidoc</goal>
                  </goals>
