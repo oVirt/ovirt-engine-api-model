@@ -30,6 +30,19 @@ public interface StorageDomain extends Identified {
     Integer used();
     Integer committed();
     StorageFormat storageFormat();
+
+    /**
+     * Serves as the default value of `wipe_after_delete` for <<types/disk, disk>>s on this
+     * <<types/storage_domain, storage domain>>.
+     *
+     * That is, newly created disks will get their `wipe_after_delete` value from their storage domains by default.
+     * Note that the configuration value `SANWipeAfterDelete` serves as the default value of block storage domains'
+     * `wipe_after_delete` value.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 29 November 2016
+     * @status added
+     */
     Boolean wipeAfterDelete();
     Boolean _import(); // TODO: Should be an action parameter.
     Integer warningLowSpaceIndicator();
