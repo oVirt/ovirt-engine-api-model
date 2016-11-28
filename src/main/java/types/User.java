@@ -19,6 +19,13 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a user in the system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 28 Nov 2016
+ * @status added
+ */
 @Type
 public interface User extends Identified {
 
@@ -27,7 +34,7 @@ public interface User extends Identified {
     Boolean loggedIn();
 
     /**
-     * Name space where user resides. When using the authorization provider that stores users in the LDAP
+     * Namespace where user resides. When using the authorization provider that stores users in the LDAP
      * (see https://github.com/oVirt/ovirt-engine-extension-aaa-ldap[here] for details) this attribute equals to naming
      * context of the LDAP. When using the built-in authorization provider that stores users in the database
      * (see https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc[here] for details) this attribute is ignored.
