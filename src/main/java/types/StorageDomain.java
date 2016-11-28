@@ -46,6 +46,31 @@ public interface StorageDomain extends Identified {
     Boolean wipeAfterDelete();
 
     /**
+     * Indicates whether <<types/disk, disk>>s' blocks on block <<types/storage_domain, storage domain>>s will be
+     * discarded right before they are deleted.
+     *
+     * If true, and a disk on this storage domain has its `wipe_after_delete` value enabled, then when the disk is
+     * deleted:
+     *
+     * . It is first wiped.
+     * . Then its blocks are discarded.
+     * . Finally it is deleted.
+     *
+     * Note that:
+     *
+     * * Discard after delete will always be `false` for non block storage types.
+     *
+     * * Discard after delete can be set to `true` only if the storage domain
+     * <<types/storage_domain/attributes/supports_discard, supports discard>>.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 29 November 2016
+     * @status added
+     * @since 4.1
+     */
+    Boolean discardAfterDelete();
+
+    /**
      * Indicates whether a block storage domain supports discard operations.
      * A <<types/storage_domain,storage domain>> supports discard if and only
      * if all of the <<types/logical_unit, logical unit>>s that it is built
