@@ -108,20 +108,20 @@ public interface StorageDomain extends Identified {
 
     /**
      * Indicates whether a block storage domain supports discard operations.
-     * A <<types/storage_domain,storage domain>> supports discard if and only
+     * A <<types/storage_domain,storage domain>> only supports discard
      * if all of the <<types/logical_unit, logical unit>>s that it is built
-     * from support discard, i.e each logical unit's `discard_max_size` value
-     * is bigger than 0.
-     * This is a necessary but not a sufficient condition for a virtual
-     * machine's disk that is a part of this storage domain to have its
-     * `pass_discard` attribute enabled.
+     * from support discard; that is, if each logical unit's `discard_max_size` value
+     * is greater than 0.
+     * This is one of the conditions necessary for a virtual disk in this
+     * storage domain to have its `pass_discard` attribute enabled.
      * Since the engine cannot check if the underlying block device supports
      * discard for file storage domains, this attribute will not be reported
      * for them at all.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 27 September 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean supportsDiscard();
@@ -129,20 +129,20 @@ public interface StorageDomain extends Identified {
     /**
      * Indicates whether a block storage domain supports the property that
      * discard zeroes the data.
-     * A <<types/storage_domain,storage domain>> supports the property that
-     * discard zeroes the data if and only if all of the
-     * <<types/logical_unit, logical unit>>s that it is built from support it,
-     * i.e each logical unit's `discard_zeroes_data` value is true.
-     * This is a necessary but not a sufficient condition for a virtual
-     * machine's disk that is a part of this storage domain to have both
-     * `wipe_after_delete` and `pass_discard` attributes enabled.
+     * A <<types/storage_domain,storage domain>> only supports the property that
+     * discard zeroes the data if all of the
+     * <<types/logical_unit, logical unit>>s that it is built from support it;
+     * that is, if each logical unit's `discard_zeroes_data` value is true.
+     * This is one of the conditions necessary for a virtual disk in this
+     * storage domain to have both `wipe_after_delete` and `pass_discard` attributes enabled.
      * Since the engine cannot check if the underlying block device supports
      * the property that discard zeroes the data for file storage domains,
      * this attribute will not be reported for them at all.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 27 September 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean supportsDiscardZeroesData();
@@ -153,18 +153,30 @@ public interface StorageDomain extends Identified {
 
     /**
      * Host is only relevant at creation time.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link Host host();
 
     /**
-     * This is used to link to the data center that the storage domain is attached to. It is preserved for backwards
-     * compatibility, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
+     * A link to the data center that the storage domain is attached to. This is preserved for backwards
+     * compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
      * the `dataCenters` element instead.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link DataCenter dataCenter();
 
     /**
-     * This is a set of links to the data centers that the storage domain is attached to.
+     * A set of links to the data centers that the storage domain is attached to.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link DataCenter[] dataCenters();
     @Link Disk[] disks();
