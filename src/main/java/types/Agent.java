@@ -19,18 +19,106 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a fence agent.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 29 Nov 2016
+ * @status added
+ */
 @Type
 public interface Agent extends Identified {
+    /**
+     * Fence agent type.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     String type();
+
+    /**
+     * Fence agent address.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     String address();
+
+    /**
+     * Fence agent user name.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     String username();
+
+    /**
+     * Fence agent password.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     String password();
+
+    /**
+     * Fence agent options (comma seperated list of
+     * key-value pairs).
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Option[] options();
+
+    /**
+     * Specifies whether the options should be encrypted.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Boolean encryptOptions();
+
+    /**
+     * Specifies whether the agent should be used concurrently
+     * or sequentially.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Boolean concurrent();
+
+    /**
+     * The order of this agent if used with other agents.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Integer order();
+
+    /**
+     * Fence agent port.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Integer port();
 
+    /**
+     * Reference to the host service.
+     * Each fence agent belongs to a single host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     @Link
     Host host();
 }
