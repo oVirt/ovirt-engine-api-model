@@ -18,10 +18,48 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a cluster fencing policy.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 29 Nov 2016
+ * @status added
+ */
 @Type
 public interface FencingPolicy {
+    /**
+     * Enable or disable fencing on this cluster.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     Boolean enabled();
+
+    /**
+     * If enabled, we will skip fencing in case the host
+     * maintains its lease in the storage. It means that
+     * if the host still has storage access then it won't
+     * get fenced.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     SkipIfSdActive skipIfSdActive();
+
+    /**
+     * If enabled, we will not fence a host
+     * in case more than a configurable percentage
+     * of hosts in the cluster lost connectivity as well.
+     * This comes to prevent fencing _storm_ in cases
+     * where there is a global networking issue in the
+     * cluster.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     SkipIfConnectivityBroken skipIfConnectivityBroken();
 
     /**
