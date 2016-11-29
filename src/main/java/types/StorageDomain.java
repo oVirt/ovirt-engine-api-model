@@ -86,18 +86,30 @@ public interface StorageDomain extends Identified {
 
     /**
      * Host is only relevant at creation time.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link Host host();
 
     /**
-     * This is used to link to the data center that the storage domain is attached to. It is preserved for backwards
-     * compatibility, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
+     * A link to the data center that the storage domain is attached to. This is preserved for backwards
+     * compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
      * the `dataCenters` element instead.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link DataCenter dataCenter();
 
     /**
-     * This is a set of links to the data centers that the storage domain is attached to.
+     * A set of links to the data centers that the storage domain is attached to.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link DataCenter[] dataCenters();
     @Link Disk[] disks();
