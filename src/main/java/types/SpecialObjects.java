@@ -20,17 +20,29 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This type contains references to special objects, like the blank template and the root of the hierarchy of tags.
+ * This type contains references to special objects, such as blank templates and the root of a hierarchy of tags.
+ *
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 29 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface SpecialObjects {
     /**
-     * Reference to the blank template.
+     * A reference to a blank template.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link Template blankTemplate();
 
     /**
-     * Reference to the root of the hierarchy of tags.
+     * A reference to the root of a hierarchy of tags.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link Tag rootTag();
 }
