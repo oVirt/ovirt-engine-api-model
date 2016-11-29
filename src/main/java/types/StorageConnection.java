@@ -22,7 +22,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Represents a storage server connection.
  *
- * Example:
+ * Example XML representation:
  *
  * [source,xml]
  * ----
@@ -34,8 +34,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Daniel Erez <derez@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 29 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface StorageConnection extends Identified {
