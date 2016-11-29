@@ -93,6 +93,39 @@ public interface Cluster extends Identified {
     Ksm ksm();
     SerialNumber serialNumber();
     RngSource[] requiredRngSources();
+
+    /**
+     * Custom fencing policy can be defined for a cluster.
+     *
+     * Here is an example:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/cluster/123
+     * ----
+     *
+     * With request body:
+     *
+     * [source,xml]
+     * ----
+     * <cluster>
+     *   <fencing_policy>
+     *     <enabled>true</enabled>
+     *     <skip_if_sd_active>
+     *       <enabled>false</enabled>
+     *     </skip_if_sd_active>
+     *     <skip_if_connectivity_broken>
+     *       <enabled>false</enabled>
+     *       <threshold>50</threshold>
+     *     </skip_if_connectivity_broken>
+     *   </fencing_policy>
+     * </cluster>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     FencingPolicy fencingPolicy();
     MigrationOptions migration();
 
