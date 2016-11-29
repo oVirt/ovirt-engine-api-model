@@ -20,64 +20,70 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Describes user session to a virtual machine.
+ * Describes a user session to a virtual machine.
  *
  * @author Jakub Niedermertl <jniederm@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 29 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface Session extends Identified {
     /**
-     * Protocol used by the session.
+     * The protocol used by the session.
      *
-     * Currently not used, intended for info about how is user connected: SPICE, VNC, SSH, RDP.
+     * Currently not used. Intended for info about how the user is connected: through SPICE, VNC, SSH, or RDP.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     String protocol();
 
     /**
-     * IP address user is connected from.
+     * The IP address the user is connected from.
      *
      * Currently only available for console users.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     Ip ip();
 
     /**
      * Indicates if this is a console session.
      *
-     * The value will be `true` for console users: SPICE or VNC, `false` for others: e.g. RDP, SSH.
+     * The value will be `true` for console users (SPICE or VNC), and `false` for others (such as RDP or SSH).
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     Boolean consoleUser();
 
     /**
-     * User related to this session.
+     * The user related to this session.
      *
-     * If user is a console user, it is a link to real oVirt user. Otherwise only username is provided.
+     * If the user is a console user, this is a link to the real {product-name} user. Otherwise, only the user name is provided.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link User user();
 
     /**
-     * Link to virtual machine related to this session.
+     * A link to the virtual machine related to this session.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     @Link Vm vm();
 }
