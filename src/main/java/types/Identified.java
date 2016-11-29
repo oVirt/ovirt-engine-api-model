@@ -23,6 +23,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface Identified {
+    /**
+     * A unique identifier.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 29 Nov 2016
+     * @status added
+     */
     String id();
 
     /**
