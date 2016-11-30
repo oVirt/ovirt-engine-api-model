@@ -148,6 +148,14 @@ public interface Host extends Identified {
     Integer maxSchedulingMemory();
     VmSummary summary();
     Boolean overrideIptables();
+
+    /**
+     * The protocol that the engine uses to communicate with the host.
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     */
     HostProtocol protocol();
     OperatingSystem os();
     Version libvirtVersion();
