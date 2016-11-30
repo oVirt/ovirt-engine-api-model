@@ -246,18 +246,4 @@ public interface Disk extends Device {
      * @status added
      */
     @Link Statistic[] statistics();
-
-    /**
-     * Indicates the accumulated progress (when supported) of the operations being performed on the disk in percentages.
-     *
-     * The server may assign a weight to running operations on a disk (on supported flows), representing its part in the
-     * disk overall progress. The accumulated disk progress is the summary of the progress of all those operations
-     * according to their disk weight.
-     *
-     * @author Liron Aravot <laravot@redhat.com>
-     * @date 21 Nov 2016
-     * @status added
-     * @since 4.1
-     */
-    Integer progress();
 }
