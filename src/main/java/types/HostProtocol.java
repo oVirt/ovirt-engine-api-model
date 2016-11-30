@@ -17,6 +17,17 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The protocol used by the engine to communicate with
+ * a host.
+ *
+ * WARNING: Since version 4.1 of the engine the protocol
+ * is always set to `stomp` since `xml` was removed.
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 30 Nov 2016
+ * @status added
+ */
 @Type
 public enum HostProtocol {
     XML,
