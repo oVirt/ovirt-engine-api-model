@@ -17,10 +17,54 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Enum representing a severity of an event.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 30 Nov 2016
+ * @status added
+ */
 @Type
 public enum LogSeverity {
+    /**
+     * Normal severity.
+     * Used for information events.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     */
     NORMAL,
+
+    /**
+     * Warning severify.
+     * Used to warn something might be wrong.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     */
     WARNING,
+
+    /**
+     * Error severity.
+     * Used to specify that there is an error that needs
+     * to be examined.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     */
     ERROR,
+
+    /**
+     * Alert severity.
+     * Used to specify a condition that requires
+     * an immediate attention.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 30 Nov 2016
+     * @status added
+     */
     ALERT;
 }
