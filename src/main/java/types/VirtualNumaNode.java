@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents virtual NUMA node.
+ * Represents the virtual NUMA node.
  *
  * An example XML representation:
  *
@@ -46,8 +46,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 30 Nov 2016
+ * @status updated_by_docs
  */
 @Type
 public interface VirtualNumaNode extends NumaNode {
