@@ -115,7 +115,7 @@ public interface VmService extends MeasurableService {
 These _Javadoc_ comments are processed by tools that are part of the system
 and it is used to automatically generate the reference documentation. You
 can see an example of the generated documentation
-https://jhernand.fedorapeople.org/ovirt-api-explorer[here].
+https://jhernand.fedorapeople.org/ovirt-engine-api-model/model.html[here].
 
 This documentation viewer will eventually be part of the oVirt Engine server
 itself.
@@ -378,11 +378,10 @@ be pushed:
 
 This is also automated using the Maven release plugin. But in this case
 it is necessary to sign the artifacts, as both Sonatype OSSRH and Maven
-Central require signed artifacts. To sign artifacts and generate the
-documentation the the `sign` and `document` profiles need to be
-activated:
+Central require signed artifacts. To sign artifacts the `sign` profile
+needs to be activated:
 
-  $ mvn release:perform -Psign,document
+  $ mvn release:perform -Psign
 
 NOTE: The artifacts will be signed using your default GPG key, so make
 sure you have a valid GPG key available.
