@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.22 / Nov 30 2016
+
+New features:
+
+* Add `qcow_version` attribute to the `Disk` type.
+
+* Add `update` operation to the service that manages a specific disk,
+  with support for updating the QCOW version of the disk.
+
+* Add `discard_after_delete` attribute to the `StorageDomain` type.
+
 == 4.1.21 / Nov 23 2016
 
 New features:
