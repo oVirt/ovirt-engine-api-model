@@ -34,38 +34,42 @@ public interface User extends Identified {
     Boolean loggedIn();
 
     /**
-     * Namespace where user resides. When using the authorization provider that stores users in the LDAP
-     * (see https://github.com/oVirt/ovirt-engine-extension-aaa-ldap[here] for details) this attribute equals to naming
-     * context of the LDAP. When using the built-in authorization provider that stores users in the database
-     * (see https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc[here] for details) this attribute is ignored.
+     * Namespace where the user resides. When using the authorization provider that stores users in the LDAP server,
+     * this attribute equals the naming context of the LDAP server.
+     * See https://github.com/oVirt/ovirt-engine-extension-aaa-ldap for more information.
+     * When using the built-in authorization provider that stores users in the database this attribute is ignored.
+     * See https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc for more information.
      *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     String namespace();
     String lastName();
 
     /**
-     * Username of the user. The format depends on authorization provider type. In case of most LDAP providers it is
-     * value of the `uid` LDAP attribute. In case of Active Directory it is the user principal name (UPN). `UPN` or
-     * `uid` must be followed by authorization provider name. For example in case of LDAP using `uid` attribute it is:
-     * `myuser@myextension-authz`. In case of Active Directory using `UPN` it is:
-     * `myuser@mysubdomain.mydomain.com@myextension-authz`. This attribute is required parameter when adding new user.
+     * The user's username. The format depends on authorization provider type. In most LDAP providers it is the
+     * value of the `uid` LDAP attribute. In Active Directory it is the User Principal Name (UPN). `UPN` or
+     * `uid` must be followed by the authorization provider name. For example, in the case of LDAP's `uid` attribute it is:
+     * `myuser@myextension-authz`. In the case of Active Directory using `UPN` it is:
+     * `myuser@mysubdomain.mydomain.com@myextension-authz`. This attribute is a required parameter when adding a new user.
      *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     String userName();
 
     /**
-     * Same as `user_name` principal has different formats based on LDAP provider. In case of most LDAP providers it is
-     * value of the `uid` LDAP attribute. In case of Active Directory it is the user principal name (UPN).
+     * Similar to `user_name`. The format depends on the LDAP provider. With most LDAP providers it is the
+     * value of the `uid` LDAP attribute. In the case of Active Directory it is the User Principal Name (UPN).
      *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 29 Nov 2016
+     * @status updated_by_docs
      */
     String principal();
     String password();
