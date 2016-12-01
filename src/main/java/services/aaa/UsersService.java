@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.User;
 
+/**
+ * A service to manage the users in the system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 01 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface UsersService {
@@ -75,7 +82,21 @@ public interface UsersService {
         @In @Out User user();
     }
 
+    /**
+     * List all the users in the system.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of users.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 01 Dec 2016
+         * @status added
+         */
         @Out User[] users();
 
         /**
