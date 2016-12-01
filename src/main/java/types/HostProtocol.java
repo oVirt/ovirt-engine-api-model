@@ -30,6 +30,21 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public enum HostProtocol {
+   /**
+    * XML-RPC protocol.
+    *
+    * @author Oved Ourfali <oourfali@redhat.com>
+    * @date 01 Dec 2016
+    * @status added
+    */
     XML,
+
+   /**
+    * JSON-RPC protocol on top of STOMP.
+    *
+    * @author Oved Ourfali <oourfali@redhat.com>
+    * @date 01 Dec 2016
+    * @status added
+    */
     STOMP;
 }

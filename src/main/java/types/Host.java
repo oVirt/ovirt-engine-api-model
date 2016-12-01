@@ -19,13 +19,71 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a host.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 01 Dec 2016
+ * @status added
+ */
 @Type
 public interface Host extends Identified {
+    /**
+     * The host address (FQDN/IP).
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     String address();
+
+    /**
+     * The host status.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     HostStatus status();
+
+    /**
+     * The host status details. Relevant for Gluster hosts.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     String statusDetail();
+
+    /**
+     * The host certificate.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Certificate certificate();
+
+    /**
+     * The host external status.
+     * This can be used by third-party software to change the host external status
+     * in case of an issue.
+     * This has no effect on the host lifecycle, unless a third-party software checks for this
+     * status and acts accordingly.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     ExternalStatus externalStatus();
+
+    /**
+     * The host port.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Integer port();
 
     /**
@@ -38,6 +96,15 @@ public interface Host extends Identified {
      */
     HostType type();
 
+    /**
+     * The host _storage pool manager_ (SPM) status and definition.
+     * Use it to set the SPM priority of this host, and to see whether this is the current
+     * SPM or not.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Spm spm();
 
     /**
@@ -73,7 +140,23 @@ public interface Host extends Identified {
      * @status updated_by_docs
      */
     Version version();
+
+    /**
+     * The host hardware information.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     HardwareInformation hardwareInformation();
+
+    /**
+     * The host power management definitions.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     PowerManagement powerManagement();
 
     /**
@@ -130,6 +213,13 @@ public interface Host extends Identified {
      */
     TransparentHugePages transparentHugePages();
 
+    /**
+     * The host iSCSI details.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     IscsiDetails iscsi();
 
     /**
@@ -142,11 +232,59 @@ public interface Host extends Identified {
      */
     String rootPassword();
 
+    /**
+     * The SSH definitions.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Ssh ssh();
+
+    /**
+     * The CPU type of this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Cpu cpu();
+
+    /**
+     * The amount of physical memory on this host in bytes.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Integer memory();
+
+    /**
+     * The max scheduling memory on this host in bytes.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Integer maxSchedulingMemory();
+
+    /**
+     * The virtual machine summary - how many are active, migrating and total.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     VmSummary summary();
+
+    /**
+     * Specifies whether we should override firewall definitions.
+     * This applies only when the host is installed or re-installed.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Boolean overrideIptables();
 
     /**
@@ -161,7 +299,24 @@ public interface Host extends Identified {
      * @status added
      */
     HostProtocol protocol();
+
+    /**
+     * The operating system on this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     OperatingSystem os();
+
+    /**
+     * The host libvirt version.
+     * For more information on libvirt please go to https://libvirt.org[libvirt].
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Version libvirtVersion();
 
     /**
@@ -173,12 +328,71 @@ public interface Host extends Identified {
      */
     Display display();
 
+    /**
+     * The hosted engine status on this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     HostedEngine hostedEngine();
+
+    /**
+     * The host KDUMP status.
+     * KDUMP happens when the host kernel has crashed and it is now going through memory dumping.
+     *
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     KdumpStatus kdumpStatus();
+
+    /**
+     * The host SElinux status.
+     * _Security-Enhanced Linux (SELinux)_ is a component in the Linux kernel
+     * that provides a mechanism for supporting access control security policies.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     SeLinux seLinux();
+
+    /**
+     * The host auto _non uniform memory access_ (NUMA) status.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     AutoNumaStatus autoNumaStatus();
+
+    /**
+     * Specifies whether _non uniform memory access_ (NUMA) is supported on this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Boolean numaSupported();
+
+    /**
+     * Specifies whether there is an oVirt-related update on this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     Boolean updateAvailable();
+
+    /**
+     * Specifies whether host device passthrough is enabled on this host.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 01 Dec 2016
+     * @status added
+     */
     HostDevicePassthrough devicePassthrough();
 
     @Link Cluster cluster();
