@@ -104,7 +104,7 @@ public interface Vm extends VmBase {
      * failure, any virtual machine configured to be highly available is automatically restarted on one of the other
      * hosts to which the virtual machine is pinned.
      *
-     * For example, to pin a virtual machine to two hosts, you would send a request like the following:
+     * For example, to pin a virtual machine to two hosts, send the following request:
      *
      * [source]
      * ----
@@ -135,8 +135,9 @@ public interface Vm extends VmBase {
      * ----
      *
      * @author Phillip Bailey <phbailey@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 02 Dec 2016
+     * @status updated_by_docs
      */
     VmPlacementPolicy placementPolicy();
 
@@ -223,11 +224,12 @@ public interface Vm extends VmBase {
     @Link InstanceType instanceType();
 
     /**
-     * Link to the the list of network interface devices on the virtual machine.
+     * References the list of network interface devices on the virtual machine.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 02 Dec 2016
+     * @status updated_by_docs
      */
     @Link Nic[] nics();
 
@@ -390,7 +392,11 @@ public interface Vm extends VmBase {
     @Link Tag[] tags();
 
     /**
-     * References to the disks attached to the virtual machine.
+     * References the disks attached to the virtual machine.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 02 Dec 2016
+     * @status updated_by_docs
      */
     @Link DiskAttachment[] diskAttachments();
 }
