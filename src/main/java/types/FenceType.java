@@ -17,11 +17,57 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing the type of the fence operation.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 05 Dec 2016
+ * @status added
+ */
 @Type
 public enum FenceType {
+    /**
+     * Manual host fencing via power management.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     MANUAL,
+
+    /**
+     * Restart the host via power management.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     RESTART,
+
+    /**
+     * Start the host via power management.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     START,
+
+    /**
+     * Stop the host via power management.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     STOP,
+
+    /**
+     * Check the host power status via power management.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     STATUS;
 }
