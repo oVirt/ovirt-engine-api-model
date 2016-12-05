@@ -17,14 +17,87 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a storage domain type.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 05 Dec 2016
+ * @status added
+ */
 @Type
 public enum StorageType {
+    /**
+     * iSCSI storage domain.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     ISCSI,
+
+    /**
+     * Fibre-Channel storage domain.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     FCP,
+
+    /**
+     * NFS storage domain.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     NFS,
+
+    /**
+     * Storage domain on Local storage.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     LOCALFS,
+
+    /**
+     * POSIX-FS storage domain.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     POSIXFS,
+
+    /**
+     * Gluster-FS storage domain.
+     * For more details on Gluster please go to https://www.gluster.org/[Gluster].
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     GLUSTERFS,
+
+    /**
+     * Glance storage domain.
+     * For more details on Glance please go to https://wiki.openstack.org/wiki/Glance[Glance].
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     GLANCE,
+
+    /**
+     * Cinder storage domain.
+     * For more details on Cinder please go to https://wiki.openstack.org/wiki/Cinder[Cinder].
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
     CINDER;
 }
