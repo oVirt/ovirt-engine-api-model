@@ -32,9 +32,13 @@ public interface AffinityGroup extends Identified {
      * Specifies whether the affinity group applies positive affinity or negative affinity to virtual machines that are
      * members of that affinity group.
      *
+     * WARNING: Please note that this attribute has been deprecated since version 4.1 of the engine,
+     * and will be removed in the future. Use the `vms_rule` attribute from now on.
+     *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
+     * @date 6 Dec 2016
      * @status added
+     * @deprecated
      */
     Boolean positive();
 
@@ -42,11 +46,35 @@ public interface AffinityGroup extends Identified {
      * Specifies whether the affinity group uses hard or soft enforcement of the affinity applied to virtual machines
      * that are members of that affinity group.
      *
+     * WARNING: Please note that this attribute has been deprecated since version 4.1 of the engine,
+     * and will be removed in the future. Use the `vms_rule` attribute from now on.
+     *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
+     * @date 6 Dec 2016
      * @status added
+     * @deprecated
      */
     Boolean enforcing();
+
+    /**
+     * Specifies the affinity rule applied to virtual machines that are members of this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 6 Dec 2016
+     * @status added
+     * @since 4.1
+     */
+    AffinityRule vmsRule();
+
+    /**
+     * Specifies the affinity rule applied between virtual machines and hosts that are members of this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 6 Dec 2016
+     * @status added
+     * @since 4.1
+     */
+    AffinityRule hostsRule();
 
     /**
      * A reference to the cluster to which the affinity group applies.
@@ -66,4 +94,14 @@ public interface AffinityGroup extends Identified {
      * @status added
      */
     @Link Vm[] vms();
+
+    /**
+     * List of all hosts assigned to this affinity group.
+     *
+     * @author Martin Sivak <msivak@redhat.com>
+     * @date 6 Dec 2016
+     * @status added
+     * @since 4.1
+     */
+    @Link Host[] hosts();
 }
