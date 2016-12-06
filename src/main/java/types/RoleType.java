@@ -17,8 +17,32 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing whether a role is administrative or not.
+ * A user which was granted at least one administrative role is considered
+ * an administrator.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 06 Dec 2016
+ * @status added
+ */
 @Type
 public enum RoleType {
+    /**
+     * Administrative role.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 06 Dec 2016
+     * @status added
+     */
     ADMIN,
+
+    /**
+     * User role.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 06 Dec 2016
+     * @status added
+     */
     USER;
 }
