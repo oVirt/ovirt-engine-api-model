@@ -18,7 +18,25 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * This type reprecents the storage related
+ * configuration in the fencing policy.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 06 Dec 2016
+ * @status added
+ */
 @Type
 public interface SkipIfSdActive {
+    /**
+     * If enabled, we will skip fencing in case the host
+     * maintains its lease in the storage. It means that
+     * if the host still has storage access then it won't
+     * get fenced.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 06 Dec 2016
+     * @status added
+     */
     Boolean enabled();
 }

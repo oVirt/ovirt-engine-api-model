@@ -20,6 +20,28 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface SkipIfConnectivityBroken {
+    /**
+     * If enabled, we will not fence a host
+     * in case more than a configurable percentage
+     * of hosts in the cluster lost connectivity as well.
+     * This comes to prevent fencing _storm_ in cases
+     * where there is a global networking issue in the
+     * cluster.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 06 Dec 2016
+     * @status added
+     */
     Boolean enabled();
+
+    /**
+     * Threshold for connectivity testing.
+     * If at least the threshold percentage of hosts in the cluster
+     * lost connectivity then fencing will not take place.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 06 Dec 2016
+     * @status added
+     */
     Integer threshold();
 }
