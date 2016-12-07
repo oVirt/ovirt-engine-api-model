@@ -38,10 +38,66 @@ import types.User;
 @Service
 @Area("Infrastructure")
 public interface UserService {
+    /**
+     * Gets the system user information.
+     *
+     * Usage:
+     *
+     * ....
+     * GET /ovirt-engine/api/users/1234
+     * ....
+     *
+     * Will return the user information:
+     *
+     * [source,xml]
+     * ----
+     * <user href="/ovirt-engine/api/users/1234" id="1234">
+     *   <name>admin</name>
+     *   <link href="/ovirt-engine/api/users/1234/sshpublickeys" rel="sshpublickeys"/>
+     *   <link href="/ovirt-engine/api/users/1234/roles" rel="roles"/>
+     *   <link href="/ovirt-engine/api/users/1234/permissions" rel="permissions"/>
+     *   <link href="/ovirt-engine/api/users/1234/tags" rel="tags"/>
+     *   <department></department>
+     *   <domain_entry_id>23456</domain_entry_id>
+     *   <email>user1@domain.com</email>
+     *   <last_name>Lastname</last_name>
+     *   <namespace>*</namespace>
+     *   <principal>user1</principal>
+     *   <user_name>user1@domain-authz</user_name>
+     *   <domain href="/ovirt-engine/api/domains/45678" id="45678">
+     *     <name>domain-authz</name>
+     *   </domain>
+     * </user>
+     * ----
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 7 Dec 2017
+     * @status added
+     */
     interface Get {
+        /**
+         * The system user.
+         *
+         * @author Ravi Nori <rnori@redhat.com>
+         * @date 7 Dec 2017
+         * @status added
+         */
         @Out User user();
     }
 
+   /**
+    * Removes the system user.
+    *
+    * Usage:
+    *
+    * ....
+    * DELETE /ovirt-engine/api/users/1234
+    * ....
+    *
+    * @author Ravi Nori <rnori@redhat.com>
+    * @date 7 Dec 2017
+    * @status added
+    */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
