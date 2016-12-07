@@ -1,4 +1,4 @@
-== Authentication and security
+== Authentication and Security
 
 === TLS/SSL Certification
 
@@ -6,19 +6,19 @@ The {product-name} API requires Hypertext Transfer Protocol Secure
 (HTTPS) footnote:[HTTPS is described in
 http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS.]] for secure
 interaction with client software, such as the SDK and CLI components.
-This involves a process of obtaining the certificate of the
-https://en.wikipedia.org/wiki/Certificate_authority[CA] used by the
+This involves obtaining the
+https://en.wikipedia.org/wiki/Certificate_authority[CA] certificate used by the
 server, and importing it into the certificate store of your client.
 
-==== Obtaining the CA certificate
+==== Obtaining the CA Certificate
 
 You can obtain the CA certificate from the {engine-name} and transfer it
 to the client machine using one of these methods:
 
-Method 1:: The preferred method to obtain the CA certificate used by the
-{product-name} server is to use the `openssl s_client` command line tool
-to perform a real TLS handshake with the server, and then extract the
-certificates that it presents. Run a command like this:
+Method 1:: The preferred method for obtaining the CA certificate is to use
+the `openssl s_client` command line tool to perform a real TLS handshake
+with the server, and then extract the certificates that it presents.
+Run a command like this:
 +
 ....
 $ openssl s_client \
@@ -27,8 +27,8 @@ $ openssl s_client \
 < /dev/null
 ....
 +
-That will connect to the server and will display an output similar to
-this:
+This command will connect to the server and display output similar to
+the following:
 +
 ....
 CONNECTED(00000003)
@@ -53,9 +53,9 @@ Pkyg1rQHR6ebGQ==
 ....
 +
 The text between the `-----BEGIN CERTIFICATE-----` and `-----END
-CERTIFICATE-----` marks are the certificates presented by the server.
+CERTIFICATE-----` marks shows the certificates presented by the server.
 The first one is the certificate of the server itself, and the last one
-is the certificate of the CA. Copy that CA certificate, including the
+is the certificate of the CA. Copy the CA certificate, including the
 marks, to the `ca.crt` file. The result should look like this:
 +
 ....
@@ -66,14 +66,14 @@ Pkyg1rQHR6ebGQ==
 -----END CERTIFICATE-----
 ....
 +
-IMPORTANT: This is most reliable method to obtain the CA certificate
-actually used by the server. The rest of the methods described here will
-work in most cases, but they won't obtain the correct CA certificate if
+IMPORTANT: This is the most reliable method to obtain the CA certificate
+used by the server. The rest of the methods described here will
+work in most cases, but they will not obtain the correct CA certificate if
 it has been manually replaced by the administrator of the server.
 
-Method 2:: If you can't use the `openssl s_client` method described
+Method 2:: If you cannot use the `openssl s_client` method described
 above, you can instead use a command line tool to download the CA
-certificate from the engine.
+certificate from the {engine-name}.
 +
 Examples of command line tools include `curl` and `wget`, both of which
 are available on multiple platforms.
@@ -110,10 +110,10 @@ imports into the browser's keystore.
 . *If the browser imports the certificate*: export it from the
 browser's certification options and save it as `ca.crt`.
 
-Method 4:: Log in to the engine, export the certificate from the
-truststore and copy it to your client machine.
+Method 4:: Log in to the {engine-name}, export the certificate from the
+truststore, and copy it to your client machine.
 +
-. Log in to the engine machine as the `root` user.
+. Log in to the {engine-name} machine as `root`.
 +
 . Export the certificate from the truststore using the Java
 `keytool` management utility:
@@ -138,38 +138,35 @@ $ scp ca.crt myuser@myclient.example.com:/home/myuser/.
 ....
 
 Each of these methods results in a certificate file named `ca.crt` on
-your client machine. An API user imports this file into the certificate
+your client machine. You must then import this file into the certificate
 store of the client.
 
-==== Importing a certificate to a client
+==== Importing a Certificate to a Client
 
-Importing a certificate to a client relies on how the client itself
-stores and interprets certificates. This guide contains some examples on
-importing certificates. For clients not using Network Security Services
-(NSS) or Java KeyStore (JKS), see your client documentation for more
+Importing a certificate to a client relies on how the client
+stores and interprets certificates. See your client documentation for more
 information on importing a certificate.
 
 === Authentication
 
-Any user with an {engine-name} account has access to the API. All
-requests need to be authenticated using either _OAuth_ or basic
+Any user with a {engine-name} account has access to the API. All
+requests must be authenticated using either *OAuth* or basic
 authentication, as described below.
 
-==== OAuth authentication
+==== OAuth Authentication
 
 Since version 4.0 of {product-name} the preferred authentication
-mechanism is https://oauth.net/2[_OAuth 2.0_], as described in
+mechanism is https://oauth.net/2[OAuth 2.0], as described in
 https://tools.ietf.org/html/rfc6749[RFC 6749].
 
-_OAuth_ is a sophisticated protocol, with several mechanism to obtain
-authorization and access tokens. But for usage with the {product-name}
-API the only supported one is the _resource owner password credentials
-grant_, as described in https://tools.ietf.org/html/rfc6749#section-4.3[section 4.3]
-of that RFC.
+*OAuth* is a sophisticated protocol, with several mechanisms for obtaining
+authorization and access tokens. For use with the {product-name}
+API, the only supported one is the _Resource Owner Password Credentials
+Grant_, as described in https://tools.ietf.org/html/rfc6749#section-4.3[section 4.3]
+of RFC 6749.
 
-The first step in the _OAuth_ authentication process is to obtain a
-_token_, sending the user name and password to the single sign-on
-service of the engine:
+You must first obtain a _token_, sending the user name and password
+to the {engine-name} single sign-on service:
 
 ....
 POST /ovirt-engine/sso/oauth/token HTTP/1.1
@@ -178,7 +175,7 @@ Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 ....
 
-The request body must contain the `grant_type`, `scope`, `username`
+The request body must contain the `grant_type`, `scope`, `username`,
 and `password` parameters:
 
 .OAuth token request parameters
@@ -200,20 +197,20 @@ and `password` parameters:
 |===
 
 These parameters must be
-https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example
-the `@` character in the user name needs to be encoded as `%40`. So the
+https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example,
+the `@` character in the user name needs to be encoded as `%40`. The
 resulting request body will be something like this:
 
 ....
 grant_type=password&scope=ovirt-app-api&username=admin%40internal&password=mypassword
 ....
 
-IMPORTANT: The `scope` parameter is described as optional in the _OAuth_
+IMPORTANT: The `scope` parameter is described as optional in the *OAuth*
 RFC, but when using it with the {product-name} API it is mandatory, and
 its value must be `ovirt-app-api`.
 
-If the user name and password are valid the single sign-on service of
-the engine will respond with a JSON document similar to this one:
+If the user name and password are valid, the {engine-name} single sign-on service
+will respond with a JSON document similar to this one:
 
 ....
 {
@@ -224,14 +221,14 @@ the engine will respond with a JSON document similar to this one:
 }
 ....
 
-For API authentication purposes the only relevant name/value pair is the
-`access_token`. Don't manipulate this in any way, use it exactly as
+For API authentication purposes, the only relevant name/value pair is the
+`access_token`. Do not manipulate this in any way; use it exactly as
 provided by the SSO service.
 
 Once the token has been obtained, it can be used to perform requests to
-the API, including it in the HTTP `Authorization` header, and using the
-`Bearer` scheme. For example, to get the list of virtual machines using
-this token, send a request like this:
+the API by including it in the HTTP `Authorization` header, and using the
+`Bearer` scheme. For example, to get the list of virtual machines,
+send a request like this:
 
 ....
 GET /ovirt-engine/api/vms HTTP/1.1
@@ -241,29 +238,28 @@ Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
 ....
 
 The token can be used multiple times, for multiple requests, but it will
-eventually expire. When it expires the server will reject the request,
-and will use the 401 HTTP response code to indicate so:
+eventually expire. When it expires, the server will reject the request with
+the 401 HTTP response code:
 
 ....
 HTTP/1.1 401 Unauthorized
 ....
 
-When this happens a new token is needed, and can be requested using the
-same procedure described above, as the single sign-on service of the
-engine doesn't currently support refresh tokens.
+When this happens, a new token is needed, as the {engine-name} single sign-on
+service does not currently support refreshing tokens. A new token can be
+requested using the same method described above.
 
-==== Basic authentication
+==== Basic Authentication
 
-IMPORTANT: Basic authentication is still supported only for backwards
-compatibility, but it is deprecated since version 4.0 of {product-name},
+IMPORTANT: Basic authentication is supported only for backwards
+compatibility; it is deprecated since version 4.0 of {product-name},
 and will be removed in the future.
 
 Each request uses HTTP Basic Authentication footnote:[Basic
 Authentication is described in http://tools.ietf.org/html/rfc2617[RFC
 2617 HTTP Authentication: Basic and Digest Access Authentication].] to
 encode the credentials. If a request does not include an appropriate
-`Authorization` header, the server sends a `401 Authorization Required` as
-a result:
+`Authorization` header, the server sends a `401 Authorization Required` response:
 
 ....
 HEAD /ovirt-engine/api HTTP/1.1
@@ -273,7 +269,7 @@ HTTP/1.1 401 Authorization Required
 ....
 
 Request are issued with an `Authorization` header for the specified
-realm. An API user encodes an appropriate {engine-name} domain and user
+realm. Encode an appropriate {engine-name} domain and user
 in the supplied credentials with the `username@domain:password`
 convention.
 
@@ -300,7 +296,7 @@ https://tools.ietf.org/html/rfc4648[Base64].
 |`YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==`
 |===
 
-An API user provides the Base64 encoded credentials as shown:
+Provide the Base64-encoded credentials as shown:
 
 ....
 HEAD /ovirt-engine/api HTTP/1.1
@@ -311,7 +307,7 @@ HTTP/1.1 200 OK
 ....
 
 IMPORTANT: Basic authentication involves potentially sensitive
-information, such as passwords, sent as plain text. API requires
+information, such as passwords, sent as plain text. The API requires
 Hypertext Transfer Protocol Secure (HTTPS) for transport-level
 encryption of plain-text requests.
 
@@ -320,15 +316,13 @@ and terminate each line with a newline character. This breaks the header
 and causes a faulty request. The `Authorization` header requires the
 encoded credentials on a single line within the header.
 
-==== Authentication sessions
+==== Authentication Sessions
 
-The API also provides the ability for authentication session support. An
-API user sends an initial request with authentication details, then
-sends all subsequent requests using a session cookie to authenticate.
-The following procedure demonstrates how to use an authenticated
-session.
+The API also provides authentication session support. Send an initial request
+with authentication details, then send all subsequent requests using a session
+cookie to authenticate.
 
-===== Requesting an authenticated session
+===== Requesting an Authenticated Session
 
 . Send a request with the `Authorization` and `Prefer: persistent-auth`
 headers:
@@ -349,11 +343,11 @@ This returns a response with the following header:
 Set-Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK; Path=/ovirt-engine/api; Secure
 ....
 +
-Note the `JSESSIONID=` value. In this example the value is
+Take note of the `JSESSIONID=` value. In this example the value is
 `5dQja5ubr4yvI2MM2z+LZxrK`.
 
 . Send all subsequent requests with the `Prefer: persistent-auth` and
-`Cookie` headers with the `JSESSIONID=` value. The `Authorization header
+`Cookie` headers with the `JSESSIONID=` value. The `Authorization` header
 is no longer needed when using an authenticated session.
 +
 ....
