@@ -112,7 +112,7 @@ public interface DiskService extends MeasurableService {
          * @status added
          * @since 4.1
          */
-        @In Disk disk();
+        @In @Out Disk disk();
     }
 
 
