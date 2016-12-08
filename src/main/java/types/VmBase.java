@@ -43,14 +43,14 @@ public interface VmBase extends Identified {
     /**
      * The virtual machine's memory, in bytes.
      *
-     * For example, in order to update a virtual machine to contain 1 GiB of memory send a request like this:
+     * For example, to update a virtual machine to contain 1 Gibibyte (GiB) of memory, send the following request:
      *
      * [source]
      * ----
      * PUT /ovirt-engine/api/vms/123
      * ----
      *
-     * With a request body like this:
+     * With the following request body:
      *
      * [source,xml]
      * ----
@@ -59,26 +59,27 @@ public interface VmBase extends Identified {
      * </vm>
      * ----
      *
-     * NOTE: Memory in the previous example is converted to bytes using the following formula: +
+     * NOTE: Memory in the example is converted to bytes using the following formula: +
      * 1 GiB = 2^30^ bytes = 1073741824 bytes.
      *
-     * NOTE: Memory hot plug is supported from oVirt 3.6 onwards.
-     * You can use the example above to increase memory while the virtual machine is running.
+     * NOTE: Memory hot plug is supported from {product-name} 3.6 onwards. You can use the example above to increase
+     * memory while the virtual machine is running.
      *
      * @author Yanir Quinn <yquinn@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     Integer memory();
 
     /**
-     * The configuration of the CPU of the virtual machine.
+     * The configuration of the virtual machine CPU.
      *
-     * The sockets configuration can be updated without rebooting the virtual machine. The cores and the threads require
-     * a reboot in order to take place.
+     * The socket configuration can be updated without rebooting the virtual machine. The cores and the threads require
+     * a reboot.
      *
-     * For example, to change the number of sockets to 4 immediately and the number of cores and threads to 2 after
-     * reboot send a request:
+     * For example, to change the number of sockets to 4 immediately, and the number of cores and threads to 2 after
+     * reboot, send the following request:
      *
      * [source]
      * ----
@@ -101,8 +102,9 @@ public interface VmBase extends Identified {
      * ----
      *
      * @author Jenny Tokar <jtokar@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     Cpu cpu();
     Integer cpuShares();
@@ -372,13 +374,17 @@ public interface VmBase extends Identified {
     /**
      * Virtual machine custom compatibility version.
      *
-     * This field allows to customize a virtual machine to its own compatibility version.  If
+     * Enables a virtual machine to be customized to its own compatibility version.  If
      * `custom_compatibility_version` is set, it overrides the cluster's compatibility version
      * for this particular virtual machine.
      *
      * The compatibility version of a virtual machine is limited by the data center the virtual
-     * machine resides in and is checked against capabilities of the host the virtual machine is
+     * machine resides in, and is checked against capabilities of the host the virtual machine is
      * planned to run on.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     Version customCompatibilityVersion();
 
