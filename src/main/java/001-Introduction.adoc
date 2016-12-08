@@ -4,7 +4,7 @@ The {engine-name} provides a *Representational State Transfer (REST)
 API*. The API provides software developers and system administrators
 with control over their {product-name} environment outside of the
 standard web interface. The API is useful for developers and
-administrators who aim to integrate the functionality of an
+administrators to integrate the functionality of a
 {product-name} environment with custom scripts or external applications
 that access the API via the standard Hypertext Transfer Protocol (HTTP).
 
@@ -14,8 +14,8 @@ The benefits of the API are:
 system with support for HTTP protocol can use the API.
 
 * Self descriptive - Client applications require minimal knowledge of
-the virtualization infrastructure as many details are discovered at
-runtime;
+the virtualization infrastructure, as many details are discovered at
+runtime.
 
 * Resource-based model - The resource-based REST model provides a
 natural way to manage a virtualization platform.
@@ -26,15 +26,15 @@ This provides developers and administrators with the ability to:
 
 * Integrate with third-party virtualization software.
 
-* Perform automated maintenance or error checking tasks.
+* Perform automated maintenance or error-checking tasks.
 
-* Automate repetitive tasks in an {product-name} environment with
+* Automate repetitive tasks in a {product-name} environment with
 scripts.
 
-This documentation acts as a reference to the {product-name} API. It
+This documentation acts as a reference for the {product-name} API. It
 aims to provide developers and administrators with instructions and
 examples to help harness the functionality of their {product-name}
-environment through the API either directly or using the provided SDKs.
+environment through the API, either directly or using the provided SDKs.
 
 === Representational State Transfer
 
@@ -43,10 +43,10 @@ focuses on resources for a specific service and their representations. A
 resource representation is a key abstraction of information that
 corresponds to one specific managed element on a server. A client sends
 a request to a server element located at a Uniform Resource Identifier
-(URI) and performs operations with standard HTTP methods, such as +GET+,
-+POST+, +PUT+, and +DELETE+. This provides a stateless communication
-between the client and server where each request acts independent of any
-other request and contains all necessary information to complete the
+(URI) and performs operations with standard HTTP methods, such as `GET`,
+`POST`, `PUT`, and `DELETE`. This provides a stateless communication
+between the client and server where each request acts independently of any
+other request, and contains all the information necessary to complete the
 request.
 
 === API Prerequisites
@@ -64,12 +64,12 @@ from the API server. For example:
 
 ** The https://github.com/oVirt/ovirt-engine-sdk-java/tree/master/sdk[oVirt Java SDK].
 
-** The https://curl.haxx.se[+curl+] command line tool.
+** The https://curl.haxx.se[cURL] command line tool.
 
 ** https://addons.mozilla.org/en-US/firefox/addon/restclient[RESTClient], a
 debugger for RESTful web services.
 
-* Knowledge of Hypertext Transfer Protocol (HTTP), which is the protocol
+* Knowledge of Hypertext Transfer Protocol (HTTP), the protocol
 used for REST API interactions. The Internet Engineering Task Force provides
 a Request for Comments (RFC) explaining the Hypertext Transfer Protocol
 at http://www.ietf.org/rfc/rfc2616.txt.
