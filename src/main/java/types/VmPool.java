@@ -36,6 +36,10 @@ public interface VmPool extends Identified {
      * Virtual machines from a stateful virtual machine pool are always started in stateful mode
      * (stateless snapshot is not created). The state of the virtual machine is preserved
      * even when the virtual machine is passed to a different user.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     Boolean stateful();
 
@@ -45,6 +49,10 @@ public interface VmPool extends Identified {
     /**
      * Reference to the instance type on which this pool is based. It can be
      * set only on pool creation and cannot be edited.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     @Link InstanceType instanceType();
     @Link Vm vm();
