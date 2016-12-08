@@ -22,7 +22,11 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface VnicPassThrough {
 
     /**
-     * Defines if the vNIC to be implemented as a virtual device or as a pass-through to a host device.
+     * Defines whether the vNIC will be implemented as a virtual device, or as a pass-through to a host device.
+     *
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 8 Dec 2016
+     * @status updated_by_docs
      */
     VnicPassThroughMode mode();
 }
