@@ -3,6 +3,27 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.23 / Dec 9 2016
+
+New features:
+
+* Deprecate the `xml` value of the `HostProtocol` enum.
+
+* Add the new `AffinityRule` type, together with the `vms_rule` and
+  `hosts_rule` attributes of the existing `AffinityGroup` type. This
+  replaces the now deprecated `positive` and `enforcing` attributes of
+  the `AffinityGroup` type.
+
+* Add new `reduceluns` operation to the service that manages a storage
+  domain.
+
+Bug fixes:
+
+* Revert the addition of the `progress` attribute to the `Disk` type.
+
+* Fix the main parameter of the operation to update disks so that it is
+  both _in_ and _out_.
+
 == 4.1.22 / Nov 30 2016
 
 New features:
