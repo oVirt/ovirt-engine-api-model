@@ -21,8 +21,23 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Represents basic virtual machine configuration.
+ * This is used by virtual machines, templates and instance types.
+ *
+ * @author Marek Libra <mlibra@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface VmBase extends Identified {
+    /**
+     * Determines whether the virtual machine is optimized for desktop or server.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     VmType type();
 
     /**
@@ -91,34 +106,267 @@ public interface VmBase extends Identified {
      */
     Cpu cpu();
     Integer cpuShares();
+
+    /**
+     * Reference to virtual machine's BIOS configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Bios bios();
+
+    /**
+     * Operating system type installed on the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     OperatingSystem os();
+
+    /**
+     * The virtual machine creation date.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date creationTime();
+
+    /**
+     * The origin of this virtual machine.
+     *
+     * Possible values:
+     *
+     * - `ovirt`
+     * - `rhev`
+     * - `vmware`
+     * - `xen`
+     * - `external`
+     * - `hosted_engine`
+     * - `managed_hosted_engine`
+     * - `kvm`
+     * - `physical_machine`
+     * - `hyperv`
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String origin();
+
+    /**
+     * If `true`, the virtual machine is stateless - it's state (disks) are rolled-back after shutdown.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean stateless();
+
+    /**
+     * If `true`, the virtual machine cannot be deleted.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean deleteProtected();
+
+    /**
+     * The virtual machine high availability configuration.
+     * If set, the virtual machine will be automatically restarted when it unexpectedly goes down.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     HighAvailability highAvailability();
+
+    /**
+     * The virtual machine display configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Display display();
+
+    /**
+     * Reference to the Single Sign On configuration this virtual machine is configured for.
+     * The user can be automatically signed in the virtual machine's operating system when console is opened.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Sso sso();
+
+    /**
+     * Random Number Generator device configuration for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     RngDevice rngDevice();
+
+    /**
+     * Console configured for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Console console();
+
+    /**
+     * Domain configured for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Domain domain();
+
+    /**
+     * Configuration of USB devices for this virtual machine (count, type).
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Usb usb();
+
+    /**
+     * If `true`, the sound card is added to the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean soundcardEnabled();
+
+    /**
+     * If `true`, the network data transfer will be encrypted during virtual machine live migration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean tunnelMigration();
+
+    /**
+     * Maximum time the virtual machine can be non responsive during its live migration to another host in ms.
+     *
+     * Set either explicitly for the virtual machine or by `engine-config -s DefaultMaximumMigrationDowntime=[value]`
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Integer migrationDowntime();
+
+    /**
+     * Reference to VirtIO SCSI configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     VirtioScsi virtioScsi();
+
+    /**
+     * Virtual machine's serial number in a cluster.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     SerialNumber serialNumber();
+
+    /**
+     * If `true`, the virtual machine will be initially in 'paused' state after start.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean startPaused();
+
+    /**
+     * Reference to configuration of migration of running virtual machine to another host.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     MigrationOptions migration();
+
+    /**
+     * For performance tuning of IO threading.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Io io();
+
+    /**
+     * Properties sent to VDSM to configure various hooks.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     CustomProperty[] customProperties();
     String customEmulatedMachine();
     String customCpuModel();
+
+    /**
+     * The virtual machine's time zone set by oVirt.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     TimeZone timeZone();
+
+    /**
+     * Virtual machine's small icon. Either set by user or refers to image set according to operating system.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Icon smallIcon();
+
+    /**
+     * Virtual machine's large icon. Either set by user or refers to image set according to operating system.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Icon largeIcon();
+
+    /**
+     * Reference to virtual machine's initialization configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Initialization initialization();
+
+    /**
+     * Reference to virtual machine's memory management configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     MemoryPolicy memoryPolicy();
 
     /**
@@ -134,8 +382,39 @@ public interface VmBase extends Identified {
      */
     Version customCompatibilityVersion();
 
+    /**
+     * Reference to cluster the virtual machine belongs to.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Cluster cluster();
+
+    /**
+     * Reference to storage domain the virtual machine belongs to.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link StorageDomain storageDomain();
+
+    /**
+     * Reference to CPU profile used by this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link CpuProfile cpuProfile();
+
+    /**
+     * Reference to quota configuration set for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Quota quota();
 }
