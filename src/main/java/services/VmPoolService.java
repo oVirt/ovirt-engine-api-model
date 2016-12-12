@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VmPool;
 
+/**
+ * A service to manage a virtual machines pool.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmPoolService {
@@ -52,7 +59,47 @@ public interface VmPoolService {
         @In Boolean async();
     }
 
+    /**
+     * Get the virtual machine pool.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vmpools/123
+     * ----
+     *
+     * You will get a XML response like that one:
+     * [source,xml]
+     * ----
+     * <vm_pool id="123">
+     *   <actions>...</actions>
+     *   <name>MyVmPool</name>
+     *   <description>MyVmPool description</description>
+     *   <link href="/ovirt-engine/api/vmpools/123/permissions" rel="permissions"/>
+     *   <max_user_vms>1</max_user_vms>
+     *   <prestarted_vms>0</prestarted_vms>
+     *   <size>100</size>
+     *   <stateful>false</stateful>
+     *   <type>automatic</type>
+     *   <use_latest_template_version>false</use_latest_template_version>
+     *   <cluster id="123"/>
+     *   <template id="123"/>
+     *   <vm id="123">...</vm>
+     *   ...
+     * </vm_pool>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * Retrieved virtual machines pool.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out VmPool pool();
 
         /**
@@ -123,5 +170,12 @@ public interface VmPoolService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to a service managing the virtual machine pool assigned permissions.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
 }
