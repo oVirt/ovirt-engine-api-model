@@ -69,7 +69,7 @@ public interface VmGraphicsConsolesService {
          *
          * [source]
          * ----
-         * GET /ovit-engine/api/vms/123/graphicsconsoles?current=true
+         * GET /ovirt-engine/api/vms/123/graphicsconsoles?current=true
          * ----
          *
          * The default value is `false`.
