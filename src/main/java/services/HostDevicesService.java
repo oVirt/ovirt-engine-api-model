@@ -22,9 +22,24 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.HostDevice;
 
+/**
+ * A service to access host devices.
+ *
+ * @author Martin Betak <mbetak@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface HostDevicesService {
+
+    /**
+     * List the devices of a host.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out HostDevice[] devices();
 
@@ -34,5 +49,12 @@ public interface HostDevicesService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that can be used to access a specific host device.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service HostDeviceService device(String id);
 }
