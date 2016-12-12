@@ -22,14 +22,82 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Tag;
 
+/**
+ * A service to manage collection of assignment of tags to specific entities in system.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface AssignedTagsService {
+
+    /**
+     * Assign tag to specific entity in the system.
+     *
+     * For example to assign tag `mytag` to virtual machine with the id `123` send a request like this:
+     *
+     * ....
+     * POST /ovirt-engine/api/vms/123/tags
+     * ....
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <tag>
+     *   <name>mytag</name>
+     * </tag>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The assigned tag.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Tag tag();
     }
 
+    /**
+     * List all tags assigned to the specific entity.
+     *
+     * For example to list all the tags of the virtual machine with id `123` send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/vms/123/tags
+     * ....
+     *
+     * [source,xml]
+     * ----
+     * <tags>
+     *   <tag href="/ovirt-engine/api/tags/222" id="222">
+     *     <name>mytag</name>
+     *     <description>mytag</description>
+     *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     *   </tag>
+     * </tags>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of assigned tags.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Tag[] tags();
 
         /**
@@ -38,5 +106,12 @@ public interface AssignedTagsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that manages assignment of specific tag.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedTagService tag(String id);
 }

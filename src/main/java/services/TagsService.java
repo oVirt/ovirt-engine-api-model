@@ -22,14 +22,112 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Tag;
 
+/**
+ * Represents a service to manage collection of the tags in the system.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface TagsService {
+    /**
+     * Add a new tag to the system.
+     *
+     * For example, to add new tag with name `mytag` to the system send a request like this:
+     *
+     * ....
+     * POST /ovirt-engine/api/tags
+     * ....
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <tag>
+     *   <name>mytag</name>
+     * </tag>
+     * ----
+     *
+     * NOTE: The root tag is a special pseudo-tag assumed as the default parent tag if no parent tag is specified.
+     * The root tag cannot be deleted nor assigned a parent tag.
+     *
+     * To create new tag with specific parent tag send a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <tag>
+     *   <name>mytag</name>
+     *   <parent>
+     *     <name>myparenttag</name>
+     *   </parent>
+     * </tag>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The added tag.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Tag tag();
     }
 
+    /**
+     * List the tags in the system.
+     *
+     * For example to list the full hierarchy of the tags in the system send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/tags
+     * ....
+     *
+     * [source,xml]
+     * ----
+     * <tags>
+     *   <tag href="/ovirt-engine/api/tags/222" id="222">
+     *     <name>root2</name>
+     *     <description>root2</description>
+     *     <parent href="/ovirt-engine/api/tags/111" id="111"/>
+     *   </tag>
+     *   <tag href="/ovirt-engine/api/tags/333" id="333">
+     *     <name>root3</name>
+     *     <description>root3</description>
+     *     <parent href="/ovirt-engine/api/tags/222" id="222"/>
+     *   </tag>
+     *   <tag href="/ovirt-engine/api/tags/111" id="111">
+     *     <name>root</name>
+     *     <description>root</description>
+     *   </tag>
+     * </tags>
+     * ----
+     *
+     * In the previous XML output you can see the following hierarchy of the tags:
+     * ....
+     * root:        (id: 111)
+     *   - root2    (id: 222)
+     *     - root3  (id: 333)
+     * ....
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * List of all tags in the system.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Tag[] tags();
 
         /**
@@ -38,5 +136,12 @@ public interface TagsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that manages a specific tag.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TagService tag(String id);
 }

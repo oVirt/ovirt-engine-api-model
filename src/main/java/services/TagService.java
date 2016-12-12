@@ -22,14 +22,91 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Tag;
 
+/**
+ * A service to manage a specific tag in the system.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface TagService {
+
+    /**
+     * Gets the information about the tag.
+     *
+     * For example to retrieve the information about the tag with the id `123` send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/tags/123
+     * ....
+     *
+     * [source,xml]
+     * ----
+     * <tag href="/ovirt-engine/api/tags/123" id="123">
+     *   <name>root</name>
+     *   <description>root</description>
+     * </tag>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The tag.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Tag tag();
     }
 
+    /**
+     * Updates the tag entity.
+     *
+     * For example to update parent tag to tag with id `456` of the tag with id `123` send a request like this:
+     *
+     * ....
+     * PUT /ovirt-engine/api/tags/123
+     * ....
+     *
+     * With request body like:
+     *
+     * [source,xml]
+     * ----
+     * <tag>
+     *   <parent id="456"/>
+     * </tag>
+     * ----
+     *
+     * You may also specify a tag name instead of id. For example to update parent tag to tag with name `mytag`
+     * of the tag with id `123` send a request like this:
+     *
+     * [source,xml]
+     * ----
+     * <tag>
+     *   <parent>
+     *     <name>mytag</name>
+     *   </parent>
+     * </tag>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Update {
+        /**
+         * The updated tag.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Tag tag();
 
         /**
@@ -38,6 +115,19 @@ public interface TagService {
         @In Boolean async();
     }
 
+    /**
+     * Removes the tag from the system.
+     *
+     * For example to remove the tag with id `123` send a request like this:
+     *
+     * ....
+     * DELETE /ovirt-engine/api/tags/123
+     * ....
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

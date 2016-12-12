@@ -19,12 +19,67 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a tag in the system.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Tag extends Identified {
+
+    /**
+     * Reference to the host which has this tag assigned.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Host host();
+
+    /**
+     * Reference to the virtual machine which has this tag assigned.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Vm vm();
+
+    /**
+     * Reference to the user who has this tag assigned.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link User user();
+
+    /**
+     * Reference to the group which has this tag assigned.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Group group();
+
+    /**
+     * Reference to the template which has this tag assigned.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Template template();
+
+    /**
+     * Reference to the parent tag of this tag.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Tag parent();
 }
