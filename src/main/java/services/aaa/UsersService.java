@@ -85,8 +85,37 @@ public interface UsersService {
     /**
      * List all the users in the system.
      *
+     * Usage:
+     *
+     * ....
+     * GET /ovirt-engine/api/users
+     * ....
+     *
+     * Will return the list of users:
+     *
+     * [source,xml]
+     * ----
+     * <users>
+     *   <user href="/ovirt-engine/api/users/1234" id="1234">
+     *     <name>admin</name>
+     *     <link href="/ovirt-engine/api/users/1234/sshpublickeys" rel="sshpublickeys"/>
+     *     <link href="/ovirt-engine/api/users/1234/roles" rel="roles"/>
+     *     <link href="/ovirt-engine/api/users/1234/permissions" rel="permissions"/>
+     *     <link href="/ovirt-engine/api/users/1234/tags" rel="tags"/>
+     *     <domain_entry_id>23456</domain_entry_id>
+     *     <namespace>*</namespace>
+     *     <principal>user1</principal>
+     *     <user_name>user1@domain-authz</user_name>
+     *     <domain href="/ovirt-engine/api/domains/45678" id="45678">
+     *       <name>domain-authz</name>
+     *     </domain>
+     *   </user>
+     * </users>
+     * ----
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 01 Dec 2016
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 12 Dec 2016
      * @status added
      */
     interface List {
