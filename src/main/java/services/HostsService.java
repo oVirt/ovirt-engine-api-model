@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Host;
 
+/**
+ * A service that manages hosts.
+ *
+ * @author Yaniv Bronheim <ybronhei@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface HostsService {
@@ -86,6 +93,34 @@ public interface HostsService {
         @In Boolean undeployHostedEngine();
     }
 
+    /**
+     * Get a list of all available hosts.
+     *
+     * For example, to list the hosts send the following request:
+     *
+     * ....
+     * GET /ovirt-engine/api/hosts
+     * ....
+     *
+     * The response body will be something like this:
+     *
+     * [source,xml]
+     * ----
+     * <hosts>
+     *   <host href="/ovirt-engine/api/hosts/123" id="123">
+     *     ...
+     *   </host>
+     *   <host href="/ovirt-engine/api/hosts/456" id="456">
+     *     ...
+     *   </host>
+     *   ...
+     * </host>
+     * ----
+     *
+     * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out Host[] hosts();
 
@@ -112,5 +147,12 @@ public interface HostsService {
         @In Boolean filter();
     }
 
+    /**
+     * A Reference to service managing a specific host.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service HostService host(String id);
 }
