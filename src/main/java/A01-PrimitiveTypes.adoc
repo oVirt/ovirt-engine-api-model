@@ -70,10 +70,10 @@ Represents the mathematical concept of real number.
 
 Currently the engine implements this type using 32 bit
 https://en.wikipedia.org/wiki/IEEE_floating_point[IEEE 754] single
-precission floating point numbers.
+precision floating point numbers.
 
-For some attributes this isn't enough precission. In those exceptional
-cases the engine uses 64 bit double precission floating point numbers,
+For some attributes this isn't enough precision. In those exceptional
+cases the engine uses 64 bit double precision floating point numbers,
 in particular for the following attributes:
 
 - `QuotaStorageLimit.usage`
@@ -81,7 +81,7 @@ in particular for the following attributes:
 - `QuotaStorageLimit.memory_usage`
 
 NOTE: In the future the decimal type will be implemented using unlimited
-precission decimal numbers, so the above limitations and exceptions will
+precision decimal numbers, so the above limitations and exceptions will
 eventually disappear.
 
 [id="types/date"]
@@ -112,7 +112,7 @@ The response body will contain the following XML document:
 ----
 
 When requesting the JSON representation the engine uses a different,
-format: an integer containg the number of seconds since Jan 1^st^ 1970,
+format: an integer containing the number of seconds since Jan 1^st^ 1970,
 also know as https://en.wikipedia.org/wiki/Unix_time[_epoch time_]. For
 example, if you send a request like this to retrieve the JSON
 representation of a virtual machine:
