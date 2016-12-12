@@ -19,18 +19,69 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * This type represents all groups in the directory service.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Type
 public interface Group extends Identified {
+  /**
+   * The containing directory service domain id.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String domainEntryId();
+
+  /**
+   * Namespace where group resides.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String namespace();
 
+  /**
+   * A link to the domain containing this group.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   @Link Domain domain();
 
   /**
+   * A link to the roles sub-collection for roles attached to this group.
    * Used only to represent the initial role assignments for a new group, thereafter modification of role assignments
    * are only supported via the `roles` sub-collection.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
    */
   @Link Role[] roles();
+
+  /**
+   * A link to the permissions sub-collection for permissions attached to this group.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   @Link Permission[] permissions();
+
+  /**
+   * A link to the tags sub-collection for tags attached to this group.
+   *
+   * @author Irit Goihman <igoihman@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   @Link Tag[] tags();
 }
