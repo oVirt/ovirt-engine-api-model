@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OpenStackNetworkProvider;
 
+/**
+ * This service manages OpenStack network providers.
+ *
+ * @author Mor Kalfon <mkalfon@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface OpenstackNetworkProvidersService {
@@ -43,5 +50,12 @@ public interface OpenstackNetworkProvidersService {
         @In Integer max();
     }
 
+    /**
+     * Reference to OpenStack network provider service.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service OpenstackNetworkProviderService provider(String id);
 }

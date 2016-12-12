@@ -19,12 +19,60 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/*
+ * Represents OpenStack subnet type.
+ *
+ * @author Mor Kalfon <mkalfon@redhat.com>
+ * @date 14 Dec 2016
+ * @status added
+ */
 @Type
 public interface OpenStackSubnet extends Identified {
+
+    /**
+     * Defines network CIDR.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String cidr();
+
+    /**
+     * Defines IP version.
+     *
+     * Values can be `v4' for IPv4 or `v6` for IPv6.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String ipVersion();
+
+    /**
+     * Defines IP gateway.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String gateway();
+
+    /**
+     * Defines a list of DNS servers.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String[] dnsServers();
 
+    /**
+     * Reference to the service managing the OpenStack network.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link OpenStackNetwork openstackNetwork();
 }

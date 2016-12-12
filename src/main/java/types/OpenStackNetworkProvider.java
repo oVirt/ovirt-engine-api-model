@@ -19,17 +19,42 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/*
+ * Represents OpenStack network provider type.
+ *
+ * @author Mor Kalfon <mkalfon@redhat.com>
+ * @date 14 Dec 2016
+ * @status added
+ */
 @Type
 public interface OpenStackNetworkProvider extends OpenStackProvider {
+    /**
+     * Network plugin type.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     NetworkPluginType pluginType();
+
+    /**
+     * Agent configuration settings.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     AgentConfiguration agentConfiguration();
 
     /**
-     * Indicates whether the provider is read only.
-     * A read-only provider does not allow adding, modifying or deleting of
-     * networks or subnets.
-     * Port-related operations are allowed, as they are required for the
-     * provisioning of virtual nics.
+     * Indicates whether the provider is read-only.
+     *
+     * A read-only provider does not allow adding, modifying or deleting of networks or subnets. Port-related operations
+     * are allowed, as they are required for the provisioning of virtual NICs.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
      */
     Boolean readOnly();
 
@@ -38,7 +63,30 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      */
     OpenStackNetworkProviderType type();
 
+    /**
+     * Reference to the certificates list.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Certificate[] certificates();
+
+    /**
+     * Reference to OpenStack networks list.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link OpenStackNetwork[] networks();
+
+    /**
+     * Reference to OpenStack networks subnets list.
+     *
+     * @author Mor Kalfon <mkalfon@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link OpenStackSubnet[] subnets();
 }
