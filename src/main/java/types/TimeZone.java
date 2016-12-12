@@ -18,8 +18,31 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Time zone representation.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Type
 public interface TimeZone {
+    /**
+     * Name of the time zone.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String name();
+
+    /**
+     * Offset from https://en.wikipedia.org/wiki/Coordinated_Universal_Time[UTC].
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String utcOffset();
 }
