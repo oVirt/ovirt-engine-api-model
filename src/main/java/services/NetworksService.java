@@ -141,5 +141,12 @@ public interface NetworksService {
         @In Boolean caseSensitive();
     }
 
+    /**
+     * Reference to the service that manages a specific network.
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service NetworkService network(String id);
 }
