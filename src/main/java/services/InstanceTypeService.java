@@ -25,10 +25,58 @@ import types.InstanceType;
 @Service
 @Area("Virtualization")
 public interface InstanceTypeService {
+
+    /**
+     * Get a specific instance type and it's attributes.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/instancetypes/123
+     * ----
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
         @Out InstanceType instanceType();
     }
 
+    /**
+     * Update a specific instance type and it's attributes.
+     *
+     * All the attributes are editable after creation.
+     * If a virtual machine was created using an instance type X and some configuration in instance
+     * type X was updated, the virtual machine's configuration will be updated automatically by the
+     * engine.
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/instancetypes/123
+     * ----
+     *
+     * For example, to update the memory of instance type `123` to 1 GiB and set the cpu topology
+     * to 2 sockets and 1 core, send a request like this:
+     *
+     * [source, xml]
+     * ----
+     *
+     * <instance_type>
+     *   <memory>1073741824</memory>
+     *   <cpu>
+     *     <topology>
+     *       <cores>1</cores>
+     *       <sockets>2</sockets>
+     *       <threads>1</threads>
+     *     </topology>
+     *   </cpu>
+     * </instance_type>
+     * ----
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Update {
         @In @Out InstanceType instanceType();
 
@@ -38,14 +86,57 @@ public interface InstanceTypeService {
         @In Boolean async();
     }
 
+    /**
+     * Removes a specific instance type from the system.
+     *
+     * If a virtual machine was created using an instance type X after removal of the instance type
+     * the virtual machine's instance type will be set to `custom`.
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/instancetypes/123
+     * ----
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Sefi Litmanovich <slitmano@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
          */
         @In Boolean async();
     }
 
+    /**
+     * Reference to the service that manages the NICs that are attached to this instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service InstanceTypeNicsService nics();
+
+    /**
+     * Reference to the service that manages the watchdogs that are attached to this instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service InstanceTypeWatchdogsService watchdogs();
+
+    /**
+     * Reference to the service that manages the graphic consoles that are attached to this
+     * instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service GraphicsConsolesService graphicsConsoles();
 }

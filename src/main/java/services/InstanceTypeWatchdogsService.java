@@ -25,17 +25,41 @@ import types.Watchdog;
 @Service
 @Area("Virtualization")
 public interface InstanceTypeWatchdogsService {
+    /**
+     * Add new watchdog to the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
         @In @Out Watchdog watchdog();
     }
 
+    /**
+     * Lists all the configured watchdogs of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out Watchdog[] watchdogs();
 
         /**
-         * Sets the maximum number of watchdogs to return. If not specified all the watchdogs are returned.
+         * Sets the maximum number of watchdogs to return. If not specified all the watchdogs are
+         * returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned templates.
+         *
+         * @author Sefi Litmanovich <slitmano@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
+        @In String search();
     }
 
     @Service InstanceTypeWatchdogService watchdog(String id);

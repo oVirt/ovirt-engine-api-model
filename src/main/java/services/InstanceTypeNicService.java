@@ -25,10 +25,24 @@ import types.Nic;
 @Service
 @Area("Network")
 public interface InstanceTypeNicService {
+    /**
+     * Gets network interface configuration of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
         @Out Nic nic();
     }
 
+    /**
+     * Updates the network interface configuration of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Update {
         @In @Out Nic nic();
 
@@ -38,6 +52,13 @@ public interface InstanceTypeNicService {
         @In Boolean async();
     }
 
+    /**
+     * Remove the network interface from the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.

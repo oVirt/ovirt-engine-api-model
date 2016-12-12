@@ -25,10 +25,24 @@ import types.Watchdog;
 @Service
 @Area("Virtualization")
 public interface InstanceTypeWatchdogService {
+    /**
+     * Gets watchdog configuration of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
         @Out Watchdog watchdog();
     }
 
+    /**
+     * Updates the watchdog configuration of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Update {
         @In @Out Watchdog watchdog();
 
@@ -38,6 +52,13 @@ public interface InstanceTypeWatchdogService {
         @In Boolean async();
     }
 
+    /**
+     * Remove a watchdog from the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
