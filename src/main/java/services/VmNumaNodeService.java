@@ -46,9 +46,7 @@ public interface VmNumaNodeService {
      * <vm_numa_node>
      *   <numa_node_pins>
      *     <numa_node_pin>
-     *       <host_numa_node id="789"/>
      *       <index>0</index>
-     *       <pinned>true</pinned>
      *     </numa_node_pin>
      *   </numa_node_pins>
      * </vm_numa_node>
