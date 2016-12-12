@@ -173,7 +173,7 @@ clone the `ovirt-engine-api-model` source:
 $ git clone gerrit.ovirt.org:ovirt-engine-api-model
 ----
 
-=== Creating a working brach for your changes
+=== Creating a working branch for your changes
 
 Create a working branch off `master` in which to make your changes.
 
@@ -267,7 +267,7 @@ $ git commit -s
 ----
 
 This will open an editor where you can write the commit message. By
-default it will probaby be `vim`, but you can change it with the
+default it will probably be `vim`, but you can change it with the
 `EDITOR` environment variable:
 
 [source]
