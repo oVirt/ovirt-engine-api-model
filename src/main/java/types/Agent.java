@@ -65,7 +65,7 @@ public interface Agent extends Identified {
     String password();
 
     /**
-     * Fence agent options (comma seperated list of
+     * Fence agent options (comma-delimited list of
      * key-value pairs).
      *
      * @author Oved Ourfali <oourfali@redhat.com>
