@@ -34,7 +34,7 @@ public interface NetworkService {
      *
      * The `name`, `description`, `ip`, `vlan`, `stp` and `display` attributes can be updated.
      *
-     * For example, to update the description of the logcial network `123` send a request like this:
+     * For example, to update the description of the logical network `123` send a request like this:
      *
      * [source]
      * ----
