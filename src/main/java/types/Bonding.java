@@ -18,6 +18,13 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a network interfaces bond.
+ *
+ * @author Leon Goldberg <lgoldber@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Bonding {
     Option[] options();
