@@ -24,6 +24,13 @@ import annotations.Area;
 import types.StorageDomain;
 import types.Template;
 
+/**
+ * Manages the virtual machine template and template versions.
+ *
+ * @author Tomas Jelinek <tjelinek@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface TemplateService {
@@ -74,7 +81,21 @@ public interface TemplateService {
         @In StorageDomain storageDomain();
     }
 
+    /**
+     * Returns the information about this template or template version.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The information about the template or template version.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Template template();
 
         /**
@@ -149,11 +170,51 @@ public interface TemplateService {
         @In Boolean async();
     }
 
+    /**
+     * Returns a reference to the service that manages the permissions that are associated with the template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
+
+    /**
+     * Returns a reference to the service that manages the tags that are associated with the template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedTagsService tags();
+
     @Service GraphicsConsolesService graphicsConsoles();
+
+    /**
+     * Returns a reference to the service that manages the CDROMs that are associated with the template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TemplateCdromsService cdroms();
+
+    /**
+     * Returns a reference to the service that manages the NICs that are associated with the template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TemplateNicsService nics();
+
+    /**
+     * Returns a reference to the service that manages the _watchdogs_ that are associated with the template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TemplateWatchdogsService watchdogs();
 
     /**
