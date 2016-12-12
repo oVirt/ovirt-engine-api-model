@@ -19,9 +19,30 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type represents a permit.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Permit extends Identified {
+    /**
+     * Specifies whether permit is administrative or not.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean administrative();
 
+    /**
+     * Reference to the role the permit belongs to.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Role role();
 }
