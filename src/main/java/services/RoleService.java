@@ -24,7 +24,39 @@ import types.Role;
 @Service
 @Area("Infrastructure")
 public interface RoleService {
+    /**
+     * Get the role.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/roles/123
+     * ----
+     *
+     * You will receive XML response like this one:
+     *
+     * [source,xml]
+     * ----
+     * <role id="123">
+     *   <name>MyRole</name>
+     *   <description>MyRole description</description>
+     *   <link href="/ovirt-engine/api/roles/123/permits" rel="permits"/>
+     *   <administrative>true</administrative>
+     *   <mutable>false</mutable>
+     * </role>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * Retrieved role.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Role role();
     }
 
@@ -78,6 +110,13 @@ public interface RoleService {
      * @status added
      */
     interface Update {
+        /**
+         * Updated role.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Role role();
 
         /**
@@ -86,5 +125,12 @@ public interface RoleService {
         @In Boolean async();
     }
 
+    /**
+     * Sub-resource locator method, returns permits service.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service PermitsService permits();
 }
