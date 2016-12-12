@@ -26,7 +26,7 @@ package annotations;
  * - Storage
  * - Virtualization
  *
- * A concept may be assiciated to more than one area, or to no area.
+ * A concept may be associated to more than one area, or to no area.
  *
  * The value of this annotation is intended for reporting only, and it doesn't affect at all the generated code or the
  * validity of the model
