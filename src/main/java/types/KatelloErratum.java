@@ -21,16 +21,98 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Type representing a Katello erratum.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface KatelloErratum extends Identified {
+
+  /**
+   * The title of the Katello erratum.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String title();
+
+  /**
+   * The type of the Katello erratum.
+   *
+   * The supported types are `bugfix`, `enhancement` or `security`.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String type();
+
+  /**
+   * The date when the Katello erratum was issued.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   Date issued();
+
+  /**
+   * The severity of the Katello erratum.
+   *
+   * The supported severities are `moderate`, `important` or `critical`.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String severity();
+
+  /**
+   * The solution for the issue described by the Katello erratum.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String solution();
+
+  /**
+   * The summary of the Katello erratum.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   String summary();
+
+  /**
+   * The list of packages which solve the issue reported by the Katello erratum.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   Package[] packages();
 
+  /**
+   * Reference to the host that the Katello erratum is assigned to.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   @Link Host host();
+
+  /**
+   * Reference to the virtual machine that the Katello erratum is assigned to.
+   *
+   * @author Moti Asayag <masayag@redhat.com>
+   * @date 12 Dec 2016
+   * @status added
+   */
   @Link Vm vm();
 }

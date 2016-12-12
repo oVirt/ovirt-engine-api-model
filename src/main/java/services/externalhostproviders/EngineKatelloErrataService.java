@@ -20,8 +20,12 @@ import annotations.Area;
 import org.ovirt.api.metamodel.annotations.Service;
 
 /**
- * This service doesn't add any new methods, it is just a placeholder for the annotation that specifies the path of the
- * resource that manages the Katello errata assigned to the engine.
+ * A service to manage Katello errata assigned to the engine.
+ * The information is retrieved from Katello.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
  */
 @Service
 @Area("Infrastructure")
