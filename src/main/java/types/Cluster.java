@@ -19,6 +19,134 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representation of a cluster.
+ *
+ * A JSON representation of a cluster
+ *
+ * [source]
+ * ----
+ * {
+ *   "cluster" : [ {
+ *     "ballooning_enabled" : "false",
+ *     "cpu" : {
+ *       "architecture" : "x86_64",
+ *       "type" : "Intel SandyBridge Family"
+ *     },
+ *     "custom_scheduling_policy_properties" : {
+ *       "property" : [ {
+ *         "name" : "HighUtilization",
+ *         "value" : "80"
+ *       }, {
+ *         "name" : "CpuOverCommitDurationMinutes",
+ *         "value" : "2"
+ *       } ]
+ *     },
+ *     "error_handling" : {
+ *       "on_error" : "migrate"
+ *     },
+ *     "fencing_policy" : {
+ *       "enabled" : "true",
+ *       "skip_if_connectivity_broken" : {
+ *         "enabled" : "false",
+ *         "threshold" : "50"
+ *       },
+ *       "skip_if_gluster_bricks_up" : "false",
+ *       "skip_if_gluster_quorum_not_met" : "false",
+ *       "skip_if_sd_active" : {
+ *         "enabled" : "false"
+ *       }
+ *     },
+ *     "gluster_service" : "false",
+ *     "ha_reservation" : "false",
+ *     "ksm" : {
+ *       "enabled" : "true",
+ *       "merge_across_nodes" : "true"
+ *     },
+ *     "maintenance_reason_required" : "false",
+ *     "memory_policy" : {
+ *       "over_commit" : {
+ *         "percent" : "100"
+ *       },
+ *       "transparent_hugepages" : {
+ *         "enabled" : "true"
+ *       }
+ *     },
+ *     "migration" : {
+ *       "auto_converge" : "inherit",
+ *       "bandwidth" : {
+ *         "assignment_method" : "auto"
+ *       },
+ *       "compressed" : "inherit",
+ *       "policy" : {
+ *         "id" : "00000000-0000-0000-0000-000000000000"
+ *       }
+ *     },
+ *     "optional_reason" : "false",
+ *     "required_rng_sources" : {
+ *       "required_rng_source" : [ "random" ]
+ *     },
+ *     "switch_type" : "legacy",
+ *     "threads_as_cores" : "false",
+ *     "trusted_service" : "false",
+ *     "tunnel_migration" : "false",
+ *     "version" : {
+ *       "major" : "4",
+ *       "minor" : "1"
+ *     },
+ *     "virt_service" : "true",
+ *     "data_center" : {
+ *       "href" : "/ovirt-engine/api/datacenters/123",
+ *       "id" : "123"
+ *     },
+ *     "mac_pool" : {
+ *       "href" : "/ovirt-engine/api/macpools/456",
+ *       "id" : "456"
+ *     },
+ *     "scheduling_policy" : {
+ *       "href" : "/ovirt-engine/api/schedulingpolicies/789",
+ *       "id" : "789"
+ *     },
+ *     "actions" : {
+ *       "link" : [ {
+ *         "href" : "/ovirt-engine/api/clusters/234/resetemulatedmachine",
+ *         "rel" : "resetemulatedmachine"
+ *       } ]
+ *     },
+ *     "name" : "Default",
+ *     "description" : "The default server cluster",
+ *     "href" : "/ovirt-engine/api/clusters/234",
+ *     "id" : "234",
+ *     "link" : [ {
+ *       "href" : "/ovirt-engine/api/clusters/234/permissions",
+ *       "rel" : "permissions"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/cpuprofiles",
+ *       "rel" : "cpuprofiles"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/networkfilters",
+ *       "rel" : "networkfilters"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/networks",
+ *       "rel" : "networks"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/affinitygroups",
+ *       "rel" : "affinitygroups"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/glusterhooks",
+ *       "rel" : "glusterhooks"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/glustervolumes",
+ *       "rel" : "glustervolumes"
+ *     } ]
+ *   } ]
+ * }
+ * ----
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Cluster extends Identified {
     Cpu cpu();
