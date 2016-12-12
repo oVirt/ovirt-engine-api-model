@@ -21,14 +21,78 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Represents a virtual machine.
+ *
+ * @author Marek Libra <mlibra@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Vm extends VmBase {
+    /**
+     * The current status of the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     VmStatus status();
+
+    /**
+     * Human readable detail of current status.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String statusDetail();
+
+    /**
+     * The reason the virtual machine was stopped.
+     * Optionally set by user when shutting down the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String stopReason();
+
+    /**
+     * The date in which the virtual machine was started.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date startTime();
+
+    /**
+     * The date in which the virtual machine was stopped.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date stopTime();
+
+    /**
+     * If `true`, the virtual machine has been started using the _run once_ command, meaning
+     * it's configuration might differ from the stored one for the purpose of this single run.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean runOnce();
+
+    /**
+     * Optional payloads of the virtual machine, used for ISOs to configure it.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Payload[] payloads();
 
     /**
@@ -75,15 +139,87 @@ public interface Vm extends VmBase {
      * @status added
      */
     VmPlacementPolicy placementPolicy();
+
+    /**
+     * Fully qualified domain name of the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String fqdn();
+
+    /**
+     * If `true`, the virtual machine is reconfigured to the latest version of it's template when it is started.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean useLatestTemplateVersion();
+
+    /**
+     * Virtual machine configuration has been changed and requires restart of the virtual machine.
+     * Changed configuration is applied at processing the virtual machine's _shut down_.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean nextRunConfigurationExists();
+
+    /**
+     * How the NUMA topology is applied.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     NumaTuneMode numaTuneMode();
+
+    /**
+     * What time zone is used by the virtual machine (as returned by guest agent).
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     TimeZone guestTimeZone();
+
+    /**
+     * What operating system is installed on the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     GuestOperatingSystem guestOperatingSystem();
 
+    /**
+     * Reference to the host the virtual machine is running on.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Host host();
+
+    /**
+     * Reference to the template the virtual machine is based on.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Template template();
+
+    /**
+     * The virtual machine configuration can be optionally predefined via one of the instance types.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link InstanceType instanceType();
 
     /**
@@ -95,21 +231,124 @@ public interface Vm extends VmBase {
      */
     @Link Nic[] nics();
 
+    /**
+     * Refers to all snapshots taken from the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Snapshot[] snapshots();
+
+    /**
+     * Reference to the pool the virtual machine is optionally member of.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link VmPool vmPool();
+
+    /**
+     * Reference to the ISO mounted to the CDROM.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Cdrom[] cdroms();
+
+    /**
+     * Reference to the ISO mounted to the floppy.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Floppy[] floppies();
     @Link ReportedDevice[] reportedDevices();
+
+    /**
+     * Refers to the Watchdog configuration.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Watchdog[] watchdogs();
+
+    /**
+     * Permissions set for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Permission[] permissions();
     @Link ExternalHostProvider externalHostProvider();
+
+    /**
+     * Optional. Used for labeling of sub-clusters.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link AffinityLabel[] affinityLabels();
+
+    /**
+     * List of applications installed on the virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Application[] applications();
+
+    /**
+     * List of graphics consoles configured for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link GraphicsConsole[] graphicsConsoles();
+
+    /**
+     * References devices associated to this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link HostDevice[] hostDevices();
     @Link KatelloErratum[] katelloErrata();
+
+    /**
+     * Refers to the NUMA Nodes configuration used by this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link NumaNode[] numaNodes();
+
+    /**
+     * List of user sessions opened for this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Session[] sessions();
+
+    /**
+     * Statistics data collected from this virtual machine.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Statistic[] statistics();
     @Link Tag[] tags();
 
