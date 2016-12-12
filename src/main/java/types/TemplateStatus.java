@@ -17,9 +17,39 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a status of a virtual machine template.
+ *
+ * @author Arik Hadas <ahadas@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum TemplateStatus {
+    /**
+     * This status indicates that at least one of the disks of the template is illegal.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     ILLEGAL,
+
+    /**
+     * This status indicates that some operation that prevents other operations with the template is being executed.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     LOCKED,
+
+    /**
+     * This status indicates that the template is valid and ready for use.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     OK;
 }
