@@ -131,7 +131,7 @@ public interface TemplateService {
     }
 
     /**
-     * Removas a virtual machine template.
+     * Removes a virtual machine template.
      *
      * [source]
      * ----
