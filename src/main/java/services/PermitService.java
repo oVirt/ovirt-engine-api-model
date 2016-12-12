@@ -22,13 +22,64 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Permit;
 
+/**
+ * A service to manage a specific permit of the role.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface PermitService {
+
+    /**
+     * Gets the information about the permit of the role.
+     *
+     * For example to retrieve the information about the permit with the id `456` of the role with the id `123`
+     * send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/roles/123/permits/456
+     * ....
+     *
+     * [source,xml]
+     * ----
+     * <permit href="/ovirt-engine/api/roles/123/permits/456" id="456">
+     *   <name>change_vm_cd</name>
+     *   <administrative>false</administrative>
+     *   <role href="/ovirt-engine/api/roles/123" id="123"/>
+     * </permit>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The permit of the role.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Permit permit();
     }
 
+    /**
+     * Removes the permit from the role.
+     *
+     * For example to remove the permit with id `456` from the role with id `123` send a request like this:
+     *
+     * ....
+     * DELETE /ovirt-engine/api/roles/123/permits/456
+     * ....
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
