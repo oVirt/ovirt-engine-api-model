@@ -31,6 +31,13 @@ import types.PowerManagement;
 import types.Ssh;
 import types.StorageDomain;
 
+/**
+ * A service to manage a host.
+ *
+ * @author Yaniv Bronheim <ybronhei@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface HostService extends MeasurableService {
@@ -708,7 +715,23 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     @Service HostNicsService nics();
+
+    /**
+     * Reference to the service that manage NUMA nodes for the host.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service HostNumaNodesService numaNodes();
+
+    /**
+     * Reference to the service that manage hosts storage.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service HostStorageService storage();
 
     /**
@@ -730,7 +753,23 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     @Service NetworkAttachmentsService networkAttachments();
+
+    /**
+     * Reference to storage connection extensions.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service StorageServerConnectionExtensionsService storageConnectionExtensions();
+
+    /**
+     * Reference to unmanaged networks.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service UnmanagedNetworksService unmanagedNetworks();
 
     /**
