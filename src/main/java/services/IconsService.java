@@ -22,10 +22,49 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Icon;
 
+/**
+ * A service to manage icons.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface IconsService {
+    /**
+     * Get a list of icons.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/icons
+     * ----
+     *
+     * You will get a XML response which is similar to this one:
+     *
+     * [source,xml]
+     * ----
+     * <icons>
+     *   <icon id="123">
+     *     <data>...</data>
+     *     <media_type>image/png</media_type>
+     *   </icon>
+     *   ...
+     * </icons>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * Retrieved list of icons.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Icon[] icons();
 
         /**
@@ -34,5 +73,12 @@ public interface IconsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that manages an specific icon.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service IconService icon(String id);
 }
