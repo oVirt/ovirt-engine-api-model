@@ -18,7 +18,22 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing a Virtual LAN (VLAN) type.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Type
 public interface Vlan {
+    /**
+     * Virtual LAN ID.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Integer id();
 }
