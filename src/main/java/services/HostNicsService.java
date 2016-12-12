@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.HostNic;
 
+/**
+ * A service to manage the network interfaces of a host.
+ *
+ * @author Leon Goldberg <lgoldber@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface HostNicsService {
@@ -35,5 +42,12 @@ public interface HostNicsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the service that manages a single network interface.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service HostNicService nic(String id);
 }
