@@ -22,9 +22,51 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Event;
 
+/**
+ * A service to manage an event in the system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface EventService {
+    /**
+     * Get an event.
+     *
+     * An example of getting an event:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/events/123
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <event href="/ovirt-engine/api/events/123" id="123">
+     *   <description>Host example.com was added by admin@internal-authz.</description>
+     *   <code>42</code>
+     *   <correlation_id>135</correlation_id>
+     *   <custom_id>-1</custom_id>
+     *   <flood_rate>30</flood_rate>
+     *   <origin>oVirt</origin>
+     *   <severity>normal</severity>
+     *   <time>2016-12-11T11:13:44.654+02:00</time>
+     *   <cluster href="/ovirt-engine/api/clusters/456" id="456"/>
+     *   <host href="/ovirt-engine/api/hosts/789" id="789"/>
+     *   <user href="/ovirt-engine/api/users/987" id="987"/>
+     * </event>
+     * ----
+     *
+     * Note that the number of fields changes according to the information that resides on the event.
+     * For example, for storage domain related events you will get the storage domain reference,
+     * as well as the reference for the data center this storage domain resides in.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
         @Out Event event();
     }

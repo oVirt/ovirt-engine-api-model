@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Event;
 
+/**
+ * A service to manage events in the system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface EventsService {
@@ -231,5 +238,12 @@ public interface EventsService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to the service that manages a specific event.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service EventService event(String id);
 }
