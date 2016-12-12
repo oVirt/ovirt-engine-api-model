@@ -18,8 +18,34 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents an IP address assignment for a network device.
+ *
+ * For a static boot protocol assignment, subnet mask and IP address
+ * (and optinally default gateway) must be provided in the IP configuration.
+ *
+ * @author Leon Goldberg <lgoldber@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface IpAddressAssignment {
+
+    /**
+     * Sets the IP configuration for a network device.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Ip ip();
+
+    /**
+     * Sets the boot protocol used to assign the IP configuration for a network device.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     BootProtocol assignmentMethod();
 }
