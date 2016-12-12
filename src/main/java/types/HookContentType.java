@@ -17,8 +17,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents content type of hook script.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum HookContentType {
+    /**
+     * Text content type of the hook.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     TEXT,
+
+    /**
+     * Binary content type of the hook.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     BINARY;
 }
