@@ -28,8 +28,50 @@ import types.ClusterLevel;
 public interface ClusterLevelService {
     /**
      * Provides the information about the capabilities of the specific cluster level managed by this service.
+     *
+     * For example, to find what CPU types are supported by level 3.6 you can send a request like this:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/clusterlevels/3.6
+     * ----
+     *
+     * That will return a <<types/cluster_level, ClusterLevel>> object containing the supported CPU types, and other
+     * information which describes the cluster level:
+     *
+     * [source,xml]
+     * ----
+     * <cluster_level id="3.6">
+     *   <cpu_types>
+     *     <cpu_type>
+     *       <name>Intel Conroe Family</name>
+     *       <level>3</level>
+     *       <architecture>x86_64</architecture>
+     *     </cpu_type>
+     *     ...
+     *   </cpu_types>
+     *   <permits>
+     *     <permit id="1">
+     *       <name>create_vm</name>
+     *       <administrative>false</administrative>
+     *     </permit>
+     *     ...
+     *   </permits>
+     * </cluster_level>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
      */
     interface Get {
+        /**
+         * Retreived cluster level.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out ClusterLevel level();
     }
 }
