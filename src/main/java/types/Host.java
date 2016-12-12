@@ -403,6 +403,92 @@ public interface Host extends Identified {
     @Link Nic[] nics();
     @Link NumaNode[] numaNodes();
     @Link Permission[] permissions();
+
+    /**
+     * Each host resource exposes a statistics sub-collection for host-specific statistics.
+     *
+     * An example of an XML representation:
+     *
+     * [source,xml]
+     * ----
+     * <statistics>
+     *   <statistic href="/ovirt-engine/api/hosts/123/statistics/456" id="456">
+     *     <name>memory.total</name>
+     *     <description>Total memory</description>
+     *     <kind>gauge</kind>
+     *     <type>integer</type>
+     *     <unit>bytes</unit>
+     *     <values>
+     *       <value>
+     *         <datum>25165824000</datum>
+     *       </value>
+     *     </values>
+     *     <host href="/ovirt-engine/api/hosts/123" id="123"/>
+     *   </statistic>
+     *     ...
+     * </statistics>
+     * ----
+     *
+     * NOTE: This statistics sub-collection is read-only.
+     *
+     * The following list shows the statistic types for hosts:
+     *
+     * |===
+     * |Name |Description
+     *
+     * |`memory.total`
+     * |Total memory in bytes on the host.
+     *
+     * |`memory.used`
+     * |Memory in bytes used on the host.
+     *
+     * |`memory.free`
+     * |Memory in bytes free on the host.
+     *
+     * |`memory.shared`
+     * |Memory in bytes shared on the host.
+     *
+     * |`memory.buffers`
+     * |I/O buffers in bytes.
+     *
+     * |`memory.cached`
+     * |OS caches in bytes.
+     *
+     * |`swap.total`
+     * |Total swap memory in bytes on the host.
+     *
+     * |`swap.free`
+     * |Swap memory in bytes free on the host.
+     *
+     * |`swap.used`
+     * |Swap memory in bytes used on the host.
+     *
+     * |`swap.cached`
+     * |Swap memory in bytes also cached in host's memory.
+     *
+     * |`ksm.cpu.current`
+     * |Percentage of CPU usage for Kernel SamePage Merging.
+     *
+     * |`cpu.current.user`
+     * |Percentage of CPU usage for user slice.
+     *
+     * |`cpu.current.system`
+     * |Percentage of CPU usage for system.
+     *
+     * |`cpu.current.idle`
+     * |Percentage of idle CPU usage.
+     *
+     * |`cpu.load.avg.5m`
+     * |CPU load average per five minutes.
+     *
+     * |`boot.time`
+     * |Boot time of the machine.
+     * |===
+     *
+     * @author Artyom Lukianov <alukiano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Statistic[] statistics();
     @Link HostStorage[] storages();
     @Link Tag[] tags();
