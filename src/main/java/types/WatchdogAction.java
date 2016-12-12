@@ -16,12 +16,53 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-
+/**
+ * This type describes available watchdog actions.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 12 Dec
+ * @status added
+ */
 @Type
 public enum WatchdogAction {
+    /**
+     * No action will be performed when watchdog action is triggered. However log message will still be generated.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     NONE,
+    /**
+     * Virtual machine will be rebooted when watchdog action is triggered.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     RESET,
+    /**
+     * Virtual machine will be powered off when watchdog action is triggered.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     POWEROFF,
+    /**
+     * Virtual machine will be paused when watchdog action is triggered.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     PAUSE,
+    /**
+     * Virtual machine process will get core dumped to the default path on the host.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     DUMP;
 }

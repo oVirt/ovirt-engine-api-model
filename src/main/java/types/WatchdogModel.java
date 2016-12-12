@@ -16,8 +16,21 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-
+/**
+ * This type represents the watchdog model.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 12 Dec
+ * @status added
+ */
 @Type
 public enum WatchdogModel {
+    /**
+     * Currently only model supported is model I6300ESB.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     I6300ESB;
 }
