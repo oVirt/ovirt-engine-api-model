@@ -17,8 +17,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Protocol used to access a Gluster volume.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum TransportType {
+    /**
+     * TCP.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     TCP,
+
+    /**
+     * Remote direct memory access.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     RDMA;
 }
