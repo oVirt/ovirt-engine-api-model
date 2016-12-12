@@ -22,14 +22,85 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Bookmark;
 
+/**
+ * A service to manage bookmarks.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface BookmarksService {
+    /**
+     * Adding a new bookmark.
+     *
+     * Example of adding a bookmark:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/bookmarks
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <bookmark>
+     *   <name>new_example_vm</name>
+     *   <value>vm: name=new_example*</value>
+     * </bookmark>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The added bookmark.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Bookmark bookmark();
     }
 
+    /**
+     * Listing all the available bookmarks.
+     *
+     * Example of listing bookmarks:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/bookmarks
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <bookmarks>
+     *   <bookmark href="/ovirt-engine/api/bookmarks/123" id="123">
+     *     <name>database</name>
+     *     <value>vm: name=database*</value>
+     *   </bookmark>
+     *   <bookmark href="/ovirt-engine/api/bookmarks/456" id="456">
+     *     <name>example</name>
+     *     <value>vm: name=example*</value>
+     *   </bookmark>
+     * </bookmarks>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of available bookmarks.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Bookmark[] bookmarks();
 
         /**
@@ -38,5 +109,12 @@ public interface BookmarksService {
         @In Integer max();
     }
 
+    /**
+     * A reference to the service managing a specific bookmark.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service BookmarkService bookmark(String id);
 }
