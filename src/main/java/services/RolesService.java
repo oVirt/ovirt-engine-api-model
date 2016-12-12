@@ -60,6 +60,13 @@ public interface RolesService {
      * @status added
      */
     interface Add {
+        /**
+         * Role that will be added.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Role role();
     }
 
@@ -87,11 +94,18 @@ public interface RolesService {
      * </roles>
      * ----
      *
-     * @autho Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
      * @status added
      */
     interface List {
+        /**
+         * Retrieved list of roles.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Role[] roles();
 
         /**
