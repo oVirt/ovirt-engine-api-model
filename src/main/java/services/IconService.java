@@ -21,10 +21,46 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Icon;
 
+/**
+ * A service to manage an icon (read-only).
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface IconService {
+    /**
+     * Get an icon.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/icons/123
+     * ----
+     *
+     * You will get a XML response like this one:
+     *
+     * [source,xml]
+     * ----
+     * <icon id="123">
+     *   <data>Some binary data here</data>
+     *   <media_type>image/png</media_type>
+     * </icon>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * Retrieved icon.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Icon icon();
     }
 }
