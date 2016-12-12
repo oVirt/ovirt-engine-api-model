@@ -37,7 +37,7 @@ public enum LogSeverity {
     NORMAL,
 
     /**
-     * Warning severify.
+     * Warning severity.
      * Used to warn something might be wrong.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
