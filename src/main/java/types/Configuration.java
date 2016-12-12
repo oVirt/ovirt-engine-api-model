@@ -79,7 +79,7 @@ public interface Configuration {
      *       <Description>other</Description>
      *     </Section>
      *     <Section xsi:type="ovf:VirtualHardwareSection_Type">
-     *       <Info>1 CPU, 1024 Memeory</Info>
+     *       <Info>1 CPU, 1024 Memory</Info>
      *       <System>
      *         <vssd:VirtualSystemType>ENGINE 3.5.0.0</vssd:VirtualSystemType>
      *       </System>
