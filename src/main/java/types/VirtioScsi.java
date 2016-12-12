@@ -18,7 +18,23 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing the support of virtio-SCSI.
+ * If it supported we use virtio driver for SCSI guest device.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Type
 public interface VirtioScsi {
+    /**
+     * Enable Virtio SCSI support.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean enabled();
 }
