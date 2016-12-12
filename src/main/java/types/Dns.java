@@ -18,8 +18,31 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the DNS resolver configuration.
+ *
+ * @author Leon Goldberg <lgoldber@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Dns {
+
+    /**
+     * Array of hosts serving as DNS servers.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Host[] servers();
+
+    /**
+     * Array of hosts serving as search domains.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Host[] searchDomains();
 }
