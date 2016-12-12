@@ -89,7 +89,7 @@ public interface Event extends Identified {
      * Defines the flood rate.
      * This prevents flooding in case an event appeared
      * more than once in the defined rate.
-     * Defauls is 30 seconds.
+     * Defaults is 30 seconds.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 30 Nov 2016
