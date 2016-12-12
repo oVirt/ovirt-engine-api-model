@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
 
+/**
+ * A service to manage clusters.
+ *
+ * @author Yaniv Bronheim <ybronhei@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface ClustersService {
@@ -83,5 +90,12 @@ public interface ClustersService {
         @In Boolean filter();
     }
 
+    /**
+     * Reference to the service that manages a specific cluster.
+     *
+     * @author Yaniv Bronheim <ybronhei@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service ClusterService cluster(String id);
 }
