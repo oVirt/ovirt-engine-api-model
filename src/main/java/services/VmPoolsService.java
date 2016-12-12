@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VmPool;
 
+/**
+ * Provides read-write access to virtual machines pools.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmPoolsService {
@@ -52,10 +59,44 @@ public interface VmPoolsService {
      * @status added
      */
     interface Add {
+        /**
+         * Pool to add.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out VmPool pool();
     }
 
+    /**
+     * Get a list of available virtual machines pools.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vmpools
+     * ----
+     *
+     * You will receive the following response:
+     *
+     * [source,xml]
+     * ----
+     * <vm_pools>
+     *   <vm_pool id="123">
+     *     ...
+     *   </vm_pool>
+     *   ...
+     * </vm_pools>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * Retrieved pools.
+         */
         @Out VmPool[] pools();
 
         /**
@@ -81,5 +122,12 @@ public interface VmPoolsService {
         @In Boolean filter();
     }
 
+    /**
+     * Reference to the service that manages a specific virtual machine pool.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service VmPoolService pool(String id);
 }
