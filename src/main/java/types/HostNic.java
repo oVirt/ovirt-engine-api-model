@@ -66,12 +66,60 @@ public interface HostNic extends Identified {
      */
     Mac mac();
 
+    /**
+     * The IPv4 address of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Ip ip();
+
+    /**
+     * The IPv6 address of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Ip ipv6();
+
+    /**
+     * The base interface of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String baseInterface();
+
     Vlan vlan();
+
+    /**
+     * The bonding parameters of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Bonding bonding();
+
+    /**
+     * The IPv4 boot protocol configuration of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     BootProtocol bootProtocol();
+
+    /**
+     * The IPv6 boot protocol configuration of the NIC.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     BootProtocol ipv6BootProtocol();
 
     /**
@@ -124,6 +172,13 @@ public interface HostNic extends Identified {
      */
     @Link Network network();
 
+    /**
+     * A link to the quality-of-service configuration of the interface.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Qos qos();
 
     /**
