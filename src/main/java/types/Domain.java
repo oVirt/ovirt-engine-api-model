@@ -19,9 +19,34 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * This type represents a directory service domain.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Domain extends Identified {
     User user();
+
+    /**
+     * A reference to all groups in the directory service.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     *
+     */
     @Link Group[] groups();
+
+    /**
+     * A reference to a list of all users in the directory service.
+     * This information is used to add new users to the {product-name} environment.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link User[] users();
 }
