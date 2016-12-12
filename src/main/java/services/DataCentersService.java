@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.DataCenter;
 
+/**
+ * A service to manage data centers.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface DataCentersService {
@@ -151,5 +158,12 @@ public interface DataCentersService {
         @In Boolean filter();
     }
 
+    /**
+     * Reference to the service that manages a specific data center.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service DataCenterService dataCenter(String id);
 }
