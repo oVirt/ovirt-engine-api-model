@@ -22,14 +22,81 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Bookmark;
 
+/**
+ * A service to manage a bookmark.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface BookmarkService {
+    /**
+     * Get a bookmark.
+     *
+     * An example for getting a bookmark:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/bookmarks/123
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <bookmark href="/ovirt-engine/api/bookmarks/123" id="123">
+     *   <name>example_vm</name>
+     *   <value>vm: name=example*</value>
+     * </bookmark>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The requested bookmark.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Bookmark bookmark();
     }
 
+    /**
+     * Update a bookmark.
+     *
+     * An example for updating a bookmark:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/bookmarks/123
+     * ----
+     *
+     * With the request body:
+     *
+     * [source,xml]
+     * ----
+     * <bookmark>
+     *   <name>new_example_vm</name>
+     *   <value>vm: name=new_example*</value>
+     * </bookmark>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Update {
+        /**
+         * The updated bookmark.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Bookmark bookmark();
 
         /**
@@ -38,6 +105,20 @@ public interface BookmarkService {
         @In Boolean async();
     }
 
+    /**
+     * Remove a bookmark.
+     *
+     * An example for removing a bookmark:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/bookmarks/123
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
