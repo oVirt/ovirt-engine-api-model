@@ -19,10 +19,32 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * A device wraps links to potential parents of a device.
+ *
+ * @author Marek Libra <mlibra@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Device extends Identified {
-    // Links to potential parents
+    /**
+     * Optionally references to a template the device is used by.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Template template();
+
+
+    /**
+     * Optionally references to an instance type the device is used by.
+     *
+     * @author Marek Libra <mlibra@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link InstanceType instanceType();
 
     /**
