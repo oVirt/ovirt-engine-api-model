@@ -64,7 +64,7 @@ public interface IscsiBondService {
     }
 
     /**
-     * Removes of an exisitng iSCSI bond.
+     * Removes of an existing iSCSI bond.
      *
      * For example, to remove the iSCSI bond `456` send a request like this:
      *
