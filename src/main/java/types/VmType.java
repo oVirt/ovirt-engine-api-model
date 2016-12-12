@@ -17,8 +17,32 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing what the virtual machine is optimized for.
+ *
+ * @author Arik Hadas <ahadas@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum VmType {
+    /**
+     * The virtual machine is intended to be used as a desktop.
+     * Currently, its implication is that a sound device will be automatically added to the virtual machine.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     DESKTOP,
+
+     /**
+     * The virtual machine is intended to be used as a server.
+     * Currently, its implication is that a sound device will not be automatically added to the virtual machine.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     SERVER;
 }
