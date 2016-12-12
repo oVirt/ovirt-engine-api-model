@@ -22,10 +22,55 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.User;
 
+/**
+ * A service to list all domain users in the system.
+ *
+ * @author Ravi Nori <rnori@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface DomainUsersService {
+    /**
+     * List all the users in the domain.
+     *
+     * Usage:
+     *
+     * ....
+     * GET /ovirt-engine/api/domains/5678/users
+     * ....
+     *
+     * Will return the list of users in the domain:
+     *
+     * [source,xml]
+     * ----
+     * <users>
+     *   <user href="/ovirt-engine/api/domains/5678/users/1234" id="1234">
+     *     <name>admin</name>
+     *     <namespace>*</namespace>
+     *     <principal>admin</principal>
+     *     <user_name>admin@internal-authz</user_name>
+     *     <domain href="/ovirt-engine/api/domains/5678" id="5678">
+     *       <name>internal-authz</name>
+     *     </domain>
+     *     <groups/>
+     *   </user>
+     * </users>
+     * ----
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of users in the domain.
+         *
+         * @author Ravi Nori <rnori@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out User[] users();
 
         /**
@@ -46,5 +91,12 @@ public interface DomainUsersService {
         @In Boolean caseSensitive();
     }
 
+    /**
+     * Reference to a service to view details of a domain user.
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service DomainUserService user(String id);
 }
