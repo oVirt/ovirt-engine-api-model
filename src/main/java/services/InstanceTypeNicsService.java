@@ -25,10 +25,24 @@ import types.Nic;
 @Service
 @Area("Network")
 public interface InstanceTypeNicsService {
+    /**
+     * Add new network interface to the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
         @In @Out Nic nic();
     }
 
+    /**
+     * Lists all the configured network interface of the instance type.
+     *
+     * @author Sefi Litmanovich <slitmano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out Nic[] nics();
 
@@ -36,6 +50,15 @@ public interface InstanceTypeNicsService {
          * Sets the maximum number of NICs to return. If not specified all the NICs are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned templates.
+         *
+         * @author Sefi Litmanovich <slitmano@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
+        @In String search();
     }
 
     @Service InstanceTypeNicService nic(String id);
