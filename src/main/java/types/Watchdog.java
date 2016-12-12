@@ -17,9 +17,29 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-
+/**
+ * This type represents a watchdog configuration.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 12 Dec
+ * @status added
+ */
 @Type
 public interface Watchdog extends Device {
+    /**
+     * Model of watchdog device. Currently supported only I6300ESB.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     WatchdogModel model();
+    /**
+     * Watchdog action to be performed when watchdog is triggered.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 12 Dec
+     * @status added
+     */
     WatchdogAction action();
 }
