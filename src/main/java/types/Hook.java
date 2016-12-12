@@ -19,10 +19,39 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a hook.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Hook extends Identified {
+    /**
+     * Name of the event to execute the hook on.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String eventName();
+
+    /**
+     * Checksum of the hook.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String md5();
 
+    /**
+     * Reference to the host the hook belongs to.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Host host();
 }
