@@ -171,7 +171,7 @@ public interface DataCenterService {
     /**
     * Attach and detach storage domains to and from a data center.
     *
-    * For attaching a single storage domain we should use the folowing POST request:
+    * For attaching a single storage domain we should use the following POST request:
     *
     * [source]
     * ----
@@ -187,7 +187,7 @@ public interface DataCenterService {
     * </storage_domain>
     * ----
     *
-    * For detaching a single storage domain we should use the folowing DELETE request:
+    * For detaching a single storage domain we should use the following DELETE request:
     *
     * [source]
     * ----
