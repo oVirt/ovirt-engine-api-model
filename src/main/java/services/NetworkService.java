@@ -22,9 +22,49 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Network;
 
+/**
+ * A service managing a network
+ *
+ * @author Ori Ben Sasson <obensass@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface NetworkService {
+    /**
+     * Gets a logical network.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/networks/123
+     * ----
+     *
+     * Will respond:
+     *
+     * [source,xml]
+     * ----
+     * <network href="/ovirt-engine/api/networks/123" id="123">
+     *   <name>ovirtmgmt</name>
+     *   <description>Default Management Network</description>
+     *   <link href="/ovirt-engine/api/networks/123/permissions" rel="permissions"/>
+     *   <link href="/ovirt-engine/api/networks/123/vnicprofiles" rel="vnicprofiles"/>
+     *   <link href="/ovirt-engine/api/networks/123/networklabels" rel="networklabels"/>
+     *   <mtu>0</mtu>
+     *   <stp>false</stp>
+     *   <usages>
+     *     <usage>vm</usage>
+     *   </usages>
+     *   <data_center href="/ovirt-engine/api/datacenters/456" id="456"/>
+     * </network>
+     * ----
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 14 Sep 2016
+     * @status added
+     */
     interface Get {
         @Out Network network();
     }
@@ -115,7 +155,30 @@ public interface NetworkService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to the service that manages the permissions assigned to this network.
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
+
+    /**
+     * Reference to the service that manages the vNIC profiles assigned to this network.
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedVnicProfilesService vnicProfiles();
+
+    /**
+     * Reference to the service that manages the network labels assigned to this network.
+     *
+     * @author Ori Ben Sasson <obensass@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service NetworkLabelsService networkLabels();
 }
