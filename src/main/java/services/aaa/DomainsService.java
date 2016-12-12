@@ -22,10 +22,52 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Domain;
 
+/**
+ * A service to list all authentication domains in the system.
+ *
+ * @author Ravi Nori <rnori@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface DomainsService {
+    /**
+     * List all the authentication domains in the system.
+     *
+     * Usage:
+     *
+     * ....
+     * GET /ovirt-engine/api/domains
+     * ....
+     *
+     * Will return the list of domains:
+     *
+     * [source,xml]
+     * ----
+     * <domains>
+     *   <domain href="/ovirt-engine/api/domains/5678" id="5678">
+     *     <name>internal-authz</name>
+     *     <link href="/ovirt-engine/api/domains/5678/users" rel="users"/>
+     *     <link href="/ovirt-engine/api/domains/5678/groups" rel="groups"/>
+     *     <link href="/ovirt-engine/api/domains/5678/users?search={query}" rel="users/search"/>
+     *     <link href="/ovirt-engine/api/domains/5678/groups?search={query}" rel="groups/search"/>
+     *   </domain>
+     * </domains>
+     * ----
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * The list of domains.
+         *
+         * @author Ravi Nori <rnori@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Domain[] domains();
 
         /**
@@ -34,5 +76,12 @@ public interface DomainsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to a service to view details of a domain.
+     *
+     * @author Ravi Nori <rnori@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service DomainService domain(String id);
 }
