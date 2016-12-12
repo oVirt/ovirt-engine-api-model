@@ -24,6 +24,13 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.HostNic;
 import types.HostNicVirtualFunctionsConfiguration;
 
+/**
+ * A service to manage a network interface of a host.
+ *
+ * @author Leon Goldberg <lgoldber@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface HostNicService extends MeasurableService {
@@ -50,7 +57,22 @@ public interface HostNicService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Reference to the service that manages the network labels assigned to this network interface.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service NetworkLabelsService networkLabels();
+
+    /**
+     * Reference to the service that manages the network attachments assigned to this network interface.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service NetworkAttachmentsService networkAttachments();
 
     /**
