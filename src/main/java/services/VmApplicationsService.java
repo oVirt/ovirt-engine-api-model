@@ -22,10 +22,54 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Application;
 
+/**
+ * A service that provides information about applications installed in a virtual machine.
+ *
+ * @author Milan Zamazal <mzamazal@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmApplicationsService {
+    /**
+     * Returns a list of applications installed in the virtual machine.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * A list of applications installed in the virtual machine.
+         *
+         * For example, a request like this:
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/vms/123/applications/
+         * ----
+         *
+         * May return a list like this:
+         *
+         * [source,xml]
+         * ----
+         * <applications>
+         *   <application href="/ovirt-engine/api/vms/123/applications/456" id="456">
+         *     <name>kernel-3.10.0-327.36.1.el7</name>
+         *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
+         *   </application>
+         *   <application href="/ovirt-engine/api/vms/123/applications/789" id="789">
+         *     <name>ovirt-guest-agent-common-1.0.12-3.el7</name>
+         *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
+         *   </application>
+         * </applications>
+         * ----
+         *
+         * @author Milan Zamazal <mzamazal@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Application[] applications();
 
         /**
@@ -39,5 +83,12 @@ public interface VmApplicationsService {
         @In Boolean filter();
     }
 
+    /**
+     * Returns a reference to the service that provides information about a specific application.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service VmApplicationService application(String id);
 }
