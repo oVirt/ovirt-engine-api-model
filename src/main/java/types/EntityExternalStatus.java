@@ -55,7 +55,7 @@ public enum EntityExternalStatus {
     WARNING,
 
     /**
-     * The external entity status is erronous. This might require a moderate attention.
+     * The external entity status is erroneous. This might require a moderate attention.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 01 Dec 2016
