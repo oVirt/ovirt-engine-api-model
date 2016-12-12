@@ -739,6 +739,15 @@ public interface VmService extends MeasurableService {
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
     @Service VmGraphicsConsolesService graphicsConsoles();
+
+    /**
+     * Reference to the service that can show the applicable errata available on the virtual machine.
+     * This information is taken from Katello.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service KatelloErrataService katelloErrata();
     @Service SnapshotsService snapshots();
     @Service VmApplicationsService applications();

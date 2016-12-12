@@ -337,6 +337,43 @@ public interface Vm extends VmBase {
      * @status added
      */
     @Link HostDevice[] hostDevices();
+
+    /**
+     * Lists all the Katello errata assigned to the virtual machine.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/katelloerrata
+     * ----
+     *
+     * You will receive response in XML like this one:
+     *
+     * [source,xml]
+     * ----
+     * <katello_errata>
+     *   <katello_erratum href="/ovirt-engine/api/katelloerrata/456" id="456">
+     *     <name>RHBA-2013:XYZ</name>
+     *     <description>The description of the erratum</description>
+     *     <title>some bug fix update</title>
+     *     <type>bugfix</type>
+     *     <issued>2013-11-20T02:00:00.000+02:00</issued>
+     *     <solution>Few guidelines regarding the solution</solution>
+     *     <summary>Updated packages that fix one bug are now available for XYZ</summary>
+     *     <packages>
+     *       <package>
+     *         <name>libipa_hbac-1.9.2-82.11.el6_4.i686</name>
+     *       </package>
+     *       ...
+     *     </packages>
+     *   </katello_erratum>
+     *   ...
+     * </katello_errata>
+     * ----
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link KatelloErratum[] katelloErrata();
 
     /**

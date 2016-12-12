@@ -183,6 +183,14 @@ public interface SystemService {
     @Service SchedulingPolicyUnitsService schedulingPolicyUnits();
     @Service StorageDomainsService storageDomains();
     @Service StorageServerConnectionsService storageConnections();
+
+    /**
+     * List the available Katello errata assigned to the engine.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service EngineKatelloErrataService katelloErrata();
     @Service SystemPermissionsService permissions();
     @Service TagsService tags();
