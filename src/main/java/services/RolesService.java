@@ -63,6 +63,34 @@ public interface RolesService {
         @In @Out Role role();
     }
 
+    /**
+     * List roles.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/roles
+     * ----
+     *
+     * You will receive response in XML like this one:
+     *
+     * [source,xml]
+     * ----
+     * <roles>
+     *   <role id="123">
+     *      <name>SuperUser</name>
+     *      <description>Roles management administrator</description>
+     *      <link href="/ovirt-engine/api/roles/123/permits" rel="permits"/>
+     *      <administrative>true</administrative>
+     *      <mutable>false</mutable>
+     *   </role>
+     *   ...
+     * </roles>
+     * ----
+     *
+     * @autho Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out Role[] roles();
 
