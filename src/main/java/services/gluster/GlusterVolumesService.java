@@ -22,21 +22,82 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GlusterVolume;
 
+/**
+ * This service manages a collection of gluster volumes available in a cluster.
+ *
+ * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Service
 @Area("Gluster")
 public interface GlusterVolumesService {
     /**
-     * Creates a new Gluster volume and adds it to the database. The volume is created based on properties of the
-     * `volume` parameter. The properties `name`, `volumeType` and `bricks` are required.
+     * Creates a new gluster volume.
+     *
+     * The volume is created based on properties of the `volume` parameter. The properties `name`, `volume_type` and
+     * `bricks` are required.
+     *
+     * For example, to add a volume with name `myvolume` to the cluster `123`, send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/clusters/123/glustervolumes
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source,xml]
+     * ----
+     * <gluster_volume>
+     *   <name>myvolume</name>
+     *   <volume_type>replicate</volume_type>
+     *   <replica_count>3</replica_count>
+     *   <bricks>
+     *     <brick>
+     *       <server_id>server1</server_id>
+     *       <brick_dir>/exp1</brick_dir>
+     *     </brick>
+     *     <brick>
+     *       <server_id>server2</server_id>
+     *       <brick_dir>/exp1</brick_dir>
+     *     </brick>
+     *     <brick>
+     *       <server_id>server3</server_id>
+     *       <brick_dir>/exp1</brick_dir>
+     *     </brick>
+     *   <bricks>
+     * </gluster_volume>
+     * ----
+     *
+     * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
      */
     interface Add {
         /**
-         * The Gluster volume definition from which to create the volume is passed as input and the newly created
+         * The gluster volume definition from which to create the volume is passed as input and the newly created
          * volume is returned.
          */
         @In @Out GlusterVolume volume();
     }
 
+    /**
+     * Lists all gluster volumes in the cluster.
+     *
+     * For example, to list all Gluster Volumes in cluster `456`, send a request like
+     * this:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/clusters/456/glustervolumes
+     * ----
+     *
+     * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
         @Out GlusterVolume[] volumes();
 
@@ -58,5 +119,12 @@ public interface GlusterVolumesService {
         @In Boolean caseSensitive();
     }
 
+    /**
+     * Reference to a service managing gluster volume.
+     *
+     * @author Ramesh Nachimuthu <rnachimu@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service GlusterVolumeService volume(String id);
 }
