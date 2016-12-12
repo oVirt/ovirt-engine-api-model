@@ -22,14 +22,74 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.HostDevice;
 
+/**
+ * A service to manage host devices attached to a virtual machine.
+ *
+ * @author Martin Betak <mbetak@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmHostDevicesService {
+
+    /**
+     * Attach target device to given virtual machine.
+     *
+     * Example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/hostdevices
+     * ----
+     *
+     * With request body of type <<types/host_device,HostDevice>>, for example
+     *
+     * [source,xml]
+     * ----
+     * <host_device id="123" />
+     * ----
+     *
+     * NOTE: A necessary precondition for a successful host device attachment is that the virtual machine must be pinned
+     * to *exactly* one host. The device ID is then taken relative to this host.
+     *
+     * NOTE: Attachment of a PCI device that is part of a bigger IOMMU group will result in attachment of the remaining
+     * devices from that IOMMU group as "placeholders". These devices are then identified using the `placeholder`
+     * attribute of the <<types/host_device,HostDevice>> type set to `true`.
+     *
+     * In case you want attach a device that already serves as an IOMMU placeholder, simply issue an explicit Add operation
+     * for it, and its `placeholder` flag will be cleared, and the device will be accessible to the virtual machine.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
+        /**
+         * The host device to be attached to given virtual machine.
+         *
+         * @author Martin Betak <mbetak@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out HostDevice device();
     }
 
+    /**
+     * List the host devices assigned to given virtual machine.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * Retrieved list of host devices attached to given virtual machine.
+         *
+         * @author Martin Betak <mbetak@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out HostDevice[] device();
 
         /**
@@ -38,5 +98,12 @@ public interface VmHostDevicesService {
         @In Integer max();
     }
 
+    /**
+     * Returns a reference to the service that manages a specific host device attached to given virtual machine.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service VmHostDeviceService device(String id);
 }
