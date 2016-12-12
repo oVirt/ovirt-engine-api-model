@@ -22,10 +22,52 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Application;
 
+/**
+ * A service that provides information about an application installed in a virtual machine.
+ *
+ * @author Milan Zamazal <mzamazal@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface VmApplicationService {
+    /**
+     * Returns the information about the application.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
+        /**
+         * The information about the application.
+         *
+         * The information consists of `name` attribute containing the name of the application
+         * (which is an arbitrary string that may also contain additional information such as
+         * version) and `vm` attribute identifying the virtual machine.
+         *
+         * For example, a request like this:
+         *
+         * [source]
+         * ----
+         * GET /ovirt-engine/api/vms/123/applications/789
+         * ----
+         *
+         * May return information like this:
+         *
+         * [source,xml]
+         * ----
+         * <application href="/ovirt-engine/api/vms/123/applications/789" id="789">
+         *   <name>ovirt-guest-agent-common-1.0.12-3.el7</name>
+         *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
+         * </application>
+         * ----
+         *
+         * @author Milan Zamazal <mzamazal@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Application application();
 
         /**
