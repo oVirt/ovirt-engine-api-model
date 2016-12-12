@@ -19,11 +19,43 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a system role.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Role extends Identified {
+    /**
+     * Defines the ability to update or delete the role.
+     *
+     * Roles with mutable set to `false` are predefined roles.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean mutable();
+
+    /**
+     * Defines the role as administrative-only or not.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean administrative();
 
     @Link User user();
+
+    /**
+     * A link to the permits sub-collection for role permits.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Permit[] permits();
 }
