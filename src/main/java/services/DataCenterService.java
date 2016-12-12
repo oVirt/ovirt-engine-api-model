@@ -22,9 +22,61 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.DataCenter;
 
+/**
+ * A service to manage a data center.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface DataCenterService {
+
+    /**
+     * Get a data center.
+     *
+     * An example of getting a data center:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenters/123
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <data_center href="/ovirt-engine/api/datacenters/123" id="123">
+     *   <name>Default</name>
+     *   <description>The default Data Center</description>
+     *   <link href="/ovirt-engine/api/datacenters/123/clusters" rel="clusters"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/storagedomains" rel="storagedomains"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/permissions" rel="permissions"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/networks" rel="networks"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/quotas" rel="quotas"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/qoss" rel="qoss"/>
+     *   <link href="/ovirt-engine/api/datacenters/123/iscsibonds" rel="iscsibonds"/>
+     *   <local>false</local>
+     *   <quota_mode>disabled</quota_mode>
+     *   <status>up</status>
+     *   <storage_format>v3</storage_format>
+     *   <supported_versions>
+     *     <version>
+     *       <major>4</major>
+     *       <minor>0</minor>
+     *    </version>
+     *   </supported_versions>
+     *   <version>
+     *     <major>4</major>
+     *     <minor>0</minor>
+     *   </version>
+     *   <mac_pool href="/ovirt-engine/api/macpools/456" id="456"/>
+     * </data_center>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Get {
         @Out DataCenter dataCenter();
 
@@ -157,8 +209,40 @@ public interface DataCenterService {
      * @status added
      */
     @Service NetworksService networks();
+
+    /**
+     * Reference to the permissions service.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
+
+    /**
+     * Reference to the quotas service.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service QuotasService quotas();
+
+    /**
+     * Reference to the QOSs service.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service QossService qoss();
+
+    /**
+     * Reference to the iSCSI bonds service.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service IscsiBondsService iscsiBonds();
 }
