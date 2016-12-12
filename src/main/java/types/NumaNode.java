@@ -61,5 +61,61 @@ public interface NumaNode extends Identified {
     String nodeDistance();
 
     @Link Host host();
+
+    /**
+     * Each host NUMA node resource exposes a statistics sub-collection for host NUMA node specific statistics.
+     *
+     * An example of an XML representation:
+     *
+     * [source,xml]
+     * ----
+     * <statistics>
+     *   <statistic href="/ovirt-engine/api/hosts/123/numanodes/456/statistics/789" id="789">
+     *     <name>memory.total</name>
+     *     <description>Total memory</description>
+     *     <kind>gauge</kind>
+     *     <type>integer</type>
+     *     <unit>bytes</unit>
+     *     <values>
+     *       <value>
+     *         <datum>25165824000</datum>
+     *       </value>
+     *     </values>
+     *     <host_numa_node href="/ovirt-engine/api/hosts/123/numanodes/456" id="456" />
+     *   </statistic>
+     *     ...
+     * </statistics>
+     * ----
+     *
+     * NOTE: This statistics sub-collection is read-only.
+     *
+     * The following list shows the statistic types for a host NUMA node:
+     *
+     * |===
+     * |Name |Description
+     *
+     * |`memory.total`
+     * |Total memory in bytes on the NUMA node.
+     *
+     * |`memory.used`
+     * |Memory in bytes used on the NUMA node.
+     *
+     * |`memory.free`
+     * |Memory in bytes free on the NUMA node.
+     *
+     * |`cpu.current.user`
+     * |Percentage of CPU usage for user slice.
+     *
+     * |`cpu.current.system`
+     * |Percentage of CPU usage for system.
+     *
+     * |`cpu.current.idle`
+     * |Percentage of idle CPU usage.
+     * |===
+     *
+     * @author Artyom Lukianov <alukiano@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Statistic[] statistics();
 }
