@@ -19,7 +19,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This type reprecents the storage related
+ * This type represents the storage related
  * configuration in the fencing policy.
  *
  * @author Oved Ourfali <oourfali@redhat.com>
