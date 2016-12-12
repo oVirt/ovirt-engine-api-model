@@ -85,7 +85,7 @@ public interface EventsService {
      * GET /ovirt-engine/api/events
      * ----
      *
-     * To the above request we get following reponse:
+     * To the above request we get following response:
      *
      * [source,xml]
      * ----
