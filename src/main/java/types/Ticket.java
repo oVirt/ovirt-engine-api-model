@@ -20,8 +20,31 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Type representing a ticket that allows virtual machine access.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ *
+ */
 @Type
 public interface Ticket {
+    /**
+     * The virtual machine access ticket.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     String value();
+
+    /**
+     * Time to live for the ticket in seconds.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Integer expiry();
 }
