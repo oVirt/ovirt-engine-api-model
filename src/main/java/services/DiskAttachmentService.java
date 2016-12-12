@@ -29,14 +29,49 @@ import types.DiskAttachment;
 public interface DiskAttachmentService {
     /**
      * Returns the details of the attachment, including the bootable flag and link to the disk.
+     *
+     * An example of getting a disk attachment:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/diskattachments/456
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <disk_attachment href="/ovirt-engine/api/vms/123/diskattachments/456" id="456">
+     *   <active>true</active>
+     *   <bootable>true</bootable>
+     *   <interface>virtio</interface>
+     *   <disk href="/ovirt-engine/api/disks/456" id="456"/>
+     *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
+     * </disk_attachment>
+     * ----
+     *
+     * @author Boris Odnopozov <bodnopoz@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
      */
     interface Get {
         @Out DiskAttachment attachment();
     }
 
     /**
-     * Removes the disk attachment. This will only detach the disk from the virtual machine, but won't remove it from
+     * Removes the disk attachment.
+     *
+     * This will only detach the disk from the virtual machine, but won't remove it from
      * the system, unless the `detach_only` parameter is `false`.
+     *
+     * An example of removing a disk attachment:
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/vms/123/diskattachments/456?detach_only=true
+     * ----
+     *
+     * @author Boris Odnopozov <bodnopoz@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
      */
     interface Remove {
         /**
