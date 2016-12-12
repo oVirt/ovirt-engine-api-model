@@ -17,8 +17,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type represents a stage of volume event at which hook executes.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum HookStage {
+    /**
+     * Stage before start of volume.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     PRE,
+
+    /**
+     * Stage after start of volume.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     POST;
 }
