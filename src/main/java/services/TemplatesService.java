@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Template;
 
+/**
+ * This service manages the virtual machine templates available in the system.
+ *
+ * @author Tomas Jelinek <tjelinek@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface TemplatesService {
@@ -67,6 +74,13 @@ public interface TemplatesService {
      * @status added
      */
     interface Add {
+        /**
+         * The information about the template or template version.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Template template();
 
         /**
@@ -101,7 +115,31 @@ public interface TemplatesService {
         @In Boolean clonePermissions();
     }
 
+    /**
+     * Returns the list of virtual machine templates.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/templates
+     * ----
+     *
+     * Will return the list of virtual machines and virtual machine templates.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+
+        /**
+         * The list of virtual machine templates.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Template[] templates();
 
         /**
@@ -127,5 +165,12 @@ public interface TemplatesService {
         @In Boolean filter();
     }
 
+    /**
+     * Returns a reference to the service that manages a specific virtual machine template.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TemplateService template(String id);
 }
