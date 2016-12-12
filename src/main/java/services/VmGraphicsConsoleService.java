@@ -117,7 +117,7 @@ public interface VmGraphicsConsoleService {
      *
      * [source]
      * ----
-     * POST /ovit-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile
      * ----
      *
      * The `remoteviewerconnectionfile` action does not take any action specific parameters,
