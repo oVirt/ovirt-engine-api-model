@@ -22,17 +22,38 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cdrom;
 
+/**
+ * Lists the CD-ROM devices of a template.
+ *
+ * @author Milan Zamazal <mzamazal@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface TemplateCdromsService {
     interface List {
+        /**
+         * The list of CD-ROM devices of the template.
+         *
+         * @author Milan Zamazal <mzamazal@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Cdrom[] cdroms();
 
         /**
-         * Sets the maximum number of CDROMs to return. If not specified all the CDROMs are returned.
+         * Sets the maximum number of CD-ROMs to return. If not specified all the CD-ROMs are returned.
          */
         @In Integer max();
     }
 
+    /**
+     * Returns a reference to the service that manages a specific CD-ROM device.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service TemplateCdromService cdrom(String id);
 }
