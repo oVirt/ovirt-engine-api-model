@@ -29,7 +29,7 @@ public interface HostNicVirtualFunctionsConfiguration {
     Integer maxNumberOfVirtualFunctions();
 
     /**
-     * Number of curently defined virtual functions. User-defined value between 0 and `maxNumberOfVirtualFunctions`.
+     * Number of currently defined virtual functions. User-defined value between 0 and `maxNumberOfVirtualFunctions`.
      */
     Integer numberOfVirtualFunctions();
 
