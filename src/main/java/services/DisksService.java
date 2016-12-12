@@ -65,10 +65,61 @@ public interface DisksService {
      * @status added
      */
     interface Add {
+        /**
+         * The disk.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Disk disk();
     }
 
+    /**
+     * Get list of disks.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/disks
+     * ----
+     *
+     * You will get a XML response which will look like this one:
+     *
+     * [source,xml]
+     * ----
+     * <disks>
+     *   <disk id="123">
+     *     <actions>...</actions>
+     *     <name>MyDisk</name>
+     *     <description>MyDisk description</description>
+     *     <link href="/ovirt-engine/api/disks/123/permissions" rel="permissions"/>
+     *     <link href="/ovirt-engine/api/disks/123/statistics" rel="statistics"/>
+     *     <actual_size>5345845248</actual_size>
+     *     <alias>MyDisk alias</alias>
+     *     ...
+     *     <status>ok</status>
+     *     <storage_type>image</storage_type>
+     *     <wipe_after_delete>false</wipe_after_delete>
+     *     <disk_profile id="123"/>
+     *     <quota id="123"/>
+     *     <storage_domains>...</storage_domains>
+     *   </disk>
+     *   ...
+     * </disks>
+     * ----
+     *
+     * @author Aleksei Slaikovskii
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+        /**
+         * List of retrieved disks.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Disk[] disks();
 
         /**
@@ -89,5 +140,12 @@ public interface DisksService {
         @In Boolean caseSensitive();
     }
 
+    /**
+     * Reference to a service managing a specific disk.
+     *
+     * @author Aleksei Slaikovskii
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service DiskService disk(String id);
 }
