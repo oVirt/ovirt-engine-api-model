@@ -17,8 +17,23 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Representing the random generator backend types.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 13 Dec 2016
+ * @state added
+ */
 @Type
 public enum RngSource {
+
+    /**
+     * Obtains random data from the `/dev/random` device.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     RANDOM,
 
     /**
@@ -34,5 +49,12 @@ public enum RngSource {
      */
     URANDOM,
 
+    /**
+     * Obtains random data from the `/dev/hwrng` (usually specialized HW generator) device.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     HWRNG;
 }
