@@ -112,4 +112,15 @@ public interface Nic extends Device {
     @Link NetworkLabel[] virtualFunctionAllowedLabels();
     @Link Network[] virtualFunctionAllowedNetworks();
     @Link ReportedDevice[] reportedDevices();
+
+    /**
+     * Link to the network filter parameters.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 20 Dec 2016
+     * @status added
+     * @since 4.2
+     */
+    @Link NetworkFilterParameter[] networkFilterParameters();
+
 }

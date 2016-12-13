@@ -124,4 +124,16 @@ public interface VmNicService extends MeasurableService {
     }
 
     @Service VmReportedDevicesService reportedDevices();
+
+    /**
+     * Reference to the service that manages the network filter parameters of the NIC.
+     *
+     * A single top-level network filter may assigned to the NIC by the NIC's <<types/vnic_profile,vNIC Profile>>.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 13 Dec 2016
+     * @status added
+     * @since 4.2
+     */
+    @Service NetworkFilterParametersService networkFilterParameters();
 }
