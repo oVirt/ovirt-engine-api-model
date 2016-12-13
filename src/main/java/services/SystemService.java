@@ -160,6 +160,14 @@ public interface SystemService {
     @Service HostsService hosts();
     @Service IconsService icons();
     @Service InstanceTypesService instanceTypes();
+
+    /**
+     * List all the jobs monitored by the engine.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service JobsService jobs();
 
     /**

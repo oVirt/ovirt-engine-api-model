@@ -17,8 +17,31 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the type of the external system that is associated with the `step`.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum ExternalSystemType {
+
+    /**
+     * Represents `VDSM` as the external system which is associated with the `step`.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     VDSM,
+
+    /**
+     * Represents `Gluster` as the external system which is associated with the `step`.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     GLUSTER;
 }

@@ -18,11 +18,63 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the status of the step.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public enum StepStatus {
+
+    /**
+     * The aborted step status.
+     * This status is applicable for an external step that was forcibly aborted.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     ABORTED,
+
+    /**
+     * The failed step status.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     FAILED,
+
+    /**
+     * The finished step status.
+     * This status describes a completed step execution.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     FINISHED,
+
+    /**
+     * The started step status.
+     * This status represents a step which is currently being executed.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     STARTED,
+
+    /**
+     * The unknown step status.
+     * This status represents steps which their resolution is not known, i.e. steps that were executed before
+     * the system was unexpectedly restarted.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     UNKNOWN;
 }

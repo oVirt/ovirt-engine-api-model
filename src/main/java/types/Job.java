@@ -21,15 +21,88 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 import java.util.Date;
 
+/**
+ * Represents a job, which monitors execution of a flow in the system.
+ * A job can contain multiple steps in a hierarchic structure.
+ * The steps can be processed in parallel, depends on the implementation of the flow.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Type
 public interface Job extends Identified {
+
+    /**
+     * The status of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     JobStatus status();
+
+    /**
+     * The start time of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date startTime();
+
+    /**
+     * The end time of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date endTime();
+
+    /**
+     * The last update date of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Date lastUpdated();
+
+    /**
+     * Indicates if the job is originated by an external system.
+     * External jobs are managed externally, by the creator of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean external();
+
+    /**
+     * Indicates if the job should be cleared automatically after it was completed by the system.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     Boolean autoCleared();
 
+    /**
+     * The user who is the owner of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link User owner();
+
+    /**
+     * The steps of the job.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Step[] steps();
 }

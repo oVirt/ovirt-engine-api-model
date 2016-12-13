@@ -22,14 +22,118 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Step;
 
+/**
+ * A service to manage steps.
+ *
+ * @author Moti Asayag <masayag@redhat.com>
+ * @date 12 Dec 2016
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface StepsService {
+
+    /**
+     * Add an external step to an existing job or to an existing step.
+     *
+     * For example, to add a step to `job` with identifier `123` send the
+     * following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/jobs/123/steps
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source,xml]
+     * ----
+     * <step>
+     *   <description>Validating</description>
+     *   <start_time>2016-12-12T23:07:26.605+02:00</start_time>
+     *   <status>started</status>
+     *   <type>validating</type>
+     * </step>
+     * ----
+     *
+     * The response should look like:
+     *
+     * [source,xml]
+     * ----
+     * <step href="/ovirt-engine/api/jobs/123/steps/456" id="456">
+     *   <actions>
+     *     <link href="/ovirt-engine/api/jobs/123/steps/456/end" rel="end"/>
+     *   </actions>
+     *   <description>Validating</description>
+     *   <link href="/ovirt-engine/api/jobs/123/steps/456/statistics" rel="statistics"/>
+     *   <external>true</external>
+     *   <number>2</number>
+     *   <start_time>2016-12-13T01:06:15.380+02:00</start_time>
+     *   <status>started</status>
+     *   <type>validating</type>
+     *   <job href="/ovirt-engine/api/jobs/123" id="123"/>
+     * </step>
+     * ----
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface Add {
+
+        /**
+         * Step that will be added.
+         *
+         * @author Moti Asayag <masayag@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @In @Out Step step();
     }
 
+    /**
+     * Retrieves the representation of the steps.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/job/123/steps
+     * ----
+     *
+     * You will receive response in XML like this one:
+     *
+     * [source,xml]
+     * ----
+     * <steps>
+     *   <step href="/ovirt-engine/api/jobs/123/steps/456" id="456">
+     *     <actions>
+     *       <link href="/ovirt-engine/api/jobs/123/steps/456/end" rel="end"/>
+     *     </actions>
+     *     <description>Validating</description>
+     *     <link href="/ovirt-engine/api/jobs/123/steps/456/statistics" rel="statistics"/>
+     *     <external>true</external>
+     *     <number>2</number>
+     *     <start_time>2016-12-13T01:06:15.380+02:00</start_time>
+     *     <status>started</status>
+     *     <type>validating</type>
+     *     <job href="/ovirt-engine/api/jobs/123" id="123"/>
+     *   </step>
+     *   ...
+     * </steps>
+     * ----
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     interface List {
+
+        /**
+         * A representation of steps.
+         *
+         * @author Moti Asayag <masayag@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
         @Out Step[] steps();
 
         /**
@@ -38,5 +142,12 @@ public interface StepsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to the step service.
+     *
+     * @author Moti Asayag <masayag@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Service StepService step(String id);
 }
