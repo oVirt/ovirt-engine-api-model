@@ -18,8 +18,37 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Icon of virtual machine or template.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 13 Dec 2016
+ * @state added
+ */
 @Type
 public interface Icon extends Identified {
+
+    /**
+     * Format of icon file.
+     *
+     * One of:
+     *
+     * * `image/jpeg`
+     * * `image/png`
+     * * `image/gif`
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     String mediaType();
+
+    /**
+     * Base64 encode content of the icon file.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     String data();
 }
