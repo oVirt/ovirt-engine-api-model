@@ -72,9 +72,25 @@ public interface User extends Identified {
     String email();
 
     @Link Domain domain();
+
+    /**
+     * A link to the roles sub-collection for user resources.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Role[] roles();
     @Link Group[] groups();
     @Link Permission[] permissions();
+
+    /**
+     * A link to the tags sub-collection for user resources.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 12 Dec 2016
+     * @status added
+     */
     @Link Tag[] tags();
     @Link SshPublicKey[] sshPublicKeys();
 }
