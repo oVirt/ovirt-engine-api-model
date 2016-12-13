@@ -18,8 +18,31 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Determines maximum speed of consumption of bytes from random number generator device.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 13 Dec 2016
+ * @state added
+ */
 @Type
 public interface Rate {
+
+    /**
+     * Number of bytes allowed to consume per period.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     Integer bytes();
+
+    /**
+     * Duration of one period in milliseconds.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     Integer period();
 }
