@@ -18,8 +18,31 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Random number generator (RNG) device model.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 13 Dec 2016
+ * @state added
+ */
 @Type
 public interface RngDevice {
+
+    /**
+     * Determines maximum speed of consumption of bytes from random number generator device.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     Rate rate();
+
+    /**
+     * Backend of the random number generator device.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 13 Dec 2016
+     * @state added
+     */
     RngSource source();
 }
