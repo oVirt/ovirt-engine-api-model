@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.24 / Dec 14 2016
+
+New features:
+
+* Added new `v4` value to the `StorageFormat` enum.
+
 == 4.1.23 / Dec 9 2016
 
 New features:
