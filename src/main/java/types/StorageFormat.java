@@ -22,5 +22,15 @@ import org.ovirt.api.metamodel.annotations.Type;
 public enum StorageFormat {
     V1,
     V2,
-    V3;
+    V3,
+
+    /**
+     * Version 4 of the storage domain format.
+     *
+     * @author Maor Lipchuk <mlipchuk@redhat.com>
+     * @date 14 Dec 2016
+     * @status added
+     * @since 4.1
+     */
+    V4;
 }
