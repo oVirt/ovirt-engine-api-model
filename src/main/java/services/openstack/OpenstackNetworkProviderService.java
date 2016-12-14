@@ -36,7 +36,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
     /**
      * Returns the representation of the object managed by this service.
      *
-     * For example, to get the OpenStack network provider with identifier `1234` from send a request like this:
+     * For example, to get the OpenStack network provider with identifier `1234`, send a request like this:
      *
      * [source]
      * ----
@@ -98,7 +98,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
     /**
      * Removes the provider.
      *
-     * For example, to remove the OpenStack network provider with identifier `1234` send a request like this:
+     * For example, to remove the OpenStack network provider with identifier `1234`, send a request like this:
      *
      * [source]
      * ----
