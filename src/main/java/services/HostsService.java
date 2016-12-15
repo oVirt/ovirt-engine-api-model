@@ -98,9 +98,9 @@ public interface HostsService {
      *
      * For example, to list the hosts send the following request:
      *
-     * [source]
-     * ----
+     * ....
      * GET /ovirt-engine/api/hosts
+     * ....
      *
      * The response body will be something like this:
      *
