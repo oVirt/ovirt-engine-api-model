@@ -186,6 +186,7 @@
                  <sectlinks>true</sectlinks>
                  <sectanchors>true</sectanchors>
                  <source-highlighter>highlightjs</source-highlighter>
+                 <icons>font</icons>
                </attributes>
              </configuration>
            </execution>
