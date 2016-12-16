@@ -97,6 +97,18 @@ public interface JobService {
         @In Boolean force();
 
         /**
+         * Indicates if the job should be marked as successfully finished or as failed.
+         *
+         * This parameter is optional, and the default value is `true`.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 16 Dec 2016
+         * @status added
+         * @since 4.1
+         */
+        @In Boolean succeeded();
+
+        /**
          * Indicates if the action should be performed asynchronously.
          */
         @In Boolean async();

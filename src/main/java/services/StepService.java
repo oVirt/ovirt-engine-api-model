@@ -70,10 +70,13 @@ public interface StepService extends MeasurableService {
         @In Boolean force();
 
         /**
-         * Indicates the resolution of the step execution.
+         * Indicates if the step should be marked as successfully finished or as failed.
+         *
+         * This parameter is optional, and the default value is `true`.
          *
          * @author Moti Asayag <masayag@redhat.com>
-         * @date 12 Dec 2016
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 16 Dec 2016
          * @status added
          */
         @In Boolean succeeded();
