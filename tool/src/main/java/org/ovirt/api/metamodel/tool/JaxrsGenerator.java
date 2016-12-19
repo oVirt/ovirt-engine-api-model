@@ -65,11 +65,6 @@ public class JaxrsGenerator extends JavaGenerator {
     private static final Name REMOVE = NameParser.parseUsingCase("Remove");
     private static final Name UPDATE = NameParser.parseUsingCase("Update");
 
-    // This constant represents the default format for the interface generated methods.
-    // We need default methods so in case of newly added APIs to the model, we'll
-    // have backward compatibility with previous implementations.
-    private static final String DEFAULT_METHOD_FORMAT = "default %s %s { throw new UnsupportedOperationException(); }";
-
     // List of JAX-RS interfaces that support asynchronous creation:
     private static final Set<Name> ASYNCHRONOUS = new HashSet<>();
 
@@ -111,7 +106,9 @@ public class JaxrsGenerator extends JavaGenerator {
     }
 
     private void addMethod(String returnType, String methodNameWithArgs, Object ... args) {
-        javaBuffer.addLine(String.format(DEFAULT_METHOD_FORMAT, returnType, String.format(methodNameWithArgs, args)));
+        javaBuffer.addLine("default %s %s {", returnType, String.format(methodNameWithArgs, args));
+        javaBuffer.addLine(  "throw new UnsupportedOperationException();");
+        javaBuffer.addLine("}");
     }
 
     private void addResponseReturnMethod(String methodNameWithArgs, Object ... args) {
