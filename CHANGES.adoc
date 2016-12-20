@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.25 / Dec 20 2016
+
+New features:
+
+* Add `succeeded` parameter to the operation that end an external job.
+
 == 4.1.24 / Dec 14 2016
 
 New features:
