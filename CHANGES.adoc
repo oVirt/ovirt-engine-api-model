@@ -3,6 +3,10 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.0.39 / Dec 20 2016
+
+Multiple documentation improvements.
+
 == 4.0.38 / Nov 17 2016
 
 Bug fixes:
