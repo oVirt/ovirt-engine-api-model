@@ -188,7 +188,7 @@ public interface GlusterBricksService {
      * Removing bricks is a two-step process, where the data on bricks to be removed, is first migrated to remaining
      * bricks. Once migration is completed the removal of bricks is confirmed via the API
      * <<services/gluster_bricks/methods/remove, remove>>. If at any point, the action needs to be cancelled
-     * <<services/gluster_bricks/methods/stopmigrate, stopmigrate>> has to be called.
+     * <<services/gluster_bricks/methods/stop_migrate, stopmigrate>> has to be called.
      *
      * For instance, to delete a brick from a gluster volume with id `123`, send a request:
      *
@@ -238,7 +238,7 @@ public interface GlusterBricksService {
      * Removes bricks from gluster volume.
      *
      * The recommended way to remove bricks without data loss is to first migrate the data using
-     * <<services/gluster_bricks/methods/stopmigrate, stopmigrate>> and then removing them. If migrate was not called on
+     * <<services/gluster_bricks/methods/stop_migrate, stopmigrate>> and then removing them. If migrate was not called on
      * bricks prior to remove, the bricks are removed without data migration which may lead to data loss.
      *
      * For example, to delete the bricks from gluster volume `123`, send a request like this:
