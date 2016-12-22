@@ -215,7 +215,7 @@ public class JaxrsGenerator extends JavaGenerator {
 
         // Generate the method:
         javaBuffer.addLine(
-            "@Path(\"{action: (%s)}/{oid}\")",
+            "@Path(\"{action: (?:%s)}/{oid}\")",
             actions.stream().map(Method::getName).map(jaxrsNames::getActionPath).sorted().collect(joining("|"))
         );
         javaBuffer.addLine(
