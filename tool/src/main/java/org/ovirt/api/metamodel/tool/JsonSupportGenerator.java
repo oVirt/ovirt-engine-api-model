@@ -120,7 +120,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         // Add the required imports:
         javaBuffer.addImport(typeName);
         javaBuffer.addImport(containerName);
-        javaBuffer.addImport(JsonParser.Event.class);
+        javaBuffer.addImport(JsonParser.class);
         javaBuffer.addImport(JsonReader.class);
 
         // Generate the that assumes that parsing of the object hasn't started yet, so it will expect the start of the
@@ -137,10 +137,10 @@ public class JsonSupportGenerator extends JavaGenerator {
         members.addAll(type.getLinks());
         javaBuffer.addLine("public static %1$s readOne(JsonReader reader, boolean started) {", typeName.getSimpleName());
         javaBuffer.addLine(  "if (!started) {");
-        javaBuffer.addLine(    "reader.expect(Event.START_OBJECT);");
+        javaBuffer.addLine(    "reader.expect(JsonParser.Event.START_OBJECT);");
         javaBuffer.addLine(  "}");
         javaBuffer.addLine(  "%1$s object = new %1$s();", containerName.getSimpleName());
-        javaBuffer.addLine(  "while (reader.next() == Event.KEY_NAME) {");
+        javaBuffer.addLine(  "while (reader.next() == JsonParser.Event.KEY_NAME) {");
         if (members.isEmpty()) {
             javaBuffer.addLine("reader.skip();");
         }
@@ -233,6 +233,7 @@ public class JsonSupportGenerator extends JavaGenerator {
         // Iterate method:
         javaBuffer.addImport(typeName);
         javaBuffer.addImport(Iterator.class);
+        javaBuffer.addImport(JsonParser.class);
         javaBuffer.addImport(JsonReader.class);
         javaBuffer.addImport(NoSuchElementException.class);
         javaBuffer.addLine("public static Iterator<%1$s> iterateMany(JsonReader reader) {",
@@ -243,10 +244,10 @@ public class JsonSupportGenerator extends JavaGenerator {
         javaBuffer.addLine(    "@Override");
         javaBuffer.addLine(    "public boolean hasNext() {");
         javaBuffer.addLine(      "if (first) {");
-        javaBuffer.addLine(        "reader.expect(Event.START_ARRAY);");
+        javaBuffer.addLine(        "reader.expect(JsonParser.Event.START_ARRAY);");
         javaBuffer.addLine(        "first = false;");
         javaBuffer.addLine(      "}");
-        javaBuffer.addLine(      "return reader.next() == Event.START_OBJECT;");
+        javaBuffer.addLine(      "return reader.next() == JsonParser.Event.START_OBJECT;");
         javaBuffer.addLine(    "}");
         javaBuffer.addLine();
         javaBuffer.addLine(    "@Override");
@@ -285,14 +286,13 @@ public class JsonSupportGenerator extends JavaGenerator {
         // Read method:
         javaBuffer.addImport(typeName);
         javaBuffer.addImport(ArrayList.class);
+        javaBuffer.addImport(JsonParser.class);
         javaBuffer.addImport(JsonReader.class);
         javaBuffer.addImport(List.class);
-        javaBuffer.addImport(JsonParser.Event.class);
-        javaBuffer.addImport(JsonParser.class);
 
         javaBuffer.addLine("public static List<%1$s> readMany(JsonReader reader) {", typeName.getSimpleName());
         javaBuffer.addLine(  "List<%1$s> list = new ArrayList<>();", typeName.getSimpleName());
-        javaBuffer.addLine(  "while (reader.next() != Event.START_ARRAY) {");
+        javaBuffer.addLine(  "while (reader.next() != JsonParser.Event.START_ARRAY) {");
         javaBuffer.addLine(  "// Empty on purpose");
         javaBuffer.addLine(  "}");
         javaBuffer.addLine();
@@ -351,7 +351,6 @@ public class JsonSupportGenerator extends JavaGenerator {
         // Add the required imports:
         javaBuffer.addImport(typeName);
         javaBuffer.addImport(JsonReader.class);
-        javaBuffer.addImport(JsonParser.Event.class);
 
         javaBuffer.addLine("public static %1$s readOne(JsonReader reader) {", typeName.getSimpleName());
         javaBuffer.addLine(  "return %1$s.fromValue(reader.readString());", typeName.getSimpleName());
