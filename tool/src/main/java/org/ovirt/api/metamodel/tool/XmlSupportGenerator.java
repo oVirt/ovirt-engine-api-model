@@ -288,10 +288,10 @@ public class XmlSupportGenerator extends JavaGenerator {
     private void generateStructReadMemberFromAttribute(StructMember member) {
         Name name = member.getName();
         Type type = member.getType();
+        String field = javaNames.getJavaMemberStyleName(name);
+        String tag = schemaNames.getSchemaTagName(name);
+        javaBuffer.addLine("case \"%1$s\":", tag);
         if (type instanceof PrimitiveType) {
-            String field = javaNames.getJavaMemberStyleName(name);
-            String tag = schemaNames.getSchemaTagName(name);
-            javaBuffer.addLine("case \"%1$s\":", tag);
             Model model = type.getModel();
             if (type == model.getBooleanType()) {
                 javaBuffer.addLine("object.%1$s(Boolean.parseBoolean(image));", field);
@@ -310,8 +310,13 @@ public class XmlSupportGenerator extends JavaGenerator {
             else if (type == model.getDateType()) {
                 javaBuffer.addLine("object.%1$s(DATE_FORMAT.parse(image));", field);
             }
-            javaBuffer.addLine("break;");
         }
+        else if (type instanceof EnumType) {
+            JavaClassName enumName = javaTypes.getEnumName(type);
+            javaBuffer.addImport(enumName);
+            javaBuffer.addLine("object.%1$s(%2$s.fromValue(image));", field, enumName.getSimpleName());
+        }
+        javaBuffer.addLine("break;");
     }
 
     private void generateStructReadMemberFromElement(StructMember member) {

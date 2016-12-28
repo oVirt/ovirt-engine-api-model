@@ -42,6 +42,8 @@ import org.ovirt.api.metamodel.runtime.util.ListWithHref;
 import org.ovirt.api.metamodel.runtime.xml.XmlException;
 import org.ovirt.api.metamodel.runtime.xml.XmlReader;
 import org.ovirt.engine.api.types.V4Disk;
+import org.ovirt.engine.api.types.V4SsoMethod;
+import org.ovirt.engine.api.types.V4SsoMethodId;
 import org.ovirt.engine.api.types.V4Vm;
 import org.ovirt.engine.api.types.V4VmDisplayType;
 import org.ovirt.engine.api.types.V4VmType;
@@ -863,6 +865,29 @@ public class XmlReaderTest {
         V4Vm vm = objectFromXml("<vm></vm>");
         assertNotNull(vm);
         assertTrue(vm.permissions().isEmpty());
+    }
+
+    /**
+     * Checks that reading an {@code id} attribute with an enum value works correctly.
+     */
+    @Test
+    public void testIdIsAttributeIfEnum() {
+        V4Vm vm = objectFromXml(
+            "<vm>" +
+              "<sso>" +
+                "<methods>" +
+                  "<sso_method id=\"guest_agent\"></sso_method>" +
+                "</methods>" +
+              "</sso>" +
+            "</vm>"
+        );
+        assertNotNull(vm);
+        assertNotNull(vm.sso());
+        assertNotNull(vm.sso().methods());
+        assertEquals(1, vm.sso().methods().size());
+        V4SsoMethod method = vm.sso().methods().get(0);
+        assertNotNull(method);
+        assertEquals(V4SsoMethodId.GUEST_AGENT, method.id());
     }
 
     /**

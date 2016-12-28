@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2016 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,29 +16,12 @@ limitations under the License.
 
 package types;
 
-import java.util.Date;
-
-import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * This class exists only to be a victim of the metamodel tests.
  */
 @Type
-public interface Vm {
-    String id();
-    String name();
-    String fqdn();
-    Boolean runOnce();
-    Boolean deleteProtected();
-    Integer memory();
-    Date creationTime();
-    Cpu cpu();
-    Disk[] disks();
-    VmType type();
-    VmDisplayType[] displayTypes();
-    String[] properties();
-    Sso sso();
-
-    @Link Permission[] permissions();
+public interface Sso {
+    SsoMethod[] methods();
 }

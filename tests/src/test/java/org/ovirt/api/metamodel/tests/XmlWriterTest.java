@@ -20,6 +20,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.ovirt.engine.api.builders.V4Builders.cpu;
 import static org.ovirt.engine.api.builders.V4Builders.disk;
+import static org.ovirt.engine.api.builders.V4Builders.sso;
+import static org.ovirt.engine.api.builders.V4Builders.ssoMethod;
 import static org.ovirt.engine.api.builders.V4Builders.vm;
 
 import java.io.IOException;
@@ -37,9 +39,12 @@ import org.apache.commons.io.output.NullOutputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
+import org.ovirt.engine.api.types.V4Sso;
+import org.ovirt.engine.api.types.V4SsoMethodId;
 import org.ovirt.engine.api.types.V4Vm;
 import org.ovirt.engine.api.types.V4VmType;
 import org.ovirt.engine.api.xml.V4XmlVmWriter;
+import types.SsoMethodId;
 
 /**
  * Tests for the classes that convert V4 objects into XML. Note that the tests are centered around an specific class,
@@ -67,6 +72,32 @@ public class XmlWriterTest {
         V4Vm object = vm().id("123").build();
         assertEquals(
             "<vm id=\"123\"></vm>",
+            objectToXml(object)
+        );
+    }
+
+    /**
+     * Checks that the {@code id} attribute is written as an XML attribute when the value is an enum.
+     */
+    @Test
+    public void testIdIsAttributeIfEnum() {
+        V4Vm object = vm()
+            .sso(
+                sso()
+                .methods(
+                    ssoMethod()
+                    .id(V4SsoMethodId.GUEST_AGENT)
+                )
+            )
+            .build();
+        assertEquals(
+            "<vm>" +
+              "<sso>" +
+                "<methods>" +
+                  "<sso_method id=\"guest_agent\"></sso_method>" +
+                "</methods>" +
+              "</sso>" +
+            "</vm>",
             objectToXml(object)
         );
     }
