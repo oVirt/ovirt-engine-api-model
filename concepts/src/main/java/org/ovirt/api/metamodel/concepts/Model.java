@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package org.ovirt.api.metamodel.concepts;
 import static java.util.stream.Collectors.toCollection;
 import static org.ovirt.api.metamodel.concepts.Named.named;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
-public class Model {
+public class Model implements Serializable {
     // The list of modules of the model:
     private List<Module> modules = new ArrayList<>();
 

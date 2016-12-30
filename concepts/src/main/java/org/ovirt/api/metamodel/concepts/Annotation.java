@@ -16,13 +16,14 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
-public class Annotation implements Named {
+public class Annotation implements Named, Serializable {
     private Name name;
     private List<AnnotationParameter> parameters = new ArrayList<>();
 

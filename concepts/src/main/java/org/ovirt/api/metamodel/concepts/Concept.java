@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +26,7 @@ import java.util.stream.Stream;
 /**
  * This class represents a concept of the metamodel.
  */
-public abstract class Concept implements Named {
+public abstract class Concept implements Named, Serializable {
     private Name name;
     private String doc;
     private String source;

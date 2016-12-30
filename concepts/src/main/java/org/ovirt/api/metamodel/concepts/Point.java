@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.concepts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -25,7 +26,7 @@ import java.util.stream.Stream;
  * This class represents a specific point of the services tree, composed of the path from the root service (a list
  * of locators) and a method.
  */
-public class Point {
+public class Point implements Serializable {
     private List<Locator> path = new ArrayList<>();
     private Method method;
 

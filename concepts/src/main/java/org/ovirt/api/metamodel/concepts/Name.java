@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package org.ovirt.api.metamodel.concepts;
 
 import static java.lang.String.join;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ import java.util.stream.Stream;
  * representing names as strings, like using different separators or using camel case. The words that form the name are
  * stored separated, so there is no need to parse the name each time that the words are needed.
  */
-public class Name implements Comparable<Name> {
+public class Name implements Comparable<Name>, Serializable {
     /**
      * The list of words of this name.
      */
