@@ -108,6 +108,7 @@ public class SchemaGenerator {
     static {
         addMemberSchemaTypeNameException("disk", "actual-size", "xs:long");
         addMemberSchemaTypeNameException("disk", "provisioned-size", "xs:long");
+        addMemberSchemaTypeNameException("disk", "initial-size", "xs:long");
         addMemberSchemaTypeNameException("gluster-client", "bytes-read", "xs:long");
         addMemberSchemaTypeNameException("gluster-client", "bytes-written", "xs:long");
         addMemberSchemaTypeNameException("host", "max-scheduling-memory", "xs:long");
