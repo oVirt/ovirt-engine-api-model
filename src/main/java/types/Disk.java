@@ -43,6 +43,20 @@ public interface Disk extends Device {
     Integer provisionedSize();
 
     /**
+     * The initial size of a sparse image disk created on block storage, in bytes.
+     *
+     * The initial size is the number of bytes a sparse disk is initially allocated with when created on block storage.
+     * The initial size will be smaller than the provisioned size. If not specified the default initial size used by the
+     * system will be allocated.
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 3 Jan 2017
+     * @status added
+     * @since 4.0.7
+     */
+    Integer initialSize();
+
+    /**
      * The actual size of the disk, in bytes.
      *
      * The actual size is the number of bytes actually used by the disk, and it will be smaller than the provisioned
