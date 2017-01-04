@@ -3,6 +3,22 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.0 / Jan 4 2017
+
+* Don't import `JsonParser.Event` directly, as it conflicts with the
+  `Event` type of the model.
+
+* Introduce infrastructure for parsing detail of input parameters.
+
+* Fix reading of XML attributes of enum types
+  https://bugzilla.redhat.com/1408839[#1408839].
+
+* Use non-capturing groups in generated `@Path` annotations
+  https://bugzilla.redhat.com/1405774[#1405774].
+
+* Add `Disk.initialSize` to the list of exceptions of integer
+  attributes that are represented using `xs:long` instead of `xs:int`.
+
 == 1.1.9 / Nov 17 2016
 
 New features:
