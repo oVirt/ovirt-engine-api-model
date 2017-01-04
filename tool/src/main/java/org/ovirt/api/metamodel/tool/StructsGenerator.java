@@ -118,15 +118,22 @@ public class StructsGenerator extends JavaGenerator {
     private void generateInterfaceMembers(StructMember member) {
         // Get the name of the property:
         Name name = member.getName();
+        Type type = member.getType();
+        Model model = type.getModel();
         String field = javaNames.getJavaMemberStyleName(name);
 
         // Get the type reference:
-        Type type = member.getType();
         JavaTypeReference typeReference = javaTypes.getTypeReference(type, false);
         javaBuffer.addImports(typeReference.getImports());
 
-        // Generate the getter:
+        // Generate the getters:
         javaBuffer.addLine("%1$s %2$s();", typeReference, field);
+        if (type == model.getIntegerType()) {
+            javaBuffer.addLine("Byte %1$sAsByte();", field);
+            javaBuffer.addLine("Short %1$sAsShort();", field);
+            javaBuffer.addLine("Integer %1$sAsInteger();", field);
+            javaBuffer.addLine("Long %1$sAsLong();", field);
+        }
         javaBuffer.addLine();
 
         // Generate the checker:
@@ -148,6 +155,7 @@ public class StructsGenerator extends JavaGenerator {
     }
 
     private void generateBaseContainerSource() {
+        // Imports:
         javaBuffer.addImport(ArrayList.class);
         javaBuffer.addImport(ArrayListWithHref.class);
         javaBuffer.addImport(Collections.class);
@@ -155,31 +163,114 @@ public class StructsGenerator extends JavaGenerator {
         javaBuffer.addImport(ListWithHref.class);
         javaBuffer.addImport(UnmodifiableListWithHref.class);
 
+        // Begin class:
         JavaClassName containerName = javaTypes.getBaseContainerName();
         javaBuffer.addLine("public class %1$s {", containerName.getSimpleName());
-        javaBuffer.addLine(  "protected static <E> List<E> makeUnmodifiableList(List<E> original) {");
-        javaBuffer.addLine(    "if (original == null) {");
-        javaBuffer.addLine(      "return Collections.emptyList();");
-        javaBuffer.addLine(    "}");
-        javaBuffer.addLine(    "else {");
-        javaBuffer.addLine(      "if (original instanceof ListWithHref) {");
-        javaBuffer.addLine(        "return new UnmodifiableListWithHref((ListWithHref) original);");
-        javaBuffer.addLine(      "}");
-        javaBuffer.addLine(      "return Collections.unmodifiableList(original);");
-        javaBuffer.addLine(    "}");
+
+        // Method to make a byte:
+        javaBuffer.addImport(BigInteger.class);
+        javaBuffer.addLine("protected static Byte asByte(String type, String member, BigInteger value) {");
+        javaBuffer.addLine(  "if (value == null) {");
+        javaBuffer.addLine(    "return null;");
         javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return value.byteValueExact();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (ArithmeticException excetion) {");
+        javaBuffer.addLine(    "throw new ArithmeticException(");
+        javaBuffer.addLine(      "\"The integer value \" + value + \" of the '\" + member + \"' member of \" +");
+        javaBuffer.addLine(      "\"type '\" + type + \"' can't be converted to a 8 bits integer because that \" +");
+        javaBuffer.addLine(      "\"would loss precision.\"");
+        javaBuffer.addLine(    ");");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
         javaBuffer.addLine();
-        javaBuffer.addLine(  "protected static <E> List<E> makeArrayList(List<E> original) {");
-        javaBuffer.addLine(    "if (original == null) {");
-        javaBuffer.addLine(      "return Collections.emptyList();");
-        javaBuffer.addLine(    "}");
-        javaBuffer.addLine(    "else {");
-        javaBuffer.addLine(      "if (original instanceof ListWithHref) {");
-        javaBuffer.addLine(        "return new ArrayListWithHref<E>((ListWithHref) original);");
-        javaBuffer.addLine(      "}");
-        javaBuffer.addLine(      "return new ArrayList<E>(original);");
-        javaBuffer.addLine(    "}");
+
+        // Method to make a short:
+        javaBuffer.addImport(BigInteger.class);
+        javaBuffer.addLine("protected static Short asShort(String type, String member, BigInteger value) {");
+        javaBuffer.addLine(  "if (value == null) {");
+        javaBuffer.addLine(    "return null;");
         javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return value.shortValueExact();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (ArithmeticException exception) {");
+        javaBuffer.addLine(    "throw new ArithmeticException(");
+        javaBuffer.addLine(      "\"The integer value \" + value + \" of the '\" + member + \"' member of \" +");
+        javaBuffer.addLine(      "\"type '\" + type + \"' can't be converted to a 16 bits integer because that \" +");
+        javaBuffer.addLine(      "\"would loss precision.\"");
+        javaBuffer.addLine(    ");");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Method to make an integer:
+        javaBuffer.addImport(BigInteger.class);
+        javaBuffer.addLine("protected static Integer asInteger(String type, String member, BigInteger value) {");
+        javaBuffer.addLine(  "if (value == null) {");
+        javaBuffer.addLine(    "return null;");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return value.intValueExact();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (ArithmeticException exception) {");
+        javaBuffer.addLine(    "throw new ArithmeticException(");
+        javaBuffer.addLine(      "\"The integer value \" + value + \" of the '\" + member + \"' member of \" +");
+        javaBuffer.addLine(      "\"type '\" + type + \"' can't be converted to a 32 bits integer because that \" +");
+        javaBuffer.addLine(      "\"would loss precision.\"");
+        javaBuffer.addLine(    ");");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Method to make a long:
+        javaBuffer.addImport(BigInteger.class);
+        javaBuffer.addLine("protected static Long asLong(String type, String member, BigInteger value) {");
+        javaBuffer.addLine(  "if (value == null) {");
+        javaBuffer.addLine(    "return null;");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return value.longValueExact();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (ArithmeticException exception) {");
+        javaBuffer.addLine(    "throw new ArithmeticException(");
+        javaBuffer.addLine(      "\"The integer value \" + value + \" of the '\" + member + \"' member of \" +");
+        javaBuffer.addLine(      "\"type '\" + type + \"' can't be converted to a 64 bits integer because that \" +");
+        javaBuffer.addLine(      "\"would loss precision.\"");
+        javaBuffer.addLine(    ");");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Method to make an unmodifiable list:
+        javaBuffer.addLine("protected static <E> List<E> makeUnmodifiableList(List<E> original) {");
+        javaBuffer.addLine(  "if (original == null) {");
+        javaBuffer.addLine(    "return Collections.emptyList();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "else {");
+        javaBuffer.addLine(    "if (original instanceof ListWithHref) {");
+        javaBuffer.addLine(      "return new UnmodifiableListWithHref((ListWithHref) original);");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(    "return Collections.unmodifiableList(original);");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Method to make an array list:
+        javaBuffer.addLine("protected static <E> List<E> makeArrayList(List<E> original) {");
+        javaBuffer.addLine(  "if (original == null) {");
+        javaBuffer.addLine(    "return Collections.emptyList();");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "else {");
+        javaBuffer.addLine(    "if (original instanceof ListWithHref) {");
+        javaBuffer.addLine(      "return new ArrayListWithHref<E>((ListWithHref) original);");
+        javaBuffer.addLine(    "}");
+        javaBuffer.addLine(    "return new ArrayList<E>(original);");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+
+        // End class:
         javaBuffer.addLine("}");
     }
 
@@ -237,43 +328,72 @@ public class StructsGenerator extends JavaGenerator {
     private void generateContainerMethods(StructMember member) {
         // Get the name of the field:
         Name name = member.getName();
+        Type type = member.getType();
+        Model model = type.getModel();
         String field = javaNames.getJavaMemberStyleName(name);
         String property = javaNames.getJavaPropertyStyleName(name);
+        String declaring = javaNames.getJavaClassStyleName(member.getDeclaringType().getName());
 
         // Get the type reference:
-        Type type = member.getType();
         JavaTypeReference typeReference = javaTypes.getTypeReference(type, false);
-        javaBuffer.addImports(typeReference.getImports());
 
-        // Generate the getter:
-        javaBuffer.addLine("public %1$s %2$s() {", typeReference.getText(), field);
-        if (type instanceof PrimitiveType) {
-            Model model = type.getModel();
-            if (type == model.getDateType()) {
-                javaBuffer.addImport(Date.class);
-                javaBuffer.addLine("if (%1$s == null) {", field);
-                javaBuffer.addLine(  "return null;");
-                javaBuffer.addLine("}");
-                javaBuffer.addLine("else {");
-                javaBuffer.addLine(  "return new Date(%1$s.getTime());", field);
-                javaBuffer.addLine("}");
-            }
-            else {
-                javaBuffer.addLine("return %1$s;", field);
-            }
+        // Generate the getters:
+        if (type == model.getIntegerType()) {
+            javaBuffer.addImport(BigInteger.class);
+            javaBuffer.addLine("public BigInteger %1$s() {", field);
+            javaBuffer.addLine(  "return %1$s;", field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+
+            javaBuffer.addLine("public Byte %1$sAsByte() {", field);
+            javaBuffer.addLine(  "return asByte(\"%1$s\", \"%2$s\", %2$s);", declaring, field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+
+            javaBuffer.addLine("public Short %1$sAsShort() {", field);
+            javaBuffer.addLine(  "return asShort(\"%1$s\", \"%2$s\", %2$s);", declaring, field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+
+            javaBuffer.addLine("public Integer %1$sAsInteger() {", field);
+            javaBuffer.addLine(  "return asInteger(\"%1$s\", \"%2$s\", %2$s);", declaring, field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+
+            javaBuffer.addLine("public Long %1$sAsLong() {", field);
+            javaBuffer.addLine(  "return asLong(\"%1$s\", \"%2$s\", %2$s);", declaring, field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
+        }
+        else if (type == model.getDateType()) {
+            javaBuffer.addImport(Date.class);
+            javaBuffer.addLine("public Date %1$s() {", field);
+            javaBuffer.addLine(  "if (%1$s == null) {", field);
+            javaBuffer.addLine(    "return null;");
+            javaBuffer.addLine(  "}");
+            javaBuffer.addLine(  "else {");
+            javaBuffer.addLine(    "return new Date(%1$s.getTime());", field);
+            javaBuffer.addLine(  "}");
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
         else if (type instanceof ListType) {
-            javaBuffer.addLine("return makeUnmodifiableList(%1$s);", field);
+            javaBuffer.addImports(typeReference.getImports());
+            javaBuffer.addLine("public %1$s %2$s() {", typeReference.getText(), field);
+            javaBuffer.addLine(  "return makeUnmodifiableList(%1$s);", field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
         else {
-            javaBuffer.addLine("return %1$s;", field);
+            javaBuffer.addImports(typeReference.getImports());
+            javaBuffer.addLine("public %1$s %2$s() {", typeReference.getText(), field);
+            javaBuffer.addLine(  "return %1$s;", field);
+            javaBuffer.addLine("}");
+            javaBuffer.addLine();
         }
-        javaBuffer.addLine("}");
-        javaBuffer.addLine();
 
         // Generate the setter:
         if (type instanceof PrimitiveType) {
-            Model model = type.getModel();
             if (type == model.getBooleanType()) {
                 // Generate the method that takes a "boolean" parameter:
                 javaBuffer.addLine("public void %1$s(boolean new%2$s) {", field, property);
