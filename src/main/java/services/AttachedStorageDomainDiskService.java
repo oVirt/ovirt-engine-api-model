@@ -195,6 +195,17 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
     }
 
     /**
+     * Registers an unregistered disk.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     * @since 4.2
+     */
+    interface Register {
+    }
+
+    /**
      * Reference to the service that manages the permissions assigned to the disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
