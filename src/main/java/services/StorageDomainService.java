@@ -270,7 +270,15 @@ public interface StorageDomainService {
     @Service AssignedDiskProfilesService diskProfiles();
     @Service AssignedPermissionsService permissions();
     @Service DiskSnapshotsService diskSnapshots();
-    @Service DisksService disks();
+
+    /**
+     * Reference to the service that manages the disks available in the storage domain.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     */
+    @Service StorageDomainDisksService disks();
 
     /**
      * Returns a reference to the service that manages the files available in the storage domain.

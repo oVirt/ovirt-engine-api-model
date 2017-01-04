@@ -60,8 +60,56 @@ public interface DiskService extends MeasurableService {
      * @status added
      */
     interface Copy {
+        /**
+         * Description of the resulting disk. The only accepted value is the `name` attribute, which will be the name
+         * used for the new disk. For example, to copy disk `123` using `myname` as the name for the new disk, send
+         * a request like this:
+         *
+         * ....
+         * POST /ovirt-engine/disks/123
+         * ....
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <disk>
+         *     <name>mydisk<name>
+         *   </disk>
+         *   <storage_domain id="456"/>
+         * </action>
+         * ----
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 4 Jan 2017
+         * @status added
+         */
         @In Disk disk();
 
+        /**
+         * The storage domain where the new disk will be created. Can be specified using the `id` or `name`
+         * attributes. For example, to copy a disk to the storage domain named `mydata` send a request like this:
+         *
+         * ....
+         * POST /ovirt-engine/api/storagedomains/123/disks/789
+         * ....
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <storage_domain>
+         *     <name>mydata</name>
+         *   </storage_domain>
+         * </action>
+         * ----
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 4 Jan 2017
+         * @status added
+         */
         @In StorageDomain storageDomain();
 
         /**
@@ -115,8 +163,21 @@ public interface DiskService extends MeasurableService {
         @In @Out Disk disk();
     }
 
-
+    /**
+     * Exports a disk to an export storage domain.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     */
     interface Export {
+        /**
+         * The export storage domain where the disk should be exported to.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 4 Jan 2017
+         * @status added
+         */
         @In StorageDomain storageDomain();
 
         /**
@@ -130,7 +191,21 @@ public interface DiskService extends MeasurableService {
         @In Boolean filter();
     }
 
+    /**
+     * Retrieves the description of the disk.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     */
     interface Get {
+        /**
+         * The description of the disk.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 4 Jan 2017
+         * @status added
+         */
         @Out Disk disk();
     }
 
@@ -159,6 +234,13 @@ public interface DiskService extends MeasurableService {
      * @status added
      */
     interface Move {
+        /**
+         * The storage domain where the disk will be moved to.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 4 Jan 2017
+         * @status added
+         */
         @In StorageDomain storageDomain();
 
         /**
@@ -172,6 +254,13 @@ public interface DiskService extends MeasurableService {
         @In Boolean filter();
     }
 
+    /**
+     * Removes a disk.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
@@ -196,5 +285,12 @@ public interface DiskService extends MeasurableService {
     interface Sparsify {
     }
 
+    /**
+     * Reference to the service that manages the permissions assigned to the disk.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 4 Jan 2017
+     * @status added
+     */
     @Service AssignedPermissionsService permissions();
 }

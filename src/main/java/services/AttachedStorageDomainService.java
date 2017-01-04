@@ -92,5 +92,5 @@ public interface AttachedStorageDomainService {
         @In Boolean async();
     }
 
-    @Service DisksService disks();
+    @Service AttachedStorageDomainDisksService disks();
 }
