@@ -19,6 +19,13 @@ package org.ovirt.api.metamodel.concepts;
 import static java.util.stream.Collectors.toCollection;
 import static org.ovirt.api.metamodel.concepts.Named.named;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -317,6 +324,25 @@ public class Model implements Serializable {
         });
 
         return points;
+    }
+
+    /**
+     * Creates a deep copy of this model.
+     */
+    public Model copy() {
+        try (ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()) {
+            try (ObjectOutput objectOut = new ObjectOutputStream(bytesOut)) {
+                objectOut.writeObject(this);
+            }
+            try (ByteArrayInputStream bytesIn = new ByteArrayInputStream(bytesOut.toByteArray())) {
+                try (ObjectInput objectIn = new ObjectInputStream(bytesIn)) {
+                    return (Model) objectIn.readObject();
+                }
+            }
+        }
+        catch (IOException | ClassNotFoundException exception) {
+            throw new IllegalStateException("Can't copy of the model", exception);
+        }
     }
 }
 
