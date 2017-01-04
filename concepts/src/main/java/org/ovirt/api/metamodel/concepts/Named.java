@@ -35,7 +35,18 @@ public interface Named extends Comparable<Named> {
      */
     @Override
     default int compareTo(Named that) {
-        return this.getName().compareTo(that.getName());
+        Name thisName = this.getName();
+        Name thatName = that.getName();
+        if (thisName == null && thatName != null) {
+            return -1;
+        }
+        if (thisName == null) {
+            return 0;
+        }
+        if (thatName == null) {
+            return 1;
+        }
+        return thisName.compareTo(thatName);
     }
 
     /**
