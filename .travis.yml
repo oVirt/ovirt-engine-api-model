@@ -1,0 +1,21 @@
+language: java
+jdk:
+  - oraclejdk8
+
+addons:
+  apt:
+    packages:
+      - publican
+      - python-lxml
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: automation/deploy-on-gh-pages.sh master
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script: automation/deploy-on-gh-pages.sh tagged
+    on:
+      tags: true
