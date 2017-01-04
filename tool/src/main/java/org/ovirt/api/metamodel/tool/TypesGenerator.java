@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -27,6 +30,7 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.EnumType;
+import org.ovirt.api.metamodel.concepts.EnumValue;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
@@ -38,26 +42,27 @@ import org.ovirt.api.metamodel.concepts.Type;
 import org.ovirt.api.metamodel.runtime.util.ArrayListWithHref;
 import org.ovirt.api.metamodel.runtime.util.ListWithHref;
 import org.ovirt.api.metamodel.runtime.util.UnmodifiableListWithHref;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * This class generates the interfaces and classes corresponding to the struct types of the model.
+ * This class generates the interfaces and classes corresponding to the types of the model.
  */
-public class StructsGenerator extends JavaGenerator {
-    // Reference to the object that calculates Java package names:
-    @Inject
-    private JavaPackages javaPackages;
-
-    // Reference to the object that calculates versioned Java class and member names:
-    @Inject
-    @Style("versioned")
-    private JavaNames javaNames;
-
-    // Reference to the object used to calculate Java type references:
-    @Inject
-    private JavaTypes javaTypes;
+public class TypesGenerator extends JavaGenerator {
+    // Reference to the object that calculates names:
+    @Inject @Style("versioned") private JavaNames javaNames;
+    @Inject private JavaPackages javaPackages;
+    @Inject private JavaTypes javaTypes;
+    @Inject private Names names;
 
     public void generate(Model model) {
-        // Generate classes for each type:
+        // Generate classes for each enum type:
+        model.types()
+            .filter(EnumType.class::isInstance)
+            .map(EnumType.class::cast)
+            .forEach(this::generateEnum);
+
+        // Generate classes for each struct type:
         model.types()
             .filter(StructType.class::isInstance)
             .map(StructType.class::cast)
@@ -65,6 +70,111 @@ public class StructsGenerator extends JavaGenerator {
 
         // Generate a class that has static method to create builders:
         generateBuildersFactory(model);
+    }
+
+    private void generateEnum(EnumType type) {
+        javaBuffer = new JavaClassBuffer();
+        JavaClassName enumName = javaTypes.getEnumName(type);
+        javaBuffer.setClassName(enumName);
+        generateEnumSource(type);
+        try {
+            javaBuffer.write(outDir);
+        }
+        catch (IOException exception) {
+            throw new RuntimeException("Can't write file for enum \"" + enumName + "\"", exception);
+        }
+    }
+
+    private void generateEnumSource(EnumType type) {
+        // Generate the documentation:
+        generateDoc(type);
+
+        // Begin enum:
+        JavaClassName enumName = javaTypes.getEnumName(type);
+        javaBuffer.addLine("public enum %1$s {", enumName.getSimpleName());
+
+        // Generate the declarations of the values:
+        type.values().sorted().forEach(this::generateEnumValue);
+        javaBuffer.addLine(";");
+        javaBuffer.addLine();
+
+        // Generate the logger:
+        javaBuffer.addImport(Logger.class);
+        javaBuffer.addImport(LoggerFactory.class);
+        javaBuffer.addLine(
+            "private static final Logger log = LoggerFactory.getLogger(%1$s.class);",
+            enumName.getSimpleName()
+        );
+        javaBuffer.addLine();
+
+        // Generate the field that stores the image:
+        javaBuffer.addLine("private String image;");
+        javaBuffer.addLine();
+
+        // Generate the constructor:
+        javaBuffer.addLine("%1$s(String image) {", enumName.getSimpleName());
+        javaBuffer.addLine(  "this.image = image;");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Generate the method that converts the enum to an string:
+        javaBuffer.addLine("public String value() {");
+        javaBuffer.addLine(  "return image;");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // Generate the method that creates an instance from an string:
+        javaBuffer.addLine("public static %1$s fromValue(String value) {", enumName.getSimpleName());
+        javaBuffer.addLine(  "try {");
+        javaBuffer.addLine(    "return valueOf(value.toUpperCase());");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine(  "catch (IllegalArgumentException exception) {");
+        javaBuffer.addLine(    "log.error(");
+        javaBuffer.addLine(
+            "\"The string '\" + value + \"' isn't a valid value for the '%1$s' enumerated type. \" +",
+            enumName.getSimpleName()
+        );
+        List<String> images = type.values()
+            .map(this::getEnumValueImage)
+            .sorted()
+            .collect(toList());
+        if (images.size() == 1) {
+            javaBuffer.addLine("\"Valid value is '%1$s'.\",", images.get(0));
+        }
+        else {
+            String head = images.stream()
+                .limit(images.size() - 1)
+                .map(image -> "'" + image + "'")
+                .collect(joining(", "));
+            String tail = images.get(images.size() - 1);
+            javaBuffer.addLine( "\"Valid values are %1$s and '%2$s'.\",", head, tail);
+        }
+        javaBuffer.addLine(      "exception");
+        javaBuffer.addLine(    ");");
+        javaBuffer.addLine(    "return null;");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+
+        // End enum:
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateEnumValue(EnumValue value) {
+        // Generate the documentation:
+        generateDoc(value);
+
+        // Generate the declaration of the value:
+        javaBuffer.addLine("%1$s(\"%2$s\"),", getEnumValueName(value), getEnumValueImage(value));
+    }
+
+    private String getEnumValueName(EnumValue value) {
+        return names.getUpperJoined(value.getName(), "_");
+    }
+
+    private String getEnumValueImage(EnumValue value) {
+        return names.getLowerJoined(value.getName(), "_");
     }
 
     private void generateClasses(StructType type) {

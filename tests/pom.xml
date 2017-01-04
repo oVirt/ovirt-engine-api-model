@@ -107,25 +107,6 @@ limitations under the License.
             </configuration>
           </execution>
 
-          <execution>
-            <id>generate-enums</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>java</goal>
-            </goals>
-            <configuration>
-              <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
-              <arguments>
-                <argument>org.ovirt.api.metamodel.tool.EnumGenerationTool</argument>
-                <argument>--model=${project.basedir}/src/main/java</argument>
-                <argument>--java=${project.basedir}/target/generated-sources/model</argument>
-                <argument>--version-prefix=V4</argument>
-              </arguments>
-              <includePluginDependencies>true</includePluginDependencies>
-              <includeProjectDependencies>false</includeProjectDependencies>
-            </configuration>
-          </execution>
-
         </executions>
         <dependencies>
           <dependency>

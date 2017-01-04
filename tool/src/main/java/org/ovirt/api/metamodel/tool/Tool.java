@@ -51,7 +51,7 @@ public class Tool {
     @Inject private JsonDescriptionGenerator jsonDescriptionGenerator;
     @Inject private SchemaGenerator schemaGenerator;
     @Inject private JaxrsGenerator jaxrsGenerator;
-    @Inject private StructsGenerator structsGenerator;
+    @Inject private TypesGenerator typesGenerator;
     @Inject private XmlSupportGenerator xmlSupportGenerator;
     @Inject private JsonSupportGenerator jsonSupportGenerator;
     @Inject private AsciiDocGenerator docGenerator;
@@ -405,8 +405,8 @@ public class Tool {
 
         // Generate the Java source:
         if (javaDir != null) {
-            structsGenerator.setOutDir(javaDir);
-            structsGenerator.generate(model);
+            typesGenerator.setOutDir(javaDir);
+            typesGenerator.generate(model);
 
             // Generate JSON support classes:
             jsonSupportGenerator.setOutDir(javaDir);
