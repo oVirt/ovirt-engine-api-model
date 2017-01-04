@@ -16,8 +16,8 @@ function _load_ssh_key {
         -d
     set -x
     eval "$(ssh-agent)"
-    chmod 0600 .travis/travis_rsa
-    ssh-add .travis/travis_rsa
+    chmod 0600 automation/travis_rsa
+    ssh-add automation/travis_rsa
 }
 
 
