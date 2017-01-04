@@ -41,8 +41,9 @@ import org.ovirt.api.metamodel.concepts.Type;
 @ApplicationScoped
 public class SchemaNames {
     // Well known names:
-    private static final Name ID = NameParser.parseUsingCase("Id");
     private static final Name HREF = NameParser.parseUsingCase("Href");
+    private static final Name ID = NameParser.parseUsingCase("Id");
+    private static final Name REL = NameParser.parseUsingCase("Rel");
 
     // Exceptions to the rules to calculate complex type names:
     private static final Map<String, String> TYPE_NAME_EXCEPTIONS = new HashMap<>();
@@ -222,7 +223,7 @@ public class SchemaNames {
      *     {@code false} otherwise
      */
     public boolean isRepresentedAsAttribute(Name name) {
-        return ID.equals(name) || HREF.equals(name);
+        return HREF.equals(name) || ID.equals(name) || REL.equals(name);
     }
 }
 
