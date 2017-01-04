@@ -761,6 +761,7 @@ public class ModelAnalyzer {
                 listType = new ListType();
                 assignType(typeName, listType::setElementType);
                 listTypes.put(typeName, listType);
+                model.addType(listType);
             }
             typeSetter.accept(listType);
         }
