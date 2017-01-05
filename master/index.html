@@ -60904,6 +60904,9 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 </div>
 <div class="sect2">
 <h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a>6.282. VnicProfile <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nics">NIC</a>.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1152. Attributes summary</caption>
 <colgroup>
@@ -60927,7 +60930,7 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>custom_properties</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/custom_property">CustomProperty[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom properties applied to the vNIC profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
@@ -60952,12 +60955,12 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pass_through</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_pass_through">VnicPassThrough</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_mirroring</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables port mirroring.</p></td>
 </tr>
 </tbody>
 </table>
@@ -60973,6 +60976,66 @@ If you omit this option from request, by default, this will be set to <code>true
 <div class="paragraph">
 <p>When migrating virtual machine, this virtual machine will be migrated only if all <code>pass_through</code> NICs are
 flagged as <code>migratable</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>6.282.2. pass_through</h4>
+<div class="paragraph">
+<p>Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
+</div>
+<div class="paragraph">
+<p>A vNIC profile enables a NIC to be directly connected to a
+<a href="#types/host_nic_virtual_functions_configuration">virtual function (VF)</a> of an SR-IOV-enabled
+host NIC, if passthrough is enabled. The NIC will then bypass the software network virtualization and
+connect directly to the VF for direct device assignment.</p>
+</div>
+<div class="paragraph">
+<p>The passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
+If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirroring</code> are disabled for the vNIC profile.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/attributes/port_mirroring"><a class="anchor" href="#types/vnic_profile/attributes/port_mirroring"></a>6.282.3. port_mirroring</h4>
+<div class="paragraph">
+<p>Enables port mirroring.</p>
+</div>
+<div class="paragraph">
+<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a>and
+<a href="#types/host">host</a> to a NIC on a <a href="#types/vm">virtual machine</a>. This virtual machine
+can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
+virtual machine on the same host and logical network. The only
+traffic copied is internal to one logical network on one host. There is no
+increase on traffic on the network external to the host; however a virtual machine
+with port mirroring enabled uses more host CPU and RAM than other virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>Port mirroring has the following limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hot plugging NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
+</li>
+<li>
+<p>Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given the above limitations, it is recommended that you enable port mirroring on an additional,
+dedicated vNIC profile.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Enabling port mirroring reduces the privacy of other network users.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1153. Links summary</caption>
@@ -60992,25 +61055,47 @@ flagged as <code>migratable</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the network that the vNIC profile is applied to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_filter">NetworkFilter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Network filter will enhance the admin ability to manage the network packets traffic from/to the participated VMs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that apply to the NICs that use this profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>permissions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/permission">Permission[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions to allow usage of the vNIC profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/qos">Qos</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the quality of service attributes to apply to the vNIC profile.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>6.282.4. network_filter</h4>
+<div class="paragraph">
+<p>Reference to the top-level network filter that apply to the NICs that use this profile.</p>
+</div>
+<div class="paragraph">
+<p>Network filters will enhance the admin ability to manage the network packets traffic
+from/to the participated virtual machines.
+The network filter may either contain a references to other filters, rules for traffic
+filtering, or hold a combination of both.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/links/qos"><a class="anchor" href="#types/vnic_profile/links/qos"></a>6.282.5. qos</h4>
+<div class="paragraph">
+<p>Reference to the quality of service attributes to apply to the vNIC profile.</p>
+</div>
+<div class="paragraph">
+<p>Quality of Service attributes regulate inbound and outbound network traffic of the
+NIC.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -61647,7 +61732,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-04 15:38:41 UTC
+Last updated 2017-01-05 10:34:52 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
