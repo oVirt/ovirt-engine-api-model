@@ -125,4 +125,14 @@ public interface Step extends Identified {
      * @since 4.1
      */
     Integer progress();
+
+    /**
+     * The host used for the step execution (optional).
+     *
+     * @author Liron Aravot <laravot@redhat.com>
+     * @date 11 Jan 2017
+     * @status added
+     * @since 4.1
+     */
+    @Link Host executionHost();
 }
