@@ -44014,7 +44014,7 @@ Event can be associated with a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/external_vm_import"><a class="anchor" href="#types/external_vm_import"></a>6.71. ExternalVmImport <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes parameters of virtual machine import operation from external system.</p>
+<p>Describes the parameters for the virtual machine import operation from an external system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 885. Attributes summary</caption>
@@ -44034,39 +44034,39 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the virtual machine to be imported as is defined within the external system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the virtual machine to be imported, as is defined within the external system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password to authenticate against external hypervisor system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password to authenticate against the external hypervisor system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>provider</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_vm_provider_type">ExternalVmProviderType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of external virtual machine provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of external virtual machine provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sparse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the disk allocation policy of resulting virtual machine: <code>true</code> for sparse, <code>false</code> for preallocated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the disk allocation policy of the resulting virtual machine: <code>true</code> for sparse, <code>false</code> for preallocated.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">URL to be passed to the <code>virt-v2v</code> tool for conversion.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL to be passed to the <code>virt-v2v</code> tool for conversion.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username to authenticate against external hypervisor system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username to authenticate against the external hypervisor system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/external_vm_import/attributes/url"><a class="anchor" href="#types/external_vm_import/attributes/url"></a>6.71.1. url</h4>
 <div class="paragraph">
-<p>URL to be passed to the <code>virt-v2v</code> tool for conversion.</p>
+<p>The URL to be passed to the <code>virt-v2v</code> tool for conversion.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -44097,27 +44097,27 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster">Cluster</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the target cluster of the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the target cluster for the resulting virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cpu_profile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cpu_profile">CpuProfile</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optionally specifies the cpu profile of the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>drivers_iso</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/file">File</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optional name of ISO carrying drivers that can be used during the virt-v2v conversion process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optional specification of host (using host&#8217;s ID) to be used for the conversion process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quota</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/quota">Quota</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optionally specifies the quota that will be applied to the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
@@ -44127,25 +44127,43 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual machine entity used to specify the name of the newly created virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine entity used to specify a name for the newly created virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/external_vm_import/links/host"><a class="anchor" href="#types/external_vm_import/links/host"></a>6.71.2. host</h4>
+<h4 id="types/external_vm_import/links/cpu_profile"><a class="anchor" href="#types/external_vm_import/links/cpu_profile"></a>6.71.2. cpu_profile</h4>
 <div class="paragraph">
-<p>Optional specification of host (using host&#8217;s ID) to be used for the conversion process.
+<p>Optional. Specifies the CPU profile of the resulting virtual machine.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/drivers_iso"><a class="anchor" href="#types/external_vm_import/links/drivers_iso"></a>6.71.3. drivers_iso</h4>
+<div class="paragraph">
+<p>Optional. The name of the ISO containing drivers that can be used during the <code>virt-v2v</code> conversion process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/host"><a class="anchor" href="#types/external_vm_import/links/host"></a>6.71.4. host</h4>
+<div class="paragraph">
+<p>Optional. Specifies the host (using host&#8217;s ID) to be used for the conversion process.
 If not specified, one is selected automatically.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/external_vm_import/links/vm"><a class="anchor" href="#types/external_vm_import/links/vm"></a>6.71.3. vm</h4>
+<h4 id="types/external_vm_import/links/quota"><a class="anchor" href="#types/external_vm_import/links/quota"></a>6.71.5. quota</h4>
 <div class="paragraph">
-<p>Virtual machine entity used to specify the name of the newly created virtual machine.</p>
+<p>Optional. Specifies the quota that will be applied to the resulting virtual machine.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/vm"><a class="anchor" href="#types/external_vm_import/links/vm"></a>6.71.6. vm</h4>
+<div class="paragraph">
+<p>The virtual machine entity used to specify a name for the newly created virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>If name is not specified, the source virtual machine name will be used.</p>
+<p>If a name is not specified, the source virtual machine name will be used.</p>
 </div>
 </div>
 </div>
@@ -62056,7 +62074,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-11 08:43:28 UTC
+Last updated 2017-01-11 13:32:44 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
