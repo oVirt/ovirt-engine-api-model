@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.2 / Jan 12 2017
+
+New features:
+
+* Add new `NetworkFilterParameter` type and related services.
+
+* Add `execution_host` link to the `Disk` type.
+
 == 4.2.1 / Jan 4 2017
 
 New features:
