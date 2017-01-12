@@ -35,11 +35,16 @@ public interface DisksService {
     /**
      * Adds a new floating disk.
      *
-     * When creating a new floating <<types/disk,Disk>>, the API requires the `storage_domain`, `provisioned_size` and
-     * `format` attributes.
+     * There are three types of disks that can be added - disk image, direct LUN and
+     *  https://wiki.openstack.org/wiki/Cinder[Cinder] disk.
      *
-     * To create a new floating disk with specified `provisioned_size`, `format` and `name` on a storage domain with an
-     * id `e9fedf39-5edc-4e0a-8628-253f1b9c5693`, send a request as follows:
+     * *Adding a new image disk:*
+     *
+     * When creating a new floating image <<types/disk,Disk>>, the API requires the `storage_domain`, `provisioned_size`
+     * and `format` attributes.
+     *
+     * To create a new floating image disk with specified `provisioned_size`, `format` and `name` on a storage domain
+     * with an id `123`, send a request as follows:
      *
      * [source]
      * ----
@@ -52,16 +57,87 @@ public interface DisksService {
      * ----
      * <disk>
      *   <storage_domains>
-     *     <storage_domain id="e9fedf39-5edc-4e0a-8628-253f1b9c5693"/>
+     *     <storage_domain id="123"/>
      *   </storage_domains>
-     *   <name>disk1</name>
+     *   <name>mydisk</name>
      *   <provisioned_size>1048576</provisioned_size>
      *   <format>cow</format>
      * </disk>
      * ----
      *
+     *
+     * *Adding a new direct LUN disk:*
+     *
+     * When adding a new floating direct LUN via the API, there are two flavors that can be used:
+     *
+     * . With a `host` element - in this case, the host is used for sanity checks (e.g., that the LUN is visible) and
+     * to retrieve basic information about the LUN (e.g., size and serial).
+     * . Without a `host` element - in this case, the operation is a database-only operation, and the storage is never
+     * accessed.
+     *
+     * To create a new floating direct LUN disk with a `host` element with an id `123`, specified `alias`, `type` and
+     * `logical_unit` with an id `456` (that has the attributes `address`, `port` and `target`),
+     * send a request as follows:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <disk>
+     *   <alias>mylun</alias>
+     *   <lun_storage>
+     *     <host id="123"/>
+     *     <type>iscsi</type>
+     *     <logical_units>
+     *       <logical_unit id="456">
+     *         <address>10.35.10.20</address>
+     *         <port>3260</port>
+     *         <target>iqn.2017-01.com.myhost:444</target>
+     *       </logical_unit>
+     *     </logical_units>
+     *   </lun_storage>
+     * </disk>
+     * ----
+     *
+     * To create a new floating direct LUN disk without using a host, remove the `host` element.
+     *
+     *
+     * *Adding a new Cinder disk:*
+     *
+     * To create a new floating Cinder disk, send a request as follows:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <disk>
+     *   <openstack_volume_type>
+     *     <name>myceph</name>
+     *   </openstack_volume_type>
+     *   <storage_domains>
+     *     <storage_domain>
+     *       <name>cinderDomain</name>
+     *     </storage_domain>
+     *   </storage_domains>
+     *   <provisioned_size>1073741824</provisioned_size>
+     *   <interface>virtio</interface>
+     *   <format>raw</format>
+     * </disk>
+     * ----
+     *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 14 Sep 2016
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @date 11 Jan 2017
      * @status added
      */
     interface Add {
