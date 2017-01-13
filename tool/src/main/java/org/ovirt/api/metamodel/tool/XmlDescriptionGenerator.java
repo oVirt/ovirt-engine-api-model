@@ -240,7 +240,7 @@ public class XmlDescriptionGenerator {
     }
 
     private String getTypeRef(Type type) {
-        if (type instanceof StructType || type instanceof PrimitiveType) {
+        if (type instanceof StructType || type instanceof PrimitiveType || type instanceof EnumType) {
             return type.getName().toString();
         }
         if (type instanceof ListType) {
