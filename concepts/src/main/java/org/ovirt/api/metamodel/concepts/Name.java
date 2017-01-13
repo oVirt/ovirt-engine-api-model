@@ -71,7 +71,7 @@ public class Name implements Comparable<Name>, Serializable {
     }
 
     /**
-     * Returns the list of worlds of this name. The returned list is a copy of the one used internally, so any changes
+     * Returns the list of words of this name. The returned list is a copy of the one used internally, so any changes
      * to it won't have any effect on this name, and changes in the name won't affect the returned list.
      */
     public List<String> getWords() {
