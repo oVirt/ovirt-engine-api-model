@@ -37,7 +37,6 @@ import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.Document;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.EnumValue;
-import org.ovirt.api.metamodel.concepts.Expression;
 import org.ovirt.api.metamodel.concepts.Link;
 import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Locator;
@@ -83,6 +82,10 @@ public class JsonDescriptionGenerator {
 
     private void writeModel() {
         writer.writeStartObject();
+        Service root = model.getRoot();
+        if (root != null) {
+            writer.write("root", getServiceRef(root));
+        }
         writer.writeStartArray("types");
         model.types().forEach(this::writeType);
         writer.writeEnd();

@@ -67,6 +67,10 @@ public class XmlDescriptionGenerator {
 
     private void writeModel() {
         writer.writeStartElement("model");
+        Service root = model.getRoot();
+        if (root != null) {
+            writer.writeElement("root", getServiceRef(root));
+        }
         writer.writeStartElement("types");
         model.types().forEach(this::writeType);
         writer.writeEndElement();
