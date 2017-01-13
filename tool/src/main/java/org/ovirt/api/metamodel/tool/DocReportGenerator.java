@@ -28,6 +28,7 @@ import org.ovirt.api.metamodel.concepts.Attribute;
 import org.ovirt.api.metamodel.concepts.Concept;
 import org.ovirt.api.metamodel.concepts.EnumType;
 import org.ovirt.api.metamodel.concepts.Link;
+import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
 import org.ovirt.api.metamodel.concepts.Name;
@@ -90,9 +91,16 @@ public class DocReportGenerator {
             STATUS.toString()
         );
 
-        // Rows for types and services:
-        model.types().sorted().forEach(this::generateRows);
-        model.services().sorted().forEach(this::generateRows);
+        // Rows for types:
+        model.types()
+            .filter(type -> !(type instanceof ListType))
+            .sorted()
+            .forEach(this::generateRows);
+
+        // Rows for services:
+        model.services()
+            .sorted()
+            .forEach(this::generateRows);
     }
 
     private void generateRows(Concept concept) {
