@@ -16,10 +16,10 @@ limitations under the License.
 
 package types;
 
+import java.util.Date;
+
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
-
-import java.util.Date;
 
 /**
  * Represents basic virtual machine configuration.
@@ -423,4 +423,20 @@ public interface VmBase extends Identified {
      * @status added
      */
     @Link Quota quota();
+
+    /**
+     * Reference to the storage domain this virtual machine/template lease reside on.
+     *
+     * A virtual machine running with a lease requires checking while running that the lease is not taken by another
+     * host, preventing another instance of this virtual machine from running on another host.
+     * This provides protection against split-brain in highly available virtual machines.
+     * A template can also have a storage domain defined for a lease in order to have the virtual machines created
+     * from this template to be preconfigured with this storage domain as the location of the leases.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 11 Jan 2017
+     * @status added
+     * @since 4.1
+     */
+    StorageDomainLease lease();
 }
