@@ -9,7 +9,7 @@ New features:
 
 * Add new `NetworkFilterParameter` type and related services.
 
-* Add `execution_host` link to the `Disk` type.
+* Add `execution_host` link to the `Step` type.
 
 == 4.2.1 / Jan 4 2017
 
