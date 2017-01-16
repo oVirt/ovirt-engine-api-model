@@ -47671,7 +47671,7 @@ range of 0 to 65535. For more details see the description of the <code>timeo</co
 <div class="sect2">
 <h3 id="types/host_type"><a class="anchor" href="#types/host_type"></a>6.113. HostType <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>This enumerated type is used to what type of operating system is used by the host.</p>
+<p>This enumerated type is used to determine which type of operating system is used by the host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 943. Values summary</caption>
@@ -47688,24 +47688,28 @@ range of 0 to 65535. For more details see the description of the <code>timeo</co
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ovirt_node</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains Red Hat Virtualization Host (RHVH): a new implementation of
+Red Hat Enterprise Virtualization Hypervisor (RHEV-H) which uses the same installer as Red Hat Enterprise Linux,
+CentOS, or Fedora.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rhel</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a full RHEL, CentOS or Fedora installation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a full Red Hat Enterprise Linux, CentOS, or Fedora installation.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rhev_h</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a small scaled version of RHEL, CentOS or Fedora, used solely to host virtual machines.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains Red Hat Enterprise Virtualization Hypervisor (RHEV-H), a small-scaled version of Red Hat
+Enterprise Linux, CentOS, or Fedora, used solely to host virtual machines.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/host_type/values/ovirt_node"><a class="anchor" href="#types/host_type/values/ovirt_node"></a>6.113.1. ovirt_node</h4>
 <div class="paragraph">
-<p>The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.
-The main difference between NGN and legacy RHEV-H is that NGN has a writeable file system and will handle its installation
-instead of pushing RPMs to it by the engine in legacy RHEV-H.</p>
+<p>The host contains Red Hat Virtualization Host (RHVH): a new implementation of
+Red Hat Enterprise Virtualization Hypervisor (RHEV-H) which uses the same installer as Red Hat Enterprise Linux,
+CentOS, or Fedora. The main difference between RHVH and legacy RHEV-H is that RHVH has a writeable file system
+and will handle its own installation instead of having RPMs pushed to it by the Manager like in legacy RHEV-H.</p>
 </div>
 </div>
 </div>
@@ -62081,7 +62085,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-16 10:34:34 UTC
+Last updated 2017-01-16 10:38:54 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
