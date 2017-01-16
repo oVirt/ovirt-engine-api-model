@@ -47151,7 +47151,7 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>virtual_functions_configuration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic_virtual_functions_configuration">HostNicVirtualFunctionsConfiguration</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For a SR-IOV physical function NIC describes its virtual functions configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Describes the virtual functions configuration of a physical function NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vlan</code></p></td>
@@ -47164,15 +47164,15 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <h4 id="types/host_nic/attributes/ad_aggregator_id"><a class="anchor" href="#types/host_nic/attributes/ad_aggregator_id"></a>6.108.1. ad_aggregator_id</h4>
 <div class="paragraph">
 <p>The <code>ad_aggregator_id</code> property of a bond or bond slave, for bonds in mode 4.
-Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation -
-<a href="https://en.wikipedia.org/wiki/Link_aggregation">Wikipedia</a>
-<a href="http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf">Presentation</a>.
-This is only valid for bonds in mode 4, or NICs (NIC - network interface card) which are part of a bond.
-It is not present for bonds in other modes, or NICs which are not part in a bond in mode 4.
+Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation.
+(See <a href="https://en.wikipedia.org/wiki/Link_aggregation">Wikipedia</a> and
+<a href="http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf">Presentation</a> for more information).
+This is only valid for bonds in mode 4, or NICs which are part of a bond.
+It is not present for bonds in other modes, or NICs which are not part of a bond in mode 4.
 The <code>ad_aggregator_id</code> property indicates which of the bond slaves are active. The value of the
-<code>ad_aggregator_id</code> of an active slave is the same the value of the  <code>ad_aggregator_id</code> property of the bond.
+<code>ad_aggregator_id</code> of an active slave is the same as the value of the <code>ad_aggregator_id</code> property of the bond.
 This parameter is read only. Setting it will have no effect on the bond/NIC.
-It is retrieved from <code>/sys/class/net/bondX/bonding/ad_aggregator</code> file for a bond, and the
+It is retrieved from the <code>/sys/class/net/bondX/bonding/ad_aggregator</code> file for a bond, and the
 <code>/sys/class/net/ensX/bonding_slave/ad_aggregator_id</code> file for a NIC.</p>
 </div>
 </div>
@@ -47236,12 +47236,12 @@ and <code>false</code> for a bridgeless network.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network which the interface should be connected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network to which the interface should be connected.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>physical_function</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic">HostNic</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For a SR-IOV virtual function NIC references to its physical function NIC.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the physical function NIC of a SR-IOV virtual function NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
@@ -47254,7 +47254,7 @@ and <code>false</code> for a bridgeless network.</p>
 <div class="sect3">
 <h4 id="types/host_nic/links/network"><a class="anchor" href="#types/host_nic/links/network"></a>6.108.4. network</h4>
 <div class="paragraph">
-<p>A reference to the network which the interface should be connected. A blank network id is allowed.</p>
+<p>A reference to the network to which the interface should be connected. A blank network ID is allowed.</p>
 </div>
 </div>
 </div>
@@ -62079,7 +62079,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-16 09:34:20 UTC
+Last updated 2017-01-16 10:30:01 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
