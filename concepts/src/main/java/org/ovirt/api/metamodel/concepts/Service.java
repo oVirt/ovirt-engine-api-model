@@ -129,8 +129,9 @@ public class Service extends Concept {
 
     /**
      * Returns the list of methods that are declared directly in this service, not included the ones that are declared
-     * in the base services. The returned list is a copy of the one used internally, so it is safe to modify it. If you
-     * aren't going to modify the list consider using the {@link #declaredMethods()} method instead.
+     * in the base services. This includes 'signature's of a method - meaning methods defined inside a method.
+     * The returned list is a copy of the one used internally, so it is safe to modify it. If you aren't going to
+     * modify the list consider using the {@link #declaredMethods()} method instead.
      */
     public List<Method> getDeclaredMethods() {
         return new CopyOnWriteArrayList<>(methods);

@@ -57,13 +57,25 @@ public class InputDetailAnalyzer {
      * The attribute is added to the relevant Parameter.
      */
     private void analyzeExpression(MethodExpression expression, List<Parameter> parameters) {
-        boolean mandatory = isMandatory(expression);
-        expression = removePrefix(expression);
         if (expression.getMethod().equals(OR)) {
-            analyzeOrExpression(expression, parameters, mandatory);
+            analyzeOrExpression(expression, parameters);
         } else {
+            boolean mandatory = isMandatory(expression);
+            expression = getMethodExpression(removePrefix(expression));
             analyzeExpression(expression, parameters, mandatory);
         }
+    }
+
+    /**
+     * Receives an expression which may be a MethodExpression or an ArrayExpression.
+     * In case it's a MethodExpression, returns is as is, casted. In case it's an
+     * array expression, discards the index of the array and returns the rest of
+     * the expression cased to MethodExpression.
+     */
+    private MethodExpression getMethodExpression(Expression expression) {
+        return expression instanceof ArrayExpression ?
+                (MethodExpression)(((ArrayExpression)expression).getArray())
+                : (MethodExpression)expression;
     }
 
     /**
@@ -82,9 +94,9 @@ public class InputDetailAnalyzer {
      * mandatory(disk().format()) would be disk().format(). The output
      * for disk().format() would be disk().format() (unchanged)
      */
-    private MethodExpression removePrefix(MethodExpression expression) {
+    private Expression removePrefix(MethodExpression expression) {
         return expression.getMethod().equals(MANDATORY) || expression.getMethod().equals(OPTIONAL) ?
-                (MethodExpression)expression.getParameters().get(0) : expression;
+                expression.getParameters().get(0) : expression;
     }
 
     /**
@@ -94,7 +106,7 @@ public class InputDetailAnalyzer {
      * updates the correct MemberInvolvementTree in it with information obtained
      * from the expression.
      */
-    private void analyzeExpression(MethodExpression expression, List<Parameter> parameters, boolean mandatory) {
+    private MemberInvolvementTree analyzeExpression(MethodExpression expression, List<Parameter> parameters, boolean mandatory) {
         //when lines such as "disk().quota().id()" are made into MethodExpressions,
         //their elements (disk, quota, id) are reversed in order. A stack is used here
         //to restore the original order.
@@ -105,7 +117,7 @@ public class InputDetailAnalyzer {
         Parameter parameter = getParameter(stack.pop(), parameters);
 
         //update the parameter.
-        updateParameter(stack, mandatory, parameter);
+        return updateParameter(stack, mandatory, parameter);
     }
 
     /**
@@ -156,7 +168,7 @@ public class InputDetailAnalyzer {
         }
     }
 
-    private void updateParameter(Stack<Name> stack, boolean mandatory, Parameter parameter) {
+    private MemberInvolvementTree updateParameter(Stack<Name> stack, boolean mandatory, Parameter parameter) {
         //handle the special case of a single-element expression, e.g: "fenceType()".
         //Such expressions are only expected to appear in the live documentation of
         //Actions, and they represent primitive (integer, boolean, String) or enum types.
@@ -166,6 +178,7 @@ public class InputDetailAnalyzer {
         if (stack.isEmpty()) {
             assert parameter.getType() instanceof PrimitiveType || parameter.getType() instanceof EnumType;
             parameter.setMandatory(mandatory);
+            return null;
         } else {
             //find the member-involvement-tree which should be updated.
             MemberInvolvementTree currentNode = getMemberTree(parameter, stack.pop());
@@ -186,6 +199,7 @@ public class InputDetailAnalyzer {
             }
             //stack has been emptied so this is a leaf. Set 'mandatory' (true/false).
             currentNode.setMandatory(mandatory);
+            return currentNode;
         }
     }
 
@@ -232,8 +246,29 @@ public class InputDetailAnalyzer {
         }
     }
 
-    private void analyzeOrExpression(MethodExpression expression, List<Parameter> parameters, boolean mandatory) {
-        // TODO Auto-generated method stub
+    /**
+     * Analyzes a live documentation expression which includes an 'or' operator.
+     * Known limitations: 1) Only binary 'or' supported (or(a,b,c) not supported).
+     * 2) no current way to express 'or' relationship between a primitive parameter
+     * (e.g: fenceType()) and a complex parameter (e.g: host().address()). This is
+     * because primitive parameters are not expressed using member-involvement-trees,
+     * and the current method of expression 'or' is by using member-involvement-trees.
+     */
+    private void analyzeOrExpression(MethodExpression expression, List<Parameter> parameters) {
+        List<Expression> expressions = expression.getParameters();
+        assert (expressions.size()==2); //binary 'or'.
+        assert (expressions.get(0) instanceof MethodExpression); //expected to start with: "mandatory|optional(...)
+        assert (expressions.get(1) instanceof MethodExpression); //expected to start with: "mandatory|optional(...)
+        boolean mandatory = isMandatory((MethodExpression)expressions.get(0));
+        //if one is mandatory, the other is also expected to be, and vice-versa.
+        assert mandatory==isMandatory((MethodExpression)expressions.get(1));
+        MethodExpression expression1 = getMethodExpression(removePrefix((MethodExpression)expressions.get(0)));
+        MethodExpression expression2 = getMethodExpression(removePrefix((MethodExpression)expressions.get(1)));
+        MemberInvolvementTree tree1 = analyzeExpression(expression1, parameters, mandatory);
+        MemberInvolvementTree tree2 = analyzeExpression(expression2, parameters, mandatory);
+        //Make the two leaves which have an 'or' relationship between them 'point' to each other.
+        tree1.setAlternative(tree2);
+        tree2.setAlternative(tree1);
     }
 
 }

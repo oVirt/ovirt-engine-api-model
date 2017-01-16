@@ -46,7 +46,9 @@ public class MemberInvolvementTree implements Serializable {
     private StructMember member; //the node in the tree. Conatins name and type.
     private List<MemberInvolvementTree> nodes = new ArrayList<>(); //child nodes (if exist)
     private MemberInvolvementTree parent; //parent node (unless root, then no parent)
+    private MemberInvolvementTree alternative; //Used to express an 'or' relationship between nodes.
     private boolean mandatory; //for leaves only - is this field mandatory or optional?
+
 
     public MemberInvolvementTree(Name name) {
         super();
@@ -158,5 +160,12 @@ public class MemberInvolvementTree implements Serializable {
             }
             return null;
         }
+    }
+
+    public MemberInvolvementTree getAlternative() {
+        return alternative;
+    }
+    public void setAlternative(MemberInvolvementTree alternative) {
+        this.alternative = alternative;
     }
 }
