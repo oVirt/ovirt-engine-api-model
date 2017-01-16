@@ -47263,7 +47263,7 @@ and <code>false</code> for a bridgeless network.</p>
 <div class="sect2">
 <h3 id="types/host_nic_virtual_functions_configuration"><a class="anchor" href="#types/host_nic_virtual_functions_configuration"></a>6.109. HostNicVirtualFunctionsConfiguration <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes virtual functions configuration for an SR-IOV enabled physical function NIC.</p>
+<p>Describes the virtual functions configuration of an SR-IOV-enabled physical function NIC.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 938. Attributes summary</caption>
@@ -47283,30 +47283,31 @@ and <code>false</code> for a bridgeless network.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_networks_allowed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether all networks are allowed to be defined on the related virtual functions or specified ones only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether all networks are allowed to be defined on the related virtual functions, or specified ones only.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_number_of_virtual_functions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of virtual functions the NIC supports.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of virtual functions the NIC supports.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>number_of_virtual_functions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of currently defined virtual functions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of virtual functions currently defined.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/host_nic_virtual_functions_configuration/attributes/max_number_of_virtual_functions"><a class="anchor" href="#types/host_nic_virtual_functions_configuration/attributes/max_number_of_virtual_functions"></a>6.109.1. max_number_of_virtual_functions</h4>
 <div class="paragraph">
-<p>Maximum number of virtual functions the NIC supports. Read-only property.</p>
+<p>The maximum number of virtual functions the NIC supports. This property is read-only.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/host_nic_virtual_functions_configuration/attributes/number_of_virtual_functions"><a class="anchor" href="#types/host_nic_virtual_functions_configuration/attributes/number_of_virtual_functions"></a>6.109.2. number_of_virtual_functions</h4>
 <div class="paragraph">
-<p>Number of currently defined virtual functions. User-defined value between 0 and <code>maxNumberOfVirtualFunctions</code>.</p>
+<p>The number of virtual functions currently defined. A user-defined value between 0 and
+<code>max_number_of_virtual_functions</code>.</p>
 </div>
 </div>
 </div>
@@ -62085,7 +62086,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-16 10:38:54 UTC
+Last updated 2017-01-16 10:42:07 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
