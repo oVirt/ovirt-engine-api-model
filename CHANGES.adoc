@@ -7,7 +7,7 @@ API model.
 
 New features:
 
-* Add `execution_host` link to the `Disk` type.
+* Add `execution_host` link to the `Step` type.
 
 == 4.1.26 / Jan 4 2017
 
