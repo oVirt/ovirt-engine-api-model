@@ -23,8 +23,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * A vNIC profile is a collection of settings that can be applied to individual <<types/nic,NIC>>.
  *
  * @author Dominik Holler <dholler@redhat.com>
- * @date 20 Dec 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 17 Jan 2017
+ * @status updated_by_docs
  */
 @Type
 public interface VnicProfile extends Identified {
@@ -32,17 +33,17 @@ public interface VnicProfile extends Identified {
     /**
      * Enables port mirroring.
      *
-     * Port mirroring copies layer 3 network traffic on a given <<types/network,logical network>>and
+     * Port mirroring copies layer 3 network traffic on a given <<types/network,logical network>> and
      * <<types/host,host>> to a NIC on a <<types/vm,virtual machine>>. This virtual machine
      * can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
-     * virtual machine on the same host and logical network. The only
+     * virtual machines on the same host and logical network. The only
      * traffic copied is internal to one logical network on one host. There is no
-     * increase on traffic on the network external to the host; however a virtual machine
+     * increase in traffic on the network external to the host; however a virtual machine
      * with port mirroring enabled uses more host CPU and RAM than other virtual machines.
      *
      * Port mirroring has the following limitations:
      *
-     *  - Hot plugging NIC with a vNIC profile that has port mirroring enabled is not supported.
+     *  - Hot plugging a NIC with a vNIC profile that has port mirroring enabled is not supported.
      *  - Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.
      *
      * Given the above limitations, it is recommended that you enable port mirroring on an additional,
@@ -51,8 +52,9 @@ public interface VnicProfile extends Identified {
      * IMPORTANT: Enabling port mirroring reduces the privacy of other network users.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     Boolean portMirroring();
 
@@ -60,40 +62,43 @@ public interface VnicProfile extends Identified {
      * Custom properties applied to the vNIC profile.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Jan 2017
+     * @status updated_by_docs
      */
     CustomProperty[] customProperties();
 
     /**
-     * Enables the passthrough to a SR-IOV-enabled <<types/host_nic,host NIC>>.
+     * Enables passthrough to an SR-IOV-enabled <<types/host_nic,host NIC>>.
      *
      * A vNIC profile enables a NIC to be directly connected to a
      * <<types/host_nic_virtual_functions_configuration,virtual function (VF)>> of an SR-IOV-enabled
      * host NIC, if passthrough is enabled. The NIC will then bypass the software network virtualization and
      * connect directly to the VF for direct device assignment.
      *
-     * The passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
+     * Passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
      * If a vNIC profile has passthrough enabled, `qos` and `port_mirroring` are disabled for the vNIC profile.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     VnicPassThrough passThrough();
 
     /**
-     * Marks, whether `pass_through` NIC is migratable or not.
+     * Marks whether `pass_through` NIC is migratable or not.
      *
      * If `pass_through.mode` is set to `disabled` this option has no meaning, and it will be considered to be `true`.
-     * If you omit this option from request, by default, this will be set to `true`.
+     * If you omit this option from a request, by default, this will be set to `true`.
      *
-     * When migrating virtual machine, this virtual machine will be migrated only if all `pass_through` NICs are
+     * When migrating a virtual machine, this virtual machine will be migrated only if all `pass_through` NICs are
      * flagged as `migratable`.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 1 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     Boolean migratable();
@@ -102,8 +107,9 @@ public interface VnicProfile extends Identified {
      * Reference to the network that the vNIC profile is applied to.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Jan 2017
+     * @status updated_by_docs
      */
     @Link Network network();
 
@@ -114,23 +120,25 @@ public interface VnicProfile extends Identified {
      * NIC.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Jan 2017
+     * @status updated_by_docs
      */
     @Link Qos qos();
 
     /**
-     * Reference to the top-level network filter that apply to the NICs that use this profile.
+     * Reference to the top-level network filter that applies to the NICs that use this profile.
      *
-     * Network filters will enhance the admin ability to manage the network packets traffic
-     * from/to the participated virtual machines.
-     * The network filter may either contain a references to other filters, rules for traffic
-     * filtering, or hold a combination of both.
+     * Network filters enhance the ability to manage the network packets traffic
+     * to and from virtual machines.
+     * The network filter may either contain a reference to other filters, rules for traffic
+     * filtering, or a combination of both.
      *
      * @author Alona Kaplan <alkaplan@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     @Link NetworkFilter networkFilter();
 
@@ -138,8 +146,9 @@ public interface VnicProfile extends Identified {
      * Permissions to allow usage of the vNIC profile.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Jan 2017
+     * @status updated_by_docs
      */
     @Link Permission[] permissions();
 }
