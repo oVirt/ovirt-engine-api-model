@@ -18,18 +18,29 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The enum describes whether vNIC to be implemented as a pass-through device or a virtual one.
- * Currently it supports only 2 option, but there is a plan to add more in the future.
+ * Describes whether the vNIC is to be implemented as a pass-through device or a virtual one.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 17 Jan 17
+ * @status updated_by_docs
  */
  @Type
 public enum VnicPassThroughMode {
     /**
-     * To be implemented as a pass-through device
+     * To be implemented as a pass-through device.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 17
+     * @status updated_by_docs
      */
     ENABLED,
 
     /**
-     * To be implemented as a virtual device
+     * To be implemented as a virtual device.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 17
+     * @status updated_by_docs
      */
     DISABLED;
 }
