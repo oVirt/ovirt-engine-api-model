@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.3 / Jan 17 2017
+
+New features:
+
+* Add new `lease` attribute to virtual machines and templates.
+
 == 4.2.2 / Jan 12 2017
 
 New features:
