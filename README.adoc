@@ -120,6 +120,9 @@ https://jhernand.fedorapeople.org/ovirt-engine-api-model/model.html[here].
 This documentation viewer will eventually be part of the oVirt Engine server
 itself.
 
+Regular builds of the documentation are available at project
+http://ovirt.github.io/ovirt-engine-api-model/[Github page].
+
 The _Javadoc_ comments have their own format, but it isn't used by the
 our documentation tools. Instead of that the tools expect and support
 http://www.methods.co.nz/asciidoc[AsciiDoc]. This means that _Javadoc_
