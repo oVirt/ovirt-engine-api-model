@@ -19,7 +19,10 @@ package org.ovirt.api.metamodel.concepts;
 import static org.ovirt.api.metamodel.concepts.Named.named;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
@@ -28,6 +31,8 @@ import java.util.stream.Stream;
  */
 public class Method extends ServiceMember {
 
+    private final Set<Name> NON_ACTION_METHOD_NAMES = new HashSet<>(Arrays.asList(
+            new Name("add"), new Name("get"), new Name("list"), new Name("update"), new Name("remove")));
     //API methods with several signatures have a Method instance for each
     //signature and a base Method instance, containing common parameters.
     //for non-signature methods, 'base' will be null.
@@ -78,16 +83,8 @@ public class Method extends ServiceMember {
      * {@code Update} or {@code Remove}.
      */
     public boolean isAction() {
-        switch (getName().toString().toLowerCase()) {
-        case "add":
-        case "get":
-        case "list":
-        case "update":
-        case "remove":
-            return false;
-        default:
-            return true;
-        }
+        return !(NON_ACTION_METHOD_NAMES.contains(getName())
+                || (base!=null && NON_ACTION_METHOD_NAMES.contains(base.getName())));
     }
 
     public Method getBase() {
