@@ -10905,12 +10905,19 @@ value.
 <p>Adds a new floating disk.</p>
 </div>
 <div class="paragraph">
-<p>When creating a new floating <a href="#types/disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code> and
-<code>format</code> attributes.</p>
+<p>There are three types of disks that can be added - disk image, direct LUN and
+ <a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a> disk.</p>
 </div>
 <div class="paragraph">
-<p>To create a new floating disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain with an
-id <code>e9fedf39-5edc-4e0a-8628-253f1b9c5693</code>, send a request as follows:</p>
+<p><strong>Adding a new image disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>When creating a new floating image <a href="#types/disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code>
+and <code>format</code> attributes.</p>
+</div>
+<div class="paragraph">
+<p>To create a new floating image disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain
+with an id <code>123</code>, send a request as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10924,11 +10931,94 @@ id <code>e9fedf39-5edc-4e0a-8628-253f1b9c5693</code>, send a request as follows:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
   &lt;storage_domains&gt;
-    &lt;storage_domain id="e9fedf39-5edc-4e0a-8628-253f1b9c5693"/&gt;
+    &lt;storage_domain id="123"/&gt;
   &lt;/storage_domains&gt;
-  &lt;name&gt;disk1&lt;/name&gt;
+  &lt;name&gt;mydisk&lt;/name&gt;
   &lt;provisioned_size&gt;1048576&lt;/provisioned_size&gt;
   &lt;format&gt;cow&lt;/format&gt;
+&lt;/disk&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new direct LUN disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>When adding a new floating direct LUN via the API, there are two flavors that can be used:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>With a <code>host</code> element - in this case, the host is used for sanity checks (e.g., that the LUN is visible) and
+to retrieve basic information about the LUN (e.g., size and serial).</p>
+</li>
+<li>
+<p>Without a <code>host</code> element - in this case, the operation is a database-only operation, and the storage is never
+accessed.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To create a new floating direct LUN disk with a <code>host</code> element with an id <code>123</code>, specified <code>alias</code>, <code>type</code> and
+<code>logical_unit</code> with an id <code>456</code> (that has the attributes <code>address</code>, <code>port</code> and <code>target</code>),
+send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
+  &lt;alias&gt;mylun&lt;/alias&gt;
+  &lt;lun_storage&gt;
+    &lt;host id="123"/&gt;
+    &lt;type&gt;iscsi&lt;/type&gt;
+    &lt;logical_units&gt;
+      &lt;logical_unit id="456"&gt;
+        &lt;address&gt;10.35.10.20&lt;/address&gt;
+        &lt;port&gt;3260&lt;/port&gt;
+        &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
+      &lt;/logical_unit&gt;
+    &lt;/logical_units&gt;
+  &lt;/lun_storage&gt;
+&lt;/disk&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To create a new floating direct LUN disk without using a host, remove the <code>host</code> element.</p>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new Cinder disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>To create a new floating Cinder disk, send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
+  &lt;openstack_volume_type&gt;
+    &lt;name&gt;myceph&lt;/name&gt;
+  &lt;/openstack_volume_type&gt;
+  &lt;storage_domains&gt;
+    &lt;storage_domain&gt;
+      &lt;name&gt;cinderDomain&lt;/name&gt;
+    &lt;/storage_domain&gt;
+  &lt;/storage_domains&gt;
+  &lt;provisioned_size&gt;1073741824&lt;/provisioned_size&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;format&gt;raw&lt;/format&gt;
 &lt;/disk&gt;</code></pre>
 </div>
 </div>
@@ -62209,7 +62299,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-19 08:31:41 UTC
+Last updated 2017-01-22 11:06:23 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
