@@ -88,6 +88,7 @@ public interface StorageDomainDisksService {
          *   <format>cow</format>
          *   <provisioned_size>1073741824</provisioned_size>
          * </disk>
+         * ----
          *
          * The default value is `false`.
          *
