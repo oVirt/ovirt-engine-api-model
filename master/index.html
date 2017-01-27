@@ -3663,6 +3663,9 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/permission/methods/remove">DELETE</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/attached_storage_domains">storagedomains</a>/<a href="#services/attached_storage_domain">{storagedomain:id}</a>/<a href="#services/attached_storage_domain_disks">disks</a>/<a href="#services/attached_storage_domain_disk">{disk:id}</a>/<a href="#services/assigned_permissions">permissions</a>/<a href="#services/permission">{permission:id}</a></p>
 </li>
 <li>
+<p><a href="#services/attached_storage_domain_disk/methods/register">POST</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/attached_storage_domains">storagedomains</a>/<a href="#services/attached_storage_domain">{storagedomain:id}</a>/<a href="#services/attached_storage_domain_disks">disks</a>/<a href="#services/attached_storage_domain_disk">{disk:id}</a>/<a href="#services/attached_storage_domain_disk">register</a></p>
+</li>
+<li>
 <p><a href="#services/attached_storage_domain_disk/methods/sparsify">POST</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/attached_storage_domains">storagedomains</a>/<a href="#services/attached_storage_domain">{storagedomain:id}</a>/<a href="#services/attached_storage_domain_disks">disks</a>/<a href="#services/attached_storage_domain_disk">{disk:id}</a>/<a href="#services/attached_storage_domain_disk">sparsify</a></p>
 </li>
 <li>
@@ -8000,6 +8003,10 @@ that manages all the disks of the system</a>, or the <a href="#services/disk">se
 <td class="tableblock halign-left valign-top"><p class="tableblock">Moves a disk to another storage domain.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>register</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registers an unregistered disk.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes a disk.</p></td>
 </tr>
@@ -8198,7 +8205,13 @@ operation of the service that manages that disk.
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/attached_storage_domain_disk/methods/remove"><a class="anchor" href="#services/attached_storage_domain_disk/methods/remove"></a>5.27.5. remove <span class="small">DELETE</span></h4>
+<h4 id="services/attached_storage_domain_disk/methods/register"><a class="anchor" href="#services/attached_storage_domain_disk/methods/register"></a>5.27.5. register <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Registers an unregistered disk.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="services/attached_storage_domain_disk/methods/remove"><a class="anchor" href="#services/attached_storage_domain_disk/methods/remove"></a>5.27.6. remove <span class="small">DELETE</span></h4>
 <div class="paragraph">
 <p>Removes a disk.</p>
 </div>
@@ -8218,7 +8231,7 @@ operation of the service that manages that disk.
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/attached_storage_domain_disk/methods/sparsify"><a class="anchor" href="#services/attached_storage_domain_disk/methods/sparsify"></a>5.27.6. sparsify <span class="small">POST</span></h4>
+<h4 id="services/attached_storage_domain_disk/methods/sparsify"><a class="anchor" href="#services/attached_storage_domain_disk/methods/sparsify"></a>5.27.7. sparsify <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Sparsify the disk.</p>
 </div>
@@ -8238,7 +8251,7 @@ operation of the service that manages that disk.
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/attached_storage_domain_disk/methods/update"><a class="anchor" href="#services/attached_storage_domain_disk/methods/update"></a>5.27.7. update <span class="small">PUT</span></h4>
+<h4 id="services/attached_storage_domain_disk/methods/update"><a class="anchor" href="#services/attached_storage_domain_disk/methods/update"></a>5.27.8. update <span class="small">PUT</span></h4>
 <div class="paragraph">
 <p>Updates the disk.</p>
 </div>
@@ -63368,7 +63381,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-24 17:14:43 UTC
+Last updated 2017-01-27 16:31:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
