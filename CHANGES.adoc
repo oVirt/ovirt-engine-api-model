@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.4 / Jan 27 2017
+
+New features:
+
+* Add `StorageDomainDisks` and `AttachedStorageDomainDisks`.
+
+* Add operation to register storage domain disk.
+
 == 4.2.3 / Jan 17 2017
 
 New features:
