@@ -10730,12 +10730,19 @@ value.
 <p>Adds a new floating disk.</p>
 </div>
 <div class="paragraph">
-<p>When creating a new floating <a href="#types/disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code> and
-<code>format</code> attributes.</p>
+<p>There are three types of disks that can be added - disk image, direct LUN and
+ <a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a> disk.</p>
 </div>
 <div class="paragraph">
-<p>To create a new floating disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain with an
-id <code>e9fedf39-5edc-4e0a-8628-253f1b9c5693</code>, send a request as follows:</p>
+<p><strong>Adding a new image disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>When creating a new floating image <a href="#types/disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code>
+and <code>format</code> attributes.</p>
+</div>
+<div class="paragraph">
+<p>To create a new floating image disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain
+with an id <code>123</code>, send a request as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10749,11 +10756,94 @@ id <code>e9fedf39-5edc-4e0a-8628-253f1b9c5693</code>, send a request as follows:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
   &lt;storage_domains&gt;
-    &lt;storage_domain id="e9fedf39-5edc-4e0a-8628-253f1b9c5693"/&gt;
+    &lt;storage_domain id="123"/&gt;
   &lt;/storage_domains&gt;
-  &lt;name&gt;disk1&lt;/name&gt;
+  &lt;name&gt;mydisk&lt;/name&gt;
   &lt;provisioned_size&gt;1048576&lt;/provisioned_size&gt;
   &lt;format&gt;cow&lt;/format&gt;
+&lt;/disk&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new direct LUN disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>When adding a new floating direct LUN via the API, there are two flavors that can be used:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>With a <code>host</code> element - in this case, the host is used for sanity checks (e.g., that the LUN is visible) and
+to retrieve basic information about the LUN (e.g., size and serial).</p>
+</li>
+<li>
+<p>Without a <code>host</code> element - in this case, the operation is a database-only operation, and the storage is never
+accessed.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To create a new floating direct LUN disk with a <code>host</code> element with an id <code>123</code>, specified <code>alias</code>, <code>type</code> and
+<code>logical_unit</code> with an id <code>456</code> (that has the attributes <code>address</code>, <code>port</code> and <code>target</code>),
+send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
+  &lt;alias&gt;mylun&lt;/alias&gt;
+  &lt;lun_storage&gt;
+    &lt;host id="123"/&gt;
+    &lt;type&gt;iscsi&lt;/type&gt;
+    &lt;logical_units&gt;
+      &lt;logical_unit id="456"&gt;
+        &lt;address&gt;10.35.10.20&lt;/address&gt;
+        &lt;port&gt;3260&lt;/port&gt;
+        &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
+      &lt;/logical_unit&gt;
+    &lt;/logical_units&gt;
+  &lt;/lun_storage&gt;
+&lt;/disk&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To create a new floating direct LUN disk without using a host, remove the <code>host</code> element.</p>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new Cinder disk:</strong></p>
+</div>
+<div class="paragraph">
+<p>To create a new floating Cinder disk, send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
+  &lt;openstack_volume_type&gt;
+    &lt;name&gt;myceph&lt;/name&gt;
+  &lt;/openstack_volume_type&gt;
+  &lt;storage_domains&gt;
+    &lt;storage_domain&gt;
+      &lt;name&gt;cinderDomain&lt;/name&gt;
+    &lt;/storage_domain&gt;
+  &lt;/storage_domains&gt;
+  &lt;provisioned_size&gt;1073741824&lt;/provisioned_size&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;format&gt;raw&lt;/format&gt;
 &lt;/disk&gt;</code></pre>
 </div>
 </div>
@@ -42490,7 +42580,7 @@ Event can be associated with a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/external_vm_import"><a class="anchor" href="#types/external_vm_import"></a>6.69. ExternalVmImport <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes parameters of virtual machine import operation from external system.</p>
+<p>Describes the parameters for the virtual machine import operation from an external system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 863. Attributes summary</caption>
@@ -42510,39 +42600,39 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the virtual machine to be imported as is defined within the external system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the virtual machine to be imported, as is defined within the external system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password to authenticate against external hypervisor system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password to authenticate against the external hypervisor system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>provider</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_vm_provider_type">ExternalVmProviderType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of external virtual machine provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of external virtual machine provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sparse</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the disk allocation policy of resulting virtual machine: <code>true</code> for sparse, <code>false</code> for preallocated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the disk allocation policy of the resulting virtual machine: <code>true</code> for sparse, <code>false</code> for preallocated.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">URL to be passed to the <code>virt-v2v</code> tool for conversion.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL to be passed to the <code>virt-v2v</code> tool for conversion.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username to authenticate against external hypervisor system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username to authenticate against the external hypervisor system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/external_vm_import/attributes/url"><a class="anchor" href="#types/external_vm_import/attributes/url"></a>6.69.1. url</h4>
 <div class="paragraph">
-<p>URL to be passed to the <code>virt-v2v</code> tool for conversion.</p>
+<p>The URL to be passed to the <code>virt-v2v</code> tool for conversion.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -42573,27 +42663,27 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster">Cluster</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the target cluster of the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the target cluster for the resulting virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cpu_profile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cpu_profile">CpuProfile</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optionally specifies the cpu profile of the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>drivers_iso</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/file">File</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optional name of ISO carrying drivers that can be used during the virt-v2v conversion process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optional specification of host (using host&#8217;s ID) to be used for the conversion process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quota</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/quota">Quota</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optionally specifies the quota that will be applied to the resulting virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
@@ -42603,32 +42693,50 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual machine entity used to specify the name of the newly created virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine entity used to specify a name for the newly created virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/external_vm_import/links/host"><a class="anchor" href="#types/external_vm_import/links/host"></a>6.69.2. host</h4>
+<h4 id="types/external_vm_import/links/cpu_profile"><a class="anchor" href="#types/external_vm_import/links/cpu_profile"></a>6.69.2. cpu_profile</h4>
 <div class="paragraph">
-<p>Optional specification of host (using host&#8217;s ID) to be used for the conversion process.
+<p>Optional. Specifies the CPU profile of the resulting virtual machine.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/drivers_iso"><a class="anchor" href="#types/external_vm_import/links/drivers_iso"></a>6.69.3. drivers_iso</h4>
+<div class="paragraph">
+<p>Optional. The name of the ISO containing drivers that can be used during the <code>virt-v2v</code> conversion process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/host"><a class="anchor" href="#types/external_vm_import/links/host"></a>6.69.4. host</h4>
+<div class="paragraph">
+<p>Optional. Specifies the host (using host&#8217;s ID) to be used for the conversion process.
 If not specified, one is selected automatically.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/external_vm_import/links/vm"><a class="anchor" href="#types/external_vm_import/links/vm"></a>6.69.3. vm</h4>
+<h4 id="types/external_vm_import/links/quota"><a class="anchor" href="#types/external_vm_import/links/quota"></a>6.69.5. quota</h4>
 <div class="paragraph">
-<p>Virtual machine entity used to specify the name of the newly created virtual machine.</p>
+<p>Optional. Specifies the quota that will be applied to the resulting virtual machine.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_vm_import/links/vm"><a class="anchor" href="#types/external_vm_import/links/vm"></a>6.69.6. vm</h4>
+<div class="paragraph">
+<p>The virtual machine entity used to specify a name for the newly created virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>If name is not specified, the source virtual machine name will be used.</p>
+<p>If a name is not specified, the source virtual machine name will be used.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="types/external_vm_provider_type"><a class="anchor" href="#types/external_vm_provider_type"></a>6.70. ExternalVmProviderType <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>Describes type of external hypervisor system.</p>
+<p>Describes the type of external hypervisor system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 865. Values summary</caption>
@@ -44322,9 +44430,11 @@ will be removed in future release.</p>
 <div class="sect3">
 <h4 id="types/group/links/roles"><a class="anchor" href="#types/group/links/roles"></a>6.95.1. roles</h4>
 <div class="paragraph">
-<p>A link to the roles sub-collection for roles attached to this group.
-Used only to represent the initial role assignments for a new group, thereafter modification of role assignments
-are only supported via the <code>roles</code> sub-collection.</p>
+<p>A link to the roles sub-collection for roles attached to this group.</p>
+</div>
+<div class="paragraph">
+<p>Used only to represent the initial role assignments for a new group; thereafter, modification of role assignments
+is only supported via the <code>roles</code> sub-collection.</p>
 </div>
 </div>
 </div>
@@ -45562,7 +45672,7 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>virtual_functions_configuration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic_virtual_functions_configuration">HostNicVirtualFunctionsConfiguration</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For a SR-IOV physical function NIC describes its virtual functions configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Describes the virtual functions configuration of a physical function NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vlan</code></p></td>
@@ -45575,15 +45685,15 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <h4 id="types/host_nic/attributes/ad_aggregator_id"><a class="anchor" href="#types/host_nic/attributes/ad_aggregator_id"></a>6.106.1. ad_aggregator_id</h4>
 <div class="paragraph">
 <p>The <code>ad_aggregator_id</code> property of a bond or bond slave, for bonds in mode 4.
-Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation -
-<a href="https://en.wikipedia.org/wiki/Link_aggregation">Wikipedia</a>
-<a href="http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf">Presentation</a>.
-This is only valid for bonds in mode 4, or NICs (NIC - network interface card) which are part of a bond.
-It is not present for bonds in other modes, or NICs which are not part in a bond in mode 4.
+Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation.
+(See <a href="https://en.wikipedia.org/wiki/Link_aggregation">Wikipedia</a> and
+<a href="http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf">Presentation</a> for more information).
+This is only valid for bonds in mode 4, or NICs which are part of a bond.
+It is not present for bonds in other modes, or NICs which are not part of a bond in mode 4.
 The <code>ad_aggregator_id</code> property indicates which of the bond slaves are active. The value of the
-<code>ad_aggregator_id</code> of an active slave is the same the value of the  <code>ad_aggregator_id</code> property of the bond.
+<code>ad_aggregator_id</code> of an active slave is the same as the value of the <code>ad_aggregator_id</code> property of the bond.
 This parameter is read only. Setting it will have no effect on the bond/NIC.
-It is retrieved from <code>/sys/class/net/bondX/bonding/ad_aggregator</code> file for a bond, and the
+It is retrieved from the <code>/sys/class/net/bondX/bonding/ad_aggregator</code> file for a bond, and the
 <code>/sys/class/net/ensX/bonding_slave/ad_aggregator_id</code> file for a NIC.</p>
 </div>
 </div>
@@ -45647,12 +45757,12 @@ and <code>false</code> for a bridgeless network.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network which the interface should be connected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network to which the interface should be connected.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>physical_function</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic">HostNic</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For a SR-IOV virtual function NIC references to its physical function NIC.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the physical function NIC of a SR-IOV virtual function NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
@@ -45665,14 +45775,14 @@ and <code>false</code> for a bridgeless network.</p>
 <div class="sect3">
 <h4 id="types/host_nic/links/network"><a class="anchor" href="#types/host_nic/links/network"></a>6.106.4. network</h4>
 <div class="paragraph">
-<p>A reference to the network which the interface should be connected. A blank network id is allowed.</p>
+<p>A reference to the network to which the interface should be connected. A blank network ID is allowed.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="types/host_nic_virtual_functions_configuration"><a class="anchor" href="#types/host_nic_virtual_functions_configuration"></a>6.107. HostNicVirtualFunctionsConfiguration <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes virtual functions configuration for an SR-IOV enabled physical function NIC.</p>
+<p>Describes the virtual functions configuration of an SR-IOV-enabled physical function NIC.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 916. Attributes summary</caption>
@@ -45692,30 +45802,31 @@ and <code>false</code> for a bridgeless network.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_networks_allowed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether all networks are allowed to be defined on the related virtual functions or specified ones only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether all networks are allowed to be defined on the related virtual functions, or specified ones only.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_number_of_virtual_functions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of virtual functions the NIC supports.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of virtual functions the NIC supports.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>number_of_virtual_functions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of currently defined virtual functions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of virtual functions currently defined.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/host_nic_virtual_functions_configuration/attributes/max_number_of_virtual_functions"><a class="anchor" href="#types/host_nic_virtual_functions_configuration/attributes/max_number_of_virtual_functions"></a>6.107.1. max_number_of_virtual_functions</h4>
 <div class="paragraph">
-<p>Maximum number of virtual functions the NIC supports. Read-only property.</p>
+<p>The maximum number of virtual functions the NIC supports. This property is read-only.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/host_nic_virtual_functions_configuration/attributes/number_of_virtual_functions"><a class="anchor" href="#types/host_nic_virtual_functions_configuration/attributes/number_of_virtual_functions"></a>6.107.2. number_of_virtual_functions</h4>
 <div class="paragraph">
-<p>Number of currently defined virtual functions. User-defined value between 0 and <code>maxNumberOfVirtualFunctions</code>.</p>
+<p>The number of virtual functions currently defined. A user-defined value between 0 and
+<code>max_number_of_virtual_functions</code>.</p>
 </div>
 </div>
 </div>
@@ -46066,7 +46177,7 @@ range of 0 to 65535. For more details see the description of the <code>timeo</co
 <div class="sect2">
 <h3 id="types/host_type"><a class="anchor" href="#types/host_type"></a>6.111. HostType <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>This enumerated type is used to what type of operating system is used by the host.</p>
+<p>This enumerated type is used to determine which type of operating system is used by the host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 921. Values summary</caption>
@@ -46083,24 +46194,28 @@ range of 0 to 65535. For more details see the description of the <code>timeo</co
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ovirt_node</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains Red Hat Virtualization Host (RHVH): a new implementation of
+Red Hat Enterprise Virtualization Hypervisor (RHEV-H) which uses the same installer as Red Hat Enterprise Linux,
+CentOS, or Fedora.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rhel</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a full RHEL, CentOS or Fedora installation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a full Red Hat Enterprise Linux, CentOS, or Fedora installation.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rhev_h</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains a small scaled version of RHEL, CentOS or Fedora, used solely to host virtual machines.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host contains Red Hat Enterprise Virtualization Hypervisor (RHEV-H), a small-scaled version of Red Hat
+Enterprise Linux, CentOS, or Fedora, used solely to host virtual machines.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/host_type/values/ovirt_node"><a class="anchor" href="#types/host_type/values/ovirt_node"></a>6.111.1. ovirt_node</h4>
 <div class="paragraph">
-<p>The host is NGN (Next Generation Node) - a new implementation of RHEV_H which is like RHEL, CentOS or Fedora installation.
-The main difference between NGN and legacy RHEV-H is that NGN has a writeable file system and will handle its installation
-instead of pushing RPMs to it by the engine in legacy RHEV-H.</p>
+<p>The host contains Red Hat Virtualization Host (RHVH): a new implementation of
+Red Hat Enterprise Virtualization Hypervisor (RHEV-H) which uses the same installer as Red Hat Enterprise Linux,
+CentOS, or Fedora. The main difference between RHVH and legacy RHEV-H is that RHVH has a writeable file system
+and will handle its own installation instead of having RPMs pushed to it by the Manager like in legacy RHEV-H.</p>
 </div>
 </div>
 </div>
@@ -59236,6 +59351,9 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 </div>
 <div class="sect2">
 <h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a>6.278. VnicProfile <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nics">NIC</a>.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1134. Attributes summary</caption>
 <colgroup>
@@ -59259,7 +59377,7 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>custom_properties</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/custom_property">CustomProperty[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom properties applied to the vNIC profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
@@ -59279,15 +59397,74 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pass_through</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_pass_through">VnicPassThrough</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_mirroring</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables port mirroring.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>6.278.1. pass_through</h4>
+<div class="paragraph">
+<p>Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
+</div>
+<div class="paragraph">
+<p>A vNIC profile enables a NIC to be directly connected to a
+<a href="#types/host_nic_virtual_functions_configuration">virtual function (VF)</a> of an SR-IOV-enabled
+host NIC, if passthrough is enabled. The NIC will then bypass the software network virtualization and
+connect directly to the VF for direct device assignment.</p>
+</div>
+<div class="paragraph">
+<p>The passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
+If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirroring</code> are disabled for the vNIC profile.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/attributes/port_mirroring"><a class="anchor" href="#types/vnic_profile/attributes/port_mirroring"></a>6.278.2. port_mirroring</h4>
+<div class="paragraph">
+<p>Enables port mirroring.</p>
+</div>
+<div class="paragraph">
+<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a>and
+<a href="#types/host">host</a> to a NIC on a <a href="#types/vm">virtual machine</a>. This virtual machine
+can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
+virtual machine on the same host and logical network. The only
+traffic copied is internal to one logical network on one host. There is no
+increase on traffic on the network external to the host; however a virtual machine
+with port mirroring enabled uses more host CPU and RAM than other virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>Port mirroring has the following limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hot plugging NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
+</li>
+<li>
+<p>Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given the above limitations, it is recommended that you enable port mirroring on an additional,
+dedicated vNIC profile.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Enabling port mirroring reduces the privacy of other network users.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1135. Links summary</caption>
 <colgroup>
@@ -59306,25 +59483,48 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the network that the vNIC profile is applied to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_filter">NetworkFilter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Network filter will enhance the admin ability to manage the network packets traffic from/to the participated VMs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that apply to the NICs that use this profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>permissions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/permission">Permission[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions to allow usage of the vNIC profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/qos">Qos</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the quality of service attributes to apply to the vNIC profile.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>6.278.3. network_filter</h4>
+<div class="paragraph">
+<p>Reference to the top-level network filter that apply to the NICs that use this profile.</p>
+</div>
+<div class="paragraph">
+<p>Network filters will enhance the admin ability to manage the network packets traffic
+from/to the participated virtual machines.
+The network filter may either contain a references to other filters, rules for traffic
+filtering, or hold a combination of both.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vnic_profile/links/qos"><a class="anchor" href="#types/vnic_profile/links/qos"></a>6.278.4. qos</h4>
+<div class="paragraph">
+<p>Reference to the quality of service attributes to apply to the vNIC profile.</p>
+</div>
+<div class="paragraph">
+<p>Quality of Service attributes regulate inbound and outbound network traffic of the
+NIC.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/volume_group"><a class="anchor" href="#types/volume_group"></a>6.279. VolumeGroup <span class="small">struct</span></h3>
@@ -59857,7 +60057,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-04 16:51:22 CET
+Last updated 2017-01-27 17:00:56 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
