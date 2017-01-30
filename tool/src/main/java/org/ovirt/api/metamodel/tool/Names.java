@@ -67,5 +67,15 @@ public class Names {
     public String getLowerJoined(Name name, String separator) {
         return name.words().map(String::toLowerCase).collect(joining(separator));
     }
+
+    /**
+     * Returns a new Name, containing the words of both provided names,
+     * in the order in which they were provided.
+     */
+    public Name concatenate(Name name1, Name name2) {
+        Name name = new Name(name1.getWords());
+        name.addWords(name2.getWords());
+        return name;
+    }
 }
 

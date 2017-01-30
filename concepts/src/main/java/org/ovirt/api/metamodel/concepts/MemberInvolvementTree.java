@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -95,6 +96,9 @@ public class MemberInvolvementTree implements Serializable {
     public MemberInvolvementTree getParent() {
         return parent;
     }
+    public boolean hasParent() {
+        return parent!=null;
+    }
     public void setParent(MemberInvolvementTree parent) {
         this.parent = parent;
     }
@@ -125,6 +129,20 @@ public class MemberInvolvementTree implements Serializable {
 
     public boolean isCollection() {
         return member.getType() instanceof ListType;
+    }
+
+    @Override
+    public String toString() {
+        Stack<MemberInvolvementTree> stack = new Stack<>();
+        stack.add(this);
+        while(stack.peek().hasParent()) {
+            stack.add(stack.peek().getParent());
+        }
+        StringBuilder builder = new StringBuilder();
+        while (!stack.isEmpty()) {
+            builder.append(stack.pop().getName()).append(".");
+        }
+        return builder.toString();
     }
 
     private static class LeafIterator implements Iterator<MemberInvolvementTree> {
@@ -165,7 +183,36 @@ public class MemberInvolvementTree implements Serializable {
     public MemberInvolvementTree getAlternative() {
         return alternative;
     }
+
+    public boolean hasAlternative() {
+        return alternative!=null;
+    }
+
     public void setAlternative(MemberInvolvementTree alternative) {
         this.alternative = alternative;
+    }
+
+    public Name shallowToString() {
+        Stack<Name> stack = new Stack<>();
+        MemberInvolvementTree memberInvolvementTree = this; 
+        stack.push(memberInvolvementTree.getName());
+        while (memberInvolvementTree.hasParent()) {
+            memberInvolvementTree = memberInvolvementTree.getParent();
+            stack.push(memberInvolvementTree.getName());
+        }
+        Name name = new Name();
+        while (!stack.isEmpty()) {
+            name.addWords(stack.pop().getWords());
+        }
+        return name;
+    }
+
+    public void cutFromTree() {
+        if (hasParent()) {
+            parent.getNodes().remove(this);
+            if (parent.getNodes().isEmpty()) {
+                parent.cutFromTree();
+            }
+        }
     }
 }

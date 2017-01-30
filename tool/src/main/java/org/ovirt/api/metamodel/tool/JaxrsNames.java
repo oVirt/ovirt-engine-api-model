@@ -30,7 +30,8 @@ import org.ovirt.api.metamodel.concepts.Service;
 @ApplicationScoped
 public class JaxrsNames {
     // The suffix that will be added to interface names:
-    private static final String SUFFIX = "Resource";
+    private static final String RESOURCE_SUFFIX = "Resource";
+    private static final String HELPER_SUFFIX = "Helper";
 
     // References to objects used to do calculations with words:
     @Inject Words words;
@@ -45,7 +46,7 @@ public class JaxrsNames {
     public JavaClassName getInterfaceName(Service service) {
         JavaClassName name = new JavaClassName();
         String packageName = javaPackages.getJaxrsPackageName(service.getModule());
-        String simpleName = javaNames.getJavaClassStyleName(service.getName()) + SUFFIX;
+        String simpleName = javaNames.getJavaClassStyleName(service.getName()) + RESOURCE_SUFFIX;
         name.setPackageName(packageName);
         name.setSimpleName(simpleName);
         return name;
@@ -88,6 +89,16 @@ public class JaxrsNames {
      */
     public String getActionPath(Name name) {
         return name.words().map(String::toLowerCase).collect(joining());
+    }
+
+    /**
+     * Calculates the name of the JAX-RS helper class for the given service.
+     */
+    public JavaClassName getHelperName(Service service) {
+        JavaClassName name = new JavaClassName(); 
+        name.setPackageName(javaPackages.getJaxrsPackageName(service.getModule()));
+        name.setSimpleName(javaNames.getJavaClassStyleName(service.getName()) + RESOURCE_SUFFIX + HELPER_SUFFIX);
+        return name;
     }
 }
 

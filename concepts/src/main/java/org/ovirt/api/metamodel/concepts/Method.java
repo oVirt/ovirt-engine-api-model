@@ -103,4 +103,22 @@ public class Method extends ServiceMember {
         }
         return false;
     }
+
+    public List<MemberInvolvementTree> getMandatoryAttributes() {
+        List<MemberInvolvementTree> mandatoryAttributes = new ArrayList<>();
+        for (Parameter parameter : getParameters()) {
+            mandatoryAttributes.addAll(parameter.getMandatoryAttributes());
+        }
+        return mandatoryAttributes;
+    }
+
+    public List<Parameter> getMandatoryParameters() {
+        List<Parameter> parameters = new ArrayList<>();
+        for (Parameter parameter : getParameters()) {
+            if (parameter.isMandatory()) {
+                parameters.add(parameter);
+            }
+        }
+        return parameters;
+    }
 }

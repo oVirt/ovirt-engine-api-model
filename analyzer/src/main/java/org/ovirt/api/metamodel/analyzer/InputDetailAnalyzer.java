@@ -106,8 +106,8 @@ public class InputDetailAnalyzer {
      * updates the correct MemberInvolvementTree in it with information obtained
      * from the expression.
      */
-    private MemberInvolvementTree analyzeExpression(MethodExpression expression, List<Parameter> parameters, boolean mandatory) {
         //when lines such as "disk().quota().id()" are made into MethodExpressions,
+    private MemberInvolvementTree analyzeExpression(MethodExpression expression, List<Parameter> parameters, boolean mandatory) {
         //their elements (disk, quota, id) are reversed in order. A stack is used here
         //to restore the original order.
         Stack<Name> stack = new Stack<>();
@@ -268,7 +268,7 @@ public class InputDetailAnalyzer {
         MemberInvolvementTree tree2 = analyzeExpression(expression2, parameters, mandatory);
         //Make the two leaves which have an 'or' relationship between them 'point' to each other.
         tree1.setAlternative(tree2);
-        tree2.setAlternative(tree1);
+        tree2.cutFromTree();
     }
 
 }

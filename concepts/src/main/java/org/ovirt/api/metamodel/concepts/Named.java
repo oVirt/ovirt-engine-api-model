@@ -61,10 +61,23 @@ public interface Named extends Comparable<Named> {
      *     .findFirst();
      * </pre>
      *
+     * In rare cases, the name of a concept will start with an underscore to avoid a conflict with a java keyword. In
+     * these cases the predicate will ignore the underscore when comparing the names.
+     *
      * @param name the name that the predicate will accept
      * @return a predicate that accepts concepts with the given name
      */
     static Predicate<Named> named(Name name) {
-        return x -> Objects.equals(x.getName(), name);
+        return x -> namesEqual(name, x);
+    }
+
+    static boolean namesEqual(Name name1, Named name2) {
+        if (name1 != null) {
+            String firstWord = name1.getWords().get(0);
+            if (firstWord.startsWith("_")) {
+                name1.setWord(0, firstWord.substring(1, firstWord.length())); //remove the underscore
+            }
+        }
+        return Objects.equals(name2.getName(), name1);
     }
 }

@@ -92,6 +92,15 @@ public class Name implements Comparable<Name>, Serializable {
     }
 
     /**
+     * Replaces the element at the specified position in this list of words with the specified element
+     * @param index the position in the list
+     * @param word the replacement word
+     */
+    public void setWord(int index, String word) {
+        words.set(index, word);
+    }
+
+    /**
      * Adds a new word to the end of the list of words of this name.
      *
      * @param newWord the world that will be added

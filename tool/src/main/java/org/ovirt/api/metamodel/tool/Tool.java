@@ -52,6 +52,7 @@ public class Tool {
     @Inject private SchemaGenerator schemaGenerator;
     @Inject private JaxrsGenerator jaxrsGenerator;
     @Inject private TypesGenerator typesGenerator;
+    @Inject private JaxrsHelperGenerator jaxrsHelperGenerator;
     @Inject private XmlSupportGenerator xmlSupportGenerator;
     @Inject private JsonSupportGenerator jsonSupportGenerator;
     @Inject private AsciiDocGenerator docGenerator;
@@ -401,6 +402,9 @@ public class Tool {
             FileUtils.forceMkdir(jaxrsDir);
             jaxrsGenerator.setOutDir(jaxrsDir);
             jaxrsGenerator.generate(model);
+            // Generate the JAX-RS helper classes):
+            jaxrsHelperGenerator.setOutDir(jaxrsDir);
+            jaxrsHelperGenerator.generate(model);
         }
 
         // Generate the Java source:

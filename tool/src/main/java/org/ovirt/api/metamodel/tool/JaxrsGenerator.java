@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -46,6 +47,7 @@ import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.tool.util.JaxrsGeneratorUtils;
 
 /**
  * This class takes a model and generates the corresponding JAX-RS resource interfaces.
@@ -57,13 +59,6 @@ public class JaxrsGenerator extends JavaGenerator {
         "ApiMediaType.APPLICATION_XML",
         "ApiMediaType.APPLICATION_JSON",
     };
-
-    // The names of the methods that have an special treatment:
-    private static final Name ADD = NameParser.parseUsingCase("Add");
-    private static final Name GET = NameParser.parseUsingCase("Get");
-    private static final Name LIST = NameParser.parseUsingCase("List");
-    private static final Name REMOVE = NameParser.parseUsingCase("Remove");
-    private static final Name UPDATE = NameParser.parseUsingCase("Update");
 
     // List of JAX-RS interfaces that support asynchronous creation:
     private static final Set<Name> ASYNCHRONOUS = new HashSet<>();
@@ -100,13 +95,15 @@ public class JaxrsGenerator extends JavaGenerator {
     @Inject private JavaPackages javaPackages;
     @Inject private JavaNames javaNames;
     @Inject private JaxrsNames jaxrsNames;
+    @Inject private Names names;
+    @Inject private JaxrsGeneratorUtils jaxrsGeneratorUtils;
 
     public void generate(Model model) {
         model.getServices().forEach(this::generateInterface);
     }
 
     private void addMethod(String returnType, String methodNameWithArgs, Object ... args) {
-        javaBuffer.addLine("default %s %s {", returnType, String.format(methodNameWithArgs, args));
+        javaBuffer.addLine("default public %s %s {", returnType, String.format(methodNameWithArgs, args));
         javaBuffer.addLine(  "throw new UnsupportedOperationException();");
         javaBuffer.addLine("}");
     }
@@ -116,7 +113,7 @@ public class JaxrsGenerator extends JavaGenerator {
     }
 
     private void generateInterface(Service service) {
-        // Get the Java name of the inteface:
+        // Get the Java name of the interface:
         JavaClassName interfaceName = jaxrsNames.getInterfaceName(service);
 
         // Prepare the buffer:
@@ -132,9 +129,6 @@ public class JaxrsGenerator extends JavaGenerator {
     }
 
     private void generateInterfaceSource(Service service, JavaClassName interfaceName) {
-        // Get the name of the service:
-        Name name = service.getName();
-
         // Generate the imports:
         javaBuffer.addImport(Produces.class);
         javaBuffer.addImport(javaPackages.getJaxrsPackageName(), "ApiMediaType");
@@ -147,11 +141,15 @@ public class JaxrsGenerator extends JavaGenerator {
             javaBuffer.addImport(baseInterfaceName);
             extendsList.add(baseInterfaceName.getSimpleName());
         }
-        if (ASYNCHRONOUS.contains(name)) {
+        if (ASYNCHRONOUS.contains(service.getName())) {
             javaBuffer.addImport(javaPackages.getJaxrsPackageName(), "AsynchronouslyCreatedResource");
             extendsList.add("AsynchronouslyCreatedResource");
         }
         String extendsClause = extendsList.isEmpty()? "": "extends " + String.join(", ", extendsList);
+
+        //add import statement for of the auto-generated 'helper' class for this service
+        JavaClassName helperClassName = jaxrsNames.getHelperName(service);
+        javaBuffer.addImport(helperClassName);
 
         // Check if this is the root of the tree of services:
         boolean isRoot = service == service.getModel().getRoot();
@@ -180,7 +178,8 @@ public class JaxrsGenerator extends JavaGenerator {
 
         // Generate the methods:
         List<Method> methods = service.getDeclaredMethods();
-        methods.forEach(x -> generateMethod(x));
+        Map<Method, Set<Method>> baseMethods = jaxrsGeneratorUtils.getBaseMethodsMap(methods);
+        methods.forEach(x -> generateMethod(x, helperClassName, baseMethods));
 
         // Generate the resource locators:
         List<Locator> locators = service.getDeclaredLocators();
@@ -189,14 +188,7 @@ public class JaxrsGenerator extends JavaGenerator {
         // Find all the action methods and generate the action resource locator:
         List<Method> actions = new ArrayList<>();
         for (Method method : service.getMethods()) {
-            Name methodName = method.getName();
-            boolean isAction =
-                !ADD.equals(methodName) &&
-                !GET.equals(methodName) &&
-                !LIST.equals(methodName) &&
-                !REMOVE.equals(methodName) &&
-                !UPDATE.equals(methodName);
-            if (isAction) {
+            if (method.isAction()) {
                 actions.add(method);
             }
         }
@@ -225,38 +217,97 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateMethod(Method method) {
+    private void generateMethod(Method method, JavaClassName helperClassName, Map<Method, Set<Method>> baseMethods) {
+        boolean base = baseMethods.containsKey(method);
         Name name = method.getName();
-        if (ADD.equals(name)) {
-            generateAddMethod(method);
+        if (JaxrsGeneratorUtils.ADD.equals(name)) {
+            generateAddMethod(method, helperClassName, base);
         }
-        else if (GET.equals(name)) {
+        else if (JaxrsGeneratorUtils.GET.equals(name)) {
             generateGetMethod(method);
         }
-        else if (LIST.equals(name)) {
+        else if (JaxrsGeneratorUtils.LIST.equals(name)) {
             generateListMethod(method);
         }
-        else if (REMOVE.equals(name)) {
+        else if (JaxrsGeneratorUtils.REMOVE.equals(name)) {
             generateRemoveMethod(method);
         }
-        else if (UPDATE.equals(name)) {
-            generateUpdateMethod(method);
+        else if (JaxrsGeneratorUtils.UPDATE.equals(name)) {
+            generateUpdateMethod(method, helperClassName, base);
         }
-        else {
-            generateActionMethod(method);
+        else if (jaxrsGeneratorUtils.isAddSignature(method)) {
+            generateAddSignature(method);
+        }
+        else if (jaxrsGeneratorUtils.isUpdateSignature(method)) {
+            generateUpdateSignature(method);
+        }
+        else if (jaxrsGeneratorUtils.isActionSignature(method)) {
+            generateActionSignature(method);
+        }
+        else {//other options exhausted; must be an action
+            generateActionMethod(method, helperClassName, base);
         }
     }
 
-    private void generateAddMethod(Method method) {
+    private void generateActionSignature(Method method) {
+        generateDoc(method);
+        javaBuffer.addImport(Response.class);
+        javaBuffer.addImport(javaPackages.getXjcPackageName(), "Action");
+        Name methodName = new Name(method.getBase().getName());
+        methodName.addWords(method.getName().getWords());
+        javaBuffer.addLine("default public Response %s(Action action) {", jaxrsNames.getMethodName(methodName));
+        javaBuffer.addLine("throw new UnsupportedOperationException();");
+        javaBuffer.addLine("}");
+    }
+
+    private void generateUpdateSignature(Method method) {
+        generateDoc(method);
         // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
         // rest of the methods are extracted explicitly by the implementation:
-        Parameter mainParameter = method.getParameters().stream()
-            .filter(x -> x.getType() instanceof StructType || x.getType() instanceof ListType)
-            .findFirst()
-            .orElse(null);
+        Parameter mainParameter = jaxrsGeneratorUtils.getMainUpdateParameter(method);
         if (mainParameter == null) {
-            System.err.println("Method \"" + method + "\" doesn't have any struct parameter");
-            return;
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any struct parameter");
+        }
+
+        // Calculate the Java type of the main parameter:
+        Type mainType = mainParameter.getType();
+        JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
+        String methodName = javaNames.getJavaMemberStyleName(names.concatenate(method.getBase().getName(), method.getName()));
+        javaBuffer.addLine(
+            "default public %s " + methodName + "(%s %s) {",
+            mainTypeReference.getText(),
+            mainTypeReference.getText(),
+            javaNames.getJavaMemberStyleName(mainParameter.getName()));
+        javaBuffer.addLine("throw new UnsupportedOperationException();");
+        javaBuffer.addLine("}");
+    }
+
+    private void generateAddSignature(Method method) {
+        generateDoc(method);
+        // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
+        // rest of the methods are extracted explicitly by the implementation:
+        Parameter mainParameter = jaxrsGeneratorUtils.getMainAddParameter(method);
+        if (mainParameter == null) {
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any struct parameter");
+        }
+        // Calculate the Java type of the main parameter:
+        Type mainType = mainParameter.getType();
+        JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
+        javaBuffer.addImports(mainTypeReference.getImports());
+        String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
+        String methodName = javaNames.getJavaMemberStyleName(names.concatenate(method.getBase().getName(), method.getName()));
+        javaBuffer.addLine("default public Response %s(%s %s) {", methodName, mainTypeReference.getText(), parameterName);
+        javaBuffer.addLine("throw new UnsupportedOperationException();");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
+    }
+
+    private void generateAddMethod(Method method, JavaClassName helperClassName, boolean base) {
+        // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
+        // rest of the methods are extracted explicitly by the implementation:
+        Parameter mainParameter = jaxrsGeneratorUtils.getMainAddParameter(method);
+        if (mainParameter == null) {
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any struct parameter");
         }
 
         // Calculate the Java type of the main parameter:
@@ -273,23 +324,40 @@ public class JaxrsGenerator extends JavaGenerator {
         generateDoc(method);
         javaBuffer.addLine("@POST");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
-
-        addResponseReturnMethod("add(%s %s)", mainTypeReference.getText(),
+        String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
+        if (base) {
+            javaBuffer.addLine("default public Response add(%s %s) {", mainTypeReference.getText(), parameterName);
+            if (method.isMandatoryAttributeExists()) {
+                writeHelperInvocation(helperClassName, parameterName, method.getName());
+            }
+            else {
+                javaBuffer.addLine("throw new UnsupportedOperationException();");
+                //add log message - signatures with only 'optional' attributes indicate bad input
+            }
+            javaBuffer.addLine("}");
+        }
+        else {
+            addResponseReturnMethod("add(%s %s)", mainTypeReference.getText(),
                 javaNames.getJavaMemberStyleName(mainParameter.getName()));
-
+        }
         javaBuffer.addLine();
     }
 
+    private void writeHelperInvocation(JavaClassName helperClassName, String parameterName, Name methodName) {
+        String helperMethodName = "get" + javaNames.getJavaClassStyleName(methodName) + "Signature";
+        javaBuffer.addLine("try {");
+        javaBuffer.addLine("return (Response)(" + helperClassName.getSimpleName() + "." + helperMethodName + "(" + parameterName
+                + ").invoke(this, " + parameterName + "));");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine("catch(Exception e) {");
+        javaBuffer.addLine("throw new IllegalStateException(\"Failed to find or invoke API method. The failure is in auto-generated code and indicates a bug in the JAX-RS intrafaces generation process\", e);");
+        javaBuffer.addLine("}");
+    }
+
     private void generateGetMethod(Method method) {
-        // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
-        // rest of the methods are extracted explicitly by the implementation:
-        Parameter mainParameter = method.getParameters().stream()
-            .filter(x -> x.getType() instanceof StructType)
-            .findFirst()
-            .orElse(null);
+        Parameter mainParameter = jaxrsGeneratorUtils.getMainUpdateParameter(method);
         if (mainParameter == null) {
-            System.err.println("Method \"" + method + "\" doesn't have any struct parameter");
-            return;
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any struct parameter");
         }
 
         // Most "Get" methods return the type that is declared in the model, but the root resource needs to return
@@ -322,8 +390,7 @@ public class JaxrsGenerator extends JavaGenerator {
             .findFirst()
             .orElse(null);
         if (mainParameter == null) {
-            System.err.println("Method \"" + method + "\" doesn't have any list parameter");
-            return;
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any list parameter");
         }
 
         // Calculate the Java type of the main parameter:
@@ -365,16 +432,12 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateUpdateMethod(Method method) {
+    private void generateUpdateMethod(Method method, JavaClassName helperClassName, boolean base) {
         // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
         // rest of the methods are extracted explicitly by the implementation:
-        Parameter mainParameter = method.getParameters().stream()
-            .filter(x -> x.getType() instanceof StructType)
-            .findFirst()
-            .orElse(null);
+        Parameter mainParameter = jaxrsGeneratorUtils.getMainUpdateParameter(method);
         if (mainParameter == null) {
-            System.err.println("Method \"" + method + "\" doesn't have any struct parameter");
-            return;
+            throw new IllegalStateException("Method \"" + method + "\" doesn't have any struct parameter");
         }
 
         // Calculate the Java type of the main parameter:
@@ -390,14 +453,29 @@ public class JaxrsGenerator extends JavaGenerator {
         generateDoc(method);
         javaBuffer.addLine("@PUT");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
-        addMethod(mainTypeReference.getText(), "update(%s %s)",
+        String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
+        if (base) {
+            javaBuffer.addLine("default %s update(%s %s) {",
+                    mainTypeReference.getText(),
+                    mainTypeReference.getText(),
+                    parameterName);
+            if (method.isMandatoryAttributeExists()) {
+                writeHelperInvocation(helperClassName, parameterName, method.getName());
+            }
+            else {
+                javaBuffer.addLine("throw new UnsupportedOperationException();");
+                //add log message - signatures with only 'optional' attributes indicate bad input
+            }
+            javaBuffer.addLine("}");
+        } else {
+            addMethod(mainTypeReference.getText(), "update(%s %s)",
                 mainTypeReference.getText(),
                 javaNames.getJavaMemberStyleName(mainParameter.getName()));
-
+        }
         javaBuffer.addLine();
     }
 
-    private void generateActionMethod(Method method) {
+    private void generateActionMethod(Method method, JavaClassName helperClassName, boolean base) {
         // Generate the imports:
         javaBuffer.addImport(Consumes.class);
         javaBuffer.addImport(POST.class);
@@ -415,8 +493,20 @@ public class JaxrsGenerator extends JavaGenerator {
             "@Path(\"%s\")",
             jaxrsNames.getActionPath(method.getName())
         );
-        addResponseReturnMethod(jaxrsNames.getMethodName(method.getName()) + "(Action action)");
-
+        String methodName = jaxrsNames.getMethodName(method.getName());
+        if (base) {
+            javaBuffer.addLine("default Response %s(Action action) {", methodName);
+            if (method.isMandatoryAttributeExists()) {
+                writeHelperInvocation(helperClassName, "action", method.getName());
+            }
+            else {
+                javaBuffer.addLine("throw new UnsupportedOperationException();");
+                //add log message - signatures with only 'optional' attributes indicate bad input.
+            }
+            javaBuffer.addLine("}");
+        } else {
+            addResponseReturnMethod(jaxrsNames.getMethodName(method.getName()) + "(Action action)");
+        }
         javaBuffer.addLine();
     }
 
