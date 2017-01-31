@@ -26,8 +26,9 @@ import types.AffinityGroup;
  * This service manages a single affinity group.
  *
  * @author Martin Sivak <msivak@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 20 Feb 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("SLA")
@@ -46,16 +47,18 @@ public interface AffinityGroupService {
      * ----
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Get {
         /**
          * The affinity group.
          *
          * @author Martin Sivak <msivak@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @Out AffinityGroup group();
     }
@@ -64,21 +67,27 @@ public interface AffinityGroupService {
      * Update the affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Update {
         /**
          * The affinity group.
          *
          * @author Martin Sivak <msivak@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @In @Out AffinityGroup group();
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -92,12 +101,17 @@ public interface AffinityGroupService {
      * ----
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Remove {
         /**
-         * Indicates if the remove should be performed asynchronously.
+         * Indicates if the removal should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 20 Feb 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -108,8 +122,9 @@ public interface AffinityGroupService {
      * group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Service AffinityGroupVmsService vms();
 }
