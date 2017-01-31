@@ -19,8 +19,12 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * A policy describing how the migration is going to be treated (convergence,
- * how many parallel migrations allowed).
+ * A policy describing how the migration is treated, such as convergence or
+ * how many parallel migrations are allowed.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Type
 public interface MigrationPolicy extends Identified {
