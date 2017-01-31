@@ -23,11 +23,12 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityGroup;
 
 /**
- * Affinity groups service manages virtual machine relationships and dependencies.
+ * The affinity groups service manages virtual machine relationships and dependencies.
  *
  * @author Martin Sivak <msivak@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("SLA")
@@ -54,16 +55,18 @@ public interface AffinityGroupsService {
      * ----
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Add {
         /**
          * The affinity group object to create.
          *
          * @author Martin Sivak <msivak@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @In @Out AffinityGroup group();
     }
@@ -72,31 +75,38 @@ public interface AffinityGroupsService {
      * List existing affinity groups.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface List {
         /**
          * The list of existing affinity groups.
          *
          * @author Martin Sivak <msivak@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @Out AffinityGroup[] groups();
 
         /**
          * Sets the maximum number of affinity groups to return. If not specified all the affinity groups are returned.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @In Integer max();
     }
 
     /**
-     * Access affinity group service that manages the affinity group specified by an id.
+     * Access the affinity group service that manages the affinity group specified by an ID.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Service AffinityGroupService group(String id);
 }
