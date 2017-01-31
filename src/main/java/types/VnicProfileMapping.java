@@ -20,9 +20,9 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Maps an external virtual NIC profile to one that exists in the engine.
+ * Maps an external virtual NIC profile to one that exists in the {engine-name}.
  *
- * Given the desired virtual NIC profiles mapping include the following 2 lines:
+ * If, for example, the desired virtual NIC profile's mapping includes the following two lines:
  *
  * [cols="25,35,40"]
  * |===
@@ -57,8 +57,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
- * @date 26 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 20 Feb 2017
+ * @status updated_by_docs
  * @since 4.1
  */
 @Type
@@ -68,8 +69,9 @@ public interface VnicProfileMapping {
      * Specifies the name of the external network.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
-     * @date 26 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     String sourceNetworkName();
@@ -78,8 +80,9 @@ public interface VnicProfileMapping {
      * Specifies the name of the external network profile.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
-     * @date 26 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     String sourceNetworkProfileName();
@@ -88,8 +91,9 @@ public interface VnicProfileMapping {
      * Points to an existing virtual NIC profile.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
-     * @date 26 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     @Link VnicProfile targetVnicProfile();
