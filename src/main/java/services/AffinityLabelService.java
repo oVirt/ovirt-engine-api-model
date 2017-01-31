@@ -22,41 +22,63 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityLabel;
 
 /**
- * Single affinity label details.
+ * The details of a single affinity label.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Service
 public interface AffinityLabelService {
     /**
-     * Retrieves details about a label.
+     * Retrieves the details of a label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Get {
         @Out AffinityLabel label();
     }
 
     /**
-     * Updates a label.
-     *
-     * This call will update all metadata like name
+     * Updates a label. This call will update all metadata, such as the name
      * or description.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Update {
         @In @Out AffinityLabel label();
     }
 
     /**
-     * Removes a label from system and clears all assignments
+     * Removes a label from the system and clears all assignments
      * of the removed label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     interface Remove {
     }
 
     /**
-     * List all VMs with this label.
+     * List all virtual machines with this label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Service AffinityLabelVmsService vms();
 
     /**
-     * List all Hosts with this label.
+     * List all hosts with this label.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     @Service AffinityLabelHostsService hosts();
 }
