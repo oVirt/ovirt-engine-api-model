@@ -19,25 +19,41 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Defines the method how the migration bandwidth is assigned.
+ * Defines how the migration bandwidth is assigned.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Type
 public enum MigrationBandwidthAssignmentMethod {
 
     /**
-     * Takes the bandwidth from QoS if QoS defined.
-     * If not, taken from detected link speed being used.
-     * If nothing detected, falls back to hypervisor_default value.
+     * Takes the bandwidth from the Quality of Service if the Quality of Service is defined.
+     * If the Quality of Service is not defined the bandwidth is taken from the detected link speed being used.
+     * If nothing is detected, bandwidth falls back to the hypervisor_default value.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 21 Feb 2017
+     * @status updated_by_docs
      */
     AUTO,
 
     /**
      * Custom defined bandwidth in Mbit/s.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     CUSTOM,
 
     /**
      * Takes the value as configured on the hypervisor.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     HYPERVISOR_DEFAULT
 }
