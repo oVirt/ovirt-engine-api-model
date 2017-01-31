@@ -23,11 +23,12 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.Vm;
 
 /**
- * This service manages a collection of all virtual machines assigned to an affinity group.
+ * This service manages a collection of all the virtual machines assigned to an affinity group.
  *
  * @author Martin Sivak <msivak@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("SLA")
@@ -35,7 +36,7 @@ public interface AffinityGroupVmsService {
     /**
      * Add a virtual machine to the affinity group.
      *
-     * For example to add the virtual machine 000-000 to affinity group 123-456 send a request to:
+     * For example, to add the virtual machine 000-000 to affinity group 123-456 send a request to:
      *
      * [source]
      * ----
@@ -50,8 +51,9 @@ public interface AffinityGroupVmsService {
      * ----
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 20 Feb 2017
+     * @status updated_by_docs
      */
     interface Add {
         @In @Out Vm vm();
@@ -61,15 +63,20 @@ public interface AffinityGroupVmsService {
      * List all virtual machines assigned to this affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface List {
         @Out Vm[] vms();
 
         /**
-         * Sets the maximum number of virtual machines to return. If not specified all the virtual machines are
+         * Sets the maximum number of virtual machines to return. If not specified, all the virtual machines are
          * returned.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 31 Jan 2017
+         * @status updated_by_docs
          */
         @In Integer max();
     }
@@ -78,8 +85,9 @@ public interface AffinityGroupVmsService {
      * Access the service that manages the virtual machine assignment to this affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Service AffinityGroupVmService vm(String id);
 }
