@@ -19,18 +19,33 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 import org.ovirt.api.metamodel.annotations.Link;
 
+/**
+ * The type for migration options.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
+ */
 @Type
 public interface MigrationOptions {
     InheritableBoolean autoConverge();
     InheritableBoolean compressed();
 
     /**
-     * The bandwidth which is allowed to be used by the migrations.
+     * The bandwidth that is allowed to be used by the migration.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     MigrationBandwidth bandwidth();
 
     /**
-     * Reference to the migration policy as defined using `engine-config`.
+     * A reference to the migration policy, as defined using `engine-config`.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Link MigrationPolicy policy();
 }
