@@ -24,8 +24,9 @@ import org.ovirt.api.metamodel.annotations.Service;
  * This service manages a single virtual machine to affinity group assignment.
  *
  * @author Martin Sivak <msivak@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("SLA")
@@ -34,12 +35,17 @@ public interface AffinityGroupVmService {
      * Remove this virtual machine from the affinity group.
      *
      * @author Martin Sivak <msivak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     interface Remove {
         /**
-         * Indicates if the remove should be performed asynchronously.
+         * Indicates if the removal should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 20 Feb 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
