@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Logical network.
+ * The type for a logical network.
  *
  * An example of the JSON representation of a logical network:
  *
@@ -75,8 +75,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Martin Mucha <mmucha@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 31 Jan 2017
+ * @status updated_by_docs
  */
 @Type
 public interface Network extends Identified {
@@ -84,11 +85,12 @@ public interface Network extends Identified {
     Vlan vlan();
 
     /**
-     * Specifies whether spanning tree protocol is enabled for the network.
+     * Specifies whether the spanning tree protocol is enabled for the network.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     Boolean stp();
 
@@ -99,42 +101,46 @@ public interface Network extends Identified {
      * Specifies the maximum transmission unit for the network.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     Integer mtu();
 
     /**
      * Defines a set of usage elements for the network.
      *
-     * Users can, for example, specify that the network is to be used for virtual machine traffic and also for
+     * For example, users can specify that the network is to be used for virtual machine traffic and also for
      * display traffic with the `vm` and `display` values.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     NetworkUsage[] usages();
     Boolean required();
     Boolean profileRequired();
 
     /*
-     * DNS resolver configuration. Will be reported when retrieving network using GET.
-     * Optional both when creating a new network or updating existing one.
+     * The DNS resolver configuration will be reported when retrieving the network using GET.
+     * It is optional both when creating a new network or updating existing one.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 19 Oct 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     DnsResolverConfiguration dnsResolverConfiguration();
 
     /**
-     * A reference to the data center of which the network is a member.
+     * A reference to the data center that the network is a member of.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Link DataCenter dataCenter();
 
@@ -145,8 +151,9 @@ public interface Network extends Identified {
      * A reference to the labels assigned to the network.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Link NetworkLabel[] networkLabels();
 
@@ -154,8 +161,9 @@ public interface Network extends Identified {
      * A reference to the permissions of the network.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Link Permission[] permissions();
 
@@ -163,8 +171,9 @@ public interface Network extends Identified {
      * A reference to the profiles of the network.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 31 Jan 2017
+     * @status updated_by_docs
      */
     @Link VnicProfile[] vnicProfiles();
 }
