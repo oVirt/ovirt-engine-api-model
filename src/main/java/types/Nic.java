@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents a NIC of a virtual machine.
+ * Represents a virtual machine NIC.
  *
  * For example, the XML representation of a NIC will look like this:
  *
@@ -40,8 +40,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Martin Mucha <mmucha@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 21 Feb 2017
+ * @status updated_by_docs
  */
 @Type
 public interface Nic extends Device {
@@ -49,8 +50,9 @@ public interface Nic extends Device {
      * Defines if the NIC is linked to the virtual machine.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     Boolean linked();
 
@@ -58,8 +60,9 @@ public interface Nic extends Device {
      * The type of driver used for the NIC.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     NicInterface _interface();
 
@@ -67,8 +70,9 @@ public interface Nic extends Device {
      * The MAC address of the interface.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     Mac mac();
 
@@ -76,8 +80,9 @@ public interface Nic extends Device {
      * Defines if the NIC is plugged in to the virtual machine.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     Boolean plugged();
 
@@ -85,15 +90,16 @@ public interface Nic extends Device {
     Boolean onBoot();
 
     /**
-     * A reference to the network which the interface should be connected to. A blank network id is allowed.
+     * A reference to the network that the interface should be connected to. A blank network ID is allowed.
      *
-     * Usage of this element for creating or updating a NIC is deprecated, use `vnic_profile` instead. It is preserved
+     * Usage of this element for creating or updating a NIC is deprecated; use `vnic_profile` instead. It is preserved
      * because it is still in use by the `initialization` element, as a holder for IP addresses and other network
      * details.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 21 Feb 2017
+     * @status updated_by_docs
      */
     @Link Network network();
 
@@ -101,8 +107,9 @@ public interface Nic extends Device {
      * A link to the statistics for the NIC.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     @Link Statistic[] statistics();
 
@@ -114,11 +121,12 @@ public interface Nic extends Device {
     @Link ReportedDevice[] reportedDevices();
 
     /**
-     * Link to the network filter parameters.
+     * A link to the network filter parameters.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 20 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 21 Feb 2017
+     * @status updated_by_docs
      * @since 4.2
      */
     @Link NetworkFilterParameter[] networkFilterParameters();
