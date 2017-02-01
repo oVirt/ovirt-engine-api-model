@@ -17,7 +17,14 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-
+/**
+ * This type indicates the purpose that the network is used for in the cluster.
+ *
+ * @author Sahina Bose <sabose@redhat.com>
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 21 Feb 2017
+ * @status updated_by_docs
+ */
 @Type
 public enum NetworkUsage {
     /**
@@ -39,18 +46,46 @@ public enum NetworkUsage {
      */
     DEFAULT_ROUTE,
 
+    /**
+     * The network will be used for SPICE and VNC traffic.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 21 Feb 2017
+     * @status updated_by_docs
+     */
     DISPLAY,
 
     /**
-     * The network will be used for Gluster(bricks) data traffic.
+     * The network will be used for Gluster (bricks) data traffic.
      *
      * @author Sahina Bose <sabose@redhat.com>
-     * @date 23 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     GLUSTER,
 
+    /**
+     * The network will be used for communication between the {engine-name} and the nodes.
+     * This is the network where the ovirtmgmt bridge will be created.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
+     */
     MANAGEMENT,
+
+    /**
+     * The network will be used for virtual machine migration.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
+     */
     MIGRATION,
+
     VM;
 }
