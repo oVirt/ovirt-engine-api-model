@@ -19,16 +19,16 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Network filter enables to filter packets send to/from the VM's nic according to defined rules.
+ * Network filters filter packets sent to and from the virtual machine's NIC according to defined rules.
  *
  * There are several types of network filters supported based on libvirt.
- * More details about the different network filters can be found https://libvirt.org/firewall.html[here].
+ * For more details about the different network filters see https://libvirt.org/firewall.html[here].
  *
  * In addition to libvirt's network filters, there are two additional network filters:
- * The first called `vdsm-no-mac-spoofing`, composed of no-mac-spoofing and no-arp-mac-spoofing.
- * The second called `ovirt-no-filter` is used when no network filter is to be defined for the VM's nic.
- * `ovirt-no-filter` network filter is only used for internal implementation, and
- * doesn't exist on the nics.
+ * The first is called `vdsm-no-mac-spoofing` and is composed of `no-mac-spoofing` and `no-arp-mac-spoofing`.
+ * The second is called `ovirt-no-filter` and is used when no network filter is to be defined for the virtual machine's NIC.
+ * The `ovirt-no-filter` network filter is only used for internal implementation, and
+ * does not exist on the NICs.
  *
  * This is a example of the XML representation:
  *
@@ -46,11 +46,19 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * If any part of the version is not present, it is represented by -1.
+ *
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 21 Feb 2017
+ * @status updated_by_docs
  */
 @Type
 public interface NetworkFilter extends Identified {
     /**
-     * Represent the minimal supported version of the specific NetworkFilter for which it was first introduced.
+     * The minimum supported version of a specific NetworkFilter. This is the version that the NetworkFilter was first introduced in.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 21 Feb 2017
+     * @status updated_by_docs
      */
     Version version();
 }
