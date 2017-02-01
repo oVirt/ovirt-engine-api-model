@@ -59,7 +59,8 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </network_attachment>
  * ----
  *
- * When attaching a network to a network interface card, the network element is required, with either an `id` or a `name`.
+ * The network element, with either a `name` or an `id`, is required in order to attach a network
+ * to a network interface card (NIC).
  *
  * For example, to attach a network to a host network interface card, send a request like this:
  *
@@ -77,7 +78,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </networkattachment>
  * ----
  *
- * To attach a newtwork to a host, send a request like this:
+ * To attach a network to a host, send a request like this:
  *
  * [source]
  * ----
@@ -96,7 +97,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * The `ip_address_assignments` and `properties` elements are updatable post-creation.
  *
- * For example to update a newtork attachment, send a request like this:
+ * For example, to update a network attachment, send a request like this:
  *
  * [source]
  * ----
@@ -149,8 +150,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * ----
  *
  * @author Marcin Mirecki <mmirecki@redhat.com>
- * @date 14 Sept 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 21 Feb 2017
+ * @status updated_by_docs
  */
 @Type
 public interface NetworkAttachment extends Identified {
@@ -158,8 +160,9 @@ public interface NetworkAttachment extends Identified {
      * The IP configuration of the network.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     IpAddressAssignment[] ipAddressAssignments();
 
@@ -197,8 +200,9 @@ public interface NetworkAttachment extends Identified {
      * |===
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     Property[] properties();
     Boolean inSync();
@@ -207,28 +211,31 @@ public interface NetworkAttachment extends Identified {
      * A read-only list of configuration properties.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     ReportedConfiguration[] reportedConfigurations();
 
     /**
-     * DNS resolver configuration. Will be reported when retrieving network attachment using GET.
-     * Optional both when creating a new network attachment or updating existing one.
+     * DNS resolver configuration will be reported when retrieving the network attachment using GET.
+     * It is optional when creating a new network attachment or updating an existing one.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 19 Oct 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     DnsResolverConfiguration dnsResolverConfiguration();
 
     /**
-     * A reference to the network to which the interface is attached.
+     * A reference to the network that the interface is attached to.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     @Link Network network();
 
@@ -236,8 +243,9 @@ public interface NetworkAttachment extends Identified {
      * A reference to the host network interface.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 1 Feb 2017
+     * @status updated_by_docs
      */
     @Link HostNic hostNic();
 
