@@ -35,6 +35,25 @@ public interface SnapshotService {
          * Indicates if the remove should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if all the attributes of the virtual machine snapshot should be included in the response.
+         *
+         * By default the attribute `initialization.configuration.data` is excluded.
+         *
+         * For example, to retrieve the complete representation of the snapshot with id `456` of the virtual machine
+         * with id `123` send a request like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true
+         * ....
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 02 Feb 2017
+         * @status added
+         * @since 4.2
+         */
+        @In Boolean allContent();
     }
 
     /**

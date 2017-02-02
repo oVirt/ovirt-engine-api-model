@@ -59,6 +59,25 @@ public interface SnapshotsService {
          * Sets the maximum number of snapshots to return. If not specified all the snapshots are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if all the attributes of the virtual machine snapshot should be included in the response.
+         *
+         * By default the attribute `initialization.configuration.data` is excluded.
+         *
+         * For example, to retrieve the complete representation of the virtual machine with id `123` snapshots send a
+         * request like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/vms/123/snapshots?all_content=true
+         * ....
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 02 Feb 2017
+         * @status added
+         * @since 4.2
+         */
+        @In Boolean allContent();
     }
 
     @Service SnapshotService snapshot(String id);
