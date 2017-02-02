@@ -26554,6 +26554,12 @@ send a request like this (note that you have to pass permit id):</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -26561,6 +26567,24 @@ send a request like this (note that you have to pass permit id):</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/snapshot/methods/remove/parameters/all_content"><a class="anchor" href="#services/snapshot/methods/remove/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the attribute <code>initialization.configuration.data</code> is excluded.</p>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of the snapshot with id <code>456</code> of the virtual machine
+with id <code>123</code> send a request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true</pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/snapshot/methods/restore"><a class="anchor" href="#services/snapshot/methods/restore"></a>5.168.3. restore <span class="small">POST</span></h4>
@@ -27053,6 +27077,12 @@ request like this:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -27066,6 +27096,24 @@ request like this:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/snapshots/methods/list/parameters/all_content"><a class="anchor" href="#services/snapshots/methods/list/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the attribute <code>initialization.configuration.data</code> is excluded.</p>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of the virtual machine with id <code>123</code> snapshots send a
+request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/snapshots?all_content=true</pre>
+</div>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/snapshots/methods/list/parameters/max"><a class="anchor" href="#services/snapshots/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
@@ -63381,7 +63429,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-27 16:40:43 UTC
+Last updated 2017-02-02 09:21:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
