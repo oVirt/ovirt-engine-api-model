@@ -55,8 +55,11 @@ public interface AffinityRule {
     Boolean enforcing();
 
     /**
-     * Specifies whether the affinity group uses this rule or not. This argument is optional and is considered
-     * to be `true` when it is not provided.
+     * Specifies whether the affinity group uses this rule or not.
+     * This attribute is optional during creation and is considered to be `true` when it is not provided.
+     * In case this attribute is not provided to the update operation, it is considered to be `true` if
+     * AffinityGroup `positive` attribute is set as well.
+     * The backend `enabled` value will be preserved when both `enabled` and `positive` attributes are missing.
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @date 6 Dec 2016
