@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Watchdog;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service managing a watchdog on virtual machines.
@@ -95,6 +98,11 @@ public interface VmWatchdogService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(watchdog().action());
+            optional(watchdog().model());
+        }
         /**
          * The information about the watchdog.
          *

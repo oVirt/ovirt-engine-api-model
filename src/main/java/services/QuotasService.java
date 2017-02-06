@@ -17,11 +17,15 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import annotations.Area;
 import types.Quota;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("SLA")
@@ -50,6 +54,15 @@ public interface QuotasService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(quota().name());
+            optional(quota().clusterHardLimitPct());
+            optional(quota().clusterSoftLimitPct());
+            optional(quota().description());
+            optional(quota().storageHardLimitPct());
+            optional(quota().storageSoftLimitPct());
+        }
         @In @Out Quota quota();
     }
 

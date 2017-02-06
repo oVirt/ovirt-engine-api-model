@@ -22,6 +22,11 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OpenStackVolumeProvider;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
+
 @Service
 @Area("Storage")
 public interface OpenstackVolumeProvidersService {
@@ -57,6 +62,19 @@ public interface OpenstackVolumeProvidersService {
      * @status added
      */
     interface Add {
+        default void inputDetail() {
+            mandatory(provider().name());
+            optional(provider().authenticationUrl());
+            optional(provider().description());
+            optional(provider().password());
+            optional(provider().requiresAuthentication());
+            optional(provider().tenantName());
+            optional(provider().url());
+            optional(provider().username());
+            or(optional(provider().dataCenter().id()), optional(provider().dataCenter().name()));
+            optional(provider().properties()[COLLECTION].name());
+            optional(provider().properties()[COLLECTION].value());
+        }
         @In @Out OpenStackVolumeProvider provider();
     }
 

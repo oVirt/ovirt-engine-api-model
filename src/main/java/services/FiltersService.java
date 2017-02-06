@@ -18,14 +18,29 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Filter;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
 @Service
 @Area("SLA")
 public interface FiltersService {
+    /**
+     * Add a filter to a specified user defined scheduling policy.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(filter().schedulingPolicyUnit().id());
+//            optional(filter().schedulingPolicyUnit().position()); //TODO: check
+        }
         @In @Out Filter filter();
     }
 

@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 /**
  * Manages the collection of disks available in the system.
  *
@@ -141,6 +145,56 @@ public interface DisksService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(disk().format());
+            mandatory(disk()._interface());
+            optional(disk().alias());
+            optional(disk().bootable());
+            optional(disk().description());
+            optional(disk().propagateErrors());
+            optional(disk().quota().id());
+            optional(disk().shareable());
+            optional(disk().sparse());
+            optional(disk().wipeAfterDelete());
+        }
+
+        /**
+         * Add a new disk to the storage domain with the specified size allocating space from the storage domain.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface OnStorageDomain extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(disk().provisionedSize());
+                optional(disk().diskProfile().id());
+                optional(disk().name());
+                optional(disk().openstackVolumeType().name());
+//                optional(disk().size());
+            }
+        }
+
+        /**
+         * Add a new lun disk to the storage domain.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Lun extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(disk().lunStorage().type());
+                mandatory(disk().lunStorage().logicalUnits()[COLLECTION].address());
+                mandatory(disk().lunStorage().logicalUnits()[COLLECTION].id());
+                mandatory(disk().lunStorage().logicalUnits()[COLLECTION].port());
+                mandatory(disk().lunStorage().logicalUnits()[COLLECTION].target());
+                optional(disk().sgio());
+            }
+        }
         /**
          * The disk.
          *

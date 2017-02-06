@@ -18,9 +18,13 @@ package services.aaa;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Group;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Infrastructure")
@@ -54,6 +58,12 @@ public interface GroupsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(group().name());
+            optional(group().namespace());
+//            optional(group().principal()); TODO: check correctness
+        }
         @In @Out Group group();
     }
 

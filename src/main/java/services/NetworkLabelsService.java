@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.NetworkLabel;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
 @Service
 @Area("Network")
@@ -50,6 +53,10 @@ public interface NetworkLabelsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(label().id());
+        }
         @In @Out NetworkLabel label();
     }
 

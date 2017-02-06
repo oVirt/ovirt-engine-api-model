@@ -18,9 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Vm;
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Virtualization")
@@ -254,6 +259,132 @@ public interface VmsService {
          * @since 4.0.0
          */
         @In Boolean clonePermissions();
+
+        @InputDetail
+        default void inputDetail() {
+            optional(vm().bios().bootMenu().enabled());
+            optional(vm().comment());
+            optional(vm().cpu().topology().cores());
+            optional(vm().cpu().topology().sockets());
+            optional(vm().cpu().topology().threads());
+            optional(vm().cpuProfile().id());
+            optional(vm().deleteProtected());
+            optional(vm().description());
+            optional(vm().display().allowOverride());
+            optional(vm().display().copyPasteEnabled());
+            optional(vm().display().disconnectAction());
+            optional(vm().display().fileTransferEnabled());
+            optional(vm().display().keyboardLayout());
+            optional(vm().display().monitors());
+            optional(vm().display().smartcardEnabled());
+            optional(vm().display().type());
+            optional(vm().domain().name());
+            optional(vm().highAvailability().enabled());
+            optional(vm().highAvailability().priority());
+            optional(vm().largeIcon().data());
+            optional(vm().largeIcon().id());
+            optional(vm().largeIcon().mediaType());
+            optional(vm().memory());
+            optional(vm().memoryPolicy().ballooning());
+            optional(vm().memoryPolicy().guaranteed());
+            optional(vm().migration().autoConverge());
+            optional(vm().migration().compressed());
+            optional(vm().migrationDowntime());
+            optional(vm().numaTuneMode());
+            optional(vm().origin());
+            optional(vm().os().cmdline());
+            optional(vm().os().initrd());
+            optional(vm().os().kernel());
+            optional(vm().os().type());
+            optional(vm().placementPolicy().affinity());
+            optional(vm().quota().id());
+            optional(vm().rngDevice().rate().bytes());
+            optional(vm().rngDevice().rate().period());
+            optional(vm().rngDevice().source());
+            optional(vm().serialNumber().policy());
+            optional(vm().serialNumber().value());
+            optional(vm().smallIcon().id());
+            optional(vm().startPaused());
+            optional(vm().stateless());
+            optional(vm().timeZone().name());
+            optional(vm().tunnelMigration());
+            optional(vm().type());
+            optional(vm().usb().enabled());
+            optional(vm().usb().type());
+            optional(vm().virtioScsi().enabled());
+            or(optional(vm().placementPolicy().hosts()[COLLECTION].id()), optional(vm().placementPolicy().hosts()[COLLECTION].name()));
+            optional(vm().customProperties()[COLLECTION].name());
+            optional(vm().customProperties()[COLLECTION].value());
+            optional(vm().payloads()[COLLECTION].files()[COLLECTION].name());
+            optional(vm().payloads()[COLLECTION].files()[COLLECTION].content());
+            optional(vm().payloads()[COLLECTION].type());
+            optional(vm().payloads()[COLLECTION].volumeId());
+            optional(vm().sso().methods()[COLLECTION].id());
+            optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].cpuSet());
+            optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
+        }
+
+        /**
+         * add a virtual machine to the system from scratch
+         */
+        interface FromScratch extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(vm().name());
+                or(mandatory(vm().cluster().id()), mandatory(vm().cluster().name()));
+                or(mandatory(vm().template().id()), mandatory(vm().template().name()));
+                optional(vm().console().enabled());
+                optional(vm().cpu().architecture());
+                optional(vm().cpu().mode());
+                optional(vm().cpuShares());
+                optional(vm().customCpuModel());
+                optional(vm().customEmulatedMachine());
+                optional(vm().display().singleQxlPci());
+                optional(vm().initialization().configuration().data());
+                optional(vm().initialization().configuration().type());
+                optional(vm().io().threads());
+                optional(vm().soundcardEnabled());
+                optional(vm().useLatestTemplateVersion());
+                or(optional(vm().instanceType().id()), optional(vm().instanceType().name()));
+                optional(vm().os().boot().devices()[COLLECTION]);
+            }
+        }
+
+        /**
+         * add a virtual machine to the system by cloning from a snapshot
+         */
+        interface FromSnapshot extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(vm().name());
+                or(mandatory(vm().cluster().id()), mandatory(vm().cluster().name()));
+                or(mandatory(vm().template().id()), mandatory(vm().template().name()));
+                mandatory(vm().snapshots()[COLLECTION].id());
+                optional(vm().console().enabled());
+                optional(vm().cpu().architecture());
+                optional(vm().cpuShares());
+                optional(vm().customCpuModel());
+                optional(vm().customEmulatedMachine());
+                optional(vm().display().singleQxlPci());
+                optional(vm().soundcardEnabled());
+            }
+        }
+
+        /**
+         * add a virtual machine to the system from a configuration - requires the configuration type and the configuration data
+         */
+        interface FromConfiguration extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(vm().initialization().configuration().data());
+                mandatory(vm().initialization().configuration().type());
+                optional(vm().cpu().mode());
+//                optional(vm().disks().clone());
+                optional(vm().initialization().regenerateIds());
+                optional(vm().name());
+                optional(vm().os().boot().devices()[COLLECTION]);
+            }
+        }
     }
 
     interface List {

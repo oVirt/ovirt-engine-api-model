@@ -17,10 +17,13 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import types.DiskAttachment;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages the attachment of a disk to a virtual machine.
@@ -100,6 +103,26 @@ public interface DiskAttachmentService {
      * ----
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(diskAttachment().disk().alias());
+            optional(diskAttachment().bootable());
+            optional(diskAttachment().description());
+            optional(diskAttachment().disk().diskProfile().id());
+            optional(diskAttachment().disk().format());
+//            optional(diskAttachment()._interface()); //TODO: ucomment when able to handle '_'
+            optional(diskAttachment().name());
+            optional(diskAttachment().disk().propagateErrors());
+            optional(diskAttachment().disk().provisionedSize());
+            optional(diskAttachment().disk().quota().id());
+            optional(diskAttachment().disk().readOnly());
+            optional(diskAttachment().disk().sgio());
+            optional(diskAttachment().disk().shareable());
+//            optional(diskAttachment().size());
+            optional(diskAttachment().disk().sparse());
+            optional(diskAttachment().usesScsiReservation());
+            optional(diskAttachment().disk().wipeAfterDelete());
+        }
         @In @Out DiskAttachment diskAttachment();
     }
 }

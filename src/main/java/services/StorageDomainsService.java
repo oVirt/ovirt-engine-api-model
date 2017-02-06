@@ -18,10 +18,15 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageDomain;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 @Service
 @Area("Storage")
 public interface StorageDomainsService {
@@ -39,7 +44,7 @@ public interface StorageDomainsService {
      *
      * [source]
      * ----
-     * POST /ovirt-engine/api/storagedomains
+     * POST /ovirt-engine/api/storageDomains
      * ----
      *
      * With a request body as follows:
@@ -106,6 +111,115 @@ public interface StorageDomainsService {
      */
     interface Add {
         @In @Out StorageDomain storageDomain();
+        @InputDetail
+        default void inputDetail() {
+            mandatory(storageDomain().storage().type());
+            mandatory(storageDomain().type());
+            or(mandatory(storageDomain().host().id()), mandatory(storageDomain().host().name()));
+            optional(storageDomain().comment());
+            optional(storageDomain().criticalSpaceActionBlocker());
+            optional(storageDomain().warningLowSpaceIndicator());
+        }
+
+        /**
+         * Add a new storage domain to the system using a direct lun.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface DirectLun extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(storageDomain().storage().address());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].address());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].id());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].password());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].paths());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].port());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].portal());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].productId());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].serial());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].target());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].username());
+                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
+                optional(storageDomain().name());
+                optional(storageDomain().storage().overrideLuns());
+                optional(storageDomain().storageFormat());
+                optional(storageDomain().wipeAfterDelete());
+            }
+        }
+
+        /**
+         * Import an existing block storage domain to the system using the targets already connected to the host.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface BlockDomain extends Add {
+            @InputDetail
+            default void inputDetail() {
+//                mandatory(storageDomain()._import());  TODO: uncomment when able to handle '_'
+                optional(storageDomain().storage().address());
+            }
+        }
+
+        /**
+         * Add a new storage domain to the system using the storage on the given host and path.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface ByPath extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(storageDomain().storage().address());
+                mandatory(storageDomain().storage().path());
+                optional(storageDomain().name());
+                optional(storageDomain().storageFormat());
+                optional(storageDomain().wipeAfterDelete());
+            }
+        }
+
+        /**
+         * Add a new storage domain to the system using the storage on the localhost at the given path.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Local extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(storageDomain().storage().path());
+                optional(storageDomain().name());
+                optional(storageDomain().storageFormat());
+                optional(storageDomain().wipeAfterDelete());
+            }
+        }
+
+        /**
+         * Add a new storage domain to the system using the gluster or posixfs storage.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface GlusterOrPostfs extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(storageDomain().storage().path());
+                mandatory(storageDomain().storage().vfsType());
+                optional(storageDomain().name());
+                optional(storageDomain().storage().address());
+                optional(storageDomain().storage().mountOptions());
+                optional(storageDomain().storageFormat());
+                optional(storageDomain().wipeAfterDelete());
+            }
+        }
     }
 
     interface List {

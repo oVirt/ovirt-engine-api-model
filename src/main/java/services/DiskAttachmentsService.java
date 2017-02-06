@@ -17,10 +17,14 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import types.DiskAttachment;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
 
 /**
  * This service manages the set of disks attached to a virtual machine. Each attached disk is represented by a
@@ -80,6 +84,21 @@ public interface DiskAttachmentsService {
      * @status added
      */
     interface Add {
+        interface Signature1 extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(attachment().bootable());
+                mandatory(attachment()._interface());
+                mandatory(attachment().passDiscard());
+            }
+        }
+
+        interface ProvidingDiskId extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(attachment().disk().id());
+            }
+        }
         @In @Out DiskAttachment attachment();
     }
 

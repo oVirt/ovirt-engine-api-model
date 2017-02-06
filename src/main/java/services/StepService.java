@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Step;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service to manage a step.
@@ -59,6 +63,11 @@ public interface StepService extends MeasurableService {
      * @status added
      */
     interface End {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(succeeded());
+            optional(force());
+        }
 
         /**
          * Indicates if the step should be forcibly terminated.

@@ -18,14 +18,29 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Watchdog;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
 @Service
 @Area("Virtualization")
 public interface TemplateWatchdogsService {
+    /**
+     * Add a watchdog to the template identified by the given id.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(watchdog().action());
+            mandatory(watchdog().model());
+        }
         @In @Out Watchdog watchdog();
     }
 

@@ -18,12 +18,16 @@ package services.gluster;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.MeasurableService;
 import types.GlusterVolume;
 import types.GlusterVolumeProfileDetails;
 import types.Option;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages a single gluster volume.
@@ -140,6 +144,11 @@ public interface GlusterVolumeService extends MeasurableService {
      * @status added
      */
     interface Rebalance {
+        @InputDetail
+        default void inputDetail() {
+            optional(fixLayout());
+            optional(force());
+        }
         /**
          * If set to true, rebalance will only fix the layout so that new data added to the volume is distributed
          * across all the hosts. But it will not migrate/rebalance the existing data. Default is `false`.
@@ -235,6 +244,11 @@ public interface GlusterVolumeService extends MeasurableService {
      * @status added
      */
     interface ResetOption {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(force());
+            mandatory(option().name());
+        }
         @In Boolean force();
 
         /**
@@ -277,6 +291,11 @@ public interface GlusterVolumeService extends MeasurableService {
      * @status added
      */
     interface SetOption {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(option().name());
+            mandatory(option().value());
+        }
         /**
          * Option to set.
          *
@@ -308,6 +327,10 @@ public interface GlusterVolumeService extends MeasurableService {
      * @status added
      */
     interface Start {
+        @InputDetail
+        default void inputDetail() {
+            optional(force());
+        }
         /**
          * Indicates if the volume should be force started. If a gluster volume is started already but few/all bricks
          * are down then force start can be used to bring all the bricks up. Default is `false`.
@@ -362,6 +385,10 @@ public interface GlusterVolumeService extends MeasurableService {
      * @status added
      */
     interface Stop {
+        @InputDetail
+        default void inputDetail() {
+            optional(force());
+        }
         @In Boolean force();
 
         /**

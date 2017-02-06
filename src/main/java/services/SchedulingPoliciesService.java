@@ -18,14 +18,33 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.SchedulingPolicy;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("SLA")
 public interface SchedulingPoliciesService {
+    /**
+     * Add a new scheduling policy to the system.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(policy().name());
+            optional(policy().description());
+            optional(policy().properties()[COLLECTION].name());
+            optional(policy().properties()[COLLECTION].value());
+        }
         @In @Out SchedulingPolicy policy();
     }
 

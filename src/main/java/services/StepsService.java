@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Step;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service to manage steps.
@@ -80,6 +84,13 @@ public interface StepsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(step().description());
+            mandatory(step().type());
+            optional(step().job().id());
+            optional(step().parentStep().id());
+        }
 
         /**
          * Step that will be added.

@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageConnection;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Storage")
@@ -56,6 +59,71 @@ public interface StorageServerConnectionService {
      * @status added
      */
     interface Update {
+        /**
+         * Update the specified iSCSI storage connection in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Iscsi extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(connection().password());
+                optional(connection().port());
+                optional(connection().target());
+                optional(connection().username());
+            }
+        }
+
+        /**
+         * Update the specified nfs storage connection in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Nfs extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(connection().address());
+                optional(connection().nfsRetrans());
+                optional(connection().nfsTimeo());
+                optional(connection().nfsVersion());
+                optional(connection().path());
+            }
+        }
+
+        /**
+         * Update the specified vfs storage connection in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Vfs extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(connection().address());
+                optional(connection().mountOptions());
+                optional(connection().path());
+                optional(connection().vfsType());
+            }
+        }
+
+        /**
+         * Update the specified local storage connection in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Local extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(connection().path());
+            }
+        }
         @In @Out StorageConnection connection();
 
         /**

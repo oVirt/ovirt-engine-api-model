@@ -18,15 +18,36 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VnicProfile;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("Network")
 public interface AssignedVnicProfilesService {
+    /**
+     * Add a new virtual network interface card profile for the network.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
         @In @Out VnicProfile profile();
+        @InputDetail
+        default void inputDetail() {
+            mandatory(profile().name());
+            optional(profile().description());
+            optional(profile().passThrough().mode());
+            optional(profile().portMirroring());
+            optional(profile().customProperties()[COLLECTION].name());
+            optional(profile().customProperties()[COLLECTION].value());
+        }
     }
 
     interface List {

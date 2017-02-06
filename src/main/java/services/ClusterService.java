@@ -18,12 +18,15 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.gluster.GlusterHooksService;
 import services.gluster.GlusterVolumesService;
 import types.Cluster;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
  /**
   * A service to manage specific cluster.
   *
@@ -156,6 +159,28 @@ public interface ClusterService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(cluster().ballooningEnabled());
+            optional(cluster().cpu().architecture());
+            optional(cluster().cpu().type());
+            optional(cluster().description());
+            optional(cluster().display().proxy());
+            optional(cluster().errorHandling().onError());
+            optional(cluster().glusterService());
+            optional(cluster().haReservation());
+            optional(cluster().ksm().enabled());
+            optional(cluster().memoryPolicy().overCommit().percent());
+            optional(cluster().memoryPolicy().transparentHugePages().enabled());
+            optional(cluster().name());
+            optional(cluster().threadsAsCores());
+            optional(cluster().trustedService());
+            optional(cluster().tunnelMigration());
+            optional(cluster().version().major());
+            optional(cluster().version().minor());
+            optional(cluster().virtService());
+            or(optional(cluster().schedulingPolicy().id()), optional(cluster().schedulingPolicy().name()));
+        }
         @In @Out Cluster cluster();
 
         /**

@@ -18,9 +18,14 @@ package services.aaa;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.User;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service to manage the users in the system.
@@ -79,6 +84,13 @@ public interface UsersService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(user().userName());
+            or(mandatory(user().domain().id()), mandatory(user().domain().name()));
+            optional(user().namespace());
+            optional(user().principal());
+        }
         @In @Out User user();
     }
 

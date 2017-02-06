@@ -18,14 +18,22 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Network;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Network")
 public interface VirtualFunctionAllowedNetworksService {
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(network().id()), mandatory(network().name()));
+        }
         @In @Out Network network();
     }
 

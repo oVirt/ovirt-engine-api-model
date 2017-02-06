@@ -18,10 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.DataCenter;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 /**
  * A service to manage data centers.
  *
@@ -59,6 +62,17 @@ public interface DataCentersService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(dataCenter().local());
+            mandatory(dataCenter().name());
+            optional(dataCenter().comment());
+            optional(dataCenter().description());
+            optional(dataCenter().macPool().id());
+            optional(dataCenter().storageFormat());
+            optional(dataCenter().version().major());
+            optional(dataCenter().version().minor());
+        }
         /**
          * The data center that is being added.
          *

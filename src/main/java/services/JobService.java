@@ -86,7 +86,6 @@ public interface JobService {
      * @status added
      */
     interface End {
-
         /**
          * Indicates if the job should be forcibly terminated.
          *

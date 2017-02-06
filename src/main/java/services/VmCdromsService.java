@@ -18,10 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cdrom;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 /**
  * Manages the CDROM devices of a virtual machine.
  *
@@ -37,6 +39,29 @@ import types.Cdrom;
 @Service
 @Area("Virtualization")
 public interface VmCdromsService {
+
+    /**
+     * Add a cdrom to a virtual machine identified by the given id.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
+    interface Add{
+
+        /**
+         * Add a cdrom to a virtual machine identified by the given id and attach a file to the cdrom.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        @InputDetail
+        default void inputDetail() {
+            mandatory(cdrom().file().id());
+        }
+        @In Cdrom cdrom();
+    }
     /**
      * Returns the list of CDROM devices of the virtual machine.
      *

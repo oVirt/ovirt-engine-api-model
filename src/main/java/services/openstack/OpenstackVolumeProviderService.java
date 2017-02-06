@@ -18,10 +18,15 @@ package services.openstack;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.ExternalProviderService;
 import types.OpenStackVolumeProvider;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Storage")
@@ -30,7 +35,27 @@ public interface OpenstackVolumeProviderService extends ExternalProviderService 
         @Out OpenStackVolumeProvider provider();
     }
 
+    /**
+     * Update the specified OpenStack volume provider in the system.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(provider().authenticationUrl());
+            optional(provider().description());
+            optional(provider().name());
+            optional(provider().password());
+            optional(provider().requiresAuthentication());
+            optional(provider().tenantName());
+            optional(provider().username());
+            or(optional(provider().dataCenter().id()), optional(provider().dataCenter().name()));
+            optional(provider().properties()[COLLECTION].name());
+            optional(provider().properties()[COLLECTION].value());
+        }
         @In @Out OpenStackVolumeProvider provider();
 
         /**

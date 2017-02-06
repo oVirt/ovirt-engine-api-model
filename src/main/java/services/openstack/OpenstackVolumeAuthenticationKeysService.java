@@ -18,14 +18,32 @@ package services.openstack;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OpenstackVolumeAuthenticationKey;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("Storage")
 public interface OpenstackVolumeAuthenticationKeysService {
+    /**
+     * Add a new authentication key to the OpenStack volume provider.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(key().usageType());
+            mandatory(key().uuid());
+            mandatory(key().value());
+            optional(key().description());
+        }
         @In @Out OpenstackVolumeAuthenticationKey key();
     }
 

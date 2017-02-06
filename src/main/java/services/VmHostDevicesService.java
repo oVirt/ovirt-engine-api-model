@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.HostDevice;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service to manage host devices attached to a virtual machine.
@@ -65,6 +69,10 @@ public interface VmHostDevicesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(device().id()), mandatory(device().name()));
+        }
         /**
          * The host device to be attached to given virtual machine.
          *

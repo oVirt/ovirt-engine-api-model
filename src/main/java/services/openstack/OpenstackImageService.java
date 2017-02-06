@@ -18,6 +18,7 @@ package services.openstack;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
@@ -25,6 +26,10 @@ import types.Disk;
 import types.OpenStackImage;
 import types.StorageDomain;
 import types.Template;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Storage")
@@ -63,6 +68,14 @@ public interface OpenstackImageService {
      * @status added
      */
     interface Import {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            optional(importAsTemplate());
+            optional(template().name());
+            or(optional(cluster().id()), optional(cluster().name()));
+            or(optional(disk().alias()), optional(disk().name()));
+        }
         @In Disk disk();
 
         /**

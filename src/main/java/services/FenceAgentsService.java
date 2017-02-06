@@ -18,14 +18,36 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Agent;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("Infrastructure")
 public interface FenceAgentsService {
+    /**
+     * Add a new fencing-agent to the host.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(agent().address());
+            mandatory(agent().order());
+            mandatory(agent().password());
+            mandatory(agent().type());
+            mandatory(agent().username());
+            optional(agent().port());
+            optional(agent().encryptOptions());
+            optional(agent().name());
+        }
         @In @Out Agent agent();
     }
 

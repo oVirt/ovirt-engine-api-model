@@ -18,6 +18,7 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.QuotaClusterLimit;
@@ -25,7 +26,18 @@ import types.QuotaClusterLimit;
 @Service
 @Area("SLA")
 public interface QuotaClusterLimitsService {
+    /**
+     * Add a cluster limit to a specified Quota.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+//            mandatory(limit().cluster().id());//TODO: check
+        }
         @In @Out QuotaClusterLimit limit();
     }
 

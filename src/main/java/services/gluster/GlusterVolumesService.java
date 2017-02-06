@@ -18,9 +18,14 @@ package services.gluster;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GlusterVolume;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages a collection of gluster volumes available in a cluster.
@@ -76,6 +81,18 @@ public interface GlusterVolumesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(volume().name());
+            mandatory(volume().volumeType());
+            mandatory(volume().bricks()[COLLECTION].brickDir());
+            mandatory(volume().bricks()[COLLECTION].serverId());
+            optional(volume().replicaCount());
+            optional(volume().stripeCount());
+            optional(volume().options()[COLLECTION].name());
+            optional(volume().options()[COLLECTION].value());
+            optional(volume().transportTypes()[COLLECTION]);
+        }
         /**
          * The gluster volume definition from which to create the volume is passed as input and the newly created
          * volume is returned.

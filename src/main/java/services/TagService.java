@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Tag;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service to manage a specific tag in the system.
@@ -100,6 +104,12 @@ public interface TagService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(tag().description());
+            optional(tag().name());
+            or(optional(tag().parent().id()), optional(tag().parent().name()));
+        }
         /**
          * The updated tag.
          *

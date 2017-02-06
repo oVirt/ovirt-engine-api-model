@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.InstanceType;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Virtualization")
@@ -117,6 +121,36 @@ public interface InstanceTypesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(instanceType().name());
+            optional(instanceType().console().enabled());
+            optional(instanceType().cpu().architecture());
+            optional(instanceType().cpu().topology().cores());
+            optional(instanceType().cpu().topology().sockets());
+            optional(instanceType().cpu().topology().threads());
+            optional(instanceType().cpuShares());
+            optional(instanceType().customCpuModel());
+            optional(instanceType().customEmulatedMachine());
+            optional(instanceType().description());
+            optional(instanceType().display().monitors());
+            optional(instanceType().display().smartcardEnabled());
+            optional(instanceType().display().type());
+            optional(instanceType().highAvailability().enabled());
+            optional(instanceType().highAvailability().priority());
+            optional(instanceType().io().threads());
+            optional(instanceType().memory());
+            optional(instanceType().memoryPolicy().ballooning());
+            optional(instanceType().memoryPolicy().guaranteed());
+            optional(instanceType().migrationDowntime());
+            optional(instanceType().origin());
+            optional(instanceType().soundcardEnabled());
+            optional(instanceType().usb().enabled());
+            optional(instanceType().usb().type());
+            optional(instanceType().virtioScsi().enabled());
+//            optional(instanceType().singleQxlPci());  //TODO: check
+//            optional(instanceType().os()[COLLECTION].dev());  //TODO: check
+        }
         @In @Out InstanceType instanceType();
     }
 

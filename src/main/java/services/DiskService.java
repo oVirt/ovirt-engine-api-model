@@ -18,11 +18,15 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 import types.StorageDomain;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 /**
  * Manages a single disk.
  *
@@ -85,6 +89,11 @@ public interface DiskService extends MeasurableService {
          * @date 4 Jan 2017
          * @status added
          */
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            or(optional(disk().name()), optional(disk().alias()));
+        }
         @In Disk disk();
 
         /**
@@ -152,6 +161,26 @@ public interface DiskService extends MeasurableService {
      * @since 4.1
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(disk().alias());
+            optional(disk().bootable());
+            optional(disk().description());
+            optional(disk().diskProfile().id());
+            optional(disk().format());
+//            optional(disk()._interface()); TODO: uncomment when '_' can be handled
+            optional(disk().name());
+            optional(disk().propagateErrors());
+            optional(disk().provisionedSize());
+            optional(disk().quota().id());
+            optional(disk().readOnly());
+            optional(disk().sgio());
+            optional(disk().shareable());
+//            optional(disk().size());
+            optional(disk().sparse());
+            optional(disk().usesScsiReservation());
+            optional(disk().wipeAfterDelete());
+        }
         /**
          * The update to apply to the disk.
          *
@@ -178,6 +207,11 @@ public interface DiskService extends MeasurableService {
          * @date 4 Jan 2017
          * @status added
          */
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
+
         @In StorageDomain storageDomain();
 
         /**
@@ -234,6 +268,7 @@ public interface DiskService extends MeasurableService {
      * @status added
      */
     interface Move {
+
         /**
          * The storage domain where the disk will be moved to.
          *
@@ -241,6 +276,11 @@ public interface DiskService extends MeasurableService {
          * @date 4 Jan 2017
          * @status added
          */
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
+
         @In StorageDomain storageDomain();
 
         /**

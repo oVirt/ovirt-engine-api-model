@@ -18,14 +18,34 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Nic;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("Network")
 public interface TemplateNicsService {
+    /**
+     * Add a new network interface card to the template.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(nic().name());
+            optional(nic()._interface());
+            optional(nic().linked());
+            optional(nic().mac().address());
+            optional(nic().plugged());
+            optional(nic().vnicProfile().id());
+        }
         @In @Out Nic nic();
     }
 

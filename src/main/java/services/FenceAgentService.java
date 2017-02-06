@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Agent;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Infrastructure")
@@ -29,7 +32,25 @@ public interface FenceAgentService {
         @Out Agent agent();
     }
 
+    /**
+     * Update a fencing-agent.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(agent().address());
+            optional(agent().order());
+            optional(agent().password());
+            optional(agent().port());
+            optional(agent().type());
+            optional(agent().username());
+            optional(agent().encryptOptions());
+            optional(agent().name());
+        }
         @In @Out Agent agent();
 
         /**

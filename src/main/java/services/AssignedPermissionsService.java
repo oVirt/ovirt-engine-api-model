@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Permission;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * Represents a permission sub-collection, scoped by user, group or some entity type.
@@ -98,6 +102,13 @@ public interface AssignedPermissionsService {
      * @status added
      */
     interface Add {
+        //TODO: this interface is re-used by many classes, which creates a
+        //problem writing live documentation, as it is context-dependent.
+        //The interface should probably be split-up.
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(permission().role().id()), mandatory(permission().role().name()));
+        }
         /**
          * The permission.
          *
@@ -106,6 +117,132 @@ public interface AssignedPermissionsService {
          * @status added
          */
         @In @Out Permission permission();
+
+        /**
+         * Add a new user level permission for a given virtual machine.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UserLevel extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().user().id());
+            }
+        }
+
+        /**
+         * Add a new group level permission for a given virtual machine.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface GroupLevel extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().group().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the data center to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface DataCenterPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().dataCenter().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the cluster to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface ClusterPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().cluster().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the host to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface HostPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().host().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the storage domain to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface StorageDomainPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().storageDomain().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the vm to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface VmPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().vm().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the vm pool to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface vmPoolPermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().vmPool().id());
+            }
+        }
+
+        /**
+         * Add a new permission on the template to the group in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface TemplatePermission extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(permission().template().id());
+            }
+        }
     }
 
     /**

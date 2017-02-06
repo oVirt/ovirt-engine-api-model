@@ -18,14 +18,28 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Balance;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
 @Service
 @Area("SLA")
 public interface BalancesService {
+    /**
+     * Add a balance module to a specified user defined scheduling policy.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(balance().schedulingPolicyUnit().id());
+        }
         @In @Out Balance balance();
     }
 

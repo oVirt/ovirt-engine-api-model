@@ -18,10 +18,13 @@ package services.externalhostproviders;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.ExternalProviderService;
 import types.ExternalHostProvider;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Infrastructure")
@@ -30,7 +33,22 @@ public interface ExternalHostProviderService extends ExternalProviderService {
         @Out ExternalHostProvider provider();
     }
 
+    /**
+     * Update the specified external host provider in the system.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(provider().description());
+            optional(provider().name());
+            optional(provider().password());
+            optional(provider().requiresAuthentication());
+            optional(provider().username());
+        }
         @In @Out ExternalHostProvider provider();
 
         /**

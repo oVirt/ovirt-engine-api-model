@@ -18,10 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Permit;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 /**
  * Represents a permits sub-collection of the specific role.
  *
@@ -55,6 +58,10 @@ public interface PermitsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(permit().id()), mandatory(permit().name()));
+        }
         /**
          * The permit to add.
          */

@@ -18,9 +18,15 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Network;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * Manages logical networks.
@@ -81,6 +87,20 @@ public interface NetworksService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(network().id()), mandatory(network().name()));
+            optional(network().comment());
+            optional(network().description());
+            optional(network().ip().address());
+            optional(network().ip().gateway());
+            optional(network().ip().netmask());
+            optional(network().mtu());
+            optional(network().profileRequired());
+            optional(network().stp());
+            optional(network().vlan().id());
+            optional(network().usages()[COLLECTION]);
+        }
         @In @Out Network network();
     }
 

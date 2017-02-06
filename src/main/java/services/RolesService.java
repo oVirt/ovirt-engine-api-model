@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Role;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 /**
  * Provides read-only access to the global set of roles
  */
@@ -60,6 +64,13 @@ public interface RolesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(role().name());
+            mandatory(role().permits()[COLLECTION].id());
+            optional(role().administrative());
+            optional(role().description());
+        }
         /**
          * Role that will be added.
          *

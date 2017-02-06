@@ -18,6 +18,7 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.externalhostproviders.KatelloErrataService;
@@ -30,6 +31,10 @@ import types.NetworkLabel;
 import types.PowerManagement;
 import types.Ssh;
 import types.StorageDomain;
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service to manage a host.
@@ -65,12 +70,49 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Approve {
+        @In Host host();
+
+        @InputDetail
+        default void inputDetail() {
+            or(optional(cluster().id()), optional(cluster().name()));
+        }
+
         @In Cluster cluster();
 
         /**
          * Indicates if the approval should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Approve specified host to be added to the engine by using root password (deprecated verb). this occurs when the host registers itself with the engine.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingRootPassword extends Approve {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(host().rootPassword());//DEPRECATED
+            }
+        }
+
+        /**
+         * Approve specified host to be added to the engine by using ssh authentication. this occurs when the host registers itself with the engine.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingSsh extends Approve {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(host().ssh().authenticationMethod());
+                mandatory(host().ssh().user().password());
+                mandatory(host().ssh().user().userName());
+            }
+        }
     }
 
     /**
@@ -117,6 +159,10 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Deactivate {
+        @InputDetail
+        default void inputDetail() {
+            optional(reason());
+        }
         @In String reason();
 
         /**
@@ -178,6 +224,10 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Fence {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(fenceType());
+        }
         @In String fenceType();
         @Out PowerManagement powerManagement();
 
@@ -282,6 +332,43 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Install {
+        @InputDetail
+        default void inputDetail() {
+            optional(host().overrideIptables());
+            optional(image());
+        }
+
+        /**
+         * Install vdsm and other packages required to get the host ready to be used in the engine providing the root password. This has been deprecated.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingRootPassword extends Install {
+            @InputDetail
+            default void inputDetail() {
+                optional(rootPassword());
+            }
+        }
+
+        /**
+         * Install vdsm and other packages required to get the host ready to be used in the engine providing the ssh password.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingSsh extends Install {
+            @InputDetail
+            default void inputDetail() {
+                optional(ssh().authenticationMethod());
+                optional(ssh().fingerprint());
+                optional(ssh().port());
+                optional(ssh().user().password());
+                optional(ssh().user().userName());
+            }
+        }
         /**
          * The password of of the `root` user, used to connect to the host via SSH.
          */
@@ -334,6 +421,10 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface IscsiDiscover {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(iscsi().address());
+        }
         /**
          * The target iSCSI device.
          *
@@ -366,6 +457,11 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface IscsiLogin {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(iscsi().address());
+            mandatory(iscsi().target());
+        }
         /**
          * The target iSCSI device.
          *
@@ -381,7 +477,19 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Discover the block Storage Domains which are candidates to be imported to the setup. For FCP no arguments are needed.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface UnregisteredStorageDomainsDiscover {
+        @InputDetail
+        default void inputDetail() {
+            optional(iscsi().address());
+            optional(iscsi().target());
+        }
         @In IscsiDetails iscsi();
         @Out StorageDomain[] storageDomains();
 
@@ -418,6 +526,51 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(host().address());
+            optional(host().comment());
+            optional(host().display().address());
+            optional(host().name());
+            optional(host().port());
+            optional(host().powerManagement().automaticPmEnabled());
+            optional(host().powerManagement().enabled());
+            optional(host().powerManagement().kdumpDetection());
+            optional(host().spm().priority());
+            or(optional(host().cluster().id()), optional(host().cluster().name()));
+//            optional(host().powerManagement()[COLLECTION].propietary!!();
+        }
+
+        /**
+         * Update the specified host in the system. This is deprecated and is provided only for backwards compatibility.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingRootPassword extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(host().externalHostProvider().id());
+                optional(host().rootPassword()); //DEPRECATED
+            }
+        }
+
+        /**
+         * Update the specified host in the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingSsh extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(host().ssh().fingerprint());
+                optional(host().ssh().port());
+                optional(host().ssh().user().userName());
+            }
+        }
         @In @Out Host host();
 
         /**
@@ -434,6 +587,10 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Upgrade {
+//        @InputDetail
+//        default void inputDetail() {
+//            optional(host().image()); //TODO: check this.
+//        }
         /**
          * Indicates if the upgrade should be performed asynchronously.
          */
@@ -667,6 +824,28 @@ public interface HostService extends MeasurableService {
      * when the host is rebooted, remember to call <<services/host/methods/commit_net_config, commitnetconfig>>.
      */
     interface SetupNetworks {
+        @InputDetail
+        default void inputDetail() {
+            optional(checkConnectivity());
+            optional(connectivityTimeout());
+            or(optional(modifiedNetworkAttachments()[COLLECTION].hostNic().name()), optional(modifiedNetworkAttachments()[COLLECTION].hostNic().id()));
+            optional(modifiedNetworkAttachments()[COLLECTION].id());
+            optional(modifiedNetworkAttachments()[COLLECTION].ipAddressAssignments()[COLLECTION].ip());
+            optional(modifiedNetworkAttachments()[COLLECTION].ipAddressAssignments()[COLLECTION].assignmentMethod());
+            or(optional(modifiedNetworkAttachments()[COLLECTION].network().name()), optional(modifiedNetworkAttachments()[COLLECTION].network().id()));
+            optional(modifiedNetworkAttachments()[COLLECTION].properties()[COLLECTION].name());
+            optional(modifiedNetworkAttachments()[COLLECTION].properties()[COLLECTION].value());
+            optional(removedLabels()[COLLECTION].id());
+            optional(synchronizedNetworkAttachments()[COLLECTION].id());
+            optional(removedNetworkAttachments()[COLLECTION].id());
+            or(optional(modifiedLabels()[COLLECTION].hostNic().name()), optional(modifiedLabels()[COLLECTION].hostNic().id()));
+            optional(modifiedLabels()[COLLECTION].id());
+//            optional(modifiedBonds()[COLLECTION].slaves().hostNic--collection());
+            optional(modifiedBonds()[COLLECTION].bonding().options()[COLLECTION].name());
+            optional(modifiedBonds()[COLLECTION].bonding().options()[COLLECTION].value());
+            or(optional(modifiedBonds()[COLLECTION].name()), optional(modifiedBonds()[COLLECTION].id()));
+            or(optional(removedBonds()[COLLECTION].name()), optional(removedBonds()[COLLECTION].id()));
+        }
         @In NetworkAttachment[] modifiedNetworkAttachments();
         @In NetworkAttachment[] removedNetworkAttachments();
         @In NetworkAttachment[] synchronizedNetworkAttachments();

@@ -18,12 +18,16 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Host;
 import types.LogicalUnit;
 import types.StorageDomain;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Service
 @Area("Storage")
 public interface StorageDomainService {
@@ -35,8 +39,20 @@ public interface StorageDomainService {
          */
         @In Boolean filter();
     }
-
+    /**
+     * Querying if the Storage Domain is already attached to a Data Center by the
+     * is_attached boolean field, which is part of the storage server. IMPORTANT,
+     * Executing this API will cause the Host to disconnect from the Storage Domain.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface IsAttached {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(host().id());
+        }
         @In Host host();
         @Out Boolean isAttached();
 
@@ -59,7 +75,7 @@ public interface StorageDomainService {
      *
      * [source]
      * ----
-     * PUT /ovirt-engine/api/storagedomains/123
+     * PUT /ovirt-engine/api/storageDomains/123
      * ----
      *
      * With a request body as follows:
@@ -77,6 +93,29 @@ public interface StorageDomainService {
      * @status added
      */
     interface Update {
+        @InputDetail //TODO: this isn't accurate, should be revisited
+        default void inputDetail() {
+            optional(storageDomain().name());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].address());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].id());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].password());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].paths());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].port());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].portal());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].productId());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].serial());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].target());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].username());
+            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
+            optional(storageDomain().comment());
+            optional(storageDomain().criticalSpaceActionBlocker());
+            optional(storageDomain().host().id()); //DEPRECATED
+            optional(storageDomain().storage().overrideLuns());
+            optional(storageDomain().warningLowSpaceIndicator());
+            optional(storageDomain().wipeAfterDelete());
+        }
+
         @In @Out StorageDomain storageDomain();
 
         /**
@@ -122,7 +161,7 @@ public interface StorageDomainService {
      *
      * [source]
      * ----
-     * POST /ovirt-engine/api/storagedomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns
+     * POST /ovirt-engine/api/storageDomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns
      * ----
      *
      * With a request body like this:
@@ -142,6 +181,10 @@ public interface StorageDomainService {
      * @status added
      */
     interface RefreshLuns {
+        @InputDetail
+        default void inputDetail() {
+            optional(logicalUnits()[COLLECTION].id());
+        }
         /**
          * The LUNs that need to be refreshed.
          *
@@ -167,7 +210,7 @@ public interface StorageDomainService {
      *
      * [source]
      * ----
-     * POST /ovirt-engine/api/storagedomains/123/reduceluns
+     * POST /ovirt-engine/api/storageDomains/123/reduceluns
      * ----
      *
      * With a request body like this:
@@ -196,7 +239,7 @@ public interface StorageDomainService {
          * @status added
          * @since 4.1
          */
-        @In LogicalUnit[] logicalUnits();
+        @In LogicalUnit[] logicalUnits();//TODO: missing @InputDetail
     }
 
     /**
@@ -212,7 +255,7 @@ public interface StorageDomainService {
      * If the `format` parameter is `true` then the actual storage is formatted, and the metadata is removed from the
      * LUN or directory, so it can no longer be imported to the same or a different setup.
      */
-    interface Remove {
+    interface Remove {//TODO: missing @InputDetail
         /**
          * Indicates what host should be used to remove the storage domain.
          *
@@ -221,7 +264,7 @@ public interface StorageDomainService {
          *
          * [source]
          * ----
-         * DELETE /ovirt-engine/api/storagedomains/123?host=myhost
+         * DELETE /ovirt-engine/api/storageDomains/123?host=myhost
          * ----
          */
         @In String host();
@@ -232,7 +275,7 @@ public interface StorageDomainService {
          *
          * [source]
          * ----
-         * DELETE /ovirt-engine/api/storagedomains/123?format=true
+         * DELETE /ovirt-engine/api/storageDomains/123?format=true
          * ----
          *
          * This parameter is optional, and the default value is `false`.
@@ -249,7 +292,7 @@ public interface StorageDomainService {
          *
          * [source]
          * ----
-         * DELETE /ovirt-engine/api/storagedomains/123?destroy=true
+         * DELETE /ovirt-engine/api/storageDomains/123?destroy=true
          * ----
          *
          * This parameter is optional, and the default value is `false`.

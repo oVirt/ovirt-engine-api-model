@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Network;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service managing a network
@@ -115,6 +118,19 @@ public interface NetworkService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(network().comment());
+            optional(network().description());
+            optional(network().display());
+            optional(network().ip().address());
+            optional(network().ip().gateway());
+            optional(network().ip().netmask());
+            optional(network().mtu());
+            optional(network().name());
+            optional(network().stp());
+            optional(network().vlan().id());
+        }
         @In @Out Network network();
 
         /**

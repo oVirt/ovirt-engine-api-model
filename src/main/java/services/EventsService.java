@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Event;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service to manage events in the system.
@@ -74,6 +78,23 @@ public interface EventsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(event().customId());
+            mandatory(event().description());
+            mandatory(event().origin());
+            mandatory(event().severity());
+            optional(event().cluster().id());
+            optional(event().dataCenter().id());
+            optional(event().floodRate());
+            optional(event().host().externalStatus());
+            optional(event().host().id());
+            optional(event().storageDomain().externalStatus());
+            optional(event().storageDomain().id());
+            optional(event().template().id());
+            optional(event().user().id());
+            optional(event().vm().id());
+        }
         @In @Out Event event();
     }
 

@@ -17,12 +17,18 @@ limitations under the License.
 package services;
 
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import annotations.Area;
 import types.StorageDomain;
 import types.Template;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * Manages the virtual machine template and template versions.
@@ -59,6 +65,11 @@ public interface TemplateService {
      * @status added
      */
     interface Export {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            optional(exclusive());
+        }
         /**
          * Indicates if the existing templates with the same name should be overwritten.
          *
@@ -143,6 +154,72 @@ public interface TemplateService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(template().bios().bootMenu().enabled());
+            optional(template().comment());
+            optional(template().console().enabled());
+            optional(template().cpu().architecture());
+            optional(template().cpu().topology().cores());
+            optional(template().cpu().topology().sockets());
+            optional(template().cpuProfile().id());
+            optional(template().cpuShares());
+            optional(template().customCpuModel());
+            optional(template().customEmulatedMachine());
+            optional(template().deleteProtected());
+            optional(template().description());
+            optional(template().display().allowOverride());
+            optional(template().display().disconnectAction());
+            optional(template().display().keyboardLayout());
+            optional(template().display().monitors());
+            optional(template().display().smartcardEnabled());
+            optional(template().display().type());
+            optional(template().domain().name());
+            optional(template().highAvailability().enabled());
+            optional(template().highAvailability().priority());
+            optional(template().initialization().configuration().data());
+            optional(template().initialization().configuration().type());
+            optional(template().io().threads());
+            optional(template().largeIcon().data());
+            optional(template().largeIcon().id());
+            optional(template().largeIcon().mediaType());
+            optional(template().memory());
+            optional(template().memoryPolicy().ballooning());
+            optional(template().memoryPolicy().guaranteed());
+            optional(template().migration().autoConverge());
+            optional(template().migration().compressed());
+            optional(template().migrationDowntime());
+            optional(template().name());
+            optional(template().origin());
+            optional(template().os().cmdline());
+            optional(template().os().initrd());
+            optional(template().os().kernel());
+            optional(template().os().type());
+            optional(template().vm().placementPolicy().affinity()); //TODO: check.
+            optional(template().serialNumber().policy());
+            optional(template().serialNumber().value());
+            optional(template().smallIcon().id());
+            optional(template().soundcardEnabled());
+            optional(template().startPaused());
+            optional(template().stateless());
+            optional(template().timeZone().name());
+            optional(template().tunnelMigration());
+            optional(template().type());
+            optional(template().usb().enabled());
+            optional(template().usb().type());
+            optional(template().version().versionName());
+            optional(template().virtioScsi().enabled());
+            optional(template().display().copyPasteEnabled());
+            optional(template().display().fileTransferEnabled());
+            optional(template().display().singleQxlPci());
+            optional(template().rngDevice().rate().bytes());
+            optional(template().rngDevice().rate().period());
+            optional(template().rngDevice().source());
+            optional(template().customProperties()[COLLECTION].name());
+            optional(template().customProperties()[COLLECTION].value());
+            optional(template().os().boot().devices()[COLLECTION]);
+            optional(template().sso().methods()[COLLECTION].id());
+        }
         @In @Out Template template();
 
         /**

@@ -18,9 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Host;
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service that manages hosts.
@@ -75,6 +80,23 @@ public interface HostsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(host().address());
+            mandatory(host().name());
+            or(mandatory(host().cluster().id()), mandatory(host().cluster().name()));
+            optional(host().comment());
+            optional(host().display().address());
+            optional(host().overrideIptables());
+            optional(host().port());
+            optional(host().powerManagement().automaticPmEnabled());
+            optional(host().powerManagement().enabled());
+            optional(host().powerManagement().kdumpDetection());
+            optional(host().protocol());
+            optional(host().spm().priority());
+            optional(host().powerManagement().pmProxies()[COLLECTION].type());
+        }
+
         /**
          * The host definition from which to create the new host is passed as parameter, and the newly created host
          * is returned.
@@ -94,6 +116,38 @@ public interface HostsService {
          * Omitting this parameter means `false` and will perform no operation in hosted engine area.
          */
         @In Boolean undeployHostedEngine();
+
+        /**
+         * Add a new host to the system providing the host root password. This has been deprecated and provided for backwards compatibility.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingRootPassword extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(host().rootPassword()); //DEPRECATED
+            }
+        }
+
+        /**
+         * Add a new host to the system providing the ssh password or fingerprint.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface UsingSsh extends Add {
+            @InputDetail
+            default void inputDetail() {
+                optional(host().ssh().authenticationMethod());
+                optional(host().ssh().fingerprint());
+                optional(host().ssh().port());
+                optional(host().ssh().user().password());
+                optional(host().ssh().user().userName());
+            }
+        }
     }
 
     /**

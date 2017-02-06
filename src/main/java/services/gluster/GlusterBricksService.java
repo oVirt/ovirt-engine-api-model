@@ -64,7 +64,12 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Activate {
+    interface Activate { //TODO: check live documentation supported. 
+//      @InputDetail
+//      default void inputDetail() {
+//          mandatory(bricks()[COLLECTION].name());
+//      }
+
         /**
          * The list of bricks that need to be re-activated.
          *
@@ -110,7 +115,12 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Add {
+    interface Add { //TODO: special case - array as primary input, check if 'live documentation' supports this
+//        @InputDetail
+//        default void inputDetail() {
+//            mandatory(bricks()[COLLECTION].brickDir());
+//            mandatory(bricks()[COLLECTION].serverId());
+//        }
         /**
          * The list of bricks to be added to the volume
          *
@@ -217,7 +227,11 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Migrate {
+    interface Migrate { //TODO: check live documentation supported.
+//        @InputDetail
+//        default void inputDetail() {
+//            mandatory(bricks()[COLLECTION].name());
+//        }
         /**
          * List of bricks for which data migration needs to be started.
          *
@@ -263,7 +277,11 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Remove {
+    interface Remove { //TODO: live documetation does not support paramters in 'remove'
+//        @InputDetail
+//        default void inputDetail() {
+//            mandatory(bricks--collection().id());
+//        }
         /**
          * The list of bricks to be removed
          */
@@ -313,7 +331,11 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface StopMigrate {
+    interface StopMigrate { //TODO: check that live documentation is supported
+//        @InputDetail
+//        default void inputDetail() {
+//            mandatory(bricks()[COLLECTION].name());
+//        }
         /**
          * List of bricks for which data migration needs to be stopped. This list should match the arguments passed to
          * <<services/gluster_bricks/methods/migrate, migrate>>.

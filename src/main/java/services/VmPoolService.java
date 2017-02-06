@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VmPool;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * A service to manage a virtual machines pool.
@@ -136,6 +140,20 @@ public interface VmPoolService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(pool().comment());
+            optional(pool().description());
+            optional(pool().display().proxy());
+            optional(pool().maxUserVms());
+            optional(pool().name());
+            optional(pool().prestartedVms());
+            optional(pool().size());
+            optional(pool().type());
+            optional(pool().useLatestTemplateVersion());
+            or(optional(pool().cluster().id()), optional(pool().cluster().name()));
+            or(optional(pool().template().id()), optional(pool().template().name()));
+        }
         /**
          * The virtual machine pool that is being updated.
          *

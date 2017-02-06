@@ -18,12 +18,18 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
 import types.StorageDomain;
 import types.Vm;
 import types.VnicProfileMapping;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Storage")
@@ -98,6 +104,17 @@ public interface StorageDomainVmService {
      * @status added
      */
     interface Import {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            optional(clone());
+            optional(exclusive());
+            optional(vm().name());
+            or(optional(storageDomain().id()), optional(storageDomain().name()));
+            optional(vm().diskAttachments()[COLLECTION].disk().format());
+            optional(vm().diskAttachments()[COLLECTION].id());
+            optional(vm().diskAttachments()[COLLECTION].disk().sparse());
+        }
         /**
          * Indicates if the identifiers of the imported virtual machine
          * should be regenerated.
@@ -113,6 +130,7 @@ public interface StorageDomainVmService {
         @In Cluster cluster();
         @In StorageDomain storageDomain();
         @In Vm vm();
+        @In Boolean exclusive();
 
         /**
          * Indicates of the snapshots of the virtual machine that is imported

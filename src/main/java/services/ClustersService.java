@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 /**
  * A service to manage clusters.
  *
@@ -61,6 +65,37 @@ public interface ClustersService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(cluster().cpu().type());
+            mandatory(cluster().name());
+            mandatory(cluster().version().major());
+            mandatory(cluster().version().minor());
+            or(mandatory(cluster().dataCenter().id()), mandatory(cluster().dataCenter().name()));
+            optional(cluster().ballooningEnabled());
+            optional(cluster().comment());
+            optional(cluster().cpu().architecture());
+            optional(cluster().description());
+            optional(cluster().display().proxy());
+            optional(cluster().errorHandling().onError());
+            optional(cluster().fencingPolicy().enabled());
+            optional(cluster().fencingPolicy().skipIfConnectivityBroken().enabled());
+            optional(cluster().fencingPolicy().skipIfConnectivityBroken().threshold());
+            optional(cluster().fencingPolicy().skipIfSdActive().enabled());
+            optional(cluster().glusterService());
+            optional(cluster().haReservation());
+            optional(cluster().ksm().enabled());
+            optional(cluster().ksm().mergeAcrossNodes());
+            optional(cluster().maintenanceReasonRequired());
+            optional(cluster().memoryPolicy().overCommit().percent());
+            optional(cluster().memoryPolicy().transparentHugePages().enabled());
+            optional(cluster().threadsAsCores());
+            optional(cluster().trustedService());
+            optional(cluster().tunnelMigration());
+            optional(cluster().virtService());
+            or(optional(cluster().managementNetwork().id()), optional(cluster().managementNetwork().name()));
+            or(optional(cluster().schedulingPolicy().id()), optional(cluster().schedulingPolicy().name()));
+        }
         @In @Out Cluster cluster();
     }
 

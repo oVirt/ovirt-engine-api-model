@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.DiskProfile;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Storage")
@@ -29,7 +32,20 @@ public interface DiskProfileService {
         @Out DiskProfile profile();
     }
 
+    /**
+     * Update the specified disk profile in the system.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(profile().description());
+            optional(profile().name());
+            optional(profile().qos().id());
+        }
         @In @Out DiskProfile profile();
 
         /**

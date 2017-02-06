@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.SchedulingPolicy;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("SLA")
@@ -34,7 +38,21 @@ public interface SchedulingPolicyService {
         @In Boolean filter();
     }
 
+    /**
+     * Update the specified user defined scheduling policy in the system.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(policy().description());
+            optional(policy().name());
+            optional(policy().properties()[COLLECTION].name());
+            optional(policy().properties()[COLLECTION].value());
+        }
         @In @Out SchedulingPolicy policy();
 
         /**

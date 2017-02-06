@@ -18,11 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import types.HostNic;
 import types.HostNicVirtualFunctionsConfiguration;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * A service to manage a network interface of a host.
@@ -49,6 +52,11 @@ public interface HostNicService extends MeasurableService {
      * Please see the `HostNicVirtualFunctionsConfiguration` type for the meaning of the properties.
      */
     interface UpdateVirtualFunctionsConfiguration {
+        @InputDetail
+        default void inputDetail() {
+            optional(virtualFunctionsConfiguration().allNetworksAllowed());
+            optional(virtualFunctionsConfiguration().numberOfVirtualFunctions());
+        }
         @In HostNicVirtualFunctionsConfiguration virtualFunctionsConfiguration();
 
         /**

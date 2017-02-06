@@ -18,14 +18,22 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageConnection;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
 @Service
 @Area("Storage")
 public interface StorageDomainServerConnectionsService {
+
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(connection().id());
+        }
         @In @Out StorageConnection connection();
     }
 

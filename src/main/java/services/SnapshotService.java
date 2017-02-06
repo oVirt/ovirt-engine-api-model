@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 import types.Snapshot;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Storage")
@@ -79,6 +83,12 @@ public interface SnapshotService {
      * @status added
      */
     interface Restore {
+        @InputDetail
+        default void inputDetail() {
+            optional(restoreMemory());
+            optional(disks()[COLLECTION].id());
+            optional(disks()[COLLECTION].imageId());
+        }
         @In Disk[] disks();
         @In Boolean restoreMemory();
 

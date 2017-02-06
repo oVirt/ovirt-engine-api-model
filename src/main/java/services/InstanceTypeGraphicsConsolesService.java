@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GraphicsConsole;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
 @Service
 @Area("Virtualization")
@@ -34,6 +37,10 @@ public interface InstanceTypeGraphicsConsolesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(console().protocol());
+        }
         @In @Out GraphicsConsole console();
     }
 

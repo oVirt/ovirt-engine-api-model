@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageConnection;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Storage")
@@ -55,6 +59,78 @@ public interface StorageServerConnectionsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(connection().type());
+        }
+
+        /**
+         * Add a iSCSI storage connection to the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Iscsi extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(connection().address());
+                mandatory(connection().port());
+                mandatory(connection().target());
+                optional(connection().password());
+                optional(connection().username());
+            }
+        }
+
+        /**
+         * Add a nfs storage connection to the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Nfs extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(connection().address());
+                mandatory(connection().path());
+                optional(connection().nfsRetrans());
+                optional(connection().nfsTimeo());
+                optional(connection().nfsVersion());
+            }
+        }
+
+        /**
+         * Add a vfs storage connection to the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Vfs extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(connection().path());
+                mandatory(connection().vfsType());
+                optional(connection().address());
+                optional(connection().mountOptions());
+            }
+        }
+
+        /**
+         * Add a local storage connection to the system.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 18 Jan 2017
+         * @status added
+         */
+        interface Local extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(connection().path());
+            }
+        }
+
         @In @Out StorageConnection connection();
     }
 

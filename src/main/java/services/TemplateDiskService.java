@@ -18,14 +18,31 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
+import types.StorageDomain;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Storage")
 public interface TemplateDiskService {
+    /**
+     * Copy the specified disk attached to the template to a specific storage domain.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Copy {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
+        @In StorageDomain storageDomain();
         /**
          * Indicates if the copy should be performed asynchronously.
          */
@@ -38,6 +55,11 @@ public interface TemplateDiskService {
     }
 
     interface Export {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
+        @In StorageDomain storageDomain();
         /**
          * Indicates if the export should be performed asynchronously.
          */

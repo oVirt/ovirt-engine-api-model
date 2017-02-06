@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VnicProfile;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages the collection of all vNIC profiles.
@@ -106,6 +110,16 @@ public interface VnicProfilesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(profile().name());
+            mandatory(profile().network().id());
+            optional(profile().description());
+            optional(profile().passThrough().mode());
+            optional(profile().portMirroring());
+            optional(profile().customProperties()[COLLECTION].name());
+            optional(profile().customProperties()[COLLECTION].value());
+        }
         /**
          * The vNIC profile that is being added.
          *

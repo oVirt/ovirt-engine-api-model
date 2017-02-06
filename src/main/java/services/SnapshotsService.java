@@ -18,8 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import types.Snapshot;
 
 @Service
@@ -67,6 +72,12 @@ public interface SnapshotsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(snapshot().description());
+            optional(snapshot().persistMemorystate());
+            optional(snapshot().diskAttachments()[COLLECTION].id());
+        }
         @In @Out Snapshot snapshot();
     }
 

@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Vm;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * This service manages a collection of all the virtual machines assigned to an affinity group.
@@ -56,6 +60,10 @@ public interface AffinityGroupVmsService {
      * @status updated_by_docs
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(vm().id()), mandatory(vm().name()));
+        }
         @In @Out Vm vm();
     }
 

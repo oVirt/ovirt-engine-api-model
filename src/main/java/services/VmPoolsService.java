@@ -18,9 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VmPool;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * Provides read-write access to virtual machines pools.
@@ -59,6 +64,21 @@ public interface VmPoolsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(pool().name());
+            or(mandatory(pool().cluster().id()), mandatory(pool().cluster().name()));
+            or(mandatory(pool().template().id()), mandatory(pool().template().name()));
+            optional(pool().comment());
+            optional(pool().description());
+            optional(pool().display().proxy());
+            optional(pool().maxUserVms());
+            optional(pool().prestartedVms());
+            optional(pool().size());
+            optional(pool().soundcardEnabled());
+            optional(pool().type());
+            optional(pool().useLatestTemplateVersion());
+        }
         /**
          * Pool to add.
          *

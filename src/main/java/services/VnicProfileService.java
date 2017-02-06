@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VnicProfile;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages a vNIC profile.
@@ -53,6 +57,15 @@ public interface VnicProfileService {
      */
     interface Update {
 
+        @InputDetail
+        default void inputDetail() {
+            optional(profile().description());
+            optional(profile().name());
+            optional(profile().passThrough().mode());
+            optional(profile().portMirroring());
+            optional(profile().customProperties()[COLLECTION].name());
+            optional(profile().customProperties()[COLLECTION].value());
+        }
         /**
          * The vNIC profile that is being updated.
          *

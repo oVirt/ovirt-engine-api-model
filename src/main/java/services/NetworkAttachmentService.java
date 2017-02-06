@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.NetworkAttachment;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Network")
@@ -29,7 +33,24 @@ public interface NetworkAttachmentService {
         @Out NetworkAttachment attachment();
     }
 
+    /**
+     * Update the specified network attachment on the host.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(attachment().properties()[COLLECTION].name());
+            optional(attachment().properties()[COLLECTION].value());
+            optional(attachment().ipAddressAssignments()[COLLECTION].assignmentMethod());
+            optional(attachment().ipAddressAssignments()[COLLECTION].ip().address());
+            optional(attachment().ipAddressAssignments()[COLLECTION].ip().gateway());
+            optional(attachment().ipAddressAssignments()[COLLECTION].ip().netmask());
+            optional(attachment().ipAddressAssignments()[COLLECTION].ip().version());
+        }
         @In @Out NetworkAttachment attachment();
 
         /**

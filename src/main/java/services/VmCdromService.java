@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cdrom;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * Manages a CDROM device of a virtual machine.
@@ -146,6 +149,10 @@ public interface VmCdromService {
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(cdrom().file().id());
+        }
         /**
          * The information about the CDROM device.
          *

@@ -18,9 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.MacPool;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Network")
@@ -60,6 +65,15 @@ public interface MacPoolsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(pool().name());
+            mandatory(pool().ranges()[COLLECTION].from());
+            mandatory(pool().ranges()[COLLECTION].to());
+            optional(pool().allowDuplicates());
+            optional(pool().defaultPool());
+            optional(pool().description());
+        }
         @In @Out MacPool pool();
     }
 

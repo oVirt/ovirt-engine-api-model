@@ -18,12 +18,18 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
 import types.StorageDomain;
 import types.Template;
 import types.Vm;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Storage")
@@ -61,6 +67,15 @@ public interface StorageDomainTemplateService {
      * @status added
      */
     interface Import {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            optional(clone());
+            optional(exclusive());
+            optional(template().name());
+            or(optional(storageDomain().id()), optional(storageDomain().name()));
+            optional(vm().diskAttachments()[COLLECTION].id());
+        }
         /**
          * Use the optional `clone` parameter to generate new UUIDs for the imported template and its entities.
          *
@@ -84,7 +99,22 @@ public interface StorageDomainTemplateService {
         @In Boolean async();
     }
 
+    /**
+     * Register the Template means importing the Template from the data domain, by inserting the configuration of the
+     * Template and disks into the DB without the copy process.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Register {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            optional(clone());
+            optional(exclusive());
+            optional(template().name());
+        }
         @In Boolean clone();
         @In Cluster cluster();
         @In Boolean exclusive();

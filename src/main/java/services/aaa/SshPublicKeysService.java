@@ -18,14 +18,22 @@ package services.aaa;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.SshPublicKey;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Infrastructure")
 public interface SshPublicKeysService {
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(key().id()), mandatory(key().name()));
+        }
         @In @Out SshPublicKey key();
     }
 

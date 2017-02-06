@@ -18,14 +18,29 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageDomain;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
+
 @Service
 @Area("Storage")
 public interface AttachedStorageDomainsService {
+    /**
+     * Add a new storage domain to the data center.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
         @In @Out StorageDomain storageDomain();
     }
 

@@ -22,6 +22,7 @@ import services.gluster.GlusterBrickStatus;
 import services.gluster.GlusterVolumeStatus;
 
 @Type
+//TODO: for uniformity, change name to GlusterBrickService
 public interface GlusterBrick extends GlusterBrickAdvancedDetails {
     String serverId();
     String brickDir();

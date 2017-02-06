@@ -18,10 +18,14 @@ package services.openstack;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.ExternalProviderService;
 import types.OpenStackNetworkProvider;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages OpenStack network provider.
@@ -80,6 +84,18 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      * @status added
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(provider().authenticationUrl());
+            optional(provider().description());
+            optional(provider().name());
+            optional(provider().password());
+            optional(provider().requiresAuthentication());
+            optional(provider().tenantName());
+            optional(provider().username());
+            optional(provider().properties()[COLLECTION].name());
+            optional(provider().properties()[COLLECTION].value());
+        }
         /**
          * The provider to update.
          *

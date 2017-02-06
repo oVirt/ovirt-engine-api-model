@@ -18,10 +18,15 @@ package services.gluster;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.GlusterHook;
 import types.Host;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 @Service
 @Area("Gluster")
@@ -74,6 +79,11 @@ public interface GlusterHookService {
      * in cluster.
      */
     interface Resolve {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(resolutionType());
+            or(optional(host().id()), optional(host().name()));
+        }
         @In Host host();
         @In String resolutionType();
 

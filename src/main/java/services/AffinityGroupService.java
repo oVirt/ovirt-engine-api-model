@@ -18,9 +18,12 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityGroup;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages a single affinity group.
@@ -72,6 +75,12 @@ public interface AffinityGroupService {
      * @status updated_by_docs
      */
     interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(group().enforcing());
+            optional(group().name());
+            optional(group().positive());
+        }
         /**
          * The affinity group.
          *

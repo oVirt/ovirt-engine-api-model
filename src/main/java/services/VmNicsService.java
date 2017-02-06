@@ -18,9 +18,13 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Nic;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("Network")
@@ -86,6 +90,15 @@ public interface VmNicsService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(nic().name());
+//            optional(nic()._interface()); TODO: uncomment when able to handle '_'
+            optional(nic().linked());
+            optional(nic().mac().address());
+            optional(nic().plugged());
+            optional(nic().vnicProfile().id());
+        }
         @In @Out Nic nic();
     }
 

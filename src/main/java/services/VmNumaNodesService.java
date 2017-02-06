@@ -18,9 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.VirtualNumaNode;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 @Service
 @Area("SLA")
@@ -57,6 +62,13 @@ public interface VmNumaNodesService {
      * @status added
      */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(node().index());
+            mandatory(node().memory());
+            mandatory(node().cpu().cores()[COLLECTION].index());
+            optional(node().numaNodePins()[COLLECTION].index());
+        }
         @In @Out VirtualNumaNode node();
     }
 

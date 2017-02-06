@@ -18,14 +18,47 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Qos;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 @Service
 @Area("SLA")
 public interface QossService {
+    /**
+     * Add a new QoS to the dataCenter.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(qos().name());
+            mandatory(qos().type());
+            optional(qos().cpuLimit());
+            optional(qos().description());
+            optional(qos().inboundAverage());
+            optional(qos().inboundBurst());
+            optional(qos().inboundPeak());
+            optional(qos().maxIops());
+            optional(qos().maxReadIops());
+            optional(qos().maxReadThroughput());
+            optional(qos().maxThroughput());
+            optional(qos().maxWriteIops());
+            optional(qos().maxWriteThroughput());
+            optional(qos().outboundAverage());
+            optional(qos().outboundAverageLinkshare());
+            optional(qos().outboundAverageRealtime());
+            optional(qos().outboundAverageUpperlimit());
+            optional(qos().outboundBurst());
+            optional(qos().outboundPeak());
+        }
         @In @Out Qos qos();
     }
 
