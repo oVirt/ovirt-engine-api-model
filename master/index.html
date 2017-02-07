@@ -40172,8 +40172,11 @@ that are controlled by this rule.</p></td>
 <div class="sect3">
 <h4 id="types/affinity_rule/attributes/enabled"><a class="anchor" href="#types/affinity_rule/attributes/enabled"></a>6.5.1. enabled</h4>
 <div class="paragraph">
-<p>Specifies whether the affinity group uses this rule or not. This argument is optional and is considered
-to be <code>true</code> when it is not provided.</p>
+<p>Specifies whether the affinity group uses this rule or not.
+This attribute is optional during creation and is considered to be <code>true</code> when it is not provided.
+In case this attribute is not provided to the update operation, it is considered to be <code>true</code> if
+AffinityGroup <code>positive</code> attribute is set as well.
+The backend <code>enabled</code> value will be preserved when both <code>enabled</code> and <code>positive</code> attributes are missing.</p>
 </div>
 </div>
 <div class="sect3">
@@ -63429,7 +63432,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-02 09:21:34 UTC
+Last updated 2017-02-07 16:31:50 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
