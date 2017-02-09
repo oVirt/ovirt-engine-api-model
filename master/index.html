@@ -52520,6 +52520,10 @@ This is a example of the XML representation:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>default_route</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default gateway and the DNS resolver configuration of the host will be taken from this network.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>display</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -52541,6 +52545,23 @@ This is a example of the XML representation:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/network_usage/values/default_route"><a class="anchor" href="#types/network_usage/values/default_route"></a>6.158.1. default_route</h4>
+<div class="paragraph">
+<p>The default gateway and the DNS resolver configuration of the host will be taken from this network.</p>
+</div>
+<div class="paragraph">
+<p>If this network is attached to the host, then the DNS resolver configuration will be taken from the
+<code>dns_resolver_configuration</code> attribute of the network attachment. If there is no <code>dns_resolver_configuration</code>
+attribute in this network attachment, then they will be taken from the <code>dns_resolver_configuration</code> of the
+network itself. If <code>dns_resolver_configuration</code> attribute isn&#8217;t present even there, DNS resolver configuration
+won&#8217;t be set.</p>
+</div>
+<div class="paragraph">
+<p>If you set this flag on a network, then the the default gateway for the host will be taken from the <code>gateway</code>
+attribute of the <code>ip_address_assignment</code> of the network attachment.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/nfs_profile_detail"><a class="anchor" href="#types/nfs_profile_detail"></a>6.159. NfsProfileDetail <span class="small">struct</span></h3>
@@ -63432,7 +63453,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-07 16:31:50 UTC
+Last updated 2017-02-09 09:51:26 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
