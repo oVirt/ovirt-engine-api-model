@@ -60321,7 +60321,7 @@ by <code>native</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace where user resides.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace where the user resides.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
@@ -60331,39 +60331,40 @@ by <code>native</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>principal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Same as <code>user_name</code> principal has different formats based on LDAP provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to <code>user_name</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username of the user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user&#8217;s username.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/user/attributes/namespace"><a class="anchor" href="#types/user/attributes/namespace"></a>6.263.1. namespace</h4>
 <div class="paragraph">
-<p>Namespace where user resides. When using the authorization provider that stores users in the LDAP
-(see <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-ldap">here</a> for details) this attribute equals to naming
-context of the LDAP. When using the built-in authorization provider that stores users in the database
-(see <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc">here</a> for details) this attribute is ignored.</p>
+<p>Namespace where the user resides. When using the authorization provider that stores users in the LDAP server,
+this attribute equals the naming context of the LDAP server.
+See <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-ldap" class="bare">https://github.com/oVirt/ovirt-engine-extension-aaa-ldap</a> for more information.
+When using the built-in authorization provider that stores users in the database this attribute is ignored.
+See <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc" class="bare">https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc</a> for more information.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/user/attributes/principal"><a class="anchor" href="#types/user/attributes/principal"></a>6.263.2. principal</h4>
 <div class="paragraph">
-<p>Same as <code>user_name</code> principal has different formats based on LDAP provider. In case of most LDAP providers it is
-value of the <code>uid</code> LDAP attribute. In case of Active Directory it is the user principal name (UPN).</p>
+<p>Similar to <code>user_name</code>. The format depends on the LDAP provider. With most LDAP providers it is the
+value of the <code>uid</code> LDAP attribute. In the case of Active Directory it is the User Principal Name (UPN).</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/user/attributes/user_name"><a class="anchor" href="#types/user/attributes/user_name"></a>6.263.3. user_name</h4>
 <div class="paragraph">
-<p>Username of the user. The format depends on authorization provider type. In case of most LDAP providers it is
-value of the <code>uid</code> LDAP attribute. In case of Active Directory it is the user principal name (UPN). <code>UPN</code> or
-<code>uid</code> must be followed by authorization provider name. For example in case of LDAP using <code>uid</code> attribute it is:
-<code>myuser@myextension-authz</code>. In case of Active Directory using <code>UPN</code> it is:
-<code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is required parameter when adding new user.</p>
+<p>The user&#8217;s username. The format depends on authorization provider type. In most LDAP providers it is the
+value of the <code>uid</code> LDAP attribute. In Active Directory it is the User Principal Name (UPN). <code>UPN</code> or
+<code>uid</code> must be followed by the authorization provider name. For example, in the case of LDAP&#8217;s <code>uid</code> attribute it is:
+<code>myuser@myextension-authz</code>. In the case of Active Directory using <code>UPN</code> it is:
+<code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is a required parameter when adding a new user.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1152. Links summary</caption>
@@ -63466,7 +63467,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-13 11:37:09 UTC
+Last updated 2017-02-13 11:46:31 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
