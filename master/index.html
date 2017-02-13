@@ -56569,7 +56569,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/session"><a class="anchor" href="#types/session"></a>6.223. Session <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes user session to a virtual machine.</p>
+<p>Describes a user session to a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1099. Attributes summary</caption>
@@ -56609,7 +56609,7 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ip</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/ip">Ip</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IP address user is connected from.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IP address the user is connected from.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -56619,7 +56619,7 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>protocol</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Protocol used by the session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The protocol used by the session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -56629,13 +56629,13 @@ an administrator.</p>
 <p>Indicates if this is a console session.</p>
 </div>
 <div class="paragraph">
-<p>The value will be <code>true</code> for console users: SPICE or VNC, <code>false</code> for others: e.g. RDP, SSH.</p>
+<p>The value will be <code>true</code> for console users (SPICE or VNC), and <code>false</code> for others (such as RDP or SSH).</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/session/attributes/ip"><a class="anchor" href="#types/session/attributes/ip"></a>6.223.2. ip</h4>
 <div class="paragraph">
-<p>IP address user is connected from.</p>
+<p>The IP address the user is connected from.</p>
 </div>
 <div class="paragraph">
 <p>Currently only available for console users.</p>
@@ -56644,10 +56644,10 @@ an administrator.</p>
 <div class="sect3">
 <h4 id="types/session/attributes/protocol"><a class="anchor" href="#types/session/attributes/protocol"></a>6.223.3. protocol</h4>
 <div class="paragraph">
-<p>Protocol used by the session.</p>
+<p>The protocol used by the session.</p>
 </div>
 <div class="paragraph">
-<p>Currently not used, intended for info about how is user connected: SPICE, VNC, SSH, RDP.</p>
+<p>Currently not used. Intended for info about how the user is connected: through SPICE, VNC, SSH, or RDP.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1100. Links summary</caption>
@@ -56667,12 +56667,12 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/user">User</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User related to this session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user related to this session.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link to virtual machine related to this session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the virtual machine related to this session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -56680,10 +56680,10 @@ an administrator.</p>
 <div class="sect3">
 <h4 id="types/session/links/user"><a class="anchor" href="#types/session/links/user"></a>6.223.4. user</h4>
 <div class="paragraph">
-<p>User related to this session.</p>
+<p>The user related to this session.</p>
 </div>
 <div class="paragraph">
-<p>If user is a console user, it is a link to real oVirt user. Otherwise only username is provided.</p>
+<p>If the user is a console user, this is a link to the real oVirt user. Otherwise, only the user name is provided.</p>
 </div>
 </div>
 </div>
@@ -63454,7 +63454,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-13 10:37:14 UTC
+Last updated 2017-02-13 10:45:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
