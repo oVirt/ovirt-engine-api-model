@@ -54094,7 +54094,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/operating_system"><a class="anchor" href="#types/operating_system"></a>6.179. OperatingSystem <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Information describing the operating system. Used for virtual machines and hosts.</p>
+<p>Information describing the operating system. This is used for both virtual machines and hosts.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1047. Attributes summary</caption>
@@ -54139,7 +54139,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reported_kernel_cmdline</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Host kernel command line as reported by a running host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host kernel command line as reported by a running host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
@@ -54159,15 +54159,15 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <p>A custom part of the host kernel command line. This will be merged with the existing kernel command line.</p>
 </div>
 <div class="paragraph">
-<p>You must re-install and then reboot the host to apply the changes implemented by this attribute.</p>
+<p>You must reinstall and then reboot the host to apply the changes implemented by this attribute.</p>
 </div>
 <div class="paragraph">
-<p>Parameters merging: During each host deploy procedure, kernel parameters that were added
+<p>During each host deploy procedure, kernel parameters that were added
 in the previous host deploy procedure are removed using
-<code>grubby --update-kernel DEFAULT --remove-args &lt;previous_custom_params&gt;</code> and the current
+<code>grubby --update-kernel DEFAULT --remove-args &lt;previous_custom_params&gt;</code>, and the current
 kernel command line customization is applied using
-<code>grubby --update-kernel DEFAULT --args &lt;custom_params&gt;</code>. The Engine internally keeps track of the
-last applied kernel parameters customization.</p>
+<code>grubby --update-kernel DEFAULT --args &lt;custom_params&gt;</code>. The Manager internally keeps track of the
+last-applied kernel parameters customization.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -54185,10 +54185,10 @@ This attribute is currently only used for hosts.
 <div class="sect3">
 <h4 id="types/operating_system/attributes/reported_kernel_cmdline"><a class="anchor" href="#types/operating_system/attributes/reported_kernel_cmdline"></a>6.179.2. reported_kernel_cmdline</h4>
 <div class="paragraph">
-<p>Host kernel command line as reported by a running host.</p>
+<p>The host kernel command line as reported by a running host.</p>
 </div>
 <div class="paragraph">
-<p>Read-only attribute. Attempts to change this attribute are silently ignored.</p>
+<p>This is a read-only attribute. Attempts to change this attribute are silently ignored.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -63466,7 +63466,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-13 11:19:57 UTC
+Last updated 2017-02-13 11:28:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
