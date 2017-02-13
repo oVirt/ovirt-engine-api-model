@@ -58903,13 +58903,12 @@ deleted:</p>
 <h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>6.245.2. supports_discard</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
-A <a href="#types/storage_domain">storage domain</a> supports discard if and only
+A <a href="#types/storage_domain">storage domain</a> only supports discard
 if all of the <a href="#types/logical_unit">logical unit</a>s that it is built
-from support discard, i.e each logical unit&#8217;s <code>discard_max_size</code> value
-is bigger than 0.
-This is a necessary but not a sufficient condition for a virtual
-machine&#8217;s disk that is a part of this storage domain to have its
-<code>pass_discard</code> attribute enabled.
+from support discard; that is, if each logical unit&#8217;s <code>discard_max_size</code> value
+is greater than 0.
+This is one of the conditions necessary for a virtual disk in this
+storage domain to have its <code>pass_discard</code> attribute enabled.
 Since the engine cannot check if the underlying block device supports
 discard for file storage domains, this attribute will not be reported
 for them at all.</p>
@@ -58920,13 +58919,12 @@ for them at all.</p>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
-A <a href="#types/storage_domain">storage domain</a> supports the property that
-discard zeroes the data if and only if all of the
-<a href="#types/logical_unit">logical unit</a>s that it is built from support it,
-i.e each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.
-This is a necessary but not a sufficient condition for a virtual
-machine&#8217;s disk that is a part of this storage domain to have both
-<code>wipe_after_delete</code> and <code>pass_discard</code> attributes enabled.
+A <a href="#types/storage_domain">storage domain</a> only supports the property that
+discard zeroes the data if all of the
+<a href="#types/logical_unit">logical unit</a>s that it is built from support it;
+that is, if each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.
+This is one of the conditions necessary for a virtual disk in this
+storage domain to have both <code>wipe_after_delete</code> and <code>pass_discard</code> attributes enabled.
 Since the engine cannot check if the underlying block device supports
 the property that discard zeroes the data for file storage domains,
 this attribute will not be reported for them at all.</p>
@@ -58961,12 +58959,12 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data_center</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/data_center">DataCenter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to link to the data center that the storage domain is attached to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the data center that the storage domain is attached to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data_centers</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/data_center">DataCenter[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is a set of links to the data centers that the storage domain is attached to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A set of links to the data centers that the storage domain is attached to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profiles</code></p></td>
@@ -59024,8 +59022,8 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 <div class="sect3">
 <h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>6.245.5. data_center</h4>
 <div class="paragraph">
-<p>This is used to link to the data center that the storage domain is attached to. It is preserved for backwards
-compatibility, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
+<p>A link to the data center that the storage domain is attached to. This is preserved for backwards
+compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
 the <code>dataCenters</code> element instead.</p>
 </div>
 </div>
@@ -63456,7 +63454,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-13 10:20:44 UTC
+Last updated 2017-02-13 10:28:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
