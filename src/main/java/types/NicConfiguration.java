@@ -18,10 +18,66 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The type describes the configuration of a virtual network interface.
+ *
+ * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+ * @date 14 Feb 2017
+ * @status added
+ */
 @Type
 public interface NicConfiguration {
+    /**
+     * Network interface name.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
     String name();
+
+    /**
+     * IPv4 address details.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
     Ip ip();
+
+    /**
+     * IPv4 boot protocol.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
     BootProtocol bootProtocol();
+
+    /**
+     * IPv6 address details.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
+    Ip ipv6();
+
+    /**
+     * IPv6 boot protocol.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
+    BootProtocol ipv6BootProtocol();
+
+    /**
+     * Specifies whether the network interface should be activated on the virtual machine guest operating system boot.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 14 Feb 2017
+     * @status added
+     */
     Boolean onBoot();
 }
