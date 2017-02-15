@@ -571,50 +571,73 @@ public interface HostService extends MeasurableService {
      *
      * [source,python]
      * ----
-     * host.setupnetworks(
-     *   params.Action(
-     *     modified_bonds=params.HostNics(
-     *       host_nic=[
-     *         params.HostNIC(
-     *           name="bond0",
-     *           bonding=params.Bonding(
-     *             options=params.Options(
-     *               option=[
-     *                 params.Option(name="mode", value="4"),
-     *                 params.Option(name="miimon", value="100"),
-     *               ],
+     * # Find the service that manages the collection of hosts:
+     * hosts_service = connection.system_service().hosts_service()
+     *
+     * # Find the host:
+     * host = hosts_service.list(search='name=myhost')[0]
+     *
+     * # Find the service that manages the host:
+     * host_service = hosts_service.host_service(host.id)
+     *
+     * # Configure the network adding a bond with two slaves and attaching it to a
+     * # network with an static IP address:
+     * host_service.setup_networks(
+     *     modified_bonds=[
+     *         types.HostNic(
+     *             name='bond0',
+     *             bonding=types.Bonding(
+     *                 options=[
+     *                     types.Option(
+     *                         name='mode',
+     *                         value='4',
+     *                     ),
+     *                     types.Option(
+     *                         name='miimon',
+     *                         value='100',
+     *                     ),
+     *                 ],
+     *                 slaves=[
+     *                     types.HostNic(
+     *                         name='eth1',
+     *                     ),
+     *                     types.HostNic(
+     *                         name='eth2',
+     *                     ),
+     *                 ],
      *             ),
-     *             slaves=params.Slaves(
-     *               host_nic=[
-     *                 params.HostNIC(name="eth1"),
-     *                 params.HostNIC(name="eth2"),
-     *               ],
-     *             ),
-     *           ),
      *         ),
-     *       ],
-     *     ),
-     *     modified_network_attachments=params.NetworkAttachments(
-     *       network_attachment=[
-     *         params.NetworkAttachment(
-     *           network=params.Network(name="myvlan"),
-     *           host_nic=params.HostNIC(name="bond0"),
-     *           ip_address_assignments=params.IpAddressAssignments(
-     *             ip_address_assignment=[
-     *               params.IpAddressAssignment(
-     *                 assignment_method="static",
-     *                 ip=params.IP(
-     *                   address="192.168.122.10",
-     *                   netmask="255.255.255.0",
+     *     ],
+     *     modified_network_attachments=[
+     *         types.NetworkAttachment(
+     *             network=types.Network(
+     *                 name='myvlan',
+     *             ),
+     *             host_nic=types.HostNic(
+     *                 name='bond0',
+     *             ),
+     *             ip_address_assignments=[
+     *                 types.IpAddressAssignment(
+     *                     assignment_method=types.BootProtocol.STATIC,
+     *                     ip=types.Ip(
+     *                         address='192.168.122.10',
+     *                         netmask='255.255.255.0',
+     *                     ),
      *                 ),
-     *               ),
      *             ],
-     *           ),
+     *             dns_resolver_configuration=types.DnsResolverConfiguration(
+     *                 name_servers=[
+     *                     '1.1.1.1',
+     *                     '2.2.2.2',
+     *                 ],
+     *             ),
      *         ),
-     *       ],
-     *     ),
-     *   ),
+     *     ],
      * )
+     *
+     * # After modifying the network configuration it is very important to make it
+     * # persistent:
+     * host_service.commit_net_config()
      * ----
      *
      * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
