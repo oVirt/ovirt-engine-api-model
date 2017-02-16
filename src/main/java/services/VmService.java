@@ -293,7 +293,37 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Sets the global maintenance mode on the hosted engine virtual machine.
+     *
+     * This action has no effect on other virtual machines.
+     *
+     * Example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/maintenance
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <maintenance_enabled>true<maintenance_enabled/>
+     * </action>
+     * ----
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 16 Feb 2017
+     * @status added
+     */
     interface Maintenance {
+        /**
+         * Indicates if global maintenance should be enabled or disabled.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 16 Feb 2017
+         * @status added
+         */
         @In Boolean maintenanceEnabled();
 
         /**
