@@ -22,5 +22,6 @@ public enum NfsVersion {
     AUTO,
     V3,
     V4,
-    V4_1;
+    V4_1,
+    V4_2;
 }
