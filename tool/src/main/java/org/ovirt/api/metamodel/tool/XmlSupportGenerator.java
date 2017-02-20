@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 
@@ -146,59 +145,43 @@ public class XmlSupportGenerator extends JavaGenerator {
         // Generate methods to read one instance and a list of instances:
         generateStructReadOne(type);
         generateStructReadMany(type);
-        generateReadLink(type);
+        generateProcessLink(type);
 
         // End class:
         javaBuffer.addLine("}");
         javaBuffer.addLine();
     }
 
-    private void generateReadLink(StructType type) {
+    private void generateProcessLink(StructType type) {
         // Get the type and container name:
         JavaClassName containerName = javaTypes.getContainerName(type);
 
         javaBuffer.addImport(ArrayListWithHref.class);
         javaBuffer.addImport(ListWithHref.class);
         javaBuffer.addLine(
-            "private static void readLink(XmlReader reader, %1$s object) {",
+            "private static void processLink(%1$s object, String[] link) {",
             containerName.getSimpleName()
         );
-        javaBuffer.addLine("// Process the attributes:");
-        javaBuffer.addLine("String rel = null;");
-        javaBuffer.addLine("String href = null;");
-        javaBuffer.addLine("for (int i = 0; i < reader.getAttributeCount(); i++) {");
-        javaBuffer.addLine(  "String attrName = reader.getAttributeLocalName(i);");
-        javaBuffer.addLine(  "String attrVal = reader.getAttributeValue(i);");
-        javaBuffer.addLine(  "switch (attrName) {");
-        javaBuffer.addLine(  "case \"href\":");
-        javaBuffer.addLine(    "href = attrVal;");
-        javaBuffer.addLine(    "break;");
-        javaBuffer.addLine(  "case \"rel\":");
-        javaBuffer.addLine(    "rel = attrVal;");
-        javaBuffer.addLine(    "break;");
-        javaBuffer.addLine(  "default:");
-        javaBuffer.addLine(    "reader.skip();");
-        javaBuffer.addLine(    "break;");
-        javaBuffer.addLine(  "}");  // End switch
-        javaBuffer.addLine("}");  // End for cycle
-
         List<Link> links = type.links()
             .sorted()
             .filter(link -> link.getType() instanceof ListType)
             .collect(toList());
 
         if (!links.isEmpty()) {
+            javaBuffer.addLine("// Process the attributes:");
+            javaBuffer.addLine("String rel = link[0];");
+            javaBuffer.addLine("String href = link[1];");
             javaBuffer.addLine("if (href != null) {");
-            javaBuffer.addLine(  "ListWithHref list = new ArrayListWithHref();");
-            javaBuffer.addLine(  "list.href(href);");
             javaBuffer.addLine(  "switch (rel) {");
             links.forEach(
                 link -> {
                     String field = javaNames.getJavaMemberStyleName(link.getName());
                     String rel = link.getName().words().map(String::toLowerCase).collect(joining());
                     javaBuffer.addLine("case \"%1$s\":", rel);
-                    javaBuffer.addLine(  "object.%1$s(list);", field);
-                    javaBuffer.addLine(  "break;");
+                    javaBuffer.addLine("ListWithHref list = new ArrayListWithHref(object.%1$s());", field);
+                    javaBuffer.addLine("list.href(href);");
+                    javaBuffer.addLine("object.%1$s(list);", field);
+                    javaBuffer.addLine("break;");
                 }
             );
             javaBuffer.addLine(  "default:");
@@ -206,8 +189,6 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine(  "}");  // End switch
             javaBuffer.addLine("}"); // End if
         }
-        javaBuffer.addLine("reader.skip();");
-
         javaBuffer.addLine("}");  // End method
     }
 
@@ -256,6 +237,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine();
         }
         javaBuffer.addLine(  "// Process the inner elements:");
+        javaBuffer.addLine(  "List<String[]> links = new ArrayList<>();");
         javaBuffer.addLine(  "reader.next();");
         javaBuffer.addLine(  "while (reader.forward()) {");
         if (!asElements.isEmpty()) {
@@ -265,8 +247,14 @@ public class XmlSupportGenerator extends JavaGenerator {
                 .sorted()
                 .forEach(this::generateStructReadMemberFromElement);
             javaBuffer.addLine("case \"link\":");
-            javaBuffer.addLine(  "readLink(reader, object);");
-            javaBuffer.addLine(  "break;");
+            javaBuffer.addLine("// Process the attributes:");
+            javaBuffer.addLine("String rel = reader.getAttributeValue(\"rel\");");
+            javaBuffer.addLine("String href = reader.getAttributeValue(\"href\");");
+            javaBuffer.addLine("if (rel != null && href != null) {");
+            javaBuffer.addLine(  "links.add(new String[]{rel, href});");
+            javaBuffer.addLine("}");
+            javaBuffer.addLine("reader.next();");
+            javaBuffer.addLine("break;");
             javaBuffer.addLine("default:");
             javaBuffer.addLine(  "reader.skip();");
             javaBuffer.addLine(  "break;");
@@ -276,6 +264,14 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine("reader.skip();");
         }
         javaBuffer.addLine("}");
+
+        // Process the links:
+        javaBuffer.addLine("if (links != null) {");
+        javaBuffer.addLine(  "for (String[] link : links) {");
+        javaBuffer.addLine(    "processLink(object, link);");
+        javaBuffer.addLine(  "}");
+        javaBuffer.addLine("}");
+
         javaBuffer.addLine();
         javaBuffer.addLine(  "// Discard the end tag:");
         javaBuffer.addLine(  "reader.next();");

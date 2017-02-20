@@ -837,6 +837,23 @@ public class XmlReaderTest {
     }
 
     /**
+     * Test that if there is link and element for some attribute, we read both values for that element, the 'href' and
+     * the value of the element.
+     */
+    @Test
+    public void testLinkHrefAttributeAndElement() {
+        V4Vm vm = objectFromXml(
+            "<vm><permissions><permission id=\"456\"/></permissions><link rel=\"permissions\" href=\"123\"/></vm>"
+        );
+        assertNotNull(vm);
+        assertNotNull(vm.permissions());
+        assertTrue(vm.permissions() instanceof ListWithHref);
+        assertTrue(vm.permissions().size() > 0);
+        assertEquals("123", ((ListWithHref) vm.permissions()).href());
+        assertEquals("456", vm.permissions().get(0).id());
+    }
+
+    /**
      * Checks that link element is read correctly if href is not present
      */
     @Test

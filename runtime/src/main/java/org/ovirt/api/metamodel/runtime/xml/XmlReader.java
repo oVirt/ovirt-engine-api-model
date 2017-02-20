@@ -193,6 +193,15 @@ public class XmlReader implements AutoCloseable {
     }
 
     /**
+     * Returns the value of the attribute corresponding to the given name.
+     *
+     * @param name the name of the attribute
+     */
+    public String getAttributeValue(String name) {
+        return reader.getAttributeValue(null, name);
+    }
+
+    /**
      * Gets the next parsing event.
      */
     public int next() {
