@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,5 +23,14 @@ public enum NfsVersion {
     V3,
     V4,
     V4_1,
+
+    /**
+     * NFS 4.2.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 20 Feb 2017
+     * @status added
+     * @since 4.1.1
+     */
     V4_2;
 }
