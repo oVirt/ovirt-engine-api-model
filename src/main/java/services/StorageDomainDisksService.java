@@ -38,7 +38,8 @@ public interface StorageDomainDisksService {
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
      * compatibility. It will be removed in the future. To add a new disk use the <<services/disks/methods/add, add>>
      * operation of the service that manages the disks of the system. To register an unregistered disk use the
-     * <<services/storage_domain_disks/methods/register, register>> operation of the service that manages that disk.
+     * <<services/attached_storage_domain_disk/methods/register, register>> operation of the service that manages
+     * that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 14 Sep 2016

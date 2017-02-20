@@ -42,7 +42,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      * Copies a disk to the specified storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To copy a disk use the <<services/disks/methods/copy, copy>>
+     * compatibility. It will be removed in the future. To copy a disk use the <<services/disk/methods/copy, copy>>
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -75,7 +75,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
      * compatibility. It will be removed in the future. To update a disk use the
-     * <<services/disks/methods/update, update>> operation of the service that manages that disk.
+     * <<services/disk/methods/update, update>> operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 4 Jan 2017
@@ -97,7 +97,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      * Exports a disk to an export storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To export a disk use the <<services/disks/methods/export, export>>
+     * compatibility. It will be removed in the future. To export a disk use the <<services/disk/methods/export, export>>
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -137,7 +137,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      * Moves a disk to another storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To move a disk use the <<services/disks/methods/move, move>>
+     * compatibility. It will be removed in the future. To move a disk use the <<services/disk/methods/move, move>>
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -169,7 +169,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      * Removes a disk.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To remove a disk use the <<services/disks/methods/remove, remove>>
+     * compatibility. It will be removed in the future. To remove a disk use the <<services/disk/methods/remove, remove>>
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -183,7 +183,7 @@ public interface AttachedStorageDomainDiskService extends MeasurableService {
      * Sparsify the disk.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To remove a disk use the <<services/disks/methods/remove, remove>>
+     * compatibility. It will be removed in the future. To remove a disk use the <<services/disk/methods/remove, remove>>
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
