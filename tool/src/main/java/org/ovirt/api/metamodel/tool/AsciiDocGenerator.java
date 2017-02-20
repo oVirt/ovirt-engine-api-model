@@ -22,8 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.enterprise.context.ApplicationScoped;
@@ -56,7 +58,7 @@ import org.ovirt.api.metamodel.concepts.Type;
 public class AsciiDocGenerator {
     // The regular expression to detect internal cross references:
     private static final Pattern CROSS_REFERENCE_RE = Pattern.compile(
-        "<<(?<id>(\\w|/)+)(?<rest>,[^>]*)?>>",
+        "<<\\s*(?<id>(\\w|/)+)\\s*(?<rest>,[^>]*)?>>",
         Pattern.MULTILINE
     );
 
@@ -90,12 +92,18 @@ public class AsciiDocGenerator {
         docBuffer = new AsciiDocBuffer();
         docBuffer.setName("model");
         documentModel(model);
+
+        // Write the AsciiDoc to a file:
         try {
             docBuffer.write(outDir);
         }
         catch (IOException exception) {
             exception.printStackTrace();
         }
+
+        // Check the generated AsciiDoc:
+        String doc = docBuffer.toString();
+        checkCrossReferences(doc);
     }
 
     public void documentModel(Model model) {
@@ -574,6 +582,37 @@ public class AsciiDocGenerator {
             return "DELETE";
         default:
             return "POST";
+        }
+    }
+
+    /**
+     * Checks that the targets of cross references exist.
+     */
+    private void checkCrossReferences(String doc) {
+        // Find all the section ids:
+        Set<String> sectionIds = new HashSet();
+        Matcher sectionIdMatcher = SECTION_ID_RE.matcher(doc);
+        while (sectionIdMatcher.find()) {
+            String id = sectionIdMatcher.group("id");
+            sectionIds.add(id);
+        }
+
+        // Find the targets of all the cross references:
+        Set<String> crossIds = new HashSet<>();
+        Matcher crossIdMatcher = CROSS_REFERENCE_RE.matcher(doc);
+        while (crossIdMatcher.find()) {
+            String id = crossIdMatcher.group("id");
+            crossIds.add(id);
+        }
+
+        // Remove the section ids from the cross reference targets. This way the resulting set will contain only the
+        // cross reference targets that don't have a corresponding section id.
+        crossIds.removeAll(sectionIds);
+        if (!crossIds.isEmpty()) {
+            crossIds.stream().sorted().forEach(id ->
+                System.err.printf("There is no section id for cross reference \"%s\".\n", id)
+            );
+            throw new IllegalStateException("There are incorrect cross references.");
         }
     }
 }
