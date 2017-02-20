@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * A vNIC profile is a collection of settings that can be applied to individual <<types/nics,NIC>>.
+ * A vNIC profile is a collection of settings that can be applied to individual <<types/nic,NIC>>.
  *
  * @author Dominik Holler <dholler@redhat.com>
  * @date 20 Dec 2016
