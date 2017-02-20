@@ -736,7 +736,7 @@ public interface VmService extends MeasurableService {
      * the SPICE protocol.
      *
      * In order to obtain an authentication token for a specific protocol, for
-     * example for VNC, use the `ticket` method of the <<services/graphics_console,
+     * example for VNC, use the `ticket` method of the <<services/vm_graphics_console,
      * service>> that manages the graphics consoles of the virtual machine, sending
      * a request like this:
      *
