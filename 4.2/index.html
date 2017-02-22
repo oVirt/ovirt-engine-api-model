@@ -8033,7 +8033,7 @@ that manages all the disks of the system</a>, or the <a href="#services/disk">se
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disks/methods/copy">copy</a>
+compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disk/methods/copy">copy</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -8084,7 +8084,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To export a disk use the <a href="#services/disks/methods/export">export</a>
+compatibility. It will be removed in the future. To export a disk use the <a href="#services/disk/methods/export">export</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -8160,7 +8160,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To move a disk use the <a href="#services/disks/methods/move">move</a>
+compatibility. It will be removed in the future. To move a disk use the <a href="#services/disk/methods/move">move</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -8223,7 +8223,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disks/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -8243,7 +8243,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disks/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -8264,7 +8264,7 @@ operation of the service that manages that disk.
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To update a disk use the
-<a href="#services/disks/methods/update">update</a> operation of the service that manages that disk.
+<a href="#services/disk/methods/update">update</a> operation of the service that manages that disk.
 </td>
 </tr>
 </table>
@@ -8339,7 +8339,8 @@ compatibility. It will be removed in the future. To update a disk use the
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To add a new disk use the <a href="#services/disks/methods/add">add</a>
 operation of the service that manages the disks of the system. To register an unregistered disk use the
-<a href="#services/storage_domain_disks/methods/register">register</a> operation of the service that manages that disk.
+<a href="#services/attached_storage_domain_disk/methods/register">register</a> operation of the service that manages
+that disk.
 </td>
 </tr>
 </table>
@@ -17207,50 +17208,73 @@ attributes instead of XML elements. In particular the <code>options</code> and <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-python" data-lang="python">host.setupnetworks(
-  params.Action(
-    modified_bonds=params.HostNics(
-      host_nic=[
-        params.HostNIC(
-          name="bond0",
-          bonding=params.Bonding(
-            options=params.Options(
-              option=[
-                params.Option(name="mode", value="4"),
-                params.Option(name="miimon", value="100"),
-              ],
+<pre class="highlightjs highlight"><code class="language-python" data-lang="python"># Find the service that manages the collection of hosts:
+hosts_service = connection.system_service().hosts_service()
+
+# Find the host:
+host = hosts_service.list(search='name=myhost')[0]
+
+# Find the service that manages the host:
+host_service = hosts_service.host_service(host.id)
+
+# Configure the network adding a bond with two slaves and attaching it to a
+# network with an static IP address:
+host_service.setup_networks(
+    modified_bonds=[
+        types.HostNic(
+            name='bond0',
+            bonding=types.Bonding(
+                options=[
+                    types.Option(
+                        name='mode',
+                        value='4',
+                    ),
+                    types.Option(
+                        name='miimon',
+                        value='100',
+                    ),
+                ],
+                slaves=[
+                    types.HostNic(
+                        name='eth1',
+                    ),
+                    types.HostNic(
+                        name='eth2',
+                    ),
+                ],
             ),
-            slaves=params.Slaves(
-              host_nic=[
-                params.HostNIC(name="eth1"),
-                params.HostNIC(name="eth2"),
-              ],
-            ),
-          ),
         ),
-      ],
-    ),
-    modified_network_attachments=params.NetworkAttachments(
-      network_attachment=[
-        params.NetworkAttachment(
-          network=params.Network(name="myvlan"),
-          host_nic=params.HostNIC(name="bond0"),
-          ip_address_assignments=params.IpAddressAssignments(
-            ip_address_assignment=[
-              params.IpAddressAssignment(
-                assignment_method="static",
-                ip=params.IP(
-                  address="192.168.122.10",
-                  netmask="255.255.255.0",
+    ],
+    modified_network_attachments=[
+        types.NetworkAttachment(
+            network=types.Network(
+                name='myvlan',
+            ),
+            host_nic=types.HostNic(
+                name='bond0',
+            ),
+            ip_address_assignments=[
+                types.IpAddressAssignment(
+                    assignment_method=types.BootProtocol.STATIC,
+                    ip=types.Ip(
+                        address='192.168.122.10',
+                        netmask='255.255.255.0',
+                    ),
                 ),
-              ),
             ],
-          ),
+            dns_resolver_configuration=types.DnsResolverConfiguration(
+                name_servers=[
+                    '1.1.1.1',
+                    '2.2.2.2',
+                ],
+            ),
         ),
-      ],
-    ),
-  ),
-)</code></pre>
+    ],
+)
+
+# After modifying the network configuration it is very important to make it
+# persistent:
+host_service.commit_net_config()</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -26554,6 +26578,12 @@ send a request like this (note that you have to pass permit id):</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -26561,6 +26591,24 @@ send a request like this (note that you have to pass permit id):</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/snapshot/methods/remove/parameters/all_content"><a class="anchor" href="#services/snapshot/methods/remove/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the attribute <code>initialization.configuration.data</code> is excluded.</p>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of the snapshot with id <code>456</code> of the virtual machine
+with id <code>123</code> send a request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true</pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/snapshot/methods/restore"><a class="anchor" href="#services/snapshot/methods/restore"></a>5.168.3. restore <span class="small">POST</span></h4>
@@ -27053,6 +27101,12 @@ request like this:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -27066,6 +27120,24 @@ request like this:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/snapshots/methods/list/parameters/all_content"><a class="anchor" href="#services/snapshots/methods/list/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all the attributes of the virtual machine snapshot should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the attribute <code>initialization.configuration.data</code> is excluded.</p>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of the virtual machine with id <code>123</code> snapshots send a
+request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/snapshots?all_content=true</pre>
+</div>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/snapshots/methods/list/parameters/max"><a class="anchor" href="#services/snapshots/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
@@ -28573,7 +28645,7 @@ that manages all the disks of the system</a>, or the <a href="#services/disk">se
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disks/methods/copy">copy</a>
+compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disk/methods/copy">copy</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -28624,7 +28696,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To export a disk use the <a href="#services/disks/methods/export">export</a>
+compatibility. It will be removed in the future. To export a disk use the <a href="#services/disk/methods/export">export</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -28700,7 +28772,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To move a disk use the <a href="#services/disks/methods/move">move</a>
+compatibility. It will be removed in the future. To move a disk use the <a href="#services/disk/methods/move">move</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -28757,7 +28829,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disks/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -28777,7 +28849,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disks/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -28798,7 +28870,7 @@ operation of the service that manages that disk.
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To update a disk use the
-<a href="#services/disks/methods/update">update</a> operation of the service that manages that disk.
+<a href="#services/disk/methods/update">update</a> operation of the service that manages that disk.
 </td>
 </tr>
 </table>
@@ -28873,7 +28945,8 @@ compatibility. It will be removed in the future. To update a disk use the
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To add a new disk use the <a href="#services/disks/methods/add">add</a>
 operation of the service that manages the disks of the system. To register an unregistered disk use the
-<a href="#services/storage_domain_disks/methods/register">register</a> operation of the service that manages that disk.
+<a href="#services/attached_storage_domain_disk/methods/register">register</a> operation of the service that manages
+that disk.
 </td>
 </tr>
 </table>
@@ -33891,7 +33964,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maintenance</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the global maintenance mode on the hosted engine virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>migrate</code></p></td>
@@ -34403,6 +34476,27 @@ from an external console.</p>
 </div>
 <div class="sect3">
 <h4 id="services/vm/methods/maintenance"><a class="anchor" href="#services/vm/methods/maintenance"></a>5.225.9. maintenance <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Sets the global maintenance mode on the hosted engine virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>This action has no effect on other virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/maintenance</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;maintenance_enabled&gt;true&lt;maintenance_enabled/&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 705. Parameters summary</caption>
 <colgroup>
@@ -34430,7 +34524,7 @@ from an external console.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maintenance_enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if global maintenance should be enabled or disabled.</p></td>
 </tr>
 </tbody>
 </table>
@@ -35063,7 +35157,7 @@ the SPICE protocol.</p>
 </div>
 <div class="paragraph">
 <p>In order to obtain an authentication token for a specific protocol, for
-example for VNC, use the <code>ticket</code> method of the <a href="#services/graphics_console">service</a> that manages the graphics consoles of the virtual machine, sending
+example for VNC, use the <code>ticket</code> method of the <a href="#services/vm_graphics_console">service</a> that manages the graphics consoles of the virtual machine, sending
 a request like this:</p>
 </div>
 <div class="listingblock">
@@ -40124,8 +40218,11 @@ that are controlled by this rule.</p></td>
 <div class="sect3">
 <h4 id="types/affinity_rule/attributes/enabled"><a class="anchor" href="#types/affinity_rule/attributes/enabled"></a>6.5.1. enabled</h4>
 <div class="paragraph">
-<p>Specifies whether the affinity group uses this rule or not. This argument is optional and is considered
-to be <code>true</code> when it is not provided.</p>
+<p>Specifies whether the affinity group uses this rule or not.
+This attribute is optional during creation and is considered to be <code>true</code> when it is not provided.
+In case this attribute is not provided to the update operation, it is considered to be <code>true</code> if
+AffinityGroup <code>positive</code> attribute is set as well.
+The backend <code>enabled</code> value will be preserved when both <code>enabled</code> and <code>positive</code> attributes are missing.</p>
 </div>
 </div>
 <div class="sect3">
@@ -52469,6 +52566,10 @@ This is a example of the XML representation:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>default_route</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default gateway and the DNS resolver configuration of the host will be taken from this network.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>display</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -52490,6 +52591,23 @@ This is a example of the XML representation:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/network_usage/values/default_route"><a class="anchor" href="#types/network_usage/values/default_route"></a>6.158.1. default_route</h4>
+<div class="paragraph">
+<p>The default gateway and the DNS resolver configuration of the host will be taken from this network.</p>
+</div>
+<div class="paragraph">
+<p>If this network is attached to the host, then the DNS resolver configuration will be taken from the
+<code>dns_resolver_configuration</code> attribute of the network attachment. If there is no <code>dns_resolver_configuration</code>
+attribute in this network attachment, then they will be taken from the <code>dns_resolver_configuration</code> of the
+network itself. If <code>dns_resolver_configuration</code> attribute isn&#8217;t present even there, DNS resolver configuration
+won&#8217;t be set.</p>
+</div>
+<div class="paragraph">
+<p>If you set this flag on a network, then the the default gateway for the host will be taken from the <code>gateway</code>
+attribute of the <code>ip_address_assignment</code> of the network attachment.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/nfs_profile_detail"><a class="anchor" href="#types/nfs_profile_detail"></a>6.159. NfsProfileDetail <span class="small">struct</span></h3>
@@ -52552,8 +52670,18 @@ This is a example of the XML representation:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4_1</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4_2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 4.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/nfs_version/values/v4_2"><a class="anchor" href="#types/nfs_version/values/v4_2"></a>6.160.1. v4_2</h4>
+<div class="paragraph">
+<p>NFS 4.2.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/nic"><a class="anchor" href="#types/nic"></a>6.161. Nic <span class="small">struct</span></h3>
@@ -52748,6 +52876,9 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 <div class="sect2">
 <h3 id="types/nic_configuration"><a class="anchor" href="#types/nic_configuration"></a>6.162. NicConfiguration <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>The type describes the configuration of a virtual network interface.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1021. Attributes summary</caption>
 <colgroup>
@@ -52766,22 +52897,32 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boot_protocol</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boot_protocol">BootProtocol</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv4 boot protocol.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ip</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/ip">Ip</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv4 address details.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ipv6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/ip">Ip</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv6 address details.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ipv6_boot_protocol</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boot_protocol">BootProtocol</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPv6 boot protocol.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network interface name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>on_boot</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the network interface should be activated on the virtual machine guest operating system boot.</p></td>
 </tr>
 </tbody>
 </table>
@@ -53049,7 +53190,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/numa_node_pin"><a class="anchor" href="#types/numa_node_pin"></a>6.166. NumaNodePin <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Represents pinning of a virtual NUMA node to a physical NUMA node.</p>
+<p>Represents the pinning of a virtual NUMA node to a physical NUMA node.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1026. Attributes summary</caption>
@@ -53069,20 +53210,32 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host_numa_node</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/numa_node">NumaNode</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated - has no function.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>index</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Index of a physical NUMA node to which the virtual NUMA node is pinned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The index of a physical NUMA node to which the virtual NUMA node is pinned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pinned</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated - should always be true.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/numa_node_pin/attributes/host_numa_node"><a class="anchor" href="#types/numa_node_pin/attributes/host_numa_node"></a>6.166.1. host_numa_node</h4>
+<div class="paragraph">
+<p>Deprecated. Has no function.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/numa_node_pin/attributes/pinned"><a class="anchor" href="#types/numa_node_pin/attributes/pinned"></a>6.166.2. pinned</h4>
+<div class="paragraph">
+<p>Deprecated. Should always be <code>true</code>.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/numa_tune_mode"><a class="anchor" href="#types/numa_tune_mode"></a>6.167. NumaTuneMode <span class="small">enum</span></h3>
@@ -53449,8 +53602,8 @@ This statistics sub-collection is read-only.
 <p>Indicates whether the provider is read-only.</p>
 </div>
 <div class="paragraph">
-<p>A read-only provider does not allow adding, modifying or deleting of networks or subnets. Port-related operations
-are allowed, as they are required for the provisioning of virtual NICs.</p>
+<p>A read-only provider does not allow adding, modifying, or deleting of networks or subnets. Port-related
+operations are allowed, as they are required for the provisioning of virtual NICs.</p>
 </div>
 </div>
 <div class="sect3">
@@ -53500,7 +53653,7 @@ are allowed, as they are required for the provisioning of virtual NICs.</p>
 <div class="paragraph">
 <p>The OpenStack network provider can either be implemented by OpenStack Neutron, in which case the Neutron
 agent is automatically installed on the hosts, or it can be an external provider implementing the
-OpenStack API, in which case the virtual interface driver will be a custom solution installed manually.</p>
+OpenStack API, in which case the virtual interface driver is a custom solution installed manually.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1036. Values summary</caption>
@@ -53536,7 +53689,7 @@ The virtual interface driver in this case is implemented by the external provide
 <h4 id="types/open_stack_network_provider_type/values/neutron"><a class="anchor" href="#types/open_stack_network_provider_type/values/neutron"></a>6.172.2. neutron</h4>
 <div class="paragraph">
 <p>Indicates that the provider is OpenStack Neutron.
-The standard OpenStack Neutron agent will be used as the virtual interface driver.</p>
+The standard OpenStack Neutron agent is used as the virtual interface driver.</p>
 </div>
 </div>
 </div>
@@ -54010,7 +54163,7 @@ The standard OpenStack Neutron agent will be used as the virtual interface drive
 <div class="sect2">
 <h3 id="types/operating_system"><a class="anchor" href="#types/operating_system"></a>6.179. OperatingSystem <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Information describing the operating system. Used for virtual machines and hosts.</p>
+<p>Information describing the operating system. This is used for both virtual machines and hosts.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1047. Attributes summary</caption>
@@ -54055,7 +54208,7 @@ The standard OpenStack Neutron agent will be used as the virtual interface drive
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reported_kernel_cmdline</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Host kernel command line as reported by a running host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host kernel command line as reported by a running host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
@@ -54075,15 +54228,15 @@ The standard OpenStack Neutron agent will be used as the virtual interface drive
 <p>A custom part of the host kernel command line. This will be merged with the existing kernel command line.</p>
 </div>
 <div class="paragraph">
-<p>You must re-install and then reboot the host to apply the changes implemented by this attribute.</p>
+<p>You must reinstall and then reboot the host to apply the changes implemented by this attribute.</p>
 </div>
 <div class="paragraph">
-<p>Parameters merging: During each host deploy procedure, kernel parameters that were added
+<p>During each host deploy procedure, kernel parameters that were added
 in the previous host deploy procedure are removed using
-<code>grubby --update-kernel DEFAULT --remove-args &lt;previous_custom_params&gt;</code> and the current
+<code>grubby --update-kernel DEFAULT --remove-args &lt;previous_custom_params&gt;</code>, and the current
 kernel command line customization is applied using
-<code>grubby --update-kernel DEFAULT --args &lt;custom_params&gt;</code>. The Engine internally keeps track of the
-last applied kernel parameters customization.</p>
+<code>grubby --update-kernel DEFAULT --args &lt;custom_params&gt;</code>. The Manager internally keeps track of the
+last-applied kernel parameters customization.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -54101,10 +54254,10 @@ This attribute is currently only used for hosts.
 <div class="sect3">
 <h4 id="types/operating_system/attributes/reported_kernel_cmdline"><a class="anchor" href="#types/operating_system/attributes/reported_kernel_cmdline"></a>6.179.2. reported_kernel_cmdline</h4>
 <div class="paragraph">
-<p>Host kernel command line as reported by a running host.</p>
+<p>The host kernel command line as reported by a running host.</p>
 </div>
 <div class="paragraph">
-<p>Read-only attribute. Attempts to change this attribute are silently ignored.</p>
+<p>This is a read-only attribute. Attempts to change this attribute are silently ignored.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -54634,15 +54787,15 @@ This attribute is currently only used for hosts.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fence proxy is selected from the same cluster as fenced host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The fence proxy is selected from the same cluster as the fenced host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>dc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fence proxy is selected from the same data center as fenced host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The fence proxy is selected from the same data center as the fenced host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>other_dc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fence proxy is selected from a different data center than fenced host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The fence proxy is selected from a different data center than the fenced host.</p></td>
 </tr>
 </tbody>
 </table>
@@ -54650,7 +54803,7 @@ This attribute is currently only used for hosts.
 <div class="sect2">
 <h3 id="types/policy_unit_type"><a class="anchor" href="#types/policy_unit_type"></a>6.190. PolicyUnitType <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>This enum holds the types of all internal policy units types</p>
+<p>Holds the types of all internal policy unit types.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1060. Values summary</caption>
@@ -56497,7 +56650,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/session"><a class="anchor" href="#types/session"></a>6.223. Session <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Describes user session to a virtual machine.</p>
+<p>Describes a user session to a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1099. Attributes summary</caption>
@@ -56537,7 +56690,7 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ip</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/ip">Ip</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IP address user is connected from.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IP address the user is connected from.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -56547,7 +56700,7 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>protocol</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Protocol used by the session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The protocol used by the session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -56557,13 +56710,13 @@ an administrator.</p>
 <p>Indicates if this is a console session.</p>
 </div>
 <div class="paragraph">
-<p>The value will be <code>true</code> for console users: SPICE or VNC, <code>false</code> for others: e.g. RDP, SSH.</p>
+<p>The value will be <code>true</code> for console users (SPICE or VNC), and <code>false</code> for others (such as RDP or SSH).</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/session/attributes/ip"><a class="anchor" href="#types/session/attributes/ip"></a>6.223.2. ip</h4>
 <div class="paragraph">
-<p>IP address user is connected from.</p>
+<p>The IP address the user is connected from.</p>
 </div>
 <div class="paragraph">
 <p>Currently only available for console users.</p>
@@ -56572,10 +56725,10 @@ an administrator.</p>
 <div class="sect3">
 <h4 id="types/session/attributes/protocol"><a class="anchor" href="#types/session/attributes/protocol"></a>6.223.3. protocol</h4>
 <div class="paragraph">
-<p>Protocol used by the session.</p>
+<p>The protocol used by the session.</p>
 </div>
 <div class="paragraph">
-<p>Currently not used, intended for info about how is user connected: SPICE, VNC, SSH, RDP.</p>
+<p>Currently not used. Intended for info about how the user is connected: through SPICE, VNC, SSH, or RDP.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1100. Links summary</caption>
@@ -56595,12 +56748,12 @@ an administrator.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/user">User</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User related to this session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user related to this session.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link to virtual machine related to this session.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the virtual machine related to this session.</p></td>
 </tr>
 </tbody>
 </table>
@@ -56608,10 +56761,10 @@ an administrator.</p>
 <div class="sect3">
 <h4 id="types/session/links/user"><a class="anchor" href="#types/session/links/user"></a>6.223.4. user</h4>
 <div class="paragraph">
-<p>User related to this session.</p>
+<p>The user related to this session.</p>
 </div>
 <div class="paragraph">
-<p>If user is a console user, it is a link to real oVirt user. Otherwise only username is provided.</p>
+<p>If the user is a console user, this is a link to the real oVirt user. Otherwise, only the user name is provided.</p>
 </div>
 </div>
 </div>
@@ -56709,6 +56862,9 @@ get fenced.</p>
 <h3 id="types/snapshot"><a class="anchor" href="#types/snapshot"></a>6.226. Snapshot <span class="small">struct</span></h3>
 <div class="paragraph">
 <p>Represents a snapshot object.</p>
+</div>
+<div class="paragraph">
+<p>Example XML representation:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -57569,7 +57725,7 @@ is used to track history.</p>
 <div class="sect2">
 <h3 id="types/special_objects"><a class="anchor" href="#types/special_objects"></a>6.229. SpecialObjects <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>This type contains references to special objects, like the blank template and the root of the hierarchy of tags.</p>
+<p>This type contains references to special objects, such as blank templates and the root of a hierarchy of tags.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1107. Links summary</caption>
@@ -57589,12 +57745,12 @@ is used to track history.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>blank_template</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/template">Template</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the blank template.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to a blank template.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>root_tag</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/tag">Tag</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the root of the hierarchy of tags.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the root of a hierarchy of tags.</p></td>
 </tr>
 </tbody>
 </table>
@@ -58418,7 +58574,7 @@ the system was unexpectedly restarted.</p>
 <p>Represents a storage server connection.</p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Example XML representation:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -58828,13 +58984,12 @@ deleted:</p>
 <h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>6.245.2. supports_discard</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
-A <a href="#types/storage_domain">storage domain</a> supports discard if and only
+A <a href="#types/storage_domain">storage domain</a> only supports discard
 if all of the <a href="#types/logical_unit">logical unit</a>s that it is built
-from support discard, i.e each logical unit&#8217;s <code>discard_max_size</code> value
-is bigger than 0.
-This is a necessary but not a sufficient condition for a virtual
-machine&#8217;s disk that is a part of this storage domain to have its
-<code>pass_discard</code> attribute enabled.
+from support discard; that is, if each logical unit&#8217;s <code>discard_max_size</code> value
+is greater than 0.
+This is one of the conditions necessary for a virtual disk in this
+storage domain to have its <code>pass_discard</code> attribute enabled.
 Since the engine cannot check if the underlying block device supports
 discard for file storage domains, this attribute will not be reported
 for them at all.</p>
@@ -58845,13 +59000,12 @@ for them at all.</p>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
-A <a href="#types/storage_domain">storage domain</a> supports the property that
-discard zeroes the data if and only if all of the
-<a href="#types/logical_unit">logical unit</a>s that it is built from support it,
-i.e each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.
-This is a necessary but not a sufficient condition for a virtual
-machine&#8217;s disk that is a part of this storage domain to have both
-<code>wipe_after_delete</code> and <code>pass_discard</code> attributes enabled.
+A <a href="#types/storage_domain">storage domain</a> only supports the property that
+discard zeroes the data if all of the
+<a href="#types/logical_unit">logical unit</a>s that it is built from support it;
+that is, if each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.
+This is one of the conditions necessary for a virtual disk in this
+storage domain to have both <code>wipe_after_delete</code> and <code>pass_discard</code> attributes enabled.
 Since the engine cannot check if the underlying block device supports
 the property that discard zeroes the data for file storage domains,
 this attribute will not be reported for them at all.</p>
@@ -58886,12 +59040,12 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data_center</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/data_center">DataCenter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is used to link to the data center that the storage domain is attached to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the data center that the storage domain is attached to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data_centers</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/data_center">DataCenter[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This is a set of links to the data centers that the storage domain is attached to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A set of links to the data centers that the storage domain is attached to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profiles</code></p></td>
@@ -58949,8 +59103,8 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 <div class="sect3">
 <h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>6.245.5. data_center</h4>
 <div class="paragraph">
-<p>This is used to link to the data center that the storage domain is attached to. It is preserved for backwards
-compatibility, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
+<p>A link to the data center that the storage domain is attached to. This is preserved for backwards
+compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
 the <code>dataCenters</code> element instead.</p>
 </div>
 </div>
@@ -60236,7 +60390,7 @@ by <code>native</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>namespace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace where user resides.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace where the user resides.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
@@ -60246,39 +60400,40 @@ by <code>native</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>principal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Same as <code>user_name</code> principal has different formats based on LDAP provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to <code>user_name</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username of the user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user&#8217;s username.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/user/attributes/namespace"><a class="anchor" href="#types/user/attributes/namespace"></a>6.263.1. namespace</h4>
 <div class="paragraph">
-<p>Namespace where user resides. When using the authorization provider that stores users in the LDAP
-(see <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-ldap">here</a> for details) this attribute equals to naming
-context of the LDAP. When using the built-in authorization provider that stores users in the database
-(see <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc">here</a> for details) this attribute is ignored.</p>
+<p>Namespace where the user resides. When using the authorization provider that stores users in the LDAP server,
+this attribute equals the naming context of the LDAP server.
+See <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-ldap" class="bare">https://github.com/oVirt/ovirt-engine-extension-aaa-ldap</a> for more information.
+When using the built-in authorization provider that stores users in the database this attribute is ignored.
+See <a href="https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc" class="bare">https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc</a> for more information.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/user/attributes/principal"><a class="anchor" href="#types/user/attributes/principal"></a>6.263.2. principal</h4>
 <div class="paragraph">
-<p>Same as <code>user_name</code> principal has different formats based on LDAP provider. In case of most LDAP providers it is
-value of the <code>uid</code> LDAP attribute. In case of Active Directory it is the user principal name (UPN).</p>
+<p>Similar to <code>user_name</code>. The format depends on the LDAP provider. With most LDAP providers it is the
+value of the <code>uid</code> LDAP attribute. In the case of Active Directory it is the User Principal Name (UPN).</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/user/attributes/user_name"><a class="anchor" href="#types/user/attributes/user_name"></a>6.263.3. user_name</h4>
 <div class="paragraph">
-<p>Username of the user. The format depends on authorization provider type. In case of most LDAP providers it is
-value of the <code>uid</code> LDAP attribute. In case of Active Directory it is the user principal name (UPN). <code>UPN</code> or
-<code>uid</code> must be followed by authorization provider name. For example in case of LDAP using <code>uid</code> attribute it is:
-<code>myuser@myextension-authz</code>. In case of Active Directory using <code>UPN</code> it is:
-<code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is required parameter when adding new user.</p>
+<p>The user&#8217;s username. The format depends on authorization provider type. In most LDAP providers it is the
+value of the <code>uid</code> LDAP attribute. In Active Directory it is the User Principal Name (UPN). <code>UPN</code> or
+<code>uid</code> must be followed by the authorization provider name. For example, in the case of LDAP&#8217;s <code>uid</code> attribute it is:
+<code>myuser@myextension-authz</code>. In the case of Active Directory using <code>UPN</code> it is:
+<code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is a required parameter when adding a new user.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1152. Links summary</caption>
@@ -62554,7 +62709,7 @@ Currently it supports only 2 option, but there is a plan to add more in the futu
 <div class="sect2">
 <h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a>6.284. VnicProfile <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nics">NIC</a>.</p>
+<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nic">NIC</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1178. Attributes summary</caption>
@@ -63381,7 +63536,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-27 16:43:20 UTC
+Last updated 2017-02-22 10:11:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
