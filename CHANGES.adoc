@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.30 / Feb 22 2017
+
+New features:
+
+* Add IPv6 details to the `NicConfiguration` type.
+
+* Add NFS 4.2 support.
+
 == 4.1.29 / Jan 27 2017
 
 This release includes some documentation improvements, but not change to
