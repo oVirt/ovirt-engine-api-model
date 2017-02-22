@@ -125,31 +125,6 @@ public interface StorageDomainVmService {
         @In Boolean collapseSnapshots();
 
         /**
-         * Mapping rules for virtual NIC profiles that will be applied during the import process.
-         *
-         * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
-         * @date 26 Sep 2016
-         * @status added
-         * @since 4.1
-         */
-        @In VnicProfileMapping[] vnicProfileMappings();
-
-        /**
-         * Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.
-         *
-         * A MAC address would be considered as a problematic one if one of the following is true:
-         *
-         * - It conflicts with a MAC address that is already allocated to a virtual machine in the target environment.
-         * - It's out of the range of the target MAC address pool.
-         *
-         * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
-         * @date 26 Sep 2016
-         * @status added
-         * @since 4.1
-         */
-        @In Boolean reassignBadMacs();
-
-        /**
          * Indicates if the import should be performed asynchronously.
          */
         @In Boolean async();
@@ -174,6 +149,31 @@ public interface StorageDomainVmService {
          * @since 4.1
          */
         @In Boolean allowPartialImport();
+
+        /**
+         * Mapping rules for virtual NIC profiles that will be applied during the import process.
+         *
+         * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+         * @date 26 Sep 2016
+         * @status added
+         * @since 4.1
+         */
+        @In VnicProfileMapping[] vnicProfileMappings();
+
+        /**
+         * Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.
+         *
+         * A MAC address would be considered as a problematic one if one of the following is true:
+         *
+         * - It conflicts with a MAC address that is already allocated to a virtual machine in the target environment.
+         * - It's out of the range of the target MAC address pool.
+         *
+         * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+         * @date 26 Sep 2016
+         * @status added
+         * @since 4.1
+         */
+        @In Boolean reassignBadMacs();
 
         /**
          * Indicates if the registration should be performed asynchronously.
