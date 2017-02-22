@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.5 / Feb 22 2017
+
+New features:
+
+* Add `all_content` parameter to snapshots services.
+
+* Add `default_route` value to the `NetworkUsage` enum.
+
+* Add IPv6 details to the `NicConfiguration` type.
+
+* Add NFS 4.2 support.
+
 == 4.2.4 / Jan 27 2017
 
 New features:
