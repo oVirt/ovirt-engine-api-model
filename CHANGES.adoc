@@ -3,6 +3,34 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.1 / Feb 22 2017
+
+Bug fixes:
+
+* Ensure that `rel` is represented as XML attribute.
+
+* Fix generation of XML and JSON descriptions for enum types.
+
+* Merge link with element if it has same name.
+
+New features:
+
+* Make model serializable.
+
+* Add `copy` method to the model.
+
+* Support comparing concepts without name.
+
+* Add list types to the model.
+
+* Add methods to safely convert large integers.
+
+* Integrate enum and structs generators.
+
+* Add services root to the JSON and XML descriptions.
+
+* Check AsciiDoc cross references.
+
 == 1.2.0 / Jan 4 2017
 
 * Don't import `JsonParser.Event` directly, as it conflicts with the
