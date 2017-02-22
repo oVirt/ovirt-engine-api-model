@@ -29746,12 +29746,6 @@ should be collapsed, so that the result will be a virtual machine
 without snapshots.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reassign_bad_macs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -29762,12 +29756,6 @@ without snapshots.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnic_profile_mappings</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_profile_mapping">VnicProfileMapping[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mapping rules for virtual NIC profiles that will be applied during the import process.</p></td>
 </tr>
 </tbody>
 </table>
@@ -29795,25 +29783,6 @@ without snapshots.</p>
 <div class="paragraph">
 <p>This parameter is optional, and if it isn&#8217;t explicitly specified the
 default value is <code>false</code>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="services/storage_domain_vm/methods/import/parameters/reassign_bad_macs"><a class="anchor" href="#services/storage_domain_vm/methods/import/parameters/reassign_bad_macs"></a>reassign_bad_macs</h5>
-<div class="paragraph">
-<p>Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.</p>
-</div>
-<div class="paragraph">
-<p>A MAC address would be considered as a problematic one if one of the following is true:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>It conflicts with a MAC address that is already allocated to a virtual machine in the target environment.</p>
-</li>
-<li>
-<p>It&#8217;s out of the range of the target MAC address pool.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -29861,10 +29830,22 @@ default value is <code>false</code>.</p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reassign_bad_macs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnic_profile_mappings</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_profile_mapping">VnicProfileMapping[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapping rules for virtual NIC profiles that will be applied during the import process.</p></td>
 </tr>
 </tbody>
 </table>
@@ -29878,6 +29859,25 @@ default value is <code>false</code>.</p>
 instead it will allow the virtual machine to be registered without the missing disks. This is mainly used
 during registration of a virtual machine when some of the storage domains are not available. The default
 value is <code>false</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/storage_domain_vm/methods/register/parameters/reassign_bad_macs"><a class="anchor" href="#services/storage_domain_vm/methods/register/parameters/reassign_bad_macs"></a>reassign_bad_macs</h5>
+<div class="paragraph">
+<p>Indicates if the problematic MAC addresses should be re-assigned during the import process by the engine.</p>
+</div>
+<div class="paragraph">
+<p>A MAC address would be considered as a problematic one if one of the following is true:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It conflicts with a MAC address that is already allocated to a virtual machine in the target environment.</p>
+</li>
+<li>
+<p>It&#8217;s out of the range of the target MAC address pool.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -63536,7 +63536,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-22 10:07:10 UTC
+Last updated 2017-02-22 16:59:32 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
