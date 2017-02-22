@@ -23,7 +23,7 @@ limitations under the License.
   <groupId>org.ovirt.engine.api</groupId>
   <artifactId>metamodel-parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.1</version>
 
   <name>oVirt API Metamodel Parent</name>
 
@@ -53,7 +53,7 @@ limitations under the License.
     <connection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-metamodel.git</connection>
     <developerConnection>scm:git:git://gerrit.ovirt.org/ovirt-engine-api-metamodel.git</developerConnection>
     <url>git://gerrit.ovirt.org/ovirt-engine-api-metamodel.git</url>
-    <tag>HEAD</tag>
+    <tag>1.2.1</tag>
   </scm>
 
   <properties>
