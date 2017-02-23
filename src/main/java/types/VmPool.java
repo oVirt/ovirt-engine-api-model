@@ -43,6 +43,23 @@ public interface VmPool extends Identified {
      */
     Boolean stateful();
 
+    /**
+     * Indicates if the pool should automatically distribute the disks of the virtual machines across the multiple
+     * storage domains where the template is copied.
+     *
+     * When the template used by the pool is present in multiple storage domains, the disks of the virtual machines of
+     * the pool will be created in one of those storage domains. By default, or when the value of this attribute is
+     * `false`, that storage domain is selected when the pool is created, and all virtual machines will use the same. If
+     * this attribute is `true`, then, when a virtual machine is added to the pool, the storage domain that has more
+     * free space is selected.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 23 Feb 2017
+     * @since 4.1.2
+     * @status added
+     */
+    Boolean autoStorageSelect();
+
     @Link Cluster cluster();
     @Link Template template();
 
