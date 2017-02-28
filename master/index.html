@@ -52297,18 +52297,18 @@ The following keys are valid for <code>bridge_opts</code>:</p>
 <div class="sect2">
 <h3 id="types/network_filter"><a class="anchor" href="#types/network_filter"></a>6.153. NetworkFilter <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Network filter enables to filter packets send to/from the VM&#8217;s nic according to defined rules.</p>
+<p>Network filters filter packets sent to and from the virtual machine&#8217;s NIC according to defined rules.</p>
 </div>
 <div class="paragraph">
 <p>There are several types of network filters supported based on libvirt.
-More details about the different network filters can be found <a href="https://libvirt.org/firewall.html">here</a>.</p>
+For more details about the different network filters see <a href="https://libvirt.org/firewall.html">here</a>.</p>
 </div>
 <div class="paragraph">
 <p>In addition to libvirt&#8217;s network filters, there are two additional network filters:
-The first called <code>vdsm-no-mac-spoofing</code>, composed of no-mac-spoofing and no-arp-mac-spoofing.
-The second called <code>ovirt-no-filter</code> is used when no network filter is to be defined for the VM&#8217;s nic.
-<code>ovirt-no-filter</code> network filter is only used for internal implementation, and
-doesn&#8217;t exist on the nics.</p>
+The first is called <code>vdsm-no-mac-spoofing</code> and is composed of <code>no-mac-spoofing</code> and <code>no-arp-mac-spoofing</code>.
+The second is called <code>ovirt-no-filter</code> and is used when no network filter is to be defined for the virtual machine&#8217;s NIC.
+The <code>ovirt-no-filter</code> network filter is only used for internal implementation, and
+does not exist on the NICs.</p>
 </div>
 <div class="paragraph">
 <p>This is a example of the XML representation:</p>
@@ -52367,10 +52367,16 @@ doesn&#8217;t exist on the nics.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/version">Version</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Represent the minimal supported version of the specific NetworkFilter for which it was first introduced.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum supported version of a specific NetworkFilter.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/network_filter/attributes/version"><a class="anchor" href="#types/network_filter/attributes/version"></a>6.153.1. version</h4>
+<div class="paragraph">
+<p>The minimum supported version of a specific NetworkFilter. This is the version that the NetworkFilter was first introduced in.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/network_filter_parameter"><a class="anchor" href="#types/network_filter_parameter"></a>6.154. NetworkFilterParameter <span class="small">struct</span></h3>
@@ -63536,7 +63542,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-28 08:57:40 UTC
+Last updated 2017-02-28 09:09:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
