@@ -51554,7 +51554,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <div class="sect2">
 <h3 id="types/migration_bandwidth_assignment_method"><a class="anchor" href="#types/migration_bandwidth_assignment_method"></a>6.147. MigrationBandwidthAssignmentMethod <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>Defines the method how the migration bandwidth is assigned.</p>
+<p>Defines how the migration bandwidth is assigned.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1001. Values summary</caption>
@@ -51571,7 +51571,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Takes the bandwidth from QoS if QoS defined.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Takes the bandwidth from the Quality of Service if the Quality of Service is defined.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>custom</code></p></td>
@@ -51586,9 +51586,9 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <div class="sect3">
 <h4 id="types/migration_bandwidth_assignment_method/values/auto"><a class="anchor" href="#types/migration_bandwidth_assignment_method/values/auto"></a>6.147.1. auto</h4>
 <div class="paragraph">
-<p>Takes the bandwidth from QoS if QoS defined.
-If not, taken from detected link speed being used.
-If nothing detected, falls back to hypervisor_default value.</p>
+<p>Takes the bandwidth from the Quality of Service if the Quality of Service is defined.
+If the Quality of Service is not defined the bandwidth is taken from the detected link speed being used.
+If nothing is detected, bandwidth falls back to the hypervisor_default value.</p>
 </div>
 </div>
 </div>
@@ -63545,7 +63545,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-28 09:40:34 UTC
+Last updated 2017-02-28 09:51:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
