@@ -52686,7 +52686,7 @@ attribute of the <code>ip_address_assignment</code> of the network attachment.</
 <div class="sect2">
 <h3 id="types/nic"><a class="anchor" href="#types/nic"></a>6.161. Nic <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Represents a NIC of a virtual machine.</p>
+<p>Represents a virtual machine NIC.</p>
 </div>
 <div class="paragraph">
 <p>For example, the XML representation of a NIC will look like this:</p>
@@ -52796,7 +52796,7 @@ attribute of the <code>ip_address_assignment</code> of the network attachment.</
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network which the interface should be connected to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network that the interface should be connected to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_attachments</code></p></td>
@@ -52806,7 +52806,7 @@ attribute of the <code>ip_address_assignment</code> of the network attachment.</
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter_parameters</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_filter_parameter">NetworkFilterParameter[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link to the network filter parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the network filter parameters.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
@@ -52858,10 +52858,10 @@ attribute of the <code>ip_address_assignment</code> of the network attachment.</
 <div class="sect3">
 <h4 id="types/nic/links/network"><a class="anchor" href="#types/nic/links/network"></a>6.161.1. network</h4>
 <div class="paragraph">
-<p>A reference to the network which the interface should be connected to. A blank network id is allowed.</p>
+<p>A reference to the network that the interface should be connected to. A blank network ID is allowed.</p>
 </div>
 <div class="paragraph">
-<p>Usage of this element for creating or updating a NIC is deprecated, use <code>vnic_profile</code> instead. It is preserved
+<p>Usage of this element for creating or updating a NIC is deprecated; use <code>vnic_profile</code> instead. It is preserved
 because it is still in use by the <code>initialization</code> element, as a holder for IP addresses and other network
 details.</p>
 </div>
@@ -63536,7 +63536,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-22 16:59:32 UTC
+Last updated 2017-02-28 08:57:40 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
