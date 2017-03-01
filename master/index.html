@@ -62275,6 +62275,12 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto_storage_select</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the pool should automatically distribute the disks of the virtual machines across the multiple
+storage domains where the template is copied.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -62342,7 +62348,21 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a>6.277.1. stateful</h4>
+<h4 id="types/vm_pool/attributes/auto_storage_select"><a class="anchor" href="#types/vm_pool/attributes/auto_storage_select"></a>6.277.1. auto_storage_select</h4>
+<div class="paragraph">
+<p>Indicates if the pool should automatically distribute the disks of the virtual machines across the multiple
+storage domains where the template is copied.</p>
+</div>
+<div class="paragraph">
+<p>When the template used by the pool is present in multiple storage domains, the disks of the virtual machines of
+the pool will be created in one of those storage domains. By default, or when the value of this attribute is
+<code>false</code>, that storage domain is selected when the pool is created, and all virtual machines will use the same. If
+this attribute is <code>true</code>, then, when a virtual machine is added to the pool, the storage domain that has more
+free space is selected.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a>6.277.2. stateful</h4>
 <div class="paragraph">
 <p>Virtual machine pool&#8217;s stateful flag.</p>
 </div>
@@ -62395,7 +62415,7 @@ even when the virtual machine is passed to a different user.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a>6.277.2. instance_type</h4>
+<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a>6.277.3. instance_type</h4>
 <div class="paragraph">
 <p>Reference to the instance type on which this pool is based. It can be
 set only on pool creation and cannot be edited.</p>
@@ -63541,7 +63561,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-28 10:46:48 UTC
+Last updated 2017-03-01 09:03:44 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
