@@ -659,6 +659,34 @@ public class XmlReaderTest {
     }
 
     /**
+     * Checks that reading of unsupported enum don't raise exception.
+     */
+    @Test
+    public void testUnsupportedEnum() {
+        V4Vm object = objectFromXml(
+            "<vm><type>ugly</type></vm>"
+        );
+        assertEquals(null, object.type());
+    }
+
+    /**
+     * Checks that reading of unsupported enum in list of enums don't raise exception.
+     */
+    @Test
+    public void testUnsupportedEnumInList() {
+        V4Vm object = objectFromXml(
+            "<vm>" +
+            "<display_types>" +
+            "<display_type>spice</display_type>" +
+            "<display_type>ugly</display_type>" +
+            "</display_types>" +
+            "</vm>"
+        );
+        List<V4VmDisplayType> expected = Arrays.asList(V4VmDisplayType.SPICE, null);
+        assertEquals(expected, object.displayTypes());
+    }
+
+    /**
      * Checks that nested elements are read correctly.
      */
     @Test

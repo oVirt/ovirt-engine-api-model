@@ -468,9 +468,6 @@ public class XmlSupportGenerator extends JavaGenerator {
         javaBuffer.addLine(  "while (reader.forward()) {");
         javaBuffer.addLine(    "String v = reader.readString();");
         javaBuffer.addLine(    "%1$s next = %1$s.fromValue(v);", typeName.getSimpleName());
-        javaBuffer.addLine(    "if (next == null) {");
-        javaBuffer.addLine(      "break;");
-        javaBuffer.addLine(    "}");
         javaBuffer.addLine(    "list.add(next);");
         javaBuffer.addLine(  "}");
         javaBuffer.addLine(  "reader.next();");
