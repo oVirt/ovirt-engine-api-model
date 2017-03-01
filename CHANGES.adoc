@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.31 / Mar 1 2017
+
+New features:
+
+* Add `auto_storage_select` attribute to the `VmPool` type.
+
+Bug fixes:
+
+* Move `vnic_profile_mappings` and `reassign_bad_macs` from
+  the `import` operation to the `register` operation
+  https://bugzilla.redhat.com/1425731[#1425731].
+
 == 4.1.30 / Feb 22 2017
 
 New features:
