@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.2 / Mar 1 2017
+
+New features:
+
+* Read also unsupported enums in lists.
+
 == 1.2.1 / Feb 22 2017
 
 Bug fixes:
