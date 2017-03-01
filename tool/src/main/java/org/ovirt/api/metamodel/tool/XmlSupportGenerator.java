@@ -169,6 +169,7 @@ public class XmlSupportGenerator extends JavaGenerator {
 
         if (!links.isEmpty()) {
             javaBuffer.addLine("// Process the attributes:");
+            javaBuffer.addLine("ListWithHref list;");
             javaBuffer.addLine("String rel = link[0];");
             javaBuffer.addLine("String href = link[1];");
             javaBuffer.addLine("if (href != null) {");
@@ -178,7 +179,7 @@ public class XmlSupportGenerator extends JavaGenerator {
                     String field = javaNames.getJavaMemberStyleName(link.getName());
                     String rel = link.getName().words().map(String::toLowerCase).collect(joining());
                     javaBuffer.addLine("case \"%1$s\":", rel);
-                    javaBuffer.addLine("ListWithHref list = new ArrayListWithHref(object.%1$s());", field);
+                    javaBuffer.addLine("list = new ArrayListWithHref(object.%1$s());", field);
                     javaBuffer.addLine("list.href(href);");
                     javaBuffer.addLine("object.%1$s(list);", field);
                     javaBuffer.addLine("break;");
