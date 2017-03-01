@@ -61,6 +61,8 @@ public interface Ip {
     /**
      * The network mask.
      *
+     * For IPv6 addresses the value is an integer in the range of 0-128, which represents the subnet prefix.
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 21 Nov 2016
