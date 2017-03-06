@@ -70,6 +70,26 @@ public interface StorageDomainVmsService {
          * returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates whether to retrieve a list of registered or unregistered virtual machines which
+         * contain disks on the storage domain.
+         * To get a list of unregistered virtual machines the call should indicate the unregistered flag.
+         * For example, to get a list of unregistered virtual machines the REST API call should look like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/storagedomains/123/vms?unregistered=true
+         * ....
+         *
+         * The default value of the unregisterd flag is `false`.
+         * The request only apply to storage domains that are attached.
+         *
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @date 8 Mar 2017
+         * @status added
+         * @since 4.1.1
+         */
+        @In Boolean unregistered();
     }
 
     @Service StorageDomainVmService vm(String id);

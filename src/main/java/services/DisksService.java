@@ -214,6 +214,27 @@ public interface DisksService {
          * ignoring case set it to `false`.
          */
         @In Boolean caseSensitive();
+
+        /**
+         * Indicates whether to retrieve a list of registered or unregistered disks in the storage domain.
+         * To get a list of unregistered disks in the storage domain the call should indicate the unregistered flag.
+         * For example, to get a list of unregistered disks the REST API call should look like this:
+         *
+         * ....
+         * GET /ovirt-engine/api/storagedomains/123/disks?unregistered=true
+         * ....
+         *
+         * The default value of the unregistered flag is `false`.
+         *
+         * IMPORTANT: This parameter only applies to the `disks` sub-collection of attached storage domains, it
+         * does not apply to the top level `disks` collection.
+         *
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @date 8 Mar 2017
+         * @status added
+         * @since 4.1.1
+         */
+        @In Boolean unregistered();
     }
 
     /**
