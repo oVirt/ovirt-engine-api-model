@@ -171,24 +171,6 @@ public interface TemplateService {
     }
 
     /**
-     * Seal the template.
-     *
-     * Sealing erases all host-specific configuration from the filesystem:
-     * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
-     * thus making easy to use the template to create multiple virtual
-     * machines without manual intervention.
-     *
-     * Currently sealing is supported only for Linux OS.
-     *
-     * @author Shmuel Melamud <smelamud@redhat.com>
-     * @date 17 Nov 2016
-     * @status added
-     * @since 4.1
-     */
-    interface Seal {
-    }
-
-    /**
      * Returns a reference to the service that manages the permissions that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>

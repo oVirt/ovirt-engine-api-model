@@ -113,6 +113,26 @@ public interface TemplatesService {
          * @since 4.0.0
          */
         @In Boolean clonePermissions();
+
+        /**
+         * Seal the template.
+         *
+         * If this optional parameter is provided and its value is `true`,
+         * then the template is sealed after creation.
+         *
+         * Sealing erases all host-specific configuration from the filesystem:
+         * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
+         * thus making easy to use the template to create multiple virtual
+         * machines without manual intervention.
+         *
+         * Currently sealing is supported only for Linux OS.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 7 Mar 2017
+         * @status added
+         * @since 4.1.2
+         */
+        @In Boolean seal();
     }
 
     /**
