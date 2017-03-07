@@ -273,6 +273,9 @@ public interface HostService extends MeasurableService {
      * "https://engine.example.com/ovirt-engine/api/hosts/123?deploy_hosted_engine=true"
      * ----
      *
+     * IMPORTANT: Since version 4.1.2 of the engine when a host is reinstalled we override the host firewall
+     * definitions by default.
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
      * @date 14 Sep 2016

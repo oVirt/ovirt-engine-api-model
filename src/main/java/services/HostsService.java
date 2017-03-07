@@ -59,6 +59,9 @@ public interface HostsService {
      * NOTE: The `root_password` element is only included in the client-provided initial representation and is not
      * exposed in the representations returned from subsequent requests.
      *
+     * IMPORTANT: Since version 4.1.2 of the engine when a host is newly added we override the host firewall
+     * definitions by default.
+     *
      * To add a hosted engine host, use the optional `deploy_hosted_engine` parameter:
      *
      * [source]
