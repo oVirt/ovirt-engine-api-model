@@ -4867,9 +4867,6 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/permission/methods/remove">DELETE</a> /<a href="#services/templates">templates</a>/<a href="#services/template">{template:id}</a>/<a href="#services/assigned_permissions">permissions</a>/<a href="#services/permission">{permission:id}</a></p>
 </li>
 <li>
-<p><a href="#services/template/methods/seal">POST</a> /<a href="#services/templates">templates</a>/<a href="#services/template">{template:id}</a>/<a href="#services/template">seal</a></p>
-</li>
-<li>
 <p><a href="#services/assigned_tags/methods/add">POST</a> /<a href="#services/templates">templates</a>/<a href="#services/template">{template:id}</a>/<a href="#services/assigned_tags">tags</a></p>
 </li>
 <li>
@@ -30227,10 +30224,6 @@ The root tag cannot be deleted nor assigned a parent tag.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes a virtual machine template.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>seal</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seal the template.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Updates the template.</p></td>
 </tr>
@@ -30376,22 +30369,7 @@ Set this parameter to <code>true</code> to change this behavior and overwrite an
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/template/methods/seal"><a class="anchor" href="#services/template/methods/seal"></a>5.198.4. seal <span class="small">POST</span></h4>
-<div class="paragraph">
-<p>Seal the template.</p>
-</div>
-<div class="paragraph">
-<p>Sealing erases all host-specific configuration from the filesystem:
-SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
-thus making easy to use the template to create multiple virtual
-machines without manual intervention.</p>
-</div>
-<div class="paragraph">
-<p>Currently sealing is supported only for Linux OS.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="services/template/methods/update"><a class="anchor" href="#services/template/methods/update"></a>5.198.5. update <span class="small">PUT</span></h4>
+<h4 id="services/template/methods/update"><a class="anchor" href="#services/template/methods/update"></a>5.198.4. update <span class="small">PUT</span></h4>
 <div class="paragraph">
 <p>Updates the template.</p>
 </div>
@@ -31717,6 +31695,12 @@ for the new template, and the <code>base_template</code> and <code>version_name<
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies if the permissions of the virtual machine should be copied to the template.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>seal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seal the template.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>template</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/template">Template</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
@@ -31751,6 +31735,25 @@ a template from the <code>myvm</code> virtual machine copying its permissions, s
   &lt;/vm&gt;
 &lt;/template&gt;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/templates/methods/add/parameters/seal"><a class="anchor" href="#services/templates/methods/add/parameters/seal"></a>seal</h5>
+<div class="paragraph">
+<p>Seal the template.</p>
+</div>
+<div class="paragraph">
+<p>If this optional parameter is provided and its value is <code>true</code>,
+then the template is sealed after creation.</p>
+</div>
+<div class="paragraph">
+<p>Sealing erases all host-specific configuration from the filesystem:
+SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
+thus making easy to use the template to create multiple virtual
+machines without manual intervention.</p>
+</div>
+<div class="paragraph">
+<p>Currently sealing is supported only for Linux OS.</p>
 </div>
 </div>
 </div>
@@ -48902,7 +48905,16 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/ip/attributes/version"><a class="anchor" href="#types/ip/attributes/version"></a>6.125.2. version</h4>
+<h4 id="types/ip/attributes/netmask"><a class="anchor" href="#types/ip/attributes/netmask"></a>6.125.2. netmask</h4>
+<div class="paragraph">
+<p>The network mask.</p>
+</div>
+<div class="paragraph">
+<p>For IPv6 addresses the value is an integer in the range of 0-128, which represents the subnet prefix.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/ip/attributes/version"><a class="anchor" href="#types/ip/attributes/version"></a>6.125.3. version</h4>
 <div class="paragraph">
 <p>The version of the IP protocol.</p>
 </div>
@@ -62037,7 +62049,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-01 09:42:11 UTC
+Last updated 2017-03-08 08:34:02 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
