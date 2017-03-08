@@ -29057,12 +29057,35 @@ the disk with id <code>456</code> send a request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of disks to return.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unregistered</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether to retrieve a list of registered or unregistered disks in the storage domain.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/storage_domain_disks/methods/list/parameters/max"><a class="anchor" href="#services/storage_domain_disks/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
 <p>Sets the maximum number of disks to return. If not specified all the disks are returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/storage_domain_disks/methods/list/parameters/unregistered"><a class="anchor" href="#services/storage_domain_disks/methods/list/parameters/unregistered"></a>unregistered</h5>
+<div class="paragraph">
+<p>Indicates whether to retrieve a list of registered or unregistered disks in the storage domain.
+To get a list of unregistered disks in the storage domain the call should indicate the unregistered flag.
+For example, to get a list of unregistered disks the REST API call should look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/storagedomains/123/disks?unregistered=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default value of the unregistered flag is <code>false</code>.
+The request only apply to storage domains that are attached.</p>
 </div>
 </div>
 </div>
@@ -29557,12 +29580,35 @@ registration of a template when some of the storage domains are not available. T
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unregistered</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether to retrieve a list of registered or unregistered templates which contain disks on the storage domain.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/storage_domain_templates/methods/list/parameters/max"><a class="anchor" href="#services/storage_domain_templates/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
 <p>Sets the maximum number of templates to return. If not specified all the templates are returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/storage_domain_templates/methods/list/parameters/unregistered"><a class="anchor" href="#services/storage_domain_templates/methods/list/parameters/unregistered"></a>unregistered</h5>
+<div class="paragraph">
+<p>Indicates whether to retrieve a list of registered or unregistered templates which contain disks on the storage domain.
+To get a list of unregistered templates the call should indicate the unregistered flag.
+For example, to get a list of unregistered templates the REST API call should look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/storagedomains/123/templates?unregistered=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default value of the unregisterd flag is <code>false</code>.
+The request only apply to storage domains that are attached.</p>
 </div>
 </div>
 </div>
@@ -30109,6 +30155,13 @@ action.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of virtual machines to return.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unregistered</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether to retrieve a list of registered or unregistered virtual machines which
+contain disks on the storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
@@ -30121,6 +30174,24 @@ action.</p>
 <div class="paragraph">
 <p>Sets the maximum number of virtual machines to return. If not specified all the virtual machines are
 returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/storage_domain_vms/methods/list/parameters/unregistered"><a class="anchor" href="#services/storage_domain_vms/methods/list/parameters/unregistered"></a>unregistered</h5>
+<div class="paragraph">
+<p>Indicates whether to retrieve a list of registered or unregistered virtual machines which
+contain disks on the storage domain.
+To get a list of unregistered virtual machines the call should indicate the unregistered flag.
+For example, to get a list of unregistered virtual machines the REST API call should look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/storagedomains/123/vms?unregistered=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default value of the unregisterd flag is <code>false</code>.
+The request only apply to storage domains that are attached.</p>
 </div>
 </div>
 </div>
@@ -63573,7 +63644,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-08 08:23:56 UTC
+Last updated 2017-03-08 14:40:55 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
