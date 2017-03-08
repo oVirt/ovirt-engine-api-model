@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.3 / Mar 8 2017
+
+Big fixes:
+
+* Fix list variable declaration in XML support code generator.
+
 == 1.2.2 / Mar 1 2017
 
 New features:
