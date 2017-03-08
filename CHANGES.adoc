@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.7 / Mar 8 2017
+
+Bug fixes:
+
+* Replace the `Seal` operation of the service that manages a template
+  with a new `seal` parameter in the operation that adds a template
+  https://bugzilla.redhat.com/1335642[#1335642].
+
 == 4.2.6 / Mar 1 2017
 
 New features:
