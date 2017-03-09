@@ -75,47 +75,6 @@ public interface DiskService extends MeasurableService {
         @In Boolean filter();
     }
 
-    /**
-     * This operation updates the disk with the appropriate parameters.
-     * The only field that can be updated is `qcow_version`.
-     *
-     * For example, update disk can be facilitated using the following request:
-     *
-     * [source]
-     * ----
-     * PUT /ovirt-engine/api/disks/123
-     * ----
-     *
-     * With a request body like this:
-     *
-     * [source,xml]
-     * ----
-     * <disk>
-     *   <qcow_version>qcow2_v3</qcow_version>
-     * </disk>
-     * ----
-     *
-     * Since the backend operation is asynchronous the disk element which will be returned
-     * to the user might not be synced with the changed properties.
-     *
-     * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 21 Nov 2016
-     * @status added
-     * @since 4.1
-     */
-    interface Update {
-        /**
-         * The update to apply to the disk.
-         *
-         * @author Maor Lipchuk <mlipchuk@redhat.com>
-         * @date 21 Nov 2016
-         * @status added
-         * @since 4.1
-         */
-        @In @Out Disk disk();
-    }
-
-
     interface Export {
         @In StorageDomain storageDomain();
 
