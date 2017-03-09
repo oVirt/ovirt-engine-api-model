@@ -33,7 +33,7 @@ import types.NetworkFilterParameter;
  */
 @Service
 @Area("Network")
-public interface NetworkFilterParametersService {
+public interface NicNetworkFilterParametersService {
 
     /**
      * Retrieves the representations of the network filter parameters.
@@ -104,5 +104,5 @@ public interface NetworkFilterParametersService {
      * @status added
      * @since 4.2
      */
-    @Service NetworkFilterParameterService parameter(String id);
+    @Service NicNetworkFilterParameterService parameter(String id);
 }

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 package types;
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
@@ -48,4 +49,15 @@ public interface NetworkFilterParameter extends Identified {
      * @since 4.2
      */
     String value();
+
+    /**
+     * The virtual machine NIC the parameter is assiciated to.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 09 Mar 2017
+     * @status added
+     * @since 4.2
+     */
+    @Link
+    Nic nic();
 }

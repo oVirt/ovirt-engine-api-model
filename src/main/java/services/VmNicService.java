@@ -135,5 +135,5 @@ public interface VmNicService extends MeasurableService {
      * @status added
      * @since 4.2
      */
-    @Service NetworkFilterParametersService networkFilterParameters();
+    @Service NicNetworkFilterParametersService networkFilterParameters();
 }
