@@ -16859,6 +16859,19 @@ curl \
 "https://engine.example.com/ovirt-engine/api/hosts/123?deploy_hosted_engine=true"</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since version 4.1.2 of the engine when a host is reinstalled we override the host firewall
+definitions by default.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 281. Parameters summary</caption>
 <colgroup>
@@ -18247,6 +18260,19 @@ properties are required.</p>
 <td class="content">
 The <code>root_password</code> element is only included in the client-provided initial representation and is not
 exposed in the representations returned from subsequent requests.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since version 4.1.2 of the engine when a host is newly added we override the host firewall
+definitions by default.
 </td>
 </tr>
 </table>
@@ -63678,7 +63704,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-09 12:19:22 UTC
+Last updated 2017-03-09 16:06:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
