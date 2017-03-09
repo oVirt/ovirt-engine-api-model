@@ -44,8 +44,26 @@ public interface SnapshotsService {
      * </snapshot>
      * ----
      *
+     * [IMPORTANT]
+     * ====
+     * When a snapshot is created the default value for the <<types/snapshot/attributes/persist_memorystate,
+     * persist_memorystate>> attribute is `true`. That means that the content of the memory of the virtual
+     * machine will be included in the snapshot, and it also means that the virtual machine will be paused
+     * for a longer time. That can negatively affect applications that are very sensitive to timing (NTP
+     * servers, for example). In those cases make sure that you set the attribute to `false`:
+     *
+     * [source,xml]
+     * ----
+     * <snapshot>
+     *   <description>My snapshot</description>
+     *   <persist_memorystate>false</persist_memorystate>
+     * </snapshot>
+     * ----
+     * ====
+     *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 9 Mar 2017
      * @status added
      */
     interface Add {
