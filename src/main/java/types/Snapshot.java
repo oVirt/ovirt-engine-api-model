@@ -49,7 +49,18 @@ import java.util.Date;
 public interface Snapshot extends Vm {
     Date date();
     SnapshotStatus snapshotStatus();
+
+    /**
+     * Indicates if the content of the memory of the virtual machine is included in the snapshot.
+     *
+     * When a snapshot is created the default value is `true`.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 9 Mar 2017
+     * @status added
+     */
     Boolean persistMemorystate();
+
     SnapshotType snapshotType(); //revisit. Had to be done because of VmBase.type changed to VmType
 
     @Link Vm vm();
