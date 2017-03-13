@@ -26,6 +26,6 @@ import types.Statistic;
 @Area("Infrastructure")
 public interface StatisticService {
     interface Get {
-        @In @Out Statistic statistic();
+        @Out Statistic statistic();
     }
 }
