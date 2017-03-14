@@ -3,6 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.33 / Mar 14 2017
+
+Bug fixes:
+
+* Add `unregistered` parameter for the operations to list disks,
+  virtual machines, and templates in storage domains
+  https://bugzilla.redhat.com/1428159[#1428159].
+
+* Fix the direction of the `statistic` parameter of the `Statistic`
+  service, must be out only.
+
+* Revert the addition of the operation to update disks.
+
 == 4.1.32 / Mar 8 2017
 
 Bug fixes:
