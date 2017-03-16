@@ -274,7 +274,7 @@ through a relationship using the `id` and `href` attributes of the
 <data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
 ....
 
-The `networks` link is a reference to the <<services/assigned_networks,
+The `networks` link is a reference to the <<services/data_center_networks,
 service>> that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.
 

@@ -208,7 +208,7 @@ public interface DataCenterService {
      * @date 24 Oct 2016
      * @status added
      */
-    @Service NetworksService networks();
+    @Service DataCenterNetworksService networks();
 
     /**
      * Reference to the permissions service.
