@@ -215,7 +215,7 @@ public interface ClusterService {
      * @date 12 Dec 2016
      * @status added
      */
-    @Service AssignedNetworksService networks();
+    @Service ClusterNetworksService networks();
 
     /**
      * Reference to permissions.
