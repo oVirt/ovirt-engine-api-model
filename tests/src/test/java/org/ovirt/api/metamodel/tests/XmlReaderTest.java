@@ -893,6 +893,24 @@ public class XmlReaderTest {
     }
 
     /**
+     * Checks that if there is multiple link elements its read correctly.
+     */
+    @Test
+    public void testMultipleLinks() {
+        V4Vm vm = objectFromXml(
+            "<vm>" +
+                "<link href=\"123\" rel=\"permissions\"/>" +
+                "<link href=\"789\" rel=\"tags\"/>" +
+                "<name>myvm</name>" +
+            "</vm>"
+        );
+        assertNotNull(vm);
+        assertNotNull(vm.permissions());
+        assertNotNull(vm.tags());
+        assertEquals("myvm", vm.name());
+    }
+
+    /**
      * Checks that non-related rel attribute is skipped
      */
     @Test

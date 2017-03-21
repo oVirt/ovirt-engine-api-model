@@ -254,7 +254,7 @@ public class XmlSupportGenerator extends JavaGenerator {
             javaBuffer.addLine("if (rel != null && href != null) {");
             javaBuffer.addLine(  "links.add(new String[]{rel, href});");
             javaBuffer.addLine("}");
-            javaBuffer.addLine("reader.next();");
+            javaBuffer.addLine("reader.skip();");
             javaBuffer.addLine("break;");
             javaBuffer.addLine("default:");
             javaBuffer.addLine(  "reader.skip();");
