@@ -29,6 +29,18 @@ public interface HostDevice extends Identified {
     Integer virtualFunctions();
     Boolean placeholder();
 
+    /**
+     * The name of the driver this device is bound to.
+     *
+     * For example: `pcieport` or `uhci_hcd`.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @status updated_by_docs
+     * @since 4.1.3
+     */
+    String driver();
+
     @Link Host host();
     @Link HostDevice parentDevice();
     @Link Vm vm();
