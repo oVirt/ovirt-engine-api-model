@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.4 / Mar 21 2017
+
+New features:
+
+* Added support for specification of input parameters detail.
+
+Bug fixes:
+
+* Read links correctly https://bugzilla.redhat.com/1434334[#1434334].
+
 == 1.2.3 / Mar 8 2017
 
 Big fixes:
