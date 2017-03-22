@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.ovirt.api.metamodel.concepts.EnumType;
+import org.ovirt.api.metamodel.concepts.ListType;
 import org.ovirt.api.metamodel.concepts.MemberInvolvementTree;
 import org.ovirt.api.metamodel.concepts.Method;
 import org.ovirt.api.metamodel.concepts.Model;
@@ -202,7 +203,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                 builder.append(operator.getPaddedSign());
             }
             builder.append(paramName).append(getAttributePath(list.subList(0, i+1)));
-            if (!builder.toString().endsWith(".size()!=0")) {
+            if (!builder.toString().endsWith(".size()==0")) {
                 builder.append(operator.comaprison).append("null");
             }
         }
@@ -215,15 +216,10 @@ public class JaxrsHelperGenerator extends JavaGenerator {
             MemberInvolvementTree current = list.get(i);
             attributePath.append(isOrGet(current.getType())).append(javaNames.getJavaClassStyleName(current.getName())).append("()");
             if (current.isCollection()) {
-                //TODO: Hard-coded check for an exceptional case because of violation of assumption
-                //that the names of array and type in the model are the same. For example:
-                //@Link Cdrom[] cdroms(); - good
-                //@Link GlusterBrick[] bricks(); - bad
-                //This check should be discarded and replaced with a generic solution or
-                //enforce compliance with name conventions.
-                String getterName = current.getName().toString().equals("bricks") ? "GlusterBricks" : javaNames.getJavaClassStyleName(current.getName());
+                Name name = ((ListType)current.getType()).getElementType().getName();
+                String getterName = javaNames.getJavaClassStyleName(name) + "s";
                 if (i==list.size()-1) { //the last element of the expression is a collection
-                    attributePath.append(".get").append(getterName).append("().size()!=0");
+                    attributePath.append(".get").append(getterName).append("().size()==0");
                 }
                 else {
                     //TODO: !=null and .isEmpty() checks for collections missing at this point due to complexity
@@ -375,6 +371,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         if (mandatoryAttributeExists(signatures)) {
             //validate that the action object itself is not null
             javaBuffer.addImport(java.lang.reflect.Method.class);
+            javaBuffer.addImports(schemaNames.getXjcTypeReference(ACTION_TYPE).getImports());
             Name methodName = getSignatureDetectionMethodName(method);
             javaBuffer.addLine("public static Method %s(Action action) throws NoSuchMethodException, SecurityException {",
                     javaNames.getJavaMemberStyleName(methodName));

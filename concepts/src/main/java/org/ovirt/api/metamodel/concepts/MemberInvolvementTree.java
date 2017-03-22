@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -98,6 +97,9 @@ public class MemberInvolvementTree implements Serializable {
     }
     public boolean hasParent() {
         return parent!=null;
+    }
+    public boolean hasChildren() {
+        return nodes!=null && !nodes.isEmpty();
     }
     public void setParent(MemberInvolvementTree parent) {
         this.parent = parent;
@@ -207,11 +209,11 @@ public class MemberInvolvementTree implements Serializable {
         return name;
     }
 
-    public void cutFromTree() {
+    public void cutSelf() {
         if (hasParent()) {
             parent.getNodes().remove(this);
             if (parent.getNodes().isEmpty()) {
-                parent.cutFromTree();
+                parent.cutSelf();
             }
         }
     }

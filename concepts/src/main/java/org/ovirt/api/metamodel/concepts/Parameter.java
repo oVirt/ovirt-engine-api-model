@@ -153,6 +153,13 @@ public class Parameter extends Concept {
         return mandatoryAttributes;
     }
 
+    /**
+     * Remove tree with provided root name from member-involvement-trees list.
+     */
+    public void removeMemeberInvolvementTree(Name name) {
+        memberInvolvementTrees.removeIf(s -> s.getName().equals(name));
+    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();

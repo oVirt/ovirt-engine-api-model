@@ -268,7 +268,26 @@ public class InputDetailAnalyzer {
         MemberInvolvementTree tree2 = analyzeExpression(expression2, parameters, mandatory);
         //Make the two leaves which have an 'or' relationship between them 'point' to each other.
         tree1.setAlternative(tree2);
-        tree2.cutFromTree();
+        assert (!tree2.hasChildren());
+        removeTree(tree2, parameters, expression2);
+    }
+
+    /**
+     * Removes the provided node from either the tree it exists in, or,
+     * if this node is a root - from the parent parameter.
+     */
+    private void removeTree(MemberInvolvementTree tree, List<Parameter> parameters, MethodExpression expression) {
+        if (tree.hasParent()) {
+            tree.cutSelf();
+        } else {
+            //to restore the original order.
+            Stack<Name> stack = new Stack<>();
+            stackExpressionElements(stack, expression);
+
+            //find the relevant parameter.
+            Parameter parameter = getParameter(stack.pop(), parameters);
+            parameter.removeMemeberInvolvementTree(tree.getName());
+        }
     }
 
 }
