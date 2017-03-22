@@ -39,8 +39,8 @@ public interface VmService extends MeasurableService {
      * POST /ovirt-engine/api/vms/123/cancelmigration
      * ----
      *
-     * The cancel migration action does not take any action specific parameters,
-     * so the request body should contain an empty `action`:
+     * The cancel migration action does not take any action specific parameters;
+     * therefore, the request body should contain an empty `action`:
      *
      * [source,xml]
      * ----
@@ -48,19 +48,38 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface CancelMigration {
         /**
          * Indicates if the migration should cancelled asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
+    /**
+     * Permanently restores the virtual machine to the state of the previewed snapshot.
+     *
+     * See the <<services/vm/methods/preview_snapshot, preview_snapshot>> operation for details.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
+     */
     interface CommitSnapshot {
         /**
          * Indicates if the snapshots should be committed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -70,6 +89,10 @@ public interface VmService extends MeasurableService {
 
         /**
          * Indicates if the clone should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -82,7 +105,7 @@ public interface VmService extends MeasurableService {
      * POST /ovirt-engine/api/vms/123/detach
      * ----
      *
-     * The detach action does not take any action specific parameters, so the request body should contain an
+     * The detach action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
      * [source,xml]
@@ -91,20 +114,25 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Detach {
         /**
-         * Indicates if the detach should be performed asynchronously.
+         * Indicates if the detach action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Export a virtual machine to an export domain.
+     * Exports a virtual machine to an export domain.
      *
-     * For example to export virtual machine `123` to the export domain `myexport`, send a request like this:
+     * For example, to export virtual machine `123` to the export domain `myexport`:
      *
      * [source]
      * ----
@@ -125,27 +153,30 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Tal Nisan <tisan@redhat.com>
-     * @date 19 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Export {
         /**
-         * The `discard_snapshots` parameter is to be used when the virtual machine should be exported with all its
+         * Use the `discard_snapshots` parameter when the virtual machine should be exported with all of its
          * snapshots collapsed.
          *
          * @author Tal Nisan <tisan@redhat.com>
-         * @date 19 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean discardSnapshots();
 
         /**
-         * The `exclusive` parameter is to be used when the virtual machine should be exported even if another copy of
+         * Use the `exclusive` parameter when the virtual machine should be exported even if another copy of
          * it already exists in the export domain (override).
          *
          * @author Tal Nisan <tisan@redhat.com>
-         * @date 19 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean exclusive();
 
@@ -153,12 +184,16 @@ public interface VmService extends MeasurableService {
 
         /**
          * Indicates if the export should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Freeze virtual machine file systems.
+     * Freezes virtual machine file systems.
      *
      * This operation freezes a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of
      * a running virtual machine. Normally, this is done automatically by the manager, but this must be executed
@@ -177,12 +212,18 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      * @status added
      */
     interface FreezeFilesystems {
         /**
          * Indicates if the freeze should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -191,25 +232,27 @@ public interface VmService extends MeasurableService {
      * Retrieves the description of the virtual machine.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 11 Oct 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Get {
         /**
          * Description of the virtual machine.
          *
          * @author Shmuel Melamud <smelamud@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @Out Vm vm();
 
         /**
-         * Indicates if the returned result describes the virtual machine as it is currently running, or if describes
-         * it with the modifications that have already been performed but that will have effect only when it is
-         * restarted. By default the values is `false`.
+         * Indicates if the returned result describes the virtual machine as it is currently running or if describes
+         * the virtual machine with the modifications that have already been performed but that will only come into
+         * effect when the virtual machine is restarted. By default the value is `false`.
          *
-         * If the parameter is included in the request, but without a value, it is assumed that the value is `true`, so
+         * If the parameter is included in the request, but without a value, it is assumed that the value is `true`. The
          * the following request:
          *
          * [source]
@@ -223,11 +266,15 @@ public interface VmService extends MeasurableService {
          * ----
          * GET /vms/{vm:id};next_run=true
          * ----
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean nextRun();
 
         /**
-         * Indicates if all the attributes of the virtual machine should be included in the response.
+         * Indicates if all of the attributes of the virtual machine should be included in the response.
          *
          * By default the following attributes are excluded:
          *
@@ -237,24 +284,29 @@ public interface VmService extends MeasurableService {
          * - `soundcard`
          * - `virtio_scsi`
          *
-         * For example, to retrieve the complete representation of the virtual machine '123' send a request like this:
+         * For example, to retrieve the complete representation of the virtual machine '123':
          *
          * ....
          * GET /ovirt-engine/api/vms/123?all_content=true
          * ....
          *
-         * NOTE: The reason for not including these attributes is performance: they are seldom used and they require
-         * additional queries to the database. So try to use the this parameter only when it is really needed.
+         * NOTE: These attributes are not included by default as they reduce performance. These attributes are seldom used
+         * and require additional queries to the database. Only use this parameter when required as it will reduce performance.
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 11 Oct 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          * @since 4.0.6
          */
         @In Boolean allContent();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
@@ -268,7 +320,7 @@ public interface VmService extends MeasurableService {
      * Users require the appropriate user permissions for the virtual machine in order to access the virtual machine
      * from an external console.
      *
-     * This is how an example request would look like:
+     * For example:
      *
      * [source]
      * ----
@@ -283,12 +335,17 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Vinzenz Feenstra <vfeenstr@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Logon {
         /**
          * Indicates if the logon should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -313,34 +370,42 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 16 Feb 2017
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Maintenance {
         /**
          * Indicates if global maintenance should be enabled or disabled.
          *
          * @author Andrej Krejcir <akrejcir@redhat.com>
-         * @date 16 Feb 2017
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean maintenanceEnabled();
 
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the global maintenance action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * This operation migrates a virtual machine to another physical host.
+     * Migrates a virtual machine to another physical host.
+     *
+     * Example:
      *
      * [source]
      * ----
      * POST /ovirt-engine/api/vms/123/migrate
      * ----
      *
-     * One can specify a specific host to migrate the virtual machine to:
+     * To specify a specific host to migrate the virtual machine to:
      *
      * [source,xml]
      * ----
@@ -350,8 +415,9 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Migrate {
         /**
@@ -359,38 +425,58 @@ public interface VmService extends MeasurableService {
          * virtual machine is migrated to another host within the same cluster.
          *
          * @author Arik Hadas <ahadas@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Cluster cluster();
 
         /**
-         * Specifies the virtual machine should migrate although it might be defined as non migratable. This is an
-         * optional parameter. By default, it is set to `false`.
+         * Specifies that the virtual machine should migrate even if the virtual machine is defined as non-migratable.
+         * This is an optional parameter. By default, it is set to `false`.
          *
          * @author Arik Hadas <ahadas@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean force();
 
         /**
-         * Specifies a specific host the virtual machine should migrate to. This is an optional parameters. By default,
-         * the oVirt Engine automatically selects a default host for migration within the same cluster. If an API user
+         * Specifies a specific host that the virtual machine should migrate to. This is an optional parameter. By default,
+         * the {engine-name} automatically selects a default host for migration within the same cluster. If an API user
          * requires a specific host, the user can specify the host with either an `id` or `name` parameter.
          *
          * @author Arik Hadas <ahadas@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Host host();
 
         /**
          * Indicates if the migration should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
+    /**
+     * Temporarily restores the virtual machine to the state of a snapshot.
+     *
+     * The snapshot is indicated with the `snapshot.id` parameter. It is restored temporarily, so that the content can
+     * be inspected. Once that inspection is finished, the state of the virtual machine can be made permanent, using the
+     * <<services/vm/methods/commit_snapshot, commit_snapshot>> method, or discarded using the
+     * <<services/vm/methods/undo_snapshot, undo_snapshot>> method.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
+     */
     interface PreviewSnapshot {
         @In Disk[] disks();
         @In Boolean restoreMemory();
@@ -399,6 +485,10 @@ public interface VmService extends MeasurableService {
 
         /**
          * Indicates if the preview should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -407,31 +497,38 @@ public interface VmService extends MeasurableService {
         @In @Out Vm vm();
 
         /**
-         * Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
+         * Indicates if the update should be applied to the virtual machine immediately or if it should be applied only
          * when the virtual machine is restarted. The default value is `false`, so by default changes are applied
          * immediately.
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 13 Oct 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean nextRun();
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * This operation sends a reboot request to a virtual machine.
+     * Sends a reboot request to a virtual machine.
+     *
+     * For example:
      *
      * [source]
      * ----
      * POST /ovirt-engine/api/vms/123/reboot
      * ----
      *
-     * The reboot action does not take any action specific parameters, so the request body should contain an
+     * The reboot action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
      * [source,xml]
@@ -440,12 +537,17 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Martin Betak <mbetak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Reboot {
         /**
          * Indicates if the reboot should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -453,7 +555,7 @@ public interface VmService extends MeasurableService {
     /**
      * Removes the virtual machine, including the virtual disks attached to it.
      *
-     * For example, to remove the virtual machine with identifier `123` send a request like this:
+     * For example, to remove the virtual machine with identifier `123`:
      *
      * [source]
      * ----
@@ -461,12 +563,17 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
 
@@ -474,8 +581,9 @@ public interface VmService extends MeasurableService {
          * Indicates if the attached virtual disks should be detached first and preserved instead of being removed.
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean detachOnly();
 
@@ -486,8 +594,9 @@ public interface VmService extends MeasurableService {
          * cannot be removed without this flag set to true.
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean force();
     }
@@ -502,13 +611,15 @@ public interface VmService extends MeasurableService {
     /**
      * This operation sends a shutdown request to a virtual machine.
      *
+     * For example:
+     *
      * [source]
      * ----
      * POST /ovirt-engine/api/vms/123/shutdown
      * ----
      *
-     * The shutdown action does not take any action specific parameters,
-     * so the request body should contain an empty `action`:
+     * The shutdown action does not take any action specific parameters;
+     * therefore, the request body should contain an empty `action`:
      *
      * [source,xml]
      * ----
@@ -516,12 +627,17 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Shutdown {
         /**
          * Indicates if the shutdown should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -547,16 +663,18 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Start {
         /**
-         * If set to `true`, start the virtual machine in paused mode. Default is `false`.
+         * If set to `true`, start the virtual machine in paused mode. The default is `false`.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean pause();
 
@@ -580,12 +698,13 @@ public interface VmService extends MeasurableService {
          * </action>
          * ----
          *
-         * This will set the boot device to the CDROM only for this specific start. After the virtual machine will be
+         * This will set the boot device to the CDROM only for this specific start. After the virtual machine is
          * powered off, this definition will be reverted.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Vm vm();
 
@@ -594,8 +713,9 @@ public interface VmService extends MeasurableService {
          * See https://cloudinit.readthedocs.io/en/latest[this] for details.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean useCloudInit();
 
@@ -604,18 +724,27 @@ public interface VmService extends MeasurableService {
          * See https://en.wikipedia.org/wiki/Sysprep[this] for details.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean useSysprep();
 
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the start action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
@@ -623,13 +752,15 @@ public interface VmService extends MeasurableService {
     /**
      * This operation forces a virtual machine to power-off.
      *
+     * For example:
+     *
      * [source]
      * ----
      * POST /ovirt-engine/api/vms/123/stop
      * ----
      *
-     * The stop action does not take any action specific parameters,
-     * so the request body should contain an empty `action`:
+     * The stop action does not take any action specific parameters;
+     * therefore, the request body should contain an empty `action`:
      *
      * [source,xml]
      * ----
@@ -637,12 +768,17 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Stop {
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the stop action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -651,13 +787,15 @@ public interface VmService extends MeasurableService {
      * This operation saves the virtual machine state to disk and stops it.
      * Start a suspended virtual machine and restore the virtual machine state with the start action.
      *
+     * For example:
+     *
      * [source]
      * ----
      * POST /ovirt-engine/api/vms/123/suspend
      * ----
      *
-     * The suspend action does not take any action specific parameters,
-     * so the request body should contain an empty `action`:
+     * The suspend action does not take any action specific parameters;
+     * therefore, the request body should contain an empty `action`:
      *
      * [source,xml]
      * ----
@@ -665,18 +803,23 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Suspend {
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the suspend action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Thaw virtual machine file systems.
+     * Thaws virtual machine file systems.
      *
      * This operation thaws a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of a
      * running virtual machine. Normally, this is done automatically by the manager, but this must be executed manually
@@ -695,18 +838,25 @@ public interface VmService extends MeasurableService {
      * ----
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface ThawFilesystems {
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the thaw file systems action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
      * Generates a time-sensitive authentication token for accessing a virtual machine's display.
+     *
+     * For example:
      *
      * [source]
      * ----
@@ -715,7 +865,7 @@ public interface VmService extends MeasurableService {
      *
      * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
      *
-     * In any case, the response specifies the actual ticket value and expiry used.
+     * The response specifies the actual ticket value and expiry used.
      *
      * [source,xml]
      * ----
@@ -737,8 +887,8 @@ public interface VmService extends MeasurableService {
      *
      * In order to obtain an authentication token for a specific protocol, for
      * example for VNC, use the `ticket` method of the <<services/vm_graphics_console,
-     * service>> that manages the graphics consoles of the virtual machine, sending
-     * a request like this:
+     * service>>, which manages the graphics consoles of the virtual machine, by sending
+     * a request:
      *
      * [source]
      * ----
@@ -747,21 +897,40 @@ public interface VmService extends MeasurableService {
      * ====
      *
      * @author Martin Betak <mbetak@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     interface Ticket {
         @In @Out types.Ticket ticket();
 
         /**
          * Indicates if the generation of the ticket should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
+    /**
+     * Restores the virtual machine to the state it had before previewing the snapshot.
+     *
+     * See the <<services/vm/methods/preview_snapshot, preview_snapshot>> operation for details.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com:
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
+     */
     interface UndoSnapshot {
         /**
-         * Indicates if the action should be performed asynchronously.
+         * Indicates if the undo snapshot action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -775,8 +944,9 @@ public interface VmService extends MeasurableService {
      * This information is taken from Katello.
      *
      * @author Moti Asayag <masayag@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     @Service KatelloErrataService katelloErrata();
     @Service SnapshotsService snapshots();
@@ -791,8 +961,9 @@ public interface VmService extends MeasurableService {
      * Reference to the service that provides information about virtual machine user sessions.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     @Service VmSessionsService sessions();
 
@@ -800,11 +971,19 @@ public interface VmService extends MeasurableService {
 
     /**
      * List of disks attached to this virtual machine.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     @Service DiskAttachmentsService diskAttachments();
 
     /**
-     * List of scheduling labels assigned to this VM.
+     * List of scheduling labels assigned to this virtual machine.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 28 Mar 2017
+     * @status updated_by_docs
      */
     @Service AssignedAffinityLabelsService affinityLabels();
 }
