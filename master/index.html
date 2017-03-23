@@ -1027,6 +1027,66 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#types/date">A.5. Date <span class="small">primitive</span></a></li>
 </ul>
 </li>
+<li><a href="#documents/a02_changes_in_v4">Appendix B: Changes in version 4 of the API</a>
+<ul class="sectlevel2">
+<li><a href="#_removed_yaml_support">B.1. Removed YAML support</a></li>
+<li><a href="#_renamed_complex_types">B.2. Renamed complex types</a></li>
+<li><a href="#_replaced_the_code_status_code_type_with_enum_types">B.3. Replaced the <code>Status</code> type with enum types</a></li>
+<li><a href="#_remove_the_nic_code_network_code_and_code_port_mirroring_code_properties">B.4. Remove the NIC <code>network</code> and <code>port_mirroring</code> properties</a></li>
+<li><a href="#_remove_the_nic_code_active_code_property">B.5. Remove the NIC <code>active</code> property</a></li>
+<li><a href="#_remove_the_disk_code_type_code_property">B.6. Remove the disk <code>type</code> property</a></li>
+<li><a href="#_remove_the_disk_code_size_code_property">B.7. Remove the disk <code>size</code> property</a></li>
+<li><a href="#_removed_support_for_pinning_a_vm_to_a_single_host">B.8. Removed support for pinning a VM to a single host</a></li>
+<li><a href="#_removed_the_code_capabilities_permits_code_element">B.9. Removed the <code>capabilities.permits</code> element</a></li>
+<li><a href="#_removed_the_code_storage_manager_code_element">B.10. Removed the <code>storage_manager</code> element</a></li>
+<li><a href="#_removed_the_data_center_code_storage_type_code_element">B.11. Removed the data center <code>storage_type</code> element</a></li>
+<li><a href="#_remove_the_code_timezone_code_element">B.12. Remove the <code>timezone</code> element</a></li>
+<li><a href="#_removed_the_code_guest_info_code_element">B.13. Removed the <code>guest_info</code> element</a></li>
+<li><a href="#_replaced_cpu_code_id_code_attribute_with_code_type_code_element">B.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_cpu_topology">B.15. Use elements instead of attributes in CPU topology</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_vcpu_pin">B.16. Use elements instead of attributes in VCPU pin</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_vcpu_pin_2">B.17. Use elements instead of attributes in VCPU pin</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_memory_overcommit">B.18. Use elements instead of attributes in memory overcommit</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_code_console_code">B.19. Use elements instead of attributes in <code>console</code></a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_virtio_scsi">B.20. Use elements instead of attributes in VIRTIO SCSI</a></li>
+<li><a href="#_use_element_instead_of_attribute_for_power_management_agent_code_type_code">B.21. Use element instead of attribute for power management agent <code>type</code></a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_power_management_agent_options">B.22. Use elements instead of attributes in power management agent options</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_ip_address">B.23. Use elements instead of attributes in IP address:</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_mac_address">B.24. Use elements instead of attributes in MAC address:</a></li>
+<li><a href="#_use_elements_instead_of_attributes_in_boot_device">B.25. Use elements instead of attributes in boot device:</a></li>
+<li><a href="#_use_element_instead_of_attribute_for_operating_system_code_type_code">B.26. Use element instead of attribute for operating system <code>type</code></a></li>
+<li><a href="#_removed_the_code_force_code_parameter_from_the_request_to_retrieve_a_host">B.27. Removed the <code>force</code> parameter from the request to retrieve a host</a></li>
+<li><a href="#_removed_deprecated_host_power_management_configuration">B.28. Removed deprecated host power management configuration</a></li>
+<li><a href="#_use_multiple_code_boot_devices_device_code_instead_of_multiple_code_boot_code">B.29. Use multiple <code>boot.devices.device</code> instead of multiple <code>boot</code></a></li>
+<li><a href="#_removed_the_code_disks_clone_code_and_code_disks_detach_only_code_elements">B.30. Removed the <code>disks.clone</code> and <code>disks.detach_only</code> elements</a></li>
+<li><a href="#_rename_element_code_vmpool_code_to_code_vm_pool_code">B.31. Rename element <code>vmpool</code> to <code>vm_pool</code></a></li>
+<li><a href="#_use_code_logical_units_code_instead_of_multiple_code_logical_unit_code">B.32. Use <code>logical_units</code> instead of multiple <code>logical_unit</code></a></li>
+<li><a href="#_removed_the_code_snapshots_collapse_snapshots_code_element">B.33. Removed the <code>snapshots.collapse_snapshots</code> element</a></li>
+<li><a href="#_renamed_code_storage_code_and_code_host_storage_code_elements">B.34. Renamed <code>storage</code> and <code>host_storage</code> elements</a></li>
+<li><a href="#_removed_the_code_permissions_clone_code_element">B.35. Removed the <code>permissions.clone</code> element</a></li>
+<li><a href="#_renamed_the_random_number_generator_code_source_code_elements">B.36. Renamed the random number generator <code>source</code> elements</a></li>
+<li><a href="#_removed_the_intermediate_code_tag_parent_code_element">B.37. Removed the intermediate <code>tag.parent</code> element</a></li>
+<li><a href="#_remove_scheduling_built_in_names_and_thresholds">B.38. Remove scheduling built-in names and thresholds</a></li>
+<li><a href="#_removed_the_code_bricks_replica_count_code_and_code_bricks_stripe_count_code_elements">B.39. Removed the <code>bricks.replica_count</code> and <code>bricks.stripe_count</code> elements</a></li>
+<li><a href="#_renamed_the_statistics_code_type_code_property_to_code_kind_code">B.40. Renamed the statistics <code>type</code> property to <code>kind</code></a></li>
+<li><a href="#_use_multiple_code_vcpu_pins_vcpu_pin_code_instead_of_multiple_code_vcpu_pin_code">B.41. Use multiple <code>vcpu_pins.vcpu_pin</code> instead of multiple <code>vcpu_pin</code></a></li>
+<li><a href="#_use_code_force_code_parameter_to_force_remove_a_data_center">B.42. Use <code>force</code> parameter to force remove a data center</a></li>
+<li><a href="#_use_code_force_code_parameter_to_force_remove_a_host">B.43. Use <code>force</code> parameter to force remove a host</a></li>
+<li><a href="#_use_parameters_for_force_remove_storage_domain">B.44. Use parameters for force remove storage domain</a></li>
+<li><a href="#_use_code_host_code_parameter_to_remove_storage_server_connection">B.45. Use <code>host</code> parameter to remove storage server connection</a></li>
+<li><a href="#_use_code_force_code_and_code_storage_domain_code_parameters_to_remove_template_disks">B.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</a></li>
+<li><a href="#_don_t_remove_disks_via_the_vm_disk_api">B.47. Don&#8217;t remove disks via the VM disk API</a></li>
+<li><a href="#_use_code_force_code_query_parameter_to_force_remove_a_virtual_machine">B.48. Use <code>force</code> query parameter to force remove a virtual machine</a></li>
+<li><a href="#_use_code_post_code_instead_of_code_delete_code_to_remove_multiple_bricks">B.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</a></li>
+<li><a href="#_removed_the_code_scheduling_policy_policy_code_element">B.50. Removed the <code>scheduling_policy.policy</code> element</a></li>
+<li><a href="#_added_code_snapshot_snapshot_type_code">B.51. Added <code>snapshot.snapshot_type</code></a></li>
+<li><a href="#_removed_code_move_code_action_from_code_vm_code">B.52. Removed <code>move</code> action from <code>VM</code></a></li>
+<li><a href="#_moved_code_reported_configurations_in_sync_code_to_code_network_attachment_code">B.53. Moved <code>reported_configurations.in_sync</code> to <code>network_attachment</code></a></li>
+<li><a href="#_replaced_code_capabilities_code_with_code_clusterlevels_code">B.54. Replaced <code>capabilities</code> with <code>clusterlevels</code></a></li>
+<li><a href="#_replaced_code_disks_code_with_code_diskattachments_code">B.55. Replaced <code>disks</code> with <code>diskattachments</code></a></li>
+<li><a href="#_use_code_iscsi_targets_code_element_to_discover_unregistered_storage">B.56. Use <code>iscsi_targets</code> element to discover unregistered storage</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -64689,6 +64749,2145 @@ is UTC+2.
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="documents/a02_changes_in_v4"><a class="anchor" href="#documents/a02_changes_in_v4"></a>Appendix B: Changes in version 4 of the API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section enumerates the backwards compatibility breaking changes
+that have been introduced in version 4 of the API.</p>
+</div>
+<div class="sect2">
+<h3 id="_removed_yaml_support"><a class="anchor" href="#_removed_yaml_support"></a>B.1. Removed YAML support</h3>
+<div class="paragraph">
+<p>The support for YAML has been completely removed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_renamed_complex_types"><a class="anchor" href="#_renamed_complex_types"></a>B.2. Renamed complex types</h3>
+<div class="paragraph">
+<p>The following XML schema complex types have been renamed:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version 3</th>
+<th class="tableblock halign-left valign-top">Version 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>API</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Api</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CPU</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Cpu</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CPUs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Cpus</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CdRom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Cdrom</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CdRoms</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Cdroms</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DNS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Dns</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GuestNicConfiguration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NicConfiguration</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GuestNicsConfiguration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NicConfigurations</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostNICStates</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostNicStates</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostNIC</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostNic</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostStorage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostStorages</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IO</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Io</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IP</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ip</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IPs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ips</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>KSM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ksm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MAC</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Mac</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NIC</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Nic</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PreviewVMs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PreviewVms</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QoS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Qos</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>QoSs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Qoss</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSDL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Rsdl</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELinux</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SeLinux</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SPM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Spm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SSHPublicKey</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SshPublicKey</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SSHPublicKeys</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SshPublicKeys</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SSH</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ssh</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SkipIfSDActive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SkipIfSdActive</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Slaves</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostNics</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HostStorage</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SupportedVersions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Versions</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VCpuPin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VcpuPin</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VLAN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Vlan</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Vm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VMs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Vms</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VirtIO_SCSI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VirtioScsi</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WatchDog</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Watchdog</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WatchDogs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Watchdogs</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_replaced_the_code_status_code_type_with_enum_types"><a class="anchor" href="#_replaced_the_code_status_code_type_with_enum_types"></a>B.3. Replaced the <code>Status</code> type with enum types</h3>
+<div class="paragraph">
+<p>Currently the status of different objects is reported using the <code>Status</code>
+type, which contains a <code>state</code> string describing the status and another
+<code>detail</code> string for additional details. For example, the status of a
+virtual machine that is paused due to an IO error is currently reported
+as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  ...
+  &lt;status&gt;
+    &lt;state&gt;paused&lt;/state&gt;
+    &lt;detail&gt;eio&lt;/detail&gt;
+  &lt;/status&gt;
+  ...
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In version 4 of the API this <code>Status</code> type has been removed and replaced
+by enum types. When the additional <code>detail</code> string is needed it has been
+replaced with an additional <code>status_detail</code> attribute. So, for example,
+the status of the same virtual machine will now be reported as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  ...
+  &lt;status&gt;paused&lt;/status&gt;
+  &lt;status_detail&gt;eio&lt;/status_detail&gt;
+  ...
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_nic_code_network_code_and_code_port_mirroring_code_properties"><a class="anchor" href="#_remove_the_nic_code_network_code_and_code_port_mirroring_code_properties"></a>B.4. Remove the NIC <code>network</code> and <code>port_mirroring</code> properties</h3>
+<div class="paragraph">
+<p>The NIC <code>network</code> and <code>port_mirroring</code> elements have been replaced by
+the <code>vnic_profile</code> element, so when creating or updating a NIC instead
+of specifying the network and port mirroring configuration, these are
+previusly specified creating a vNIC profile:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vnicprofiles</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vnic_profile&gt;
+  &lt;name&gt;myprofile&lt;/name&gt;
+  &lt;network id="..."/&gt;
+  &lt;port_mirroring&gt;true&lt;/port_mirroring&gt;
+&lt;/vnic_profile&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then the NIC is created or referencing the existing vNIC profile:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /ovirt-engine/api/vms/123/nics/456</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;nic&gt;
+  &lt;vnic_profile id="/vnicprofiles/..."&gt;
+&lt;/nic&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The old elements and their meaning were preserved for backwards
+compatibility, but they have now been completely removed.</p>
+</div>
+<div class="paragraph">
+<p>Note that the <code>network</code> element hasn&#8217;t been removed from the XML schema
+because it is still used by the <code>initialization</code> element, but it will be
+completely ignored if provided when creating or updating a NIC.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_nic_code_active_code_property"><a class="anchor" href="#_remove_the_nic_code_active_code_property"></a>B.5. Remove the NIC <code>active</code> property</h3>
+<div class="paragraph">
+<p>The NIC <code>active</code> property was replaced by <code>plugged</code> some time ago. It
+has been completely removed now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_disk_code_type_code_property"><a class="anchor" href="#_remove_the_disk_code_type_code_property"></a>B.6. Remove the disk <code>type</code> property</h3>
+<div class="paragraph">
+<p>The <code>type</code> property of disks has been removed, but kept in the XML
+schema and ignored. It has been completely removed now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_disk_code_size_code_property"><a class="anchor" href="#_remove_the_disk_code_size_code_property"></a>B.7. Remove the disk <code>size</code> property</h3>
+<div class="paragraph">
+<p>The disk <code>size</code> property has been replaced by <code>provisioned_size</code> long
+ago. It has been completely removed now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_support_for_pinning_a_vm_to_a_single_host"><a class="anchor" href="#_removed_support_for_pinning_a_vm_to_a_single_host"></a>B.8. Removed support for pinning a VM to a single host</h3>
+<div class="paragraph">
+<p>Before version 3.6 the API had the possibility to pin a VM to a single
+host, using the <code>placement_policy</code> element of the VM entity:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;placement_policy&gt;
+    &lt;host id="456"/&gt;
+  &lt;/placement_policy&gt;
+&lt;vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In version 3.6 this capability was enhanced to support multiple hosts,
+and to do so a new <code>hosts</code> element was added:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;placement_policy&gt;
+    &lt;hosts&gt;
+      &lt;host id="456"/&gt;
+      &lt;host id="789"/&gt;
+      ...
+    &lt;/hosts&gt;
+  &lt;/placement_policy&gt;
+&lt;vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To preserve backwards compatibility the single <code>host</code> element was
+preserved. In 4.0 this has been removed, so applications will need to
+use the <code>hosts</code> element even if when pinning to a single host.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_capabilities_permits_code_element"><a class="anchor" href="#_removed_the_code_capabilities_permits_code_element"></a>B.9. Removed the <code>capabilities.permits</code> element</h3>
+<div class="paragraph">
+<p>The list of permits is potentiall different for each cluster level, and
+it has been added to the <code>version</code> element long ago, but it has been
+kept into the <code>capabilities</code> element as well, just for backwards
+compatibility.</p>
+</div>
+<div class="paragraph">
+<p>In 4.0 it the <code>capabilities</code> service has been completely removed, and
+replaced by the new <code>clusterlevels</code> service. To find the permits
+supported by cluster level 4.0 a request like this should be used:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusterlevels/4.0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be a document containing the information specific to
+that cluster level, in particular the set of supported permits:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster_level id="4.0" href="/clusterlevels/4.0"&gt;
+  ...
+  &lt;permits&gt;
+    &lt;permit id="1"&gt;
+      &lt;name&gt;create_vm&lt;/name&gt;
+      &lt;administrative&gt;false&lt;/administrative&gt;
+    &lt;/permit&gt;
+    ...
+  &lt;/permits&gt;
+&lt;/cluster_level&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_storage_manager_code_element"><a class="anchor" href="#_removed_the_code_storage_manager_code_element"></a>B.10. Removed the <code>storage_manager</code> element</h3>
+<div class="paragraph">
+<p>The <code>storage_manager</code> element was replaced by the <code>spm</code> element some
+time ago. The old one was kept for backwards compatibility, but it has
+been completely removed now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_data_center_code_storage_type_code_element"><a class="anchor" href="#_removed_the_data_center_code_storage_type_code_element"></a>B.11. Removed the data center <code>storage_type</code> element</h3>
+<div class="paragraph">
+<p>Data centers used to be associated to a specific storage type (NFS,
+Fiber Channel, iSCSI, etc) but they have been changed some time so that
+there are only two types: with local storage and with shared storage. A
+new <code>local</code> element was introduced to indicate this, and the old
+<code>storage_type</code> was element was preserved for backwards compatibility.
+This old element has now been completely removed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_the_code_timezone_code_element"><a class="anchor" href="#_remove_the_code_timezone_code_element"></a>B.12. Remove the <code>timezone</code> element</h3>
+<div class="paragraph">
+<p>The VM resource used to contain a <code>timezone</code> element to represent the
+time zone. This element only allowed a string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;timezone&gt;Europe/Madrid&lt;/timezone&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This doesn&#8217;t allow extension, and as a it was necessary to add the UTC
+offset, it was replaced with a new structured <code>time_zone</code> element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;time_zone&gt;
+    &lt;name&gt;Europe/Madrid&lt;/name&gt;
+    &lt;utc_offset&gt;GMT+1&lt;/utc_offset&gt;
+  &lt;/time_zone&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The old <code>timezone</code> element was preserved, but it has been completely
+removed now.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_guest_info_code_element"><a class="anchor" href="#_removed_the_code_guest_info_code_element"></a>B.13. Removed the <code>guest_info</code> element</h3>
+<div class="paragraph">
+<p>The <code>guest_info</code> element was used to hold information gathered by the
+guest agent, like the IP addresses and the fully qualified host name.
+This information is also available in other places. For example, the IP
+addresses are available within VM resource:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;guest_info&gt;
+    &lt;ips&gt;
+      &lt;ip address="192.168.122.30"/&gt;
+    &lt;/ips&gt;
+    &lt;fqdn&gt;myvm.example.com&lt;/fqdn&gt;
+  &lt;/guest_info&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And also within the NIC resource, using the newer <code>reported_devices</code>
+element:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/{vm:id}/nics/{nic:id}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;nic&gt;
+  &lt;reported_devices&gt;
+    &lt;reported_device&gt;
+      &lt;name&gt;eth0&lt;/name&gt;
+      &lt;mac address="00:1a:4a:b5:4c:94"/&gt;
+      &lt;ips&gt;
+        &lt;ip address="192.168.1.115" version="v4"/&gt;
+        &lt;ip address="fe80::21a:4aff:feb5:4c94" version="v6"/&gt;
+        &lt;ip address="::1:21a:4aff:feb5:4c94" version="v6"/&gt;
+      &lt;/ips&gt;
+    &lt;/reported_device&gt;
+  &lt;/reported_devices&gt;
+&lt;/nic&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition this newer <code>reported_devices</code> element provides more complete
+information, like multiple IP addresses, MAC addresses, etc.</p>
+</div>
+<div class="paragraph">
+<p>To remove this duplication the <code>guest_info</code> element has been removed.</p>
+</div>
+<div class="paragraph">
+<p>To support the fully qualified domain name a new <code>fqdn</code> element has been
+added to the VM resource:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>&lt;vm&gt;
+  &lt;fqdn&gt;myvm.example.com&lt;/fqdn&gt;
+&lt;/vms&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will contain the same information that <code>guest_info.fqdn</code> used to
+contain.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replaced_cpu_code_id_code_attribute_with_code_type_code_element"><a class="anchor" href="#_replaced_cpu_code_id_code_attribute_with_code_type_code_element"></a>B.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</h3>
+<div class="paragraph">
+<p>The <code>cpu</code> element used to have an <code>id</code> attribute that indicates the type
+of CPU:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu id="Intel Conroe Family"&gt;
+  &lt;architecture&gt;X86_64&lt;/architecture&gt;
+  ...
+&lt;/cpu&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is in contradiction with the rest of the elements of the API model,
+where the <code>id</code> attribute is used for opaque identifiers. This <code>id</code>
+attribute has been replaced with a new <code>type</code> element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu&gt;
+  &lt;type&gt;Intel Conroe Family&lt;/type&gt;
+  &lt;architecture&gt;X86_64&lt;/architecture&gt;
+&lt;/cpu&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_cpu_topology"><a class="anchor" href="#_use_elements_instead_of_attributes_in_cpu_topology"></a>B.15. Use elements instead of attributes in CPU topology</h3>
+<div class="paragraph">
+<p>In the past the CPU topology element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu&gt;
+  &lt;topology sockets="1" cores="1" threads="1"/&gt;
+  ...
+&lt;/cpu&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu&gt;
+  &lt;topology&gt;
+    &lt;sockets&gt;1&lt;sockets&gt;
+    &lt;cores&gt;1&lt;cores&gt;
+    &lt;threads&gt;1&lt;threads&gt;
+  &lt;/topology&gt;
+  ...
+&lt;/cpu&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_vcpu_pin"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin"></a>B.16. Use elements instead of attributes in VCPU pin</h3>
+<div class="paragraph">
+<p>In the past the VCPU pin element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu_tune&gt;
+  &lt;vcpu_pin vcpu="0" cpu_set="0"/&gt;
+&lt;/cpu_tune&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu_tune&gt;
+  &lt;vcpu_pin&gt;
+    &lt;vcpu&gt;0&lt;/vcpu&gt;
+    &lt;cpu_set&gt;0&lt;/cpu_set&gt;
+  &lt;/vcpu_pin&gt;
+&lt;/cpu_tune&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_vcpu_pin_2"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin_2"></a>B.17. Use elements instead of attributes in VCPU pin</h3>
+<div class="paragraph">
+<p>In the past the <code>version</code> element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;version major="3" minor="5" ../&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;version&gt;
+  &lt;major&gt;3&lt;/minor&gt;
+  &lt;minor&gt;5&lt;/minor&gt;
+  ...
+&lt;/version&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_memory_overcommit"><a class="anchor" href="#_use_elements_instead_of_attributes_in_memory_overcommit"></a>B.18. Use elements instead of attributes in memory overcommit</h3>
+<div class="paragraph">
+<p>In the past the <code>overcommit</code> element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;memory_policy&gt;
+  &lt;overcommit percent="100"/&gt;
+  ...
+&lt;/memory_policy&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;memory_policy&gt;
+  &lt;overcommit&gt;
+    &lt;percent&gt;100&lt;/percent&gt;
+  &lt;/overcommit&gt;
+  ...
+&lt;/memory_policy&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_code_console_code"><a class="anchor" href="#_use_elements_instead_of_attributes_in_code_console_code"></a>B.19. Use elements instead of attributes in <code>console</code></h3>
+<div class="paragraph">
+<p>In the past the <code>console</code> element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;console enabled="true"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;console&gt;
+  &lt;enabled&gt;true&lt;/enabled&gt;
+&lt;/console&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_virtio_scsi"><a class="anchor" href="#_use_elements_instead_of_attributes_in_virtio_scsi"></a>B.20. Use elements instead of attributes in VIRTIO SCSI</h3>
+<div class="paragraph">
+<p>In the past the VIRTIO ISCSI element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;virtio_scsi enabled="true"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;virtio_scsi&gt;
+  &lt;enabled&gt;true&lt;/enabled&gt;
+&lt;/virtio_scsi&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_element_instead_of_attribute_for_power_management_agent_code_type_code"><a class="anchor" href="#_use_element_instead_of_attribute_for_power_management_agent_code_type_code"></a>B.21. Use element instead of attribute for power management agent <code>type</code></h3>
+<div class="paragraph">
+<p>The power management <code>type</code> property was represented as an attribute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;agent type="apc"&gt;
+  &lt;username&gt;myuser&lt;/username&gt;
+  ...
+&lt;/agent&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. It has been
+replaced with an inner element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;agent&gt;
+  &lt;type&gt;apc&lt;/type&gt;
+  &lt;username&gt;myuser&lt;/username&gt;
+  ...
+&lt;/agent&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_power_management_agent_options"><a class="anchor" href="#_use_elements_instead_of_attributes_in_power_management_agent_options"></a>B.22. Use elements instead of attributes in power management agent options</h3>
+<div class="paragraph">
+<p>In the past the power management agent options element used attributes
+for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;options&gt;
+  &lt;option name="port" value="22"/&gt;
+  &lt;option name="slot" value="5"/&gt;
+  ...
+&lt;/options&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced with inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;options&gt;
+  &lt;option&gt;
+    &lt;name&gt;port&lt;/name&gt;
+    &lt;value&gt;22&lt;/value&gt;
+  &lt;/option&gt;
+  &lt;option&gt;
+    &lt;name&gt;slot&lt;/name&gt;
+    &lt;value&gt;5&lt;/value&gt;
+  &lt;/option&gt;
+  ...
+&lt;/options&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_ip_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_ip_address"></a>B.23. Use elements instead of attributes in IP address:</h3>
+<div class="paragraph">
+<p>In the past the IP address element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;ip address="192.168.122.1" netmask="255.255.255.0"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced with inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;ip&gt;
+  &lt;address&gt;192.168.122.1&lt;/address&gt;
+  &lt;netmask&gt;255.255.255.0&lt;/netmask&gt;
+&lt;/ip&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_mac_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_mac_address"></a>B.24. Use elements instead of attributes in MAC address:</h3>
+<div class="paragraph">
+<p>In the past the MAC address element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;mac address="66:f2:c5:5f:bb:8d"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;mac&gt;
+  &lt;address&gt;66:f2:c5:5f:bb:8d&lt;/address&gt;
+&lt;/mac&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_elements_instead_of_attributes_in_boot_device"><a class="anchor" href="#_use_elements_instead_of_attributes_in_boot_device"></a>B.25. Use elements instead of attributes in boot device:</h3>
+<div class="paragraph">
+<p>In the past the boot device element used attributes for its properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;boot dev="cdrom"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. They have been
+replaced by inner elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;boot&gt;
+  &lt;dev&gt;cdrom&lt;/dev&gt;
+&lt;/boot&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_element_instead_of_attribute_for_operating_system_code_type_code"><a class="anchor" href="#_use_element_instead_of_attribute_for_operating_system_code_type_code"></a>B.26. Use element instead of attribute for operating system <code>type</code></h3>
+<div class="paragraph">
+<p>The operating system <code>type</code> property was represented as an attribute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;os type="other"&gt;
+  ...
+&lt;/os&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the common practice in the API. It has been
+replaced with an inner element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;os&gt;
+  &lt;type&gt;other&lt;/type&gt;
+  ...
+&lt;/os&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_force_code_parameter_from_the_request_to_retrieve_a_host"><a class="anchor" href="#_removed_the_code_force_code_parameter_from_the_request_to_retrieve_a_host"></a>B.27. Removed the <code>force</code> parameter from the request to retrieve a host</h3>
+<div class="paragraph">
+<p>The request to retrieve a host used to support a <code>force</code> matrix
+parameter to indicate that the data of the host should be refreshed
+(calling VDSM to reload host capabilities and devices) before retrieving
+it from the database:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123;force</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>force</code> parameter has been superseded by the host <code>refresh</code> action,
+but kept for backwards compatibility. It has been completely removed
+now. Applications that require this functionality should perform two
+requests, first one to refresh the host:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/hosts/123/refresh</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then one to retrieve it, without the <code>force</code> parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_deprecated_host_power_management_configuration"><a class="anchor" href="#_removed_deprecated_host_power_management_configuration"></a>B.28. Removed deprecated host power management configuration</h3>
+<div class="paragraph">
+<p>The host power management configuration used to be part of the host
+resource, using embedded configuration elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;power_management type="apc"&gt;
+  &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;address&gt;myaddress&lt;/address&gt;
+  &lt;username&gt;myaddress&lt;/username&gt;
+  &lt;options&gt;
+    &lt;option name="port" value="22/&gt;
+    &lt;/option name="slot" value="5/&gt;
+  &lt;/options&gt;
+  ...
+&lt;/power_management&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has been changed some time ago, in order to support multiple power
+management agents, introducing a new <code>/hosts/123/fenceagents</code> collection.</p>
+</div>
+<div class="paragraph">
+<p>The old <code>type</code> attribute, the old <code>address</code>, <code>username</code> and <code>password</code>
+elements, and the inner <code>agents</code> element directly inside <code>power_management</code>
+were preserved for backwards compatibility. All these elements have been
+completely removed, so the only way to query or modify the power management
+agents is now the <code>/hosts/123/fenceagents</code> sub-collection.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_multiple_code_boot_devices_device_code_instead_of_multiple_code_boot_code"><a class="anchor" href="#_use_multiple_code_boot_devices_device_code_instead_of_multiple_code_boot_code"></a>B.29. Use multiple <code>boot.devices.device</code> instead of multiple <code>boot</code></h3>
+<div class="paragraph">
+<p>In the past the way to specify the boot sequence when starting a virtual
+machine was to use multiple <code>boot</code> elements, each containing a <code>dev</code>
+element. For example, to specify that the virtual machine should first
+try to boot from CDROM and then from hard disk the following request was
+used:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms/123/start</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;vm&gt;
+    ...
+    &lt;boot&gt;
+      &lt;dev&gt;cdrom&lt;/dev&gt;
+    &lt;/boot&gt;
+    &lt;boot&gt;
+      &lt;dev&gt;hd&lt;/dev&gt;
+    &lt;/boot&gt;
+  &lt;/vm&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The common practice in other parts of the API is to represent arrays
+with a wrapper element. In that case that wrapper element could be named
+<code>boots</code>, but that doesn&#8217;t make much sense, as what can have multiple
+values here is the boot device, not the boot sequence. To fix this
+inconsistence this has been replaced with a single <code>boot</code> element that
+can contain multiple devices:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms/123/start</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;vm&gt;
+    ...
+    &lt;boot&gt;
+      &lt;devices&gt;
+        &lt;device&gt;cdrom&lt;/device&gt;
+        &lt;device&gt;hd&lt;/device&gt;
+      &lt;/devices&gt;
+    &lt;/boot&gt;
+  &lt;/vm&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_disks_clone_code_and_code_disks_detach_only_code_elements"><a class="anchor" href="#_removed_the_code_disks_clone_code_and_code_disks_detach_only_code_elements"></a>B.30. Removed the <code>disks.clone</code> and <code>disks.detach_only</code> elements</h3>
+<div class="paragraph">
+<p>These elements aren&#8217;t really part of the representation of disks, but
+parameters of the operations to add and remove virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>The <code>disks.clone</code> element was used to indicate that the disks of a new
+virtual machine have to be cloned:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  ...
+  &lt;disks&gt;
+    &lt;clone&gt;true&lt;/clone&gt;
+  &lt;/disks&gt;
+&lt;vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has been now removed, and replaced by a new <code>clone</code> query parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms?clone=true</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  ...
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>disks.detach_only</code> element was used to indicate that when removing
+a virtual machine the disks don&#8217;t have to be removed, but just detached
+from the virtual machine:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;vm&gt;
+    &lt;disks&gt;
+      &lt;detach_only&gt;true&lt;/detach_only&gt;
+    &lt;/disks&gt;
+  &lt;/vm&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has been now removed, and replaced by a new <code>detach_only</code> query
+parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/vms/123?detach_only=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rename_element_code_vmpool_code_to_code_vm_pool_code"><a class="anchor" href="#_rename_element_code_vmpool_code_to_code_vm_pool_code"></a>B.31. Rename element <code>vmpool</code> to <code>vm_pool</code></h3>
+<div class="paragraph">
+<p>The names of the elements that represent pools of virtual machines used
+to be <code>vmpool</code> and <code>vmpools</code>. They have been renamed to <code>vm_pool</code> and
+<code>vm_pools</code> in order to have a consistent correspondence between names of
+complex types (<code>VmPool</code> and <code>VmPools</code> in this case) and elements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_logical_units_code_instead_of_multiple_code_logical_unit_code"><a class="anchor" href="#_use_code_logical_units_code_instead_of_multiple_code_logical_unit_code"></a>B.32. Use <code>logical_units</code> instead of multiple <code>logical_unit</code></h3>
+<div class="paragraph">
+<p>The logical units that are part of a volume group used to be reported as
+an unbounded number of <code>logical_unit</code> elements. For example, when
+reporting the details of a storage domain:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/storagedomains/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+  ...
+  &lt;storage&gt;
+    ...
+    &lt;volume_group&gt;
+      &lt;logical_unit&gt;
+        &lt;!-- First LU --&gt;
+      &lt;/logical_unit&gt;
+      &lt;logical_unit&gt;
+        &lt;!-- Second LU --&gt;
+      &lt;/logical_unit&gt;
+      ...
+    &lt;/volume_group&gt;
+  &lt;/storage&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is contrary to the usual practice in the API, as list of elements
+are always wrapped with an element. This has been fixed now, so the list
+of logical units will be wrapped with the <code>logical_units</code> element:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/storagedomains/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+  ...
+  &lt;storage&gt;
+    ...
+    &lt;volume_group&gt;
+      &lt;logical_units&gt;
+        &lt;logical_unit&gt;
+          &lt;!-- First LU --&gt;
+        &lt;/logical_unit&gt;
+        &lt;logical_unit&gt;
+          &lt;!-- Second LU --&gt;
+        &lt;/logical_unit&gt;
+        ...
+      &lt;/logical_units&gt;
+    &lt;/volume_group&gt;
+  &lt;/storage&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_snapshots_collapse_snapshots_code_element"><a class="anchor" href="#_removed_the_code_snapshots_collapse_snapshots_code_element"></a>B.33. Removed the <code>snapshots.collapse_snapshots</code> element</h3>
+<div class="paragraph">
+<p>This element isn&#8217;t really part of the representation of snapshots, but
+a parameter of the operation that imports a virtual machine from an
+export storage domain:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/storagedomains/123/vms/456/import</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;vm&gt;
+    &lt;snapshots&gt;
+      &lt;collapse_snapshots&gt;true&lt;/collapse_snapshots&gt;
+    &lt;/snapshots&gt;
+  &lt;/vm&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has been now removed, and replaced by a new <code>collapse_snapshots</code>
+query parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/storagedomains/123/vms/456/import?collapse_snapshots=true</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_renamed_code_storage_code_and_code_host_storage_code_elements"><a class="anchor" href="#_renamed_code_storage_code_and_code_host_storage_code_elements"></a>B.34. Renamed <code>storage</code> and <code>host_storage</code> elements</h3>
+<div class="paragraph">
+<p>The host storage collection used the <code>storage</code> and <code>host_storage</code>
+elements and the <code>Storage</code> and <code>HostStorage</code> complex types to report the
+storage associated to a host:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/storage</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;host_storage&gt;
+  &lt;storage&gt;
+    ...
+  &lt;/storage&gt;
+  &lt;storage&gt;
+    ...
+  &lt;/storage&gt;
+  ...
+&lt;/host_storage&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This doesn&#8217;t follow the pattern used in the rest of the API, where the
+outer element is a plural name and the inner element is the same name
+but in singular. This has now been changed to use <code>host_storages</code> as the
+outer element and <code>host_storage</code> as the inner element:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/storage</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;host_storages&gt;
+  &lt;host_storage&gt;
+    ...
+  &lt;/host_storage&gt;
+  &lt;host_storage&gt;
+    ...
+  &lt;/host_storage&gt;
+  ...
+&lt;/host_storage&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_permissions_clone_code_element"><a class="anchor" href="#_removed_the_code_permissions_clone_code_element"></a>B.35. Removed the <code>permissions.clone</code> element</h3>
+<div class="paragraph">
+<p>This element isn&#8217;t really part of the representation of permissions, but
+a parameter of the operations to create virtual machines or templates:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;template id="..."&gt;
+    &lt;permissions&gt;
+      &lt;clone&gt;true&lt;/clone&gt;
+    &lt;/permissions&gt;
+  &lt;/template&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/templates</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;vm id="..."&gt;
+    &lt;permissions&gt;
+      &lt;clone&gt;true&lt;/clone&gt;
+    &lt;/permissions&gt;
+  &lt;/vm&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This has been now removed, and replaced by a new <code>clone_permissions</code>
+query parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms?clone_permissions=true</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;template id="..."/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/templates?clone_permissions=true</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;vm id="..."/&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_renamed_the_random_number_generator_code_source_code_elements"><a class="anchor" href="#_renamed_the_random_number_generator_code_source_code_elements"></a>B.36. Renamed the random number generator <code>source</code> elements</h3>
+<div class="paragraph">
+<p>The random number generator sources used to be reported using a
+collection of <code>source</code> elements wrapped by an element with a name
+reflecting its use. For example, the required random number generator
+sources of a cluster used to be reported as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusters/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
+  ...
+  &lt;required_rng_sources&gt;
+    &lt;source&gt;random&lt;/source&gt;
+  &lt;/required_rng_sources&gt;
+  ...
+&lt;/cluster&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the random number generator sources suported by a host used to be
+reported as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;host&gt;
+  ...
+  &lt;hardware_information&gt;
+    &lt;supported_rng_sources&gt;
+      &lt;source&gt;random&lt;/source&gt;
+    &lt;/supported_rng_sources&gt;
+  &lt;/hardware_information&gt;
+  ...
+&lt;/host&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This isn&#8217;t consistent with the rest of the API, where collections are
+wrapped by a name in plural and elements by the same name in singular.
+This has been now fixed. The required random number generator sources
+will now be reported as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusters/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
+  &lt;required_rng_sources&gt;
+    &lt;required_rng_sources&gt;random&lt;/required_rng_source&gt;
+  &lt;/required_rng_sources&gt;
+  ...
+&lt;/cluster&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the random number generator sources supported by a host will be
+reported as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;host&gt;
+  ...
+  &lt;hardware_information&gt;
+    &lt;supported_rng_sources&gt;
+      &lt;supported_rng_source&gt;random&lt;/supported_rng_source&gt;
+    &lt;/supported_rng_sources&gt;
+  &lt;/hardware_information&gt;
+  ...
+&lt;/host&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the use of <code>required_rng_source</code> and <code>supported_rng_source</code> instead
+of just <code>source</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_intermediate_code_tag_parent_code_element"><a class="anchor" href="#_removed_the_intermediate_code_tag_parent_code_element"></a>B.37. Removed the intermediate <code>tag.parent</code> element</h3>
+<div class="paragraph">
+<p>The relationship bettween a tag and it&#8217;s parent tag used to be
+represented using an intermedite <code>parent</code> tag, that in turn contains
+another <code>tag</code> element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;tag&gt;
+  &lt;name&gt;mytag&lt;/name&gt;
+  &lt;parent&gt;
+    &lt;tag id="..." href="..."/&gt;
+  &lt;/parent&gt;
+&lt;/tag&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This structure has been simplified so that only one <code>parent</code> element is
+used now:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;tag&gt;
+  &lt;name&gt;mytag&lt;/name&gt;
+  &lt;parent id="..." href="..."/&gt;
+&lt;/tag&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_scheduling_built_in_names_and_thresholds"><a class="anchor" href="#_remove_scheduling_built_in_names_and_thresholds"></a>B.38. Remove scheduling built-in names and thresholds</h3>
+<div class="paragraph">
+<p>In the past the specification of scheduling policies for clusters was
+based in built-in names and thresholds. For example a cluster that used
+the <strong>evenly distributed</strong> scheduling policy was represented as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
+  &lt;name&gt;mycluster&lt;/name&gt;
+  &lt;scheduling_policy&gt;
+    &lt;policy&gt;evenly_distributed&lt;/policy&gt;
+    &lt;thresholds high="80" duration="120"/&gt;
+  &lt;/scheduling_policy&gt;
+  ...
+&lt;/cluster&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This mechanism was replaced with a top level <code>/schedulingpolicies</code>
+collection where scheduling policies can be defined with arbitrary names
+and properties. For example, the same scheduling policy is represented
+as follows in that top level collection:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;scheduling_policy&gt;
+  &lt;name&gt;evenly_distributed&lt;/name&gt;
+  &lt;properties&gt;
+    &lt;property&gt;
+      &lt;name&gt;CpuOverCommitDurationMinutes&lt;/name&gt;
+      &lt;value&gt;2&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;HighUtilization&lt;/name&gt;
+      &lt;value&gt;80&lt;/value&gt;
+    &lt;/property&gt;
+  &lt;/properties&gt;
+&lt;/scheduling_policy&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The representation of the cluster references the scheduling policy with
+its identifier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
+  &lt;name&gt;mycluster&lt;/name&gt;
+  &lt;scheduling_policy id="..."/&gt;
+  ...
+&lt;/cluster&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To preserve backwards compatibility the old <code>policy</code> and <code>thresholds</code>
+elements were preserved. The scheduling policy representation embedded
+within the cluster was also preserved. All these things have been
+completely removed now, so the only way to reference a scheduling policy
+when retrieving, creating or updating a cluster is to reference an
+existing one using its identifier. For example, when retrieving a
+cluster only the <code>id</code> (and <code>href</code>) will be populated:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusters/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
+  ...
+  &lt;scheduling_policy id="..." href="..."/&gt;
+  ...
+&lt;/cluster&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When creating or updating a cluster only the <code>id</code> will be accepted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_bricks_replica_count_code_and_code_bricks_stripe_count_code_elements"><a class="anchor" href="#_removed_the_code_bricks_replica_count_code_and_code_bricks_stripe_count_code_elements"></a>B.39. Removed the <code>bricks.replica_count</code> and <code>bricks.stripe_count</code> elements</h3>
+<div class="paragraph">
+<p>These elements aren&#8217;t really part of the representation of a collection of
+bricks, but parameters of the operations to add and remove bricks. They have
+now been removed, and replaced by new <code>replica_count</code> and <code>stripe_count</code>
+parameters:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST .../bricks?replica_count=3&amp;stripe_count=2</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE .../bricks?replica_count=3</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_renamed_the_statistics_code_type_code_property_to_code_kind_code"><a class="anchor" href="#_renamed_the_statistics_code_type_code_property_to_code_kind_code"></a>B.40. Renamed the statistics <code>type</code> property to <code>kind</code></h3>
+<div class="paragraph">
+<p>The statistics used to be represented using a <code>type</code> element that indicates the
+kind of statistic (gauge, counter, etc) and also a <code>type</code> attribute that
+indicates the type of the values (integer, string, etc):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;statistic&gt;
+  &lt;type&gt;GAUGE&lt;/type&gt;
+  &lt;values type="INTEGER"&gt;
+    &lt;value&gt;...&lt;/value&gt;
+    &lt;value&gt;...&lt;/value&gt;
+    ...
+  &lt;/values&gt;
+&lt;/statistic&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To avoid the use of the <code>type</code> concept for both things the first has been
+replaced by <code>kind</code>, and both <code>kind</code> and <code>type</code> are now elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;statistic&gt;
+  &lt;kind&gt;gauge&lt;/kind&gt;
+  &lt;type&gt;integer&lt;/type&gt;
+  &lt;values&gt;
+    &lt;value&gt;...&lt;/value&gt;
+    &lt;value&gt;...&lt;/value&gt;
+    ...
+  &lt;/values&gt;
+&lt;/statistic&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_multiple_code_vcpu_pins_vcpu_pin_code_instead_of_multiple_code_vcpu_pin_code"><a class="anchor" href="#_use_multiple_code_vcpu_pins_vcpu_pin_code_instead_of_multiple_code_vcpu_pin_code"></a>B.41. Use multiple <code>vcpu_pins.vcpu_pin</code> instead of multiple <code>vcpu_pin</code></h3>
+<div class="paragraph">
+<p>In the past the way to specify the virtual to physical CPU pinning of a virtual
+machine was to use multiple <code>vcpu_pin</code> elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;cpu&gt;
+    &lt;cpu_tune&gt;
+      &lt;vcpu_pin&gt;...&lt;/vcpu_pin&gt;
+      &lt;vcpu_pin&gt;...&lt;/vcpu_pin&gt;
+      ...
+    &lt;/cpu_tune&gt;
+  &lt;/cpu&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to conform to the common practice in other parts of the API this has
+been changed to use a wrapper element, in this case <code>vcpu_pins</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;cpu&gt;
+    &lt;cpu_tune&gt;
+      &lt;vcpu_pins&gt;
+        &lt;vcpu_pin&gt;...&lt;/vcpu_pin&gt;
+        &lt;vcpu_pin&gt;...&lt;/vcpu_pin&gt;
+        ...
+      &lt;/vcpu_pins&gt;
+    &lt;/cpu_tune&gt;
+  &lt;/cpu&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_force_code_parameter_to_force_remove_a_data_center"><a class="anchor" href="#_use_code_force_code_parameter_to_force_remove_a_data_center"></a>B.42. Use <code>force</code> parameter to force remove a data center</h3>
+<div class="paragraph">
+<p>The operation that removes a data center supports a <code>force</code> parameter.  In
+order to use it the <code>DELETE</code> operation used to support an optional action
+parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/datacenters/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;force&gt;true&lt;/force&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This optional action parameter has been replaced with an optional parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/datacenters/123?force=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_force_code_parameter_to_force_remove_a_host"><a class="anchor" href="#_use_code_force_code_parameter_to_force_remove_a_host"></a>B.43. Use <code>force</code> parameter to force remove a host</h3>
+<div class="paragraph">
+<p>The operation that removes a host supports a <code>force</code> parameter. In order to use
+it the <code>DELETE</code> operation used to support an optional action parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/host/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;force&gt;true&lt;/force&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This optional action parameter has been replaced with an optional parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/host/123?force=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_parameters_for_force_remove_storage_domain"><a class="anchor" href="#_use_parameters_for_force_remove_storage_domain"></a>B.44. Use parameters for force remove storage domain</h3>
+<div class="paragraph">
+<p>The operation that removes a storage domain supports the <code>force</code>, <code>destroy</code> and
+<code>host</code> parameters. These parameters were passed to the <code>DELETE</code> method using
+the representation of the storage domain as the body:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/storagedomains/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+  &lt;force&gt;...&lt;/force&gt;
+  &lt;destroy&gt;...&lt;/destroy&gt;
+  &lt;host id="..."&gt;
+    &lt;name&gt;...&lt;/name&gt;
+  &lt;/host&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This was problematic, as the HTTP <code>DELETE</code> parameters shouldn&#8217;t have a body,
+and the representation of the storage domain shouldn&#8217;t include things that
+aren&#8217;t attributes of the storage domain, rather parameters of the operation.</p>
+</div>
+<div class="paragraph">
+<p>The <code>force</code>, <code>delete</code> and <code>host</code> attributes have been replaced by equivalent
+parameters, and the operation doesn&#8217;t now accept a body. For example, now the
+correct way to delete a storage domain with the <code>force</code> parameter is the
+following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/storagedomain/123?host=myhost&amp;force=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To delete with the <code>destroy</code> parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/storagedomain/123?host=myhost&amp;destroy=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_host_code_parameter_to_remove_storage_server_connection"><a class="anchor" href="#_use_code_host_code_parameter_to_remove_storage_server_connection"></a>B.45. Use <code>host</code> parameter to remove storage server connection</h3>
+<div class="paragraph">
+<p>The operation that removes a storage server connection supports a <code>host</code>
+parameter. In order to use it the <code>DELETE</code> method used to support an optional
+action parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/storageconnections/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;host id="..."&gt;
+    &lt;name&gt;...&lt;/name&gt;
+  &lt;/host&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This optional action parameter has been replaced with an optional parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/storageconnections/123?host=myhost</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_force_code_and_code_storage_domain_code_parameters_to_remove_template_disks"><a class="anchor" href="#_use_code_force_code_and_code_storage_domain_code_parameters_to_remove_template_disks"></a>B.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</h3>
+<div class="paragraph">
+<p>The operation that removes a template disk supports the <code>force</code> and
+<code>storage_domain</code> parameters. In order to use it them the <code>DELETE</code> method used
+to support an optional action parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/templates/123/disks/456</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;force&gt;...&lt;/force&gt;
+  &lt;storage_domain id="..."/&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In version 4 of the API this operation has been moved to the new
+<code>diskattachments</code> collection, and the request body has been replaced with the
+query parameters <code>force</code> and <code>storage_domain</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/templates/123/disksattachments/456?force=true</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/templates/123/disksattachments/456?storage_domain=123</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_don_t_remove_disks_via_the_vm_disk_api"><a class="anchor" href="#_don_t_remove_disks_via_the_vm_disk_api"></a>B.47. Don&#8217;t remove disks via the VM disk API</h3>
+<div class="paragraph">
+<p>Removing an entity by deleting <code>/vms/123/disks/456</code> means removing the
+relationship between the VM and the disk - i.e., this operation should just
+detach the disk from the VM. This operation is no longer able to remove disks
+completely from the system, which was prone to user errors and had
+unreverseable consequences. To remove a disk, instead use the
+<code>/disk/456</code> API:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/disks/456</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_force_code_query_parameter_to_force_remove_a_virtual_machine"><a class="anchor" href="#_use_code_force_code_query_parameter_to_force_remove_a_virtual_machine"></a>B.48. Use <code>force</code> query parameter to force remove a virtual machine</h3>
+<div class="paragraph">
+<p>The operation that removes a virtual machine supports a <code>force</code> parameter. In
+order to use it the <code>DELETE</code> method used to support an optional action
+parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;force&gt;true&lt;/force&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This optional action parameter has been replaced with an optional query
+parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/vms/123?force=true</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_post_code_instead_of_code_delete_code_to_remove_multiple_bricks"><a class="anchor" href="#_use_code_post_code_instead_of_code_delete_code_to_remove_multiple_bricks"></a>B.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</h3>
+<div class="paragraph">
+<p>The operation that removes multiple Gluster bricks was implemented using the
+<code>DELETE</code> method and passing the list of bricks as the body of the request:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/clusters/123/glustervolumes/456/bricks</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;bricks&gt;
+  &lt;bricks id="..."/&gt;
+  &lt;bricks id="..."/&gt;
+  ...
+&lt;/bricks&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is problematic because the <code>DELETE</code> method shouldn&#8217;t have a body, so it
+has been replaced with a new <code>remove</code> action that uses the <code>POST</code> method:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/clusters/123/glustervolumes/456/bricks/remove</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;bricks&gt;
+  &lt;bricks id="..."/&gt;
+  &lt;bricks id="..."/&gt;
+  ...
+&lt;/bricks&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_the_code_scheduling_policy_policy_code_element"><a class="anchor" href="#_removed_the_code_scheduling_policy_policy_code_element"></a>B.50. Removed the <code>scheduling_policy.policy</code> element</h3>
+<div class="paragraph">
+<p>The element was kept for backward compatibility. Use <code>scheduling_policy.name</code>
+instead.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/schedulingpolicies</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;scheduling_policy&gt;
+  ...
+  &lt;name&gt;policy_name&lt;/name&gt;
+  ...
+&lt;/scheduling_policy&gt;</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PUT /ovirt-engine/api/schedulingpolicies/123</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;scheduling_policy&gt;
+  ...
+  &lt;name&gt;policy_name&lt;/name&gt;
+  ...
+&lt;/scheduling_policy&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_added_code_snapshot_snapshot_type_code"><a class="anchor" href="#_added_code_snapshot_snapshot_type_code"></a>B.51. Added <code>snapshot.snapshot_type</code></h3>
+<div class="paragraph">
+<p>Enums are being gradually introduces to the API. Some fields which were string
+until now, are replaced with an appropriate enum. One such field is vm.type.
+But this field is inherited by snapshot, and snapshot type is different than vm
+type. So a new field has been added to snapshot entity:
+<code>snapshot.snapshot_type</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;snapshot&gt;
+  ...
+  &lt;snapshot_type&gt;regular|active|stateless|preview&lt;/snapshot_type&gt;
+  ...
+&lt;/snapshot&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_removed_code_move_code_action_from_code_vm_code"><a class="anchor" href="#_removed_code_move_code_action_from_code_vm_code"></a>B.52. Removed <code>move</code> action from <code>VM</code></h3>
+<div class="paragraph">
+<p>The deprecated <code>move</code> action of the <code>VM</code> entity has been removed.  Instead, you
+can move inidividual disks.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_moved_code_reported_configurations_in_sync_code_to_code_network_attachment_code"><a class="anchor" href="#_moved_code_reported_configurations_in_sync_code_to_code_network_attachment_code"></a>B.53. Moved <code>reported_configurations.in_sync</code> to <code>network_attachment</code></h3>
+<div class="paragraph">
+<p>In version 3 of the API the XML schema type <code>ReportedConfigurations</code> had a
+<code>in_sync</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;network_attachment&gt;
+  &lt;reported_configurations&gt;
+    &lt;in_sync&gt;true&lt;/in_sync&gt;
+    &lt;reported_configuration&gt;
+      ...
+    &lt;/reported_configuration&gt;
+    ...
+  &lt;/reported_configurations&gt;
+&lt;/network_attachment&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the specification mechanism used by version 4 of the API this can&#8217;t be
+expressed, because list types (the list of reported configurations) can&#8217;t have
+attributes. To be able to represent it the attribute has been moved to the
+enclosing <code>network_attachment</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;network_attachment&gt;
+  &lt;in_sync&gt;true&lt;/in_sync&gt;
+  &lt;reported_configurations&gt;
+    &lt;reported_configuration&gt;
+      ...
+    &lt;/reported_configuration&gt;
+    ...
+  &lt;/reported_configurations&gt;
+&lt;/network_attachment&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replaced_code_capabilities_code_with_code_clusterlevels_code"><a class="anchor" href="#_replaced_code_capabilities_code_with_code_clusterlevels_code"></a>B.54. Replaced <code>capabilities</code> with <code>clusterlevels</code></h3>
+<div class="paragraph">
+<p>The top level <code>capabilities</code> collection has been replaced by the new
+<code>clusterlevels</code> collection. This new collection will contain the information
+that isn&#8217;t available in the model, like the list of CPU types available for
+each cluster level:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusterlevels</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will return a list of <code>ClusterLevel</code> objects containing the details for
+all the cluster levels supported by the system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster_levels&gt;
+  &lt;cluster_level id="3.6" href="/clusterlevels/3.6"&gt;
+    &lt;cpu_types&gt;
+      &lt;cpu_type&gt;
+        &lt;name&gt;Intel Conroe Family&lt;/name&gt;
+        &lt;level&gt;2&lt;/level&gt;
+        &lt;architecture&gt;x86_64&lt;/architecture&gt;
+      &lt;/cpu_type&gt;
+      ...
+    &lt;/cpu_types&gt;
+    ...
+  &lt;/cluster_level&gt;
+&lt;/cluster_levels&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each specific cluster level has it&#8217;s own subresource, identified by the version
+itself:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/clusterlevels/3.6</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will return the details of that version:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster_level id="3.6" href="/clusterlevels/3.6"&gt;
+  &lt;cpu_types&gt;
+    &lt;cpu_type&gt;
+      &lt;name&gt;Intel Conroe Family&lt;/name&gt;
+      &lt;level&gt;2&lt;/level&gt;
+      &lt;architecture&gt;x86_64&lt;/architecture&gt;
+    &lt;/cpu_type&gt;
+    ...
+  &lt;/cpu_types&gt;
+  ...
+&lt;/cluster_level&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replaced_code_disks_code_with_code_diskattachments_code"><a class="anchor" href="#_replaced_code_disks_code_with_code_diskattachments_code"></a>B.55. Replaced <code>disks</code> with <code>diskattachments</code></h3>
+<div class="paragraph">
+<p>In version 3 of the API virtual machines and templates had a <code>disks</code> collection
+containing all the information of the disks attached to them.  In version 4 of
+the API these <code>disks</code> collections have been removed and replaced with a new
+<code>diskattachments</code> collection that will contain only the references to the disk
+and the attributes that are specific of the relationship between disks and the
+virtual machine or template that they are attached to: <code>interface</code> and
+<code>bootable</code>.</p>
+</div>
+<div class="paragraph">
+<p>To find what disks are attached to a virtual machine, for example, send a
+request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/diskattachments</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That will return a response like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk_attachments&gt;
+  &lt;disk_attachment href="/vms/123/diskattachments/456" id="456"&gt;
+    &lt;bootable&gt;false&lt;/bootable&gt;
+    &lt;interface&gt;virtio&lt;/interface&gt;
+    &lt;disk href="/disks/456" id="456"/&gt;
+    &lt;vm href="/vms/123" id="123"/&gt;
+  &lt;/disk_attachment&gt;
+  ...
+&lt;disk_attachments&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To find the rest of the details of the disk, follow the link provided.</p>
+</div>
+<div class="paragraph">
+<p>Adding disks to a virtual machine or template uses the new <code>disk_attachment</code>
+element as well: request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms/123/diskattachments</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the following body if the disk doesn&#8217;t exist and you want to create it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk_attachment&gt;
+  &lt;bootable&gt;false&lt;/bootable&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;disk&gt;
+    &lt;description&gt;My disk&lt;/description&gt;
+    &lt;format&gt;cow&lt;/format&gt;
+    &lt;name&gt;mydisk&lt;/name&gt;
+    &lt;provisioned_size&gt;1048576&lt;/provisioned_size&gt;
+    &lt;storage_domains&gt;
+      &lt;storage_domain&gt;
+        &lt;name&gt;mydata&lt;/name&gt;
+      &lt;/storage_domain&gt;
+    &lt;/storage_domains&gt;
+  &lt;/disk&gt;
+&lt;/disk_attachment&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or with the following body if the disk already exists, and you just want to
+attach it to the virtual machine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk_attachment&gt;
+  &lt;bootable&gt;false&lt;/bootable&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;disk id="456"/&gt;
+&lt;/disk_attachment&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Take into account that the <code>vm.disks</code> and <code>template.disks</code> attribtes have
+<code>disk_attachments</code> for all usages. For example, when creating a template the
+<code>vm.disks</code> element was used to indicate in which storage domain to create the
+disks of the template. This usage has also been replaced by
+<code>vm.disk_attachments</code>, so the request to creaate a template with disks in
+specific storage domains will now look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;name&gt;mytemplate&lt;/name&gt;
+  &lt;vm id="123"&gt;
+    &lt;disk_attachments&gt;
+      &lt;disk_attachment&gt;
+        &lt;disk id="456"&gt;
+          &lt;storage_domains&gt;
+            &lt;storage_domain id="789"/&gt;
+          &lt;/storage_domains&gt;
+        &lt;/disk&gt;
+      &lt;/disk_attachment&gt;
+      ...
+    &lt;/disk_attachments&gt;
+  &lt;/vm&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_code_iscsi_targets_code_element_to_discover_unregistered_storage"><a class="anchor" href="#_use_code_iscsi_targets_code_element_to_discover_unregistered_storage"></a>B.56. Use <code>iscsi_targets</code> element to discover unregistered storage</h3>
+<div class="paragraph">
+<p>In version 3 of the API the operation to discover unregistered storage domains
+used to receive a list of iSCSI targets, using multiple <code>iscsi_target</code>
+elements:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;iscsi&gt;
+    &lt;address&gt;myiscsiserver&lt;/address&gt;
+  &lt;/iscsi&gt;
+  &lt;iscsi_target&gt;iqn.2016-07.com.example:mytarget1&lt;/iscsi_target&gt;
+  &lt;iscsi_target&gt;iqn.2016-07.com.example:mytarget2&lt;/iscsi_target&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In version 4 of the API all repeating elements, like <code>iscsi_target</code>
+in this case, are wrapped with another element, <code>iscsi_targets</code> in
+case. So the same request should now look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;iscsi&gt;
+    &lt;address&gt;myiscsiserver&lt;/address&gt;
+  &lt;/iscsi&gt;
+  &lt;iscsi_targets&gt;
+    &lt;iscsi_target&gt;iqn.2016-07.com.example:mytarget1&lt;/iscsi_target&gt;
+    &lt;iscsi_target&gt;iqn.2016-07.com.example:mytarget2&lt;/iscsi_target&gt;
+  &lt;/iscsi_targets&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <hr>
@@ -64701,7 +66900,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-23 08:24:08 UTC
+Last updated 2017-03-23 12:00:44 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
