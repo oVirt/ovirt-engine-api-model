@@ -49192,6 +49192,11 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable description in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the driver this device is bound to.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
@@ -49233,6 +49238,14 @@ This statistics sub-collection is read-only.
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/host_device/attributes/driver"><a class="anchor" href="#types/host_device/attributes/driver"></a>7.106.1. driver</h4>
+<div class="paragraph">
+<p>The name of the driver this device is bound to.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>pcieport</code> or <code>uhci_hcd</code>.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 957. Links summary</caption>
 <colgroup>
@@ -49265,6 +49278,7 @@ This statistics sub-collection is read-only.
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/host_device_passthrough"><a class="anchor" href="#types/host_device_passthrough"></a>7.107. HostDevicePassthrough <span class="small">struct</span></h3>
@@ -64687,7 +64701,7 @@ is UTC+2.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-23 08:21:06 UTC
+Last updated 2017-03-23 08:24:08 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
