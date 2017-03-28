@@ -74,15 +74,15 @@ public interface VmService extends MeasurableService {
     interface Clone {
         @In Vm vm();
 
-        @InputDetail
-        default void inputDetail() {
-            mandatory(vm().name());
-        }
-
         /**
          * Indicates if the clone should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            mandatory(vm().name());
+        }
     }
 
     /**
@@ -140,14 +140,6 @@ public interface VmService extends MeasurableService {
      * @status added
      */
     interface Export {
-
-        @InputDetail
-        default void inputDetail() {
-            optional(discardSnapshots());
-            optional(exclusive());
-            or(optional(storageDomain().id()), optional(storageDomain().name()));
-        }
-
         /**
          * The `discard_snapshots` parameter is to be used when the virtual machine should be exported with all its
          * snapshots collapsed.
@@ -174,6 +166,13 @@ public interface VmService extends MeasurableService {
          * Indicates if the export should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            optional(discardSnapshots());
+            optional(exclusive());
+            or(optional(storageDomain().id()), optional(storageDomain().name()));
+        }
     }
 
     /**
@@ -344,17 +343,17 @@ public interface VmService extends MeasurableService {
          * @status added
          */
 
-        @InputDetail
-        default void inputDetail() {
-            mandatory(maintenanceEnabled());
-        }
-
         @In Boolean maintenanceEnabled();
 
         /**
          * Indicates if the action should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            mandatory(maintenanceEnabled());
+        }
     }
 
     /**
@@ -379,20 +378,6 @@ public interface VmService extends MeasurableService {
      * @status added
      */
     interface Migrate {
-        /**
-         * Migrate a virtual machine in the system identified by the given id to another host with options specified in the request body.
-         *
-         * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
-         */
-        @InputDetail
-        default void inputDetail() {
-            optional(cluster().id());
-            optional(force());
-            or(optional(host().id()), optional(host().name()));
-        }
-
         /**
          * Specifies the cluster the virtual machine should migrate to. This is an optional parameter. By default, the
          * virtual machine is migrated to another host within the same cluster.
@@ -428,18 +413,16 @@ public interface VmService extends MeasurableService {
          * Indicates if the migration should be performed asynchronously.
          */
         @In Boolean async();
-    }
-
-    interface PreviewSnapshot {
 
         @InputDetail
         default void inputDetail() {
-            mandatory(snapshot().id());
-            optional(restoreMemory());
-            optional(disks()[COLLECTION].id());
-            optional(disks()[COLLECTION].imageId());
-            optional(disks()[COLLECTION].snapshot().id());
+            optional(cluster().id());
+            optional(force());
+            or(optional(host().id()), optional(host().name()));
         }
+    }
+
+    interface PreviewSnapshot {
         @In Disk[] disks();
         @In Boolean restoreMemory();
         @In Snapshot snapshot();
@@ -449,6 +432,15 @@ public interface VmService extends MeasurableService {
          * Indicates if the preview should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            mandatory(snapshot().id());
+            optional(restoreMemory());
+            optional(disks()[COLLECTION].id());
+            optional(disks()[COLLECTION].imageId());
+            optional(disks()[COLLECTION].snapshot().id());
+        }
     }
 
     /**
@@ -460,6 +452,22 @@ public interface VmService extends MeasurableService {
      */
     interface Update {
         @In @Out Vm vm();
+        /**
+         * Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
+         * when the virtual machine is restarted. The default value is `false`, so by default changes are applied
+         * immediately.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 13 Oct 2016
+         * @status added
+         */
+        @In Boolean nextRun();
+
+        /**
+         * Indicates if the update should be performed asynchronously.
+         */
+        @In Boolean async();
+
         @InputDetail
         default void inputDetail() {
             optional(vm().bios().bootMenu().enabled());
@@ -536,22 +544,6 @@ public interface VmService extends MeasurableService {
             optional(vm().payloads()[COLLECTION].type());
             optional(vm().payloads()[COLLECTION].volumeId());
         }
-
-        /**
-         * Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
-         * when the virtual machine is restarted. The default value is `false`, so by default changes are applied
-         * immediately.
-         *
-         * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 13 Oct 2016
-         * @status added
-         */
-        @In Boolean nextRun();
-
-        /**
-         * Indicates if the update should be performed asynchronously.
-         */
-        @In Boolean async();
     }
 
     /**
@@ -682,65 +674,6 @@ public interface VmService extends MeasurableService {
      * @status added
      */
     interface Start {
-        @InputDetail
-        default void inputDetail() {
-            optional(pause());
-            optional(useCloudInit());
-            optional(useSysprep());
-            optional(vm().customCpuModel());
-            optional(vm().customEmulatedMachine());
-            optional(vm().display().type());
-            optional(vm().domain().name());
-            optional(vm().domain().user().password());
-            optional(vm().domain().user().userName());
-            optional(vm().initialization().activeDirectoryOu());
-            optional(vm().initialization().authorizedSshKeys());
-            optional(vm().initialization().cloudInit().host().address());
-            optional(vm().initialization().cloudInit().regenerateSshKeys());
-            optional(vm().initialization().cloudInit().timezone());
-            optional(vm().initialization().customScript());
-            optional(vm().initialization().dnsSearch());
-            optional(vm().initialization().dnsServers());
-            optional(vm().initialization().domain());
-            optional(vm().initialization().hostName());
-            optional(vm().initialization().inputLocale());
-            optional(vm().initialization().orgName());
-            optional(vm().initialization().regenerateSshKeys());
-            optional(vm().initialization().rootPassword());
-            optional(vm().initialization().systemLocale());
-            optional(vm().initialization().timezone());
-            optional(vm().initialization().uiLanguage());
-            optional(vm().initialization().userName());
-            optional(vm().initialization().windowsLicenseKey());
-            optional(vm().os().cmdline());
-            optional(vm().os().initrd());
-            optional(vm().os().kernel());
-            optional(vm().placementPolicy().affinity());
-            optional(vm().stateless());
-            optional(authorizedKey().user().name());
-            optional(vm().os().boot().devices()[COLLECTION]);
-            optional(vm().initialization().cloudInit().networkConfiguration().dns().searchDomains()[COLLECTION].address());
-            optional(vm().initialization().cloudInit().users()[COLLECTION].name());
-            optional(vm().initialization().cloudInit().users()[COLLECTION].password());
-            optional(vm().initialization().cloudInit().authorizedKeys()[COLLECTION].key());
-            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].bootProtocol());
-            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].name());
-            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].network().ip().gateway());
-            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].network().ip().netmask());
-            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].onBoot());
-            optional(vm().initialization().cloudInit().networkConfiguration().dns().servers()[COLLECTION].address());
-            or(optional(vm().placementPolicy().hosts()[COLLECTION].id()), optional(vm().placementPolicy().hosts()[COLLECTION].name()));
-//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].content());
-//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].name());
-//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].type());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].bootProtocol());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().address());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().gateway());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().netmask());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].name());
-            optional(vm().initialization().nicConfigurations()[COLLECTION].onBoot());
-        }
-
         @In AuthorizedKey authorizedKey();
 
         /**
@@ -810,6 +743,66 @@ public interface VmService extends MeasurableService {
          * Indicates if the results should be filtered according to the permissions of the user.
          */
         @In Boolean filter();
+
+        @InputDetail
+        default void inputDetail() {
+            optional(pause());
+            optional(useCloudInit());
+            optional(useSysprep());
+            optional(vm().customCpuModel());
+            optional(vm().customEmulatedMachine());
+            optional(vm().display().type());
+            optional(vm().domain().name());
+            optional(vm().domain().user().password());
+            optional(vm().domain().user().userName());
+            optional(vm().initialization().activeDirectoryOu());
+            optional(vm().initialization().authorizedSshKeys());
+            optional(vm().initialization().cloudInit().host().address());
+            optional(vm().initialization().cloudInit().regenerateSshKeys());
+            optional(vm().initialization().cloudInit().timezone());
+            optional(vm().initialization().customScript());
+            optional(vm().initialization().dnsSearch());
+            optional(vm().initialization().dnsServers());
+            optional(vm().initialization().domain());
+            optional(vm().initialization().hostName());
+            optional(vm().initialization().inputLocale());
+            optional(vm().initialization().orgName());
+            optional(vm().initialization().regenerateSshKeys());
+            optional(vm().initialization().rootPassword());
+            optional(vm().initialization().systemLocale());
+            optional(vm().initialization().timezone());
+            optional(vm().initialization().uiLanguage());
+            optional(vm().initialization().userName());
+            optional(vm().initialization().windowsLicenseKey());
+            optional(vm().os().cmdline());
+            optional(vm().os().initrd());
+            optional(vm().os().kernel());
+            optional(vm().placementPolicy().affinity());
+            optional(vm().stateless());
+            optional(authorizedKey().user().name());
+            optional(vm().os().boot().devices()[COLLECTION]);
+            optional(vm().initialization().cloudInit().networkConfiguration().dns().searchDomains()[COLLECTION].address());
+            optional(vm().initialization().cloudInit().users()[COLLECTION].name());
+            optional(vm().initialization().cloudInit().users()[COLLECTION].password());
+            optional(vm().initialization().cloudInit().authorizedKeys()[COLLECTION].key());
+            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].bootProtocol());
+            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].name());
+            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].network().ip().gateway());
+            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].network().ip().netmask());
+            optional(vm().initialization().cloudInit().networkConfiguration().nics()[COLLECTION].onBoot());
+            optional(vm().initialization().cloudInit().networkConfiguration().dns().servers()[COLLECTION].address());
+            or(optional(vm().placementPolicy().hosts()[COLLECTION].id()), optional(vm().placementPolicy().hosts()[COLLECTION].name()));
+//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].content());
+//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].name());
+//            optional(vm().initialization().cloudInit().payloadFiles()[COLLECTION].type());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].bootProtocol());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().address());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().gateway());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].ip().netmask());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].name());
+            optional(vm().initialization().nicConfigurations()[COLLECTION].onBoot());
+        }
+
     }
 
     /**
@@ -943,16 +936,17 @@ public interface VmService extends MeasurableService {
      * @status added
      */
     interface Ticket {
-        @InputDetail
-        default void inputDetail() {
-            optional(ticket().value());
-        }
         @In @Out types.Ticket ticket();
 
         /**
          * Indicates if the generation of the ticket should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            optional(ticket().value());
+        }
     }
 
     interface UndoSnapshot {
