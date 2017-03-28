@@ -37714,7 +37714,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>commitsnapshot</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permanently restores the virtual machine to the state of the previewed snapshot.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>detach</code></p></td>
@@ -37722,11 +37722,11 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Export a virtual machine to an export domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exports a virtual machine to an export domain.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>freezefilesystems</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Freeze virtual machine file systems.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Freezes virtual machine file systems.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
@@ -37742,15 +37742,15 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>migrate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This operation migrates a virtual machine to another physical host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Migrates a virtual machine to another physical host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>previewsnapshot</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Temporarily restores the virtual machine to the state of a snapshot.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reboot</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This operation sends a reboot request to a virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends a reboot request to a virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
@@ -37778,7 +37778,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>thawfilesystems</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Thaw virtual machine file systems.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thaws virtual machine file systems.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ticket</code></p></td>
@@ -37786,7 +37786,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undosnapshot</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restores the virtual machine to the state it had before previewing the snapshot.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update</code></p></td>
@@ -37805,8 +37805,8 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The cancel migration action does not take any action specific parameters,
-so the request body should contain an empty <code>action</code>:</p>
+<p>The cancel migration action does not take any action specific parameters;
+therefore, the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37875,6 +37875,12 @@ so the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="sect3">
 <h4 id="services/vm/methods/commit_snapshot"><a class="anchor" href="#services/vm/methods/commit_snapshot"></a>6.227.3. commitsnapshot <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Permanently restores the virtual machine to the state of the previewed snapshot.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="#services/vm/methods/preview_snapshot">preview_snapshot</a> operation for details.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 747. Parameters summary</caption>
 <colgroup>
@@ -37912,7 +37918,7 @@ so the request body should contain an empty <code>action</code>:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The detach action does not take any action specific parameters, so the request body should contain an
+<p>The detach action does not take any action specific parameters; therefore, the request body should contain an
 empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
@@ -37941,7 +37947,7 @@ empty <code>action</code>:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the detach should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the detach action should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37949,10 +37955,10 @@ empty <code>action</code>:</p>
 <div class="sect3">
 <h4 id="services/vm/methods/export"><a class="anchor" href="#services/vm/methods/export"></a>6.227.5. export <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Export a virtual machine to an export domain.</p>
+<p>Exports a virtual machine to an export domain.</p>
 </div>
 <div class="paragraph">
-<p>For example to export virtual machine <code>123</code> to the export domain <code>myexport</code>, send a request like this:</p>
+<p>For example, to export virtual machine <code>123</code> to the export domain <code>myexport</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38000,14 +38006,14 @@ empty <code>action</code>:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_snapshots</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>discard_snapshots</code> parameter is to be used when the virtual machine should be exported with all its
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>discard_snapshots</code> parameter when the virtual machine should be exported with all of its
 snapshots collapsed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>exclusive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>exclusive</code> parameter is to be used when the virtual machine should be exported even if another copy of
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>exclusive</code> parameter when the virtual machine should be exported even if another copy of
 it already exists in the export domain (override).</p></td>
 </tr>
 <tr>
@@ -38022,7 +38028,7 @@ it already exists in the export domain (override).</p></td>
 <div class="sect3">
 <h4 id="services/vm/methods/freeze_filesystems"><a class="anchor" href="#services/vm/methods/freeze_filesystems"></a>6.227.6. freezefilesystems <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Freeze virtual machine file systems.</p>
+<p>Freezes virtual machine file systems.</p>
 </div>
 <div class="paragraph">
 <p>This operation freezes a virtual machine&#8217;s file systems using the QEMU guest agent when taking a live snapshot of
@@ -38094,7 +38100,7 @@ manually with the API for virtual machines using OpenStack Volume (Cinder) disks
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all the attributes of the virtual machine should be included in the response.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the virtual machine should be included in the response.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
@@ -38106,9 +38112,9 @@ manually with the API for virtual machines using OpenStack Volume (Cinder) disks
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>next_run</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the returned result describes the virtual machine as it is currently running, or if describes
-it with the modifications that have already been performed but that will have effect only when it is
-restarted.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the returned result describes the virtual machine as it is currently running or if describes
+the virtual machine with the modifications that have already been performed but that will only come into
+effect when the virtual machine is restarted.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
@@ -38121,7 +38127,7 @@ restarted.</p></td>
 <div class="sect4">
 <h5 id="services/vm/methods/get/parameters/all_content"><a class="anchor" href="#services/vm/methods/get/parameters/all_content"></a>all_content</h5>
 <div class="paragraph">
-<p>Indicates if all the attributes of the virtual machine should be included in the response.</p>
+<p>Indicates if all of the attributes of the virtual machine should be included in the response.</p>
 </div>
 <div class="paragraph">
 <p>By default the following attributes are excluded:</p>
@@ -38146,7 +38152,7 @@ restarted.</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, to retrieve the complete representation of the virtual machine '123' send a request like this:</p>
+<p>For example, to retrieve the complete representation of the virtual machine '123':</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -38160,8 +38166,8 @@ restarted.</p></td>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The reason for not including these attributes is performance: they are seldom used and they require
-additional queries to the database. So try to use the this parameter only when it is really needed.
+These attributes are not included by default as they reduce performance. These attributes are seldom used
+and require additional queries to the database. Only use this parameter when required as it will reduce performance.
 </td>
 </tr>
 </table>
@@ -38170,12 +38176,12 @@ additional queries to the database. So try to use the this parameter only when i
 <div class="sect4">
 <h5 id="services/vm/methods/get/parameters/next_run"><a class="anchor" href="#services/vm/methods/get/parameters/next_run"></a>next_run</h5>
 <div class="paragraph">
-<p>Indicates if the returned result describes the virtual machine as it is currently running, or if describes
-it with the modifications that have already been performed but that will have effect only when it is
-restarted. By default the values is <code>false</code>.</p>
+<p>Indicates if the returned result describes the virtual machine as it is currently running or if describes
+the virtual machine with the modifications that have already been performed but that will only come into
+effect when the virtual machine is restarted. By default the value is <code>false</code>.</p>
 </div>
 <div class="paragraph">
-<p>If the parameter is included in the request, but without a value, it is assumed that the value is <code>true</code>, so
+<p>If the parameter is included in the request, but without a value, it is assumed that the value is <code>true</code>. The
 the following request:</p>
 </div>
 <div class="listingblock">
@@ -38207,7 +38213,7 @@ installed and the <code>ovirt-guest-agent</code> service to be running on the vi
 from an external console.</p>
 </div>
 <div class="paragraph">
-<p>This is how an example request would look like:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38292,7 +38298,7 @@ from an external console.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the global maintenance action should be performed asynchronously.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maintenance_enabled</code></p></td>
@@ -38306,7 +38312,10 @@ from an external console.</p>
 <div class="sect3">
 <h4 id="services/vm/methods/migrate"><a class="anchor" href="#services/vm/methods/migrate"></a>6.227.10. migrate <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>This operation migrates a virtual machine to another physical host.</p>
+<p>Migrates a virtual machine to another physical host.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38314,7 +38323,7 @@ from an external console.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>One can specify a specific host to migrate the virtual machine to:</p>
+<p>To specify a specific host to migrate the virtual machine to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38356,13 +38365,13 @@ from an external console.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>force</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the virtual machine should migrate although it might be defined as non migratable.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies that the virtual machine should migrate even if the virtual machine is defined as non-migratable.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a specific host the virtual machine should migrate to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a specific host that the virtual machine should migrate to.</p></td>
 </tr>
 </tbody>
 </table>
@@ -38376,14 +38385,14 @@ virtual machine is migrated to another host within the same cluster.</p>
 <div class="sect4">
 <h5 id="services/vm/methods/migrate/parameters/force"><a class="anchor" href="#services/vm/methods/migrate/parameters/force"></a>force</h5>
 <div class="paragraph">
-<p>Specifies the virtual machine should migrate although it might be defined as non migratable. This is an
-optional parameter. By default, it is set to <code>false</code>.</p>
+<p>Specifies that the virtual machine should migrate even if the virtual machine is defined as non-migratable.
+This is an optional parameter. By default, it is set to <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/vm/methods/migrate/parameters/host"><a class="anchor" href="#services/vm/methods/migrate/parameters/host"></a>host</h5>
 <div class="paragraph">
-<p>Specifies a specific host the virtual machine should migrate to. This is an optional parameters. By default,
+<p>Specifies a specific host that the virtual machine should migrate to. This is an optional parameter. By default,
 the oVirt Engine automatically selects a default host for migration within the same cluster. If an API user
 requires a specific host, the user can specify the host with either an <code>id</code> or <code>name</code> parameter.</p>
 </div>
@@ -38391,6 +38400,15 @@ requires a specific host, the user can specify the host with either an <code>id<
 </div>
 <div class="sect3">
 <h4 id="services/vm/methods/preview_snapshot"><a class="anchor" href="#services/vm/methods/preview_snapshot"></a>6.227.11. previewsnapshot <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Temporarily restores the virtual machine to the state of a snapshot.</p>
+</div>
+<div class="paragraph">
+<p>The snapshot is indicated with the <code>snapshot.id</code> parameter. It is restored temporarily, so that the content can
+be inspected. Once that inspection is finished, the state of the virtual machine can be made permanent, using the
+<a href="#services/vm/methods/commit_snapshot">commit_snapshot</a> method, or discarded using the
+<a href="#services/vm/methods/undo_snapshot">undo_snapshot</a> method.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 755. Parameters summary</caption>
 <colgroup>
@@ -38444,7 +38462,10 @@ requires a specific host, the user can specify the host with either an <code>id<
 <div class="sect3">
 <h4 id="services/vm/methods/reboot"><a class="anchor" href="#services/vm/methods/reboot"></a>6.227.12. reboot <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>This operation sends a reboot request to a virtual machine.</p>
+<p>Sends a reboot request to a virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38452,7 +38473,7 @@ requires a specific host, the user can specify the host with either an <code>id<
 </div>
 </div>
 <div class="paragraph">
-<p>The reboot action does not take any action specific parameters, so the request body should contain an
+<p>The reboot action does not take any action specific parameters; therefore, the request body should contain an
 empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
@@ -38492,7 +38513,7 @@ empty <code>action</code>:</p>
 <p>Removes the virtual machine, including the virtual disks attached to it.</p>
 </div>
 <div class="paragraph">
-<p>For example, to remove the virtual machine with identifier <code>123</code> send a request like this:</p>
+<p>For example, to remove the virtual machine with identifier <code>123</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38580,14 +38601,17 @@ cannot be removed without this flag set to true.</p>
 <div class="paragraph">
 <p>This operation sends a shutdown request to a virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/shutdown</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The shutdown action does not take any action specific parameters,
-so the request body should contain an empty <code>action</code>:</p>
+<p>The shutdown action does not take any action specific parameters;
+therefore, the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38666,7 +38690,7 @@ it can be started.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the start action should be performed asynchronously.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorized_key</code></p></td>
@@ -38709,7 +38733,7 @@ it can be started.</p>
 <div class="sect4">
 <h5 id="services/vm/methods/start/parameters/pause"><a class="anchor" href="#services/vm/methods/start/parameters/pause"></a>pause</h5>
 <div class="paragraph">
-<p>If set to <code>true</code>, start the virtual machine in paused mode. Default is <code>false</code>.</p>
+<p>If set to <code>true</code>, start the virtual machine in paused mode. The default is <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -38750,7 +38774,7 @@ See <a href="https://en.wikipedia.org/wiki/Sysprep">this</a> for details.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This will set the boot device to the CDROM only for this specific start. After the virtual machine will be
+<p>This will set the boot device to the CDROM only for this specific start. After the virtual machine is
 powered off, this definition will be reverted.</p>
 </div>
 </div>
@@ -38760,14 +38784,17 @@ powered off, this definition will be reverted.</p>
 <div class="paragraph">
 <p>This operation forces a virtual machine to power-off.</p>
 </div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/stop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The stop action does not take any action specific parameters,
-so the request body should contain an empty <code>action</code>:</p>
+<p>The stop action does not take any action specific parameters;
+therefore, the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38795,7 +38822,7 @@ so the request body should contain an empty <code>action</code>:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the stop action should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -38806,14 +38833,17 @@ so the request body should contain an empty <code>action</code>:</p>
 <p>This operation saves the virtual machine state to disk and stops it.
 Start a suspended virtual machine and restore the virtual machine state with the start action.</p>
 </div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/suspend</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The suspend action does not take any action specific parameters,
-so the request body should contain an empty <code>action</code>:</p>
+<p>The suspend action does not take any action specific parameters;
+therefore, the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38841,7 +38871,7 @@ so the request body should contain an empty <code>action</code>:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the suspend action should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -38849,7 +38879,7 @@ so the request body should contain an empty <code>action</code>:</p>
 <div class="sect3">
 <h4 id="services/vm/methods/thaw_filesystems"><a class="anchor" href="#services/vm/methods/thaw_filesystems"></a>6.227.19. thawfilesystems <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Thaw virtual machine file systems.</p>
+<p>Thaws virtual machine file systems.</p>
 </div>
 <div class="paragraph">
 <p>This operation thaws a virtual machine&#8217;s file systems using the QEMU guest agent when taking a live snapshot of a
@@ -38890,7 +38920,7 @@ with the API for virtual machines using OpenStack Volume (Cinder) disks.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the thaw file systems action should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -38899,6 +38929,9 @@ with the API for virtual machines using OpenStack Volume (Cinder) disks.</p>
 <h4 id="services/vm/methods/ticket"><a class="anchor" href="#services/vm/methods/ticket"></a>6.227.20. ticket <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Generates a time-sensitive authentication token for accessing a virtual machine&#8217;s display.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38909,7 +38942,7 @@ with the API for virtual machines using OpenStack Volume (Cinder) disks.</p>
 <p>The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.</p>
 </div>
 <div class="paragraph">
-<p>In any case, the response specifies the actual ticket value and expiry used.</p>
+<p>The response specifies the actual ticket value and expiry used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38937,8 +38970,8 @@ the SPICE protocol.</p>
 </div>
 <div class="paragraph">
 <p>In order to obtain an authentication token for a specific protocol, for
-example for VNC, use the <code>ticket</code> method of the <a href="#services/vm_graphics_console">service</a> that manages the graphics consoles of the virtual machine, sending
-a request like this:</p>
+example for VNC, use the <code>ticket</code> method of the <a href="#services/vm_graphics_console">service</a>, which manages the graphics consoles of the virtual machine, by sending
+a request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38983,6 +39016,12 @@ a request like this:</p>
 </div>
 <div class="sect3">
 <h4 id="services/vm/methods/undo_snapshot"><a class="anchor" href="#services/vm/methods/undo_snapshot"></a>6.227.21. undosnapshot <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Restores the virtual machine to the state it had before previewing the snapshot.</p>
+</div>
+<div class="paragraph">
+<p>See the <a href="#services/vm/methods/preview_snapshot">preview_snapshot</a> operation for details.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 765. Parameters summary</caption>
 <colgroup>
@@ -39004,7 +39043,7 @@ a request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the undo snapshot action should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -39041,7 +39080,7 @@ a request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>next_run</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the update should be applied to the virtual machine immediately or if it should be applied only
 when the virtual machine is restarted.</p></td>
 </tr>
 <tr>
@@ -39055,7 +39094,7 @@ when the virtual machine is restarted.</p></td>
 <div class="sect4">
 <h5 id="services/vm/methods/update/parameters/next_run"><a class="anchor" href="#services/vm/methods/update/parameters/next_run"></a>next_run</h5>
 <div class="paragraph">
-<p>Indicates if the update should be applied to the virtual machine immediately, or if it should be applied only
+<p>Indicates if the update should be applied to the virtual machine immediately or if it should be applied only
 when the virtual machine is restarted. The default value is <code>false</code>, so by default changes are applied
 immediately.</p>
 </div>
@@ -69992,7 +70031,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-28 07:56:58 UTC
+Last updated 2017-03-28 08:00:23 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
