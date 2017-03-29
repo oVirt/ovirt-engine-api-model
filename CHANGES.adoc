@@ -3,6 +3,28 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.9 / Mar 29 2017
+
+New features:
+
+* Replace generic assigned networks services with services specific to
+  the type of object that they are assigned to, in particular data
+  centers and clusters.
+
+* Add `driver` attribute to `HostDevice` type.
+
+* Add specification of input details.
+
+* Add common concepts document.
+
+* Add appendix containing changes from version 3 to version 4 of
+  the API.
+
+Bug fixes:
+
+* Update to metamodel 1.2.5 to handle correctly `or` and `COLLECTION` in
+  the specification of input details.
+
 == 4.2.8 / Mar 14 2017
 
 Bug fixes:
