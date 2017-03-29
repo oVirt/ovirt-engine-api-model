@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.5 / Mar 29 2017
+
+Bug fixes:
+
+* Handle correctly 'or' and 'COLLECTION' in the specification of input
+  details.
+
 == 1.2.4 / Mar 21 2017
 
 New features:
