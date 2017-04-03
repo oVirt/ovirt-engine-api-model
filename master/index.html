@@ -51561,10 +51561,83 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>priority</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the priority of the virtual machine inside the run and migration queues.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.100.1. priority</h4>
+<div class="paragraph">
+<p>Indicates the priority of the virtual machine inside the run and migration queues.</p>
+</div>
+<div class="paragraph">
+<p>Virtual machines with higher priorities will be started and migrated before virtual machines with lower
+priorities.</p>
+</div>
+<div class="paragraph">
+<p>The value is an integer between 0 and 100. The higher the value, the higher the priority.</p>
+</div>
+<div class="paragraph">
+<p>The graphical user interface (GUI) does not allow specifying all the possible values, instead
+it only allows you to select <em>Low</em>, <em>Medium</em> or <em>High</em>. When the value is set using the API, the GUI
+will set the label as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API Value</th>
+<th class="tableblock halign-left valign-top">GUI Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 - 25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 - 74</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">75 - 100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When the label is selected using the GUI, the value in the API will be set as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GUI Label</th>
+<th class="tableblock halign-left valign-top">API Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/hook"><a class="anchor" href="#types/hook"></a>7.101. Hook <span class="small">struct</span></h3>
@@ -70031,7 +70104,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-29 09:05:30 UTC
+Last updated 2017-04-03 07:31:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
