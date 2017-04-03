@@ -347,8 +347,17 @@ public class JaxrsGenerator extends JavaGenerator {
             javaBuffer.addLine("}");
         }
         else {
+            //generate doAdd() method
+            if (method.isMandatoryAttributeExists()) {
+                javaBuffer.addLine("default public Response doAdd(%s %s) {", mainTypeReference.getText(), parameterName);
+                javaBuffer.addLine(helperClassName.getSimpleName() + ".validateAdd(" + parameterName + ");");
+                javaBuffer.addLine("return add(" + parameterName + ");");
+                javaBuffer.addLine("}");
+            }
+            javaBuffer.addLine("");
+            //generate add() method
             addResponseReturnMethod("add(%s %s)", mainTypeReference.getText(),
-                javaNames.getJavaMemberStyleName(mainParameter.getName()));
+                    javaNames.getJavaMemberStyleName(mainParameter.getName()));
         }
         javaBuffer.addLine();
     }
@@ -503,6 +512,17 @@ public class JaxrsGenerator extends JavaGenerator {
             }
             javaBuffer.addLine("}");
         } else {
+            //generate doUpdate() method
+            if (method.isMandatoryAttributeExists()) {
+                javaBuffer.addLine("default %s doUpdate(%s %s) {",
+                        mainTypeReference.getText(),
+                        mainTypeReference.getText(),
+                        parameterName);
+                javaBuffer.addLine(helperClassName.getSimpleName() + ".validateUpdate(" + parameterName + ");");
+                javaBuffer.addLine("return update(" + parameterName + ");");
+                javaBuffer.addLine("}");
+            }
+            //generate update() method
             addMethod(mainTypeReference.getText(), "update(%s %s)",
                 mainTypeReference.getText(),
                 javaNames.getJavaMemberStyleName(mainParameter.getName()));
@@ -540,11 +560,27 @@ public class JaxrsGenerator extends JavaGenerator {
             }
             javaBuffer.addLine("}");
         } else {
+            //generate do<Action>() method
+            if (method.isMandatoryAttributeExists()) {
+                javaBuffer.addLine("default Response %s(Action action) {", "do" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1));
+                javaBuffer.addLine(helperClassName.getSimpleName() + ".validate" + getActionValidationMethodName(methodName) + "(action);");
+                javaBuffer.addLine("return " + methodName + "(action);");
+                javaBuffer.addLine("}");
+            }
+            javaBuffer.addLine("");
+            //generate <action>() method
             addResponseReturnMethod(jaxrsNames.getMethodName(method.getName()) + "(Action action)");
         }
         javaBuffer.addLine();
     }
 
+    private String getActionValidationMethodName(String methodName) {
+        if (methodName.matches("{1}do[A-Z].*")) {
+            return methodName.substring(2, 3).toUpperCase() + methodName.substring(3);
+        } else {
+            return methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+        }
+    }
     private void generateLocator(Locator locator) {
         if (locator.getParameters().isEmpty()) {
             generateParameterlessLocator(locator);
