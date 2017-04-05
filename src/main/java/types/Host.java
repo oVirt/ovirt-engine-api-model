@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -442,7 +442,7 @@ public interface Host extends Identified {
     @Link KatelloErratum[] katelloErrata();
 
     @Link NetworkAttachment[] networkAttachments();
-    @Link Nic[] nics();
+    @Link HostNic[] nics();
     @Link NumaNode[] numaNodes();
     @Link Permission[] permissions();
 
