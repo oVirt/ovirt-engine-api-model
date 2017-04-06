@@ -80,6 +80,66 @@ public interface TemplatesService {
      * @status added
      */
     interface Add {
+        /**
+         * The information about the template or template version.
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @date 12 Dec 2016
+         * @status added
+         */
+        @In @Out Template template();
+
+        /**
+         * Specifies if the permissions of the virtual machine should be copied to the template.
+         *
+         * If this optional parameter is provided, and its values is `true` then the permissions of the virtual machine
+         * (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
+         * a template from the `myvm` virtual machine copying its permissions, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/templates?clone_permissions=true
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <template>
+         *   <name>mytemplate<name>
+         *   <vm>
+         *     <name>myvm<name>
+         *   </vm>
+         * </template>
+         * ----
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @date 16 Aug 2016
+         * @status added
+         * @since 4.0.0
+         */
+        @In Boolean clonePermissions();
+
+        /**
+         * Seal the template.
+         *
+         * If this optional parameter is provided and its value is `true`,
+         * then the template is sealed after creation.
+         *
+         * Sealing erases all host-specific configuration from the filesystem:
+         * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
+         * thus making easy to use the template to create multiple virtual
+         * machines without manual intervention.
+         *
+         * Currently sealing is supported only for Linux OS.
+         *
+         * @author Shmuel Melamud <smelamud@redhat.com>
+         * @date 7 Mar 2017
+         * @status added
+         * @since 4.1.2
+         */
+        @In Boolean seal();
+
         @InputDetail
         default void inputDetail() {
             mandatory(template().name());
@@ -150,7 +210,7 @@ public interface TemplatesService {
             optional(template().vm().diskAttachments()[COLLECTION].name());
             optional(template().vm().diskAttachments()[COLLECTION].description());
             optional(template().vm().diskAttachments()[COLLECTION].id());
-//            optional(template().vm().diskAttachments()[COLLECTION].storageDomain--collection()); //TODO: check
+            // optional(template().vm().diskAttachments()[COLLECTION].storageDomain--collection()); //TODO: check
             optional(template().customProperties()[COLLECTION].name());
             optional(template().customProperties()[COLLECTION].value());
             optional(template().os().boot().devices()[COLLECTION]);
@@ -158,65 +218,6 @@ public interface TemplatesService {
             optional(template().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(template().sso().methods()[COLLECTION].id());
         }
-        /**
-         * The information about the template or template version.
-         *
-         * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 12 Dec 2016
-         * @status added
-         */
-        @In @Out Template template();
-
-        /**
-         * Specifies if the permissions of the virtual machine should be copied to the template.
-         *
-         * If this optional parameter is provided, and its values is `true` then the permissions of the virtual machine
-         * (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
-         * a template from the `myvm` virtual machine copying its permissions, send a request like this:
-         *
-         * [source]
-         * ----
-         * POST /ovirt-engine/api/templates?clone_permissions=true
-         * ----
-         *
-         * With a request body like this:
-         *
-         * [source,xml]
-         * ----
-         * <template>
-         *   <name>mytemplate<name>
-         *   <vm>
-         *     <name>myvm<name>
-         *   </vm>
-         * </template>
-         * ----
-         *
-         * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 16 Aug 2016
-         * @status added
-         * @since 4.0.0
-         */
-        @In Boolean clonePermissions();
-
-        /**
-         * Seal the template.
-         *
-         * If this optional parameter is provided and its value is `true`,
-         * then the template is sealed after creation.
-         *
-         * Sealing erases all host-specific configuration from the filesystem:
-         * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
-         * thus making easy to use the template to create multiple virtual
-         * machines without manual intervention.
-         *
-         * Currently sealing is supported only for Linux OS.
-         *
-         * @author Shmuel Melamud <smelamud@redhat.com>
-         * @date 7 Mar 2017
-         * @status added
-         * @since 4.1.2
-         */
-        @In Boolean seal();
     }
 
     /**
