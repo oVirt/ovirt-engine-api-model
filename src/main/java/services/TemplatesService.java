@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,7 +35,9 @@ public interface TemplatesService {
     /**
      * Creates a new template.
      *
-     * This requires the `name` and `vm` elements. Identify the virtual machine with the `id` `name` attributes.
+     * This requires the `name` and `vm` elements. To identify the virtual machine use the `vm.id` or `vm.name`
+     * attributes. For example, to create a template from virtual machine with identifier `123` send a request
+     * like this:
      *
      * [source]
      * ----
@@ -49,6 +51,30 @@ public interface TemplatesService {
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123"/>
+     * </template>
+     * ----
+     *
+     * The disks of the template can be customized, making some of their characteristics different to the disks of the
+     * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
+     * of the original virtual machine and the characteristics that you want to change. For example, if the original
+     * virtual machine has a disk with identifier `456`, and, for that disk, you want to change the format to
+     * <<types/disk_format, _Copy On Write_>> and make the disk <<types/disk, sparse>>, send a request body
+     * like this:
+     *
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <vm id="123">
+     *     <disk_attachments>
+     *       <disk_attachment>
+     *         <disk id="456">
+     *           <format>cow</format>
+     *           <sparse>true</sparse>
+     *         </disk>
+     *       </disk_attachment>
+     *     </disk_attachments>
+     *   </vm>
      * </template>
      * ----
      *
@@ -70,7 +96,8 @@ public interface TemplatesService {
      * ----
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 14 Sep 2016
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 6 Apr 2017
      * @status added
      */
     interface Add {
@@ -152,7 +179,6 @@ public interface TemplatesService {
      * @status added
      */
     interface List {
-
         /**
          * The list of virtual machine templates.
          *
