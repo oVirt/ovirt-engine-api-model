@@ -115,6 +115,26 @@ public interface DiskAttachment extends Identified {
     String logicalName();
 
     /**
+     * Indicates whether the disk is connected to the virtual machine as read only.
+     *
+     * When adding a new disk attachment the default value is `false`.
+     *
+     * [source,xml]
+     * ----
+     * <disk_attachment>
+     *   ...
+     *   <read_only>true</read_only>
+     * </disk_attachment>
+     * ----
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 9 Apr 2017
+     * @status added
+     * @since 4.2.0
+     */
+    Boolean readOnly();
+
+    /**
      * The reference to the disk.
      *
      * @author Byron Gravenorst <bgraveno@redhat.com>
