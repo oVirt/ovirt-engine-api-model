@@ -56,6 +56,8 @@ public interface DomainsService {
      * </domains>
      * ----
      *
+     * The order of the returned list of domains isn't guaranteed.
+     *
      * @author Ravi Nori <rnori@redhat.com>
      * @date 12 Dec 2016
      * @status added

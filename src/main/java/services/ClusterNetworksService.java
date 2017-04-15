@@ -70,6 +70,8 @@ public interface ClusterNetworksService {
     /**
      * Lists the networks that are assigned to the cluster.
      *
+     * The order of the returned clusters isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 23 Mar 2017

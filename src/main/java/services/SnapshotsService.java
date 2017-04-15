@@ -27,6 +27,13 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import types.Snapshot;
 
+/**
+ * Manages the set of snapshots of a storage domain or virtual machine.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface SnapshotsService {
@@ -81,6 +88,15 @@ public interface SnapshotsService {
         @In @Out Snapshot snapshot();
     }
 
+    /**
+     * Returns the list of snapshots of the storage domain or virtual machine.
+     *
+     * The order of the returned list of snapshots isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Snapshot[] snapshots();
 

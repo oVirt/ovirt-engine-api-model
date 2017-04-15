@@ -109,6 +109,9 @@ public interface VmPoolsService {
      * </vm_pools>
      * ----
      *
+     * The order of the returned list of pools is guaranteed only if the `sortby` clause is included in the
+     * `search` parameter.
+     *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
      * @status added

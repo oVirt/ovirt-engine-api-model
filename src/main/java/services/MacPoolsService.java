@@ -77,6 +77,15 @@ public interface MacPoolsService {
         @In @Out MacPool pool();
     }
 
+    /**
+     * Return the list of MAC address pools of the system.
+     *
+     * The returned list of MAC address pools isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Arp 2017
+     * @status added
+     */
     interface List {
         @Out MacPool[] pools();
 

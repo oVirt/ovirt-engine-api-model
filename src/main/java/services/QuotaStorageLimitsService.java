@@ -25,6 +25,13 @@ import types.QuotaStorageLimit;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
+/**
+ * Manages the set of storage limits configured for a quota.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Arp 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface QuotaStorageLimitsService {
@@ -43,6 +50,15 @@ public interface QuotaStorageLimitsService {
         @In @Out QuotaStorageLimit limit();
     }
 
+    /**
+     * Returns the list of storage limits configured for the quota.
+     *
+     * The order of the returned list of storage limits isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out QuotaStorageLimit[] limits();
 

@@ -53,6 +53,8 @@ public interface ImageTransfersService {
      * Retrieves the list of image transfers that are currently
      * being performed.
      *
+     * The order of the returned list of image transfers isn't guaranteed.
+     *
      * @author Amit Aviram <aaviram@redhat.com>
      * @date 30 Aug 2016
      * @status added

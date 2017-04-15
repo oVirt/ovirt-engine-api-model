@@ -104,6 +104,12 @@ public interface DiskAttachmentsService {
 
     /**
      * List the disk that are attached to the virtual machine.
+     *
+     * The order of the returned list of disks attachments isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
      */
     interface List {
         @Out DiskAttachment[] attachments();

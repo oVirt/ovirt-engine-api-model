@@ -38,6 +38,15 @@ import types.File;
 @Service
 @Area("Virtualization")
 public interface FilesService {
+    /**
+     * Returns the list of ISO images and virtual floppy disks available in the storage domain.
+     *
+     * The order returned list of ISO images and virtual floppy disks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out File[] file();
 

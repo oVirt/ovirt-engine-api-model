@@ -22,9 +22,25 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Nic;
 
+/**
+ * Manages the set of NICs of an snapshot.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface SnapshotNicsService {
+    /**
+     * Returns the list of NICs of the snapshot.
+     *
+     * The order of the returned list of NICs isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Nic[] nics();
 

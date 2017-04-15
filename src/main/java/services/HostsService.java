@@ -174,6 +174,9 @@ public interface HostsService {
      * </host>
      * ----
      *
+     * The order of the returned list of hosts is guaranteed only if the `sortby` clause is included in
+     * the `search` parameter.
+     *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @date 12 Dec 2016
      * @status added

@@ -61,7 +61,10 @@ public interface ExternalComputeResourcesService {
      * </external_compute_resources>
      * ----
      *
+     * The order of the returned list of compute resources isn't guaranteed.
+     *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

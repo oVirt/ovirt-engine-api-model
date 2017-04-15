@@ -25,6 +25,13 @@ import types.StorageConnection;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
+/**
+ * Manages the set of connections to storage servers that exist in a storage domain.
+ *
+ * @author Juan Hernandez <juan.henandez@redhat.com>
+ * @date 15 Arp 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface StorageDomainServerConnectionsService {
@@ -37,6 +44,15 @@ public interface StorageDomainServerConnectionsService {
         @In @Out StorageConnection connection();
     }
 
+    /**
+     * Returns the list of connections to storage servers that existin the storage domain.
+     *
+     * The order of the returned list of connections isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.henandez@redhat.com>
+     * @date 15 Arp 2017
+     * @status added
+     */
     interface List {
         @Out StorageConnection[] connections();
 

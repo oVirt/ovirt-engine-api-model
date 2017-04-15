@@ -103,6 +103,8 @@ public interface StorageDomainDisksService {
     /**
      * Retrieve the list of disks that are available in the storage domain.
      *
+     * The order of the returned list of disks isn't guaranteed.
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 4 Jan 2017
      * @status added

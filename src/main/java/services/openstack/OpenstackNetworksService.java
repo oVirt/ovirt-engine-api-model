@@ -25,6 +25,15 @@ import types.OpenStackNetwork;
 @Service
 @Area("Network")
 public interface OpenstackNetworksService {
+    /**
+     * Returns the list of networks.
+     *
+     * The order of the returned list of networks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out OpenStackNetwork[] networks();
 

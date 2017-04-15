@@ -22,9 +22,26 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 
+/**
+ * Manages the set of disks available in a storage domain.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface StorageDomainContentDisksService {
+    /**
+     * Returns the list of disks available in the storage domain.
+     *
+     * The order of the returned list of disks is guaranteed only if the `sortby` clause is included in
+     * the `search` parameter.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Disk[] disks();
 

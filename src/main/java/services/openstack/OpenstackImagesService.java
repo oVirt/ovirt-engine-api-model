@@ -28,6 +28,8 @@ public interface OpenstackImagesService {
     /**
      * Lists the images of a Glance image storage domain.
      *
+     * The order of the returned list of images isn't guaranteed.
+     *
      * @author Daniel Erez <derez@redhat.com>
      * @date 14 Sep 2016
      * @status added

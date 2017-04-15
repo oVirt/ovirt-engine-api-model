@@ -27,6 +27,13 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
+/**
+ * Manages the set of scheduling policies available in the system.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface SchedulingPoliciesService {
@@ -48,6 +55,15 @@ public interface SchedulingPoliciesService {
         @In @Out SchedulingPolicy policy();
     }
 
+    /**
+     * Returns the list of scheduling policies available in the system.
+     *
+     * The order of the returned list of scheduling policies isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out SchedulingPolicy[] policies();
 

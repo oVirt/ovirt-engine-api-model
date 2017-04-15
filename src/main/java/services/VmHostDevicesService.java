@@ -86,6 +86,8 @@ public interface VmHostDevicesService {
     /**
      * List the host devices assigned to given virtual machine.
      *
+     * The order of the returned list of devices isn't guaranteed.
+     *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 12 Dec 2016
      * @status added

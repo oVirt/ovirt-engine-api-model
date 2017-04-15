@@ -32,9 +32,8 @@ import types.Certificate;
 @Service
 @Area("Infrastructure")
 public interface ExternalProviderCertificatesService {
-
     /**
-     * Gets list of certificates.
+     * Returns the chain of certificates presented by the external provider.
      *
      * [source]
      * ----
@@ -51,10 +50,13 @@ public interface ExternalProviderCertificatesService {
      * </certificates>
      * ----
      *
+     * The order of the returned certificates is always guaranteed to be the sign order: the first is the
+     * certificate of the server itself, the second the certificate of the CA that signs the first, so on.
+     *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
-     *
      */
     interface List {
         /**

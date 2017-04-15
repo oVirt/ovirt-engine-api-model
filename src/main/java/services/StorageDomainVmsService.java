@@ -58,10 +58,18 @@ import types.Vm;
  * @date 14 Sep 2016
  * @status added
  */
-
 @Service
 @Area("Storage")
 public interface StorageDomainVmsService {
+    /**
+     * Returns the list of virtual machines of the export storage domain.
+     *
+     * The order of the returned list of virtual machines isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Vm[] vm();
 

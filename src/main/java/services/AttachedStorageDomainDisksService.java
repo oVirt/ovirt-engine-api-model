@@ -112,6 +112,8 @@ public interface AttachedStorageDomainDisksService {
         /**
          * List of retrieved disks.
          *
+         * The order of the returned disks isn't guaranteed.
+         *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
          * @date 4 Jan 2017
          * @status added

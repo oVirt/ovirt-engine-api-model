@@ -111,6 +111,8 @@ public interface GlusterVolumesService {
      * GET /ovirt-engine/api/clusters/456/glustervolumes
      * ----
      *
+     * The order of the returned list of volumes isn't guaranteed.
+     *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
      * @status added

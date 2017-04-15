@@ -70,6 +70,8 @@ public interface AffinityGroupVmsService {
     /**
      * List all virtual machines assigned to this affinity group.
      *
+     * The order of the returned virtual machines isn't guaranteed.
+     *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017

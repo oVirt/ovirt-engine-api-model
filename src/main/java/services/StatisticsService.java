@@ -83,6 +83,12 @@ public interface StatisticsService {
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      * </statistic>
      * ----
+     *
+     * The order of the returned list of statistics isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
      */
     interface List {
         @Out Statistic[] statistics();

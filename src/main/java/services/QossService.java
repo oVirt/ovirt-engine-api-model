@@ -26,6 +26,13 @@ import types.Qos;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
+/**
+ * Manages the set of _quality of service_ configurations available in a data center.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface QossService {
@@ -90,7 +97,7 @@ public interface QossService {
     }
 
     /**
-     * List all available QoS objects in the datacenter.
+     * Returns the list of _quality of service_ configurations available in the data center.
      *
      * [source]
      * ----
@@ -108,7 +115,10 @@ public interface QossService {
      * </qoss>
      * ----
      *
+     * The returned list of quality of service configurations isn't guaranteed.
+     *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

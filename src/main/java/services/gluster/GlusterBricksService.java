@@ -179,6 +179,8 @@ public interface GlusterBricksService {
      * </bricks>
      * ----
      *
+     * The order of the returned list is based on the brick order provided at gluster volume creation.
+     *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
      * @status added

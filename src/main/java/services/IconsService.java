@@ -53,6 +53,8 @@ public interface IconsService {
      * </icons>
      * ----
      *
+     * The order of the returned list of icons isn't guaranteed.
+     *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
      * @status added

@@ -35,6 +35,8 @@ public interface VmApplicationsService {
     /**
      * Returns a list of applications installed in the virtual machine.
      *
+     * The order of the returned list of applications isn't guaranteed.
+     *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016
      * @status added

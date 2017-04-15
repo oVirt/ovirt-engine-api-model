@@ -99,6 +99,16 @@ public interface ClustersService {
         @In @Out Cluster cluster();
     }
 
+    /**
+     * Returns the list of clusters of the system.
+     *
+     * The order of the returned clusters is guaranteed only if the `sortby` clause is included in the
+     * `search` parameter.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Cluster[] clusters();
 

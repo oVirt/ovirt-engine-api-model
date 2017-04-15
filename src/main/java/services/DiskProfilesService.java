@@ -47,6 +47,15 @@ public interface DiskProfilesService {
         @In @Out DiskProfile profile();
     }
 
+    /**
+     * Returns the list of disk profiles of the system.
+     *
+     * The order of the returned list of disk profiles isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out DiskProfile[] profile();
 

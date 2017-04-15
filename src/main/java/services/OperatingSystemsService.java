@@ -22,9 +22,25 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.OperatingSystemInfo;
 
+/**
+ * Manages the set of types of operating systems available in the system.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Virtualization")
 public interface OperatingSystemsService {
+    /**
+     * Returns the list of types of operating system available in the system.
+     *
+     * The order of the returned list of operating systems isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out OperatingSystemInfo[] operatingSystem();
 

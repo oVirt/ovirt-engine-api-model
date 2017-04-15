@@ -25,6 +25,15 @@ import types.Hook;
 @Service
 @Area("Virtualization")
 public interface HostHooksService {
+    /**
+     * Returns the list of hooks configured for the host.
+     *
+     * The order of the returned list of hooks isn't guranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Hook[] hooks();
 

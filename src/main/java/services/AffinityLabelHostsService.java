@@ -38,6 +38,12 @@ public interface AffinityLabelHostsService {
 
     /**
      * List all hosts with the label.
+     *
+     * The order of the returned hosts isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
      */
     interface List {
         @Out Host[] hosts();

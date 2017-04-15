@@ -38,6 +38,8 @@ public interface NicNetworkFilterParametersService {
     /**
      * Retrieves the representations of the network filter parameters.
      *
+     * The order of the returned list of network filters isn't guaranteed.
+     *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 13 Dec 2016
      * @status added

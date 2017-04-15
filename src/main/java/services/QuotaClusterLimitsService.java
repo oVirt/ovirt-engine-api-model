@@ -23,6 +23,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.QuotaClusterLimit;
 
+/**
+ * Manages the set of quota limits configured for a cluster.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface QuotaClusterLimitsService {
@@ -41,6 +48,15 @@ public interface QuotaClusterLimitsService {
         @In @Out QuotaClusterLimit limit();
     }
 
+    /**
+     * Returns the set of quota limits configured for the cluster.
+     *
+     * The returned list of quota limits isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out QuotaClusterLimit[] limits();
 

@@ -25,6 +25,13 @@ import types.Filter;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
+/**
+ * Manages the filters used by an scheduling policy.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface FiltersService {
@@ -44,6 +51,15 @@ public interface FiltersService {
         @In @Out Filter filter();
     }
 
+    /**
+     * Returns the list of filters used by the scheduling policy.
+     *
+     * The order of the returned list of filters isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Filter[] filters();
 

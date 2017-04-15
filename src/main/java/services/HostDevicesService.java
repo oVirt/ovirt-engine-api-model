@@ -36,6 +36,8 @@ public interface HostDevicesService {
     /**
      * List the devices of a host.
      *
+     * The order of the returned list of devices isn't guaranteed.
+     *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 12 Dec 2016
      * @status added

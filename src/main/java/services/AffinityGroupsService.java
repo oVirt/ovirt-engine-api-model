@@ -83,6 +83,8 @@ public interface AffinityGroupsService {
     /**
      * List existing affinity groups.
      *
+     * The order of the affinity groups results isn't guaranteed.
+     *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017

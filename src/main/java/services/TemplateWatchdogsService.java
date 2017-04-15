@@ -44,6 +44,15 @@ public interface TemplateWatchdogsService {
         @In @Out Watchdog watchdog();
     }
 
+    /**
+     * Returns the list of watchdogs.
+     *
+     * The order of the returned list of watchdogs isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Watchdog[] watchdogs();
 

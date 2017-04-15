@@ -25,6 +25,15 @@ import types.GlusterHook;
 @Service
 @Area("Gluster")
 public interface GlusterHooksService {
+    /**
+     * Returns the list of hooks.
+     *
+     * The order of the returned list of hooks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out GlusterHook[] hooks();
 

@@ -127,6 +127,8 @@ public interface TagsService {
      *     - root3  (id: 333)
      * ....
      *
+     * The order of the returned list of tags isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
      * @status added

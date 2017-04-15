@@ -81,6 +81,8 @@ public interface OpenstackVolumeProvidersService {
     /**
      * Retrieves the list of volume providers.
      *
+     * The order of the returned list of volume providers isn't guaranteed.
+     *
      * @author Daniel Erez <derez@redhat.com>
      * @date 14 Sep 2016
      * @status added

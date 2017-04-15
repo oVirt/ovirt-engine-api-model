@@ -97,6 +97,8 @@ public interface BookmarksService {
      * </bookmarks>
      * ----
      *
+     * The order of the returned bookmarks isn't guaranteed.
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016
      * @status added

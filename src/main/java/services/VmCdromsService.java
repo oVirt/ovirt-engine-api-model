@@ -65,6 +65,8 @@ public interface VmCdromsService {
     /**
      * Returns the list of CDROM devices of the virtual machine.
      *
+     * The order of the returned list of CD-ROM devices isn't guaranteed.
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 25 Aug 2016
      * @status added

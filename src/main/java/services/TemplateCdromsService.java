@@ -32,6 +32,15 @@ import types.Cdrom;
 @Service
 @Area("Virtualization")
 public interface TemplateCdromsService {
+    /**
+     * Returns the list of CD-ROM devices of the template.
+     *
+     * The order of the returned list of CD-ROM devices isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         /**
          * The list of CD-ROM devices of the template.

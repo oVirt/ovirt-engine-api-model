@@ -134,6 +134,15 @@ public interface StorageServerConnectionsService {
         @In @Out StorageConnection connection();
     }
 
+    /**
+     * Returns the list of storage connections.
+     *
+     * The order of the returned list of connections isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out StorageConnection[] connections();
 

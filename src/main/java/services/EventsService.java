@@ -141,10 +141,18 @@ public interface EventsService {
      * * id="1" - The API logs in the admin user account.
      * * id="2" - The API logs out of the admin user account.
      *
+     * The order of the returned list of events is always garanteed. If the `sortby` clause is included in the
+     * `search` parameter, then the events will be ordered according to that clause. If the `sortby` clause isn't
+     * included, then the events will be sorted by the numeric value of the `id` attribute, starting with the
+     * highest value. This, combined with the `max` parameter, simplifies obtaining the most recent event:
+     *
+     * ....
+     * GET /ovirt-engine/api/events?max=1
+     * ....
+     *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 14 Sep 2016
      * @status added
-     *
      */
     interface List {
         @Out Event[] events();

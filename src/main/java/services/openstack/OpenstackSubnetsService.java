@@ -29,6 +29,15 @@ public interface OpenstackSubnetsService {
         @In @Out OpenStackSubnet subnet();
     }
 
+    /**
+     * Returns the list of sub-networks.
+     *
+     * The order of the returned list of sub-networks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out OpenStackSubnet[] subnets();
 

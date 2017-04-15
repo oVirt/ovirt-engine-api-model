@@ -37,7 +37,13 @@ public interface AffinityLabelVmsService {
     }
 
     /**
-     * List all vms with the label.
+     * List all virtual machines with the label.
+     *
+     * The order of the returned virtual machines isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernancez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
      */
     interface List {
         @Out Vm[] vms();

@@ -110,7 +110,10 @@ public interface GroupsService {
      * </groups>
      * ----
      *
+     * The order of the returned list of groups isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

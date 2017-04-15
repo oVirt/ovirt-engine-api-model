@@ -37,6 +37,8 @@ public interface StorageDomainVmDiskAttachmentsService {
     /**
      * List the disks that are attached to the virtual machine.
      *
+     * The order of the returned list of disk attachments isn't guaranteed.
+     *
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 6 Sep 2016
      * @status added

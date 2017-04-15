@@ -259,6 +259,8 @@ public interface TemplatesService {
      *
      * Will return the list of virtual machines and virtual machine templates.
      *
+     * The order of the returned list of templates isn't guaranteed.
+     *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @date 12 Dec 2016
      * @status added

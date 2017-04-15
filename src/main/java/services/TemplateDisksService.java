@@ -25,6 +25,15 @@ import types.Disk;
 @Service
 @Area("Storage")
 public interface TemplateDisksService {
+    /**
+     * Returns the list of disks of the template.
+     *
+     * The order of the returned list of disks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Disk[] disks();
 

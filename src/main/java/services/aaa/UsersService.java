@@ -125,6 +125,8 @@ public interface UsersService {
      * </users>
      * ----
      *
+     * The order of the returned list of users isn't guaranteed.
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Ravi Nori <rnori@redhat.com>
      * @date 12 Dec 2016

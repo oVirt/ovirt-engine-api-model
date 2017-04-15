@@ -25,6 +25,15 @@ import types.NumaNode;
 @Service
 @Area("SLA")
 public interface HostNumaNodesService {
+    /**
+     * Returns the list of NUMA nodes of the host.
+     *
+     * The order of the returned list of NUMA nodes isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Arp 2017
+     * @status added
+     */
     interface List {
         @Out NumaNode[] nodes();
 
