@@ -128,6 +128,9 @@ public interface DataCentersService {
      * The data center also contains a link to the storage domains collection. The data center uses this collection to
      * attach storage domains from the storage domains main collection.
      *
+     * The order of the returned list of data centers is guaranteed only if the `sortby` clause is included in the
+     * `search` parameter.
+     *
      * @author Vinzenz Feenstra <vfeenstr@redhat.com>
      * @date 14 Sep 2016
      * @status added

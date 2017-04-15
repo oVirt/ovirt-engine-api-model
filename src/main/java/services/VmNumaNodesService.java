@@ -63,6 +63,8 @@ public interface VmNumaNodesService {
     /**
      * Lists virtual NUMA nodes of a virtual machine.
      *
+     * The order of the returned list of NUMA nodes isn't guaranteed.
+     *
      * @author Andrej Krejcir <akrejcir@redhat.com>
      * @date 14 Sep 2016
      * @status added

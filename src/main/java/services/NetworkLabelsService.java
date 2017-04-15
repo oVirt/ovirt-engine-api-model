@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.NetworkLabel;
 
+/**
+ * Manages the ser of labels attached to a network or to a host NIC.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface NetworkLabelsService {
@@ -53,6 +60,15 @@ public interface NetworkLabelsService {
         @In @Out NetworkLabel label();
     }
 
+    /**
+     * Returns the list of labels attached to the network or host NIC.
+     *
+     * The order of the returned list of labels isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out NetworkLabel[] labels();
 

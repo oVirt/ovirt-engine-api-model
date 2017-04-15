@@ -72,6 +72,8 @@ public interface DataCenterNetworksService {
     /**
      * Lists networks in the data center.
      *
+     * The order of the returned list of networks isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 23 Mar 2017

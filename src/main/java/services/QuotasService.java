@@ -23,6 +23,13 @@ import org.ovirt.api.metamodel.annotations.Service;
 import annotations.Area;
 import types.Quota;
 
+/**
+ * Manages the set of quotas configured for a data center.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface QuotasService {
@@ -54,7 +61,9 @@ public interface QuotasService {
     }
 
     /**
-     * Lists quotas of a data center
+     * Lists quotas of a data center.
+     *
+     * The order of the returned list of quotas isn't guaranteed.
      *
      * @author Roman Mohr <rmohr@redhat.com>
      * @date 14 Sep 2016

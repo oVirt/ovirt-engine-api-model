@@ -118,6 +118,9 @@ public interface VnicProfilesService {
 
     /**
      * List all vNIC profiles.
+     *
+     * The order of the returned list of vNIC profiles isn't guaranteed.
+     *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 12 Dec 2016
      * @status added

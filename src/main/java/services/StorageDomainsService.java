@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageDomain;
 
+/**
+ * Manages the set of storage domains of the system.
+ *
+ * @author Juan Hernandez <juan.hernadez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface StorageDomainsService {
@@ -108,6 +115,16 @@ public interface StorageDomainsService {
         @In @Out StorageDomain storageDomain();
     }
 
+    /**
+     * Returns the list of storage domains of the system.
+     *
+     * The order of the returned list of storage domains is guaranteed only if the `sortby` clause is included
+     * in the `search` parameter.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out StorageDomain[] storageDomains();
 

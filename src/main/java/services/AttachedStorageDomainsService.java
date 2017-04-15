@@ -22,13 +22,36 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageDomain;
 
+/**
+ * Manages the storage domains attached to a data center.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface AttachedStorageDomainsService {
+    /**
+     * Attaches an existing storage domain to the data center.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 18 Jan 2017
+     * @status added
+     */
     interface Add {
         @In @Out StorageDomain storageDomain();
     }
 
+    /**
+     * Returns the list of storage domains attached to the data center.
+     *
+     * The order of the returned storage domains isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out StorageDomain[] storageDomains();
 

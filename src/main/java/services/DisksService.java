@@ -184,6 +184,9 @@ public interface DisksService {
      * </disks>
      * ----
      *
+     * The order of the returned list of disks is guaranteed only if the `sortby` clause is included in the
+     * `search` parameter.
+     *
      * @author Aleksei Slaikovskii
      * @date 12 Dec 2016
      * @status added

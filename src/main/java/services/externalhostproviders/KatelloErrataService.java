@@ -66,6 +66,8 @@ public interface KatelloErrataService {
      * </katello_errata>
      * ----
      *
+     * The order of the returned list of erratum isn't guaranteed.
+     *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
      * @status added

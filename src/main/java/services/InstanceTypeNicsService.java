@@ -39,6 +39,8 @@ public interface InstanceTypeNicsService {
     /**
      * Lists all the configured network interface of the instance type.
      *
+     * The order of the returned list of network interfaces isn't guaranteed.
+     *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016
      * @status added

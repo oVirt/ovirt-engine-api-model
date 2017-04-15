@@ -37,6 +37,8 @@ public interface TemplateDiskAttachmentsService {
     /**
      * List the disks that are attached to the template.
      *
+     * The order of the returned list of attachments isn't guaranteed.
+     *
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 7 Jul 2016
      * @status added

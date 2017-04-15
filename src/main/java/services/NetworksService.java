@@ -116,6 +116,9 @@ public interface NetworksService {
      * </networks>
      * ----
      *
+     * The order of the returned list of networks is guaranteed only if the `sortby` clause is included in the
+     * `search` parameter.
+     *
      * @author Ori Ben Sasson <obensass@redhat.com>
      * @date 14 Sep 2016
      * @status added

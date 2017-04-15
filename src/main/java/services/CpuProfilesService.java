@@ -29,6 +29,15 @@ public interface CpuProfilesService {
         @In @Out CpuProfile profile();
     }
 
+    /**
+     * Returns the list of CPU profiles of the system.
+     *
+     * The order of the returned list of CPU profiles isn't guranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out CpuProfile[] profile();
 

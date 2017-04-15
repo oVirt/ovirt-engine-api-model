@@ -29,6 +29,16 @@ public interface AssignedDiskProfilesService {
         @In @Out
         DiskProfile profile();
     }
+
+    /**
+     * Returns the list of disk profiles assigned to the storage domain.
+     *
+     * The order of the returned disk profiles isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out DiskProfile[] profiles();
 

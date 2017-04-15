@@ -123,6 +123,8 @@ public interface InstanceTypesService {
     /**
      * Lists all existing instance types in the system.
      *
+     * The order of the returned list of instance types isn't guaranteed.
+     *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016
      * @status added

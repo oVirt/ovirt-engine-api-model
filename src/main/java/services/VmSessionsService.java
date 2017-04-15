@@ -60,6 +60,8 @@ public interface VmSessionsService {
      * </sessions>
      * ----
      *
+     * The order of the returned list of sessions isn't guaranteed.
+     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @date 14 Sep 2016
      * @status added

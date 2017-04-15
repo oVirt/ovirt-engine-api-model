@@ -67,7 +67,10 @@ public interface ExternalDiscoveredHostsService {
      * </external_discovered_hosts>
      * ----
      *
+     * The order of the returned list of hosts isn't guaranteed.
+     *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

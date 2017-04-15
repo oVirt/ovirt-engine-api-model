@@ -22,9 +22,25 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Image;
 
+/**
+ * Manages the set of images available in an storage domain or in an OpenStack image provider.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface ImagesService {
+    /**
+     * Returns the list of images available in the storage domain or provider.
+     *
+     * The order of the returned list of images isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Image[] images();
 

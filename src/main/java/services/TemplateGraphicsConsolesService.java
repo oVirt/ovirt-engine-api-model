@@ -40,6 +40,8 @@ public interface TemplateGraphicsConsolesService {
     /**
      * Lists all the configured graphics consoles of the template.
      *
+     * The order of the returned list of graphics consoles isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 31 Oct 2016
      * @status added

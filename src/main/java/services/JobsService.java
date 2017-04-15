@@ -121,6 +121,8 @@ public interface JobsService {
      * </jobs>
      * ----
      *
+     * The order of the returned list of jobs isn't guaranteed.
+     *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
      * @status added

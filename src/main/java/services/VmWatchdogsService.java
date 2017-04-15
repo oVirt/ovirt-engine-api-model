@@ -79,6 +79,8 @@ public interface VmWatchdogsService {
     /**
      * The list of watchdogs of the virtual machine.
      *
+     * The order of the returned list of watchdogs isn't guaranteed.
+     *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016
      * @status added

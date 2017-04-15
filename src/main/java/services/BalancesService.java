@@ -29,6 +29,15 @@ public interface BalancesService {
         @In @Out Balance balance();
     }
 
+    /**
+     * Returns the list of balance modules used by the scheduling policy.
+     *
+     * The order of the returned balance modules isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Balance[] balances();
 

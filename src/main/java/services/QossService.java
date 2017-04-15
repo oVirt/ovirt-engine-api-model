@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Qos;
 
+/**
+ * Manages the set of _quality of service_ configurations available in a data center.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("SLA")
 public interface QossService {
@@ -29,6 +36,32 @@ public interface QossService {
         @In @Out Qos qos();
     }
 
+    /**
+     * Returns the list of _quality of service_ configurations available in the data center.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenter/123/qoss
+     * ----
+     *
+     * You will get response which will look like this:
+     *
+     * [source, xml]
+     * ----
+     * <qoss>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/1" id="1">...</qos>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/2" id="2">...</qos>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/3" id="3">...</qos>
+     * </qoss>
+     * ----
+     *
+     * The returned list of quality of service configurations isn't guaranteed.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Qos[] qoss();
 

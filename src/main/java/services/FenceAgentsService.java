@@ -28,7 +28,6 @@ import types.Agent;
  * @author Piotr Kliczewski <pkliczew@redhat.com>
  * @date 24 Apr 2017
  * @status added
- *
  */
 @Service
 @Area("Infrastructure")
@@ -38,7 +37,7 @@ public interface FenceAgentsService {
     }
 
     /**
-     * Gets list of fence agents.
+     * Returns the list of fencing agents configured for the host.
      *
      * [source]
      * ----
@@ -62,7 +61,10 @@ public interface FenceAgentsService {
      * </agents>
      * ----
      *
+     * The order of the returned list of fencing agents isn't guaranteed.
+     *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

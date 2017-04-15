@@ -22,6 +22,13 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.NetworkAttachment;
 
+/**
+ * Manages the set of network attachments of a host or host NIC.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @date 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Network")
 public interface NetworkAttachmentsService {
@@ -29,6 +36,15 @@ public interface NetworkAttachmentsService {
         @In @Out NetworkAttachment attachment();
     }
 
+    /**
+     * Returns the list of network attachments of the host or host NIC.
+     *
+     * The order of the returned list of network attachments isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out NetworkAttachment[] attachments();
 

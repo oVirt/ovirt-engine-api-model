@@ -256,6 +256,16 @@ public interface VmsService {
         @In Boolean clonePermissions();
     }
 
+    /**
+     * Returns the list of virtual machines of the system.
+     *
+     * The order of the returned list of virtual machines is guaranteed only if the `sortby` clause is included
+     * in the `search` parameter.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Vm[] vms();
 

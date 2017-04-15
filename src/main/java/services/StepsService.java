@@ -121,6 +121,8 @@ public interface StepsService {
      * </steps>
      * ----
      *
+     * The order of the returned list of steps isn't guaranteed.
+     *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
      * @status added

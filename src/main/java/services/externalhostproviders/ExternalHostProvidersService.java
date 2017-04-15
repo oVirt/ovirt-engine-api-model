@@ -29,6 +29,15 @@ public interface ExternalHostProvidersService {
         @In @Out ExternalHostProvider provider();
     }
 
+    /**
+     * Returns the list of external host providers.
+     *
+     * The order of the returned list of host providers isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out ExternalHostProvider[] providers();
 

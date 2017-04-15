@@ -25,6 +25,15 @@ import types.ExternalHost;
 @Service
 @Area("Infrastructure")
 public interface ExternalHostsService {
+    /**
+     * Return the list of external hosts.
+     *
+     * The order of the returned list of hosts isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out ExternalHost[] hosts();
 

@@ -39,6 +39,8 @@ public interface InstanceTypeWatchdogsService {
     /**
      * Lists all the configured watchdogs of the instance type.
      *
+     * The order of the returned list of watchdogs isn't guaranteed.
+     *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016
      * @status added

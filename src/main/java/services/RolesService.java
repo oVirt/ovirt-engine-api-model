@@ -94,6 +94,8 @@ public interface RolesService {
      * </roles>
      * ----
      *
+     * The order of the returned list of roles isn't guaranteed.
+     *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
      * @status added

@@ -40,6 +40,8 @@ public interface InstanceTypeGraphicsConsolesService {
     /**
      * Lists all the configured graphics consoles of the instance type.
      *
+     * The order of the returned list of graphics consoles isn't guaranteed.
+     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 31 Oct 2016
      * @status added

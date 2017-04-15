@@ -29,6 +29,15 @@ public interface WeightsService {
         @In @Out Weight weight();
     }
 
+    /**
+     * Returns the list of weights.
+     *
+     * The order of the returned list of weights isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Weight[] weights();
 

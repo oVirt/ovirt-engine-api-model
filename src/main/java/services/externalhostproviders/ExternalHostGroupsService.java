@@ -33,7 +33,7 @@ import types.ExternalHostGroup;
 @Area("Infrastructure")
 public interface ExternalHostGroupsService {
     /**
-     * Get hostgroups list from external host provider.
+     * Get host groups list from external host provider.
      *
      * Host group is a term of host providers - the host group includes provision details. This API returns all possible
      * hostgroups exposed by the external provider.
@@ -61,7 +61,10 @@ public interface ExternalHostGroupsService {
      * </external_host_groups>
      * ----
      *
+     * The order of the returned list of host groups isn't guaranteed.
+     *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */

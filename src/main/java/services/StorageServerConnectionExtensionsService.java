@@ -57,6 +57,15 @@ public interface StorageServerConnectionExtensionsService {
         @In @Out StorageConnectionExtension extension();
     }
 
+    /**
+     * Returns the list os storage connection extensions.
+     *
+     * The order of the returned list of storage connections isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 1027
+     * @status added
+     */
     interface List {
         @Out StorageConnectionExtension[] extensions();
 

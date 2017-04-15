@@ -29,6 +29,16 @@ public interface OpenstackVolumeAuthenticationKeysService {
         @In @Out OpenstackVolumeAuthenticationKey key();
     }
 
+
+    /**
+     * Returns the list of authentication keys.
+     *
+     * The order of the returned list of authentication keys isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out OpenstackVolumeAuthenticationKey[] keys();
 

@@ -22,9 +22,25 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
 
+/**
+ * Manages the set of disks of an snapshot.
+ *
+ * @author Juan Hernandez <juan.hernandez@redhat.com>
+ * @datel 15 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Storage")
 public interface SnapshotDisksService {
+    /**
+     * Returns the list of disks of the snapshot.
+     *
+     * The order of the returned list of disks isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @datel 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Disk[] disks();
 

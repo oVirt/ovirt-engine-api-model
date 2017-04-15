@@ -28,6 +28,15 @@ import types.Role;
 @Service
 @Area("Infrastructure")
 public interface AssignedRolesService {
+    /**
+     * Returns the roles assigned to the permission.
+     *
+     * The order of the returned roles isn't guaranteed.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 15 Apr 2017
+     * @status added
+     */
     interface List {
         @Out Role[] roles();
 
