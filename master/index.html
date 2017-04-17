@@ -47659,6 +47659,11 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether the virtual machine passes discard commands to the storage.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>read_only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the disk is connected to the virtual machine as read only.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>uses_scsi_reservation</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether SCSI reservation is enabled for this disk.</p></td>
@@ -47701,7 +47706,24 @@ logical name will be reported as <code>/dev/vda</code>:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_attachment/attributes/uses_scsi_reservation"><a class="anchor" href="#types/disk_attachment/attributes/uses_scsi_reservation"></a>7.46.3. uses_scsi_reservation</h4>
+<h4 id="types/disk_attachment/attributes/read_only"><a class="anchor" href="#types/disk_attachment/attributes/read_only"></a>7.46.3. read_only</h4>
+<div class="paragraph">
+<p>Indicates whether the disk is connected to the virtual machine as read only.</p>
+</div>
+<div class="paragraph">
+<p>When adding a new disk attachment the default value is <code>false</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk_attachment&gt;
+  ...
+  &lt;read_only&gt;true&lt;/read_only&gt;
+&lt;/disk_attachment&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk_attachment/attributes/uses_scsi_reservation"><a class="anchor" href="#types/disk_attachment/attributes/uses_scsi_reservation"></a>7.46.4. uses_scsi_reservation</h4>
 <div class="paragraph">
 <p>Defines whether SCSI reservation is enabled for this disk.</p>
 </div>
@@ -70104,7 +70126,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-06 08:11:00 UTC
+Last updated 2017-04-17 08:29:25 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
