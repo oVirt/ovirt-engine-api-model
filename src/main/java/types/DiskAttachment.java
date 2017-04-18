@@ -130,7 +130,7 @@ public interface DiskAttachment extends Identified {
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 9 Apr 2017
      * @status added
-     * @since 4.2.0
+     * @since 4.1.2
      */
     Boolean readOnly();
 
