@@ -36834,7 +36834,9 @@ have copies on multiple storage domains).</p>
 <p>Creates a new template.</p>
 </div>
 <div class="paragraph">
-<p>This requires the <code>name</code> and <code>vm</code> elements. Identify the virtual machine with the <code>id</code> <code>name</code> attributes.</p>
+<p>This requires the <code>name</code> and <code>vm</code> elements. To identify the virtual machine use the <code>vm.id</code> or <code>vm.name</code>
+attributes. For example, to create a template from virtual machine with identifier <code>123</code> send a request
+like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -36849,6 +36851,31 @@ have copies on multiple storage domains).</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
   &lt;name&gt;mytemplate&lt;/name&gt;
   &lt;vm id="123"/&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The disks of the template can be customized, making some of their characteristics different to the disks of the
+original virtual machine. To do so use the <code>vm.disk_attachments</code> attribute, specifying the identifier of the disk
+of the original virtual machine and the characteristics that you want to change. For example, if the original
+virtual machine has a disk with identifier <code>456</code>, and, for that disk, you want to change the format to
+<a href="#types/disk_format"><em>Copy On Write</em></a> and make the disk <a href="#types/disk">sparse</a>, send a request body
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;name&gt;mytemplate&lt;/name&gt;
+  &lt;vm id="123"&gt;
+    &lt;disk_attachments&gt;
+      &lt;disk_attachment&gt;
+        &lt;disk id="456"&gt;
+          &lt;format&gt;cow&lt;/format&gt;
+          &lt;sparse&gt;true&lt;/sparse&gt;
+        &lt;/disk&gt;
+      &lt;/disk_attachment&gt;
+    &lt;/disk_attachments&gt;
+  &lt;/vm&gt;
 &lt;/template&gt;</code></pre>
 </div>
 </div>
@@ -70126,7 +70153,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-19 10:50:53 UTC
+Last updated 2017-04-19 13:41:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
