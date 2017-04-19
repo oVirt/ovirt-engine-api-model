@@ -43096,6 +43096,11 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether the virtual machine passes discard commands to the storage.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>read_only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the disk is connected to the virtual machine as read only.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>uses_scsi_reservation</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether SCSI reservation is enabled for this disk.</p></td>
@@ -43138,7 +43143,24 @@ logical name will be reported as <code>/dev/vda</code>:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_attachment/attributes/uses_scsi_reservation"><a class="anchor" href="#types/disk_attachment/attributes/uses_scsi_reservation"></a>7.46.3. uses_scsi_reservation</h4>
+<h4 id="types/disk_attachment/attributes/read_only"><a class="anchor" href="#types/disk_attachment/attributes/read_only"></a>7.46.3. read_only</h4>
+<div class="paragraph">
+<p>Indicates whether the disk is connected to the virtual machine as read only.</p>
+</div>
+<div class="paragraph">
+<p>When adding a new disk attachment the default value is <code>false</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk_attachment&gt;
+  ...
+  &lt;read_only&gt;true&lt;/read_only&gt;
+&lt;/disk_attachment&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk_attachment/attributes/uses_scsi_reservation"><a class="anchor" href="#types/disk_attachment/attributes/uses_scsi_reservation"></a>7.46.4. uses_scsi_reservation</h4>
 <div class="paragraph">
 <p>Defines whether SCSI reservation is enabled for this disk.</p>
 </div>
@@ -46998,10 +47020,83 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>priority</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the priority of the virtual machine inside the run and migration queues.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.100.1. priority</h4>
+<div class="paragraph">
+<p>Indicates the priority of the virtual machine inside the run and migration queues.</p>
+</div>
+<div class="paragraph">
+<p>Virtual machines with higher priorities will be started and migrated before virtual machines with lower
+priorities.</p>
+</div>
+<div class="paragraph">
+<p>The value is an integer between 0 and 100. The higher the value, the higher the priority.</p>
+</div>
+<div class="paragraph">
+<p>The graphical user interface (GUI) does not allow specifying all the possible values, instead
+it only allows you to select <em>Low</em>, <em>Medium</em> or <em>High</em>. When the value is set using the API, the GUI
+will set the label as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API Value</th>
+<th class="tableblock halign-left valign-top">GUI Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 - 25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 - 74</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">75 - 100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When the label is selected using the GUI, the value in the API will be set as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GUI Label</th>
+<th class="tableblock halign-left valign-top">API Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/hook"><a class="anchor" href="#types/hook"></a>7.101. Hook <span class="small">struct</span></h3>
@@ -47587,7 +47682,7 @@ memory consumption and increases host performance.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nics</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/nic">Nic[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic">HostNic[]</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -65347,7 +65442,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-29 09:52:49 UTC
+Last updated 2017-04-19 11:00:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
