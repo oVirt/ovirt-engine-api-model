@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.10 / Apr 19 2017
+
+New features:
+
+* Add `readOnly` attribute to the `DiskAttachment` type.
+
+Bug fixes:
+
+* Fix the type of the `Host.nics` link. It should be of type
+  `HostNic[]`, not `Nic[]`.
+
 == 4.2.9 / Mar 29 2017
 
 New features:
