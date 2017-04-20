@@ -256,6 +256,30 @@ public interface HostService extends MeasurableService {
          * Indicates if the results should be filtered according to the permissions of the user.
          */
         @In Boolean filter();
+
+        /**
+         * Indicates if all of the attributes of the host should be included in the response.
+         *
+         * By default the following attributes are excluded:
+         *
+         * - `hosted_engine`
+         *
+         * For example, to retrieve the complete representation of host '123':
+         *
+         * ....
+         * GET /ovirt-engine/api/hosts/123?all_content=true
+         * ....
+         *
+         * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
+         * seldom used and require additional queries to the database. Use this parameter with caution and only when
+         * specifically required.
+         *
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 26 Apr 2017
+         * @status updated_by_docs
+         */
+        @In Boolean allContent();
     }
 
     /**

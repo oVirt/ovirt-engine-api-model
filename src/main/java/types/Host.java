@@ -329,11 +329,17 @@ public interface Host extends Identified {
     Display display();
 
     /**
-     * The hosted engine status on this host.
+     * The self-hosted engine status of this host.
+     *
+     * IMPORTANT: When a host or collection of hosts is retrieved, this attribute is not included unless the
+     * `all_content` parameter of the operation is explicitly set to `true`. See the documentation of the
+     * operations that retrieve <<services/host/methods/get/parameters/all_content, one>> or
+     * <<services/hosts/methods/list/parameters/all_content, multiple>> hosts for details.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 01 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 21 Apr 2017
+     * @status updated_by_docs
      */
     HostedEngine hostedEngine();
 
