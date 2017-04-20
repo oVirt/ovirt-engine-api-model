@@ -23,8 +23,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Represents a virtual disk device.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
- * @date 4 Nov 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 26 Apr 2017
+ * @status updated_by_docs
  */
 @Type
 public interface Disk extends Device {
@@ -37,8 +38,9 @@ public interface Disk extends Device {
      * This attribute is mandatory when creating a new disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Integer provisionedSize();
 
@@ -50,8 +52,9 @@ public interface Disk extends Device {
      * system will be allocated.
      *
      * @author Liron Aravot <laravot@redhat.com>
-     * @date 3 Jan 2017
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      * @since 4.0.7
      */
     Integer initialSize();
@@ -59,12 +62,13 @@ public interface Disk extends Device {
     /**
      * The actual size of the disk, in bytes.
      *
-     * The actual size is the number of bytes actually used by the disk, and it will be smaller than the provisioned
+     * The actual size is the number of bytes actually used by the disk. It will be smaller than the provisioned
      * size for disks that use the `cow` format.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Integer actualSize();
 
@@ -72,8 +76,9 @@ public interface Disk extends Device {
      * The status of the disk device.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     DiskStatus status();
 
@@ -85,8 +90,9 @@ public interface Disk extends Device {
      * here only for backwards compatibility, and it will be removed in the future.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     @Deprecated
     DiskInterface _interface();
@@ -95,22 +101,24 @@ public interface Disk extends Device {
      * The underlying storage format.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     DiskFormat format();
 
     /**
      * The underlying QCOW version of a QCOW volume.
      * The QCOW version specifies to the qemu which qemu version the volume supports.
-     * This field can be updated using the update API and will be reported only for QCOW volumes,
-     * it is determined by the storage domain's version which the disk is created on.
-     * Storage domains with version lower than V4 support QCOW2 volumes, while V4 storage domains also support QCOW2v3.
+     * This field can be updated using the update API and will be reported only for QCOW volumes.
+     * It is determined by the version of the storage domain that the disk is created on.
+     * Storage domains with a version lower than V4 support QCOW2 volumes. V4 storage domains also support QCOW2v3.
      * For more information about features of the different QCOW versions, see http://wiki.qemu.org/Features/Qcow3[here].
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 21 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     QcowVersion qcowVersion();
@@ -119,8 +127,9 @@ public interface Disk extends Device {
      * Indicates if the physical storage for the disk should not be preallocated.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Boolean sparse();
 
@@ -132,8 +141,9 @@ public interface Disk extends Device {
      * here only for backwards compatibility, and it will be removed in the future.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     @Deprecated
     Boolean bootable();
@@ -147,8 +157,9 @@ public interface Disk extends Device {
      * http://www.sourceware.org/cluster/gfs[GFS].
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Boolean shareable();
 
@@ -161,42 +172,65 @@ public interface Disk extends Device {
      * zeros, the disk will be deleted immediately.
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 6 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Boolean wipeAfterDelete();
 
     /**
-     * Indicates if disk errors should not cause virtual machine to be paused and, instead, disk errors should be
-     * propagated to the the guest operating system.
+     * Indicates if disk errors should cause virtual machine to be paused or if disk errors should be
+     * propagated to the the guest operating system instead.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Boolean propagateErrors();
 
     /**
      * Indicates if the disk is visible to the virtual machine.
      *
-     * IMPORTANT: When adding a disk attachment to a virtual machine, the server accepts requests that don't contain
-     * this attribute, but the effect is then undefined. In some cases the disk will be automatically activated
-     * and in other cases it won't. To avoid issues it is strongly recommended to always include the this attribute
+     * IMPORTANT: When adding a disk attachment to a virtual machine, if the server accepts requests that do not contain
+     * this attribute the result is undefined. In some cases the disk will be automatically activated
+     * and in other cases it will not. To avoid issues it is strongly recommended to always include the this attribute
      * with the desired value.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 9 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     Boolean active();
 
     /**
      * Indicates if the disk is in read-only mode.
      *
+     * Since version 4.0 this attribute is not shown in the API and was moved to <<types/disk_attachment,DiskAttachment>>.
+     *
+     * Since version 4.1.2 of {engine-name} this attribute is deprecated, and it will be removed in the future.
+     * In order to attach a disk in read only mode use the `read_only` attribute of the <<types/disk_attachment,
+     * DiskAttachment>> type. For example:
+     *
+     * ....
+     * POST /ovirt-engine/api/vms/123/diskattachments
+     * ....
+     *
+     * [source,xml]
+     * ----
+     * <disk_attachment>
+     *   <read_only>true</read_only>
+     *   ...
+     * </disk_attachment>
+     * ----
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
+    @Deprecated
     Boolean readOnly();
 
     HostStorage lunStorage();
@@ -214,8 +248,9 @@ public interface Disk extends Device {
      * template.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     @Link StorageDomain[] storageDomains();
 
@@ -248,16 +283,17 @@ public interface Disk extends Device {
      * </statistics>
      * ----
      *
-     * These statistics aren't directly included when the disk is retrieved, only a link. To obtain the statistics
-     * follow that link:
+     * These statistics are not directly included when the disk is retrieved, only a link. To obtain the statistics
+     * follow the included link:
      *
      * ....
      * GET /ovirt-engine/api/disks/123/statistics
      * ....
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 26 Apr 2017
+     * @status updated_by_docs
      */
     @Link Statistic[] statistics();
 }
