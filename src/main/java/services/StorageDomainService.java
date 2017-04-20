@@ -182,6 +182,9 @@ public interface StorageDomainService {
      *  </action>
      * ----
      *
+     *  Note that this operation is only applicable to block storage domains (i.e., storage domains with the
+     *  <<types/storage_type, storage type> of iSCSI or FCP).
+     *
      * @author Liron Aravot <laravot@redhat.com>
      * @date 30 Nov 2016
      * @status added
