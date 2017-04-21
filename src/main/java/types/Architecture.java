@@ -21,5 +21,18 @@ import org.ovirt.api.metamodel.annotations.Type;
 public enum Architecture {
     UNDEFINED,
     X86_64,
-    PPC64;
+    PPC64,
+
+    /**
+     * IBM S390 CPU architecture.
+     *
+     * Needs to be specified for virtual machines and clusters running
+     * on the S390 architecture.
+     *
+     * @author Viktor Mihajlovski <mihajlov@linux.vnet.ibm.com>
+     * @date 22 Sep 2017
+     * @status added
+     * @since 4.2
+     */
+    S390;
 }
