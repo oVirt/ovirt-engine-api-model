@@ -17,7 +17,37 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents an enumeration of the protocol used
+ * to connect to the graphic console of the virtual
+ * machine.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 23 Apr 2017
+ * @status added
+ */
 @Type
 public enum DisplayType {
-    VNC, SPICE;
+    /**
+     * Display of type VNC. VNC stands for Virtual
+     * Network Computing, and it is a graphical
+     * desktop sharing system that uses RFB
+     * (Remote Frame Buffer) protocol to remotely
+     * control another machine.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 23 Apr 2017
+     * @status added
+     */
+    VNC,
+
+    /**
+     * Display of type SPICE.
+     * See https://www.spice-space.org for more details.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 23 Apr 2017
+     * @status added
+     */
+    SPICE;
 }
