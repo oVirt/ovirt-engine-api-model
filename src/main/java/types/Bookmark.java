@@ -18,7 +18,22 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a bookmark in the system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 23 Apr 2017
+ * @status added
+ */
 @Type
 public interface Bookmark extends Identified {
+    /**
+     * The bookmark value, representing a search
+     * in the engine.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 23 Apr 2017
+     * @status added
+     */
     String value();
 }
