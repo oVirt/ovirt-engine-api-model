@@ -49532,6 +49532,12 @@ Event can be associated with a virtual machine.</p>
 </div>
 <div class="sect2">
 <h3 id="types/external_status"><a class="anchor" href="#types/external_status"></a>7.69. ExternalStatus <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Represents an external status.
+This status is currently used for <a href="#types/host">hosts</a>
+and <a href="#types/storage_domain">storage domains</a>, and allows an external
+system to update status of objects it is aware of.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 953. Values summary</caption>
 <colgroup>
@@ -49547,26 +49553,61 @@ Event can be associated with a virtual machine.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>error</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error status.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>failure</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failure status.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>info</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Info status.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ok</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OK status.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>warning</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Warning status.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/external_status/values/error"><a class="anchor" href="#types/external_status/values/error"></a>7.69.1. error</h4>
+<div class="paragraph">
+<p>Error status. There is some kind of error
+in the relevant object.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_status/values/failure"><a class="anchor" href="#types/external_status/values/failure"></a>7.69.2. failure</h4>
+<div class="paragraph">
+<p>Failure status. The relevant object is failing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_status/values/info"><a class="anchor" href="#types/external_status/values/info"></a>7.69.3. info</h4>
+<div class="paragraph">
+<p>Info status. The relevant object is in OK status,
+but there is an information available that might be
+relevant for the administrator.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_status/values/ok"><a class="anchor" href="#types/external_status/values/ok"></a>7.69.4. ok</h4>
+<div class="paragraph">
+<p>OK status. The relevant object is working well.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_status/values/warning"><a class="anchor" href="#types/external_status/values/warning"></a>7.69.5. warning</h4>
+<div class="paragraph">
+<p>Warning status. The relevant object is working well,
+but there is some warning that might be relevant for
+the administrator.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/external_system_type"><a class="anchor" href="#types/external_system_type"></a>7.70. ExternalSystemType <span class="small">enum</span></h3>
@@ -70157,7 +70198,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-23 09:41:58 UTC
+Last updated 2017-04-23 09:48:41 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
