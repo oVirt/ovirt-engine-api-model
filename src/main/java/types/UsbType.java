@@ -17,16 +17,21 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type of USB device redirection.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum UsbType {
     /**
-     * A legacy USB type.
+     * Legacy USB redirection.
      *
-     * This USB type has been deprecated since version 3.6 of the
-     * engine, and has been completely removed in version 4.1. It
-     * is preserved only to avoid syntax errors in existing
-     * scripts. If it is used it will be automatically replaced
-     * by `native`.
+     * This USB type has been deprecated since version 3.6 of the engine, and has been completely removed in version
+     * 4.1. It is preserved only to avoid syntax errors in existing scripts. If it is used it will be automatically
+     * replaced by `native`.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @date 14 Nov 2016
@@ -35,5 +40,17 @@ public enum UsbType {
     @Deprecated
     LEGACY,
 
+    /**
+     * Native USB redirection.
+     *
+     * Native USB redirection allows KVM/SPICE USB redirection for Linux and Windows virtual machines. Virtual (guest)
+     * machines require no guest-installed agents or drivers for native USB. On Linux clients, all packages required
+     * for USB redirection are provided by the `virt-viewer` package. On Windows clients, you must also install the
+     * `usbdk` package.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     NATIVE;
 }

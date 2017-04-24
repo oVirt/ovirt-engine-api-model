@@ -18,8 +18,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Configuration of the USB device of a virtual machine.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface Usb {
+    /**
+     * Determines whether the USB device should be included or not.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Boolean enabled();
+
+    /**
+     * USB type, currently only `native` is supported.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     UsbType type();
 }
