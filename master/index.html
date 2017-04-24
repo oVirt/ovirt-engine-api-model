@@ -61793,7 +61793,7 @@ get fenced.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/date">Date</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The date when this snapshot has been created.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete_protected</code></p></td>
@@ -61944,12 +61944,12 @@ it&#8217;s configuration might differ from the stored one for the purpose of thi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snapshot_status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/snapshot_status">SnapshotStatus</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status of the snapshot.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snapshot_type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/snapshot_type">SnapshotType</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of the snapshot.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundcard_enabled</code></p></td>
@@ -62440,7 +62440,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine this snapshot has been taken for.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm_pool</code></p></td>
@@ -62514,6 +62514,9 @@ is used to track history.</p>
 </div>
 <div class="sect2">
 <h3 id="types/snapshot_status"><a class="anchor" href="#types/snapshot_status"></a>7.227. SnapshotStatus <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Represents the current status of the snapshot.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1158. Values summary</caption>
 <colgroup>
@@ -62529,21 +62532,33 @@ is used to track history.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>in_preview</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The snapshot is being previewed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>locked</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The snapshot is locked.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ok</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The snapshot is OK.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/snapshot_status/values/locked"><a class="anchor" href="#types/snapshot_status/values/locked"></a>7.227.1. locked</h4>
+<div class="paragraph">
+<p>The snapshot is locked.</p>
+</div>
+<div class="paragraph">
+<p>The snapshot is locked when it is in process of being created, deleted, restored or previewed.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/snapshot_type"><a class="anchor" href="#types/snapshot_type"></a>7.228. SnapshotType <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Represents the type of the snapshot.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1159. Values summary</caption>
 <colgroup>
@@ -62559,22 +62574,41 @@ is used to track history.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>active</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the current configuration of the virtual machines.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>preview</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>active</code> snapshot will become <code>preview</code> if some snapshot is being previewed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>regular</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot created by user.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>stateless</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot created internally for stateless virtual machines.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/snapshot_type/values/preview"><a class="anchor" href="#types/snapshot_type/values/preview"></a>7.228.1. preview</h4>
+<div class="paragraph">
+<p>The <code>active</code> snapshot will become <code>preview</code> if some snapshot is being previewed.</p>
+</div>
+<div class="paragraph">
+<p>In other words, this is the <code>active</code> snapshot before preview.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/snapshot_type/values/stateless"><a class="anchor" href="#types/snapshot_type/values/stateless"></a>7.228.2. stateless</h4>
+<div class="paragraph">
+<p>Snapshot created internally for stateless virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>This snapshot is created when the virtual machine is started and it is restored when the virtual machine is shut
+down.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/special_objects"><a class="anchor" href="#types/special_objects"></a>7.229. SpecialObjects <span class="small">struct</span></h3>
@@ -70586,7 +70620,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 15:14:57 UTC
+Last updated 2017-04-24 15:21:21 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
