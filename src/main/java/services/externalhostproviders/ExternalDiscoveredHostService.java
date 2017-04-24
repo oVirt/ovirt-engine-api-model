@@ -21,10 +21,54 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ExternalDiscoveredHost;
 
+/**
+ * This service manages a single discovered host.
+ *
+ * @author Yaniv Bronhaim <ybronhei@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface ExternalDiscoveredHostService {
+    /**
+     * Get discovered host info.
+     *
+     * Retrieves information about an host that is managed in external provider management system, such as Foreman. The
+     * information includes hostname, address, subnet, base image and more.
+     *
+     * For example, to get the details of host `234` from provider `123`, send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/externalhostproviders/123/discoveredhosts/234
+     * ....
+     *
+     * The result will be like this:
+     *
+     * [source,xml]
+     * ----
+     * <external_discovered_host href="/ovirt-engine/api/externalhostproviders/123/discoveredhosts/234" id="234">
+     *  <name>mac001a4ad04040</name>
+     *  <ip>10.34.67.43</ip>
+     *  <last_report>2017-04-24 11:05:41 UTC</last_report>
+     *  <mac>00:1a:4a:d0:40:40</mac>
+     *  <subnet_name>sat0</subnet_name>
+     *  <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/>
+     * </external_discovered_host>
+     * ----
+     *
+     * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface Get {
+        /**
+         * Host's hardware and config information.
+         *
+         * @author Yaniv Bronhaim <ybronhei@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out ExternalDiscoveredHost host();
     }
 }
