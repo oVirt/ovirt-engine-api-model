@@ -18,9 +18,39 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Custom property representation.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface CustomProperty {
+    /**
+     * Property name.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     String name();
+
+    /**
+     * Property value.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     String value();
+
+    /**
+     * A regular expression defining the available values a custom property can get.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     String regexp();
 }
