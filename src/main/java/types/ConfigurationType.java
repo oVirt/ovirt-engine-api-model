@@ -17,7 +17,24 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Configuration format types.
+ *
+ * @author Sharon Gratch <sgratch@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum ConfigurationType {
+    /**
+     * ConfigurationType of type OVF.
+     *
+     * OVF stands for Open Virtualization Format, and it is is an open standard for packaging and distributing of a 
+     * virtual machine and software to be run in a virtual machine.
+     *
+     * @author Sharon Gratch <sgratch@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     OVF;
 }
