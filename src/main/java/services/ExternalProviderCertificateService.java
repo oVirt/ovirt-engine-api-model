@@ -21,10 +21,49 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Certificate;
 
+/**
+ * A service to view specific certificate for external provider.
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface ExternalProviderCertificateService {
+
+    /**
+     * Get specific certificate.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/externalhostproviders/123/certificate/0
+     * ----
+     *
+     * And here is sample response:
+     *
+     * [source,xml]
+     * ----
+     * <certificate id="0">
+     *   <organization>provider.example.com</organization>
+     *   <subject>CN=provider.example.com</subject>
+     *   <content>...</content>
+     * </certificate>
+     * ----
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     *
+     */
     interface Get {
+        /**
+         * The details of the certificate.
+         *
+         * @author Piotr Kliczewski <pkliczew@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Certificate certificate();
     }
 }
