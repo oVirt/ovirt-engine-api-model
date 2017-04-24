@@ -19,23 +19,26 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Generic enumeration definition for boot device.
- * Each entry represent a device type that user can be boot from.
+ * Represents the kinds of devices that a virtual machine can boot from.
  *
  * @author Shahar Havivi <shavivi@redhat.com>
+ * @author Lukas Svaty <lsvaty@redhat.com>
  * @date 24 Apr 2017
  * @status added
  */
 @Type
 public enum BootDevice {
     /**
-     * Boot from the CD-ROM.
+     * Boot from CD-ROM. The CD-ROM can be chosen from the list of ISO files available in an ISO domain attached to the
+     * ata center that the virtual machine belongs to.
      *
      * @author Shahar Havivi <shavivi@redhat.com>
+     * @author Lukas Svaty <lsvaty@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */
     CDROM,
+
     /**
      * Boot from the hard drive.
      *
@@ -44,10 +47,14 @@ public enum BootDevice {
      * @status added
      */
     HD,
+
     /**
-     * Boot via network pixie server (PXE).
+     * Boot from the network, using PXE. It is necessary to have
+     * https://en.wikipedia.org/wiki/Preboot_Execution_Environment[PXE] configured on the network that the virtual
+     * machine is connected to.
      *
      * @author Shahar Havivi <shavivi@redhat.com>
+     * @author Lukas Svaty <lsvaty@redhat.com>
      * @date 24 Apr 2017
      * @status added
      */
