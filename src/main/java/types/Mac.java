@@ -18,7 +18,22 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a MAC address of a virtual network interface.
+ *
+ * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface Mac {
+
+    /**
+     * MAC address.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     String address();
 }
