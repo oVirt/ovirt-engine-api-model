@@ -17,7 +17,51 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The underlying storage interface of disks communication with controller.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum DiskInterface {
-    IDE, VIRTIO_SCSI, VIRTIO, SPAPR_VSCSI;
+    /**
+     * Legacy controller device. Works with almost all guest operating systems, so it is good for compatibility.
+     * Performance is lower than with the other alternatives.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
+    IDE,
+
+    /**
+     * Para-virtualized SCSI controller device. Fast interface with the guest via direct physical storage device
+     * address, using the SCSI protocol.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
+    VIRTIO_SCSI,
+
+    /**
+     * Virtualization interface where just the guest's device driver knows it is running in a virtual environment.
+     * Enables guests to get high performance disk operations.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
+    VIRTIO,
+
+    /**
+     * Para-virtualized device supported by the IBM pSeries family of machines, using the SCSI protocol.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
+    SPAPR_VSCSI;
 }
