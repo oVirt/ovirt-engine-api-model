@@ -44877,6 +44877,11 @@ object.</p>
 </div>
 <div class="sect2">
 <h3 id="types/application"><a class="anchor" href="#types/application"></a>7.11. Application <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents an application installed on a virtual machine.
+Applications are reported by the guest agent, if you deploy
+one on the virtual machine operating system.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 874. Attributes summary</caption>
 <colgroup>
@@ -44932,7 +44937,8 @@ object.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the virtual machine
+the application is installed on.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70198,7 +70204,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-23 09:48:41 UTC
+Last updated 2017-04-24 07:49:49 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
