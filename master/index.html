@@ -44878,9 +44878,27 @@ object.</p>
 <div class="sect2">
 <h3 id="types/application"><a class="anchor" href="#types/application"></a>7.11. Application <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Represents an application installed on a virtual machine.
-Applications are reported by the guest agent, if you deploy
-one on the virtual machine operating system.</p>
+<p>Represents an application installed on a virtual machine. Applications are reported by the guest agent, if you
+deploy one on the virtual machine operating system.</p>
+</div>
+<div class="paragraph">
+<p>To get that information send a request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123/applications/456</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;application href="/ovirt-engine/api/vms/123/applications/456" id="456"&gt;
+  &lt;name&gt;application-test-1.0.0-0.el7&lt;/name&gt;
+  &lt;vm href="/ovirt-engine/api/vms/123" id="123"/&gt;
+&lt;/application&gt;</code></pre>
+</div>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 874. Attributes summary</caption>
@@ -44937,8 +44955,7 @@ one on the virtual machine operating system.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the virtual machine
-the application is installed on.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the virtual machine the application is installed on.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70209,7 +70226,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 08:01:29 UTC
+Last updated 2017-04-24 08:28:54 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
