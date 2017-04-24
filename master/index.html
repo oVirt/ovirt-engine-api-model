@@ -15122,6 +15122,9 @@ page value in combination with the sortby clause:</p>
 </div>
 <div class="sect2">
 <h3 id="services/external_discovered_hosts"><a class="anchor" href="#services/external_discovered_hosts"></a>6.65. ExternalDiscoveredHosts</h3>
+<div class="paragraph">
+<p>This service manages external discovered hosts.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 204. Methods summary</caption>
 <colgroup>
@@ -15137,12 +15140,49 @@ page value in combination with the sortby clause:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get list of discovered hosts' information.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/external_discovered_hosts/methods/list"><a class="anchor" href="#services/external_discovered_hosts/methods/list"></a>6.65.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Get list of discovered hosts' information.</p>
+</div>
+<div class="paragraph">
+<p>Discovered hosts are fetched from third-party providers such as Foreman.</p>
+</div>
+<div class="paragraph">
+<p>To list all discovered hosts for provider <code>123</code> send the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/externalhostproviders/123/discoveredhost</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;external_discovered_hosts&gt;
+ &lt;external_discovered_host href="/ovirt-engine/api/externalhostproviders/123/discoveredhosts/456" id="456"&gt;
+  &lt;name&gt;mac001a4ad04031&lt;/name&gt;
+  &lt;ip&gt;10.34.67.42&lt;/ip&gt;
+  &lt;last_report&gt;2017-04-24 11:05:41 UTC&lt;/last_report&gt;
+  &lt;mac&gt;00:1a:4a:d0:40:31&lt;/mac&gt;
+  &lt;subnet_name&gt;sat0&lt;/subnet_name&gt;
+  &lt;external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/&gt;
+ &lt;/external_discovered_host&gt;
+ &lt;external_discovered_host href="/ovirt-engine/api/externalhostproviders/123/discoveredhosts/789" id="789"&gt;
+  &lt;name&gt;mac001a4ad04040&lt;/name&gt;
+  &lt;ip&gt;10.34.67.43&lt;/ip&gt;
+  &lt;last_report&gt;2017-04-24 11:05:41 UTC&lt;/last_report&gt;
+  &lt;mac&gt;00:1a:4a:d0:40:40&lt;/mac&gt;
+  &lt;subnet_name&gt;sat0&lt;/subnet_name&gt;
+  &lt;external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/&gt;
+ &lt;/external_discovered_host&gt;
+ ...
+&lt;/external_discovered_hosts&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 205. Parameters summary</caption>
 <colgroup>
@@ -15164,7 +15204,7 @@ page value in combination with the sortby clause:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hosts</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_discovered_host">ExternalDiscoveredHost[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of discovered hosts</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -70699,7 +70739,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 15:28:51 UTC
+Last updated 2017-04-24 15:39:17 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
