@@ -18,9 +18,38 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Generic enumeration definition for boot device.
+ * Each entry represent a device type that user can be boot from.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum BootDevice {
+    /**
+     * Boot from the CD-ROM.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     CDROM,
+    /**
+     * Boot from the hard drive.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     HD,
+    /**
+     * Boot via network pixie server (PXE).
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     NETWORK;
 }
