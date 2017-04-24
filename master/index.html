@@ -48466,6 +48466,9 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 <div class="sect2">
 <h3 id="types/disk_status"><a class="anchor" href="#types/disk_status"></a>7.51. DiskStatus <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Current status representation for disk.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 928. Values summary</caption>
 <colgroup>
@@ -48481,18 +48484,28 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>illegal</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disk cannot be accessed by the virtual machine, and the user needs
+to take action to resolve the issue.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>locked</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk is being used by the system, therefore it cannot be accessed
+by virtual machines at this point.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ok</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk status is normal and can be accessed by the virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/disk_status/values/locked"><a class="anchor" href="#types/disk_status/values/locked"></a>7.51.1. locked</h4>
+<div class="paragraph">
+<p>The disk is being used by the system, therefore it cannot be accessed
+by virtual machines at this point. This is usually a temporary status,
+until the disk is freed.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/disk_storage_type"><a class="anchor" href="#types/disk_storage_type"></a>7.52. DiskStorageType <span class="small">enum</span></h3>
@@ -70373,7 +70386,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 13:49:30 UTC
+Last updated 2017-04-24 13:55:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
