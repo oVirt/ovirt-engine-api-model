@@ -17,9 +17,40 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the access protocols supported by Gluster volumes.
+ * `gluster` and `nfs` are enabled by default.
+ *
+ * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum AccessProtocol {
+    /**
+     * Gluster access protocol.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     GLUSTER,
+
+    /**
+     * NFS access protocol.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     NFS,
+
+    /**
+     * CIFS access protocol.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     CIFS;
 }
