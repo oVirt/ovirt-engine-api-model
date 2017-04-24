@@ -26,6 +26,13 @@ import types.Group;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
+/**
+ * Manages the collection of groups of users.
+ *
+ * @author Ondra Machacek <omachace@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface GroupsService {
@@ -64,10 +71,57 @@ public interface GroupsService {
             optional(group().namespace());
 //            optional(group().principal()); TODO: check correctness
         }
+        /**
+         * The group to be added.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @In @Out Group group();
     }
 
+    /**
+     * List all the groups in the system.
+     *
+     * Usage:
+     *
+     * ....
+     * GET /ovirt-engine/api/groups
+     * ....
+     *
+     * Will return the list of groups:
+     *
+     * [source,xml]
+     * ----
+     * <groups>
+     *   <group href="/ovirt-engine/api/groups/123" id="123">
+     *     <name>mygroup</name>
+     *     <link href="/ovirt-engine/api/groups/123/roles" rel="roles"/>
+     *     <link href="/ovirt-engine/api/groups/123/permissions" rel="permissions"/>
+     *     <link href="/ovirt-engine/api/groups/123/tags" rel="tags"/>
+     *     <domain_entry_id>476652557A382F67696B6D2B32762B37796E46476D513D3D</domain_entry_id>
+     *     <namespace>DC=example,DC=com</namespace>
+     *     <domain href="/ovirt-engine/api/domains/ABCDEF" id="ABCDEF">
+     *       <name>myextension-authz</name>
+     *     </domain>
+     *   </group>
+     *   ...
+     * </groups>
+     * ----
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface List {
+        /**
+         * The list of groups.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Group[] groups();
 
         /**
@@ -88,5 +142,12 @@ public interface GroupsService {
         @In Boolean caseSensitive();
     }
 
+    /**
+     * Reference to the service that manages a specific group.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Service GroupService group(String id);
 }
