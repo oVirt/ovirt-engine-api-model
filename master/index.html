@@ -64058,6 +64058,9 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 </div>
 <div class="sect2">
 <h3 id="types/storage_format"><a class="anchor" href="#types/storage_format"></a>7.249. StorageFormat <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Type which represents a format of <a href="#types/storage_domain">storage domain</a>.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1186. Values summary</caption>
 <colgroup>
@@ -64073,15 +64076,15 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v1</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version 1 of the storage domain format is applicable to NFS, iSCSI and FC storage domains.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v2</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version 2 of the storage domain format is applicable to iSCSI and FC storage domains.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v3</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version 3 of the storage domain format is applicable to NFS, POSIX, iSCSI and FC storage domains.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4</code></p></td>
@@ -64089,6 +64092,41 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/storage_format/values/v1"><a class="anchor" href="#types/storage_format/values/v1"></a>7.249.1. v1</h4>
+<div class="paragraph">
+<p>Version 1 of the storage domain format is applicable to NFS, iSCSI and FC storage domains.</p>
+</div>
+<div class="paragraph">
+<p>Each storage domain contains metadata describing its own structure, and all of the names of physical volumes that
+are used to back virtual machine disk images. Master domains additionally contain metadata for all the domains
+and physical volume names in the storage pool. The total size of this metadata is limited to 2 KiB, limiting the
+number of storage domains that can be in a pool. Template and virtual machine base images are read only.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_format/values/v2"><a class="anchor" href="#types/storage_format/values/v2"></a>7.249.2. v2</h4>
+<div class="paragraph">
+<p>Version 2 of the storage domain format is applicable to iSCSI and FC storage domains.</p>
+</div>
+<div class="paragraph">
+<p>All storage domain and pool metadata is stored as logical volume tags rather than written to a logical volume.
+Metadata about virtual machine disk volumes is still stored in a logical volume on the domains. Physical volume
+names are no longer included in the metadata. Template and virtual machine base images are read only.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_format/values/v3"><a class="anchor" href="#types/storage_format/values/v3"></a>7.249.3. v3</h4>
+<div class="paragraph">
+<p>Version 3 of the storage domain format is applicable to NFS, POSIX, iSCSI and FC storage domains.</p>
+</div>
+<div class="paragraph">
+<p>All storage domain and pool metadata is stored as logical volume tags rather than written to a logical volume.
+Metadata about virtual machine disk volumes is still stored in a logical volume on the domains. Virtual machine
+and template base images are no longer read only. This change enables live snapshots, live storage migration,
+and clone from snapshot. Support for Unicode metadata is added, for non-English volume names.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/storage_type"><a class="anchor" href="#types/storage_type"></a>7.250. StorageType <span class="small">enum</span></h3>
@@ -70513,7 +70551,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 14:22:32 UTC
+Last updated 2017-04-24 14:31:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
