@@ -17,8 +17,30 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Network interface card status.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum NicStatus {
+    /**
+     * The NIC is down and cannot be accessed.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     DOWN,
+
+    /**
+     * The NIC is up and can be accessed.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     UP;
 }
