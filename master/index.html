@@ -16045,6 +16045,9 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect2">
 <h3 id="services/fence_agent"><a class="anchor" href="#services/fence_agent"></a>6.76. FenceAgent</h3>
+<div class="paragraph">
+<p>A service to manage fence agent for a specific host.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 232. Methods summary</caption>
 <colgroup>
@@ -16060,11 +16063,11 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets details of this fence agent.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes a fence agent for a specific host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update</code></p></td>
@@ -16074,6 +16077,30 @@ to run following request where 123 is an id of a provider.</p>
 </table>
 <div class="sect3">
 <h4 id="services/fence_agent/methods/get"><a class="anchor" href="#services/fence_agent/methods/get"></a>6.76.1. get <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Gets details of this fence agent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/hosts/123/fenceagents/0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here is sample response:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;agent id="0"&gt;
+  &lt;type&gt;apc&lt;/type&gt;
+  &lt;order&gt;1&lt;/order&gt;
+  &lt;ip&gt;192.168.1.101&lt;/ip&gt;
+  &lt;user&gt;user&lt;/user&gt;
+  &lt;password&gt;xxx&lt;/password&gt;
+  &lt;port&gt;9&lt;/port&gt;
+  &lt;options&gt;name1=value1, name2=value2&lt;/options&gt;
+&lt;/agent&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 233. Parameters summary</caption>
 <colgroup>
@@ -16095,13 +16122,21 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>agent</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/agent">Agent</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fence agent details.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="services/fence_agent/methods/remove"><a class="anchor" href="#services/fence_agent/methods/remove"></a>6.76.2. remove <span class="small">DELETE</span></h4>
+<div class="paragraph">
+<p>Removes a fence agent for a specific host.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>DELETE /ovirt-engine/api/hosts/123/fenceagents/0</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 234. Parameters summary</caption>
 <colgroup>
@@ -16154,7 +16189,7 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>agent</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/agent">Agent</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fence agent details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
@@ -70551,7 +70586,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 14:31:38 UTC
+Last updated 2017-04-24 15:14:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
