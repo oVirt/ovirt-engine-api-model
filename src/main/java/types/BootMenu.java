@@ -18,7 +18,23 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents boot menu configuration
+ * for virtual machines and templates.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface BootMenu {
+    /**
+     * Whether the boot menu is enabled
+     * for this virtual machine (or template), or not.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Boolean enabled();
 }
