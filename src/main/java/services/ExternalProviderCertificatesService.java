@@ -22,10 +22,48 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Certificate;
 
+/**
+ * A service to view certificates for external provider.
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface ExternalProviderCertificatesService {
+
+    /**
+     * Gets list of certificates.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/externalhostproviders/123/certificates
+     * ----
+     *
+     * And here is sample response:
+     *
+     * [source,xml]
+     * ----
+     * <certificates>
+     *   <certificate id="789">...</certificate>
+     *   ...
+     * </certificates>
+     * ----
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     *
+     */
     interface List {
+        /**
+         * List containing certificate details.
+         *
+         * @author Piotr Kliczewski <pkliczew@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Certificate[] certificates();
 
         /**
@@ -34,5 +72,13 @@ public interface ExternalProviderCertificatesService {
         @In Integer max();
     }
 
+    /**
+     * Reference to service that manages a specific certificate
+     * for this external provider.
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Service ExternalProviderCertificateService certificate(String id);
 }
