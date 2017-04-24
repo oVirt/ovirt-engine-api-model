@@ -18,7 +18,21 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * The underlying representation of a floppy file.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface Floppy extends Device {
+    /**
+     * File object that represent the Floppy device's content and its type.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     File file();
 }
