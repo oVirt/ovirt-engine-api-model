@@ -25,6 +25,13 @@ import types.Certificate;
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
+/**
+ * Provides capability to manage external providers.
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface ExternalProviderService {
@@ -43,6 +50,19 @@ public interface ExternalProviderService {
         @In Certificate[] certificates();
     }
 
+    /**
+     * In order to test connectivity for external provider we need
+     * to run following request where 123 is an id of a provider.
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/externalhostproviders/123/testconnectivity
+     * ----
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface TestConnectivity {
         /**
          * Indicates if the test should be performed asynchronously.
@@ -50,5 +70,12 @@ public interface ExternalProviderService {
         @In Boolean async();
     }
 
+    /**
+     * A service to view certificates for this external provider.
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Service ExternalProviderCertificatesService certificates();
 }
