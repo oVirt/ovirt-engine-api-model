@@ -18,9 +18,40 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+
+/**
+ * Type containing information related to virtual machines on a particular host.
+ *
+ * @author Arik Hadas <ahadas@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface VmSummary {
+    /**
+     * The number of virtual machines active on the host.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Integer active();
+
+    /**
+     * The number of virtual machines migrating to or from the host.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Integer migrating();
+
+    /**
+     * The number of virtual machines present on the host.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Integer total();
 }
