@@ -19,9 +19,37 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents a host provisioned by a host
+ * provider (such as Foreman/Satellite).
+ *
+ * See https://www.theforeman.org/ for more details on Foreman.
+ * See https://access.redhat.com/products/red-hat-satellite
+ * for more details on Red Hat Satellite.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface ExternalHost extends Identified {
+    /**
+     * The address of the host, either IP address
+     * of FQDN (Fully Qualified Domain Name).
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     String address();
 
+    /**
+     * A reference to the external host provider
+     * that the host is managed by.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Link ExternalHostProvider externalHostProvider();
 }
