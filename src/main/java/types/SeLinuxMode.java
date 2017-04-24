@@ -18,9 +18,39 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents an SELinux enforcement mode.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum SeLinuxMode {
+    /**
+     * SELinux is running and enforcing permissions.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     ENFORCING,
+
+    /**
+     * SELinux is running and logging but not enforcing permissions.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     PERMISSIVE,
+
+    /**
+     * SELinux is disabled in the kernel.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     DISABLED;
 }
