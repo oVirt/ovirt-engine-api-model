@@ -21,10 +21,54 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ExternalComputeResource;
 
+/**
+ * Manages a single external compute resource.
+ *
+ * Compute resource is a term of host external provider. The external provider also needs to know to where the
+ * provisioned host needs to register. The login details of the engine are saved as a compute resource  in the external
+ * provider side.
+ *
+ * @author Yaniv Bronhaim <ybronhei@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Service
 @Area("Infrastructure")
 public interface ExternalComputeResourceService {
+    /**
+     * Retrieves external compute resource details.
+     *
+     * For example, to get the details of compute resource `234` of provider `123`, send a request like this:
+     *
+     * ....
+     * GET /ovirt-engine/api/externalhostproviders/123/computeresources/234
+     * ....
+     *
+     * It will return a response like this:
+     *
+     * [source,xml]
+     * ----
+     * <external_compute_resource href="/ovirt-engine/api/externalhostproviders/123/computeresources/234" id="234">
+     *   <name>hostname</name>
+     *   <provider>oVirt</provider>
+     *   <url>https://hostname/api</url>
+     *   <user>admin@internal</user>
+     *   <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/>
+     * </external_compute_resource>
+     * ----
+     *
+     * @author Yaniv Bronhaim <ybronhei@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface Get {
+        /**
+         * External compute resource information
+         *
+         * @author Yaniv Bronhaim <ybronhei@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out ExternalComputeResource resource();
     }
 }
