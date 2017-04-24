@@ -19,7 +19,24 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents an application installed on a virtual machine.
+ * Applications are reported by the guest agent, if you deploy
+ * one on the virtual machine operating system.
+ *
+ * @author Oved Ourfali <oourfali@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface Application extends Identified {
+    /**
+     * A reference to the virtual machine
+     * the application is installed on.
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Link Vm vm();
 }
