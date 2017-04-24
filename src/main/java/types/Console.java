@@ -18,7 +18,21 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Representation for serial console device.
+ *
+ * @author Shahar Havivi <shavivi@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface Console {
+    /**
+     * Enable/disable the serial console device.
+     *
+     * @author Shahar Havivi <shavivi@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Boolean enabled();
 }
