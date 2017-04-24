@@ -49234,6 +49234,15 @@ Event can be associated with a virtual machine.</p>
 </div>
 <div class="sect2">
 <h3 id="types/external_host"><a class="anchor" href="#types/external_host"></a>7.65. ExternalHost <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents a host provisioned by a host
+provider (such as Foreman/Satellite).</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://www.theforeman.org/" class="bare">https://www.theforeman.org/</a> for more details on Foreman.
+See <a href="https://access.redhat.com/products/red-hat-satellite" class="bare">https://access.redhat.com/products/red-hat-satellite</a>
+for more details on Red Hat Satellite.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 946. Attributes summary</caption>
 <colgroup>
@@ -49252,7 +49261,8 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The address of the host, either IP address
+of FQDN (Fully Qualified Domain Name).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -49294,7 +49304,8 @@ Event can be associated with a virtual machine.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_host_provider</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_host_provider">ExternalHostProvider</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the external host provider
+that the host is managed by.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70255,7 +70266,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 10:15:07 UTC
+Last updated 2017-04-24 10:33:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
