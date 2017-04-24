@@ -48570,6 +48570,11 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 <div class="sect2">
 <h3 id="types/display_type"><a class="anchor" href="#types/display_type"></a>7.55. DisplayType <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Represents an enumeration of the protocol used
+to connect to the graphic console of the virtual
+machine.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 932. Values summary</caption>
 <colgroup>
@@ -48585,14 +48590,31 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spice</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display of type SPICE.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnc</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display of type VNC.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/display_type/values/spice"><a class="anchor" href="#types/display_type/values/spice"></a>7.55.1. spice</h4>
+<div class="paragraph">
+<p>Display of type SPICE.
+See <a href="https://www.spice-space.org" class="bare">https://www.spice-space.org</a> for more details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display_type/values/vnc"><a class="anchor" href="#types/display_type/values/vnc"></a>7.55.2. vnc</h4>
+<div class="paragraph">
+<p>Display of type VNC. VNC stands for Virtual
+Network Computing, and it is a graphical
+desktop sharing system that uses RFB
+(Remote Frame Buffer) protocol to remotely
+control another machine.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/dns"><a class="anchor" href="#types/dns"></a>7.56. Dns <span class="small">struct</span></h3>
@@ -70226,7 +70248,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 08:28:54 UTC
+Last updated 2017-04-24 09:41:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
