@@ -65,6 +65,22 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Approve {
+        /**
+         * Host to approve.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
+        @In Host host();
+
+        /**
+         * Cluster where the host will be added after approving it.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @In Cluster cluster();
 
         /**
@@ -216,11 +232,24 @@ public interface HostService extends MeasurableService {
     /**
      * Get the host details.
      *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/hosts/123
+     * ----
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 24 Apr 2017
      * @status added
      */
     interface Get {
+        /**
+         * Queried host.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Host host();
 
         /**
