@@ -16,9 +16,35 @@ limitations under the License.
 package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
-
+/**
+ * The graphics protocol used to connect to the graphic console.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum GraphicsType {
+    /**
+     * Graphics protocol of type SPICE.
+     * See https://www.spice-space.org for more details.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     SPICE,
+
+    /**
+     * Graphics protocol of type VNC. VNC stands for Virtual
+     * Network Computing, and it is a graphical
+     * desktop sharing system that uses RFB
+     * (Remote Frame Buffer) protocol to remotely
+     * control another machine.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     VNC;
 }
