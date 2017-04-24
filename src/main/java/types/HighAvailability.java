@@ -18,8 +18,22 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing high availability of a virtual machine.
+ *
+ * @author Lukas Svaty <lsvaty@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface HighAvailability {
+    /**
+     * Define if the virtual machine should be consider highly available.
+     *
+     * @author Lukas Svaty <lsvaty@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Boolean enabled();
 
     /**
