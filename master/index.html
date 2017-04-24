@@ -16168,6 +16168,9 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect2">
 <h3 id="services/fence_agents"><a class="anchor" href="#services/fence_agents"></a>6.77. FenceAgents</h3>
+<div class="paragraph">
+<p>A service to manage fence agents for a specific host.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 236. Methods summary</caption>
 <colgroup>
@@ -16187,7 +16190,7 @@ to run following request where 123 is an id of a provider.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets list of fence agents.</p></td>
 </tr>
 </tbody>
 </table>
@@ -16224,6 +16227,32 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect3">
 <h4 id="services/fence_agents/methods/list"><a class="anchor" href="#services/fence_agents/methods/list"></a>6.77.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Gets list of fence agents.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/hosts/123/fenceagents</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here is sample response:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;agents&gt;
+  &lt;agent id="0"&gt;
+    &lt;type&gt;apc&lt;/type&gt;
+    &lt;order&gt;1&lt;/order&gt;
+    &lt;ip&gt;192.168.1.101&lt;/ip&gt;
+    &lt;user&gt;user&lt;/user&gt;
+    &lt;password&gt;xxx&lt;/password&gt;
+    &lt;port&gt;9&lt;/port&gt;
+    &lt;options&gt;name1=value1, name2=value2&lt;/options&gt;
+  &lt;/agent&gt;
+&lt;/agents&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 238. Parameters summary</caption>
 <colgroup>
@@ -16245,7 +16274,7 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>agents</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/agent">Agent[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of fence agent details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -70484,7 +70513,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 14:15:28 UTC
+Last updated 2017-04-24 14:22:32 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
