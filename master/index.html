@@ -67344,6 +67344,9 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 </div>
 <div class="sect2">
 <h3 id="types/vm_pool"><a class="anchor" href="#types/vm_pool"></a>7.277. VmPool <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Type represeting a virtual machines pool.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1223. Attributes summary</caption>
 <colgroup>
@@ -67378,7 +67381,7 @@ storage domains where the template is copied.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>display</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/display">Display</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The display settings configured for virtual machines in the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
@@ -67388,7 +67391,7 @@ storage domains where the template is copied.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_user_vms</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of virtual machines in the pool that could be assigned to a particular user.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -67398,22 +67401,22 @@ storage domains where the template is copied.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>prestarted_vms</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system attempts to prestart the specified number of virtual machines from the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rng_device</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/rng_device">RngDevice</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The random number generator device configured for virtual machines in the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of virtual machines in the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundcard_enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if sound card should be configured for virtual machines in the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>stateful</code></p></td>
@@ -67423,12 +67426,12 @@ storage domains where the template is copied.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_pool_type">VmPoolType</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The deallocation policy of virtual machines in the pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_latest_template_version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if virtual machines in the pool are updated to newer versions of the template the pool is based on.</p></td>
 </tr>
 </tbody>
 </table>
@@ -67447,14 +67450,24 @@ free space is selected.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a>7.277.2. stateful</h4>
+<h4 id="types/vm_pool/attributes/prestarted_vms"><a class="anchor" href="#types/vm_pool/attributes/prestarted_vms"></a>7.277.2. prestarted_vms</h4>
+<div class="paragraph">
+<p>The system attempts to prestart the specified number of virtual machines from the pool.</p>
+</div>
+<div class="paragraph">
+<p>These virtual machines are started without being attached to any user. That way, users can acquire virtual
+machines from the pool faster.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a>7.277.3. stateful</h4>
 <div class="paragraph">
 <p>Virtual machine pool&#8217;s stateful flag.</p>
 </div>
 <div class="paragraph">
-<p>Virtual machines from a stateful virtual machine pool are always started in stateful mode
-(stateless snapshot is not created). The state of the virtual machine is preserved
-even when the virtual machine is passed to a different user.</p>
+<p>Virtual machines from a stateful virtual machine pool are always started in stateful mode (stateless snapshot is
+not created). The state of the virtual machine is preserved even when the virtual machine is passed to a
+different user.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1224. Links summary</caption>
@@ -67474,7 +67487,7 @@ even when the virtual machine is passed to a different user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster">Cluster</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the cluster the pool resides in.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>instance_type</code></p></td>
@@ -67484,26 +67497,36 @@ even when the virtual machine is passed to a different user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>permissions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/permission">Permission[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions set for this virtual machine pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>template</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/template">Template</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the template the pool is based on.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to an arbitrary virtual machine that is part of the pool.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a>7.277.3. instance_type</h4>
+<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a>7.277.4. instance_type</h4>
 <div class="paragraph">
 <p>Reference to the instance type on which this pool is based. It can be
 set only on pool creation and cannot be edited.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_pool/links/vm"><a class="anchor" href="#types/vm_pool/links/vm"></a>7.277.5. vm</h4>
+<div class="paragraph">
+<p>Reference to an arbitrary virtual machine that is part of the pool.</p>
+</div>
+<div class="paragraph">
+<p>Note that this virtual machine may not be based to the latest version of
+the pool&#8217;s template.</p>
 </div>
 </div>
 </div>
@@ -70813,7 +70836,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 16:14:56 UTC
+Last updated 2017-04-24 16:20:58 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
