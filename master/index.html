@@ -49394,6 +49394,15 @@ that the host is managed by.</p></td>
 </div>
 <div class="sect2">
 <h3 id="types/external_host_provider"><a class="anchor" href="#types/external_host_provider"></a>7.67. ExternalHostProvider <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents an external host provider,
+such as Foreman or Satellite.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://www.theforeman.org/" class="bare">https://www.theforeman.org/</a> for more details on Foreman.
+See <a href="https://access.redhat.com/products/red-hat-satellite" class="bare">https://access.redhat.com/products/red-hat-satellite</a>
+for more details on Red Hat Satellite.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 950. Attributes summary</caption>
 <colgroup>
@@ -49487,30 +49496,57 @@ that the host is managed by.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificates</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/certificate">Certificate[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the certificates the engine supports
+for this provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>compute_resources</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_compute_resource">ExternalComputeResource[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the compute resource as represented in the host provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discovered_hosts</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_discovered_host">ExternalDiscoveredHost[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the discovered hosts in the host provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host_groups</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/external_host_group">ExternalHostGroup[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the host groups in the host provider.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hosts</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the hosts provisioned by the host provider.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="types/external_host_provider/links/compute_resources"><a class="anchor" href="#types/external_host_provider/links/compute_resources"></a>7.67.2. compute_resources</h4>
+<div class="paragraph">
+<p>A reference to the compute resource as represented in the host provider.
+Each host provider optionally has the engine defined as a compute resource,
+which allows to create virtual machines in the engine. This compute resource
+details are used in the Bare-Metal provisioning use-case, in order to
+deploy the hypervisor.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_host_provider/links/discovered_hosts"><a class="anchor" href="#types/external_host_provider/links/discovered_hosts"></a>7.67.3. discovered_hosts</h4>
+<div class="paragraph">
+<p>A reference to the discovered hosts in the host provider.
+Discovered hosts are hosts that were not provisioned yet.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/external_host_provider/links/host_groups"><a class="anchor" href="#types/external_host_provider/links/host_groups"></a>7.67.4. host_groups</h4>
+<div class="paragraph">
+<p>A reference to the host groups in the host provider.
+Host group contains different properties that the host
+provider applies on all hosts that are member of this group.
+Such as installed software, system definitions, passwords and more.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -70266,7 +70302,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 10:33:04 UTC
+Last updated 2017-04-24 10:42:50 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
