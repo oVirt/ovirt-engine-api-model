@@ -17,12 +17,67 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Defines the options for an emulated virtual network interface device model.
+ *
+ * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum NicInterface {
+
+    /**
+     * e1000.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     E1000,
+
+    /**
+     * VirtIO.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     VIRTIO,
+
+    /**
+     * rtl8139.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     RTL8139,
+
+    /**
+     * Dual mode rtl8139, VirtIO.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     RTL8139_VIRTIO,
+
+    /**
+     * sPAPR VLAN.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     SPAPR_VLAN,
+
+    /**
+     * PCI Passthrough.
+     *
+     * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     PCI_PASSTHROUGH;
 }
