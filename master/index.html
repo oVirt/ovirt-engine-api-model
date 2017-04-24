@@ -18449,6 +18449,10 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="services/group"><a class="anchor" href="#services/group"></a>6.88. Group</h3>
+<div class="paragraph">
+<p>Manages a group of users. Use this service to either get groups details or remove groups. In order
+to add new groups please use <a href="#services/groups">service</a> that manages the collection of groups.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 284. Methods summary</caption>
 <colgroup>
@@ -18464,16 +18468,45 @@ ignoring case set it to <code>false</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the system group information.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removes the system group.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/group/methods/get"><a class="anchor" href="#services/group/methods/get"></a>6.88.1. get <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Gets the system group information.</p>
+</div>
+<div class="paragraph">
+<p>Usage:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/groups/123</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will return the group information:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;group href="/ovirt-engine/api/groups/123" id="123"&gt;
+  &lt;name&gt;mygroup&lt;/name&gt;
+  &lt;link href="/ovirt-engine/api/groups/123/roles" rel="roles"/&gt;
+  &lt;link href="/ovirt-engine/api/groups/123/permissions" rel="permissions"/&gt;
+  &lt;link href="/ovirt-engine/api/groups/123/tags" rel="tags"/&gt;
+  &lt;domain_entry_id&gt;476652557A382F67696B6D2B32762B37796E46476D513D3D&lt;/domain_entry_id&gt;
+  &lt;namespace&gt;DC=example,DC=com&lt;/namespace&gt;
+  &lt;domain href="/ovirt-engine/api/domains/ABCDEF" id="ABCDEF"&gt;
+    &lt;name&gt;myextension-authz&lt;/name&gt;
+  &lt;/domain&gt;
+&lt;/group&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 285. Parameters summary</caption>
 <colgroup>
@@ -18495,13 +18528,24 @@ ignoring case set it to <code>false</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/group">Group</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system group.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="services/group/methods/remove"><a class="anchor" href="#services/group/methods/remove"></a>6.88.2. remove <span class="small">DELETE</span></h4>
+<div class="paragraph">
+<p>Removes the system group.</p>
+</div>
+<div class="paragraph">
+<p>Usage:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DELETE /ovirt-engine/api/groups/123</pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 286. Parameters summary</caption>
 <colgroup>
@@ -18531,6 +18575,9 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="services/groups"><a class="anchor" href="#services/groups"></a>6.89. Groups</h3>
+<div class="paragraph">
+<p>Manages the collection of groups of users.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 287. Methods summary</caption>
 <colgroup>
@@ -18550,7 +18597,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List all the groups in the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -18602,13 +18649,45 @@ like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>group</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/group">Group</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The group to be added.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="services/groups/methods/list"><a class="anchor" href="#services/groups/methods/list"></a>6.89.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>List all the groups in the system.</p>
+</div>
+<div class="paragraph">
+<p>Usage:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/groups</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will return the list of groups:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;groups&gt;
+  &lt;group href="/ovirt-engine/api/groups/123" id="123"&gt;
+    &lt;name&gt;mygroup&lt;/name&gt;
+    &lt;link href="/ovirt-engine/api/groups/123/roles" rel="roles"/&gt;
+    &lt;link href="/ovirt-engine/api/groups/123/permissions" rel="permissions"/&gt;
+    &lt;link href="/ovirt-engine/api/groups/123/tags" rel="tags"/&gt;
+    &lt;domain_entry_id&gt;476652557A382F67696B6D2B32762B37796E46476D513D3D&lt;/domain_entry_id&gt;
+    &lt;namespace&gt;DC=example,DC=com&lt;/namespace&gt;
+    &lt;domain href="/ovirt-engine/api/domains/ABCDEF" id="ABCDEF"&gt;
+      &lt;name&gt;myextension-authz&lt;/name&gt;
+    &lt;/domain&gt;
+  &lt;/group&gt;
+  ...
+&lt;/groups&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 289. Parameters summary</caption>
 <colgroup>
@@ -18637,7 +18716,7 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>groups</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/group">Group[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of groups.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -70620,7 +70699,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 15:21:21 UTC
+Last updated 2017-04-24 15:28:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
