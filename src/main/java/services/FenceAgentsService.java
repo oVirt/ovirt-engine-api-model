@@ -22,6 +22,14 @@ import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Agent;
 
+/**
+ * A service to manage fence agents for a specific host.
+ *
+ * @author Piotr Kliczewski <pkliczew@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ *
+ */
 @Service
 @Area("Infrastructure")
 public interface FenceAgentsService {
@@ -29,7 +37,44 @@ public interface FenceAgentsService {
         @In @Out Agent agent();
     }
 
+    /**
+     * Gets list of fence agents.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/hosts/123/fenceagents
+     * ----
+     *
+     * And here is sample response:
+     *
+     * [source,xml]
+     * ----
+     * <agents>
+     *   <agent id="0">
+     *     <type>apc</type>
+     *     <order>1</order>
+     *     <ip>192.168.1.101</ip>
+     *     <user>user</user>
+     *     <password>xxx</password>
+     *     <port>9</port>
+     *     <options>name1=value1, name2=value2</options>
+     *   </agent>
+     * </agents>
+     * ----
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface List {
+
+        /**
+         * List of fence agent details.
+         *
+         * @author Piotr Kliczewski <pkliczew@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Agent[] agents();
 
         /**
@@ -38,5 +83,13 @@ public interface FenceAgentsService {
         @In Integer max();
     }
 
+    /**
+     * Reference to service that manages a specific fence agent
+     * for this host.
+     *
+     * @author Piotr Kliczewski <pkliczew@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Service FenceAgentService agent(String id);
 }
