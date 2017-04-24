@@ -32,8 +32,27 @@ public interface QossService {
     /**
      * Add a new QoS to the dataCenter.
      *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/qoss
+     * ----
+     *
+     * The response will look as follows:
+     *
+     * [source,xml]
+     * ----
+     * <qos href="/ovirt-engine/api/datacenters/123/qoss/123" id="123">
+     *   <name>123</name>
+     *   <description>123</description>
+     *   <max_iops>10</max_iops>
+     *   <type>storage</type>
+     *   <data_center href="/ovirt-engine/api/datacenters/123" id="123"/>
+     * </qos>
+     * ----
+     *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 26 Apr 2017
      * @status added
      */
     interface Add {
@@ -59,10 +78,48 @@ public interface QossService {
             optional(qos().outboundBurst());
             optional(qos().outboundPeak());
         }
+
+        /**
+         * Added QoS object.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @In @Out Qos qos();
     }
 
+    /**
+     * List all available QoS objects in the datacenter.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/datacenter/123/qoss
+     * ----
+     *
+     * You will get response which will look like this:
+     *
+     * [source, xml]
+     * ----
+     * <qoss>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/1" id="1">...</qos>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/2" id="2">...</qos>
+     *   <qos href="/ovirt-engine/api/datacenters/123/qoss/3" id="3">...</qos>
+     * </qoss>
+     * ----
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     interface List {
+        /**
+         * List of queried QoS objects.
+         *
+         * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+         * @date 24 Apr 2017
+         * @status added
+         */
         @Out Qos[] qoss();
 
         /**
@@ -71,5 +128,12 @@ public interface QossService {
         @In Integer max();
     }
 
+    /**
+     * A reference to a service managing a specific QoS.
+     *
+     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
+     * @date 25 Apr 2017
+     * @status added
+     */
     @Service QosService qos(String id);
 }
