@@ -17,10 +17,53 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the type of the snapshot.
+ *
+ * @author Tomas Jelinek <tjelinek@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum SnapshotType {
+    /**
+     * Snapshot created by user.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     REGULAR,
+
+    /**
+     * Reference to the current configuration of the virtual machines.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     ACTIVE,
+
+    /**
+     * Snapshot created internally for stateless virtual machines.
+     *
+     * This snapshot is created when the virtual machine is started and it is restored when the virtual machine is shut
+     * down.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     STATELESS,
+
+    /**
+     * The `active` snapshot will become `preview` if some snapshot is being previewed.
+     *
+     * In other words, this is the `active` snapshot before preview.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     PREVIEW;
 }

@@ -17,9 +17,41 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents the current status of the snapshot.
+ *
+ * @author Tomas Jelinek <tjelinek@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public enum SnapshotStatus {
+    /**
+     * The snapshot is OK.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     OK,
+
+    /**
+     * The snapshot is locked.
+     *
+     * The snapshot is locked when it is in process of being created, deleted, restored or previewed.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     LOCKED,
+
+    /**
+     * The snapshot is being previewed.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     IN_PREVIEW;
 }

@@ -47,7 +47,23 @@ import java.util.Date;
  */
 @Type
 public interface Snapshot extends Vm {
+
+    /**
+     * The date when this snapshot has been created.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     Date date();
+
+    /**
+     * Status of the snapshot.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     SnapshotStatus snapshotStatus();
 
     /**
@@ -61,7 +77,21 @@ public interface Snapshot extends Vm {
      */
     Boolean persistMemorystate();
 
+    /**
+     * Type of the snapshot.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     SnapshotType snapshotType(); //revisit. Had to be done because of VmBase.type changed to VmType
 
+    /**
+     * The virtual machine this snapshot has been taken for.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     @Link Vm vm();
 }
