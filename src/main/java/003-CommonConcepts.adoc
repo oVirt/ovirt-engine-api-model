@@ -313,10 +313,10 @@ Accept: application/xml
 
 Action methods only have secondary parameters. They can be used for
 input and output, and they should be included in the request body,
-wrapped with an `action` element. For action method used to start a
-virtual machine (see <<services/vm/methods/start, here>>) has a `vm`
-parameter to describe how the virtual machine should be started, and a
-`use_cloud_init` parameter to specify if
+wrapped with an `action` element. For example, the action method used to
+start a virtual machine (see <<services/vm/methods/start, here>>) has a
+`vm` parameter to describe how the virtual machine should be started,
+and a `use_cloud_init` parameter to specify if
 https://cloudinit.readthedocs.io[cloud-init] should be used to configure
 the guest operating system. So the complete request to start virtual
 machine `123` using _cloud-init_ will look like this when using XML:
@@ -353,10 +353,9 @@ Accept: application/xml
 === Searching
 
 The `list` method of some services has a `search` parameter that can be
-used to specify a search criteria. When used, the server will only
-returns objects within the collection that satisfy those criteria. For
-example, the following request will return only the virtual machine
-named `myvm`:
+used to specify search criteria. When used, the server will only return
+objects within the collection that satisfy those criteria. For example,
+the following request will return only the virtual machine named `myvm`:
 
 ....
 GET /ovirt-engine/api/vms?search=name%3Dmyvm
@@ -395,7 +394,7 @@ GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true
 
 ==== Search syntax
 
-The `search` parameters uses the same format as the {product-name} query
+The `search` parameters use the same syntax as the {product-name} query
 language:
 
 ....
@@ -438,7 +437,7 @@ sorted by the the value of their `time` attribute in descending order.
 The value of the `search` parameter must be
 https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded] to translate
 reserved characters, such as operators and spaces. For example, the
-equals sign should be encoded as `%3D`:
+equal sign should be encoded as `%3D`:
 
 ....
 GET /ovirt-engine/api/vms?search=name%3Dmyvm
@@ -448,7 +447,7 @@ GET /ovirt-engine/api/vms?search=name%3Dmyvm
 
 The asterisk can be used as part of a value, to indicate that any string
 matches, including the emtpy string. For example, the following request
-will return all the virtual machines with names beginning with `myvm`
+will return all the virtual machines with names beginning with `myvm`,
 such as `myvm`, `myvm2`, `myvma` or `myvm-webserver`:
 
 ....
