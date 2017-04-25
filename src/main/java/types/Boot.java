@@ -18,7 +18,23 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Configuration of the boot sequence of a virtual machine.
+ *
+ * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @date 24 Apr 2017
+ * @state added
+ */
 @Type
 public interface Boot {
+
+    /**
+     * Ordered list of boot devices. The virtual machine will try to boot from the given boot devices, in the given
+     * order.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     BootDevice[] devices();
 }
