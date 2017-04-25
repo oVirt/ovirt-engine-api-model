@@ -45781,8 +45781,7 @@ in the engine.</p></td>
 <div class="sect2">
 <h3 id="types/boot_device"><a class="anchor" href="#types/boot_device"></a>7.21. BootDevice <span class="small">enum</span></h3>
 <div class="paragraph">
-<p>Generic enumeration definition for boot device.
-Each entry represent a device type that user can be boot from.</p>
+<p>Represents the kinds of devices that a virtual machine can boot from.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 888. Values summary</caption>
@@ -45799,7 +45798,7 @@ Each entry represent a device type that user can be boot from.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cdrom</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boot from the CD-ROM.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boot from CD-ROM.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hd</code></p></td>
@@ -45807,10 +45806,25 @@ Each entry represent a device type that user can be boot from.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boot via network pixie server (PXE).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boot from the network, using PXE.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/boot_device/values/cdrom"><a class="anchor" href="#types/boot_device/values/cdrom"></a>7.21.1. cdrom</h4>
+<div class="paragraph">
+<p>Boot from CD-ROM. The CD-ROM can be chosen from the list of ISO files available in an ISO domain attached to the
+ata center that the virtual machine belongs to.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/boot_device/values/network"><a class="anchor" href="#types/boot_device/values/network"></a>7.21.2. network</h4>
+<div class="paragraph">
+<p>Boot from the network, using PXE. It is necessary to have
+<a href="https://en.wikipedia.org/wiki/Preboot_Execution_Environment">PXE</a> configured on the network that the virtual
+machine is connected to.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/boot_menu"><a class="anchor" href="#types/boot_menu"></a>7.22. BootMenu <span class="small">struct</span></h3>
@@ -70952,7 +70966,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 07:34:32 UTC
+Last updated 2017-04-25 07:40:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
