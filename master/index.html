@@ -2194,10 +2194,10 @@ Accept: application/xml
 <div class="paragraph">
 <p>Action methods only have secondary parameters. They can be used for
 input and output, and they should be included in the request body,
-wrapped with an <code>action</code> element. For action method used to start a
-virtual machine (see <a href="#services/vm/methods/start">here</a>) has a <code>vm</code>
-parameter to describe how the virtual machine should be started, and a
-<code>use_cloud_init</code> parameter to specify if
+wrapped with an <code>action</code> element. For example, the action method used to
+start a virtual machine (see <a href="#services/vm/methods/start">here</a>) has a
+<code>vm</code> parameter to describe how the virtual machine should be started,
+and a <code>use_cloud_init</code> parameter to specify if
 <a href="https://cloudinit.readthedocs.io">cloud-init</a> should be used to configure
 the guest operating system. So the complete request to start virtual
 machine <code>123</code> using <em>cloud-init</em> will look like this when using XML:</p>
@@ -2237,10 +2237,9 @@ Accept: application/xml
 <h3 id="_searching"><a class="anchor" href="#_searching"></a>3.7. Searching</h3>
 <div class="paragraph">
 <p>The <code>list</code> method of some services has a <code>search</code> parameter that can be
-used to specify a search criteria. When used, the server will only
-returns objects within the collection that satisfy those criteria. For
-example, the following request will return only the virtual machine
-named <code>myvm</code>:</p>
+used to specify search criteria. When used, the server will only return
+objects within the collection that satisfy those criteria. For example,
+the following request will return only the virtual machine named <code>myvm</code>:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2290,7 +2289,7 @@ not <code>MyHost</code> or <code>MYHOST</code>, send a request like this:</p>
 <div class="sect3">
 <h4 id="_search_syntax"><a class="anchor" href="#_search_syntax"></a>3.7.3. Search syntax</h4>
 <div class="paragraph">
-<p>The <code>search</code> parameters uses the same format as the oVirt query
+<p>The <code>search</code> parameters use the same syntax as the oVirt query
 language:</p>
 </div>
 <div class="literalblock">
@@ -2352,7 +2351,7 @@ sorted by the the value of their <code>time</code> attribute in descending order
 <p>The value of the <code>search</code> parameter must be
 <a href="https://en.wikipedia.org/wiki/Percent-encoding">URL-encoded</a> to translate
 reserved characters, such as operators and spaces. For example, the
-equals sign should be encoded as <code>%3D</code>:</p>
+equal sign should be encoded as <code>%3D</code>:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2365,7 +2364,7 @@ equals sign should be encoded as <code>%3D</code>:</p>
 <div class="paragraph">
 <p>The asterisk can be used as part of a value, to indicate that any string
 matches, including the emtpy string. For example, the following request
-will return all the virtual machines with names beginning with <code>myvm</code>
+will return all the virtual machines with names beginning with <code>myvm</code>,
 such as <code>myvm</code>, <code>myvm2</code>, <code>myvma</code> or <code>myvm-webserver</code>:</p>
 </div>
 <div class="literalblock">
@@ -71007,7 +71006,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 08:12:12 UTC
+Last updated 2017-04-25 08:24:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
