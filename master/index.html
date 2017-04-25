@@ -52086,6 +52086,39 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </div>
 <div class="sect2">
 <h3 id="types/hardware_information"><a class="anchor" href="#types/hardware_information"></a>7.99. HardwareInformation <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents hardware information of host.</p>
+</div>
+<div class="paragraph">
+<p>To get that information send a request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;host href="/ovirt-engine/api/hosts/123" id="123"&gt;
+  ...
+  &lt;hardware_information&gt;
+    &lt;family&gt;Red Hat Enterprise Linux&lt;/family&gt;
+    &lt;manufacturer&gt;Red Hat&lt;/manufacturer&gt;
+    &lt;product_name&gt;RHEV Hypervisor&lt;/product_name&gt;
+    &lt;serial_number&gt;01234567-89AB-CDEF-0123-456789ABCDEF&lt;/serial_number&gt;
+    &lt;supported_rng_sources&gt;
+      &lt;supported_rng_source&gt;random&lt;/supported_rng_source&gt;
+    &lt;/supported_rng_sources&gt;
+    &lt;uuid&gt;12345678-9ABC-DEF0-1234-56789ABCDEF0&lt;/uuid&gt;
+    &lt;version&gt;1.2-34.5.el7ev&lt;/version&gt;
+  &lt;/hardware_information&gt;
+  ...
+&lt;/application&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 994. Attributes summary</caption>
 <colgroup>
@@ -52104,37 +52137,37 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>family</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of host&#8217;s CPU.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>manufacturer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manufacturer of the host&#8217;s machine and hardware vendor.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>product_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host&#8217;s product name (for example <code>RHEV Hypervisor</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>serial_number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique ID for host&#8217;s chassis.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>supported_rng_sources</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/rng_source">RngSource[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported sources of random number generator.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>uuid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique ID for each host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique name for each of the manufacturer.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70908,7 +70941,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 06:59:00 UTC
+Last updated 2017-04-25 07:02:08 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
