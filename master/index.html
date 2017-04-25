@@ -64267,6 +64267,9 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 </div>
 <div class="sect2">
 <h3 id="types/storage_domain_type"><a class="anchor" href="#types/storage_domain_type"></a>7.248. StorageDomainType <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Indicates the kind of data managed by a <a href="#types/storage_domain">storage domain</a>.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1185. Values summary</caption>
 <colgroup>
@@ -64282,26 +64285,66 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data domains are used to store the disks and snapshots of the virtual machines and templates in the system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Export domains are temporary storage repositories used to copy and move virtual machines and templates between
+data centers and oVirt environments.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image domain store images that can be imported into from an external system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iso</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO domains store ISO files (or logical CDs) used to install and boot operating systems and applications for the
+virtual machines.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>volume</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volume domains store logical volumes that can be used as disks for virtual machines.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/data"><a class="anchor" href="#types/storage_domain_type/values/data"></a>7.248.1. data</h4>
+<div class="paragraph">
+<p>Data domains are used to store the disks and snapshots of the virtual machines and templates in the system. In
+addition, snapshots of the disks are also stored in data domains. Data domains cannot be shared across data
+centers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/export"><a class="anchor" href="#types/storage_domain_type/values/export"></a>7.248.2. export</h4>
+<div class="paragraph">
+<p>Export domains are temporary storage repositories used to copy and move virtual machines and templates between
+data centers and oVirt environments. Export domains can also be used to backup virtual machines. An
+export domain can be moved between data centers but it can only be active in one data center at a time.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/image"><a class="anchor" href="#types/storage_domain_type/values/image"></a>7.248.3. image</h4>
+<div class="paragraph">
+<p>Image domain store images that can be imported into from an external system. For example, images from an
+OpenStack Glance image repository.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/iso"><a class="anchor" href="#types/storage_domain_type/values/iso"></a>7.248.4. iso</h4>
+<div class="paragraph">
+<p>ISO domains store ISO files (or logical CDs) used to install and boot operating systems and applications for the
+virtual machines. ISO domains remove the data center&#8217;s need for physical media. An ISO domain can be shared
+across different data centers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/volume"><a class="anchor" href="#types/storage_domain_type/values/volume"></a>7.248.5. volume</h4>
+<div class="paragraph">
+<p>Volume domains store logical volumes that can be used as disks for virtual machines. For example, volumes
+from an OpenStack Cincer block storage service.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/storage_format"><a class="anchor" href="#types/storage_format"></a>7.249. StorageFormat <span class="small">enum</span></h3>
@@ -70865,7 +70908,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 06:53:32 UTC
+Last updated 2017-04-25 06:59:00 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
