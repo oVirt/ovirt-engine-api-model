@@ -18,7 +18,21 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents SELinux in the system.
+ *
+ * @author Irit Goihman <igoihman@redhat.com>
+ * @date 24 Apr 2017
+ * @status added
+ */
 @Type
 public interface SeLinux {
+    /**
+     * SELinux current mode.
+     *
+     * @author Irit Goihman <igoihman@redhat.com>
+     * @date 24 Apr 2017
+     * @status added
+     */
     SeLinuxMode mode();
 }
