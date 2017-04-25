@@ -27,10 +27,67 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface OperatingSystem {
+
+    /**
+     * Operating system name in human readable form.
+     *
+     * For example `Fedora` or `RHEL`. In general one of the names returned by the <<services/operating_systems,
+     * operating system>> service.
+     *
+     * NOTE: Read only for hosts.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     String type();
+
+    /**
+     * Configuration of the boot sequence.
+     *
+     * NOTE: Not used for hosts.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     Boot boot();
+
+    /**
+     * Path to custom kernel on ISO storage domain if Linux operating system is used.
+     *
+     * For example `iso://vmlinuz-3.10.0-514.6.1.el7.x86_64`.
+     *
+     * NOTE: Not used for hosts.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     String kernel();
+
+    /**
+     * Path to custom initial ramdisk on ISO storage domain if Linux operating system is used.
+     *
+     * For example `iso://initramfs-3.10.0-514.6.1.el7.x86_64.img`.
+     *
+     * NOTE: Not used for hosts.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     String initrd();
+
+    /**
+     * Custom kernel parameters for start the virtual machine with if Linux operating system is used.
+     *
+     * NOTE: Not used for hosts.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @date 24 Apr 2017
+     * @state added
+     */
     String cmdline();
 
     /**
@@ -65,5 +122,6 @@ public interface OperatingSystem {
      * @status updated_by_docs
      */
     String customKernelCmdline();
+
     Version version();
 }
