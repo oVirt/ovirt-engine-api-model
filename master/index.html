@@ -52050,6 +52050,47 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </div>
 <div class="sect2">
 <h3 id="types/guest_operating_system"><a class="anchor" href="#types/guest_operating_system"></a>7.98. GuestOperatingSystem <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents an operating system installed on the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>To get that information send a request like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/vms/123</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm href="/ovirt-engine/api/vms/123" id="123"&gt;
+...
+  &lt;guest_operating_system&gt;
+    &lt;architecture&gt;x86_64&lt;/architecture&gt;
+    &lt;codename&gt;Maipo&lt;/codename&gt;
+    &lt;distribution&gt;Red Hat Enterprise Linux Server&lt;/distribution&gt;
+    &lt;family&gt;Linux&lt;/family&gt;
+    &lt;kernel&gt;
+      &lt;version&gt;
+        &lt;build&gt;0&lt;/build&gt;
+        &lt;full_version&gt;3.10.0-514.10.2.el7.x86_64&lt;/full_version&gt;
+        &lt;major&gt;3&lt;/major&gt;
+        &lt;minor&gt;10&lt;/minor&gt;
+        &lt;revision&gt;514&lt;/revision&gt;
+      &lt;/version&gt;
+    &lt;/kernel&gt;
+    &lt;version&gt;
+      &lt;full_version&gt;7.3&lt;/full_version&gt;
+      &lt;major&gt;7&lt;/major&gt;
+      &lt;minor&gt;3&lt;/minor&gt;
+    &lt;/version&gt;
+  &lt;/guest_operating_system&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 993. Attributes summary</caption>
 <colgroup>
@@ -52068,32 +52109,32 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>architecture</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The architecture of the operating system, such as x86_64.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>codename</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code name of the operating system, such as <code>Maipo</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>distribution</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full name of operating system distribution.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>family</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Family of operating system, such as <code>Linux</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>kernel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/kernel">Kernel</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kernel version of the operating system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/version">Version</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version of the installed operating system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70966,7 +71007,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 07:40:27 UTC
+Last updated 2017-04-25 08:12:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
