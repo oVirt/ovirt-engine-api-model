@@ -65359,6 +65359,9 @@ The index 1 represents the original version of a template that is also called ba
 </div>
 <div class="sect2">
 <h3 id="types/usb"><a class="anchor" href="#types/usb"></a>7.261. Usb <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Configuration of the USB device of a virtual machine.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1202. Attributes summary</caption>
 <colgroup>
@@ -65377,18 +65380,21 @@ The index 1 represents the original version of a template that is also called ba
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the USB device should be included or not.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/usb_type">UsbType</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USB type, currently only <code>native</code> is supported.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
 <h3 id="types/usb_type"><a class="anchor" href="#types/usb_type"></a>7.262. UsbType <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Type of USB device redirection.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1203. Values summary</caption>
 <colgroup>
@@ -65404,25 +65410,35 @@ The index 1 represents the original version of a template that is also called ba
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>legacy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A legacy USB type.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legacy USB redirection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>native</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native USB redirection.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/usb_type/values/legacy"><a class="anchor" href="#types/usb_type/values/legacy"></a>7.262.1. legacy</h4>
 <div class="paragraph">
-<p>A legacy USB type.</p>
+<p>Legacy USB redirection.</p>
 </div>
 <div class="paragraph">
-<p>This USB type has been deprecated since version 3.6 of the
-engine, and has been completely removed in version 4.1. It
-is preserved only to avoid syntax errors in existing
-scripts. If it is used it will be automatically replaced
-by <code>native</code>.</p>
+<p>This USB type has been deprecated since version 3.6 of the engine, and has been completely removed in version
+4.1. It is preserved only to avoid syntax errors in existing scripts. If it is used it will be automatically
+replaced by <code>native</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/usb_type/values/native"><a class="anchor" href="#types/usb_type/values/native"></a>7.262.2. native</h4>
+<div class="paragraph">
+<p>Native USB redirection.</p>
+</div>
+<div class="paragraph">
+<p>Native USB redirection allows KVM/SPICE USB redirection for Linux and Windows virtual machines. Virtual (guest)
+machines require no guest-installed agents or drivers for native USB. On Linux clients, all packages required
+for USB redirection are provided by the <code>virt-viewer</code> package. On Windows clients, you must also install the
+<code>usbdk</code> package.</p>
 </div>
 </div>
 </div>
@@ -70849,7 +70865,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-24 16:27:07 UTC
+Last updated 2017-04-25 06:53:32 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
