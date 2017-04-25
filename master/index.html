@@ -48913,6 +48913,9 @@ until the disk is freed.</p>
 </div>
 <div class="sect2">
 <h3 id="types/display"><a class="anchor" href="#types/display"></a>7.54. Display <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Represents a graphic console configuration.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 931. Attributes summary</caption>
 <colgroup>
@@ -48931,75 +48934,189 @@ until the disk is freed.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IP address of the guest to connect the graphic console client to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow_override</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if to override the display address per host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/certificate">Certificate</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TLS certificate in case of a TLS connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>copy_paste_enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether a user is able to copy and paste content from an external host into the graphic console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disconnect_action</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the action that will take place when the graphic console is disconnected.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>file_transfer_enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if a user is able to drag and drop files from an external host into the graphic console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>keyboard_layout</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The keyboard layout to use with this graphic console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>monitors</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of monitors opened for this graphic console.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port address on the guest to connect the graphic console client to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The proxy IP which will be used by the graphic console client to connect to the guest.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>secure_port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The secured port address on the guest, in case of using TLS, to connect the graphic console client to.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>single_qxl_pci</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if to use one PCI slot for each monitor or to use a single PCI channel for all multiple monitors.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>smartcard_enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if to use smart card authentication.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/display_type">DisplayType</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The graphic console protocol type.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/display/attributes/allow_override"><a class="anchor" href="#types/display/attributes/allow_override"></a>7.54.1. allow_override</h4>
+<div class="paragraph">
+<p>Indicates if to override the display address per host.
+Relevant only for the <code>Host.display</code> attribute.
+If set, the graphical console address of a virtual machine will be overridden by the host specified display address.
+if not set, the graphical console address of a virtual machine will not be overridden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/certificate"><a class="anchor" href="#types/display/attributes/certificate"></a>7.54.2. certificate</h4>
+<div class="paragraph">
+<p>The TLS certificate in case of a TLS connection.
+If TLS isn&#8217;t enabled then it won&#8217;t be reported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/copy_paste_enabled"><a class="anchor" href="#types/display/attributes/copy_paste_enabled"></a>7.54.3. copy_paste_enabled</h4>
+<div class="paragraph">
+<p>Indicates whether a user is able to copy and paste content from an external host into the graphic console.
+This option is only available for the SPICE console type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/disconnect_action"><a class="anchor" href="#types/display/attributes/disconnect_action"></a>7.54.4. disconnect_action</h4>
+<div class="paragraph">
+<p>Returns the action that will take place when the graphic console is disconnected.
+The options are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">none</dt>
+<dd>
+<p>No action is taken.</p>
+</dd>
+<dt class="hdlist1">lock_screen</dt>
+<dd>
+<p>Locks the currently active user session.</p>
+</dd>
+<dt class="hdlist1">logout</dt>
+<dd>
+<p>Logs out the currently active user session.</p>
+</dd>
+<dt class="hdlist1">reboot</dt>
+<dd>
+<p>Initiates a graceful virtual machine reboot.</p>
+</dd>
+<dt class="hdlist1">shutdown</dt>
+<dd>
+<p>Initiates a graceful virtual machine shutdown.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>This option is only available for the SPICE console type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/file_transfer_enabled"><a class="anchor" href="#types/display/attributes/file_transfer_enabled"></a>7.54.5. file_transfer_enabled</h4>
+<div class="paragraph">
+<p>Indicates if a user is able to drag and drop files from an external host into the graphic console.
+This option is only available for the SPICE console type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/keyboard_layout"><a class="anchor" href="#types/display/attributes/keyboard_layout"></a>7.54.6. keyboard_layout</h4>
+<div class="paragraph">
+<p>The keyboard layout to use with this graphic console.
+This option is only available for the VNC console type.
+If no keyboard is enabled then it won&#8217;t be reported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/monitors"><a class="anchor" href="#types/display/attributes/monitors"></a>7.54.7. monitors</h4>
+<div class="paragraph">
+<p>The number of monitors opened for this graphic console.
+This option is only available for the SPICE console type.
+Possible values are 1, 2 or 4.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/proxy"><a class="anchor" href="#types/display/attributes/proxy"></a>7.54.8. proxy</h4>
+<div class="paragraph">
+<p>The proxy IP which will be used by the graphic console client to connect to the guest.
+It is useful when the client is outside the guest&#8217;s network.
+This option is only available for the SPICE console type.
+This proxy can be set in global configuration, cluster level, virtual machine pool level or disabled
+per virtual machine.
+If the proxy is set in any of this mentioned places and not disabled for the virtual machine, it will be
+returned by this method.
+If the proxy is not set, nothing will be reported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/secure_port"><a class="anchor" href="#types/display/attributes/secure_port"></a>7.54.9. secure_port</h4>
+<div class="paragraph">
+<p>The secured port address on the guest, in case of using TLS, to connect the graphic console client to.
+If TLS isn&#8217;t enabled then it won&#8217;t be reported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/single_qxl_pci"><a class="anchor" href="#types/display/attributes/single_qxl_pci"></a>7.54.10. single_qxl_pci</h4>
+<div class="paragraph">
+<p>Indicates if to use one PCI slot for each monitor or to use a single PCI channel for all multiple monitors.
+This option is only available for the SPICE console type and only for connecting a guest Linux based OS.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/display/attributes/smartcard_enabled"><a class="anchor" href="#types/display/attributes/smartcard_enabled"></a>7.54.11. smartcard_enabled</h4>
+<div class="paragraph">
+<p>Indicates if to use smart card authentication.
+This option is only available for the SPICE console type.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/display_type"><a class="anchor" href="#types/display_type"></a>7.55. DisplayType <span class="small">enum</span></h3>
@@ -71037,7 +71154,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 08:54:05 UTC
+Last updated 2017-04-25 11:22:50 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
