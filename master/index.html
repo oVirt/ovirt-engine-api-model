@@ -57770,7 +57770,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boot_protocol</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boot_protocol">BootProtocol</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines how an IP address is assigned to the NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -57810,7 +57810,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>on_boot</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines if the network interface should be activated upon operation system startup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugged</code></p></td>
@@ -57847,7 +57847,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_attachments</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_attachment">NetworkAttachment[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to a collection of network attachments that are associated with the host NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter_parameters</code></p></td>
@@ -57857,12 +57857,12 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to a collection of network labels that are associated with the host NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reported_devices</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/reported_device">ReportedDevice[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to a collection of reported devices that are associated with the virtual network interface.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>statistics</code></p></td>
@@ -57877,12 +57877,14 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>virtual_function_allowed_labels</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to a collection of network labels that are allowed to be attached to the virtual functions
+of an SR-IOV NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>virtual_function_allowed_networks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network[]</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to a collection of networks that are allowed to be attached to the virtual functions
+of an SR-IOV NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
@@ -57897,7 +57899,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnic_profile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_profile">VnicProfile</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to an associated virtual network interface profile.</p></td>
 </tr>
 </tbody>
 </table>
@@ -70947,7 +70949,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-25 07:20:02 UTC
+Last updated 2017-04-25 07:26:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
