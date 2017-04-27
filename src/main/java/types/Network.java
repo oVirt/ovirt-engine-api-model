@@ -81,7 +81,23 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface Network extends Identified {
+    /**
+     * Deprecated, not in use.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
+    @Deprecated
     Ip ip();
+
+    /**
+     * A VLAN tag.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     Vlan vlan();
 
     /**
@@ -94,7 +110,24 @@ public interface Network extends Identified {
      */
     Boolean stp();
 
+    /**
+     * The status of the network. `non_operational` if the network defined as 'required' and
+     * omitted from any active cluster host. `operational` otherwise.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     NetworkStatus status();
+
+    /**
+     * Deprecated, 'usages' should be used to define network as a display network.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
+    @Deprecated
     Boolean display();
 
     /**
@@ -119,7 +152,25 @@ public interface Network extends Identified {
      * @status updated_by_docs
      */
     NetworkUsage[] usages();
+
+    /**
+     * Defines whether the network is mandatory for all the hosts in the cluster. In case a 'required'
+     * `operational` network is omitted from a host, the host will be marked as `non_operational`,
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     Boolean required();
+
+    /**
+     * Specifies whether upon creation of the network a virtual network interface profile should automatically be
+     * created.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     Boolean profileRequired();
 
     /*
@@ -144,7 +195,23 @@ public interface Network extends Identified {
      */
     @Link DataCenter dataCenter();
 
+    /**
+     * A reference to the cluster this network is attached to. Will be filled only if the network is accessed from the
+     * cluster level.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     @Link Cluster cluster();
+
+    /**
+     * Reference to quality of service.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     @Link Qos qos();
 
     /**

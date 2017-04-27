@@ -20,14 +20,31 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents a label which can be added to a host network interface.
+ * Represents a label which can be added to a host network interface and to a network.
+ * The label binds the network to the host network interface by the label `id`.
  *
  * @author Marcin Mirecki <mmirecki@redhat.com>
- * @date 14 Sept 2016
+ * @author Alona Kaplan <alkaplan@redhat.com>
+ * @date 24 April 2017
  * @status added
  */
 @Type
 public interface NetworkLabel extends Identified {
+    /**
+     * A reference to the network which contains this label.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     @Link Network network();
+
+    /**
+     * A reference to the host network interface which contains this label.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 24 April 2017
+     * @status added
+     */
     @Link HostNic hostNic();
 }
