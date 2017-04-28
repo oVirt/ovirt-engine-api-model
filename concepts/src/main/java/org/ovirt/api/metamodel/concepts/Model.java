@@ -314,12 +314,14 @@ public class Model implements Serializable {
             int size = path.size();
             if (size > 0) {
                 Service service = path.get(size -1).getService();
-                service.methods().forEach(method -> {
-                    Point point = new Point();
-                    point.setPath(path);
-                    point.setMethod(method);
-                    points.add(point);
-                });
+                service.methods()
+                    .filter(method -> method.getBase() == null)
+                    .forEach(method -> {
+                        Point point = new Point();
+                        point.setPath(path);
+                        point.setMethod(method);
+                        points.add(point);
+                    });
             }
         });
 

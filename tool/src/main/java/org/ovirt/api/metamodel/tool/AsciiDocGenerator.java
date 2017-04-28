@@ -28,6 +28,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -185,14 +186,17 @@ public class AsciiDocGenerator {
         addDoc(service);
 
         // Table of methods:
-        List<Method> methods = service.getMethods();
+        List<Method> methods = service.methods()
+            .filter(method -> method.getBase() == null)
+            .sorted()
+            .collect(Collectors.toList());
         if (!methods.isEmpty()) {
             docBuffer.addLine(".Methods summary");
             docBuffer.addLine("[cols=\"20,80\"]");
             docBuffer.addLine("|===");
             docBuffer.addLine("|Name |Summary");
             docBuffer.addLine();
-            methods.stream().sorted().forEach(method -> {
+            methods.forEach(method -> {
                 docBuffer.addLine("|`%s`", getName(method));
                 docBuffer.addLine("|%s", getSummary(method));
                 docBuffer.addLine();
@@ -202,7 +206,7 @@ public class AsciiDocGenerator {
         }
 
         // Methods detail:
-        methods.stream().sorted().forEach(method -> documentMethod(service, method));
+        methods.forEach(method -> documentMethod(service, method));
     }
 
     private void documentMethod(Service service, Method method) {
