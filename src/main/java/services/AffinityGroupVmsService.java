@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -34,20 +34,20 @@ import types.Vm;
 @Area("SLA")
 public interface AffinityGroupVmsService {
     /**
-     * Add a virtual machine to the affinity group.
+     * Adds a virtual machine to the affinity group.
      *
-     * For example, to add the virtual machine 000-000 to affinity group 123-456 send a request to:
+     * For example, to add the virtual machine `789` to the affinity group `456` of cluster `123`, send a request like
+     * this:
      *
-     * [source]
-     * ----
-     * POST /ovirt-engine/api/clusters/000-000/affinitygroups/123-456/vms
-     * ----
+     * ....
+     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vms
+     * ....
      *
      * With the following body:
      *
      * [source,xml]
      * ----
-     * <vm id="000-000"/>
+     * <vm id="789"/>
      * ----
      *
      * @author Martin Sivak <msivak@redhat.com>
