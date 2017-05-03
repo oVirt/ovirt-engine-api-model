@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.36 / May 3 2017
+
+Bug fixes:
+
+* Add the `all_content` parameter to `Host.Get` and `Hosts.List`
+  https://bugzilla.redhat.com/1444081[#1444081].
+
 == 4.1.35 / Apr 19 2017
 
 New features:
