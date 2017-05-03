@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.6 / Mar 29 2017
+
+Bug fixes:
+
+* Ignore nested methods when generationg AsciiDoc.
+
 == 1.2.5 / Mar 29 2017
 
 Bug fixes:
