@@ -13806,7 +13806,7 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the identifier of the the first event that should be returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the event identifier after which events should be returned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -13833,10 +13833,10 @@ ignoring case set it to <code>false</code>.</p>
 <div class="sect4">
 <h5 id="services/events/methods/list/parameters/from"><a class="anchor" href="#services/events/methods/list/parameters/from"></a>from</h5>
 <div class="paragraph">
-<p>Indicates the identifier of the the first event that should be returned. The identifiers of events are
-strictly increasing, so when this parameter is used only the events with that identifiers equal or greater
-than the given value will be returned. For example, the following request will return only the events
-with identifiers greater or equal than <code>123</code>:</p>
+<p>Indicates the event identifier after which events should be returned. The identifiers of events are
+strictly increasing, so when this parameter is used only the events with greater identifiers
+will be returned. For example, the following request will return only the events
+with identifiers greater than <code>123</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -69463,7 +69463,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-04 16:42:13 UTC
+Last updated 2017-05-14 14:47:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
