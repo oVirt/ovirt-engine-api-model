@@ -158,10 +158,10 @@ public interface EventsService {
         @Out Event[] events();
 
         /**
-         * Indicates the identifier of the the first event that should be returned. The identifiers of events are
-         * strictly increasing, so when this parameter is used only the events with that identifiers equal or greater
-         * than the given value will be returned. For example, the following request will return only the events
-         * with identifiers greater or equal than `123`:
+         * Indicates the event identifier after which events should be returned. The identifiers of events are
+         * strictly increasing, so when this parameter is used only the events with greater identifiers
+         * will be returned. For example, the following request will return only the events
+         * with identifiers greater than `123`:
          *
          * [source]
          * ----
