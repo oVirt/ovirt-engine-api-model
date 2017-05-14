@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -30,6 +30,22 @@ import java.util.Date;
  */
 @Type
 public interface Event extends Identified {
+    /**
+     * The numeric index of this event. The indexes of events are always increasing, so events with higher indexes
+     * are guaranteed to be older than events with lower indexes.
+     *
+     * IMPORTANT: In the current implementation of the engine, the `id` attribute has the same value as this
+     * `index` attribute. That is an implementation detail that the user of the API should not rely on. In the future
+     * the `id` attribute may be changed to an arbitrary string, containing non numeric characters and no implicit
+     * order. On the other hand this `index` attribute is guaranteed to stay as integer and ordered.
+     *
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @date 14 May 2017
+     * @status added
+     * @since 4.1.3
+     */
+    Integer index();
+
     /**
      * The event code.
      *
