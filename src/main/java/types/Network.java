@@ -181,7 +181,7 @@ public interface Network extends Identified {
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017
      * @status updated_by_docs
-     * @since 4.1
+     * @since 4.2
      */
     DnsResolverConfiguration dnsResolverConfiguration();
 
