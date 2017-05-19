@@ -60,7 +60,7 @@ public interface VmCdromsService {
         default void inputDetail() {
             mandatory(cdrom().file().id());
         }
-        @In Cdrom cdrom();
+        @In @Out Cdrom cdrom();
     }
     /**
      * Returns the list of CDROM devices of the virtual machine.
