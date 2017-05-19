@@ -225,7 +225,7 @@ public interface NetworkAttachment extends Identified {
      * @author Megan Lewis <melewis@redhat.com>
      * @date 1 Feb 2017
      * @status updated_by_docs
-     * @since 4.1
+     * @since 4.2
      */
     DnsResolverConfiguration dnsResolverConfiguration();
 
