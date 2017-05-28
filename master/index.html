@@ -13806,7 +13806,7 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the event identifier after which events should be returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the event index after which events should be returned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -13833,10 +13833,10 @@ ignoring case set it to <code>false</code>.</p>
 <div class="sect4">
 <h5 id="services/events/methods/list/parameters/from"><a class="anchor" href="#services/events/methods/list/parameters/from"></a>from</h5>
 <div class="paragraph">
-<p>Indicates the event identifier after which events should be returned. The identifiers of events are
-strictly increasing, so when this parameter is used only the events with greater identifiers
+<p>Indicates the event index after which events should be returned. The indexes of events are
+strictly increasing, so when this parameter is used only the events with greater indexes
 will be returned. For example, the following request will return only the events
-with identifiers greater than <code>123</code>:</p>
+with indexes greater than <code>123</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -47625,6 +47625,11 @@ might be relevant.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The numeric index of this event.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
@@ -47660,6 +47665,28 @@ several events together.</p>
 This prevents flooding in case an event appeared
 more than once in the defined rate.
 Defaults is 30 seconds.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/event/attributes/index"><a class="anchor" href="#types/event/attributes/index"></a>7.62.3. index</h4>
+<div class="paragraph">
+<p>The numeric index of this event. The indexes of events are always increasing, so events with higher indexes
+are guaranteed to be older than events with lower indexes.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In the current implementation of the engine, the <code>id</code> attribute has the same value as this
+<code>index</code> attribute. That is an implementation detail that the user of the API should not rely on. In the future
+the <code>id</code> attribute may be changed to an arbitrary string, containing non numeric characters and no implicit
+order. On the other hand this <code>index</code> attribute is guaranteed to stay as integer and ordered.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 895. Links summary</caption>
@@ -47715,49 +47742,49 @@ Defaults is 30 seconds.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/cluster"><a class="anchor" href="#types/event/links/cluster"></a>7.62.3. cluster</h4>
+<h4 id="types/event/links/cluster"><a class="anchor" href="#types/event/links/cluster"></a>7.62.4. cluster</h4>
 <div class="paragraph">
 <p>Reference to the cluster service.
 Event can be associated with a cluster.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/data_center"><a class="anchor" href="#types/event/links/data_center"></a>7.62.4. data_center</h4>
+<h4 id="types/event/links/data_center"><a class="anchor" href="#types/event/links/data_center"></a>7.62.5. data_center</h4>
 <div class="paragraph">
 <p>Reference to the data center service.
 Event can be associated with a data center.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/host"><a class="anchor" href="#types/event/links/host"></a>7.62.5. host</h4>
+<h4 id="types/event/links/host"><a class="anchor" href="#types/event/links/host"></a>7.62.6. host</h4>
 <div class="paragraph">
 <p>Reference to the host service.
 Event can be associated with a host.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/storage_domain"><a class="anchor" href="#types/event/links/storage_domain"></a>7.62.6. storage_domain</h4>
+<h4 id="types/event/links/storage_domain"><a class="anchor" href="#types/event/links/storage_domain"></a>7.62.7. storage_domain</h4>
 <div class="paragraph">
 <p>Reference to the storage domain service.
 Event can be associated with a storage domain.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/template"><a class="anchor" href="#types/event/links/template"></a>7.62.7. template</h4>
+<h4 id="types/event/links/template"><a class="anchor" href="#types/event/links/template"></a>7.62.8. template</h4>
 <div class="paragraph">
 <p>Reference to the template service.
 Event can be associated with a template.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/user"><a class="anchor" href="#types/event/links/user"></a>7.62.8. user</h4>
+<h4 id="types/event/links/user"><a class="anchor" href="#types/event/links/user"></a>7.62.9. user</h4>
 <div class="paragraph">
 <p>Reference to the user service.
 Event can be associated with a user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/vm"><a class="anchor" href="#types/event/links/vm"></a>7.62.9. vm</h4>
+<h4 id="types/event/links/vm"><a class="anchor" href="#types/event/links/vm"></a>7.62.10. vm</h4>
 <div class="paragraph">
 <p>Reference to the virtual machine service.
 Event can be associated with a virtual machine.</p>
@@ -69463,7 +69490,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-19 12:51:25 UTC
+Last updated 2017-05-28 18:07:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
