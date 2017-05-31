@@ -3,6 +3,24 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.37 / May 31 2017
+
+New features:
+
+* Fix the documentation of the method that lists events
+  https://bugzilla.redhat.com/1447622[#1447622].
+
+* Fix the direction of the main parameter of the method that adds a
+  CDROM to a virtual machine. It should be input and output.
+
+New features:
+
+* Improve the documentation explaining that in general the order of the
+  results of _list_ methods isn't guaranteed.
+
+* Add the `index` attribute to the `Event` type
+  https://bugzilla.redhat.com/1448511[#1448511].
+
 == 4.1.36 / May 3 2017
 
 Bug fixes:
