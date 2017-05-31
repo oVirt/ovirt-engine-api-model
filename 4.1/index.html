@@ -6382,6 +6382,9 @@ this:</p>
 <div class="paragraph">
 <p>List all virtual machines assigned to this affinity group.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned virtual machines isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 11. Parameters summary</caption>
 <colgroup>
@@ -6505,6 +6508,9 @@ returned.</p>
 <h4 id="services/affinity_groups/methods/list"><a class="anchor" href="#services/affinity_groups/methods/list"></a>6.4.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>List existing affinity groups.</p>
+</div>
+<div class="paragraph">
+<p>The order of the affinity groups results isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 14. Parameters summary</caption>
@@ -6783,6 +6789,9 @@ subcollection.</p>
 <div class="paragraph">
 <p>List all hosts with the label.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned hosts isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 22. Parameters summary</caption>
 <colgroup>
@@ -6904,7 +6913,7 @@ subcollection.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List all vms with the label.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List all virtual machines with the label.</p></td>
 </tr>
 </tbody>
 </table>
@@ -6942,7 +6951,10 @@ subcollection.</p>
 <div class="sect3">
 <h4 id="services/affinity_label_vms/methods/list"><a class="anchor" href="#services/affinity_label_vms/methods/list"></a>6.9.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>List all vms with the label.</p>
+<p>List all virtual machines with the label.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned virtual machines isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 27. Parameters summary</caption>
@@ -7035,6 +7047,9 @@ to all entities mentioned in the vms or hosts lists.</p>
 <h4 id="services/affinity_labels/methods/list"><a class="anchor" href="#services/affinity_labels/methods/list"></a>6.10.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Lists all labels present in the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned labels isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 30. Parameters summary</caption>
@@ -7207,6 +7222,9 @@ assigned to supported entities when accessed using entities/affinitylabels.</p>
 <div class="paragraph">
 <p>Lists all labels that are attached to an entity.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned entities isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 35. Parameters summary</caption>
 <colgroup>
@@ -7337,7 +7355,7 @@ assigned to supported entities when accessed using entities/affinitylabels.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List the CPU profiles assigned to the cluster.</p></td>
 </tr>
 </tbody>
 </table>
@@ -7371,6 +7389,12 @@ assigned to supported entities when accessed using entities/affinitylabels.</p>
 </div>
 <div class="sect3">
 <h4 id="services/assigned_cpu_profiles/methods/list"><a class="anchor" href="#services/assigned_cpu_profiles/methods/list"></a>6.14.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>List the CPU profiles assigned to the cluster.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned CPU profiles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 41. Parameters summary</caption>
 <colgroup>
@@ -7513,7 +7537,7 @@ assigned to supported entities when accessed using entities/affinitylabels.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disk profiles assigned to the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -7547,6 +7571,12 @@ assigned to supported entities when accessed using entities/affinitylabels.</p>
 </div>
 <div class="sect3">
 <h4 id="services/assigned_disk_profiles/methods/list"><a class="anchor" href="#services/assigned_disk_profiles/methods/list"></a>6.16.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disk profiles assigned to the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned disk profiles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 47. Parameters summary</caption>
 <colgroup>
@@ -7740,6 +7770,9 @@ id <code>123</code> to the group with id <code>789</code> send a request like th
 &lt;/permissions&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned permissions isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 50. Parameters summary</caption>
 <colgroup>
@@ -7787,12 +7820,18 @@ id <code>123</code> to the group with id <code>789</code> send a request like th
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the roles assigned to the permission.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/assigned_roles/methods/list"><a class="anchor" href="#services/assigned_roles/methods/list"></a>6.18.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the roles assigned to the permission.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned roles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 52. Parameters summary</caption>
 <colgroup>
@@ -8050,6 +8089,9 @@ with id <code>123</code> send a request like this:</p>
 &lt;/tags&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned tags isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 58. Parameters summary</caption>
 <colgroup>
@@ -8192,7 +8234,7 @@ with id <code>123</code> send a request like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of VNIC profiles assifned to the network.</p></td>
 </tr>
 </tbody>
 </table>
@@ -8226,6 +8268,12 @@ with id <code>123</code> send a request like this:</p>
 </div>
 <div class="sect3">
 <h4 id="services/assigned_vnic_profiles/methods/list"><a class="anchor" href="#services/assigned_vnic_profiles/methods/list"></a>6.22.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of VNIC profiles assifned to the network.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned VNIC profiles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 64. Parameters summary</caption>
 <colgroup>
@@ -8449,6 +8497,9 @@ so the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="sect2">
 <h3 id="services/attached_storage_domains"><a class="anchor" href="#services/attached_storage_domains"></a>6.24. AttachedStorageDomains</h3>
+<div class="paragraph">
+<p>Manages the storage domains attached to a data center.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 70. Methods summary</caption>
 <colgroup>
@@ -8464,16 +8515,19 @@ so the request body should contain an empty <code>action</code>:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attaches an existing storage domain to the data center.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains attached to the data center.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/attached_storage_domains/methods/add"><a class="anchor" href="#services/attached_storage_domains/methods/add"></a>6.24.1. add <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Attaches an existing storage domain to the data center.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 71. Parameters summary</caption>
 <colgroup>
@@ -8502,6 +8556,12 @@ so the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="sect3">
 <h4 id="services/attached_storage_domains/methods/list"><a class="anchor" href="#services/attached_storage_domains/methods/list"></a>6.24.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of storage domains attached to the data center.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned storage domains isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 72. Parameters summary</caption>
 <colgroup>
@@ -8650,7 +8710,7 @@ so the request body should contain an empty <code>action</code>:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of balance modules used by the scheduling policy.</p></td>
 </tr>
 </tbody>
 </table>
@@ -8684,6 +8744,12 @@ so the request body should contain an empty <code>action</code>:</p>
 </div>
 <div class="sect3">
 <h4 id="services/balances/methods/list"><a class="anchor" href="#services/balances/methods/list"></a>6.26.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of balance modules used by the scheduling policy.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned balance modules isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 78. Parameters summary</caption>
 <colgroup>
@@ -9005,6 +9071,9 @@ so the request body should contain an empty <code>action</code>:</p>
   &lt;/bookmark&gt;
 &lt;/bookmarks&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned bookmarks isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 85. Parameters summary</caption>
@@ -9461,6 +9530,9 @@ service provides that information.</p>
 &lt;/cluster_levels&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned cluster levels isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 94. Parameters summary</caption>
 <colgroup>
@@ -9669,6 +9741,9 @@ service provides that information.</p>
 <div class="paragraph">
 <p>Lists the networks that are assigned to the cluster.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned clusters isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 100. Parameters summary</caption>
 <colgroup>
@@ -9732,7 +9807,7 @@ service provides that information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of clusters of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -9792,6 +9867,13 @@ or <code>name</code> attributes.</p>
 </div>
 <div class="sect3">
 <h4 id="services/clusters/methods/list"><a class="anchor" href="#services/clusters/methods/list"></a>6.34.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of clusters of the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned clusters is guaranteed only if the <code>sortby</code> clause is included in the
+<code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 103. Parameters summary</caption>
 <colgroup>
@@ -10049,7 +10131,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of CPU profiles of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -10083,6 +10165,12 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="services/cpu_profiles/methods/list"><a class="anchor" href="#services/cpu_profiles/methods/list"></a>6.37.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of CPU profiles of the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of CPU profiles isn&#8217;t guranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 112. Parameters summary</caption>
 <colgroup>
@@ -10533,6 +10621,9 @@ post-creation. For example, to change the name and description of data center <c
 <div class="paragraph">
 <p>Lists networks in the data center.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of networks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 122. Parameters summary</caption>
 <colgroup>
@@ -10716,6 +10807,10 @@ resources of your virtual environment.</p>
 <div class="paragraph">
 <p>The data center also contains a link to the storage domains collection. The data center uses this collection to
 attach storage domains from the storage domains main collection.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of data centers is guaranteed only if the <code>sortby</code> clause is included in the
+<code>search</code> parameter.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 125. Parameters summary</caption>
@@ -11371,6 +11466,9 @@ value.
 <div class="paragraph">
 <p>List the disk that are attached to the virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of disks attachments isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 138. Parameters summary</caption>
 <colgroup>
@@ -11539,7 +11637,7 @@ value.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disk profiles of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -11573,6 +11671,12 @@ value.
 </div>
 <div class="sect3">
 <h4 id="services/disk_profiles/methods/list"><a class="anchor" href="#services/disk_profiles/methods/list"></a>6.46.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disk profiles of the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disk profiles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 145. Parameters summary</caption>
 <colgroup>
@@ -11696,6 +11800,9 @@ value.
 </div>
 <div class="sect2">
 <h3 id="services/disk_snapshots"><a class="anchor" href="#services/disk_snapshots"></a>6.48. DiskSnapshots</h3>
+<div class="paragraph">
+<p>Manages the collection of disk snapshots available in an storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 149. Methods summary</caption>
 <colgroup>
@@ -11711,12 +11818,18 @@ value.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disk snapshots of the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/disk_snapshots/methods/list"><a class="anchor" href="#services/disk_snapshots/methods/list"></a>6.48.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disk snapshots of the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disk snapshots isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 150. Parameters summary</caption>
 <colgroup>
@@ -11969,6 +12082,10 @@ send a request as follows:</p>
 &lt;/disks&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of disks is guaranteed only if the <code>sortby</code> clause is included in the
+<code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 153. Parameters summary</caption>
 <colgroup>
@@ -12209,12 +12326,18 @@ does not apply to the top level <code>disks</code> collection.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of groups.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/domain_groups/methods/list"><a class="anchor" href="#services/domain_groups/methods/list"></a>6.52.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of groups.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of groups isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 159. Parameters summary</caption>
 <colgroup>
@@ -12412,6 +12535,9 @@ ignoring case set it to <code>false</code>.</p>
 &lt;/users&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of users isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 163. Parameters summary</caption>
 <colgroup>
@@ -12525,6 +12651,9 @@ ignoring case set it to <code>false</code>.</p>
 &lt;/domains&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of domains isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 165. Parameters summary</caption>
 <colgroup>
@@ -12623,6 +12752,9 @@ The information is retrieved from Katello.</p>
   ...
 &lt;/katello_errata&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of erratum isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 167. Parameters summary</caption>
@@ -12955,6 +13087,17 @@ attribute, if provided, is simply ignored.
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of events is always garanteed. If the <code>sortby</code> clause is included in the
+<code>search</code> parameter, then the events will be ordered according to that clause. If the <code>sortby</code> clause isn&#8217;t
+included, then the events will be sorted by the numeric value of the <code>id</code> attribute, starting with the
+highest value. This, combined with the <code>max</code> parameter, simplifies obtaining the most recent event:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/events?max=1</pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 173. Parameters summary</caption>
 <colgroup>
@@ -12989,7 +13132,7 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the identifier of the the first event that should be returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the event index after which events should be returned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -13016,10 +13159,10 @@ ignoring case set it to <code>false</code>.</p>
 <div class="sect4">
 <h5 id="services/events/methods/list/parameters/from"><a class="anchor" href="#services/events/methods/list/parameters/from"></a>from</h5>
 <div class="paragraph">
-<p>Indicates the identifier of the the first event that should be returned. The identifiers of events are
-strictly increasing, so when this parameter is used only the events with that identifiers equal or greater
-than the given value will be returned. For example, the following request will return only the events
-with identifiers greater or equal than <code>123</code>:</p>
+<p>Indicates the event index after which events should be returned. The indexes of events are
+strictly increasing, so when this parameter is used only the events with greater indexes
+will be returned. For example, the following request will return only the events
+with indexes greater than <code>123</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13281,6 +13424,9 @@ provider side.</p>
 &lt;/external_compute_resources&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of compute resources isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 178. Parameters summary</caption>
 <colgroup>
@@ -13465,6 +13611,9 @@ information includes hostname, address, subnet, base image and more.</p>
  ...
 &lt;/external_discovered_hosts&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of hosts isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 182. Parameters summary</caption>
@@ -13658,14 +13807,14 @@ host. Information such as subnet, operating system, domain, etc.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get hostgroups list from external host provider.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get host groups list from external host provider.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/external_host_groups/methods/list"><a class="anchor" href="#services/external_host_groups/methods/list"></a>6.65.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Get hostgroups list from external host provider.</p>
+<p>Get host groups list from external host provider.</p>
 </div>
 <div class="paragraph">
 <p>Host group is a term of host providers - the host group includes provision details. This API returns all possible
@@ -13696,6 +13845,9 @@ hostgroups exposed by the external provider.</p>
   ...
 &lt;/external_host_groups&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of host groups isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 188. Parameters summary</caption>
@@ -13987,7 +14139,7 @@ to run following request where 123 is an id of a provider.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of external host providers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -14021,6 +14173,12 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect3">
 <h4 id="services/external_host_providers/methods/list"><a class="anchor" href="#services/external_host_providers/methods/list"></a>6.67.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of external host providers.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of host providers isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 197. Parameters summary</caption>
 <colgroup>
@@ -14077,12 +14235,18 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Return the list of external hosts.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/external_hosts/methods/list"><a class="anchor" href="#services/external_hosts/methods/list"></a>6.68.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Return the list of external hosts.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of hosts isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 199. Parameters summary</caption>
 <colgroup>
@@ -14310,14 +14474,14 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Gets list of certificates.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the chain of certificates presented by the external provider.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/external_provider_certificates/methods/list"><a class="anchor" href="#services/external_provider_certificates/methods/list"></a>6.71.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Gets list of certificates.</p>
+<p>Returns the chain of certificates presented by the external provider.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14334,6 +14498,10 @@ to run following request where 123 is an id of a provider.</p>
   ...
 &lt;/certificates&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned certificates is always guaranteed to be the sign order: the first is the
+certificate of the server itself, the second the certificate of the CA that signs the first, so on.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 206. Parameters summary</caption>
@@ -14638,7 +14806,7 @@ to run following request where 123 is an id of a provider.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Gets list of fence agents.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of fencing agents configured for the host.</p></td>
 </tr>
 </tbody>
 </table>
@@ -14673,7 +14841,7 @@ to run following request where 123 is an id of a provider.</p>
 <div class="sect3">
 <h4 id="services/fence_agents/methods/list"><a class="anchor" href="#services/fence_agents/methods/list"></a>6.74.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Gets list of fence agents.</p>
+<p>Returns the list of fencing agents configured for the host.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14697,6 +14865,9 @@ to run following request where 123 is an id of a provider.</p>
   &lt;/agent&gt;
 &lt;/agents&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of fencing agents isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 215. Parameters summary</caption>
@@ -14814,12 +14985,18 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of ISO images and virtual floppy disks available in the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/files/methods/list"><a class="anchor" href="#services/files/methods/list"></a>6.76.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of ISO images and virtual floppy disks available in the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order returned list of ISO images and virtual floppy disks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 219. Parameters summary</caption>
 <colgroup>
@@ -14970,6 +15147,9 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="services/filters"><a class="anchor" href="#services/filters"></a>6.78. Filters</h3>
+<div class="paragraph">
+<p>Manages the filters used by an scheduling policy.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 223. Methods summary</caption>
 <colgroup>
@@ -14989,7 +15169,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of filters used by the scheduling policy.</p></td>
 </tr>
 </tbody>
 </table>
@@ -15023,6 +15203,12 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="services/filters/methods/list"><a class="anchor" href="#services/filters/methods/list"></a>6.78.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of filters used by the scheduling policy.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of filters isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 225. Parameters summary</caption>
 <colgroup>
@@ -15487,6 +15673,9 @@ equivalent to the number of replica sets.</p>
   &lt;/brick&gt;
 &lt;/bricks&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list is based on the brick order provided at gluster volume creation.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 233. Parameters summary</caption>
@@ -15966,12 +16155,18 @@ in cluster.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of hooks.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/gluster_hooks/methods/list"><a class="anchor" href="#services/gluster_hooks/methods/list"></a>6.82.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of hooks.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of hooks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 244. Parameters summary</caption>
 <colgroup>
@@ -16794,6 +16989,9 @@ this:</p>
 <pre class="highlightjs highlight"><code>GET /ovirt-engine/api/clusters/456/glustervolumes</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of volumes isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 260. Parameters summary</caption>
 <colgroup>
@@ -17094,6 +17292,9 @@ like this:</p>
   ...
 &lt;/groups&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of groups isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 266. Parameters summary</caption>
@@ -18480,6 +18681,9 @@ The upgrade can be started from the webadmin or by using the
 <div class="paragraph">
 <p>List the devices of a host.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of devices isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 288. Parameters summary</caption>
 <colgroup>
@@ -18586,12 +18790,18 @@ The upgrade can be started from the webadmin or by using the
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of hooks configured for the host.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/host_hooks/methods/list"><a class="anchor" href="#services/host_hooks/methods/list"></a>6.91.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of hooks configured for the host.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of hooks isn&#8217;t guranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 292. Parameters summary</caption>
 <colgroup>
@@ -18759,12 +18969,18 @@ The input should be consisted of at least one of the following properties:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of network interfaces of the host.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/host_nics/methods/list"><a class="anchor" href="#services/host_nics/methods/list"></a>6.93.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of network interfaces of the host.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of network interfaces isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 297. Parameters summary</caption>
 <colgroup>
@@ -18871,12 +19087,18 @@ The input should be consisted of at least one of the following properties:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of NUMA nodes of the host.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/host_numa_nodes/methods/list"><a class="anchor" href="#services/host_numa_nodes/methods/list"></a>6.95.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of NUMA nodes of the host.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of NUMA nodes isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 301. Parameters summary</caption>
 <colgroup>
@@ -18962,6 +19184,9 @@ The input should be consisted of at least one of the following properties:</p>
   ...
 &lt;/host_storages&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of storages isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 303. Parameters summary</caption>
@@ -19229,6 +19454,10 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 &lt;/host&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of hosts is guaranteed only if the <code>sortby</code> clause is included in
+the <code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 306. Parameters summary</caption>
 <colgroup>
@@ -19458,6 +19687,9 @@ ignoring case set it to <code>false</code>.</p>
   ...
 &lt;/icons&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of icons isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 310. Parameters summary</caption>
@@ -20016,6 +20248,9 @@ a new transfer.</p>
 <p>Retrieves the list of image transfers that are currently
 being performed.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of image transfers isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 318. Parameters summary</caption>
 <colgroup>
@@ -20045,6 +20280,9 @@ being performed.</p>
 </div>
 <div class="sect2">
 <h3 id="services/images"><a class="anchor" href="#services/images"></a>6.103. Images</h3>
+<div class="paragraph">
+<p>Manages the set of images available in an storage domain or in an OpenStack image provider.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 319. Methods summary</caption>
 <colgroup>
@@ -20060,12 +20298,18 @@ being performed.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of images available in the storage domain or provider.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/images/methods/list"><a class="anchor" href="#services/images/methods/list"></a>6.103.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of images available in the storage domain or provider.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of images isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 320. Parameters summary</caption>
 <colgroup>
@@ -20426,6 +20670,9 @@ to 2 sockets and 1 core, send a request like this:</p>
 <div class="paragraph">
 <p>Lists all the configured graphics consoles of the instance type.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of graphics consoles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 330. Parameters summary</caption>
 <colgroup>
@@ -20654,6 +20901,9 @@ to 2 sockets and 1 core, send a request like this:</p>
 <h4 id="services/instance_type_nics/methods/list"><a class="anchor" href="#services/instance_type_nics/methods/list"></a>6.108.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Lists all the configured network interface of the instance type.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of network interfaces isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 337. Parameters summary</caption>
@@ -20890,6 +21140,9 @@ to 2 sockets and 1 core, send a request like this:</p>
 <div class="paragraph">
 <p>Lists all the configured watchdogs of the instance type.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of watchdogs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 344. Parameters summary</caption>
 <colgroup>
@@ -21083,6 +21336,9 @@ virtual machine.</p>
 <h4 id="services/instance_types/methods/list"><a class="anchor" href="#services/instance_types/methods/list"></a>6.111.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Lists all existing instance types in the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of instance types isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 347. Parameters summary</caption>
@@ -21320,7 +21576,7 @@ update the iSCSI bond <code>456</code> of data center <code>123</code>, send a r
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of iSCSI bonds configured in the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -21383,6 +21639,12 @@ request like this:</p>
 </div>
 <div class="sect3">
 <h4 id="services/iscsi_bonds/methods/list"><a class="anchor" href="#services/iscsi_bonds/methods/list"></a>6.113.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of iSCSI bonds configured in the data center.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of iSCSI bonds isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 354. Parameters summary</caption>
 <colgroup>
@@ -21765,6 +22027,9 @@ request like this:</p>
 &lt;/jobs&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of jobs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 361. Parameters summary</caption>
 <colgroup>
@@ -21863,6 +22128,9 @@ The information is retrieved from Katello.</p>
   ...
 &lt;/katello_errata&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of erratum isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 363. Parameters summary</caption>
@@ -22174,7 +22442,7 @@ The information is retrieved from Katello.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Return the list of MAC address pools of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -22241,6 +22509,12 @@ The information is retrieved from Katello.</p>
 </div>
 <div class="sect3">
 <h4 id="services/mac_pools/methods/list"><a class="anchor" href="#services/mac_pools/methods/list"></a>6.119.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Return the list of MAC address pools of the system.</p>
+</div>
+<div class="paragraph">
+<p>The returned list of MAC address pools isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 372. Parameters summary</caption>
 <colgroup>
@@ -22680,6 +22954,9 @@ specify the integer value of the <code>mtu</code> attribute.</p>
 </div>
 <div class="sect2">
 <h3 id="services/network_attachments"><a class="anchor" href="#services/network_attachments"></a>6.124. NetworkAttachments</h3>
+<div class="paragraph">
+<p>Manages the set of network attachments of a host or host NIC.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 383. Methods summary</caption>
 <colgroup>
@@ -22699,7 +22976,7 @@ specify the integer value of the <code>mtu</code> attribute.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of network attachments of the host or host NIC.</p></td>
 </tr>
 </tbody>
 </table>
@@ -22733,6 +23010,12 @@ specify the integer value of the <code>mtu</code> attribute.</p>
 </div>
 <div class="sect3">
 <h4 id="services/network_attachments/methods/list"><a class="anchor" href="#services/network_attachments/methods/list"></a>6.124.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of network attachments of the host or host NIC.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of network attachments isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 385. Parameters summary</caption>
 <colgroup>
@@ -22941,6 +23224,9 @@ may not be available due to the data center version being smaller then the netwo
 <div class="paragraph">
 <p>Retrieves the representations of the network filters.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of network filters isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 389. Parameters summary</caption>
 <colgroup>
@@ -23063,6 +23349,9 @@ may not be available due to the data center version being smaller then the netwo
 </div>
 <div class="sect2">
 <h3 id="services/network_labels"><a class="anchor" href="#services/network_labels"></a>6.128. NetworkLabels</h3>
+<div class="paragraph">
+<p>Manages the ser of labels attached to a network or to a host NIC.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 393. Methods summary</caption>
 <colgroup>
@@ -23082,7 +23371,7 @@ may not be available due to the data center version being smaller then the netwo
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of labels attached to the network or host NIC.</p></td>
 </tr>
 </tbody>
 </table>
@@ -23139,6 +23428,12 @@ network interfaces to which the same label has been attached.</p>
 </div>
 <div class="sect3">
 <h4 id="services/network_labels/methods/list"><a class="anchor" href="#services/network_labels/methods/list"></a>6.128.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of labels attached to the network or host NIC.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of labels isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 395. Parameters summary</caption>
 <colgroup>
@@ -23317,6 +23612,10 @@ data center.</p>
   ...
 &lt;/networks&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of networks is guaranteed only if the <code>sortby</code> clause is included in the
+<code>search</code> parameter.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 398. Parameters summary</caption>
@@ -23733,7 +24032,7 @@ to run following request where 123 is an id of a provider.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of providers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -23767,6 +24066,12 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect3">
 <h4 id="services/openstack_image_providers/methods/list"><a class="anchor" href="#services/openstack_image_providers/methods/list"></a>6.132.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of providers.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of providers isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 410. Parameters summary</caption>
 <colgroup>
@@ -23831,6 +24136,9 @@ to run following request where 123 is an id of a provider.</p>
 <h4 id="services/openstack_images/methods/list"><a class="anchor" href="#services/openstack_images/methods/list"></a>6.133.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Lists the images of a Glance image storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of images isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 412. Parameters summary</caption>
@@ -24241,7 +24549,7 @@ for the OpenStack network provider with identifier <code>1234</code>, send a req
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of providers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -24279,6 +24587,12 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 </div>
 <div class="sect3">
 <h4 id="services/openstack_network_providers/methods/list"><a class="anchor" href="#services/openstack_network_providers/methods/list"></a>6.136.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of providers.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of providers isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 424. Parameters summary</caption>
 <colgroup>
@@ -24335,12 +24649,18 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of networks.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/openstack_networks/methods/list"><a class="anchor" href="#services/openstack_networks/methods/list"></a>6.137.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of networks.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of networks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 426. Parameters summary</caption>
 <colgroup>
@@ -24483,7 +24803,7 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of sub-networks.</p></td>
 </tr>
 </tbody>
 </table>
@@ -24517,6 +24837,12 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 </div>
 <div class="sect3">
 <h4 id="services/openstack_subnets/methods/list"><a class="anchor" href="#services/openstack_subnets/methods/list"></a>6.139.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of sub-networks.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of sub-networks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 432. Parameters summary</caption>
 <colgroup>
@@ -24691,7 +25017,7 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of authentication keys.</p></td>
 </tr>
 </tbody>
 </table>
@@ -24725,6 +25051,12 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 </div>
 <div class="sect3">
 <h4 id="services/openstack_volume_authentication_keys/methods/list"><a class="anchor" href="#services/openstack_volume_authentication_keys/methods/list"></a>6.141.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of authentication keys.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of authentication keys isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 439. Parameters summary</caption>
 <colgroup>
@@ -25045,6 +25377,9 @@ to run following request where 123 is an id of a provider.</p>
 <div class="paragraph">
 <p>Retrieves the list of volume providers.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of volume providers isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 448. Parameters summary</caption>
 <colgroup>
@@ -25151,12 +25486,18 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of volume types.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/openstack_volume_types/methods/list"><a class="anchor" href="#services/openstack_volume_types/methods/list"></a>6.145.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of volume types.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of volume types isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 452. Parameters summary</caption>
 <colgroup>
@@ -25248,6 +25589,9 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect2">
 <h3 id="services/operating_systems"><a class="anchor" href="#services/operating_systems"></a>6.147. OperatingSystems</h3>
+<div class="paragraph">
+<p>Manages the set of types of operating systems available in the system.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 455. Methods summary</caption>
 <colgroup>
@@ -25263,12 +25607,18 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of types of operating system available in the system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/operating_systems/methods/list"><a class="anchor" href="#services/operating_systems/methods/list"></a>6.147.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of types of operating system available in the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of operating systems isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 456. Parameters summary</caption>
 <colgroup>
@@ -25613,6 +25963,9 @@ send a request like this:</p>
 &lt;/permits&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of permits isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 465. Parameters summary</caption>
 <colgroup>
@@ -25838,6 +26191,9 @@ https://engine/ovirt-engine/api/datacenters/123/qoss/123</code></pre>
 </div>
 <div class="sect2">
 <h3 id="services/qoss"><a class="anchor" href="#services/qoss"></a>6.152. Qoss</h3>
+<div class="paragraph">
+<p>Manages the set of <em>quality of service</em> configurations available in a data center.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 470. Methods summary</caption>
 <colgroup>
@@ -25857,7 +26213,7 @@ https://engine/ovirt-engine/api/datacenters/123/qoss/123</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of <em>quality of service</em> configurations available in the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -25891,6 +26247,29 @@ https://engine/ovirt-engine/api/datacenters/123/qoss/123</code></pre>
 </div>
 <div class="sect3">
 <h4 id="services/qoss/methods/list"><a class="anchor" href="#services/qoss/methods/list"></a>6.152.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of <em>quality of service</em> configurations available in the data center.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/datacenter/123/qoss</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will get response which will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;qoss&gt;
+  &lt;qos href="/ovirt-engine/api/datacenters/123/qoss/1" id="1"&gt;...&lt;/qos&gt;
+  &lt;qos href="/ovirt-engine/api/datacenters/123/qoss/2" id="2"&gt;...&lt;/qos&gt;
+  &lt;qos href="/ovirt-engine/api/datacenters/123/qoss/3" id="3"&gt;...&lt;/qos&gt;
+&lt;/qoss&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The returned list of quality of service configurations isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 472. Parameters summary</caption>
 <colgroup>
@@ -26192,6 +26571,9 @@ Content-type: application/xml</code></pre>
 </div>
 <div class="sect2">
 <h3 id="services/quota_cluster_limits"><a class="anchor" href="#services/quota_cluster_limits"></a>6.155. QuotaClusterLimits</h3>
+<div class="paragraph">
+<p>Manages the set of quota limits configured for a cluster.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 480. Methods summary</caption>
 <colgroup>
@@ -26211,7 +26593,7 @@ Content-type: application/xml</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the set of quota limits configured for the cluster.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26245,6 +26627,12 @@ Content-type: application/xml</code></pre>
 </div>
 <div class="sect3">
 <h4 id="services/quota_cluster_limits/methods/list"><a class="anchor" href="#services/quota_cluster_limits/methods/list"></a>6.155.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the set of quota limits configured for the cluster.</p>
+</div>
+<div class="paragraph">
+<p>The returned list of quota limits isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 482. Parameters summary</caption>
 <colgroup>
@@ -26368,6 +26756,9 @@ Content-type: application/xml</code></pre>
 </div>
 <div class="sect2">
 <h3 id="services/quota_storage_limits"><a class="anchor" href="#services/quota_storage_limits"></a>6.157. QuotaStorageLimits</h3>
+<div class="paragraph">
+<p>Manages the set of storage limits configured for a quota.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 486. Methods summary</caption>
 <colgroup>
@@ -26387,7 +26778,7 @@ Content-type: application/xml</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage limits configured for the quota.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26421,6 +26812,12 @@ Content-type: application/xml</code></pre>
 </div>
 <div class="sect3">
 <h4 id="services/quota_storage_limits/methods/list"><a class="anchor" href="#services/quota_storage_limits/methods/list"></a>6.157.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of storage limits configured for the quota.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of storage limits isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 488. Parameters summary</caption>
 <colgroup>
@@ -26462,6 +26859,9 @@ Content-type: application/xml</code></pre>
 </div>
 <div class="sect2">
 <h3 id="services/quotas"><a class="anchor" href="#services/quotas"></a>6.158. Quotas</h3>
+<div class="paragraph">
+<p>Manages the set of quotas configured for a data center.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 489. Methods summary</caption>
 <colgroup>
@@ -26481,7 +26881,7 @@ Content-type: application/xml</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lists quotas of a data center</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists quotas of a data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26535,7 +26935,10 @@ Content-type: application/xml</code></pre>
 <div class="sect3">
 <h4 id="services/quotas/methods/list"><a class="anchor" href="#services/quotas/methods/list"></a>6.158.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Lists quotas of a data center</p>
+<p>Lists quotas of a data center.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of quotas isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 491. Parameters summary</caption>
@@ -26865,6 +27268,9 @@ send a request like this (note that you have to pass permit id):</p>
 &lt;/roles&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of roles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 498. Parameters summary</caption>
 <colgroup>
@@ -26906,6 +27312,9 @@ send a request like this (note that you have to pass permit id):</p>
 </div>
 <div class="sect2">
 <h3 id="services/scheduling_policies"><a class="anchor" href="#services/scheduling_policies"></a>6.161. SchedulingPolicies</h3>
+<div class="paragraph">
+<p>Manages the set of scheduling policies available in the system.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 499. Methods summary</caption>
 <colgroup>
@@ -26925,7 +27334,7 @@ send a request like this (note that you have to pass permit id):</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of scheduling policies available in the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -26959,6 +27368,12 @@ send a request like this (note that you have to pass permit id):</p>
 </div>
 <div class="sect3">
 <h4 id="services/scheduling_policies/methods/list"><a class="anchor" href="#services/scheduling_policies/methods/list"></a>6.161.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of scheduling policies available in the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of scheduling policies isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 501. Parameters summary</caption>
 <colgroup>
@@ -27220,6 +27635,9 @@ send a request like this (note that you have to pass permit id):</p>
 </div>
 <div class="sect2">
 <h3 id="services/scheduling_policy_units"><a class="anchor" href="#services/scheduling_policy_units"></a>6.164. SchedulingPolicyUnits</h3>
+<div class="paragraph">
+<p>Manages the set of scheduling policy units available in the system.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 509. Methods summary</caption>
 <colgroup>
@@ -27235,12 +27653,18 @@ send a request like this (note that you have to pass permit id):</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of scheduling policy units available in the system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/scheduling_policy_units/methods/list"><a class="anchor" href="#services/scheduling_policy_units/methods/list"></a>6.164.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of scheduling policy units available in the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of scheduling policy units isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 510. Parameters summary</caption>
 <colgroup>
@@ -27484,6 +27908,9 @@ request like this:</p>
 </div>
 <div class="sect2">
 <h3 id="services/snapshot_cdroms"><a class="anchor" href="#services/snapshot_cdroms"></a>6.167. SnapshotCdroms</h3>
+<div class="paragraph">
+<p>Manages the set of CD-ROM devices of a virtual machine snapshot.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 517. Methods summary</caption>
 <colgroup>
@@ -27499,12 +27926,18 @@ request like this:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of CD-ROM devices of the snapshot.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/snapshot_cdroms/methods/list"><a class="anchor" href="#services/snapshot_cdroms/methods/list"></a>6.167.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of CD-ROM devices of the snapshot.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of CD-ROM devices isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 518. Parameters summary</caption>
 <colgroup>
@@ -27596,6 +28029,9 @@ request like this:</p>
 </div>
 <div class="sect2">
 <h3 id="services/snapshot_disks"><a class="anchor" href="#services/snapshot_disks"></a>6.169. SnapshotDisks</h3>
+<div class="paragraph">
+<p>Manages the set of disks of an snapshot.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 521. Methods summary</caption>
 <colgroup>
@@ -27611,12 +28047,18 @@ request like this:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disks of the snapshot.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/snapshot_disks/methods/list"><a class="anchor" href="#services/snapshot_disks/methods/list"></a>6.169.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disks of the snapshot.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 522. Parameters summary</caption>
 <colgroup>
@@ -27708,6 +28150,9 @@ request like this:</p>
 </div>
 <div class="sect2">
 <h3 id="services/snapshot_nics"><a class="anchor" href="#services/snapshot_nics"></a>6.171. SnapshotNics</h3>
+<div class="paragraph">
+<p>Manages the set of NICs of an snapshot.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 525. Methods summary</caption>
 <colgroup>
@@ -27723,12 +28168,18 @@ request like this:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of NICs of the snapshot.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/snapshot_nics/methods/list"><a class="anchor" href="#services/snapshot_nics/methods/list"></a>6.171.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of NICs of the snapshot.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of NICs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 526. Parameters summary</caption>
 <colgroup>
@@ -27770,6 +28221,9 @@ request like this:</p>
 </div>
 <div class="sect2">
 <h3 id="services/snapshots"><a class="anchor" href="#services/snapshots"></a>6.172. Snapshots</h3>
+<div class="paragraph">
+<p>Manages the set of snapshots of a storage domain or virtual machine.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 527. Methods summary</caption>
 <colgroup>
@@ -27789,7 +28243,7 @@ request like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of snapshots of the storage domain or virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
@@ -27869,6 +28323,12 @@ servers, for example). In those cases make sure that you set the attribute to <c
 </div>
 <div class="sect3">
 <h4 id="services/snapshots/methods/list"><a class="anchor" href="#services/snapshots/methods/list"></a>6.172.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of snapshots of the storage domain or virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of snapshots isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 529. Parameters summary</caption>
 <colgroup>
@@ -28049,7 +28509,7 @@ servers, for example). In those cases make sure that you set the attribute to <c
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns ths list of SSH public keys of the user.</p></td>
 </tr>
 </tbody>
 </table>
@@ -28083,6 +28543,12 @@ servers, for example). In those cases make sure that you set the attribute to <c
 </div>
 <div class="sect3">
 <h4 id="services/ssh_public_keys/methods/list"><a class="anchor" href="#services/ssh_public_keys/methods/list"></a>6.174.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns ths list of SSH public keys of the user.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of keys isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 536. Parameters summary</caption>
 <colgroup>
@@ -28257,6 +28723,9 @@ request like this:</p>
   &lt;vm href="/ovirt-engine/api/vms/123" id="123"/&gt;
 &lt;/statistic&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of statistics isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 540. Parameters summary</caption>
@@ -28587,6 +29056,9 @@ following request:</p>
   ...
 &lt;/steps&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of steps isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 546. Parameters summary</caption>
@@ -29256,6 +29728,9 @@ an update is needed or not.</p>
 </div>
 <div class="sect2">
 <h3 id="services/storage_domain_content_disks"><a class="anchor" href="#services/storage_domain_content_disks"></a>6.182. StorageDomainContentDisks</h3>
+<div class="paragraph">
+<p>Manages the set of disks available in a storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 559. Methods summary</caption>
 <colgroup>
@@ -29271,12 +29746,19 @@ an update is needed or not.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disks available in the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/storage_domain_content_disks/methods/list"><a class="anchor" href="#services/storage_domain_content_disks/methods/list"></a>6.182.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disks available in the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disks is guaranteed only if the <code>sortby</code> clause is included in
+the <code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 560. Parameters summary</caption>
 <colgroup>
@@ -29424,6 +29906,9 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="services/storage_domain_server_connections"><a class="anchor" href="#services/storage_domain_server_connections"></a>6.184. StorageDomainServerConnections</h3>
+<div class="paragraph">
+<p>Manages the set of connections to storage servers that exist in a storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 564. Methods summary</caption>
 <colgroup>
@@ -29443,7 +29928,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of connections to storage servers that existin the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -29477,6 +29962,12 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="services/storage_domain_server_connections/methods/list"><a class="anchor" href="#services/storage_domain_server_connections/methods/list"></a>6.184.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of connections to storage servers that existin the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of connections isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 566. Parameters summary</caption>
 <colgroup>
@@ -29777,6 +30268,9 @@ registration of a template when some of the storage domains are not available. T
 </div>
 <div class="sect2">
 <h3 id="services/storage_domain_templates"><a class="anchor" href="#services/storage_domain_templates"></a>6.186. StorageDomainTemplates</h3>
+<div class="paragraph">
+<p>Manages the set of templates available in a storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 572. Methods summary</caption>
 <colgroup>
@@ -29792,12 +30286,18 @@ registration of a template when some of the storage domains are not available. T
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of templates availalbe in the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/storage_domain_templates/methods/list"><a class="anchor" href="#services/storage_domain_templates/methods/list"></a>6.186.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of templates availalbe in the storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of templates isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 573. Parameters summary</caption>
 <colgroup>
@@ -30293,6 +30793,9 @@ value is <code>false</code>.</p>
 <div class="paragraph">
 <p>List the disks that are attached to the virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of disk attachments isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 582. Parameters summary</caption>
 <colgroup>
@@ -30372,12 +30875,18 @@ action.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of virtual machines of the export storage domain.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/storage_domain_vms/methods/list"><a class="anchor" href="#services/storage_domain_vms/methods/list"></a>6.190.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of virtual machines of the export storage domain.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of virtual machines isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 584. Parameters summary</caption>
 <colgroup>
@@ -30445,6 +30954,9 @@ The request only apply to storage domains that are attached.</p>
 </div>
 <div class="sect2">
 <h3 id="services/storage_domains"><a class="anchor" href="#services/storage_domains"></a>6.191. StorageDomains</h3>
+<div class="paragraph">
+<p>Manages the set of storage domains of the system.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 585. Methods summary</caption>
 <colgroup>
@@ -30464,7 +30976,7 @@ The request only apply to storage domains that are attached.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -30576,6 +31088,13 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 </div>
 <div class="sect3">
 <h4 id="services/storage_domains/methods/list"><a class="anchor" href="#services/storage_domains/methods/list"></a>6.191.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of storage domains of the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of storage domains is guaranteed only if the <code>sortby</code> clause is included
+in the <code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 587. Parameters summary</caption>
 <colgroup>
@@ -30996,7 +31515,7 @@ send a request like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list os storage connection extensions.</p></td>
 </tr>
 </tbody>
 </table>
@@ -31055,6 +31574,12 @@ like this:</p>
 </div>
 <div class="sect3">
 <h4 id="services/storage_server_connection_extensions/methods/list"><a class="anchor" href="#services/storage_server_connection_extensions/methods/list"></a>6.194.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list os storage connection extensions.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of storage connections isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 598. Parameters summary</caption>
 <colgroup>
@@ -31115,7 +31640,7 @@ like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage connections.</p></td>
 </tr>
 </tbody>
 </table>
@@ -31176,6 +31701,12 @@ like this:</p>
 </div>
 <div class="sect3">
 <h4 id="services/storage_server_connections/methods/list"><a class="anchor" href="#services/storage_server_connections/methods/list"></a>6.195.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of storage connections.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of connections isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 601. Parameters summary</caption>
 <colgroup>
@@ -31537,6 +32068,9 @@ id <code>123</code> to the group with id <code>789</code> send a request like th
 &lt;/permissions&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned permissions isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 607. Parameters summary</caption>
 <colgroup>
@@ -31896,6 +32430,9 @@ The root tag cannot be deleted nor assigned a parent tag.
   - root2    (id: 222)
     - root3  (id: 333)</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of tags isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 614. Parameters summary</caption>
@@ -32299,12 +32836,18 @@ and optionally the inserted disk.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of CD-ROM devices of the template.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/template_cdroms/methods/list"><a class="anchor" href="#services/template_cdroms/methods/list"></a>6.202.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of CD-ROM devices of the template.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of CD-ROM devices isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 623. Parameters summary</caption>
 <colgroup>
@@ -32639,6 +33182,9 @@ have copies on multiple storage domains).</p>
 <div class="paragraph">
 <p>List the disks that are attached to the template.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of attachments isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 633. Parameters summary</caption>
 <colgroup>
@@ -32683,12 +33229,18 @@ have copies on multiple storage domains).</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disks of the template.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/template_disks/methods/list"><a class="anchor" href="#services/template_disks/methods/list"></a>6.206.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disks of the template.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 635. Parameters summary</caption>
 <colgroup>
@@ -32877,6 +33429,9 @@ have copies on multiple storage domains).</p>
 <div class="paragraph">
 <p>Lists all the configured graphics consoles of the template.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of graphics consoles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 641. Parameters summary</caption>
 <colgroup>
@@ -33057,7 +33612,7 @@ have copies on multiple storage domains).</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of NICs of the template.</p></td>
 </tr>
 </tbody>
 </table>
@@ -33091,6 +33646,12 @@ have copies on multiple storage domains).</p>
 </div>
 <div class="sect3">
 <h4 id="services/template_nics/methods/list"><a class="anchor" href="#services/template_nics/methods/list"></a>6.210.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of NICs of the template.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of NICs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 648. Parameters summary</caption>
 <colgroup>
@@ -33271,7 +33832,7 @@ have copies on multiple storage domains).</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of watchdogs.</p></td>
 </tr>
 </tbody>
 </table>
@@ -33305,6 +33866,12 @@ have copies on multiple storage domains).</p>
 </div>
 <div class="sect3">
 <h4 id="services/template_watchdogs/methods/list"><a class="anchor" href="#services/template_watchdogs/methods/list"></a>6.212.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of watchdogs.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of watchdogs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 655. Parameters summary</caption>
 <colgroup>
@@ -33543,6 +34110,9 @@ machines without manual intervention.</p>
 <div class="paragraph">
 <p>Will return the list of virtual machines and virtual machine templates.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of templates isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 658. Parameters summary</caption>
 <colgroup>
@@ -33708,12 +34278,18 @@ ignoring case set it to <code>false</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of unmanaged networks of the host.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/unmanaged_networks/methods/list"><a class="anchor" href="#services/unmanaged_networks/methods/list"></a>6.215.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of unmanaged networks of the host.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of networks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 663. Parameters summary</caption>
 <colgroup>
@@ -34024,6 +34600,9 @@ authorization provider send a request body like this:</p>
 &lt;/users&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of users isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 669. Parameters summary</caption>
 <colgroup>
@@ -34187,7 +34766,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of networks.</p></td>
 </tr>
 </tbody>
 </table>
@@ -34221,6 +34800,12 @@ ignoring case set it to <code>false</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="services/virtual_function_allowed_networks/methods/list"><a class="anchor" href="#services/virtual_function_allowed_networks/methods/list"></a>6.219.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of networks.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of networks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 675. Parameters summary</caption>
 <colgroup>
@@ -35784,6 +36369,9 @@ version) and <code>vm</code> attribute identifying the virtual machine.</p>
 <div class="paragraph">
 <p>Returns a list of applications installed in the virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of applications isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 702. Parameters summary</caption>
 <colgroup>
@@ -36109,6 +36697,9 @@ CDROM device.</p>
 <h4 id="services/vm_cdroms/methods/list"><a class="anchor" href="#services/vm_cdroms/methods/list"></a>6.224.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Returns the list of CDROM devices of the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of CD-ROM devices isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 707. Parameters summary</caption>
@@ -36447,7 +37038,7 @@ method of the top level disk service</a>.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of disks of the virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
@@ -36481,6 +37072,12 @@ method of the top level disk service</a>.
 </div>
 <div class="sect3">
 <h4 id="services/vm_disks/methods/list"><a class="anchor" href="#services/vm_disks/methods/list"></a>6.226.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of disks of the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of disks isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 718. Parameters summary</caption>
 <colgroup>
@@ -36912,6 +37509,9 @@ connect to virtual machine graphic console.</p>
 <div class="paragraph">
 <p>Lists all the configured graphics consoles of the virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of graphics consoles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 727. Parameters summary</caption>
 <colgroup>
@@ -37221,6 +37821,9 @@ for it, and its <code>placeholder</code> flag will be cleared, and the device wi
 <h4 id="services/vm_host_devices/methods/list"><a class="anchor" href="#services/vm_host_devices/methods/list"></a>6.230.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>List the host devices assigned to given virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of devices isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 733. Parameters summary</caption>
@@ -37563,7 +38166,7 @@ Example operating systems include:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of NICs of the virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37674,6 +38277,12 @@ Example operating systems include:</p>
 </div>
 <div class="sect3">
 <h4 id="services/vm_nics/methods/list"><a class="anchor" href="#services/vm_nics/methods/list"></a>6.232.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of NICs of the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of NICs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 742. Parameters summary</caption>
 <colgroup>
@@ -37957,6 +38566,9 @@ Content-type: application/xml</code></pre>
 <h4 id="services/vm_numa_nodes/methods/list"><a class="anchor" href="#services/vm_numa_nodes/methods/list"></a>6.234.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Lists virtual NUMA nodes of a virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of NUMA nodes isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 749. Parameters summary</caption>
@@ -38341,6 +38953,10 @@ created.</p>
 &lt;/vm_pools&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of pools is guaranteed only if the <code>sortby</code> clause is included in the
+<code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 757. Parameters summary</caption>
 <colgroup>
@@ -38474,12 +39090,18 @@ ignoring case set it to <code>false</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of reported devices of the virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="services/vm_reported_devices/methods/list"><a class="anchor" href="#services/vm_reported_devices/methods/list"></a>6.238.1. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of reported devices of the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of devices isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 761. Parameters summary</caption>
 <colgroup>
@@ -38623,6 +39245,9 @@ ignoring case set it to <code>false</code>.</p>
   ...
 &lt;/sessions&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of sessions isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 765. Parameters summary</caption>
@@ -38960,6 +39585,9 @@ contains references to the added watchdog and to the virtual machine.</p>
 <div class="paragraph">
 <p>The list of watchdogs of the virtual machine.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of watchdogs isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 772. Parameters summary</caption>
 <colgroup>
@@ -39041,7 +39669,7 @@ virtual machine. It may look like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of virtual machines of the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -39338,6 +39966,13 @@ create a virtual machine from the <code>mytemplate</code> template copying its p
 </div>
 <div class="sect3">
 <h4 id="services/vms/methods/list"><a class="anchor" href="#services/vms/methods/list"></a>6.243.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of virtual machines of the system.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of virtual machines is guaranteed only if the <code>sortby</code> clause is included
+in the <code>search</code> parameter.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 775. Parameters summary</caption>
 <colgroup>
@@ -39718,6 +40353,9 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 <div class="paragraph">
 <p>List all vNIC profiles.</p>
 </div>
+<div class="paragraph">
+<p>The order of the returned list of vNIC profiles isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 782. Parameters summary</caption>
 <colgroup>
@@ -39866,7 +40504,7 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of weights.</p></td>
 </tr>
 </tbody>
 </table>
@@ -39900,6 +40538,12 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 </div>
 <div class="sect3">
 <h4 id="services/weights/methods/list"><a class="anchor" href="#services/weights/methods/list"></a>6.247.2. list <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Returns the list of weights.</p>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of weights isn&#8217;t guaranteed.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 788. Parameters summary</caption>
 <colgroup>
@@ -45281,6 +45925,11 @@ might be relevant.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The numeric index of this event.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
@@ -45316,6 +45965,28 @@ several events together.</p>
 This prevents flooding in case an event appeared
 more than once in the defined rate.
 Defaults is 30 seconds.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/event/attributes/index"><a class="anchor" href="#types/event/attributes/index"></a>7.62.3. index</h4>
+<div class="paragraph">
+<p>The numeric index of this event. The indexes of events are always increasing, so events with higher indexes
+are guaranteed to be older than events with lower indexes.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In the current implementation of the engine, the <code>id</code> attribute has the same value as this
+<code>index</code> attribute. That is an implementation detail that the user of the API should not rely on. In the future
+the <code>id</code> attribute may be changed to an arbitrary string, containing non numeric characters and no implicit
+order. On the other hand this <code>index</code> attribute is guaranteed to stay as integer and ordered.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 869. Links summary</caption>
@@ -45371,49 +46042,49 @@ Defaults is 30 seconds.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/cluster"><a class="anchor" href="#types/event/links/cluster"></a>7.62.3. cluster</h4>
+<h4 id="types/event/links/cluster"><a class="anchor" href="#types/event/links/cluster"></a>7.62.4. cluster</h4>
 <div class="paragraph">
 <p>Reference to the cluster service.
 Event can be associated with a cluster.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/data_center"><a class="anchor" href="#types/event/links/data_center"></a>7.62.4. data_center</h4>
+<h4 id="types/event/links/data_center"><a class="anchor" href="#types/event/links/data_center"></a>7.62.5. data_center</h4>
 <div class="paragraph">
 <p>Reference to the data center service.
 Event can be associated with a data center.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/host"><a class="anchor" href="#types/event/links/host"></a>7.62.5. host</h4>
+<h4 id="types/event/links/host"><a class="anchor" href="#types/event/links/host"></a>7.62.6. host</h4>
 <div class="paragraph">
 <p>Reference to the host service.
 Event can be associated with a host.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/storage_domain"><a class="anchor" href="#types/event/links/storage_domain"></a>7.62.6. storage_domain</h4>
+<h4 id="types/event/links/storage_domain"><a class="anchor" href="#types/event/links/storage_domain"></a>7.62.7. storage_domain</h4>
 <div class="paragraph">
 <p>Reference to the storage domain service.
 Event can be associated with a storage domain.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/template"><a class="anchor" href="#types/event/links/template"></a>7.62.7. template</h4>
+<h4 id="types/event/links/template"><a class="anchor" href="#types/event/links/template"></a>7.62.8. template</h4>
 <div class="paragraph">
 <p>Reference to the template service.
 Event can be associated with a template.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/user"><a class="anchor" href="#types/event/links/user"></a>7.62.8. user</h4>
+<h4 id="types/event/links/user"><a class="anchor" href="#types/event/links/user"></a>7.62.9. user</h4>
 <div class="paragraph">
 <p>Reference to the user service.
 Event can be associated with a user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/event/links/vm"><a class="anchor" href="#types/event/links/vm"></a>7.62.9. vm</h4>
+<h4 id="types/event/links/vm"><a class="anchor" href="#types/event/links/vm"></a>7.62.10. vm</h4>
 <div class="paragraph">
 <p>Reference to the virtual machine service.
 Event can be associated with a virtual machine.</p>
@@ -66998,7 +67669,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-03 10:40:28 UTC
+Last updated 2017-05-31 13:23:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
