@@ -28,8 +28,8 @@ public interface VmNicsService {
     /**
      * Adds a NIC to the virtual machine.
      *
-     * The following example adds a network interface named `mynic` using `virtio` and the `ovirtmgmt` network to the
-     * virtual machine.
+     * The following example adds to the virtual machine `123` a network interface named `mynic` using `virtio` and the
+     * NIC profile `456`.
      *
      * [source]
      * ----
@@ -39,11 +39,9 @@ public interface VmNicsService {
      * [source,xml]
      * ----
      * <nic>
-     *   <interface>virtio</interface>
      *   <name>mynic</name>
-     *   <network>
-     *     <name>ovirtmgmt</name>
-     *   </network>
+     *   <interface>virtio</interface>
+     *   <vnic_profile id="456"/>
      * </nic>
      * ----
      *
@@ -61,9 +59,8 @@ public interface VmNicsService {
      * --data '
      * <nic>
      *   <name>mynic</name>
-     *   <network>
-     *     <name>ovirtmgmt</name>
-     *   </network>
+     *   <interface>virtio</interface>
+     *   <vnic_profile id="456"/>
      * </nic>
      * ' \
      * https://myengine.example.com/ovirt-engine/api/vms/123/nics
