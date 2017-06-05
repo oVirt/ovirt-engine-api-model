@@ -181,6 +181,9 @@ public class JaxrsGenerator extends JavaGenerator {
         Map<Method, Set<Method>> baseMethods = jaxrsGeneratorUtils.getBaseMethodsMap(methods);
         methods.forEach(x -> generateMethod(x, helperClassName, baseMethods));
 
+        // Generate 'follow()' method (should exist in all interfaces).
+        generateFollowMethod();
+
         // Generate the resource locators:
         List<Locator> locators = service.getDeclaredLocators();
         locators.forEach(x -> generateLocator(x));
@@ -197,6 +200,13 @@ public class JaxrsGenerator extends JavaGenerator {
         }
 
         javaBuffer.addLine("}");
+    }
+
+    private void generateFollowMethod() {
+        javaBuffer.addImport(javaPackages.getXjcPackageName(), "ActionableResource");
+        javaBuffer.addLine("default public void follow (ActionableResource entity) {");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine();
     }
 
     private void generateActionLocator(List<Method> actions) {
@@ -365,7 +375,6 @@ public class JaxrsGenerator extends JavaGenerator {
         // the RSDL.
         Service service = method.getDeclaringService();
         boolean isRoot = service == service.getModel().getRoot();
-        generateDoc(method);
         javaBuffer.addImport(GET.class);
         javaBuffer.addLine("@GET");
         if (isRoot)  {
@@ -376,10 +385,24 @@ public class JaxrsGenerator extends JavaGenerator {
             Type mainType = mainParameter.getType();
             JavaTypeReference mainTypeReference = schemaNames.getXjcTypeReference(mainType);
             javaBuffer.addImports(mainTypeReference.getImports());
+            //add doGet() method with default implementation
+            generateDoGetMethod(mainParameter, mainTypeReference);
+            generateDoc(method);
+            javaBuffer.addLine();
+            //add get() method
             addMethod(mainTypeReference.getText(), "get()");
         }
 
         javaBuffer.addLine();
+    }
+
+    private void generateDoGetMethod(Parameter mainParameter, JavaTypeReference mainTypeReference) {
+        String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
+        javaBuffer.addLine("default public %s doGet() {", mainTypeReference.getText());
+        javaBuffer.addLine("%s %s = get();", mainTypeReference.getText(), parameterName);
+        javaBuffer.addLine("follow(%s);", parameterName);
+        javaBuffer.addLine("return %s;", parameterName);
+        javaBuffer.addLine("}");
     }
 
     private void generateListMethod(Method method) {
@@ -402,10 +425,22 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addImports(mainTypeReference.getImports());
 
         // Generate the method:
-        generateDoc(method);
         javaBuffer.addLine("@GET");
+
+        // Generate doList() method:
+        generateDoListMethod(mainParameter, mainTypeReference);
+        generateDoc(method);
         addMethod(mainTypeReference.getText(), "list()");
         javaBuffer.addLine();
+    }
+
+    private void generateDoListMethod(Parameter mainParameter, JavaTypeReference mainTypeReference) {
+        String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
+        javaBuffer.addLine("default public %s doList() {", mainTypeReference.getText());
+        javaBuffer.addLine("%s %s = list();", mainTypeReference.getText(), parameterName);
+        javaBuffer.addLine("follow(%s);", parameterName);
+        javaBuffer.addLine("return %s;", parameterName);
+        javaBuffer.addLine("}");
     }
 
     private void generateRemoveMethod(Method method) {
