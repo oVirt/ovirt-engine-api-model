@@ -39848,8 +39848,8 @@ Example operating systems include:</p>
 <p>Adds a NIC to the virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>The following example adds a network interface named <code>mynic</code> using <code>virtio</code> and the <code>ovirtmgmt</code> network to the
-virtual machine.</p>
+<p>The following example adds to the virtual machine <code>123</code> a network interface named <code>mynic</code> using <code>virtio</code> and the
+NIC profile <code>456</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -39859,11 +39859,9 @@ virtual machine.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;nic&gt;
-  &lt;interface&gt;virtio&lt;/interface&gt;
   &lt;name&gt;mynic&lt;/name&gt;
-  &lt;network&gt;
-    &lt;name&gt;ovirtmgmt&lt;/name&gt;
-  &lt;/network&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;vnic_profile id="456"/&gt;
 &lt;/nic&gt;</code></pre>
 </div>
 </div>
@@ -39882,9 +39880,8 @@ virtual machine.</p>
 --data '
 &lt;nic&gt;
   &lt;name&gt;mynic&lt;/name&gt;
-  &lt;network&gt;
-    &lt;name&gt;ovirtmgmt&lt;/name&gt;
-  &lt;/network&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;vnic_profile id="456"/&gt;
 &lt;/nic&gt;
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/123/nics</code></pre>
@@ -69490,7 +69487,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-31 13:10:47 UTC
+Last updated 2017-06-05 17:20:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
