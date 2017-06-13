@@ -22,6 +22,7 @@ import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
+import types.Host;
 import types.StorageDomain;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
@@ -323,6 +324,55 @@ public interface DiskService extends MeasurableService {
      * @since 4.1
      */
     interface Sparsify {
+    }
+
+    /**
+     * Refreshes a direct LUN disk with up-to-date information from the storage.
+     *
+     * Refreshing a direct LUN disk is useful when:
+     *
+     * - The LUN was added using the API without the host parameter, and therefore does not contain
+     *   any information from the storage (see <<services/disks/methods/add, DisksService::add>>).
+     * - New information about the LUN is available on the storage and you want to update the LUN with it.
+     *
+     * To refresh direct LUN disk `123` using host `456`, send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks/123/refreshlun
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <host id='456'/>
+     * </action>
+     * ----
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 28 June 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    interface RefreshLun {
+        /**
+         * The host that will be used to refresh the direct LUN disk.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 28 June 2017
+         * @status updated_by_docs
+         * @since 4.2
+         */
+        @In Host host();
+
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(host().id()), mandatory(host().name()));
+        }
     }
 
     /**
