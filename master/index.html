@@ -66561,7 +66561,7 @@ Currently, its implication is that a sound device will not be automatically adde
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>migratable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marks, whether <code>pass_through</code> NIC is migratable or not.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marks whether <code>pass_through</code> NIC is migratable or not.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -66571,7 +66571,7 @@ Currently, its implication is that a sound device will not be automatically adde
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pass_through</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_pass_through">VnicPassThrough</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_mirroring</code></p></td>
@@ -66583,21 +66583,21 @@ Currently, its implication is that a sound device will not be automatically adde
 <div class="sect3">
 <h4 id="types/vnic_profile/attributes/migratable"><a class="anchor" href="#types/vnic_profile/attributes/migratable"></a>7.284.1. migratable</h4>
 <div class="paragraph">
-<p>Marks, whether <code>pass_through</code> NIC is migratable or not.</p>
+<p>Marks whether <code>pass_through</code> NIC is migratable or not.</p>
 </div>
 <div class="paragraph">
 <p>If <code>pass_through.mode</code> is set to <code>disabled</code> this option has no meaning, and it will be considered to be <code>true</code>.
-If you omit this option from request, by default, this will be set to <code>true</code>.</p>
+If you omit this option from a request, by default, this will be set to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>When migrating virtual machine, this virtual machine will be migrated only if all <code>pass_through</code> NICs are
+<p>When migrating a virtual machine, this virtual machine will be migrated only if all <code>pass_through</code> NICs are
 flagged as <code>migratable</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>7.284.2. pass_through</h4>
 <div class="paragraph">
-<p>Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
+<p>Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
 </div>
 <div class="paragraph">
 <p>A vNIC profile enables a NIC to be directly connected to a
@@ -66606,7 +66606,7 @@ host NIC, if passthrough is enabled. The NIC will then bypass the software netwo
 connect directly to the VF for direct device assignment.</p>
 </div>
 <div class="paragraph">
-<p>The passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
+<p>Passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
 If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirroring</code> are disabled for the vNIC profile.</p>
 </div>
 </div>
@@ -66616,12 +66616,12 @@ If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirro
 <p>Enables port mirroring.</p>
 </div>
 <div class="paragraph">
-<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a>and
+<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a> and
 <a href="#types/host">host</a> to a NIC on a <a href="#types/vm">virtual machine</a>. This virtual machine
 can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
-virtual machine on the same host and logical network. The only
+virtual machines on the same host and logical network. The only
 traffic copied is internal to one logical network on one host. There is no
-increase on traffic on the network external to the host; however a virtual machine
+increase in traffic on the network external to the host; however a virtual machine
 with port mirroring enabled uses more host CPU and RAM than other virtual machines.</p>
 </div>
 <div class="paragraph">
@@ -66630,7 +66630,7 @@ with port mirroring enabled uses more host CPU and RAM than other virtual machin
 <div class="ulist">
 <ul>
 <li>
-<p>Hot plugging NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
+<p>Hot plugging a NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
 </li>
 <li>
 <p>Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.</p>
@@ -66676,7 +66676,7 @@ Enabling port mirroring reduces the privacy of other network users.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_filter">NetworkFilter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that apply to the NICs that use this profile.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that applies to the NICs that use this profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>permissions</code></p></td>
@@ -66694,13 +66694,13 @@ Enabling port mirroring reduces the privacy of other network users.
 <div class="sect3">
 <h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>7.284.4. network_filter</h4>
 <div class="paragraph">
-<p>Reference to the top-level network filter that apply to the NICs that use this profile.</p>
+<p>Reference to the top-level network filter that applies to the NICs that use this profile.</p>
 </div>
 <div class="paragraph">
-<p>Network filters will enhance the admin ability to manage the network packets traffic
-from/to the participated virtual machines.
-The network filter may either contain a references to other filters, rules for traffic
-filtering, or hold a combination of both.</p>
+<p>Network filters enhance the ability to manage the network packets traffic
+to and from virtual machines.
+The network filter may either contain a reference to other filters, rules for traffic
+filtering, or a combination of both.</p>
 </div>
 </div>
 <div class="sect3">
@@ -69487,7 +69487,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-05 17:20:59 UTC
+Last updated 2017-06-19 07:10:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
