@@ -873,6 +873,18 @@ public interface VmService extends MeasurableService {
          */
         @In Boolean filter();
 
+        /**
+         * Indicates that this run configuration will be discarded even in the case of guest-initiated reboot.
+         * The default value is `false`.
+         *
+         * @author Martin Betak <mbetak@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 23 Jun 2017
+         * @status updated_by_docs
+         * @since 4.2.0
+         */
+        @In Boolean _volatile();
+
         @InputDetail
         default void inputDetail() {
             optional(pause());
@@ -930,6 +942,7 @@ public interface VmService extends MeasurableService {
             optional(vm().initialization().nicConfigurations()[COLLECTION].ip().netmask());
             optional(vm().initialization().nicConfigurations()[COLLECTION].name());
             optional(vm().initialization().nicConfigurations()[COLLECTION].onBoot());
+            optional(_volatile());
         }
 
     }
