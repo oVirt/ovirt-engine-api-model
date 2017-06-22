@@ -360,6 +360,30 @@ public class ExpressionAnalyzerTest {
     }
 
     /**
+     * Checks that underscore prefixes are removed from method names.
+     */
+    @Test
+    public void testRemovesUnderscorePrefix() {
+        assertOne("return _volatile();", "volatile()");
+    }
+
+    /**
+     * Checks that underscore suffixes are removed from method names.
+     */
+    @Test
+    public void testRemovesUnderscoreSuffix() {
+        assertOne("return volatile_();", "volatile()");
+    }
+
+    /**
+     * Checks that underscore prefixes and suffixes are removed from method names.
+     */
+    @Test
+    public void testRemovesUnderscorePrefixAndSuffix() {
+        assertOne("return _volatile_();", "volatile()");
+    }
+
+    /**
      * Analyzes a expression and checks that converting it to a string gives the expected value.
      *
      * @param source the source code of the expression

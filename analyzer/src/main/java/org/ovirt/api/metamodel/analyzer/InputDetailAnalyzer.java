@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2016 Red Hat, Inc.
+Copyright (c) 2016-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 package org.ovirt.api.metamodel.analyzer;
 
 import java.util.List;
@@ -29,7 +30,6 @@ import org.ovirt.api.metamodel.concepts.Parameter;
 import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
-import org.ovirt.api.metamodel.analyzer.MethodExpression;
 
 public class InputDetailAnalyzer {
 

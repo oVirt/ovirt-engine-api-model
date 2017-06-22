@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@ limitations under the License.
 */
 
 package org.ovirt.api.metamodel.analyzer;
+
+import static org.ovirt.api.metamodel.analyzer.ModelNameParser.parseJavaName;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -983,23 +985,5 @@ public class ModelAnalyzer {
             text = text.substring(0, text.length() - suffix.length());
         }
         return text;
-    }
-
-    /**
-     * Creates a model name from a Java name, doing any processing that is required, for example removing the prefixes
-     * or suffixes that are used to avoid conflicts with Java reserved words.
-     */
-    private Name parseJavaName(String text) {
-        // Remove the underscore prefixes and suffixes, as they only make sense to avoid conflicts with Java reserved
-        // words and they aren't needed in the model:
-        while (text.startsWith("_")) {
-            text = text.substring(1);
-        }
-        while (text.endsWith("_")) {
-            text = text.substring(0, text.length() - 1);
-        }
-
-        // Once the name is clean it can be parsed:
-        return NameParser.parseUsingCase(text);
     }
 }
