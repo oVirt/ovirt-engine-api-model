@@ -37512,6 +37512,12 @@ it can be started.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The definition of the virtual machine for this specific run.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>volatile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates that this run configuration will be discarded even in the case of guest-initiated reboot.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -37560,6 +37566,13 @@ See <a href="https://en.wikipedia.org/wiki/Sysprep">this</a> for details.</p>
 <div class="paragraph">
 <p>This will set the boot device to the CDROM only for this specific start. After the virtual machine is
 powered off, this definition will be reverted.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vm/methods/start/parameters/volatile"><a class="anchor" href="#services/vm/methods/start/parameters/volatile"></a>volatile</h5>
+<div class="paragraph">
+<p>Indicates that this run configuration will be discarded even in the case of guest-initiated reboot.
+The default value is <code>false</code>.</p>
 </div>
 </div>
 </div>
@@ -42678,6 +42691,11 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnic_profile_mappings</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_profile_mapping">VnicProfileMapping[]</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>volatile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -69487,7 +69505,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-22 13:02:07 UTC
+Last updated 2017-06-23 07:11:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
