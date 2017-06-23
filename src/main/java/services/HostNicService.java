@@ -86,4 +86,15 @@ public interface HostNicService extends MeasurableService {
      * in case that the current resource represents an SR-IOV physical function NIC.
      */
     @Service VirtualFunctionAllowedNetworksService virtualFunctionAllowedNetworks();
+
+    /**
+     * A reference to information elements received by LLDP on the NIC.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 14 Jul 2017
+     * @status updated_by_docs
+     * @since 4.1.5
+     */
+    @Service LinkLayerDiscoveryProtocolService linkLayerDiscoveryProtocolElements();
 }
