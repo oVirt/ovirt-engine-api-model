@@ -1,5 +1,7 @@
 package org.ovirt.api.metamodel.tool;
 
+import static java.util.stream.Collectors.joining;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -234,6 +236,18 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         return attributePath.toString();
     }
 
+    /**
+     * Builds the path corresponding to the given chain of members using the same names that are used in the XML and
+     * JSON representations. For example, if the chain is composed of {@code Vm.cpu} member and then {@code Cpu.name}
+     * then the returned string will be {@code cpu.name}.
+     */
+    private String getSchemaPath(List<MemberInvolvementTree> chain) {
+        return chain.stream()
+            .map(MemberInvolvementTree::getName)
+            .map(schemaNames::getSchemaTagName)
+            .collect(joining("."));
+    }
+
     private String isOrGet(Type type) {
         if (type!=null && type.getName()!=null && type.getName().toString().equals("boolean")) {
             return ".is";
@@ -281,23 +295,35 @@ public class JaxrsHelperGenerator extends JavaGenerator {
     }
 
     private void generateParameterValidation(Parameter parameter) {
-        String parameterName = javaNames.getJavaMemberStyleName(parameter.getName());
+        Name parameterName = parameter.getName();
+        String argName = javaNames.getJavaMemberStyleName(parameterName);
+        String tagName = schemaNames.getSchemaTagName(parameterName);
         List<MemberInvolvementTree> mandatoryAttributes = parameter.getMandatoryAttributes();
         if (parameter.isMandatory() || !mandatoryAttributes.isEmpty()) {
-            javaBuffer.addLine("if (" + parameterName + "==null) {");
-            javaBuffer.addLine("throw new IllegalArgumentException(\"" + parameterName + " is mandatory but was not provided.\");");
+            javaBuffer.addLine("if (%1$s == null) {", argName);
+            javaBuffer.addLine(
+                "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
+                tagName
+            );
             javaBuffer.addLine("}");
         }
         for (MemberInvolvementTree attribute : mandatoryAttributes) {
             List<MemberInvolvementTree> attributeComponents = stackAttributeComponents(attribute);
-            String attributePath = getAttributePath(attributeComponents);
+            String attributePath = getSchemaPath(attributeComponents);
             if (attribute.hasAlternative()) { //'OR' scenario
-                generateAlternativesValidation(parameter.getName(), attribute, attributeComponents, attributePath);
-
-            } else {
-                javaBuffer.addLine("if (" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(parameter.getName()), attributeComponents, Operator.OR, false) + ") {");
+                generateAlternativesValidation(parameterName, attribute, attributeComponents, attributePath);
+            }
+            else {
+                javaBuffer.addLine(
+                    "if (%1$s) {",
+                    getFullAttributeCheck(argName, attributeComponents, Operator.OR, false)
+                );
                 //(TODO: replace line below with invocation of CompletenessAssertor)
-                javaBuffer.addLine("throw new IllegalArgumentException(\"" + parameterName + attributePath + " is mandatory but was not provided.\");");
+                javaBuffer.addLine(
+                    "throw new IllegalArgumentException(\"Parameter '%1$s.%2$s' is mandatory but was not provided.\");",
+                    argName,
+                    attributePath
+                );
             }
             javaBuffer.addLine("}");
             javaBuffer.addLine();
@@ -309,8 +335,12 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         String condition1 = "if ( (" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(parameterName), attributeComponents, Operator.OR, false) + ")";
         String condition2 = "(" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(parameterName), alternativeAttributeComponents, Operator.OR, false) + ") ) {";
         javaBuffer.addLine(condition1 + " && " + condition2);
-        javaBuffer.addLine("throw new IllegalArgumentException(\"" + parameterName + attributePath + " or " +
-                parameterName + getAttributePath(alternativeAttributeComponents) + " are mandatory but both were not provided.\");");
+        javaBuffer.addLine(
+            "throw new IllegalArgumentException(\"Parameters '%1$s.%2$s' or '%1$s.%3$s' are mandatory but both were not provided.\");",
+            parameterName,
+            attributePath,
+            getSchemaPath(alternativeAttributeComponents)
+        );
     }
 
     private void generateActionValidation(Method method) {
@@ -333,10 +363,15 @@ public class JaxrsHelperGenerator extends JavaGenerator {
 
     private void generateActionParameterValidation(Parameter parameter) {
         Name paramName = parameter.getName();
+        String propertyName = javaNames.getJavaPropertyStyleName(paramName);
+        String tagName = schemaNames.getSchemaTagName(paramName);
         if (parameter.isMandatory()) {//a simple parameter being mandatory only happens in 'action's.
-            javaBuffer.addLine("if (action%s%s()==null) {", isOrGet(parameter.getType()), javaNames.getJavaClassStyleName(paramName));
+            javaBuffer.addLine("if (action%1$s%2$s() == null) {", isOrGet(parameter.getType()), propertyName);
             //(TODO: replace line below with invocation of CompletenessAssertor)
-            javaBuffer.addLine("throw new IllegalArgumentException(\"" + paramName + " is mandatory but was not provided.\");");
+            javaBuffer.addLine(
+                "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
+                tagName
+            );
             javaBuffer.addLine("}");
         }
         else {
@@ -345,23 +380,29 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                 MemberInvolvementTree component = new MemberInvolvementTree(new Name(parameter.getName()));
                 component.setType(parameter.getType());
                 attributeComponents.add(0, component);
-                String attributePath = getAttributePath(attributeComponents);
+                String attributePath = getSchemaPath(attributeComponents);
                 if (attribute.hasAlternative()) { //'OR' scenario
                     List<MemberInvolvementTree> alternativeAttributeComponents = stackAttributeComponents(attribute.getAlternative());
                     alternativeAttributeComponents.add(0, component);
                     String condition1 = "if ( (" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(new Name("action")), attributeComponents, Operator.OR, false) + ")";
                     String condition2 = "(" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(new Name("action")), alternativeAttributeComponents, Operator.OR, false) + ") ) {";
                     javaBuffer.addLine(condition1 + " && " + condition2);
-                    javaBuffer.addLine("throw new IllegalArgumentException(\"" + "action" + attributePath + " or " +
-                            "action" + getAttributePath(alternativeAttributeComponents) + " are mandatory but both were not provided.\");");
+                    javaBuffer.addLine(
+                        "throw new IllegalArgumentException(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
+                        attributePath,
+                        getSchemaPath(alternativeAttributeComponents)
+                     );
                 }
                 else {
                     javaBuffer.addLine("if (" + getFullAttributeCheck("action", attributeComponents, Operator.OR, false) + ") {");
                     //(TODO: replace line below with invocation of CompletenessAssertor)
-                    javaBuffer.addLine("throw new IllegalArgumentException(\"action" + attributePath + " is mandatory but was not provided.\");");
+                    javaBuffer.addLine(
+                        "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
+                        attributePath
+                    );
                 }
                 javaBuffer.addLine("}");
-                javaBuffer.addLine("");
+                javaBuffer.addLine();
             }
         }
     }
@@ -416,8 +457,8 @@ public class JaxrsHelperGenerator extends JavaGenerator {
     }
 
     private void validateActionNotNull() {
-        javaBuffer.addLine("if (action==null) {");
-        javaBuffer.addLine("throw new IllegalArgumentException(\"action is mandatory but was not provided.\");");
+        javaBuffer.addLine("if (action == null) {");
+        javaBuffer.addLine(  "throw new IllegalArgumentException(\"Action is mandatory but was not provided.\");");
         javaBuffer.addLine("}");
     }
 
