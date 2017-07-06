@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.8 / Jul 6 2017
+
+New features:
+
+* Generate `doGet` and `doList` methods so make sure that the `follow`
+  method is always invoked.
+
+* Enable automatic validation of input details.
+
+* Improve parameter validation messages.
+
 == 1.2.7 / Jun 22 2017
 
 Bug fixes:
