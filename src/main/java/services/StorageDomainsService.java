@@ -127,6 +127,7 @@ public interface StorageDomainsService {
             optional(storageDomain().comment());
             optional(storageDomain().criticalSpaceActionBlocker());
             optional(storageDomain().warningLowSpaceIndicator());
+            optional(storageDomain().backup());
         }
 
         /**

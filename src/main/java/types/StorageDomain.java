@@ -172,6 +172,22 @@ public interface StorageDomain extends Identified {
     @Link DataCenter dataCenter();
 
     /**
+     * This attribute indicates whether a data storage domain is used as backup
+     * domain or not. If the domain is set to backup then it will be used
+     * to store virtual machines and templates for disaster recovery purposes in the
+     * same way we use export storage domain. This attribute is only available
+     * with data storage domain and not with ISO domain or export storage domain.
+     * User can use this functionality while creating a data storage domain
+     * or importing a data storage domain.
+     *
+     * @author Shubham Dubey <sdubey504@gmail.com>
+     * @date 7 Jul 2017
+     * @status added
+     * @since 4.2
+     */
+    Boolean backup();
+
+    /**
      * A set of links to the data centers that the storage domain is attached to.
      *
      * @author Tahlia Richardson <trichard@redhat.com>

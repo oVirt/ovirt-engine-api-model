@@ -24,6 +24,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.StorageDomain;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
@@ -49,6 +50,7 @@ public interface AttachedStorageDomainsService {
         @InputDetail
         default void inputDetail() {
             or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            optional(storageDomain().backup());
         }
     }
 
