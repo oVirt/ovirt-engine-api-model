@@ -171,6 +171,22 @@ public interface StorageDomain extends Identified {
      */
     @Link DataCenter dataCenter();
 
+      /**
+     * This field indicate whether a data storage domain is used as backup
+     * domain or not. If the domain is set to backup then it will be used
+     * to store VMs and Templates for disaster recovery purposes in the 
+     * same way we use export storage domain. This flag is only available 
+     * with data domain and not with ISO domain or Export storage domain.
+     * User can use this functionality while creating a data storage domain
+     * or importing a data storage domain.
+     *
+     * @author Shubham Dubey <sdubey504@gmail.com>
+     * @date 7 July 2017
+     * @status added
+     * @since 4.2
+     */
+    Boolean backup();
+
     /**
      * A set of links to the data centers that the storage domain is attached to.
      *
