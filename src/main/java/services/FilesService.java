@@ -26,46 +26,83 @@ import types.File;
 /**
  * Provides a way for clients to list available files.
  *
- * This services is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
+ * This service is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
  * (VFDs) that an administrator uploads.
  *
- * The addition of a CDROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.
+ * The addition of a CD-ROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
- * @date 14 Sep 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 14 Jul 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("Virtualization")
 public interface FilesService {
     /**
-     * Returns the list of ISO images and virtual floppy disks available in the storage domain.
+     * Returns the list of ISO images and virtual floppy disks available in the storage domain. The order of
+     * the returned list is not guaranteed.
      *
-     * The order returned list of ISO images and virtual floppy disks isn't guaranteed.
+     * If the `refresh` parameter is `false`, the returned list may not reflect recent changes to the storage domain;
+     * for example, it may not contain a new ISO file that was recently added. This is because the
+     * server caches the list of files to improve performance. To get the very latest results, set the `refresh`
+     * parameter to `true`.
+     *
+     * The default value of the `refresh` parameter is `true`, but it can be changed using the configuration value
+     * `ForceRefreshDomainFilesByDefault`:
+     *
+     * [source]
+     * ----
+     * # engine-config -s ForceRefreshDomainFilesByDefault=false
+     * ----
+     *
+     * IMPORTANT: Setting the value of the `refresh` parameter to `true` has an impact on the performance of the
+     * server. Use it only if necessary.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 14 Jul 2017
+     * @status updated_by_docs
      */
     interface List {
         @Out File[] file();
 
         /**
-         * Sets the maximum number of files to return. If not specified all the files are returned.
+         * Sets the maximum number of files to return. If not specified, all the files are returned.
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 14 Jul 2017
+         * @status updated_by_docs
          */
         @In Integer max();
 
         /**
          * A query string used to restrict the returned files.
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 14 Jul 2017
+         * @status updated_by_docs
          */
         @In String search();
 
         /**
-         * Indicates if the search performed using the `search` parameter should be performed taking case into
-         * account. The default value is `true`, which means that case is taken into account. If you want to search
-         * ignoring case set it to `false`.
+         * Indicates if the search performed using the `search` parameter should take case into
+         * account. The default value is `true`.
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 14 Jul 2017
+         * @status updated_by_docs
          */
         @In Boolean caseSensitive();
+
+        /**
+         * Indicates whether the list of files should be refreshed from the storage domain, rather than showing cached
+         * results that are updated at certain intervals.
+         *
+         * @author Tal Nisan <tnisan@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 14 Jul 2017
+         * @status updated_by_docs
+         * @since 4.1.5
+         */
+        @In Boolean refresh();
     }
 
     @Service FileService file(String id);
