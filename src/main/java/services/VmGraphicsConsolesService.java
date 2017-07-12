@@ -47,11 +47,20 @@ public interface VmGraphicsConsolesService {
     /**
      * Lists all the configured graphics consoles of the virtual machine.
      *
-     * The order of the returned list of graphics consoles isn't guaranteed.
+     * IMPORTANT: By default, when the `current` parameter is not specified, the data returned
+     * corresponds to the next execution of the virtual machine. In the current implementation of
+     * the system this means that the `address` and `port` attributes will not be populated because
+     * the system does not know what address and port will be used for the next execution. Since in most
+     * cases those attributes are needed, it is strongly advised to aways explicitly include the
+     * `current` parameter with the value `true`.
+     *
+     * The order of the returned list of graphics consoles is not guaranteed.
      *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 31 Oct 2016
-     * @status added
+     * @author Juan Hernandez <juan.hernandez@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Jul 2017
+     * @status updated_by_docs
      */
     interface List {
 
@@ -74,7 +83,14 @@ public interface VmGraphicsConsolesService {
         @In Integer max();
 
         /**
-         * Use the following query to obtain the current run-time configuration of the graphics consoles.
+         * Specifies if the data returned should correspond to the next execution of
+         * the virtual machine, or to the current execution.
+         *
+         * IMPORTANT: The `address` and `port` attributes will not be populated unless the value is
+         * `true`.
+         *
+         * For example, to get data for the current execution of the virtual machine, including the
+         * `address` and `port` attributes, send a request like this:
          *
          * [source]
          * ----
@@ -84,8 +100,10 @@ public interface VmGraphicsConsolesService {
          * The default value is `false`.
          *
          * @author Ondra Machacek <omachace@redhat.com>
-         * @date 31 Oct 2016
-         * @status added
+         * @author Juan Hernandez <juan.hernandez@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 25 Jul 2017
+         * @status updated_by_docs
          */
         @In Boolean current();
     }
