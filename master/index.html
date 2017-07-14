@@ -15731,11 +15731,11 @@ certificate of the server itself, the second the certificate of the CA that sign
 <p>Provides a way for clients to list available files.</p>
 </div>
 <div class="paragraph">
-<p>This services is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
+<p>This service is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
 (VFDs) that an administrator uploads.</p>
 </div>
 <div class="paragraph">
-<p>The addition of a CDROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.</p>
+<p>The addition of a CD-ROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 229. Methods summary</caption>
@@ -15759,10 +15759,36 @@ certificate of the server itself, the second the certificate of the CA that sign
 <div class="sect3">
 <h4 id="services/files/methods/list"><a class="anchor" href="#services/files/methods/list"></a>6.79.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Returns the list of ISO images and virtual floppy disks available in the storage domain.</p>
+<p>Returns the list of ISO images and virtual floppy disks available in the storage domain. The order of
+the returned list is not guaranteed.</p>
 </div>
 <div class="paragraph">
-<p>The order returned list of ISO images and virtual floppy disks isn&#8217;t guaranteed.</p>
+<p>If the <code>refresh</code> parameter is <code>false</code>, the returned list may not reflect recent changes to the storage domain;
+for example, it may not contain a new ISO file that was recently added. This is because the
+server caches the list of files to improve performance. To get the very latest results, set the <code>refresh</code>
+parameter to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>The default value of the <code>refresh</code> parameter is <code>true</code>, but it can be changed using the configuration value
+<code>ForceRefreshDomainFilesByDefault</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># engine-config -s ForceRefreshDomainFilesByDefault=false</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Setting the value of the <code>refresh</code> parameter to <code>true</code> has an impact on the performance of the
+server. Use it only if necessary.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 230. Parameters summary</caption>
@@ -15785,7 +15811,7 @@ certificate of the server itself, the second the certificate of the CA that sign
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should take case into
 account.</p></td>
 </tr>
 <tr>
@@ -15801,6 +15827,13 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of files to return.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>refresh</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the list of files should be refreshed from the storage domain, rather than showing cached
+results that are updated at certain intervals.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -15811,15 +15844,14 @@ account.</p></td>
 <div class="sect4">
 <h5 id="services/files/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/files/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
 <div class="paragraph">
-<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
-ignoring case set it to <code>false</code>.</p>
+<p>Indicates if the search performed using the <code>search</code> parameter should take case into
+account. The default value is <code>true</code>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/files/methods/list/parameters/max"><a class="anchor" href="#services/files/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of files to return. If not specified all the files are returned.</p>
+<p>Sets the maximum number of files to return. If not specified, all the files are returned.</p>
 </div>
 </div>
 </div>
@@ -69785,7 +69817,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-14 07:18:04 UTC
+Last updated 2017-07-14 07:33:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
