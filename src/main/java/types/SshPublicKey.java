@@ -21,6 +21,14 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface SshPublicKey extends Identified {
+    /**
+     * Contains a saved SSH key.
+     *
+     * @author Bohdan Iakymet <biakymet@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 25 Jul 2017
+     * @status updated_by_docs
+     */
     String content();
 
     @Link User user();
