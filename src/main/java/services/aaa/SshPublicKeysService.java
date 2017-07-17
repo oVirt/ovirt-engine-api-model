@@ -30,19 +30,64 @@ public interface SshPublicKeysService {
     }
 
     /**
-     * Returns ths list of SSH public keys of the user.
+     * Returns a list of SSH public keys of the user.
      *
-     * The order of the returned list of keys isn't guaranteed.
+     * For example, to retrieve the list of SSH keys of user with identifier `123`,
+     * send a request like this:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/users/123/sshpublickeys
+     * ----
+     *
+     * The result will be the following XML document:
+     *
+     * [source,xml]
+     * ----
+     * <ssh_public_keys>
+     *   <ssh_public_key href="/ovirt-engine/api/users/123/sshpublickeys/456" id="456">
+     *     <content>ssh-rsa ...</content>
+     *     <user href="/ovirt-engine/api/users/123" id="123"/>
+     *   </ssh_public_key>
+     * </ssh_public_keys>
+     * ----
+     *
+     * Or the following JSON object
+     *
+     * [source,json]
+     * ----
+     * {
+     *   "ssh_public_key": [
+     *     {
+     *       "content": "ssh-rsa ...",
+     *       "user": {
+     *         "href": "/ovirt-engine/api/users/123",
+     *         "id": "123"
+     *       },
+     *       "href": "/ovirt-engine/api/users/123/sshpublickeys/456",
+     *       "id": "456"
+     *     }
+     *   ]
+     * }
+     * ----
+     *
+     * The order of the returned list of keys is not guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Bohdan Iakymet <biakymet@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 25 Jul 2017
+     * @status updated_by_docs
      */
     interface List {
         @Out SshPublicKey[] keys();
 
         /**
          * Sets the maximum number of keys to return. If not specified all the keys are returned.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 25 Jul 2017
+         * @status updated_by_docs
          */
         @In Integer max();
     }
