@@ -14964,11 +14964,11 @@ certificate of the server itself, the second the certificate of the CA that sign
 <p>Provides a way for clients to list available files.</p>
 </div>
 <div class="paragraph">
-<p>This services is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
+<p>This service is specifically targeted to ISO storage domains, which contain ISO images and virtual floppy disks
 (VFDs) that an administrator uploads.</p>
 </div>
 <div class="paragraph">
-<p>The addition of a CDROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.</p>
+<p>The addition of a CD-ROM device to a virtual machine requires an ISO image from the files of an ISO storage domain.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 218. Methods summary</caption>
@@ -14992,10 +14992,36 @@ certificate of the server itself, the second the certificate of the CA that sign
 <div class="sect3">
 <h4 id="services/files/methods/list"><a class="anchor" href="#services/files/methods/list"></a>6.76.1. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Returns the list of ISO images and virtual floppy disks available in the storage domain.</p>
+<p>Returns the list of ISO images and virtual floppy disks available in the storage domain. The order of
+the returned list is not guaranteed.</p>
 </div>
 <div class="paragraph">
-<p>The order returned list of ISO images and virtual floppy disks isn&#8217;t guaranteed.</p>
+<p>If the <code>refresh</code> parameter is <code>false</code>, the returned list may not reflect recent changes to the storage domain;
+for example, it may not contain a new ISO file that was recently added. This is because the
+server caches the list of files to improve performance. To get the very latest results, set the <code>refresh</code>
+parameter to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>The default value of the <code>refresh</code> parameter is <code>true</code>, but it can be changed using the configuration value
+<code>ForceRefreshDomainFilesByDefault</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code># engine-config -s ForceRefreshDomainFilesByDefault=false</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Setting the value of the <code>refresh</code> parameter to <code>true</code> has an impact on the performance of the
+server. Use it only if necessary.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 219. Parameters summary</caption>
@@ -15018,7 +15044,7 @@ certificate of the server itself, the second the certificate of the CA that sign
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should take case into
 account.</p></td>
 </tr>
 <tr>
@@ -15034,6 +15060,13 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of files to return.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>refresh</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the list of files should be refreshed from the storage domain, rather than showing cached
+results that are updated at certain intervals.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -15044,15 +15077,14 @@ account.</p></td>
 <div class="sect4">
 <h5 id="services/files/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/files/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
 <div class="paragraph">
-<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
-ignoring case set it to <code>false</code>.</p>
+<p>Indicates if the search performed using the <code>search</code> parameter should take case into
+account. The default value is <code>true</code>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/files/methods/list/parameters/max"><a class="anchor" href="#services/files/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of files to return. If not specified all the files are returned.</p>
+<p>Sets the maximum number of files to return. If not specified, all the files are returned.</p>
 </div>
 </div>
 </div>
@@ -38176,8 +38208,8 @@ Example operating systems include:</p>
 <p>Adds a NIC to the virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>The following example adds a network interface named <code>mynic</code> using <code>virtio</code> and the <code>ovirtmgmt</code> network to the
-virtual machine.</p>
+<p>The following example adds to the virtual machine <code>123</code> a network interface named <code>mynic</code> using <code>virtio</code> and the
+NIC profile <code>456</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -38187,11 +38219,9 @@ virtual machine.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;nic&gt;
-  &lt;interface&gt;virtio&lt;/interface&gt;
   &lt;name&gt;mynic&lt;/name&gt;
-  &lt;network&gt;
-    &lt;name&gt;ovirtmgmt&lt;/name&gt;
-  &lt;/network&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;vnic_profile id="456"/&gt;
 &lt;/nic&gt;</code></pre>
 </div>
 </div>
@@ -38210,9 +38240,8 @@ virtual machine.</p>
 --data '
 &lt;nic&gt;
   &lt;name&gt;mynic&lt;/name&gt;
-  &lt;network&gt;
-    &lt;name&gt;ovirtmgmt&lt;/name&gt;
-  &lt;/network&gt;
+  &lt;interface&gt;virtio&lt;/interface&gt;
+  &lt;vnic_profile id="456"/&gt;
 &lt;/nic&gt;
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/123/nics</code></pre>
@@ -64743,7 +64772,7 @@ Currently, its implication is that a sound device will not be automatically adde
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>migratable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marks, whether <code>pass_through</code> NIC is migratable or not.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marks whether <code>pass_through</code> NIC is migratable or not.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -64753,7 +64782,7 @@ Currently, its implication is that a sound device will not be automatically adde
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pass_through</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_pass_through">VnicPassThrough</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_mirroring</code></p></td>
@@ -64765,21 +64794,21 @@ Currently, its implication is that a sound device will not be automatically adde
 <div class="sect3">
 <h4 id="types/vnic_profile/attributes/migratable"><a class="anchor" href="#types/vnic_profile/attributes/migratable"></a>7.283.1. migratable</h4>
 <div class="paragraph">
-<p>Marks, whether <code>pass_through</code> NIC is migratable or not.</p>
+<p>Marks whether <code>pass_through</code> NIC is migratable or not.</p>
 </div>
 <div class="paragraph">
 <p>If <code>pass_through.mode</code> is set to <code>disabled</code> this option has no meaning, and it will be considered to be <code>true</code>.
-If you omit this option from request, by default, this will be set to <code>true</code>.</p>
+If you omit this option from a request, by default, this will be set to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>When migrating virtual machine, this virtual machine will be migrated only if all <code>pass_through</code> NICs are
+<p>When migrating a virtual machine, this virtual machine will be migrated only if all <code>pass_through</code> NICs are
 flagged as <code>migratable</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>7.283.2. pass_through</h4>
 <div class="paragraph">
-<p>Enables the passthrough to a SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
+<p>Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
 </div>
 <div class="paragraph">
 <p>A vNIC profile enables a NIC to be directly connected to a
@@ -64788,7 +64817,7 @@ host NIC, if passthrough is enabled. The NIC will then bypass the software netwo
 connect directly to the VF for direct device assignment.</p>
 </div>
 <div class="paragraph">
-<p>The passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
+<p>Passthrough cannot be enabled if the vNIC profile is already attached to a NIC.
 If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirroring</code> are disabled for the vNIC profile.</p>
 </div>
 </div>
@@ -64798,12 +64827,12 @@ If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirro
 <p>Enables port mirroring.</p>
 </div>
 <div class="paragraph">
-<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a>and
+<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a> and
 <a href="#types/host">host</a> to a NIC on a <a href="#types/vm">virtual machine</a>. This virtual machine
 can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
-virtual machine on the same host and logical network. The only
+virtual machines on the same host and logical network. The only
 traffic copied is internal to one logical network on one host. There is no
-increase on traffic on the network external to the host; however a virtual machine
+increase in traffic on the network external to the host; however a virtual machine
 with port mirroring enabled uses more host CPU and RAM than other virtual machines.</p>
 </div>
 <div class="paragraph">
@@ -64812,7 +64841,7 @@ with port mirroring enabled uses more host CPU and RAM than other virtual machin
 <div class="ulist">
 <ul>
 <li>
-<p>Hot plugging NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
+<p>Hot plugging a NIC with a vNIC profile that has port mirroring enabled is not supported.</p>
 </li>
 <li>
 <p>Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.</p>
@@ -64858,7 +64887,7 @@ Enabling port mirroring reduces the privacy of other network users.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_filter">NetworkFilter</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that apply to the NICs that use this profile.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the top-level network filter that applies to the NICs that use this profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>permissions</code></p></td>
@@ -64876,13 +64905,13 @@ Enabling port mirroring reduces the privacy of other network users.
 <div class="sect3">
 <h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>7.283.4. network_filter</h4>
 <div class="paragraph">
-<p>Reference to the top-level network filter that apply to the NICs that use this profile.</p>
+<p>Reference to the top-level network filter that applies to the NICs that use this profile.</p>
 </div>
 <div class="paragraph">
-<p>Network filters will enhance the admin ability to manage the network packets traffic
-from/to the participated virtual machines.
-The network filter may either contain a references to other filters, rules for traffic
-filtering, or hold a combination of both.</p>
+<p>Network filters enhance the ability to manage the network packets traffic
+to and from virtual machines.
+The network filter may either contain a reference to other filters, rules for traffic
+filtering, or a combination of both.</p>
 </div>
 </div>
 <div class="sect3">
@@ -67669,7 +67698,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-31 13:23:38 UTC
+Last updated 2017-07-19 14:33:14 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
