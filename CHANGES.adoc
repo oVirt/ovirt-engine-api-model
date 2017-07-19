@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.38 / Jul 19 2017
+
+New features:
+
+* Add a `refresh` parameter to `FilesService.list`.
+
 == 4.1.37 / May 31 2017
 
 New features:
