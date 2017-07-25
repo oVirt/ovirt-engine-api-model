@@ -29762,7 +29762,7 @@ request like this:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns ths list of SSH public keys of the user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns a list of SSH public keys of the user.</p></td>
 </tr>
 </tbody>
 </table>
@@ -29797,10 +29797,52 @@ request like this:</p>
 <div class="sect3">
 <h4 id="services/ssh_public_keys/methods/list"><a class="anchor" href="#services/ssh_public_keys/methods/list"></a>6.180.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Returns ths list of SSH public keys of the user.</p>
+<p>Returns a list of SSH public keys of the user.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of keys isn&#8217;t guaranteed.</p>
+<p>For example, to retrieve the list of SSH keys of user with identifier <code>123</code>,
+send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/users/123/sshpublickeys</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be the following XML document:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;ssh_public_keys&gt;
+  &lt;ssh_public_key href="/ovirt-engine/api/users/123/sshpublickeys/456" id="456"&gt;
+    &lt;content&gt;ssh-rsa ...&lt;/content&gt;
+    &lt;user href="/ovirt-engine/api/users/123" id="123"/&gt;
+  &lt;/ssh_public_key&gt;
+&lt;/ssh_public_keys&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or the following JSON object</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+  "ssh_public_key": [
+    {
+      "content": "ssh-rsa ...",
+      "user": {
+        "href": "/ovirt-engine/api/users/123",
+        "id": "123"
+      },
+      "href": "/ovirt-engine/api/users/123/sshpublickeys/456",
+      "id": "456"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The order of the returned list of keys is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 555. Parameters summary</caption>
@@ -61977,7 +62019,7 @@ down.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains a saved SSH key.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
@@ -69893,7 +69935,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-25 09:12:39 UTC
+Last updated 2017-07-25 09:18:58 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
