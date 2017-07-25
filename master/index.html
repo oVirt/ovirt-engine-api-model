@@ -39060,7 +39060,7 @@ method of the top level disk service</a>.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Gets graphics console configuration of the virtual machine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the graphics console configuration of the virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxyticket</code></p></td>
@@ -39083,7 +39083,24 @@ method of the top level disk service</a>.
 <div class="sect3">
 <h4 id="services/vm_graphics_console/methods/get"><a class="anchor" href="#services/vm_graphics_console/methods/get"></a>6.235.1. get <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Gets graphics console configuration of the virtual machine.</p>
+<p>Retrieves the graphics console configuration of the virtual machine.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By default, when the <code>current</code> parameter is not specified, the data returned
+corresponds to the next execution of the virtual machine. In the current implementation of
+the system this means that the <code>address</code> and <code>port</code> attributes will not be populated because
+the system does not know what address and port will be used for the next execution. Since in most
+cases those attributes are needed, it is strongly advised to aways explicitly include the
+<code>current</code> parameter with the value <code>true</code>.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 749. Parameters summary</caption>
@@ -39112,14 +39129,33 @@ method of the top level disk service</a>.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>current</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use the following query to obtain the current run-time configuration of the graphics console.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies if the data returned should correspond to the next execution of
+the virtual machine, or to the current execution.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/vm_graphics_console/methods/get/parameters/current"><a class="anchor" href="#services/vm_graphics_console/methods/get/parameters/current"></a>current</h5>
 <div class="paragraph">
-<p>Use the following query to obtain the current run-time configuration of the graphics console.</p>
+<p>Specifies if the data returned should correspond to the next execution of
+the virtual machine, or to the current execution.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>address</code> and <code>port</code> attributes will not be populated unless the value is
+<code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to get data for the current execution of the virtual machine, including the
+<code>address</code> and <code>port</code> attributes, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -39435,8 +39471,25 @@ connect to virtual machine graphic console.</p>
 <div class="paragraph">
 <p>Lists all the configured graphics consoles of the virtual machine.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By default, when the <code>current</code> parameter is not specified, the data returned
+corresponds to the next execution of the virtual machine. In the current implementation of
+the system this means that the <code>address</code> and <code>port</code> attributes will not be populated because
+the system does not know what address and port will be used for the next execution. Since in most
+cases those attributes are needed, it is strongly advised to aways explicitly include the
+<code>current</code> parameter with the value <code>true</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>The order of the returned list of graphics consoles isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of graphics consoles is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 756. Parameters summary</caption>
@@ -39465,7 +39518,8 @@ connect to virtual machine graphic console.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>current</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use the following query to obtain the current run-time configuration of the graphics consoles.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies if the data returned should correspond to the next execution of
+the virtual machine, or to the current execution.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -39478,7 +39532,25 @@ connect to virtual machine graphic console.</p>
 <div class="sect4">
 <h5 id="services/vm_graphics_consoles/methods/list/parameters/current"><a class="anchor" href="#services/vm_graphics_consoles/methods/list/parameters/current"></a>current</h5>
 <div class="paragraph">
-<p>Use the following query to obtain the current run-time configuration of the graphics consoles.</p>
+<p>Specifies if the data returned should correspond to the next execution of
+the virtual machine, or to the current execution.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>address</code> and <code>port</code> attributes will not be populated unless the value is
+<code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to get data for the current execution of the virtual machine, including the
+<code>address</code> and <code>port</code> attributes, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -69935,7 +70007,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-25 09:18:58 UTC
+Last updated 2017-07-25 09:24:49 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
