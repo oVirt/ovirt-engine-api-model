@@ -44406,6 +44406,14 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 <div class="sect2">
 <h3 id="types/cloud_init"><a class="anchor" href="#types/cloud_init"></a>7.27. CloudInit <span class="small">struct</span></h3>
+<div class="paragraph">
+<p>Deprecated type to specify <em>cloud-init</em> configuration.</p>
+</div>
+<div class="paragraph">
+<p>This type has been deprecated and replaced by alternative attributes inside the
+<a href="#types/initialization">Initialization</a> type. See the
+<a href="#types/initialization/attributes/cloud_init">cloud_init</a> attribute documentation for details.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 853. Attributes summary</caption>
 <colgroup>
@@ -53169,7 +53177,7 @@ The inheritance order is virtual machine &#8594; cluster &#8594; engine-config.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cloud_init</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cloud_init">CloudInit</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated attribute to specify <em>cloud-init</em> configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>configuration</code></p></td>
@@ -53263,6 +53271,74 @@ The inheritance order is virtual machine &#8594; cluster &#8594; engine-config.<
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/initialization/attributes/cloud_init"><a class="anchor" href="#types/initialization/attributes/cloud_init"></a>7.122.1. cloud_init</h4>
+<div class="paragraph">
+<p>Deprecated attribute to specify <em>cloud-init</em> configuration.</p>
+</div>
+<div class="paragraph">
+<p>This attribute, and the <a href="#types/cloud_init">CloudInit</a> type have been deprecated and will be
+removed in the future.  To specify the <em>cloud-init</em> configuration, use the attributes inside
+the <a href="#types/initialization">Initialization</a> type. The mapping between the attributes
+of these two types are as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">CloudInit</th>
+<th class="tableblock halign-left valign-top">Initialization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorized_keys</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorized_ssh_keys</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.search_domains</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns_search</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns.servers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns_servers</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>files</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>custom_script</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host_name</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_configuration.nics</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nic_configurations</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regenerate_ssh_keys</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regenerate_ssh_keys</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timezone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timezone</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>users</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_name</code> &amp; <code>root_password</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For more details on how to use <em>cloud-init</em> see the examples in
+<a href="https://github.com/oVirt/ovirt-engine-sdk/blob/master/sdk/examples/start_vm_with_cloud_init.py">Python</a>,
+<a href="https://github.com/oVirt/ovirt-engine-sdk-ruby/blob/master/sdk/examples/start_vm_with_cloud_init.rb">Ruby</a> and
+<a href="https://github.com/oVirt/ovirt-engine-sdk-java/blob/master/sdk/src/test/java/org/ovirt/engine/sdk4/examples/StartVmWithCloudInit.java">Java</a>.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/instance_type"><a class="anchor" href="#types/instance_type"></a>7.123. InstanceType <span class="small">struct</span></h3>
@@ -69817,7 +69893,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-07-19 14:49:53 UTC
+Last updated 2017-07-25 09:12:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
