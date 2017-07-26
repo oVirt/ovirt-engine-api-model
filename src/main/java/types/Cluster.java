@@ -334,6 +334,20 @@ public interface Cluster extends Identified {
     SwitchType switchType();
 
     /**
+     * The type of firewall to be used on hosts in this cluster.
+     *
+     * Up to version 4.1, it was always `iptables`. Since version 4.2, you can choose between `iptables` and `firewalld`.
+     * For clusters with a compatibility version of 4.2 and higher, the default firewall type is `firewalld`.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 11 Aug 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    FirewallType firewallType();
+
+    /**
      * Reference to the default scheduling policy used by
      * this cluster.
      *
