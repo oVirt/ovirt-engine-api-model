@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
@@ -45,4 +46,14 @@ public interface ClusterLevel extends Identified {
      * @status updated_by_docs
      */
     Permit[] permits();
+
+    /**
+     * The additional features supported by this cluster level.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @date 31 Jul 2017
+     * @status added
+     * @since 4.1.6
+     */
+    @Link ClusterFeature[] clusterFeatures();
 }

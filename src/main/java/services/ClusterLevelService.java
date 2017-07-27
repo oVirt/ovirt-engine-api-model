@@ -18,6 +18,7 @@ package services;
 
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+
 import types.ClusterLevel;
 
 /**
@@ -74,4 +75,14 @@ public interface ClusterLevelService {
          */
         @Out ClusterLevel level();
     }
+
+    /**
+     * A sub collection of cluster features for this cluster level
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @date 04 Aug 2017
+     * @status added
+     * @since 4.1.6
+     */
+    @Service ClusterFeaturesService clusterFeatures();
 }
