@@ -348,6 +348,17 @@ public interface Cluster extends Identified {
     FirewallType firewallType();
 
     /**
+     * Custom features that are enabled for the cluster.
+     *
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @date 31 Jul 2017
+     * @status added
+     * @since 4.1.6
+     */
+    @Link ClusterFeature[] enabledFeatures();
+
+    /**
      * Reference to the default scheduling policy used by
      * this cluster.
      *
