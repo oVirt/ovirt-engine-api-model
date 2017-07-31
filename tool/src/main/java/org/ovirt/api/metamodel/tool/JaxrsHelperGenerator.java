@@ -25,6 +25,8 @@ import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
 import org.ovirt.api.metamodel.tool.util.JaxrsGeneratorUtils;
 import org.ovirt.api.metamodel.tool.util.JaxrsHelperGeneratorUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JaxrsHelperGenerator extends JavaGenerator {
 
@@ -58,8 +60,12 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         //are regarded as read-only pieces of information.
         initVariables(service);
 
+        javaBuffer.addImport(Logger.class);
+        javaBuffer.addImport(LoggerFactory.class);
         //generate class declaration
-        javaBuffer.addLine("public class %s {", jaxrsNames.getHelperName(service).getSimpleName());
+        String helperClassName = jaxrsNames.getHelperName(service).getSimpleName();
+        javaBuffer.addLine("public class %s {", helperClassName);
+        javaBuffer.addLine("private static final Logger log = LoggerFactory.getLogger(%1$s.class);", helperClassName);
         //generate helper code for this method
         serviceMethods.forEach(x -> generateHelperCode(x));
         javaBuffer.addLine("}");
@@ -138,7 +144,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         }
         //TODO: in the future fail for this
 //        else {
-//            throw new IllegalStateException(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
+//            log.error(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
 //        }
     }
 
@@ -302,9 +308,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         if (parameter.isMandatory() || !mandatoryAttributes.isEmpty()) {
             javaBuffer.addLine("if (%1$s == null) {", argName);
             javaBuffer.addLine(
-                "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
-                tagName
-            );
+                "log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
             javaBuffer.addLine("}");
         }
         for (MemberInvolvementTree attribute : mandatoryAttributes) {
@@ -319,11 +323,8 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                     getFullAttributeCheck(argName, attributeComponents, Operator.OR, false)
                 );
                 //(TODO: replace line below with invocation of CompletenessAssertor)
-                javaBuffer.addLine(
-                    "throw new IllegalArgumentException(\"Parameter '%1$s.%2$s' is mandatory but was not provided.\");",
-                    argName,
-                    attributePath
-                );
+                String fullAttributePath = convertToModelNotation(argName + "." + attributePath);
+                javaBuffer.addLine("log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", fullAttributePath);
             }
             javaBuffer.addLine("}");
             javaBuffer.addLine();
@@ -335,11 +336,12 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         String condition1 = "if ( (" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(parameterName), attributeComponents, Operator.OR, false) + ")";
         String condition2 = "(" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(parameterName), alternativeAttributeComponents, Operator.OR, false) + ") ) {";
         javaBuffer.addLine(condition1 + " && " + condition2);
+        String fullAttributePath1 = convertToModelNotation(parameterName + "." + attributePath);
+        String fullAttributePath2 = convertToModelNotation(parameterName + "." + getSchemaPath(alternativeAttributeComponents));
         javaBuffer.addLine(
-            "throw new IllegalArgumentException(\"Parameters '%1$s.%2$s' or '%1$s.%3$s' are mandatory but both were not provided.\");",
-            parameterName,
-            attributePath,
-            getSchemaPath(alternativeAttributeComponents)
+            "log.error(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
+                fullAttributePath1,
+                fullAttributePath2
         );
     }
 
@@ -368,10 +370,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         if (parameter.isMandatory()) {//a simple parameter being mandatory only happens in 'action's.
             javaBuffer.addLine("if (action%1$s%2$s() == null) {", isOrGet(parameter.getType()), propertyName);
             //(TODO: replace line below with invocation of CompletenessAssertor)
-            javaBuffer.addLine(
-                "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
-                tagName
-            );
+            javaBuffer.addLine("log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
             javaBuffer.addLine("}");
         }
         else {
@@ -388,17 +387,17 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                     String condition2 = "(" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(new Name("action")), alternativeAttributeComponents, Operator.OR, false) + ") ) {";
                     javaBuffer.addLine(condition1 + " && " + condition2);
                     javaBuffer.addLine(
-                        "throw new IllegalArgumentException(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
-                        attributePath,
-                        getSchemaPath(alternativeAttributeComponents)
+                        "log.error(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
+                        convertToModelNotation(attributePath),
+                        convertToModelNotation(getSchemaPath(alternativeAttributeComponents))
                      );
                 }
                 else {
                     javaBuffer.addLine("if (" + getFullAttributeCheck("action", attributeComponents, Operator.OR, false) + ") {");
                     //(TODO: replace line below with invocation of CompletenessAssertor)
                     javaBuffer.addLine(
-                        "throw new IllegalArgumentException(\"Parameter '%1$s' is mandatory but was not provided.\");",
-                        attributePath
+                        "log.error(\"Parameter '%1$s' is mandatory but was not provided.\");",
+                        convertToModelNotation(attributePath)
                     );
                 }
                 javaBuffer.addLine("}");
@@ -452,13 +451,13 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         }
       //TODO: in the future fail for this
 //        else {
-//            throw new IllegalStateException(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
+//            log.error(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
 //        }
     }
 
     private void validateActionNotNull() {
         javaBuffer.addLine("if (action == null) {");
-        javaBuffer.addLine(  "throw new IllegalArgumentException(\"Action is mandatory but was not provided.\");");
+        javaBuffer.addLine(  "log.error(\"Action is mandatory but was not provided.\");");
         javaBuffer.addLine("}");
     }
 
@@ -508,5 +507,19 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         public void remove() {
             iterator.remove();
         }
+    }
+
+    /**
+     * If mandatory parameters are missing, an error message is issued.
+     * This error message needs to be in the 'model' language (e.g: "vm.disk_attachments is missing"),
+     * not in Java (e.g: "vm.getDiskAttachments() is missing"). This method receives the java path
+     * to an attribute and converts it to the model path
+     */
+    private String convertToModelNotation(String attributePath) {
+        String modelNotation = attributePath.replaceAll("\\(\\)", "");
+        modelNotation = modelNotation.replaceAll("\\.get", "\\.");
+        modelNotation = modelNotation.replaceAll("(.)(\\p{Upper})", "$1_$2").toLowerCase();
+        modelNotation = modelNotation.replaceAll("\\._", "\\.");
+        return modelNotation;
     }
 }
