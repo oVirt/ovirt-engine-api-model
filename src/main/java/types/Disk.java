@@ -239,8 +239,6 @@ public interface Disk extends Device {
     DiskStorageType storageType();
     String logicalName();
 
-    @Link StorageDomain storageDomain();
-
     /**
      * The storage domains associated with this disk.
      *
