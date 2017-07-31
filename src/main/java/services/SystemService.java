@@ -217,4 +217,14 @@ public interface SystemService {
      * @since 4.0.4
      */
     @Service ImageTransfersService imageTransfers();
+
+    /**
+     * Reference to the service that provides values of configuration options of the system.
+     *
+     * @author Miroslava Voglova <mvoglova@redhat.com>
+     * @date 18 Sep 2017
+     * @status added
+     * @since 4.2
+     */
+    @Service SystemOptionsService options();
 }
