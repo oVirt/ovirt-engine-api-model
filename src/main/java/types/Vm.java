@@ -197,6 +197,18 @@ public interface Vm extends VmBase {
     GuestOperatingSystem guestOperatingSystem();
 
     /**
+     * Indicates whether the virtual machine has snapshots with disks in `ILLEGAL` state.
+     *
+     * @author Ala Hino <ahino@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 11 Aug 2017
+     * @status updated_by_docs
+     * @since 4.2.0
+     */
+    Boolean hasIllegalImages();
+
+
+    /**
      * Reference to the host the virtual machine is running on.
      *
      * @author Marek Libra <mlibra@redhat.com>
