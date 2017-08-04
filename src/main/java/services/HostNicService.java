@@ -102,7 +102,7 @@ public interface HostNicService extends MeasurableService {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.2
+     * @since 4.1.5
      */
     @Service LinkLayerDiscoveryProtocolService linkLayerDiscoveryProtocolElements();
 }
