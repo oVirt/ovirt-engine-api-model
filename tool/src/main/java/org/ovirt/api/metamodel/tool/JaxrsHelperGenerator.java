@@ -23,10 +23,9 @@ import org.ovirt.api.metamodel.concepts.PrimitiveType;
 import org.ovirt.api.metamodel.concepts.Service;
 import org.ovirt.api.metamodel.concepts.StructType;
 import org.ovirt.api.metamodel.concepts.Type;
+import org.ovirt.api.metamodel.server.ValidationException;
 import org.ovirt.api.metamodel.tool.util.JaxrsGeneratorUtils;
 import org.ovirt.api.metamodel.tool.util.JaxrsHelperGeneratorUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class JaxrsHelperGenerator extends JavaGenerator {
 
@@ -60,12 +59,10 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         //are regarded as read-only pieces of information.
         initVariables(service);
 
-        javaBuffer.addImport(Logger.class);
-        javaBuffer.addImport(LoggerFactory.class);
+        javaBuffer.addImport(ValidationException.class);
         //generate class declaration
         String helperClassName = jaxrsNames.getHelperName(service).getSimpleName();
         javaBuffer.addLine("public class %s {", helperClassName);
-        javaBuffer.addLine("private static final Logger log = LoggerFactory.getLogger(%1$s.class);", helperClassName);
         //generate helper code for this method
         serviceMethods.forEach(x -> generateHelperCode(x));
         javaBuffer.addLine("}");
@@ -144,7 +141,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         }
         //TODO: in the future fail for this
 //        else {
-//            log.error(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
+//            throw new ValidationException(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
 //        }
     }
 
@@ -308,7 +305,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         if (parameter.isMandatory() || !mandatoryAttributes.isEmpty()) {
             javaBuffer.addLine("if (%1$s == null) {", argName);
             javaBuffer.addLine(
-                "log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
+                "throw new ValidationException(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
             javaBuffer.addLine("}");
         }
         for (MemberInvolvementTree attribute : mandatoryAttributes) {
@@ -324,7 +321,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                 );
                 //(TODO: replace line below with invocation of CompletenessAssertor)
                 String fullAttributePath = convertToModelNotation(argName + "." + attributePath);
-                javaBuffer.addLine("log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", fullAttributePath);
+                javaBuffer.addLine("throw new ValidationException(\"Parameter '%1$s' is mandatory but was not provided.\");", fullAttributePath);
             }
             javaBuffer.addLine("}");
             javaBuffer.addLine();
@@ -339,7 +336,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         String fullAttributePath1 = convertToModelNotation(parameterName + "." + attributePath);
         String fullAttributePath2 = convertToModelNotation(parameterName + "." + getSchemaPath(alternativeAttributeComponents));
         javaBuffer.addLine(
-            "log.error(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
+            "throw new ValidationException(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
                 fullAttributePath1,
                 fullAttributePath2
         );
@@ -370,7 +367,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         if (parameter.isMandatory()) {//a simple parameter being mandatory only happens in 'action's.
             javaBuffer.addLine("if (action%1$s%2$s() == null) {", isOrGet(parameter.getType()), propertyName);
             //(TODO: replace line below with invocation of CompletenessAssertor)
-            javaBuffer.addLine("log.error(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
+            javaBuffer.addLine("throw new ValidationException(\"Parameter '%1$s' is mandatory but was not provided.\");", tagName);
             javaBuffer.addLine("}");
         }
         else {
@@ -387,7 +384,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                     String condition2 = "(" + getFullAttributeCheck(javaNames.getJavaMemberStyleName(new Name("action")), alternativeAttributeComponents, Operator.OR, false) + ") ) {";
                     javaBuffer.addLine(condition1 + " && " + condition2);
                     javaBuffer.addLine(
-                        "log.error(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
+                        "throw new ValidationException(\"Parameters '%1$s' or '%2$s' are mandatory but both were not provided.\");",
                         convertToModelNotation(attributePath),
                         convertToModelNotation(getSchemaPath(alternativeAttributeComponents))
                      );
@@ -396,7 +393,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                     javaBuffer.addLine("if (" + getFullAttributeCheck("action", attributeComponents, Operator.OR, false) + ") {");
                     //(TODO: replace line below with invocation of CompletenessAssertor)
                     javaBuffer.addLine(
-                        "log.error(\"Parameter '%1$s' is mandatory but was not provided.\");",
+                        "throw new ValidationException(\"Parameter '%1$s' is mandatory but was not provided.\");",
                         convertToModelNotation(attributePath)
                     );
                 }
@@ -451,13 +448,13 @@ public class JaxrsHelperGenerator extends JavaGenerator {
         }
       //TODO: in the future fail for this
 //        else {
-//            log.error(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
+//            throw new ValidationException(method.getName() + "'s signatures have 0 mandatory attributes (any signature must have at least 1 mandatory attribute)");
 //        }
     }
 
     private void validateActionNotNull() {
         javaBuffer.addLine("if (action == null) {");
-        javaBuffer.addLine(  "log.error(\"Action is mandatory but was not provided.\");");
+        javaBuffer.addLine("throw new ValidationException(\"Action is mandatory but was not provided.\");");
         javaBuffer.addLine("}");
     }
 
