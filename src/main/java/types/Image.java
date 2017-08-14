@@ -19,7 +19,22 @@ package types;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Represents an image entity.
+ *
+ * @author Shani Leviim <sleviim@redhat.com>
+ * @date 14 Aug 2017
+ * @status added
+ */
 @Type
 public interface Image extends Identified {
+
+    /**
+     * The storage domain associated with this image.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @date 14 Aug 2017
+     * @status added
+     */
     @Link StorageDomain storageDomain();
 }
