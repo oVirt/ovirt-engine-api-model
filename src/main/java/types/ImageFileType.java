@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,45 +16,47 @@ limitations under the License.
 
 package types;
 
-import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents an image entity.
+ * Represents file types of an image.
  *
  * @author Shani Leviim <sleviim@redhat.com>
  * @date 14 Aug 2017
  * @status added
+ * @since 4.2.0
  */
 @Type
-public interface Image extends Identified {
-
+public enum ImageFileType {
     /**
-     * The storage domain associated with this image.
-     *
-     * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
-     */
-    @Link StorageDomain storageDomain();
-
-    /**
-     * The type of the image file.
+     * The image is a `.iso` file that can be used as a CD-ROM
+     * to boot and install a virtual machine.
      *
      * @author Shani Leviim <sleviim@redhat.com>
      * @date 14 Aug 2017
      * @status added
      * @since 4.2.0
      */
-    ImageFileType type();
+    ISO,
 
     /**
-     * The size of the image file.
+     * The image is a floppy disk that can be attached to a virtual machine,
+     * for example to install the VirtIO drivers in Windows.
      *
      * @author Shani Leviim <sleviim@redhat.com>
      * @date 14 Aug 2017
      * @status added
      * @since 4.2.0
      */
-    Integer size();
+    FLOPPY,
+
+    /**
+     * The image is a disk format that can be used as a virtual machine's disk.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @date 14 Aug 2017
+     * @status added
+     * @since 4.2.0
+     */
+    DISK;
 }
