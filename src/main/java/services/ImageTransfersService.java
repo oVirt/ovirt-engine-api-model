@@ -18,10 +18,14 @@ package services;
 
 import annotations.Area;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import types.ImageTransfer;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * This service manages image transfers, for performing Image I/O API in oVirt.
@@ -37,8 +41,11 @@ import types.ImageTransfer;
 @Area("Storage")
 public interface ImageTransfersService {
     /**
-     * Add a new image transfer. An image needs to be specified in order to make
-     * a new transfer.
+     * Add a new image transfer. An image, disk or disk snapshot needs to be specified
+     * in order to make a new transfer.
+     *
+     * IMPORTANT: The `image` attribute is deprecated since version 4.2 of the engine.
+     * Use the `disk` or `snapshot` attributes instead.
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @date 30 Aug 2016
@@ -47,6 +54,28 @@ public interface ImageTransfersService {
      */
     interface Add {
         @In @Out ImageTransfer imageTransfer();
+
+        @Deprecated
+        interface ForImage extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(imageTransfer().image().id());
+            }
+        }
+
+        interface ForDisk extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(imageTransfer().disk().id());
+            }
+        }
+
+        interface ForSnapshot extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(imageTransfer().snapshot().id());
+            }
+        }
     }
 
     /**

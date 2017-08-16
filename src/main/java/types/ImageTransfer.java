@@ -88,13 +88,38 @@ public interface ImageTransfer extends Identified {
     /**
      * The image which is targeted for input or output.
      *
+     * IMPORTANT: This attribute is deprecated since version
+     * 4.2 of the engine. Use the `disk` or `snapshot`
+     * attributes instead.
+     *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 15 Nov 2016
      * @status updated_by_docs
      * @since 4.0.4
      */
+    @Deprecated
     @Link Image image();
+
+    /**
+     * The disk which is targeted for input or output.
+     *
+     * @author Daniel Erez <derezredhat.com>
+     * @date 15 Aug 2017
+     * @since 4.2.0
+     * @status added
+     */
+    @Link Disk disk();
+
+    /**
+     * The disk snapshot which is targeted for input or output.
+     *
+     * @author Daniel Erez <derezredhat.com>
+     * @date 15 Aug 2017
+     * @status added
+     * @since 4.2.0
+     */
+    @Link DiskSnapshot snapshot();
 
     /**
      * The host which will be used to write to the image which is targeted for input or output.
