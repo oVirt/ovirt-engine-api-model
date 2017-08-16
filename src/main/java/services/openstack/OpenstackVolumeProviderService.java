@@ -69,6 +69,19 @@ public interface OpenstackVolumeProviderService extends ExternalProviderService 
          * Indicates if the remove should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the operation should succeed, and the provider removed from the database,
+         * even if something fails during the operation.
+         *
+         * This parameter is optional, and the default value is `false`.
+         *
+         * @author Daniel Erez <derez@redhat.com>
+         * @date 17 Aug 2017
+         * @status added
+         * @since 4.2.0
+         */
+        @In Boolean force();
     }
 
     @Service OpenstackVolumeTypesService volumeTypes();
