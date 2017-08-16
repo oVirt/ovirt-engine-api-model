@@ -3,6 +3,20 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.15 / Aug 16 2017
+
+New features:
+
+* Update @since tags to reflect backport of LLDP to oVirt 4.1.5
+
+* Add firewalType property to Cluster
+
+* Add hasIllegalImages property to VM
+
+Bug fixes:
+
+* Fix live documentation for adding a new Cluster
+
 == 4.2.14 / Jul 19 2017
 
 New features:
