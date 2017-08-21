@@ -26384,8 +26384,25 @@ to run following request where 123 is an id of a provider.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the remove should be performed asynchronously.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>force</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the operation should succeed, and the provider removed from the database,
+even if something fails during the operation.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/openstack_volume_provider/methods/remove/parameters/force"><a class="anchor" href="#services/openstack_volume_provider/methods/remove/parameters/force"></a>force</h5>
+<div class="paragraph">
+<p>Indicates if the operation should succeed, and the provider removed from the database,
+even if something fails during the operation.</p>
+</div>
+<div class="paragraph">
+<p>This parameter is optional, and the default value is <code>false</code>.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/openstack_volume_provider/methods/test_connectivity"><a class="anchor" href="#services/openstack_volume_provider/methods/test_connectivity"></a>6.148.4. testconnectivity <span class="small">POST</span></h4>
@@ -70087,7 +70104,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-16 07:39:46 UTC
+Last updated 2017-08-21 06:18:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
