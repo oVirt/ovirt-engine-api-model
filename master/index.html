@@ -63587,6 +63587,12 @@ the system was unexpectedly restarted.</p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This attribute indicates whether a data storage domain is used as backup
+domain or not.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -63687,7 +63693,19 @@ discard zeroes the data.</p></td>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.248.1. discard_after_delete</h4>
+<h4 id="types/storage_domain/attributes/backup"><a class="anchor" href="#types/storage_domain/attributes/backup"></a>7.248.1. backup</h4>
+<div class="paragraph">
+<p>This attribute indicates whether a data storage domain is used as backup
+domain or not. If the domain is set to backup then it will be used
+to store virtual machines and templates for disaster recovery purposes in the
+same way we use export storage domain. This attribute is only available
+with data storage domain and not with ISO domain or export storage domain.
+User can use this functionality while creating a data storage domain
+or importing a data storage domain.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.248.2. discard_after_delete</h4>
 <div class="paragraph">
 <p>Indicates whether <a href="#types/disk">disk</a>s' blocks on block <a href="#types/storage_domain">storage domain</a>s will be
 discarded right before they are deleted.</p>
@@ -63725,7 +63743,7 @@ deleted:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.248.2. supports_discard</h4>
+<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.248.3. supports_discard</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
 A <a href="#types/storage_domain">storage domain</a> only supports discard
@@ -63740,7 +63758,7 @@ for them at all.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.248.3. supports_discard_zeroes_data</h4>
+<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.248.4. supports_discard_zeroes_data</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
@@ -63756,7 +63774,7 @@ this attribute will not be reported for them at all.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.248.4. wipe_after_delete</h4>
+<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.248.5. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Serves as the default value of <code>wipe_after_delete</code> for <a href="#types/disk">disk</a>s on this
 <a href="#types/storage_domain">storage domain</a>.</p>
@@ -63845,7 +63863,7 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.248.5. data_center</h4>
+<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.248.6. data_center</h4>
 <div class="paragraph">
 <p>A link to the data center that the storage domain is attached to. This is preserved for backwards
 compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
@@ -70591,7 +70609,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-21 06:28:07 UTC
+Last updated 2017-08-21 09:11:41 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
