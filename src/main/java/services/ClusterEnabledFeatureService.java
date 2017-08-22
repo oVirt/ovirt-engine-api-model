@@ -39,14 +39,14 @@ public interface ClusterEnabledFeatureService {
      * [source]
      * ----
      * GET /ovirt-engine/api/clusters/123/enabledfeatures/456
-     *      * ----
+     * ----
      *
-     * That will return a <<types/cluster_feature, ClusterFeature>> object containing the name
+     * That will return a <<types/cluster_feature, ClusterFeature>> object containing the name:
      *
      * [source,xml]
      * ----
      * <cluster_feature id="456">
-     *       <name>libgfapi_supported</name>
+     *   <name>libgfapi_supported</name>
      * </cluster_feature>
      * ----
      *
@@ -57,7 +57,7 @@ public interface ClusterEnabledFeatureService {
      */
     interface Get {
         /**
-         * Retrieved cluster feature that's enabled
+         * Retrieved cluster feature that's enabled.
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 04 Aug 2017
@@ -68,9 +68,9 @@ public interface ClusterEnabledFeatureService {
     }
 
     /**
-     * Disables a cluster feature for cluster
+     * Disables a cluster feature.
      *
-     * An example for disabling feature for cluster:
+     * For example, to disable the feature `456` of cluster `123` send a request like this:
      *
      * [source]
      * ----

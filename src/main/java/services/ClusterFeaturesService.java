@@ -22,7 +22,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ClusterFeature;
 
 /**
- * Provides information about the cluster features that are enabled for a cluster level.
+ * Provides information about the cluster features that are supported by a cluster level.
  *
  * @author Sahina Bose <sabose@redhat.com>
  * @date 04 Aug 2017
@@ -32,15 +32,14 @@ import types.ClusterFeature;
 @Service
 public interface ClusterFeaturesService {
     /**
-     * Lists the cluster features enabled for cluster level
+     * Lists the cluster features supported by the cluster level.
      *
      * [source]
      * ----
      * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures
      * ----
      *
-     * This will return a list of cluster features supported for
-     * this cluster level
+     * This will return a list of cluster features supported by the cluster level:
      *
      * [source,xml]
      * ----
@@ -52,7 +51,6 @@ public interface ClusterFeaturesService {
      * </cluster_features>
      * ----
      *
-     *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
      * @status added
@@ -60,7 +58,7 @@ public interface ClusterFeaturesService {
      */
     interface List {
         /**
-         * Retrieved feature
+         * Retrieved features.
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 04 Aug 2017
@@ -71,8 +69,7 @@ public interface ClusterFeaturesService {
     }
 
     /**
-     * A reference to the service that provides information about a specific
-     * feature enabled for cluster level
+     * Reference to the service that provides information about a specific feature.
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
@@ -80,5 +77,4 @@ public interface ClusterFeaturesService {
      * @since 4.1.6
      */
     @Service ClusterFeatureService feature(String id);
-
 }

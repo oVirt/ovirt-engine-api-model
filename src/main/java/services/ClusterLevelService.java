@@ -77,7 +77,7 @@ public interface ClusterLevelService {
     }
 
     /**
-     * A sub collection of cluster features for this cluster level
+     * Reference to the service that manages the collection of supported features for this cluster level.
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017

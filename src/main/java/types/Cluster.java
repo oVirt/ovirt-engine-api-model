@@ -350,7 +350,6 @@ public interface Cluster extends Identified {
     /**
      * Custom features that are enabled for the cluster.
      *
-     *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 31 Jul 2017
      * @status added

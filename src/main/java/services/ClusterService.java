@@ -275,7 +275,7 @@ public interface ClusterService {
     @Service NetworkFiltersService networkFilters();
 
     /**
-     * A sub collection of enabled cluster level features for this cluster.
+     * Reference to the service that manages the collection of enabled features for this cluster.
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
@@ -283,5 +283,4 @@ public interface ClusterService {
      * @since 4.1.6
      */
     @Service ClusterEnabledFeaturesService enabledFeatures();
-
 }

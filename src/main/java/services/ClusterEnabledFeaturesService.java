@@ -37,14 +37,16 @@ import types.ClusterFeature;
 @Service
 public interface ClusterEnabledFeaturesService {
     /**
-     * Lists the additional features enabled for cluster
+     * Lists the additional features enabled for the cluster.
+     *
+     * For example, to get the features enabled for cluster `123` send a request like this:
      *
      * [source]
      * ----
      * GET /ovirt-engine/api/clusters/123/enabledfeatures
      * ----
      *
-     * This will return a list of enabled features.
+     * This will return a list of features:
      *
      * [source,xml]
      * ----
@@ -56,7 +58,6 @@ public interface ClusterEnabledFeaturesService {
      * </enabled_features>
      * ----
      *
-     *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
      * @status added
@@ -64,7 +65,7 @@ public interface ClusterEnabledFeaturesService {
      */
     interface List {
         /**
-         * Retrieved feature
+         * Retrieved features.
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 04 Aug 2017
@@ -75,10 +76,9 @@ public interface ClusterEnabledFeaturesService {
     }
 
     /**
-     * Enable an additional feature for a cluster
+     * Enable an additional feature for a cluster.
      *
-     * For example, to enable a feature on cluster `123`, send a
-     * request like this:
+     * For example, to enable a feature `456` on cluster `123`, send a request like this:
      *
      * [source]
      * ----
@@ -89,7 +89,7 @@ public interface ClusterEnabledFeaturesService {
      *
      * [source,xml]
      * ----
-     *   <cluster_feature id="456"/>
+     * <cluster_feature id="456"/>
      * ----
      *
      * @author Sahina Bose <sabose@redhat.com>
@@ -98,17 +98,17 @@ public interface ClusterEnabledFeaturesService {
      * @since 4.1.6
      */
     interface Add {
+        @In @Out ClusterFeature feature();
+
         @InputDetail
         default void inputDetail() {
             mandatory(feature().id());
         }
-
-        @In @Out ClusterFeature feature();
     }
 
     /**
      * A reference to the service that provides information about a specific
-     * feature enabled for cluster
+     * feature enabled for the cluster.
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
