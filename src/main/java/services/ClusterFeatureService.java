@@ -32,21 +32,21 @@ import types.ClusterFeature;
 @Service
 public interface ClusterFeatureService {
     /**
-     * Provides the information about the cluster feature enabled.
+     * Provides the information about the a cluster feature supported by a cluster level.
      *
      * For example, to find details of the cluster feature `456` for cluster level 4.1, send a request like this:
      *
      * [source]
      * ----
      * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures/456
-     *      * ----
+     * ----
      *
-     * That will return a <<types/cluster_feature, ClusterFeature>> object containing the name
+     * That will return a <<types/cluster_feature, ClusterFeature>> object containing the name:
      *
      * [source,xml]
      * ----
      * <cluster_feature id="456">
-     *       <name>libgfapi_supported</name>
+     *   <name>libgfapi_supported</name>
      * </cluster_feature>
      * ----
      *
@@ -57,7 +57,7 @@ public interface ClusterFeatureService {
      */
     interface Get {
         /**
-         * Retrieved cluster feature that's enabled for a cluster level
+         * Retrieved cluster feature.
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 04 Aug 2017

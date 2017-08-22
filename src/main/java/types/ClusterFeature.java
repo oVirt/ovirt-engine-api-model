@@ -20,8 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type represents an additional feature that is
- * available at a cluster level.
+ * Type represents an additional feature that is available at a cluster level.
  *
  * @author Sahina Bose <sabose@redhat.com>
  * @date 31 Jul 2017
@@ -30,6 +29,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface ClusterFeature extends Identified {
-
+    /**
+     * Reference to the cluster level.
+     *
+     * @author Sahina Bose <sabose@redhat.com>
+     * @date 31 Jul 2017
+     * @status added
+     * @since 4.1.6
+     */
     @Link ClusterLevel clusterLevel();
 }
