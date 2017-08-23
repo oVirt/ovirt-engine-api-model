@@ -334,7 +334,7 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@POST");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
         String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
-        if (method.isMandatoryAttributeExists()) {
+        if (baseMethods.containsKey(method)) {
             javaBuffer.addLine("default public Response add(%s %s) {", mainTypeReference.getText(), parameterName);
             Set<Method> signatures = baseMethods.get(method);
             if (signatures!=null && mandatoryAttributeExists(signatures)) {
@@ -498,7 +498,7 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@PUT");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
         String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
-        if (method.isMandatoryAttributeExists()) {
+        if (baseMethods.containsKey(method)) {
             javaBuffer.addLine("default %s update(%s %s) {",
                     mainTypeReference.getText(),
                     mainTypeReference.getText(),
