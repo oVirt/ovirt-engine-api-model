@@ -228,10 +228,9 @@ public class JaxrsGenerator extends JavaGenerator {
     }
 
     private void generateMethod(Method method, JavaClassName helperClassName, Map<Method, Set<Method>> baseMethods) {
-        boolean base = baseMethods.containsKey(method);
         Name name = method.getName();
         if (JaxrsGeneratorUtils.ADD.equals(name)) {
-            generateAddMethod(method, helperClassName, base);
+            generateAddMethod(method, helperClassName, baseMethods);
         }
         else if (JaxrsGeneratorUtils.GET.equals(name)) {
             generateGetMethod(method);
@@ -243,7 +242,7 @@ public class JaxrsGenerator extends JavaGenerator {
             generateRemoveMethod(method);
         }
         else if (JaxrsGeneratorUtils.UPDATE.equals(name)) {
-            generateUpdateMethod(method, helperClassName, base);
+            generateUpdateMethod(method, helperClassName, baseMethods);
         }
         else if (jaxrsGeneratorUtils.isAddSignature(method)) {
             generateAddSignature(method);
@@ -255,7 +254,7 @@ public class JaxrsGenerator extends JavaGenerator {
             generateActionSignature(method);
         }
         else {//other options exhausted; must be an action
-            generateActionMethod(method, helperClassName, base);
+            generateActionMethod(method, helperClassName, baseMethods);
         }
     }
 
@@ -312,7 +311,7 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateAddMethod(Method method, JavaClassName helperClassName, boolean base) {
+    private void generateAddMethod(Method method, JavaClassName helperClassName, Map<Method, Set<Method>> baseMethods) {
         // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
         // rest of the methods are extracted explicitly by the implementation:
         Parameter mainParameter = jaxrsGeneratorUtils.getMainAddParameter(method);
@@ -335,9 +334,10 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@POST");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
         String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
-        if (base) {
+        if (method.isMandatoryAttributeExists()) {
             javaBuffer.addLine("default public Response add(%s %s) {", mainTypeReference.getText(), parameterName);
-            if (method.isMandatoryAttributeExists()) {
+            Set<Method> signatures = baseMethods.get(method);
+            if (signatures!=null && mandatoryAttributeExists(signatures)) {
                 writeHelperInvocation(helperClassName, parameterName, method.getName());
             }
             else {
@@ -476,7 +476,7 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateUpdateMethod(Method method, JavaClassName helperClassName, boolean base) {
+    private void generateUpdateMethod(Method method, JavaClassName helperClassName, Map<Method, Set<Method>> baseMethods) {
         // Find the main parameter of the method, as this is the only one that appears in the JAX-RS interfaces, the
         // rest of the methods are extracted explicitly by the implementation:
         Parameter mainParameter = jaxrsGeneratorUtils.getMainUpdateParameter(method);
@@ -498,12 +498,13 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine("@PUT");
         javaBuffer.addLine("@Consumes({ %s })", generateMediaTypes());
         String parameterName = javaNames.getJavaMemberStyleName(mainParameter.getName());
-        if (base) {
+        if (method.isMandatoryAttributeExists()) {
             javaBuffer.addLine("default %s update(%s %s) {",
                     mainTypeReference.getText(),
                     mainTypeReference.getText(),
                     parameterName);
-            if (method.isMandatoryAttributeExists()) {
+            Set<Method> signatures = baseMethods.get(method);
+            if (signatures!=null && mandatoryAttributeExists(signatures)) {
                 writeHelperInvocation(helperClassName, parameterName, method.getName());
             }
             else {
@@ -530,7 +531,7 @@ public class JaxrsGenerator extends JavaGenerator {
         javaBuffer.addLine();
     }
 
-    private void generateActionMethod(Method method, JavaClassName helperClassName, boolean base) {
+    private void generateActionMethod(Method method, JavaClassName helperClassName, Map<Method, Set<Method>> baseMethods) {
         // Generate the imports:
         javaBuffer.addImport(Consumes.class);
         javaBuffer.addImport(POST.class);
@@ -549,9 +550,10 @@ public class JaxrsGenerator extends JavaGenerator {
             jaxrsNames.getActionPath(method.getName())
         );
         String methodName = jaxrsNames.getMethodName(method.getName());
-        if (base) {
+        if (baseMethods.containsKey(method)) {
             javaBuffer.addLine("default Response %s(Action action) {", methodName);
-            if (method.isMandatoryAttributeExists()) {
+            Set<Method> signatures = baseMethods.get(method);
+            if (signatures!=null && mandatoryAttributeExists(signatures)) {
                 writeHelperInvocation(helperClassName, "action", method.getName());
             }
             else {
@@ -572,6 +574,15 @@ public class JaxrsGenerator extends JavaGenerator {
             addResponseReturnMethod(jaxrsNames.getMethodName(method.getName()) + "(Action action)");
         }
         javaBuffer.addLine();
+    }
+
+    private boolean mandatoryAttributeExists(Set<Method> methods) {
+        for (Method method : methods) {
+            if (method.isMandatoryAttributeExists()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private String getActionValidationMethodName(String methodName) {
