@@ -21423,8 +21423,21 @@ being performed.</p></td>
 <div class="sect3">
 <h4 id="services/image_transfers/methods/add"><a class="anchor" href="#services/image_transfers/methods/add"></a>6.109.1. add <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Add a new image transfer. An image needs to be specified in order to make
-a new transfer.</p>
+<p>Add a new image transfer. An image, disk or disk snapshot needs to be specified
+in order to make a new transfer.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>image</code> attribute is deprecated since version 4.2 of the engine.
+Use the <code>disk</code> or <code>snapshot</code> attributes instead.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 337. Parameters summary</caption>
@@ -43224,6 +43237,11 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>image_transfer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/image_transfer">ImageTransfer</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>import_as_template</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -53615,6 +53633,11 @@ phase. See <code>phase</code> for details.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk which is targeted for input or output.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The host which will be used to write to the image which is targeted for input or output.</p></td>
@@ -53624,8 +53647,33 @@ phase. See <code>phase</code> for details.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/image">Image</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The image which is targeted for input or output.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>snapshot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_snapshot">DiskSnapshot</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk snapshot which is targeted for input or output.</p></td>
+</tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.120.4. image</h4>
+<div class="paragraph">
+<p>The image which is targeted for input or output.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This attribute is deprecated since version
+4.2 of the engine. Use the <code>disk</code> or <code>snapshot</code>
+attributes instead.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -70611,7 +70659,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-25 10:10:58 UTC
+Last updated 2017-08-25 13:22:31 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
