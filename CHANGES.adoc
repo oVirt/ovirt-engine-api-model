@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.10 / Aug 2 2017
+
+* Add `Image.size` to the list of exceptions of integer
+  attributes that are represented using `xs:long` instead of `xs:int`.
+
+* Fix signuature detection invocation bug.
+
+* Add `Disk.totalSize` to the list of exceptions of integer
+  attributes that are represented using `xs:long` instead of `xs:int`.
+
+* Replace live documentation log error with validation exception.
+
 == 1.2.9 / Aug 2 2017
 
 Bug fixes:
