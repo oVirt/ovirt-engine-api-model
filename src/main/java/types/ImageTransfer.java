@@ -104,7 +104,7 @@ public interface ImageTransfer extends Identified {
     /**
      * The disk which is targeted for input or output.
      *
-     * @author Daniel Erez <derezredhat.com>
+     * @author Daniel Erez <derez@redhat.com>
      * @date 15 Aug 2017
      * @since 4.2.0
      * @status added
@@ -114,7 +114,7 @@ public interface ImageTransfer extends Identified {
     /**
      * The disk snapshot which is targeted for input or output.
      *
-     * @author Daniel Erez <derezredhat.com>
+     * @author Daniel Erez <derez@redhat.com>
      * @date 15 Aug 2017
      * @status added
      * @since 4.2.0

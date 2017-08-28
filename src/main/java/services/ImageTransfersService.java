@@ -25,7 +25,6 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ImageTransfer;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
-import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
  * This service manages image transfers, for performing Image I/O API in oVirt.
@@ -63,6 +62,9 @@ public interface ImageTransfersService {
             }
         }
 
+        /**
+         * @since 4.2.0
+         */
         interface ForDisk extends Add {
             @InputDetail
             default void inputDetail() {
@@ -70,6 +72,9 @@ public interface ImageTransfersService {
             }
         }
 
+        /**
+         * @since 4.2.0
+         */
         interface ForSnapshot extends Add {
             @InputDetail
             default void inputDetail() {
