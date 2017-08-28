@@ -46734,6 +46734,11 @@ propagated to the the guest operating system instead.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>total_size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The total size of the disk including all of its snapshots, in bytes.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>uses_scsi_reservation</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -46896,7 +46901,18 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.46.10. wipe_after_delete</h4>
+<h4 id="types/disk/attributes/total_size"><a class="anchor" href="#types/disk/attributes/total_size"></a>7.46.10. total_size</h4>
+<div class="paragraph">
+<p>The total size of the disk including all of its snapshots, in bytes.</p>
+</div>
+<div class="paragraph">
+<p>The total size is the number of bytes actually used by the disk plus the size of its snapshots.
+It won&#8217;t be populated for direct LUN and Cinder disks.
+For disks without snapshots the total size is equal to the actual size.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.46.11. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -46990,7 +47006,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.46.11. statistics</h4>
+<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.46.12. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -47025,7 +47041,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.46.12. storage_domains</h4>
+<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.46.13. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -47044,7 +47060,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.46.13. vms</h4>
+<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.46.14. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -47519,6 +47535,11 @@ propagated to the the guest operating system instead.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>total_size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The total size of the disk including all of its snapshots, in bytes.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>uses_scsi_reservation</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -47681,7 +47702,18 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.51.10. wipe_after_delete</h4>
+<h4 id="types/disk_snapshot/attributes/total_size"><a class="anchor" href="#types/disk_snapshot/attributes/total_size"></a>7.51.10. total_size</h4>
+<div class="paragraph">
+<p>The total size of the disk including all of its snapshots, in bytes.</p>
+</div>
+<div class="paragraph">
+<p>The total size is the number of bytes actually used by the disk plus the size of its snapshots.
+It won&#8217;t be populated for direct LUN and Cinder disks.
+For disks without snapshots the total size is equal to the actual size.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.51.11. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -47780,7 +47812,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.51.11. statistics</h4>
+<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.51.12. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -47815,7 +47847,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.51.12. storage_domains</h4>
+<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.51.13. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -47834,7 +47866,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.51.13. vms</h4>
+<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.51.14. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -70721,7 +70753,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-28 11:49:57 UTC
+Last updated 2017-08-28 15:31:50 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
