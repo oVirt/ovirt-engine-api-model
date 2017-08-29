@@ -57,7 +57,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * @author Tahlia Richardson <trichard@redhat.com>
  * @date 14 Jul 2017
  * @status updated_by_docs
- * @since 4.1.5
+ * @since 4.1.6
  */
 @Type
 public interface LinkLayerDiscoveryProtocolElement extends Identified {
@@ -68,7 +68,7 @@ public interface LinkLayerDiscoveryProtocolElement extends Identified {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.1.5
+     * @since 4.1.6
      */
     Integer type();
 
@@ -80,7 +80,7 @@ public interface LinkLayerDiscoveryProtocolElement extends Identified {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.1.5
+     * @since 4.1.6
      */
     Integer oui();
 
@@ -92,7 +92,7 @@ public interface LinkLayerDiscoveryProtocolElement extends Identified {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.1.5
+     * @since 4.1.6
      */
     Integer subtype();
 
@@ -104,7 +104,7 @@ public interface LinkLayerDiscoveryProtocolElement extends Identified {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.1.5
+     * @since 4.1.6
      */
     Property[] properties();
 }
