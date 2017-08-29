@@ -23,8 +23,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Represents an image entity.
  *
  * @author Shani Leviim <sleviim@redhat.com>
- * @date 14 Aug 2017
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 25 Aug 2017
+ * @status updated_by_docs
  */
 @Type
 public interface Image extends Identified {
@@ -33,8 +34,9 @@ public interface Image extends Identified {
      * The storage domain associated with this image.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      */
     @Link StorageDomain storageDomain();
 
@@ -42,8 +44,9 @@ public interface Image extends Identified {
      * The type of the image file.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      * @since 4.2.0
      */
     ImageFileType type();
@@ -52,8 +55,9 @@ public interface Image extends Identified {
      * The size of the image file.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      * @since 4.2.0
      */
     Integer size();

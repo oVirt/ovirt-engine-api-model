@@ -19,11 +19,12 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents file types of an image.
+ * Represents the file type of an image.
  *
  * @author Shani Leviim <sleviim@redhat.com>
- * @date 14 Aug 2017
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 25 Aug 2017
+ * @status updated_by_docs
  * @since 4.2.0
  */
 @Type
@@ -33,8 +34,9 @@ public enum ImageFileType {
      * to boot and install a virtual machine.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      * @since 4.2.0
      */
     ISO,
@@ -44,8 +46,9 @@ public enum ImageFileType {
      * for example to install the VirtIO drivers in Windows.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      * @since 4.2.0
      */
     FLOPPY,
@@ -54,8 +57,9 @@ public enum ImageFileType {
      * The image is a disk format that can be used as a virtual machine's disk.
      *
      * @author Shani Leviim <sleviim@redhat.com>
-     * @date 14 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 25 Aug 2017
+     * @status updated_by_docs
      * @since 4.2.0
      */
     DISK;
