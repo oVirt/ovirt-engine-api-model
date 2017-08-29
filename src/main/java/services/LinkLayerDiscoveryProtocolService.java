@@ -29,7 +29,7 @@ import types.LinkLayerDiscoveryProtocolElement;
  * @author Tahlia Richardson <trichard@redhat.com>
  * @date 14 Jul 2017
  * @status updated_by_docs
- * @since 4.1.5
+ * @since 4.1.6
  */
 @Service
 @Area("Network")
@@ -42,7 +42,7 @@ public interface LinkLayerDiscoveryProtocolService {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 14 Jul 2017
      * @status updated_by_docs
-     * @since 4.1.5
+     * @since 4.1.6
      */
     interface List {
 
@@ -79,7 +79,7 @@ public interface LinkLayerDiscoveryProtocolService {
          * @author Tahlia Richardson <trichard@redhat.com>
          * @date 14 Jul 2017
          * @status updated_by_docs
-         * @since 4.1.5
+         * @since 4.1.6
          */
         @Out LinkLayerDiscoveryProtocolElement[] elements();
     }
