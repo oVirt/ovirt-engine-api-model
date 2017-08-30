@@ -50,7 +50,6 @@ public interface AttachedStorageDomainsService {
         @InputDetail
         default void inputDetail() {
             or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
-            optional(storageDomain().backup());
         }
     }
 
