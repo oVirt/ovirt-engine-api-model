@@ -36,17 +36,22 @@ public interface StorageDomainService {
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
     /**
-     * Querying if the Storage Domain is already attached to a Data Center by the
-     * is_attached boolean field, which is part of the storage server. IMPORTANT,
-     * Executing this API will cause the Host to disconnect from the Storage Domain.
+     * Used for querying if the storage domain is already attached to a data center using
+     * the is_attached boolean field, which is part of the storage server. IMPORTANT:
+     * Executing this API will cause the host to disconnect from the storage domain.
      *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     interface IsAttached {
         @InputDetail
@@ -58,6 +63,10 @@ public interface StorageDomainService {
 
         /**
          * Indicates if the action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -65,9 +74,9 @@ public interface StorageDomainService {
     /**
      * Updates a storage domain.
      *
-     * Not all of the <<types/storage_domain,StorageDomain>>'s attributes are updatable post-creation. Those that can be
+     * Not all of the <<types/storage_domain,StorageDomain>>'s attributes are updatable after creation. Those that can be
      * updated are: `name`, `description`, `comment`, `warning_low_space_indicator`, `critical_space_action_blocker` and
-     * `wipe_after_delete` (note that changing the `wipe_after_delete` attribute will not change the wipe after delete
+     * `wipe_after_delete.` (Note that changing the `wipe_after_delete` attribute will not change the wipe after delete
      * property of disks that already exist).
      *
      * To update the `name` and `wipe_after_delete` attributes of a storage domain with an identifier `123`, send a
@@ -89,8 +98,9 @@ public interface StorageDomainService {
      * ----
      *
      * @author Idan Shaby <ishaby@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     interface Update {
         default void inputDetail() {
@@ -119,6 +129,10 @@ public interface StorageDomainService {
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -127,9 +141,9 @@ public interface StorageDomainService {
      * This operation forces the update of the `OVF_STORE`
      * of this storage domain.
      *
-     * The `OVF_STORE` is a disk image that contains the meta-data
+     * The `OVF_STORE` is a disk image that contains the metadata
      * of virtual machines and disks that reside in the
-     * storage domain. This meta-data is used in case the
+     * storage domain. This metadata is used in case the
      * domain is imported or exported to or from a different
      * data center or a different installation.
      *
@@ -140,10 +154,18 @@ public interface StorageDomainService {
      *
      * When initiated by the user, `OVF_STORE` update will be performed whether
      * an update is needed or not.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     interface UpdateOvfStore {
         /**
          * Indicates if the `OVF_STORE` update should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -154,7 +176,7 @@ public interface StorageDomainService {
      * After increasing the size of the underlying LUN on the storage server,
      * the user can refresh the LUN size.
      * This action forces a rescan of the provided LUNs and
-     * updates the database with the new size if required.
+     * updates the database with the new size, if required.
      *
      * For example, in order to refresh the size of two LUNs send a request like this:
      *
@@ -176,8 +198,9 @@ public interface StorageDomainService {
      * ----
      *
      * @author Fred Rolland <frolland@redhat.com>
-     * @date 13 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     interface RefreshLuns {
         @InputDetail
@@ -188,13 +211,18 @@ public interface StorageDomainService {
          * The LUNs that need to be refreshed.
          *
          * @author Fred Rolland <frolland@redhat.com>
-         * @date 13 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In LogicalUnit[] logicalUnits();
 
         /**
          * Indicates if the refresh should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -228,17 +256,19 @@ public interface StorageDomainService {
      *  <<types/storage_type, storage type> of iSCSI or FCP).
      *
      * @author Liron Aravot <laravot@redhat.com>
-     * @date 30 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     interface ReduceLuns {
         /**
-         * The logical units that needs to be reduced from the storage domain.
+         * The logical units that need to be reduced from the storage domain.
          *
          * @author Liron Aravot <laravot@redhat.com>
-         * @date 30 Nov 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          * @since 4.1
          */
         @In LogicalUnit[] logicalUnits();//TODO: missing @InputDetail
@@ -248,26 +278,37 @@ public interface StorageDomainService {
      * Removes the storage domain.
      *
      * Without any special parameters, the storage domain is detached from the system and removed from the database. The
-     * storage domain can then be imported to the same or different setup, with all the data on it. If the storage isn't
-     * accessible the operation will fail.
+     * storage domain can then be imported to the same or to a different setup, with all the data on it. If the storage is
+     * not accessible the operation will fail.
      *
-     * If the `destroy` parameter is `true` then the operation will always succeed, even if the storage isn't
+     * If the `destroy` parameter is `true` then the operation will always succeed, even if the storage is not
      * accessible, the failure is just ignored and the storage domain is removed from the database anyway.
      *
      * If the `format` parameter is `true` then the actual storage is formatted, and the metadata is removed from the
-     * LUN or directory, so it can no longer be imported to the same or a different setup.
+     * LUN or directory, so it can no longer be imported to the same or to a different setup.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     interface Remove {//TODO: missing @InputDetail
         /**
-         * Indicates what host should be used to remove the storage domain.
+         * Indicates which host should be used to remove the storage domain.
          *
-         * This parameter is mandatory, and it can contain the name or the identifier of the host. For example, to use
-         * the host named `myhost` to remove the storage domain with identifier `123` send a request like this:
+         * This parameter is mandatory, except if the `destroy` parameter is included and its value is `true`, in that
+         * case the `host` parameter will be ignored.
+         *
+         * The value should contain the name or the identifier of the host. For example, to use the host named `myhost`
+         * to remove the storage domain with identifier `123` send a request like this:
          *
          * [source]
          * ----
          * DELETE /ovirt-engine/api/storageDomains/123?host=myhost
          * ----
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In String host();
 
@@ -283,14 +324,15 @@ public interface StorageDomainService {
          * This parameter is optional, and the default value is `false`.
          *
          * @author Allon Mureinik <amureini@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean format();
 
         /**
          * Indicates if the operation should succeed, and the storage domain removed from the database, even if the
-         * storage isn't accessible.
+         * storage is not accessible.
          *
          * [source]
          * ----
@@ -298,16 +340,22 @@ public interface StorageDomainService {
          * ----
          *
          * This parameter is optional, and the default value is `false`.
+         * When the value of `destroy` is `true` the `host` parameter will be ignored.
          *
          * @author Allon Mureinik <amureini@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         // TODO: Consider renaming this to `force`, or `ignore_errors`, as that describes better what it actually means.
         @In Boolean destroy();
 
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 13 Sep 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -320,8 +368,9 @@ public interface StorageDomainService {
      * Reference to the service that manages the disks available in the storage domain.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 4 Jan 2017
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     @Service StorageDomainDisksService disks();
 
@@ -329,8 +378,9 @@ public interface StorageDomainService {
      * Returns a reference to the service that manages the files available in the storage domain.
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     @Service FilesService files();
     @Service ImagesService images();
@@ -339,8 +389,9 @@ public interface StorageDomainService {
      * Returns a reference to the service that manages the storage connections.
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      */
     @Service StorageDomainServerConnectionsService storageConnections();
     @Service StorageDomainTemplatesService templates();
