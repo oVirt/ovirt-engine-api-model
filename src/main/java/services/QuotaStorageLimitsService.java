@@ -29,41 +29,77 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
  * Manages the set of storage limits configured for a quota.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
- * @date 15 Arp 2017
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 5 Sep 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("SLA")
 public interface QuotaStorageLimitsService {
     /**
-     * Add a storage limit to a specified Quota.
+     * Adds a storage limit to a specified quota.
+     *
+     * To create a 100GiB storage limit for all storage domains in a data center, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <quota_storage_limit>
+     *   <limit>100</limit>
+     * </quota_storage_limit>
+     * ----
+     *
+     * To create a 50GiB storage limit for a storage domain with the ID `000`, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <quota_storage_limit>
+     *   <limit>50</limit>
+     *   <storage_domain id="000"/>
+     * </quota_storage_limit>
+     * ----
      *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 5 Sep 2017
+     * @status updated_by_docs
      */
     interface Add {
-        @InputDetail
-        default void inputDetail() {
-            mandatory(limit().storageDomain().id());
-        }
         @In @Out QuotaStorageLimit limit();
     }
 
     /**
      * Returns the list of storage limits configured for the quota.
      *
-     * The order of the returned list of storage limits isn't guaranteed.
+     * The order of the returned list of storage limits is not guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 5 Sep 2017
+     * @status updated_by_docs
      */
     interface List {
         @Out QuotaStorageLimit[] limits();
 
         /**
-         * Sets the maximum number of limits to return. If not specified all the limits are returned.
+         * Sets the maximum number of limits to return. If not specified, all the limits are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 5 Sep 2017
+         * @status updated_by_docs
          */
         @In Integer max();
     }
