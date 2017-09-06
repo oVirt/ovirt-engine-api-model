@@ -6556,8 +6556,13 @@ returned.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;affinity_group&gt;
   &lt;name&gt;AF_GROUP_001&lt;/name&gt;
-  &lt;positive&gt;true&lt;/positive&gt;
-  &lt;enforcing&gt;true&lt;/enforcing&gt;
+  &lt;hosts_rule&gt;
+    &lt;enforcing&gt;true&lt;/enforcing&gt;
+    &lt;positive&gt;true&lt;/positive&gt;
+  &lt;/hosts_rule&gt;
+  &lt;vms_rule&gt;
+    &lt;enabled&gt;false&lt;/enabled&gt;
+  &lt;/vms_rule&gt;
 &lt;/affinity_group&gt;</code></pre>
 </div>
 </div>
@@ -70790,7 +70795,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-06 08:00:53 UTC
+Last updated 2017-09-06 09:02:52 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
