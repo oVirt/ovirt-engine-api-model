@@ -41,6 +41,7 @@ public interface AffinityGroup extends Identified {
      * @date 15 Nov 2016
      * @status updated_by_docs
      */
+    @Deprecated
     Boolean positive();
 
     /**
@@ -55,6 +56,7 @@ public interface AffinityGroup extends Identified {
      * @date 15 Nov 2016
      * @status updated_by_docs
      */
+    @Deprecated
     Boolean enforcing();
 
     /**
