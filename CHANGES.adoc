@@ -3,6 +3,15 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.17 / Sel 6 2017
+
+Bug fixes:
+
+* Storage domain identifier isn't mandatory to create quota limit.
+
+* Don't require deprecated affinity group attributes
+  https://bugzilla.redhat.com/1488729[#1488729].
+
 == 4.2.16 / Aug 28 2017
 
 New features:
@@ -20,15 +29,15 @@ New features:
 
 New features:
 
-* Update @since tags to reflect backport of LLDP to oVirt 4.1.5
+* Update `@since` tags to reflect backport of LLDP to oVirt 4.1.5.
 
-* Add firewalType property to Cluster
+* Add `firewalType` attribute to the `Cluster` type.
 
-* Add hasIllegalImages property to VM
+* Add `hasIllegalImages` attribute to the `Vm` type.
 
 Bug fixes:
 
-* Fix live documentation for adding a new Cluster
+* Fix live documentation for adding a new cluster.
 
 == 4.2.14 / Jul 19 2017
 
