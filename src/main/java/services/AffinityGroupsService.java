@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -52,8 +52,13 @@ public interface AffinityGroupsService {
      * ----
      * <affinity_group>
      *   <name>AF_GROUP_001</name>
-     *   <positive>true</positive>
-     *   <enforcing>true</enforcing>
+     *   <hosts_rule>
+     *     <enforcing>true</enforcing>
+     *     <positive>true</positive>
+     *   </hosts_rule>
+     *   <vms_rule>
+     *     <enabled>false</enabled>
+     *   </vms_rule>
      * </affinity_group>
      * ----
      *
@@ -63,12 +68,6 @@ public interface AffinityGroupsService {
      * @status updated_by_docs
      */
     interface Add {
-        @InputDetail
-        default void inputDetail() {
-            mandatory(group().enforcing());
-            mandatory(group().name());
-            mandatory(group().positive());
-        }
         /**
          * The affinity group object to create.
          *
@@ -78,6 +77,11 @@ public interface AffinityGroupsService {
          * @status updated_by_docs
          */
         @In @Out AffinityGroup group();
+
+        @InputDetail
+        default void inputDetail() {
+            mandatory(group().name());
+        }
     }
 
     /**
