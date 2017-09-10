@@ -140,19 +140,19 @@ public interface StorageDomainsService {
         interface DirectLun extends Add {
             @InputDetail
             default void inputDetail() {
-                mandatory(storageDomain().storage().address());
+                optional(storageDomain().storage().address());
                 mandatory(storageDomain().storage().logicalUnits()[COLLECTION].address());
                 mandatory(storageDomain().storage().logicalUnits()[COLLECTION].id());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].password());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].paths());
                 mandatory(storageDomain().storage().logicalUnits()[COLLECTION].port());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].portal());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].productId());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].serial());
                 mandatory(storageDomain().storage().logicalUnits()[COLLECTION].target());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].username());
-                mandatory(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].password());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].paths());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].portal());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].productId());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].serial());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].username());
+                optional(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
                 optional(storageDomain().name());
                 optional(storageDomain().storage().overrideLuns());
                 optional(storageDomain().storageFormat());

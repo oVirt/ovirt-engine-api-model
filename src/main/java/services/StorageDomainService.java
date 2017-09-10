@@ -93,21 +93,20 @@ public interface StorageDomainService {
      * @status added
      */
     interface Update {
-        @InputDetail //TODO: this isn't accurate, should be revisited
         default void inputDetail() {
             optional(storageDomain().name());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].address());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].id());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].password());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].paths());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].port());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].portal());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].productId());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].serial());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].target());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].username());
-            mandatory(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].address());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].id());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].port());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].target());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].lunMapping());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].password());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].paths());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].portal());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].productId());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].serial());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].username());
+            optional(storageDomain().storage().logicalUnits()[COLLECTION].vendorId());
             optional(storageDomain().comment());
             optional(storageDomain().criticalSpaceActionBlocker());
             optional(storageDomain().host().id()); //DEPRECATED
