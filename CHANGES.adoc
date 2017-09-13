@@ -3,7 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
-== 4.2.17 / Sel 6 2017
+== 4.2.18 / Sep 13 2017
+
+Bug fixes:
+
+* Fix optional fields in storage domain add and update
+  https://bugzilla.redhat.com/1488929[1488929].
+
+== 4.2.17 / Sep 6 2017
 
 Bug fixes:
 
