@@ -27,13 +27,14 @@ import types.ImageTransfer;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
 /**
- * This service manages image transfers, for performing Image I/O API in oVirt.
+ * This service manages image transfers, for performing Image I/O API in {product-name}.
  * Please refer to <<services/image_transfer, image transfer>> for further
  * documentation.
  *
  * @author Amit Aviram <aaviram@redhat.com>
- * @date 30 Aug 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 13 Sep 2017
+ * @status updated_by_docs
  * @since 4.0.4
  */
 @Service
@@ -47,8 +48,9 @@ public interface ImageTransfersService {
      * Use the `disk` or `snapshot` attributes instead.
      *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 30 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      * @since 4.0.4
      */
     interface Add {
@@ -87,11 +89,12 @@ public interface ImageTransfersService {
      * Retrieves the list of image transfers that are currently
      * being performed.
      *
-     * The order of the returned list of image transfers isn't guaranteed.
+     * The order of the returned list of image transfers is not guaranteed.
      *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 30 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      * @since 4.0.4
      */
     interface List {
@@ -103,8 +106,9 @@ public interface ImageTransfersService {
      * specific image transfer.
      *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 30 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 13 Sep 2017
+     * @status updated_by_docs
      * @since 4.0.4
      */
     @Service ImageTransferService imageTransfer(String id);
