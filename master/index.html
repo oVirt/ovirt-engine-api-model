@@ -31934,7 +31934,7 @@ compatibility. It will be removed in the future. To update a disk use the
 <div class="sect2">
 <h3 id="services/storage_domain_disks"><a class="anchor" href="#services/storage_domain_disks"></a>6.194. StorageDomainDisks</h3>
 <div class="paragraph">
-<p>Manages the collection of disks available inside an specific storage domain.</p>
+<p>Manages the collection of disks available inside a specific storage domain.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 595. Methods summary</caption>
@@ -31955,7 +31955,7 @@ compatibility. It will be removed in the future. To update a disk use the
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieve the list of disks that are available in the storage domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the list of disks that are available in the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -31971,7 +31971,7 @@ compatibility. It will be removed in the future. To update a disk use the
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
+Since version 4.2 of the oVirt Engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To add a new disk use the <a href="#services/disks/methods/add">add</a>
 operation of the service that manages the disks of the system. To register an unregistered disk use the
 <a href="#services/attached_storage_domain_disk/methods/register">register</a> operation of the service that manages
@@ -32016,7 +32016,7 @@ that disk.
 <div class="paragraph">
 <p>Indicates if a new disk should be added or if an existing unregistered disk should be registered. If the
 value is <code>true</code> then the identifier of the disk to register needs to be provided. For example, to register
-the disk with id <code>456</code> send a request like this:</p>
+the disk with ID <code>456</code> send a request like this:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -32033,7 +32033,7 @@ the disk with id <code>456</code> send a request like this:</p>
 </div>
 <div class="paragraph">
 <p>If the value is <code>false</code> then a new disk will be created in the storage domain. In that case the
-<code>provisioned_size</code>, <code>format</code> and <code>name</code> attributes are mandatory. For example, to create a new
+<code>provisioned_size</code>, <code>format</code>, and <code>name</code> attributes are mandatory. For example, to create a new
 <em>copy on write</em> disk of 1 GiB, send a request like this:</p>
 </div>
 <div class="literalblock">
@@ -32056,15 +32056,19 @@ the disk with id <code>456</code> send a request like this:</p>
 <div class="paragraph">
 <p>The default value is <code>false</code>.</p>
 </div>
+<div class="paragraph">
+<p>This parameter has been deprecated since version 4.2 of
+the oVirt Engine.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="services/storage_domain_disks/methods/list"><a class="anchor" href="#services/storage_domain_disks/methods/list"></a>6.194.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Retrieve the list of disks that are available in the storage domain.</p>
+<p>Retrieves the list of disks that are available in the storage domain.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of disks isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of disks is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 597. Parameters summary</caption>
@@ -32087,7 +32091,7 @@ the disk with id <code>456</code> send a request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of retrieved disks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of retrieved disks.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
@@ -32106,7 +32110,7 @@ the disk with id <code>456</code> send a request like this:</p>
 <div class="sect4">
 <h5 id="services/storage_domain_disks/methods/list/parameters/max"><a class="anchor" href="#services/storage_domain_disks/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of disks to return. If not specified all the disks are returned.</p>
+<p>Sets the maximum number of disks to return. If not specified, all the disks are returned.</p>
 </div>
 </div>
 <div class="sect4">
@@ -32123,7 +32127,7 @@ For example, to get a list of unregistered disks the REST API call should look l
 </div>
 <div class="paragraph">
 <p>The default value of the unregistered flag is <code>false</code>.
-The request only apply to storage domains that are attached.</p>
+The request only applies to storage domains that are attached.</p>
 </div>
 </div>
 </div>
@@ -70795,7 +70799,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-13 15:11:35 UTC
+Last updated 2017-09-13 15:17:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
