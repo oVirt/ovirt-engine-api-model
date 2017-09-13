@@ -638,10 +638,19 @@ public interface HostService extends MeasurableService {
      * @status added
      */
     interface Upgrade {
-//        @InputDetail
-//        default void inputDetail() {
-//            optional(host().image()); //TODO: check this.
-//        }
+
+        @InputDetail
+        default void inputDetail() {
+            optional(image());
+        }
+
+        /**
+         * The image parameter specifies path to image, which is used
+         * for upgrade. This parameter is used only to upgrade Vintage
+         * Node hosts and it's not relevant for other hosts types.
+         */
+        @In String image();
+
         /**
          * Indicates if the upgrade should be performed asynchronously.
          */
