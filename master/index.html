@@ -31006,8 +31006,8 @@ This parameter will give the option to not perform the status check of the LUNs.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>isattached</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Querying if the Storage Domain is already attached to a Data Center by the
-is_attached boolean field, which is part of the storage server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used for querying if the storage domain is already attached to a data center using
+the is_attached boolean field, which is part of the storage server.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reduceluns</code></p></td>
@@ -31069,9 +31069,9 @@ of this storage domain.</p></td>
 <div class="sect3">
 <h4 id="services/storage_domain/methods/is_attached"><a class="anchor" href="#services/storage_domain/methods/is_attached"></a>6.190.2. isattached <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Querying if the Storage Domain is already attached to a Data Center by the
-is_attached boolean field, which is part of the storage server. IMPORTANT,
-Executing this API will cause the Host to disconnect from the Storage Domain.</p>
+<p>Used for querying if the storage domain is already attached to a data center using
+the is_attached boolean field, which is part of the storage server. IMPORTANT:
+Executing this API will cause the host to disconnect from the storage domain.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 579. Parameters summary</caption>
@@ -31168,7 +31168,7 @@ storage domain and only then they will be reduced from the storage domain.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>logical_units</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/logical_unit">LogicalUnit[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The logical units that needs to be reduced from the storage domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The logical units that need to be reduced from the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -31182,7 +31182,7 @@ storage domain and only then they will be reduced from the storage domain.</p>
 <p>After increasing the size of the underlying LUN on the storage server,
 the user can refresh the LUN size.
 This action forces a rescan of the provided LUNs and
-updates the database with the new size if required.</p>
+updates the database with the new size, if required.</p>
 </div>
 <div class="paragraph">
 <p>For example, in order to refresh the size of two LUNs send a request like this:</p>
@@ -31244,16 +31244,16 @@ updates the database with the new size if required.</p>
 </div>
 <div class="paragraph">
 <p>Without any special parameters, the storage domain is detached from the system and removed from the database. The
-storage domain can then be imported to the same or different setup, with all the data on it. If the storage isn&#8217;t
-accessible the operation will fail.</p>
+storage domain can then be imported to the same or to a different setup, with all the data on it. If the storage is
+not accessible the operation will fail.</p>
 </div>
 <div class="paragraph">
-<p>If the <code>destroy</code> parameter is <code>true</code> then the operation will always succeed, even if the storage isn&#8217;t
+<p>If the <code>destroy</code> parameter is <code>true</code> then the operation will always succeed, even if the storage is not
 accessible, the failure is just ignored and the storage domain is removed from the database anyway.</p>
 </div>
 <div class="paragraph">
 <p>If the <code>format</code> parameter is <code>true</code> then the actual storage is formatted, and the metadata is removed from the
-LUN or directory, so it can no longer be imported to the same or a different setup.</p>
+LUN or directory, so it can no longer be imported to the same or to a different setup.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 582. Parameters summary</caption>
@@ -31283,7 +31283,7 @@ LUN or directory, so it can no longer be imported to the same or a different set
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the operation should succeed, and the storage domain removed from the database, even if the
-storage isn&#8217;t accessible.</p></td>
+storage is not accessible.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>format</code></p></td>
@@ -31301,7 +31301,7 @@ DELETE /ovirt-engine/api/storageDomains/123?format=true
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates what host should be used to remove the storage domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates which host should be used to remove the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -31309,7 +31309,7 @@ DELETE /ovirt-engine/api/storageDomains/123?format=true
 <h5 id="services/storage_domain/methods/remove/parameters/destroy"><a class="anchor" href="#services/storage_domain/methods/remove/parameters/destroy"></a>destroy</h5>
 <div class="paragraph">
 <p>Indicates if the operation should succeed, and the storage domain removed from the database, even if the
-storage isn&#8217;t accessible.</p>
+storage is not accessible.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -31317,17 +31317,22 @@ storage isn&#8217;t accessible.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This parameter is optional, and the default value is <code>false</code>.</p>
+<p>This parameter is optional, and the default value is <code>false</code>.
+When the value of <code>destroy</code> is <code>true</code> the <code>host</code> parameter will be ignored.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/storage_domain/methods/remove/parameters/host"><a class="anchor" href="#services/storage_domain/methods/remove/parameters/host"></a>host</h5>
 <div class="paragraph">
-<p>Indicates what host should be used to remove the storage domain.</p>
+<p>Indicates which host should be used to remove the storage domain.</p>
 </div>
 <div class="paragraph">
-<p>This parameter is mandatory, and it can contain the name or the identifier of the host. For example, to use
-the host named <code>myhost</code> to remove the storage domain with identifier <code>123</code> send a request like this:</p>
+<p>This parameter is mandatory, except if the <code>destroy</code> parameter is included and its value is <code>true</code>, in that
+case the <code>host</code> parameter will be ignored.</p>
+</div>
+<div class="paragraph">
+<p>The value should contain the name or the identifier of the host. For example, to use the host named <code>myhost</code>
+to remove the storage domain with identifier <code>123</code> send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -31342,9 +31347,9 @@ the host named <code>myhost</code> to remove the storage domain with identifier 
 <p>Updates a storage domain.</p>
 </div>
 <div class="paragraph">
-<p>Not all of the <a href="#types/storage_domain">StorageDomain</a>'s attributes are updatable post-creation. Those that can be
+<p>Not all of the <a href="#types/storage_domain">StorageDomain</a>'s attributes are updatable after creation. Those that can be
 updated are: <code>name</code>, <code>description</code>, <code>comment</code>, <code>warning_low_space_indicator</code>, <code>critical_space_action_blocker</code> and
-<code>wipe_after_delete</code> (note that changing the <code>wipe_after_delete</code> attribute will not change the wipe after delete
+<code>wipe_after_delete.</code> (Note that changing the <code>wipe_after_delete</code> attribute will not change the wipe after delete
 property of disks that already exist).</p>
 </div>
 <div class="paragraph">
@@ -31406,9 +31411,9 @@ request as follows:</p>
 of this storage domain.</p>
 </div>
 <div class="paragraph">
-<p>The <code>OVF_STORE</code> is a disk image that contains the meta-data
+<p>The <code>OVF_STORE</code> is a disk image that contains the metadata
 of virtual machines and disks that reside in the
-storage domain. This meta-data is used in case the
+storage domain. This metadata is used in case the
 domain is imported or exported to or from a different
 data center or a different installation.</p>
 </div>
@@ -70799,7 +70804,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-13 15:17:57 UTC
+Last updated 2017-09-13 15:25:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
