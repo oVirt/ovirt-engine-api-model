@@ -74,10 +74,40 @@ public interface HostsService {
      * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true
      * ----
      *
+     * If the cluster has a default external network provider which is supported for automatic deployment,
+     * the external network provider is deployed when adding the host.
+     * Only external network providers for OVN are supported for the automatic deployment.
+     * To deploy an external network provider that differs to what is defined in the clusters, overwrite the external
+     * network provider when adding hosts by sending a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts
+     * ----
+     *
+     * With a request body that contains a reference to the desired provider in the
+     * `external_network_provider_configuration`:
+     *
+     * [source,xml]
+     * ----
+     * <host>
+     *   <name>myhost</name>
+     *   <address>myhost.example.com</address>
+     *   <root_password>123456</root_password>
+     *   <external_network_provider_configurations>
+     *     <external_network_provider_configuration>
+     *       <external_network_provider id="123"/>
+     *     </external_network_provider_configuration>
+     *   </external_network_provider_configurations>
+     * </host>
+     * ----
+     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 09 Oct 2017
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
@@ -95,6 +125,7 @@ public interface HostsService {
             optional(host().protocol());
             optional(host().spm().priority());
             optional(host().powerManagement().pmProxies()[COLLECTION].type());
+            optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().id());
         }
 
         /**

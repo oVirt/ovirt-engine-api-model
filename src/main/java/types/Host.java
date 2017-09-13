@@ -541,4 +541,17 @@ public interface Host extends Identified {
     @Link HostStorage[] storages();
     @Link Tag[] tags();
     @Link UnmanagedNetwork[] unmanagedNetworks();
+
+    /**
+     * External network providers provisioned on the host.
+     *
+     * External network providers on the host can be controlled when <<services/hosts/methods/add,adding the host>>.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 09 Oct 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    @Link ExternalNetworkProviderConfiguration[] externalNetworkProviderConfigurations();
 }
