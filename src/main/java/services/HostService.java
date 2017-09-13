@@ -1032,4 +1032,15 @@ public interface HostService extends MeasurableService {
      * List of scheduling labels assigned to this host.
      */
     @Service AssignedAffinityLabelsService affinityLabels();
+
+    /**
+     * External network providers provisioned by the system on the host.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 09 Oct 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    @Service ExternalNetworkProviderConfigurationsService externalNetworkProviderConfigurations();
 }
