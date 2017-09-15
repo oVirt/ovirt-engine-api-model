@@ -126,4 +126,33 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * @status updated_by_docs
      */
     @Link OpenStackSubnet[] subnets();
+
+    /**
+     * Indicates if the <<types/network,networks>> of this provider are automatically synchronized.
+     *
+     * If `true`, the networks of this provider are automatically and cyclically synchronized to {product-name} in
+     * the background.
+     * This means that all new networks of this provider are imported, and all discarded networks are removed
+     * from all <<types/cluster,clusters>> that have this external provider as the default provider.
+     *
+     * The automatically initiated import triggers the following steps:
+     *
+     * - The networks of the external provider will be imported to every <<types/data_center,data center>>
+     *   in the data centers of the clusters that have that external provider as the default provider.
+     *
+     * - A <<types/vnic_profile,vNIC profile>> will be created for each involved data center and network.
+     *
+     * - The networks will be assigned to each cluster that has that external provider as the default provider.
+     *
+     * All users are allowed to use the new vNIC Profile.
+     *
+     * The default is `false` for backwards compatibility.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 14 Nov 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    Boolean autoSync();
 }

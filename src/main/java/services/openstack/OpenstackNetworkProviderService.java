@@ -29,11 +29,12 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
- * This service manages OpenStack network provider.
+ * This service manages the OpenStack network provider.
  *
  * @author Mor Kalfon <mkalfon@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Byron Gravenorst <bgraveno@redhat.com>
+ * @date 18 Sep 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("Network")
@@ -96,6 +97,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
             optional(provider().username());
             optional(provider().properties()[COLLECTION].name());
             optional(provider().properties()[COLLECTION].value());
+            optional(provider().autoSync());
         }
         /**
          * The provider to update.
