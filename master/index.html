@@ -67761,6 +67761,10 @@ It is possible that the virtual machine process will fail to run.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine is intended to be used as a desktop.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>high_performance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine is intended to be used as a high performance virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>server</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine is intended to be used as a server.</p></td>
 </tr>
@@ -67769,15 +67773,98 @@ It is possible that the virtual machine process will fail to run.</p>
 <div class="sect3">
 <h4 id="types/vm_type/values/desktop"><a class="anchor" href="#types/vm_type/values/desktop"></a>7.285.1. desktop</h4>
 <div class="paragraph">
-<p>The virtual machine is intended to be used as a desktop.
-Currently, its implication is that a sound device will be automatically added to the virtual machine.</p>
+<p>The virtual machine is intended to be used as a desktop.</p>
+</div>
+<div class="paragraph">
+<p>Currently, its implication is that a sound device will automatically be added to the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_type/values/server"><a class="anchor" href="#types/vm_type/values/server"></a>7.285.2. server</h4>
+<h4 id="types/vm_type/values/high_performance"><a class="anchor" href="#types/vm_type/values/high_performance"></a>7.285.2. high_performance</h4>
 <div class="paragraph">
-<p>The virtual machine is intended to be used as a server.
-Currently, its implication is that a sound device will not be automatically added to the virtual machine.</p>
+<p>The virtual machine is intended to be used as a high performance virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>Currently, its implication is that the virtual machine configuration will automatically be set for running
+with the highest possible performance, and with performance metrics as close to bare metal as possible.</p>
+</div>
+<div class="paragraph">
+<p>Some of the recommended configuration settings for the highest possible performance
+cannot be set automatically; manually setting them before running the virtual machine is recommended.</p>
+</div>
+<div class="paragraph">
+<p>The following configuration changes are set automatically:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable headless mode.</p>
+</li>
+<li>
+<p>Enable serial console.</p>
+</li>
+<li>
+<p>Enable pass-through host CPU.</p>
+</li>
+<li>
+<p>Enable I/O threads.</p>
+</li>
+<li>
+<p>Enable I/O threads pinning and set the pinning topology.</p>
+</li>
+<li>
+<p>Enable the paravirtualized random number generator PCI (virtio-rng) device.</p>
+</li>
+<li>
+<p>Disable all USB devices.</p>
+</li>
+<li>
+<p>Disable the soundcard device.</p>
+</li>
+<li>
+<p>Disable the smartcard device.</p>
+</li>
+<li>
+<p>Disable the memory balloon device.</p>
+</li>
+<li>
+<p>Disable the watchdog device.</p>
+</li>
+<li>
+<p>Disable migration.</p>
+</li>
+<li>
+<p>Disable high availability.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following recommended configuration changes have to be set manually by the user:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable CPU pinning topology.</p>
+</li>
+<li>
+<p>Enable non-uniform memory access (NUMA) pinning topology.</p>
+</li>
+<li>
+<p>Enable and set huge pages configuration.</p>
+</li>
+<li>
+<p>Disable kernel same-page merging (KSM).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_type/values/server"><a class="anchor" href="#types/vm_type/values/server"></a>7.285.3. server</h4>
+<div class="paragraph">
+<p>The virtual machine is intended to be used as a server.</p>
+</div>
+<div class="paragraph">
+<p>Currently, its implication is that a sound device will not automatically be added to the virtual machine.</p>
 </div>
 </div>
 </div>
@@ -70804,7 +70891,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-18 10:14:47 UTC
+Last updated 2017-09-18 10:38:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
