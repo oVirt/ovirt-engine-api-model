@@ -26,11 +26,29 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public enum WatchdogModel {
     /**
-     * Currently only model supported is model I6300ESB.
+     * PCI based watchdog model.
+     *
+     * Use the I6300ESB watchdog for x86_64 and PPC64 virtual
+     * machines.
      *
      * @author Lukas Svaty <lsvaty@redhat.com>
-     * @date 12 Dec
+     * @author Viktor Mihajlovski <mihajlov@linux.vnet.ibm.com>
+     * @date 22 Sep 2017
      * @status added
      */
-    I6300ESB;
+    I6300ESB,
+
+    /**
+     * The watchdog model for S390 machines.
+     *
+     * S390 has an integrated watchdog facility that
+     * is controlled via the DIAG288 instruction.
+     * Use this model for S390 virtual machines.
+     *
+     * @author Viktor Mihajlovski <mihajlov@linux.vnet.ibm.com>
+     * @date 22 Sep 2017
+     * @status added
+     * @since 4.2
+     */
+    DIAG288;
 }
