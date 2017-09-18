@@ -26,6 +26,7 @@ import types.Disk;
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 /**
  * Manages the collection of disks available in the system.
  *
@@ -170,6 +171,7 @@ public interface DisksService {
             @InputDetail
             default void inputDetail() {
                 mandatory(disk().provisionedSize());
+                or(optional(disk().storageDomains()[COLLECTION].id()), optional(disk().storageDomains()[COLLECTION].name()));
                 optional(disk().diskProfile().id());
                 optional(disk().name());
                 optional(disk().openstackVolumeType().name());
