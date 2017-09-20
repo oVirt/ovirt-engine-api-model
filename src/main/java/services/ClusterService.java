@@ -28,17 +28,18 @@ import types.Cluster;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
  /**
-  * A service to manage specific cluster.
+  * A service to manage a specific cluster.
   *
   * @author Yaniv Bronheim <ybronhei@redhat.com>
-  * @date 12 Dec 2016
-  * @status added
+  * @author Tahlia Richardson <trichard@redhat.com>
+  * @date 06 Oct 2017
+  * @status updated_by_docs
   */
 @Service
 @Area("Virtualization")
 public interface ClusterService {
     /**
-     * Get information about the cluster.
+     * Gets information about the cluster.
      *
      * An example of getting a cluster:
      *
@@ -119,14 +120,19 @@ public interface ClusterService {
      * ----
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     interface Get {
         @Out Cluster cluster();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 06 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
@@ -134,16 +140,16 @@ public interface ClusterService {
     /**
      * Updates information about the cluster.
      *
-     * Only specified fields are updated, others remain unchanged.
+     * Only the specified fields are updated; others remain unchanged.
      *
-     * E.g. update cluster's CPU:
+     * For example, to update the cluster's CPU:
      *
      * [source]
      * ----
      * PUT /ovirt-engine/api/clusters/123
      * ----
      *
-     * With request body like:
+     * With a request body like this:
      *
      * [source,xml]
      * ----
@@ -155,8 +161,9 @@ public interface ClusterService {
      * ----
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     interface Update {
         @InputDetail
@@ -185,12 +192,16 @@ public interface ClusterService {
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 06 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Removes cluster from the system.
+     * Removes the cluster from the system.
      *
      * [source]
      * ----
@@ -198,12 +209,17 @@ public interface ClusterService {
      * ----
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 06 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -211,76 +227,102 @@ public interface ClusterService {
     interface ResetEmulatedMachine {
         /**
          * Indicates if the reset should be performed asynchronously.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 06 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Reference to the service that manages affinity groups.
+     * A reference to the service that manages affinity groups.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service AffinityGroupsService affinityGroups();
 
     /**
-     * Reference to the service that manages assigned CPU profiles for cluster.
+     * A reference to the service that manages assigned CPU profiles for the cluster.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service AssignedCpuProfilesService cpuProfiles();
 
     /**
-     * Reference to the service that manages assigned networks for cluster.
+     * A reference to the service that manages assigned networks for the cluster.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service ClusterNetworksService networks();
 
     /**
-     * Reference to permissions.
+     * A reference to permissions.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service AssignedPermissionsService permissions();
 
     /**
-     * Reference to the service that manages the Gluster hooks for cluster.
+     * A reference to the service that manages the Gluster hooks for the cluster.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service GlusterHooksService glusterHooks();
 
     /**
-     * Reference to the service that manages Gluster volumes for cluster.
+     * A reference to the service that manages Gluster volumes for the cluster.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service GlusterVolumesService glusterVolumes();
 
     /**
-     * A sub collection with all the supported network filters for this cluster.
+     * A sub-collection with all the supported network filters for the cluster.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     @Service NetworkFiltersService networkFilters();
 
     /**
-     * Reference to the service that manages the collection of enabled features for this cluster.
+     * A reference to the service that manages the collection of enabled features for the cluster.
      *
      * @author Sahina Bose <sabose@redhat.com>
-     * @date 04 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      * @since 4.1.6
      */
     @Service ClusterEnabledFeaturesService enabledFeatures();
+
+     /**
+      * A reference to the service that manages the collection of external network providers.
+      *
+      * @author Dominik Holler <dholler@redhat.com>
+      * @author Tahlia Richardson <trichard@redhat.com>
+      * @date 06 Oct 2017
+      * @status updated_by_docs
+      */
+     @Service
+     ClusterExternalProvidersService externalNetworkProviders();
 }
