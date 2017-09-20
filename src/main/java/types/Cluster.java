@@ -22,7 +22,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Type representation of a cluster.
  *
- * A JSON representation of a cluster
+ * A JSON representation of a cluster:
  *
  * [source]
  * ----
@@ -138,14 +138,18 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     }, {
  *       "href" : "/ovirt-engine/api/clusters/234/glustervolumes",
  *       "rel" : "glustervolumes"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/externalnetworkproviders",
+ *       "rel" : "externalnetworkproviders"
  *     } ]
  *   } ]
  * }
  * ----
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 06 Oct 2017
+ * @status updated_by_docs
  */
 @Type
 public interface Cluster extends Identified {
@@ -164,7 +168,7 @@ public interface Cluster extends Identified {
      * GET /ovirt-engine/api/clusters/123
      * ----
      *
-     * Will respond:
+     * Will respond with:
      *
      * [source,xml]
      * ----
@@ -185,7 +189,7 @@ public interface Cluster extends Identified {
      * PUT /ovirt-engine/api/clusters/123
      * ----
      *
-     * With a request body:
+     * With a request body like this:
      *
      * [source,xml]
      * ----
@@ -197,7 +201,8 @@ public interface Cluster extends Identified {
      * </cluster>
      * ----
      *
-     * In order to update the cluster compatibility version, all hosts in the cluster must support the new compatibility version.
+     * In order to update the cluster compatibility version, all hosts in the cluster must support
+     * the new compatibility version.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -249,16 +254,16 @@ public interface Cluster extends Identified {
     RngSource[] requiredRngSources();
 
     /**
-     * Custom fencing policy can be defined for a cluster.
+     * A custom fencing policy can be defined for a cluster.
      *
-     * Here is an example:
+     * For example:
      *
      * [source]
      * ----
      * PUT /ovirt-engine/api/cluster/123
      * ----
      *
-     * With request body:
+     * With request body like this:
      *
      * [source,xml]
      * ----
@@ -277,8 +282,9 @@ public interface Cluster extends Identified {
      * ----
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 29 Nov 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      */
     FencingPolicy fencingPolicy();
     MigrationOptions migration();
@@ -325,7 +331,7 @@ public interface Cluster extends Identified {
     Property[] customSchedulingPolicyProperties();
 
     /**
-     * Type of switch to be used by all networks in given cluster.
+     * The type of switch to be used by all networks in given cluster.
      *
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 25 Oct 2016
@@ -351,8 +357,9 @@ public interface Cluster extends Identified {
      * Custom features that are enabled for the cluster.
      *
      * @author Sahina Bose <sabose@redhat.com>
-     * @date 31 Jul 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      * @since 4.1.6
      */
     @Link ClusterFeature[] enabledFeatures();
@@ -378,6 +385,24 @@ public interface Cluster extends Identified {
     @Link Network managementNetwork();
 
     /**
+     * A reference to the external network provider available in the cluster.
+     *
+     * If the automatic deployment of the external network provider is supported,
+     * the networks of the referenced network provider are available on every host
+     * in the cluster.
+     * External network providers of a cluster can only be set during
+     * <<services/clusters/methods/add,adding the cluster>>.
+     * This value may be overwritten for individual hosts during
+     * <<services/hosts/methods/add,adding the host>>.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
+     */
+    @Link ExternalProvider[] externalNetworkProviders();
+
+    /**
      * A reference to the MAC pool used by this cluster.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -399,11 +424,12 @@ public interface Cluster extends Identified {
     /**
      * The name of the https://fedorahosted.org/tuned[tuned] profile
      * to set on all the hosts in the cluster. This is not mandatory
-     * and relevant only for clusters with gluster service.
+     * and relevant only for clusters with Gluster service.
      *
      * @author Ramesh Nachimuthu <rnachimu@rednat.com>
-     * @date 28 Oct 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 06 Oct 2017
+     * @status updated_by_docs
      * @since 4.1
      */
     String glusterTunedProfile();
