@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.19 / Sep 25 2017
+
+New features:
+
+* Add new `HIGH_PERFORMANCE` value to the `VmType` enum.
+
+* Add new types and services for access to system configuration options.
+
 == 4.2.18 / Sep 13 2017
 
 Bug fixes:
