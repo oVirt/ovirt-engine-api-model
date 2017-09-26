@@ -68698,11 +68698,36 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diag288</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The watchdog model for S390 machines.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>i6300esb</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Currently only model supported is model I6300ESB.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCI based watchdog model.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/watchdog_model/values/diag288"><a class="anchor" href="#types/watchdog_model/values/diag288"></a>7.295.1. diag288</h4>
+<div class="paragraph">
+<p>The watchdog model for S390 machines.</p>
+</div>
+<div class="paragraph">
+<p>S390 has an integrated watchdog facility that
+is controlled via the DIAG288 instruction.
+Use this model for S390 virtual machines.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/watchdog_model/values/i6300esb"><a class="anchor" href="#types/watchdog_model/values/i6300esb"></a>7.295.2. i6300esb</h4>
+<div class="paragraph">
+<p>PCI based watchdog model.</p>
+</div>
+<div class="paragraph">
+<p>Use the I6300ESB watchdog for x86_64 and PPC64 virtual
+machines.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/weight"><a class="anchor" href="#types/weight"></a>7.296. Weight <span class="small">struct</span></h3>
@@ -71164,7 +71189,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-26 17:49:21 UTC
+Last updated 2017-09-26 17:52:33 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
