@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.0 / Sep 26 2017
+
+New features:
+
+* Add new `S390` value to the `Architecture` type.
+
+* Add new `DIAG288` value to the `WatchdogModel` type.
+
 == 4.2.19 / Sep 25 2017
 
 New features:
