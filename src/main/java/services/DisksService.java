@@ -140,8 +140,59 @@ public interface DisksService {
      * </disk>
      * ----
      *
+     *
+     * *Adding a floating disks in order to upload disk snapshots:*
+     *
+     * Since version 4.2 of the engine it is possible to upload disks with
+     * snapshots. This request should be used to create the base image of the
+     * images chain (The consecutive disk snapshots (images), should be created
+     * using `disk-attachments` element when creating a snapshot).
+     *
+     * The disk has to be created with the same disk identifier and image identifier
+     * of the uploaded image. I.e. the identifiers should be saved as part of the
+     * backup process. The image identifier can be also fetched using the
+     * `qemu-img info` command. For example, if the disk image is stored into
+     * a file named `b7a4c6c5-443b-47c5-967f-6abc79675e8b/myimage.img`:
+     *
+     * [source,shell]
+     * ----
+     * $ qemu-img info b7a4c6c5-443b-47c5-967f-6abc79675e8b/myimage.img
+     * image: b548366b-fb51-4b41-97be-733c887fe305
+     * file format: qcow2
+     * virtual size: 1.0G (1073741824 bytes)
+     * disk size: 196K
+     * cluster_size: 65536
+     * backing file: ad58716a-1fe9-481f-815e-664de1df04eb
+     * backing file format: raw
+     * ----
+     *
+     * To create a disk with with the disk identifier and image identifier obtained
+     * with the `qemu-img info` command shown above, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <disk id="b7a4c6c5-443b-47c5-967f-6abc79675e8b">
+     *   <image_id>b548366b-fb51-4b41-97be-733c887fe305</image_id>
+     *   <storage_domains>
+     *     <storage_domain id="123"/>
+     *   </storage_domains>
+     *   <name>mydisk</name>
+     *   <provisioned_size>1048576</provisioned_size>
+     *   <format>cow</format>
+     * </disk>
+     * ----
+     *
+     *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Shani Leviim <sleviim@redhat.com>
+     * @author Daniel Erez <derez@redhat.com>
      * @date 11 Jan 2017
      * @status added
      */
@@ -158,6 +209,8 @@ public interface DisksService {
             optional(disk().shareable());
             optional(disk().sparse());
             optional(disk().wipeAfterDelete());
+            optional(disk().id());
+            optional(disk().imageId());
         }
 
         /**
