@@ -99,7 +99,7 @@ public interface ClustersService {
             or(mandatory(cluster().dataCenter().id()), mandatory(cluster().dataCenter().name()));
             optional(cluster().version().major());
             optional(cluster().version().minor());
-            optional(cluster().cpu().type());
+            mandatory(cluster().cpu().type());
             optional(cluster().ballooningEnabled());
             optional(cluster().comment());
             optional(cluster().cpu().architecture());
