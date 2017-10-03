@@ -56,6 +56,31 @@ public interface SnapshotsService {
      * </snapshot>
      * ----
      *
+     * For including only a sub-set of disks in the snapshots, add `disk_attachments` element to the
+     * request body. Note that disks which are not specified in `disk_attachments` element will not be a
+     * part of the snapshot. If an empty `disk_attachments` element is passed, the snapshot will include
+     * only the virtual machine configuration. If no `disk_attachments` element is passed, then all
+     * the disks will be included in the snapshot.
+     *
+     * For each disk, `image_id` element can be specified for setting the new active image id.
+     * This is used in order to restore a chain of images from backup. I.e. when restoring
+     * a disk with snapshots, the relevant `image_id` should be specified for each snapshot
+     * (so the identifiers of the disk snapshots are identical to the backup).
+     *
+     * [source,xml]
+     * ----
+     * <snapshot>
+     *   <description>My snapshot</description>
+     *   <disk_attachments>
+     *     <disk_attachment>
+     *       <disk id="123">
+     *         <image_id>456</image_id>
+     *       </disk>
+     *     </disk_attachment>
+     *   </disk_attachments>
+     * </snapshot>
+     * ----
+     *
      * [IMPORTANT]
      * ====
      * When a snapshot is created the default value for the <<types/snapshot/attributes/persist_memorystate,
