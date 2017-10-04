@@ -58,6 +58,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *       }
  *     },
  *     "gluster_service" : "false",
+ *     "firewall_type" : "iptables",
  *     "ha_reservation" : "false",
  *     "ksm" : {
  *       "enabled" : "true",
@@ -138,6 +139,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     }, {
  *       "href" : "/ovirt-engine/api/clusters/234/glustervolumes",
  *       "rel" : "glustervolumes"
+ *     }, {
+ *       "href" : "/ovirt-engine/api/clusters/234/enabledfeatures",
+ *       "rel" : "enabledfeatures"
  *     }, {
  *       "href" : "/ovirt-engine/api/clusters/234/externalnetworkproviders",
  *       "rel" : "externalnetworkproviders"
