@@ -439,4 +439,14 @@ public interface VmBase extends Identified {
      * @since 4.1
      */
     StorageDomainLease lease();
+
+    /**
+     * Determines how the virtual machine will be resumed after storage error.
+     *
+     * @author Tomas Jelinek <tjelinek@redhat.com>
+     * @date 5 Oct 2017
+     * @status added
+     * @since 4.2
+     */
+    VmStorageErrorResumeBehaviour storageErrorResumeBehaviour();
 }

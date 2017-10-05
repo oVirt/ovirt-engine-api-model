@@ -148,6 +148,7 @@ public interface InstanceTypesService {
             optional(instanceType().usb().enabled());
             optional(instanceType().usb().type());
             optional(instanceType().virtioScsi().enabled());
+            optional(instanceType().storageErrorResumeBehaviour());
 //            optional(instanceType().singleQxlPci());  //TODO: check
 //            optional(instanceType().os()[COLLECTION].dev());  //TODO: check
         }

@@ -638,6 +638,7 @@ public interface VmService extends MeasurableService {
             optional(vm().payloads()[COLLECTION].files()[COLLECTION].content());
             optional(vm().payloads()[COLLECTION].type());
             optional(vm().payloads()[COLLECTION].volumeId());
+            optional(vm().storageErrorResumeBehaviour());
         }
     }
 

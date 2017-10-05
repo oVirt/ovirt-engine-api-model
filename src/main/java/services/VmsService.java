@@ -322,6 +322,7 @@ public interface VmsService {
             optional(vm().sso().methods()[COLLECTION].id());
             optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].cpuSet());
             optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
+            optional(vm().storageErrorResumeBehaviour());
         }
 
         /**
