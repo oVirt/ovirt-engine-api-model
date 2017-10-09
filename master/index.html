@@ -44665,8 +44665,8 @@ deploy one on the virtual machine operating system.</p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>s390</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IBM S390 CPU architecture.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>s390x</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IBM S390X CPU architecture.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undefined</code></p></td>
@@ -44679,13 +44679,19 @@ deploy one on the virtual machine operating system.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/architecture/values/s390"><a class="anchor" href="#types/architecture/values/s390"></a>7.12.1. s390</h4>
+<h4 id="types/architecture/values/s390x"><a class="anchor" href="#types/architecture/values/s390x"></a>7.12.1. s390x</h4>
 <div class="paragraph">
-<p>IBM S390 CPU architecture.</p>
+<p>IBM S390X CPU architecture.</p>
 </div>
 <div class="paragraph">
 <p>Needs to be specified for virtual machines and clusters running
-on the S390 architecture.</p>
+on the S390X architecture.</p>
+</div>
+<div class="paragraph">
+<p>Note that S390 is often used in an ambiguous way to describe
+either the general machine architecture as such or its 31-bit variant.
+S390X is used specifically for the 64-bit architecture, which is
+in line with the other architectures, like X86_64 or PPC64.</p>
 </div>
 </div>
 </div>
@@ -69052,7 +69058,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>diag288</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The watchdog model for S390 machines.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The watchdog model for S390X machines.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>i6300esb</code></p></td>
@@ -69063,12 +69069,12 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect3">
 <h4 id="types/watchdog_model/values/diag288"><a class="anchor" href="#types/watchdog_model/values/diag288"></a>7.296.1. diag288</h4>
 <div class="paragraph">
-<p>The watchdog model for S390 machines.</p>
+<p>The watchdog model for S390X machines.</p>
 </div>
 <div class="paragraph">
-<p>S390 has an integrated watchdog facility that
+<p>S390X has an integrated watchdog facility that
 is controlled via the DIAG288 instruction.
-Use this model for S390 virtual machines.</p>
+Use this model for S390X virtual machines.</p>
 </div>
 </div>
 <div class="sect3">
@@ -71542,7 +71548,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-09 07:29:33 UTC
+Last updated 2017-10-09 12:56:13 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
