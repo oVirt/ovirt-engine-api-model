@@ -24,15 +24,20 @@ public enum Architecture {
     PPC64,
 
     /**
-     * IBM S390 CPU architecture.
+     * IBM S390X CPU architecture.
      *
      * Needs to be specified for virtual machines and clusters running
-     * on the S390 architecture.
+     * on the S390X architecture.
+     *
+     * Note that S390 is often used in an ambiguous way to describe
+     * either the general machine architecture as such or its 31-bit variant.
+     * S390X is used specifically for the 64-bit architecture, which is
+     * in line with the other architectures, like X86_64 or PPC64.
      *
      * @author Viktor Mihajlovski <mihajlov@linux.vnet.ibm.com>
-     * @date 22 Sep 2017
+     * @date 09 Oct 2017
      * @status added
      * @since 4.2
      */
-    S390;
+    S390X;
 }
