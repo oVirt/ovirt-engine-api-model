@@ -39,14 +39,14 @@ public enum WatchdogModel {
     I6300ESB,
 
     /**
-     * The watchdog model for S390 machines.
+     * The watchdog model for S390X machines.
      *
-     * S390 has an integrated watchdog facility that
+     * S390X has an integrated watchdog facility that
      * is controlled via the DIAG288 instruction.
-     * Use this model for S390 virtual machines.
+     * Use this model for S390X virtual machines.
      *
      * @author Viktor Mihajlovski <mihajlov@linux.vnet.ibm.com>
-     * @date 22 Sep 2017
+     * @date 09 Oct 2017
      * @status added
      * @since 4.2
      */
