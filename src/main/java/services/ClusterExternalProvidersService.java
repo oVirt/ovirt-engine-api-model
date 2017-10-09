@@ -29,6 +29,7 @@ import types.ExternalProvider;
  * @author Tahlia Richardson <trichard@redhat.com>
  * @date 06 Oct 2017
  * @status updated_by_docs
+ * @since 4.2
  */
 @Service
 @Area("Infrastructure")
@@ -42,6 +43,7 @@ public interface ClusterExternalProvidersService {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 06 Oct 2017
      * @status updated_by_docs
+     * @since 4.2
      */
     interface List {
         @Out

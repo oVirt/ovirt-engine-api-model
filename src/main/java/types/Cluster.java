@@ -399,6 +399,7 @@ public interface Cluster extends Identified {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 06 Oct 2017
      * @status updated_by_docs
+     * @since 4.2
      */
     @Link ExternalProvider[] externalNetworkProviders();
 
