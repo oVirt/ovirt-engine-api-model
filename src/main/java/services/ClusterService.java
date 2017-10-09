@@ -322,6 +322,7 @@ public interface ClusterService {
       * @author Tahlia Richardson <trichard@redhat.com>
       * @date 06 Oct 2017
       * @status updated_by_docs
+      * @since 4.2
       */
      @Service
      ClusterExternalProvidersService externalNetworkProviders();
