@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.20 / Oct 11 2017
+
+New features:
+
+* Add new services and types to enable automatic provisioning of
+  external network providers during host installation.
+
+Bug fixes:
+
+* Explicitly indicate that CPU type is mandtory when adding a cluster.
+
 == 4.2.19 / Sep 25 2017
 
 New features:
