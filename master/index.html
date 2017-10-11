@@ -45558,6 +45558,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
       }
     },
     "gluster_service" : "false",
+    "firewall_type" : "iptables",
     "ha_reservation" : "false",
     "ksm" : {
       "enabled" : "true",
@@ -45638,6 +45639,9 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
     }, {
       "href" : "/ovirt-engine/api/clusters/234/glustervolumes",
       "rel" : "glustervolumes"
+    }, {
+      "href" : "/ovirt-engine/api/clusters/234/enabledfeatures",
+      "rel" : "enabledfeatures"
     }, {
       "href" : "/ovirt-engine/api/clusters/234/externalnetworkproviders",
       "rel" : "externalnetworkproviders"
@@ -71548,7 +71552,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-11 10:01:17 UTC
+Last updated 2017-10-11 10:46:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
