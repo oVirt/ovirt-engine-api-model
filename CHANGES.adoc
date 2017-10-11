@@ -3,6 +3,20 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.1 / Oct 11 2017
+
+New features:
+
+* Add new services and types to enable automatic provisioning of
+  external network providers during host installation.
+
+Bug fixes:
+
+* Rename IBM Z architecture from `S390` to `S390X` in order to
+  explicitly indicate that it is the 64-bit variant.
+
+* Explicitly indicate that CPU type is mandtory when adding a cluster.
+
 == 4.3.0 / Sep 26 2017
 
 New features:
