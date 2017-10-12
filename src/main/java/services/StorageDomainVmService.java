@@ -22,6 +22,7 @@ import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cluster;
+import types.RegistrationConfiguration;
 import types.StorageDomain;
 import types.Vm;
 import types.VnicProfileMapping;
@@ -194,9 +195,31 @@ public interface StorageDomainVmService {
         @In Boolean reassignBadMacs();
 
         /**
+         * This parameter describes how the virtual machine should be
+         * registered.
+         *
+         * This parameter is optional. If the parameter is not specified, the virtual
+         * machine will be registered with the same configuration that
+         * it had in the original environment where it was created.
+         *
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
+         * @since 4.2
+         */
+        @In RegistrationConfiguration registrationConfiguration();
+
+        /**
          * Indicates if the registration should be performed asynchronously.
          */
         @In Boolean async();
+
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            optional(registrationConfiguration());
+        }
     }
 
     /**
