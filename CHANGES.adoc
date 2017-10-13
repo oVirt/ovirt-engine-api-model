@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.40 / Oct 13 2017
+
+Bug fixes:
+
+* Add `image` parameter to `HostService.upgrade`
+  https://bugzilla.redhat.com/1488434[#1488434].
+
 == 4.1.39 / Aug 28 2017
 
 New features:
