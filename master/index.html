@@ -20000,8 +20000,23 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the upgrade should be performed asynchronously.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>image</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image parameter specifies path to image, which is used
+for upgrade.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/upgrade/parameters/image"><a class="anchor" href="#services/host/methods/upgrade/parameters/image"></a>image</h5>
+<div class="paragraph">
+<p>The image parameter specifies path to image, which is used
+for upgrade. This parameter is used only to upgrade Vintage
+Node hosts and it&#8217;s not relevant for other hosts types.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/upgrade_check"><a class="anchor" href="#services/host/methods/upgrade_check"></a>6.97.18. upgradecheck <span class="small">POST</span></h4>
@@ -71552,7 +71567,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-11 13:03:46 UTC
+Last updated 2017-10-13 10:26:00 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
