@@ -765,6 +765,18 @@ public interface HostService extends MeasurableService {
         @In String image();
 
         /**
+         * Indicates if the host should be rebooted after upgrade.
+         * By default the host is rebooted.
+         *
+         * @author Ondra Machacek <omachace@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
+         * @since 4.2
+         */
+        @In Boolean reboot();
+
+        /**
          * Indicates if the upgrade should be performed asynchronously.
          *
          * @author Megan Lewis <melewis@redhat.com>
