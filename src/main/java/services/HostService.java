@@ -35,22 +35,28 @@ import types.StorageDomain;
  * A service to manage a host.
  *
  * @author Yaniv Bronheim <ybronhei@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 17 Oct 17
+ * @status updated_by_docs
  */
 @Service
 @Area("Infrastructure")
 public interface HostService extends MeasurableService {
     /**
-     * Activate the host for use, such as running virtual machines.
+     * Activates the host for use, for example to run virtual machines.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Activate {
         /**
          * Indicates if the activation should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -61,30 +67,37 @@ public interface HostService extends MeasurableService {
      * This action also accepts an optional cluster element to define the target cluster for this host.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Approve {
         /**
-         * Host to approve.
+         * The host to approve.
          *
          * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-         * @date 24 Apr 2017
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Host host();
 
         /**
-         * Cluster where the host will be added after approving it.
+         * The cluster where the host will be added after it is approved.
          *
          * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-         * @date 24 Apr 2017
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Cluster cluster();
 
         /**
          * Indicates if the approval should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -115,56 +128,76 @@ public interface HostService extends MeasurableService {
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 16 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface CommitNetConfig {
         /**
          * Indicates if the action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Deactivate the host to perform maintenance tasks.
+     * Deactivates the host to perform maintenance tasks.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Deactivate {
         @In String reason();
 
         /**
          * Indicates if the deactivation should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
 
         /**
          * Indicates if the gluster service should be stopped as part of deactivating the host. It can be used while
          * performing maintenance operations on the gluster host. Default value for this variable is `false`.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean stopGlusterService();
     }
 
     /**
-     * Enroll certificate of the host. Useful in case you get a warning that it is about to, or already expired.
+     * Enrolls the certificate of the host. Useful in case you get a warning that it is about to expire or has already
+     * expired.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface EnrollCertificate {
         /**
          * Indicates if the enrollment should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Controls host's power management device.
+     * Controls the host's power management device.
      *
-     * For example, let's assume you want to start the host. This can be done via:
+     * For example, to start the host. This can be done via:
      *
      * [source]
      * ----
@@ -190,8 +223,9 @@ public interface HostService extends MeasurableService {
      * "${url}/hosts/123/fence"
      * ----
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Fence {
         @In String fenceType();
@@ -199,12 +233,16 @@ public interface HostService extends MeasurableService {
 
         /**
          * Indicates if the fencing should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Manually set a host as the storage pool manager (SPM).
+     * To manually set a host as the storage pool manager (SPM).
      *
      * [source]
      * ----
@@ -219,18 +257,23 @@ public interface HostService extends MeasurableService {
      * ----
      *
      * @author Liron Aravot <laravot@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface ForceSelectSpm {
         /**
          * Indicates if the action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Get the host details.
+     * Gets the host details.
      *
      * [source]
      * ----
@@ -239,21 +282,27 @@ public interface HostService extends MeasurableService {
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-     * @date 24 Apr 2017
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Get {
         /**
-         * Queried host.
+         * The queried host.
          *
          * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-         * @date 24 Apr 2017
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @Out Host host();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean filter();
 
@@ -283,7 +332,7 @@ public interface HostService extends MeasurableService {
     }
 
     /**
-     * Install VDSM and related software on the host. The host type defines additional parameters for the action.
+     * Installs VDSM and related software on the host. The host type defines additional parameters for the action.
      *
      * Example of installing a host, using `curl` and JSON, plain:
      *
@@ -331,68 +380,96 @@ public interface HostService extends MeasurableService {
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Install {
         /**
          * The password of of the `root` user, used to connect to the host via SSH.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In String rootPassword();
 
         /**
          * The SSH details used to connect to the host.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Ssh ssh();
 
         /**
-         * This `override_iptables` property is used to indicate if the firewall configuration should be
-         * replaced by the default one.
+         * The `override_iptables` property is used to indicate if the firewall configuration should be replaced by the
+         * default one.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Host host();
 
         /**
-         * When installing an oVirt node a image ISO file is needed.
+         * When installing an {product-name} node a image ISO file is required.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In String image();
 
         /**
          * Indicates if the installation should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
 
         /**
-         * When set to `true` it means this host should deploy also hosted
-         * engine components. Missing value is treated as `true` i.e deploy.
-         * Omitting this parameter means `false` and will perform no operation
-         * in hosted engine area.
+         * When set to `true` it means this host should also deploy the self-hosted engine components. A missing value
+         * is treated as `true` i.e deploy. Omitting this parameter means `false` and will perform no operation in the
+         * self-hosted engine area.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean deployHostedEngine();
 
         /**
-         * When set to `true` it means this host should un-deploy hosted engine
-         * components and this host will not function as part of the High
-         * Availability cluster. Missing value is treated as `true` i.e un-deploy
-         * Omitting this parameter means `false` and will perform no operation
-         * in hosted engine area.
+         * When set to `true` it means this host should un-deploy the self-hosted engine components and this host will
+         * not function as part of the High Availability cluster. A missing value is treated as `true` i.e un-deploy
+         * Omitting this parameter means `false` and will perform no operation in the self-hosted engine area.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean undeployHostedEngine();
     }
 
     /**
-     * Discover iSCSI targets on the host, using the initiator details.
+     * Discovers iSCSI targets on the host, using the initiator details.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface IscsiDiscover {
         /**
          * The target iSCSI device.
          *
          * @author Oved Ourfali <oourfali@redhat.com>
-         * @date 28 Nov 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In IscsiDetails iscsi();
 
@@ -400,13 +477,18 @@ public interface HostService extends MeasurableService {
          * The iSCSI targets.
          *
          * @author Oved Ourfali <oourfali@redhat.com>
-         * @date 28 Nov 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @Out String[] iscsiTargets();
 
         /**
          * Indicates if the discovery should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -415,31 +497,50 @@ public interface HostService extends MeasurableService {
      * Login to iSCSI targets on the host, using the target details.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface IscsiLogin {
         /**
          * The target iSCSI device.
          *
          * @author Oved Ourfali <oourfali@redhat.com>
-         * @date 28 Nov 2016
-         * @status added
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In IscsiDetails iscsi();
 
         /**
          * Indicates if the login should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
+    /**
+     * Discovers the block Storage Domains which are candidates to be imported to the setup. For FCP no arguments are
+     * required.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
+     */
     interface UnregisteredStorageDomainsDiscover {
         @In IscsiDetails iscsi();
         @Out StorageDomain[] storageDomains();
 
         /**
          * Indicates if the discovery should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -467,49 +568,62 @@ public interface HostService extends MeasurableService {
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Update {
         @In @Out Host host();
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Upgrade VDSM and selected software on the host.
+     * Upgrades VDSM and selected software on the host.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Upgrade {
         /**
-         * The image parameter specifies path to image, which is used
-         * for upgrade. This parameter is used only to upgrade Vintage
-         * Node hosts and it's not relevant for other hosts types.
+         * The image parameter specifies path to image, which is used for upgrade. This parameter is used only to
+         * upgrade Vintage Node hosts and it is not relevant for other hosts types.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In String image();
 
         /**
          * Indicates if the upgrade should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Check if there are upgrades available for the host. If there are upgrades
-     * available an icon will be displayed next to host status icon in the webadmin.
-     * Audit log messages are also added to indicate the availability of upgrades.
-     * The upgrade can be started from the webadmin or by using the
+     * Check if there are upgrades available for the host. If there are upgrades available an icon will be displayed
+     * next to host status icon in the Administration Portal. Audit log messages are also added to indicate the
+     * availability of upgrades. The upgrade can be started from the webadmin or by using the
      * <<services/host/methods/upgrade, upgrade>> host action.
      *
      * @author Ravi Nori <rnori@redhat.com>
-     * @date 16 Aug 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      * @since 4.1
      */
     interface UpgradeCheck {
@@ -519,12 +633,17 @@ public interface HostService extends MeasurableService {
      * Refresh the host devices and capabilities.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Refresh {
         /**
          * Indicates if the refresh should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -550,12 +669,17 @@ public interface HostService extends MeasurableService {
      * ----
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface Remove {
         /**
          * Indicates if the remove should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -563,9 +687,9 @@ public interface HostService extends MeasurableService {
     /**
      * This method is used to change the configuration of the network interfaces of a host.
      *
-     * For example, lets assume that you have a host with three network interfaces `eth0`, `eth1` and `eth2` and that
-     * you want to configure a new bond using `eth0` and `eth1`, and put a VLAN on top of it. Using a simple shell
-     * script and the `curl` command line HTTP client that can be done as follows:
+     * For example, if you have a host with three network interfaces `eth0`, `eth1` and `eth2` and you want to configure
+     * a new bond using `eth0` and `eth1`, and put a VLAN on top of it. Using a simple shell script and the `curl`
+     * command line HTTP client that can be done as follows:
      *
      * [source]
      * ----
@@ -640,7 +764,7 @@ public interface HostService extends MeasurableService {
      * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc/setupnetworks"
      * ----
      *
-     * Note that this is valid for version 4 of the API. In previous versions some elements were represented as XML
+     * NOTE: This is valid for version 4 of the API. In previous versions some elements were represented as XML
      * attributes instead of XML elements. In particular the `options` and `ip` elements were represented as follows:
      *
      * [source,xml]
@@ -725,6 +849,10 @@ public interface HostService extends MeasurableService {
      *
      * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
      * when the host is rebooted, remember to call <<services/host/methods/commit_net_config, commitnetconfig>>.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     interface SetupNetworks {
         @In NetworkAttachment[] modifiedNetworkAttachments();
@@ -739,127 +867,144 @@ public interface HostService extends MeasurableService {
 
         /**
          * Indicates if the action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
 
     /**
-     * Reference to the host permission service.
+     * A reference to the host permission service.
      * Use this service to manage permissions on the host object.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service AssignedPermissionsService permissions();
 
     /**
-     * Reference to the host tags service.
-     * Use this service to manage tags on the host object.
+     * A reference to the host tags service. Use this service to manage tags on the host object.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service AssignedTagsService tags();
 
     /**
-     * Reference to the fence agents service.
-     * Use this service to manage fence and power management agents on the host object.
+     * A reference to the fence agents service. Use this service to manage fence and power management agents on the host
+     * object.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service FenceAgentsService fenceAgents();
 
     /**
-     * Reference to the host devices service.
-     * Use this service to view the devices of the host object.
+     * A reference to the host devices service. Use this service to view the devices of the host object.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service HostDevicesService devices();
 
     /**
-     * Reference to the host hooks service.
-     * Use this service to view the hooks available in the host object.
+     * A reference to the host hooks service. Use this service to view the hooks available in the host object.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service HostHooksService hooks();
 
     /**
-     * Reference to the service that manages the network interface devices on the host.
+     * A reference to the service that manages the network interface devices on the host.
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service HostNicsService nics();
 
     /**
-     * Reference to the service that manage NUMA nodes for the host.
+     * A reference to the service that manage NUMA nodes for the host.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service HostNumaNodesService numaNodes();
 
     /**
-     * Reference to the service that manage hosts storage.
+     * A reference to the service that manages the host's storage.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service HostStorageService storage();
 
     /**
-     * Reference to the service that can show the applicable errata available on the host.
-     * This information is taken from Katello.
+     * A reference to the service that can show the applicable errata available on the host. This information is taken
+     * from Katello.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service KatelloErrataService katelloErrata();
 
     /**
-     * Reference to the network attachments service. You can use this service to attach
-     * Logical networks to host interfaces.
+     * A reference to the network attachments service. You can use this service to attach Logical networks to host
+     * interfaces.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 28 Nov 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service NetworkAttachmentsService networkAttachments();
 
     /**
-     * Reference to storage connection extensions.
+     * A reference to storage connection extensions.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service StorageServerConnectionExtensionsService storageConnectionExtensions();
 
     /**
-     * Reference to unmanaged networks.
+     * A reference to unmanaged networks.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service UnmanagedNetworksService unmanagedNetworks();
 
     /**
      * List of scheduling labels assigned to this host.
+     *
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 17 Oct 17
+     * @status updated_by_docs
      */
     @Service AssignedAffinityLabelsService affinityLabels();
 }
