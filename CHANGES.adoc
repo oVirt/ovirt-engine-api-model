@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.22 / Oct 19 2017
+
+New features:
+
+* Add `storageErrorResumeBehaviour` to virtual machines, templates and
+  instance types https://bugzilla.redhat.com/1317450[#1317450].
+
+Bug fixes:
+
+* Don't require name or identifier for adding SSH public key
+  https://bugzilla.redhat.com/1497641[#1497641].
+
 == 4.2.21 / Oct 13 2017
 
 Bug fixes:
