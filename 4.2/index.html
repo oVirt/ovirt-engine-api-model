@@ -1022,17 +1022,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#types/vm_pool">7.284. VmPool <span class="small">struct</span></a></li>
 <li><a href="#types/vm_pool_type">7.285. VmPoolType <span class="small">enum</span></a></li>
 <li><a href="#types/vm_status">7.286. VmStatus <span class="small">enum</span></a></li>
-<li><a href="#types/vm_summary">7.287. VmSummary <span class="small">struct</span></a></li>
-<li><a href="#types/vm_type">7.288. VmType <span class="small">enum</span></a></li>
-<li><a href="#types/vnic_pass_through">7.289. VnicPassThrough <span class="small">struct</span></a></li>
-<li><a href="#types/vnic_pass_through_mode">7.290. VnicPassThroughMode <span class="small">enum</span></a></li>
-<li><a href="#types/vnic_profile">7.291. VnicProfile <span class="small">struct</span></a></li>
-<li><a href="#types/vnic_profile_mapping">7.292. VnicProfileMapping <span class="small">struct</span></a></li>
-<li><a href="#types/volume_group">7.293. VolumeGroup <span class="small">struct</span></a></li>
-<li><a href="#types/watchdog">7.294. Watchdog <span class="small">struct</span></a></li>
-<li><a href="#types/watchdog_action">7.295. WatchdogAction <span class="small">enum</span></a></li>
-<li><a href="#types/watchdog_model">7.296. WatchdogModel <span class="small">enum</span></a></li>
-<li><a href="#types/weight">7.297. Weight <span class="small">struct</span></a></li>
+<li><a href="#types/vm_storage_error_resume_behaviour">7.287. VmStorageErrorResumeBehaviour <span class="small">enum</span></a></li>
+<li><a href="#types/vm_summary">7.288. VmSummary <span class="small">struct</span></a></li>
+<li><a href="#types/vm_type">7.289. VmType <span class="small">enum</span></a></li>
+<li><a href="#types/vnic_pass_through">7.290. VnicPassThrough <span class="small">struct</span></a></li>
+<li><a href="#types/vnic_pass_through_mode">7.291. VnicPassThroughMode <span class="small">enum</span></a></li>
+<li><a href="#types/vnic_profile">7.292. VnicProfile <span class="small">struct</span></a></li>
+<li><a href="#types/vnic_profile_mapping">7.293. VnicProfileMapping <span class="small">struct</span></a></li>
+<li><a href="#types/volume_group">7.294. VolumeGroup <span class="small">struct</span></a></li>
+<li><a href="#types/watchdog">7.295. Watchdog <span class="small">struct</span></a></li>
+<li><a href="#types/watchdog_action">7.296. WatchdogAction <span class="small">enum</span></a></li>
+<li><a href="#types/watchdog_model">7.297. WatchdogModel <span class="small">enum</span></a></li>
+<li><a href="#types/weight">7.298. Weight <span class="small">struct</span></a></li>
 </ul>
 </li>
 <li><a href="#documents/a01_primitive_types">Appendix A: Primitive types</a>
@@ -18811,7 +18812,7 @@ ignoring case set it to <code>false</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>activate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Activate the host for use, such as running virtual machines.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Activates the host for use, for example to run virtual machines.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>approve</code></p></td>
@@ -18823,31 +18824,31 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>deactivate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deactivate the host to perform maintenance tasks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deactivates the host to perform maintenance tasks.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>enrollcertificate</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enroll certificate of the host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enrolls the certificate of the host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fence</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Controls host&#8217;s power management device.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controls the host&#8217;s power management device.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>forceselectspm</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manually set a host as the storage pool manager (SPM).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To manually set a host as the storage pool manager (SPM).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get the host details.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the host details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>install</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Install VDSM and related software on the host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Installs VDSM and related software on the host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iscsidiscover</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Discover iSCSI targets on the host, using the initiator details.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discovers iSCSI targets on the host, using the initiator details.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iscsilogin</code></p></td>
@@ -18867,7 +18868,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>unregisteredstoragedomainsdiscover</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Discover the block Storage Domains which are candidates to be imported to the setup.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discovers the block Storage Domains which are candidates to be imported to the setup.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update</code></p></td>
@@ -18875,7 +18876,7 @@ ignoring case set it to <code>false</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade VDSM and selected software on the host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrades VDSM and selected software on the host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgradecheck</code></p></td>
@@ -18886,7 +18887,7 @@ ignoring case set it to <code>false</code>.</p>
 <div class="sect3">
 <h4 id="services/host/methods/activate"><a class="anchor" href="#services/host/methods/activate"></a>6.97.1. activate <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Activate the host for use, such as running virtual machines.</p>
+<p>Activates the host for use, for example to run virtual machines.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 294. Parameters summary</caption>
@@ -18949,13 +18950,13 @@ ignoring case set it to <code>false</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cluster</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster">Cluster</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cluster where the host will be added after approving it.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The cluster where the host will be added after it is approved.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Host to approve.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host to approve.</p></td>
 </tr>
 </tbody>
 </table>
@@ -19028,7 +19029,7 @@ automatically reverts to the previous networking configuration.
 <div class="sect3">
 <h4 id="services/host/methods/deactivate"><a class="anchor" href="#services/host/methods/deactivate"></a>6.97.4. deactivate <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Deactivate the host to perform maintenance tasks.</p>
+<p>Deactivates the host to perform maintenance tasks.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 297. Parameters summary</caption>
@@ -19078,7 +19079,8 @@ performing maintenance operations on the gluster host. Default value for this va
 <div class="sect3">
 <h4 id="services/host/methods/enroll_certificate"><a class="anchor" href="#services/host/methods/enroll_certificate"></a>6.97.5. enrollcertificate <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Enroll certificate of the host. Useful in case you get a warning that it is about to, or already expired.</p>
+<p>Enrolls the certificate of the host. Useful in case you get a warning that it is about to expire or has already
+expired.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 298. Parameters summary</caption>
@@ -19109,10 +19111,10 @@ performing maintenance operations on the gluster host. Default value for this va
 <div class="sect3">
 <h4 id="services/host/methods/fence"><a class="anchor" href="#services/host/methods/fence"></a>6.97.6. fence <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Controls host&#8217;s power management device.</p>
+<p>Controls the host&#8217;s power management device.</p>
 </div>
 <div class="paragraph">
-<p>For example, let&#8217;s assume you want to start the host. This can be done via:</p>
+<p>For example, to start the host. This can be done via:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19179,7 +19181,7 @@ curl \
 <div class="sect3">
 <h4 id="services/host/methods/force_select_spm"><a class="anchor" href="#services/host/methods/force_select_spm"></a>6.97.7. forceselectspm <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Manually set a host as the storage pool manager (SPM).</p>
+<p>To manually set a host as the storage pool manager (SPM).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19223,7 +19225,7 @@ curl \
 <div class="sect3">
 <h4 id="services/host/methods/get"><a class="anchor" href="#services/host/methods/get"></a>6.97.8. get <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Get the host details.</p>
+<p>Gets the host details.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19263,7 +19265,7 @@ curl \
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Queried host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The queried host.</p></td>
 </tr>
 </tbody>
 </table>
@@ -19309,7 +19311,7 @@ specifically required.
 <div class="sect3">
 <h4 id="services/host/methods/install"><a class="anchor" href="#services/host/methods/install"></a>6.97.9. install <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Install VDSM and related software on the host. The host type defines additional parameters for the action.</p>
+<p>Installs VDSM and related software on the host. The host type defines additional parameters for the action.</p>
 </div>
 <div class="paragraph">
 <p>Example of installing a host, using <code>curl</code> and JSON, plain:</p>
@@ -19394,21 +19396,20 @@ definitions by default.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>deploy_hosted_engine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should deploy also hosted
-engine components.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should also deploy the self-hosted engine components.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This <code>override_iptables</code> property is used to indicate if the firewall configuration should be
-replaced by the default one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>override_iptables</code> property is used to indicate if the firewall configuration should be replaced by the
+default one.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When installing an oVirt node a image ISO file is needed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When installing an oVirt node a image ISO file is required.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>root_password</code></p></td>
@@ -19426,36 +19427,32 @@ replaced by the default one.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undeploy_hosted_engine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should un-deploy hosted engine
-components and this host will not function as part of the High
-Availability cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should un-deploy the self-hosted engine components and this host will
+not function as part of the High Availability cluster.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/host/methods/install/parameters/deploy_hosted_engine"><a class="anchor" href="#services/host/methods/install/parameters/deploy_hosted_engine"></a>deploy_hosted_engine</h5>
 <div class="paragraph">
-<p>When set to <code>true</code> it means this host should deploy also hosted
-engine components. Missing value is treated as <code>true</code> i.e deploy.
-Omitting this parameter means <code>false</code> and will perform no operation
-in hosted engine area.</p>
+<p>When set to <code>true</code> it means this host should also deploy the self-hosted engine components. A missing value
+is treated as <code>true</code> i.e deploy. Omitting this parameter means <code>false</code> and will perform no operation in the
+self-hosted engine area.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/host/methods/install/parameters/undeploy_hosted_engine"><a class="anchor" href="#services/host/methods/install/parameters/undeploy_hosted_engine"></a>undeploy_hosted_engine</h5>
 <div class="paragraph">
-<p>When set to <code>true</code> it means this host should un-deploy hosted engine
-components and this host will not function as part of the High
-Availability cluster. Missing value is treated as <code>true</code> i.e un-deploy
-Omitting this parameter means <code>false</code> and will perform no operation
-in hosted engine area.</p>
+<p>When set to <code>true</code> it means this host should un-deploy the self-hosted engine components and this host will
+not function as part of the High Availability cluster. A missing value is treated as <code>true</code> i.e un-deploy
+Omitting this parameter means <code>false</code> and will perform no operation in the self-hosted engine area.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/iscsi_discover"><a class="anchor" href="#services/host/methods/iscsi_discover"></a>6.97.10. iscsidiscover <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Discover iSCSI targets on the host, using the initiator details.</p>
+<p>Discovers iSCSI targets on the host, using the initiator details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 303. Parameters summary</caption>
@@ -19617,9 +19614,9 @@ curl \
 <p>This method is used to change the configuration of the network interfaces of a host.</p>
 </div>
 <div class="paragraph">
-<p>For example, lets assume that you have a host with three network interfaces <code>eth0</code>, <code>eth1</code> and <code>eth2</code> and that
-you want to configure a new bond using <code>eth0</code> and <code>eth1</code>, and put a VLAN on top of it. Using a simple shell
-script and the <code>curl</code> command line HTTP client that can be done as follows:</p>
+<p>For example, if you have a host with three network interfaces <code>eth0</code>, <code>eth1</code> and <code>eth2</code> and you want to configure
+a new bond using <code>eth0</code> and <code>eth1</code>, and put a VLAN on top of it. Using a simple shell script and the <code>curl</code>
+command line HTTP client that can be done as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19694,9 +19691,18 @@ curl \
 "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc/setupnetworks"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Note that this is valid for version 4 of the API. In previous versions some elements were represented as XML
-attributes instead of XML elements. In particular the <code>options</code> and <code>ip</code> elements were represented as follows:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is valid for version 4 of the API. In previous versions some elements were represented as XML
+attributes instead of XML elements. In particular the <code>options</code> and <code>ip</code> elements were represented as follows:
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19875,7 +19881,8 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <div class="sect3">
 <h4 id="services/host/methods/unregistered_storage_domains_discover"><a class="anchor" href="#services/host/methods/unregistered_storage_domains_discover"></a>6.97.15. unregisteredstoragedomainsdiscover <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Discover the block Storage Domains which are candidates to be imported to the setup. For FCP no arguments are needed.</p>
+<p>Discovers the block Storage Domains which are candidates to be imported to the setup. For FCP no arguments are
+required.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 308. Parameters summary</caption>
@@ -19975,7 +19982,7 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <div class="sect3">
 <h4 id="services/host/methods/upgrade"><a class="anchor" href="#services/host/methods/upgrade"></a>6.97.17. upgrade <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Upgrade VDSM and selected software on the host.</p>
+<p>Upgrades VDSM and selected software on the host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 310. Parameters summary</caption>
@@ -20004,27 +20011,24 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The image parameter specifies path to image, which is used
-for upgrade.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image parameter specifies path to image, which is used for upgrade.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/host/methods/upgrade/parameters/image"><a class="anchor" href="#services/host/methods/upgrade/parameters/image"></a>image</h5>
 <div class="paragraph">
-<p>The image parameter specifies path to image, which is used
-for upgrade. This parameter is used only to upgrade Vintage
-Node hosts and it&#8217;s not relevant for other hosts types.</p>
+<p>The image parameter specifies path to image, which is used for upgrade. This parameter is used only to
+upgrade Vintage Node hosts and it is not relevant for other hosts types.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/upgrade_check"><a class="anchor" href="#services/host/methods/upgrade_check"></a>6.97.18. upgradecheck <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Check if there are upgrades available for the host. If there are upgrades
-available an icon will be displayed next to host status icon in the webadmin.
-Audit log messages are also added to indicate the availability of upgrades.
-The upgrade can be started from the webadmin or by using the
+<p>Check if there are upgrades available for the host. If there are upgrades available an icon will be displayed
+next to host status icon in the Administration Portal. Audit log messages are also added to indicate the
+availability of upgrades. The upgrade can be started from the webadmin or by using the
 <a href="#services/host/methods/upgrade">upgrade</a> host action.</p>
 </div>
 </div>
@@ -55043,6 +55047,11 @@ attributes are not used in instance types.
 <td class="tableblock halign-left valign-top"><p class="tableblock">The status of the template.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_error_resume_behaviour</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_storage_error_resume_behaviour">VmStorageErrorResumeBehaviour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how the virtual machine will be resumed after storage error.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
@@ -62598,6 +62607,11 @@ it&#8217;s configuration might differ from the stored one for the purpose of thi
 <td class="tableblock halign-left valign-top"><p class="tableblock">The date in which the virtual machine was stopped.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_error_resume_behaviour</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_storage_error_resume_behaviour">VmStorageErrorResumeBehaviour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how the virtual machine will be resumed after storage error.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
@@ -65330,6 +65344,11 @@ This allows a rapid instanstiation of virtual machines with common configuration
 <td class="tableblock halign-left valign-top"><p class="tableblock">The status of the template.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_error_resume_behaviour</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_storage_error_resume_behaviour">VmStorageErrorResumeBehaviour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how the virtual machine will be resumed after storage error.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
@@ -66889,6 +66908,11 @@ it&#8217;s configuration might differ from the stored one for the purpose of thi
 <td class="tableblock halign-left valign-top"><p class="tableblock">The date in which the virtual machine was stopped.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_error_resume_behaviour</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_storage_error_resume_behaviour">VmStorageErrorResumeBehaviour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how the virtual machine will be resumed after storage error.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
@@ -67612,6 +67636,11 @@ This is used by virtual machines, templates and instance types.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the virtual machine is stateless - it&#8217;s state (disks) are rolled-back after shutdown.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_error_resume_behaviour</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_storage_error_resume_behaviour">VmStorageErrorResumeBehaviour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines how the virtual machine will be resumed after storage error.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
@@ -68332,12 +68361,83 @@ It is possible that the virtual machine process will fail to run.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="types/vm_summary"><a class="anchor" href="#types/vm_summary"></a>7.287. VmSummary <span class="small">struct</span></h3>
+<h3 id="types/vm_storage_error_resume_behaviour"><a class="anchor" href="#types/vm_storage_error_resume_behaviour"></a>7.287. VmStorageErrorResumeBehaviour <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>If the storage, on which this virtual machine has some disks gets
+unresponsive, the virtual machine gets paused.</p>
+</div>
+<div class="paragraph">
+<p>This are the possible options, what should happen with the virtual machine
+in the moment the storage gets available again.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1211. Values summary</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto_resume</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine gets resumed automatically in the moment the storage is available
+again.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kill</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine will be killed after a timeout (configurable on the hypervisor).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>leave_paused</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do nothing with the virtual machine.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="types/vm_storage_error_resume_behaviour/values/auto_resume"><a class="anchor" href="#types/vm_storage_error_resume_behaviour/values/auto_resume"></a>7.287.1. auto_resume</h4>
+<div class="paragraph">
+<p>The virtual machine gets resumed automatically in the moment the storage is available
+again.</p>
+</div>
+<div class="paragraph">
+<p>This is the only behavior available before 4.2.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_storage_error_resume_behaviour/values/kill"><a class="anchor" href="#types/vm_storage_error_resume_behaviour/values/kill"></a>7.287.2. kill</h4>
+<div class="paragraph">
+<p>The virtual machine will be killed after a timeout (configurable on the hypervisor).</p>
+</div>
+<div class="paragraph">
+<p>This is the only option supported for highly available virtual machines
+with leases. The reason is that the highly available virtual machine is
+restarted using the infrastructure and any kind of resume risks
+split brains.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_storage_error_resume_behaviour/values/leave_paused"><a class="anchor" href="#types/vm_storage_error_resume_behaviour/values/leave_paused"></a>7.287.3. leave_paused</h4>
+<div class="paragraph">
+<p>Do nothing with the virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>Useful if there is a custom failover implemented and the user does not
+want the virtual machine to get resumed.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="types/vm_summary"><a class="anchor" href="#types/vm_summary"></a>7.288. VmSummary <span class="small">struct</span></h3>
 <div class="paragraph">
 <p>Type containing information related to virtual machines on a particular host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1211. Attributes summary</caption>
+<caption class="title">Table 1212. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68370,12 +68470,12 @@ It is possible that the virtual machine process will fail to run.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/vm_type"><a class="anchor" href="#types/vm_type"></a>7.288. VmType <span class="small">enum</span></h3>
+<h3 id="types/vm_type"><a class="anchor" href="#types/vm_type"></a>7.289. VmType <span class="small">enum</span></h3>
 <div class="paragraph">
 <p>Type representing what the virtual machine is optimized for.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1212. Values summary</caption>
+<caption class="title">Table 1213. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68402,7 +68502,7 @@ It is possible that the virtual machine process will fail to run.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/vm_type/values/desktop"><a class="anchor" href="#types/vm_type/values/desktop"></a>7.288.1. desktop</h4>
+<h4 id="types/vm_type/values/desktop"><a class="anchor" href="#types/vm_type/values/desktop"></a>7.289.1. desktop</h4>
 <div class="paragraph">
 <p>The virtual machine is intended to be used as a desktop.</p>
 </div>
@@ -68411,7 +68511,7 @@ It is possible that the virtual machine process will fail to run.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_type/values/high_performance"><a class="anchor" href="#types/vm_type/values/high_performance"></a>7.288.2. high_performance</h4>
+<h4 id="types/vm_type/values/high_performance"><a class="anchor" href="#types/vm_type/values/high_performance"></a>7.289.2. high_performance</h4>
 <div class="paragraph">
 <p>The virtual machine is intended to be used as a high performance virtual machine.</p>
 </div>
@@ -68490,7 +68590,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_type/values/server"><a class="anchor" href="#types/vm_type/values/server"></a>7.288.3. server</h4>
+<h4 id="types/vm_type/values/server"><a class="anchor" href="#types/vm_type/values/server"></a>7.289.3. server</h4>
 <div class="paragraph">
 <p>The virtual machine is intended to be used as a server.</p>
 </div>
@@ -68500,9 +68600,9 @@ cannot be set automatically; manually setting them before running the virtual ma
 </div>
 </div>
 <div class="sect2">
-<h3 id="types/vnic_pass_through"><a class="anchor" href="#types/vnic_pass_through"></a>7.289. VnicPassThrough <span class="small">struct</span></h3>
+<h3 id="types/vnic_pass_through"><a class="anchor" href="#types/vnic_pass_through"></a>7.290. VnicPassThrough <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1213. Attributes summary</caption>
+<caption class="title">Table 1214. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68525,12 +68625,12 @@ cannot be set automatically; manually setting them before running the virtual ma
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/vnic_pass_through_mode"><a class="anchor" href="#types/vnic_pass_through_mode"></a>7.290. VnicPassThroughMode <span class="small">enum</span></h3>
+<h3 id="types/vnic_pass_through_mode"><a class="anchor" href="#types/vnic_pass_through_mode"></a>7.291. VnicPassThroughMode <span class="small">enum</span></h3>
 <div class="paragraph">
 <p>Describes whether the vNIC is to be implemented as a pass-through device or a virtual one.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1214. Values summary</caption>
+<caption class="title">Table 1215. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68554,12 +68654,12 @@ cannot be set automatically; manually setting them before running the virtual ma
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a>7.291. VnicProfile <span class="small">struct</span></h3>
+<h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a>7.292. VnicProfile <span class="small">struct</span></h3>
 <div class="paragraph">
 <p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nic">NIC</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1215. Attributes summary</caption>
+<caption class="title">Table 1216. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68616,7 +68716,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/vnic_profile/attributes/migratable"><a class="anchor" href="#types/vnic_profile/attributes/migratable"></a>7.291.1. migratable</h4>
+<h4 id="types/vnic_profile/attributes/migratable"><a class="anchor" href="#types/vnic_profile/attributes/migratable"></a>7.292.1. migratable</h4>
 <div class="paragraph">
 <p>Marks whether <code>pass_through</code> NIC is migratable or not.</p>
 </div>
@@ -68630,7 +68730,7 @@ flagged as <code>migratable</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>7.291.2. pass_through</h4>
+<h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a>7.292.2. pass_through</h4>
 <div class="paragraph">
 <p>Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
 </div>
@@ -68646,7 +68746,7 @@ If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirro
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vnic_profile/attributes/port_mirroring"><a class="anchor" href="#types/vnic_profile/attributes/port_mirroring"></a>7.291.3. port_mirroring</h4>
+<h4 id="types/vnic_profile/attributes/port_mirroring"><a class="anchor" href="#types/vnic_profile/attributes/port_mirroring"></a>7.292.3. port_mirroring</h4>
 <div class="paragraph">
 <p>Enables port mirroring.</p>
 </div>
@@ -68689,7 +68789,7 @@ Enabling port mirroring reduces the privacy of other network users.
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1216. Links summary</caption>
+<caption class="title">Table 1217. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68727,7 +68827,7 @@ Enabling port mirroring reduces the privacy of other network users.
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>7.291.4. network_filter</h4>
+<h4 id="types/vnic_profile/links/network_filter"><a class="anchor" href="#types/vnic_profile/links/network_filter"></a>7.292.4. network_filter</h4>
 <div class="paragraph">
 <p>Reference to the top-level network filter that applies to the NICs that use this profile.</p>
 </div>
@@ -68739,7 +68839,7 @@ filtering, or a combination of both.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vnic_profile/links/qos"><a class="anchor" href="#types/vnic_profile/links/qos"></a>7.291.5. qos</h4>
+<h4 id="types/vnic_profile/links/qos"><a class="anchor" href="#types/vnic_profile/links/qos"></a>7.292.5. qos</h4>
 <div class="paragraph">
 <p>Reference to the quality of service attributes to apply to the vNIC profile.</p>
 </div>
@@ -68750,7 +68850,7 @@ NIC.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="types/vnic_profile_mapping"><a class="anchor" href="#types/vnic_profile_mapping"></a>7.292. VnicProfileMapping <span class="small">struct</span></h3>
+<h3 id="types/vnic_profile_mapping"><a class="anchor" href="#types/vnic_profile_mapping"></a>7.293. VnicProfileMapping <span class="small">struct</span></h3>
 <div class="paragraph">
 <p>Maps an external virtual NIC profile to one that exists in the oVirt Engine.</p>
 </div>
@@ -68803,7 +68903,7 @@ NIC.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1217. Attributes summary</caption>
+<caption class="title">Table 1218. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68830,7 +68930,7 @@ NIC.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1218. Links summary</caption>
+<caption class="title">Table 1219. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68853,9 +68953,9 @@ NIC.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/volume_group"><a class="anchor" href="#types/volume_group"></a>7.293. VolumeGroup <span class="small">struct</span></h3>
+<h3 id="types/volume_group"><a class="anchor" href="#types/volume_group"></a>7.294. VolumeGroup <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1219. Attributes summary</caption>
+<caption class="title">Table 1220. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68888,12 +68988,12 @@ NIC.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/watchdog"><a class="anchor" href="#types/watchdog"></a>7.294. Watchdog <span class="small">struct</span></h3>
+<h3 id="types/watchdog"><a class="anchor" href="#types/watchdog"></a>7.295. Watchdog <span class="small">struct</span></h3>
 <div class="paragraph">
 <p>This type represents a watchdog configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1220. Attributes summary</caption>
+<caption class="title">Table 1221. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68940,12 +69040,12 @@ NIC.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/watchdog/attributes/model"><a class="anchor" href="#types/watchdog/attributes/model"></a>7.294.1. model</h4>
+<h4 id="types/watchdog/attributes/model"><a class="anchor" href="#types/watchdog/attributes/model"></a>7.295.1. model</h4>
 <div class="paragraph">
 <p>Model of watchdog device. Currently supported only I6300ESB.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1221. Links summary</caption>
+<caption class="title">Table 1222. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68983,7 +69083,7 @@ NIC.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/watchdog/links/vms"><a class="anchor" href="#types/watchdog/links/vms"></a>7.294.2. vms</h4>
+<h4 id="types/watchdog/links/vms"><a class="anchor" href="#types/watchdog/links/vms"></a>7.295.2. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -68991,12 +69091,12 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 </div>
 <div class="sect2">
-<h3 id="types/watchdog_action"><a class="anchor" href="#types/watchdog_action"></a>7.295. WatchdogAction <span class="small">enum</span></h3>
+<h3 id="types/watchdog_action"><a class="anchor" href="#types/watchdog_action"></a>7.296. WatchdogAction <span class="small">enum</span></h3>
 <div class="paragraph">
 <p>This type describes available watchdog actions.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1222. Values summary</caption>
+<caption class="title">Table 1223. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69031,19 +69131,19 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/watchdog_action/values/none"><a class="anchor" href="#types/watchdog_action/values/none"></a>7.295.1. none</h4>
+<h4 id="types/watchdog_action/values/none"><a class="anchor" href="#types/watchdog_action/values/none"></a>7.296.1. none</h4>
 <div class="paragraph">
 <p>No action will be performed when watchdog action is triggered. However log message will still be generated.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="types/watchdog_model"><a class="anchor" href="#types/watchdog_model"></a>7.296. WatchdogModel <span class="small">enum</span></h3>
+<h3 id="types/watchdog_model"><a class="anchor" href="#types/watchdog_model"></a>7.297. WatchdogModel <span class="small">enum</span></h3>
 <div class="paragraph">
 <p>This type represents the watchdog model.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1223. Values summary</caption>
+<caption class="title">Table 1224. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69063,9 +69163,9 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </table>
 </div>
 <div class="sect2">
-<h3 id="types/weight"><a class="anchor" href="#types/weight"></a>7.297. Weight <span class="small">struct</span></h3>
+<h3 id="types/weight"><a class="anchor" href="#types/weight"></a>7.298. Weight <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1224. Attributes summary</caption>
+<caption class="title">Table 1225. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69107,7 +69207,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1225. Links summary</caption>
+<caption class="title">Table 1226. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71522,7 +71622,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-13 10:48:47 UTC
+Last updated 2017-10-19 12:49:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
