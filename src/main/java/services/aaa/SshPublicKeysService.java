@@ -32,7 +32,7 @@ public interface SshPublicKeysService {
     interface Add {
         @InputDetail
         default void inputDetail() {
-            or(mandatory(key().id()), mandatory(key().name()));
+            mandatory(key().content());
         }
         @In @Out SshPublicKey key();
     }
