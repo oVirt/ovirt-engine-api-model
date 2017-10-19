@@ -32,8 +32,9 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.or;
  * This service manages the virtual machine templates available in the system.
  *
  * @author Tomas Jelinek <tjelinek@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 20 Oct 2017
+ * @status updated_by_docs
  */
 @Service
 @Area("Virtualization")
@@ -42,7 +43,7 @@ public interface TemplatesService {
      * Creates a new template.
      *
      * This requires the `name` and `vm` elements. To identify the virtual machine use the `vm.id` or `vm.name`
-     * attributes. For example, to create a template from virtual machine with identifier `123` send a request
+     * attributes. For example, to create a template from a virtual machine with the identifier `123` send a request
      * like this:
      *
      * [source]
@@ -60,10 +61,10 @@ public interface TemplatesService {
      * </template>
      * ----
      *
-     * The disks of the template can be customized, making some of their characteristics different to the disks of the
+     * The disks of the template can be customized, making some of their characteristics different from the disks of the
      * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
      * of the original virtual machine and the characteristics that you want to change. For example, if the original
-     * virtual machine has a disk with identifier `456`, and, for that disk, you want to change the format to
+     * virtual machine has a disk with the identifier `456`, and, for that disk, you want to change the format to
      * <<types/disk_format, _Copy On Write_>> and make the disk <<types/disk, sparse>>, send a request body
      * like this:
      *
@@ -84,7 +85,7 @@ public interface TemplatesService {
      * </template>
      * ----
      *
-     * The template can be created as a sub version of an existing template.This requires the `name` and `vm` attributes
+     * The template can be created as a sub-version of an existing template. This requires the `name` and `vm` attributes
      * for the new template, and the `base_template` and `version_name` attributes for the new template version. The
      * `base_template` and `version_name` attributes must be specified within a `version` section enclosed in the
      * `template` section. Identify the virtual machine with the `id` or `name` attributes.
@@ -101,25 +102,74 @@ public interface TemplatesService {
      * </template>
      * ----
      *
+     * The destination storage domain of the template can be customized, in one of two ways:
+     *
+     * 1. Globally, at the request level. The request must list the desired disk attachments to be created on the
+     * storage domain. If the disk attachments are not listed, the global storage domain parameter will be ignored.
+     * +
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <storage_domain id="123"/>
+     *   <vm id="456">
+     *     <disk_attachments>
+     *       <disk_attachment>
+     *         <disk id="789">
+     *           <format>cow</format>
+     *           <sparse>true</sparse>
+     *         </disk>
+     *       </disk_attachment>
+     *     </disk_attachments>
+     *   </vm>
+     * </template>
+     * ----
+     *
+     * 2. Per each disk attachment. Specify the desired storage domain for each disk attachment.
+     * Specifying the global storage definition will override the storage domain per disk attachment specification.
+     * +
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <vm id="123">
+     *     <disk_attachments>
+     *       <disk_attachment>
+     *         <disk id="456">
+     *           <format>cow</format>
+     *           <sparse>true</sparse>
+     *           <storage_domains>
+     *              <storage_domain id="789"/>
+     *           </storage_domains>
+     *         </disk>
+     *       </disk_attachment>
+     *     </disk_attachments>
+     *   </vm>
+     * </template>
+     * ----
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 6 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 20 Oct 2017
+     * @status updated_by_docs
      */
     interface Add {
         /**
          * The information about the template or template version.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 12 Dec 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @In @Out Template template();
 
         /**
          * Specifies if the permissions of the virtual machine should be copied to the template.
          *
-         * If this optional parameter is provided, and its values is `true` then the permissions of the virtual machine
+         * If this optional parameter is provided, and its value is `true`, then the permissions of the virtual machine
          * (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
          * a template from the `myvm` virtual machine copying its permissions, send a request like this:
          *
@@ -141,28 +191,30 @@ public interface TemplatesService {
          * ----
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 16 Aug 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          * @since 4.0.0
          */
         @In Boolean clonePermissions();
 
         /**
-         * Seal the template.
+         * Seals the template.
          *
          * If this optional parameter is provided and its value is `true`,
          * then the template is sealed after creation.
          *
          * Sealing erases all host-specific configuration from the filesystem:
-         * SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
-         * thus making easy to use the template to create multiple virtual
+         * SSH keys, UDEV rules, MAC addresses, system ID, hostname, and so on,
+         * thus making it easier to use the template to create multiple virtual
          * machines without manual intervention.
          *
-         * Currently sealing is supported only for Linux OS.
+         * Currently, sealing is supported only for Linux operating systems.
          *
          * @author Shmuel Melamud <smelamud@redhat.com>
-         * @date 7 Mar 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          * @since 4.1.2
          */
         @In Boolean seal();
@@ -260,29 +312,39 @@ public interface TemplatesService {
      *
      * Will return the list of virtual machines and virtual machine templates.
      *
-     * The order of the returned list of templates isn't guaranteed.
+     * The order of the returned list of templates is not guaranteed.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 20 Oct 2017
+     * @status updated_by_docs
      */
     interface List {
         /**
          * The list of virtual machine templates.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 12 Dec 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @Out Template[] templates();
 
         /**
-         * Sets the maximum number of templates to return. If not specified all the templates are returned.
+         * Sets the maximum number of templates to return. If not specified, all the templates are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @In Integer max();
 
         /**
          * A query string used to restrict the returned templates.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @In String search();
 
@@ -290,11 +352,19 @@ public interface TemplatesService {
          * Indicates if the search performed using the `search` parameter should be performed taking case into
          * account. The default value is `true`, which means that case is taken into account. If you want to search
          * ignoring case set it to `false`.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean caseSensitive();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 20 Oct 2017
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
@@ -303,8 +373,9 @@ public interface TemplatesService {
      * Returns a reference to the service that manages a specific virtual machine template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 20 Oct 2017
+     * @status updated_by_docs
      */
     @Service TemplateService template(String id);
 }
