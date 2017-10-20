@@ -20013,6 +20013,12 @@ required.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The image parameter specifies path to image, which is used for upgrade.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reboot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the host should be rebooted after upgrade.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -20020,6 +20026,13 @@ required.</p>
 <div class="paragraph">
 <p>The image parameter specifies path to image, which is used for upgrade. This parameter is used only to
 upgrade Vintage Node hosts and it is not relevant for other hosts types.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/host/methods/upgrade/parameters/reboot"><a class="anchor" href="#services/host/methods/upgrade/parameters/reboot"></a>reboot</h5>
+<div class="paragraph">
+<p>Indicates if the host should be rebooted after upgrade.
+By default the host is rebooted.</p>
 </div>
 </div>
 </div>
@@ -43822,6 +43835,11 @@ network filter regardless of the VNIC profiles&#8217;s default network filter. F
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reassign_bad_macs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reboot</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -71667,7 +71685,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 12:43:33 UTC
+Last updated 2017-10-20 06:28:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
