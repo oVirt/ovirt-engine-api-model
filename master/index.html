@@ -36757,7 +36757,7 @@ have copies on multiple storage domains).</p>
 </div>
 <div class="paragraph">
 <p>This requires the <code>name</code> and <code>vm</code> elements. To identify the virtual machine use the <code>vm.id</code> or <code>vm.name</code>
-attributes. For example, to create a template from virtual machine with identifier <code>123</code> send a request
+attributes. For example, to create a template from a virtual machine with the identifier <code>123</code> send a request
 like this:</p>
 </div>
 <div class="listingblock">
@@ -36777,10 +36777,10 @@ like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The disks of the template can be customized, making some of their characteristics different to the disks of the
+<p>The disks of the template can be customized, making some of their characteristics different from the disks of the
 original virtual machine. To do so use the <code>vm.disk_attachments</code> attribute, specifying the identifier of the disk
 of the original virtual machine and the characteristics that you want to change. For example, if the original
-virtual machine has a disk with identifier <code>456</code>, and, for that disk, you want to change the format to
+virtual machine has a disk with the identifier <code>456</code>, and, for that disk, you want to change the format to
 <a href="#types/disk_format"><em>Copy On Write</em></a> and make the disk <a href="#types/disk">sparse</a>, send a request body
 like this:</p>
 </div>
@@ -36802,7 +36802,7 @@ like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The template can be created as a sub version of an existing template.This requires the <code>name</code> and <code>vm</code> attributes
+<p>The template can be created as a sub-version of an existing template. This requires the <code>name</code> and <code>vm</code> attributes
 for the new template, and the <code>base_template</code> and <code>version_name</code> attributes for the new template version. The
 <code>base_template</code> and <code>version_name</code> attributes must be specified within a <code>version</code> section enclosed in the
 <code>template</code> section. Identify the virtual machine with the <code>id</code> or <code>name</code> attributes.</p>
@@ -36818,6 +36818,59 @@ for the new template, and the <code>base_template</code> and <code>version_name<
   &lt;/version&gt;
 &lt;/template&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The destination storage domain of the template can be customized, in one of two ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Globally, at the request level. The request must list the desired disk attachments to be created on the
+storage domain. If the disk attachments are not listed, the global storage domain parameter will be ignored.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;name&gt;mytemplate&lt;/name&gt;
+  &lt;storage_domain id="123"/&gt;
+  &lt;vm id="456"&gt;
+    &lt;disk_attachments&gt;
+      &lt;disk_attachment&gt;
+        &lt;disk id="789"&gt;
+          &lt;format&gt;cow&lt;/format&gt;
+          &lt;sparse&gt;true&lt;/sparse&gt;
+        &lt;/disk&gt;
+      &lt;/disk_attachment&gt;
+    &lt;/disk_attachments&gt;
+  &lt;/vm&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Per each disk attachment. Specify the desired storage domain for each disk attachment.
+Specifying the global storage definition will override the storage domain per disk attachment specification.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;name&gt;mytemplate&lt;/name&gt;
+  &lt;vm id="123"&gt;
+    &lt;disk_attachments&gt;
+      &lt;disk_attachment&gt;
+        &lt;disk id="456"&gt;
+          &lt;format&gt;cow&lt;/format&gt;
+          &lt;sparse&gt;true&lt;/sparse&gt;
+          &lt;storage_domains&gt;
+             &lt;storage_domain id="789"/&gt;
+          &lt;/storage_domains&gt;
+        &lt;/disk&gt;
+      &lt;/disk_attachment&gt;
+    &lt;/disk_attachments&gt;
+  &lt;/vm&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 702. Parameters summary</caption>
@@ -36846,7 +36899,7 @@ for the new template, and the <code>base_template</code> and <code>version_name<
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>seal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seal the template.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seals the template.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>template</code></p></td>
@@ -36862,7 +36915,7 @@ for the new template, and the <code>base_template</code> and <code>version_name<
 <p>Specifies if the permissions of the virtual machine should be copied to the template.</p>
 </div>
 <div class="paragraph">
-<p>If this optional parameter is provided, and its values is <code>true</code> then the permissions of the virtual machine
+<p>If this optional parameter is provided, and its value is <code>true</code>, then the permissions of the virtual machine
 (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
 a template from the <code>myvm</code> virtual machine copying its permissions, send a request like this:</p>
 </div>
@@ -36888,7 +36941,7 @@ a template from the <code>myvm</code> virtual machine copying its permissions, s
 <div class="sect4">
 <h5 id="services/templates/methods/add/parameters/seal"><a class="anchor" href="#services/templates/methods/add/parameters/seal"></a>seal</h5>
 <div class="paragraph">
-<p>Seal the template.</p>
+<p>Seals the template.</p>
 </div>
 <div class="paragraph">
 <p>If this optional parameter is provided and its value is <code>true</code>,
@@ -36896,12 +36949,12 @@ then the template is sealed after creation.</p>
 </div>
 <div class="paragraph">
 <p>Sealing erases all host-specific configuration from the filesystem:
-SSH keys, UDEV rules, MAC addresses, system ID, hostname etc.,
-thus making easy to use the template to create multiple virtual
+SSH keys, UDEV rules, MAC addresses, system ID, hostname, and so on,
+thus making it easier to use the template to create multiple virtual
 machines without manual intervention.</p>
 </div>
 <div class="paragraph">
-<p>Currently sealing is supported only for Linux OS.</p>
+<p>Currently, sealing is supported only for Linux operating systems.</p>
 </div>
 </div>
 </div>
@@ -36922,7 +36975,7 @@ machines without manual intervention.</p>
 <p>Will return the list of virtual machines and virtual machine templates.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of templates isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of templates is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 703. Parameters summary</caption>
@@ -36985,7 +37038,7 @@ ignoring case set it to <code>false</code>.</p>
 <div class="sect4">
 <h5 id="services/templates/methods/list/parameters/max"><a class="anchor" href="#services/templates/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of templates to return. If not specified all the templates are returned.</p>
+<p>Sets the maximum number of templates to return. If not specified, all the templates are returned.</p>
 </div>
 </div>
 </div>
@@ -71685,7 +71738,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 06:28:04 UTC
+Last updated 2017-10-20 06:38:42 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
