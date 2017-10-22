@@ -33,31 +33,32 @@ import org.ovirt.api.metamodel.annotations.Type;
  * <action>
  *   <registration_configuration>
  *     <lun_mappings>
- *      <registration_lun_mapping>
- *        <from>
- *          <lun id="xxx-xxxxx-xxxxx-xxx"/>
- *        </from>
- *        <to>
- *          <lun id="xxx-xxxxx-xxxxx-yyy">
- *            <product_id>lun0</product_id>
- *            <vendor_id>LIO-ORG</vendor_id>
- *            <lun_mapping>0</lun_mapping>
- *            <serial>SLIO-ORG_lun0_1136c205-74f7-43bd-bd28-177fd5ce6993</serial>
- *            <physical_volume_id>...</physical_volume_id>
- *            <alias>mylun</alias>
- *            <lun_storage>
- *              <type>iscsi</type>
- *              <logical_units>
- *                <logical_unit id="456">
- *                  <address>10.35.10.20</address>
- *                  <port>3260</port>
- *                  <target>iqn.2017-01.com.myhost:444</target>
- *                </logical_unit>
- *              </logical_units>
- *            </lun_storage>
- *          </lun>
- *        </to>
- *      </registration_lun_mapping>
+ *       <registration_lun_mapping>
+ *         <from id="418de86e-09b4-47b4-a923-419e7f5bd803">
+ *         </from>
+ *         <to id="418de86e-09b4-47b4-a923-419e7f5bd803">
+ *           <alias>weTestLun</alias>
+ *           <lun_storage>
+ *             <type>iscsi</type>
+ *             <logical_units>
+ *               <logical_unit id="36001405fb1ddb4b91e44078b10f8cde2">
+ *                 <product_id>fileio12</product_id>
+ *                 <vendor_id>LIO-ORG</vendor_id>
+ *                 <lun_mapping>1</lun_mapping>
+ *                 <discard_max_size>4194304</discard_max_size>
+ *                 <discard_zeroes_data>false</discard_zeroes_data>
+ *                 <serial>SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94</serial>
+ *                 <physical_volume_id>4194304</physical_volume_id>
+ *                 <size>5368709120</size>
+ *                 <address>10.35.16.55</address>
+ *                 <port>3260</port>
+ *                 <portal>1</portal>
+ *                 <target>iqn.2015-07.com.mlipchuk6.redhat:444</target>
+ *               </logical_unit>
+ *             </logical_units>
+ *           </lun_storage>
+ *         </to>
+ *       </registration_lun_mapping>
  *     </lun_mappings>
  *   </registration_configuration>
  * </action>
