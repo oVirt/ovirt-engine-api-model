@@ -26,6 +26,7 @@ import types.RegistrationConfiguration;
 import types.StorageDomain;
 import types.Template;
 import types.Vm;
+import types.VnicProfileMapping;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
@@ -135,6 +136,16 @@ public interface StorageDomainTemplateService {
          * @since 4.1
          */
         @In Boolean allowPartialImport();
+
+       /**
+         * Mapping rules for virtual NIC profiles that will be applied during the import process.
+         *
+         * @author Maor Lipchuk <mlipchuk@redhat.com>
+         * @date 23 Oct 2017
+         * @status added
+         * @since 4.2
+         */
+        @In VnicProfileMapping[] vnicProfileMappings();
 
         /**
          *
