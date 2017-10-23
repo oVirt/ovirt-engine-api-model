@@ -3,6 +3,27 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.23 / Oct 23 2017
+
+New features:
+
+* Add `reboot` parameter to the `upgrade` method of the service that
+  manages a host.
+
+* Add `registrationConfiguration` parameter to the operations that
+  register virtual machines and templates.
+
+* Add documentation explaining how to add snapshots with disk
+  attachments.
+
+Bug fixes:
+
+* Add documentation explaining how to add a template with disks in
+  specific storage domains https://bugzilla.redhat.com/1492614[#1492614].
+
+* Add `vnicProfileMappings` parameter to the operation that registers a
+  template.
+
 == 4.2.22 / Oct 19 2017
 
 New features:
