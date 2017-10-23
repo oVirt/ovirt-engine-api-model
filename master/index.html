@@ -61871,31 +61871,32 @@ takes place in the oVirt Engine.</p>
       &lt;/registration_domain_mapping&gt;
     &lt;/domain_mappings&gt;
     &lt;lun_mappings&gt;
-     &lt;registration_lun_mapping&gt;
-       &lt;from&gt;
-         &lt;lun id="xxx-xxxxx-xxxxx-xxx"/&gt;
-       &lt;/from&gt;
-       &lt;to&gt;
-         &lt;lun id="xxx-xxxxx-xxxxx-yyy"&gt;
-           &lt;product_id&gt;lun0&lt;/product_id&gt;
-           &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
-           &lt;lun_mapping&gt;0&lt;/lun_mapping&gt;
-           &lt;serial&gt;SLIO-ORG_lun0_1136c205-74f7-43bd-bd28-177fd5ce6993&lt;/serial&gt;
-           &lt;physical_volume_id&gt;...&lt;/physical_volume_id&gt;
-           &lt;alias&gt;mylun&lt;/alias&gt;
-           &lt;lun_storage&gt;
-             &lt;type&gt;iscsi&lt;/type&gt;
-             &lt;logical_units&gt;
-               &lt;logical_unit id="456"&gt;
-                 &lt;address&gt;10.35.10.20&lt;/address&gt;
-                 &lt;port&gt;3260&lt;/port&gt;
-                 &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
-               &lt;/logical_unit&gt;
-             &lt;/logical_units&gt;
-           &lt;/lun_storage&gt;
-         &lt;/lun&gt;
-       &lt;/to&gt;
-     &lt;/registration_lun_mapping&gt;
+      &lt;registration_lun_mapping&gt;
+        &lt;from id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
+        &lt;/from&gt;
+        &lt;to id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
+          &lt;alias&gt;weTestLun&lt;/alias&gt;
+          &lt;lun_storage&gt;
+            &lt;type&gt;iscsi&lt;/type&gt;
+            &lt;logical_units&gt;
+              &lt;logical_unit id="36001405fb1ddb4b91e44078b10f8cde2"&gt;
+                &lt;product_id&gt;fileio12&lt;/product_id&gt;
+                &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
+                &lt;lun_mapping&gt;1&lt;/lun_mapping&gt;
+                &lt;discard_max_size&gt;4194304&lt;/discard_max_size&gt;
+                &lt;discard_zeroes_data&gt;false&lt;/discard_zeroes_data&gt;
+                &lt;serial&gt;SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94&lt;/serial&gt;
+                &lt;physical_volume_id&gt;4194304&lt;/physical_volume_id&gt;
+                &lt;size&gt;5368709120&lt;/size&gt;
+                &lt;address&gt;10.35.16.55&lt;/address&gt;
+                &lt;port&gt;3260&lt;/port&gt;
+                &lt;portal&gt;1&lt;/portal&gt;
+                &lt;target&gt;iqn.2015-07.com.mlipchuk6.redhat:444&lt;/target&gt;
+              &lt;/logical_unit&gt;
+            &lt;/logical_units&gt;
+          &lt;/lun_storage&gt;
+        &lt;/to&gt;
+      &lt;/registration_lun_mapping&gt;
     &lt;/lun_mappings&gt;
     &lt;affinity_group_mappings&gt;
      &lt;registration_affinity_group_mapping&gt;
@@ -62051,31 +62052,32 @@ An example of an XML representation using this mapping:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
   &lt;registration_configuration&gt;
     &lt;lun_mappings&gt;
-     &lt;registration_lun_mapping&gt;
-       &lt;from&gt;
-         &lt;lun id="xxx-xxxxx-xxxxx-xxx"/&gt;
-       &lt;/from&gt;
-       &lt;to&gt;
-         &lt;lun id="xxx-xxxxx-xxxxx-yyy"&gt;
-           &lt;product_id&gt;lun0&lt;/product_id&gt;
-           &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
-           &lt;lun_mapping&gt;0&lt;/lun_mapping&gt;
-           &lt;serial&gt;SLIO-ORG_lun0_1136c205-74f7-43bd-bd28-177fd5ce6993&lt;/serial&gt;
-           &lt;physical_volume_id&gt;...&lt;/physical_volume_id&gt;
-           &lt;alias&gt;mylun&lt;/alias&gt;
-           &lt;lun_storage&gt;
-             &lt;type&gt;iscsi&lt;/type&gt;
-             &lt;logical_units&gt;
-               &lt;logical_unit id="456"&gt;
-                 &lt;address&gt;10.35.10.20&lt;/address&gt;
-                 &lt;port&gt;3260&lt;/port&gt;
-                 &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
-               &lt;/logical_unit&gt;
-             &lt;/logical_units&gt;
-           &lt;/lun_storage&gt;
-         &lt;/lun&gt;
-       &lt;/to&gt;
-     &lt;/registration_lun_mapping&gt;
+      &lt;registration_lun_mapping&gt;
+        &lt;from id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
+        &lt;/from&gt;
+        &lt;to id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
+          &lt;alias&gt;weTestLun&lt;/alias&gt;
+          &lt;lun_storage&gt;
+            &lt;type&gt;iscsi&lt;/type&gt;
+            &lt;logical_units&gt;
+              &lt;logical_unit id="36001405fb1ddb4b91e44078b10f8cde2"&gt;
+                &lt;product_id&gt;fileio12&lt;/product_id&gt;
+                &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
+                &lt;lun_mapping&gt;1&lt;/lun_mapping&gt;
+                &lt;discard_max_size&gt;4194304&lt;/discard_max_size&gt;
+                &lt;discard_zeroes_data&gt;false&lt;/discard_zeroes_data&gt;
+                &lt;serial&gt;SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94&lt;/serial&gt;
+                &lt;physical_volume_id&gt;4194304&lt;/physical_volume_id&gt;
+                &lt;size&gt;5368709120&lt;/size&gt;
+                &lt;address&gt;10.35.16.55&lt;/address&gt;
+                &lt;port&gt;3260&lt;/port&gt;
+                &lt;portal&gt;1&lt;/portal&gt;
+                &lt;target&gt;iqn.2015-07.com.mlipchuk6.redhat:444&lt;/target&gt;
+              &lt;/logical_unit&gt;
+            &lt;/logical_units&gt;
+          &lt;/lun_storage&gt;
+        &lt;/to&gt;
+      &lt;/registration_lun_mapping&gt;
     &lt;/lun_mappings&gt;
   &lt;/registration_configuration&gt;
 &lt;/action&gt;</code></pre>
@@ -72388,7 +72390,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 07:14:53 UTC
+Last updated 2017-10-23 07:31:50 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
