@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -122,7 +123,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * @date 4 Jan 2017
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The description of the disk.
          *

@@ -17,6 +17,7 @@ limitations under the License.
 package services.openstack;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -68,7 +69,7 @@ public interface OpenstackNetworkProvidersService {
      * @date 15 Apr 2017
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         @Out OpenStackNetworkProvider[] providers();
 
         /**

@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -75,7 +76,7 @@ public interface StorageServerConnectionExtensionsService {
      * @date 15 Apr 1027
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         @Out StorageConnectionExtension[] extensions();
 
         /**

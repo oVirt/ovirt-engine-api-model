@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Cdrom;
@@ -24,7 +25,7 @@ import types.Cdrom;
 @Service
 @Area("Storage")
 public interface SnapshotCdromService {
-    interface Get {
+    interface Get extends Follow {
         @Out Cdrom cdrom();
     }
 }

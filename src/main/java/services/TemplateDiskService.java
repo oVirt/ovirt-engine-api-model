@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -71,7 +72,7 @@ public interface TemplateDiskService {
         @In Boolean filter();
     }
 
-    interface Get {
+    interface Get extends Follow {
         @Out Disk disk();
     }
 

@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
@@ -24,7 +25,7 @@ import types.Disk;
 @Service
 @Area("Storage")
 public interface SnapshotDiskService {
-    interface Get {
+    interface Get extends Follow {
         @Out Disk disk();
     }
 }

@@ -16,6 +16,7 @@ limitations under the License.
 
 package services.gluster;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -185,7 +186,7 @@ public interface GlusterBricksService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         @Out GlusterBrick[] bricks();
 
         /**

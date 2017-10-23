@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -37,7 +38,7 @@ public interface AffinityLabelHostService {
     /**
      * Retrieves details about a host that has this label assigned.
      */
-    interface Get {
+    interface Get extends Follow {
         @Out Host host();
     }
 }

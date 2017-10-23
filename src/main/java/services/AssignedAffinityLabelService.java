@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.AffinityLabel;
@@ -29,7 +30,7 @@ public interface AssignedAffinityLabelService {
     /**
      * Retrieves details about the attached label.
      */
-    interface Get {
+    interface Get extends Follow {
         @Out AffinityLabel label();
     }
 

@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -25,7 +26,7 @@ import types.CpuProfile;
 @Service
 @Area("Virtualization")
 public interface AssignedCpuProfileService {
-    interface Get {
+    interface Get extends Follow {
         @Out CpuProfile profile();
     }
 

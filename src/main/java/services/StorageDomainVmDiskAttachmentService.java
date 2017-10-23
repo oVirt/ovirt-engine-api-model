@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -42,7 +43,7 @@ public interface StorageDomainVmDiskAttachmentService {
      * @status added
      * @since 4.0.4
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The disk attachment.
          *

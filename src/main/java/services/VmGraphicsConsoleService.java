@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -42,7 +43,7 @@ public interface VmGraphicsConsoleService {
      * @date 25 Jul 2017
      * @status updated_by_docs
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The information about the graphics console of the virtual machine.
          *

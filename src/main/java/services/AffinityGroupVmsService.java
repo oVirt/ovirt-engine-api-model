@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -77,7 +78,7 @@ public interface AffinityGroupVmsService {
      * @date 31 Jan 2017
      * @status updated_by_docs
      */
-    interface List {
+    interface List extends Follow {
         @Out Vm[] vms();
 
         /**

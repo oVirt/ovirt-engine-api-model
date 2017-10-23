@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -96,7 +97,7 @@ public interface VmPoolService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * Retrieved virtual machines pool.
          *

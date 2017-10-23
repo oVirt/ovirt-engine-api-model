@@ -17,6 +17,7 @@ limitations under the License.
 package services.aaa;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Domain;
@@ -57,7 +58,7 @@ public interface DomainService {
      * @date 12 Dec 2017
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The authentication domain.
          *

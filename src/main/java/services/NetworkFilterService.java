@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -47,7 +48,7 @@ public interface NetworkFilterService {
     /**
      * Retrieves a representation of the network filter.
      */
-    interface Get {
+    interface Get extends Follow {
         @Out NetworkFilter networkFilter();
     }
 

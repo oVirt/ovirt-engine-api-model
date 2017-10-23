@@ -499,6 +499,152 @@ the next page, then your results may be missing some of them, or contain
 duplicates.
 ====
 
+[id="documents/003_common_concepts/follow"]
+=== Following links
+
+The API returns references to related objects as _links_. For example, when
+a virtual machine is retrieved it contains links to its disk attachments
+and network interface cards:
+
+[source,xml]
+----
+<vm id="123" href="/ovirt-engine/api/vms/123">
+  ...
+  <link rel="diskattachments" href="/ovirt-engine/api/vms/123/diskattachments"/>
+  <link rel="nics" href="/ovirt-engine/api/vms/123/nics"/>
+  ...
+</vm>
+----
+
+The complete description of those _linked_ objects can be retrieved by sending
+separate requests:
+
+....
+GET /ovirt-engine/api/vms/123/diskattachments
+GET /ovirt-engine/api/vms/123/nics
+....
+
+However, in some situations it is more convenient for the application using the API to
+retrieve the linked information in the same request. This is useful, for example,
+when the additional network round trips introduce an unacceptable overhead, or when
+the multiple requests complicate the code of the application in an unacceptable
+way. For those use cases the API provides a `follow` parameter that allows the
+application to retrieve the linked information using only one request.
+
+The value of the `follow` parameter is a list of strings, separated by commas.
+Each of those strings is the _path_ of the linked object. For example, to retrieve
+the disk attachments and the NICs in the example above the request should be like
+this:
+
+....
+GET /ovirt-engine/api/vms/123?follow=disk_attachments,nics
+....
+
+That will return an response like this:
+
+[source,xml]
+----
+<vm id="123" href="/ovirt-engine/api/vms/123">
+  ...
+  <disk_attachments>
+    <disk_attachment id="456" href="/ovirt-engine/api/vms/123/diskattachments/456">
+      <active>true</active>
+      <bootable>true</bootable>
+      <interface>virtio_scsi</interface>
+      <pass_discard>false</pass_discard>
+      <read_only>false</read_only>
+      <uses_scsi_reservation>false</uses_scsi_reservation>
+      <disk id="789" href="/ovirt-engine/api/disks/789"/>
+    </disk_attachment>
+    ...
+  </disk_attacments>
+  <nics>
+    <nic id="234" href="/ovirt-engine/api/vms/123/nics/234">
+      <name>eth0</name>
+      <interface>virtio</interface>
+      <linked>true</linked>
+      <mac>
+        <address>00:1a:4a:16:01:00</address>
+      </mac>
+      <plugged>true</plugged>
+    </nic>
+    ...
+  </nics>
+  ...
+</vm>
+----
+
+The path to the linked object can be a single word, as in the previous example,
+or it can be a sequence of words, separated by dots, to request nested
+data. For example, the previous example used `disk_attachments` in order to
+retrieve the complete description of the disk attachments, but each
+disk attachment contains a link to the disk, which wasn't _followed_.
+In order to also follow the links to the disks, the following request
+can be used:
+
+....
+POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk
+....
+
+That will result in the following response:
+
+[source,xml]
+----
+<vm id="123" href="/ovirt-engine/api/vms/123">
+  <disk_attachments>
+    <disk_attachment id="456" href="/ovirt-engine/api/vms/123/diskattachments/456">
+      <active>true</active>
+      <bootable>true</bootable>
+      <interface>virtio_scsi</interface>
+      <pass_discard>false</pass_discard>
+      <read_only>false</read_only>
+      <uses_scsi_reservation>false</uses_scsi_reservation>
+      <disk id="789" href="/ovirt-engine/api/disks/789">
+        <name>mydisk</name>
+        <description>My disk</description>
+        <actual_size>0</actual_size>
+        <format>raw</format>
+        <sparse>true</sparse>
+        <status>ok</status>
+        <storage_type>image</storage_type>
+        <total_size>0</total_size>
+        ...
+      </disk>
+    </disk_attachment>
+    ...
+  </disk_attachments>
+  ...
+</vm>
+----
+
+The path can be made as deep as needed. For example, to also get the statistics
+of the disks:
+
+....
+POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics
+....
+
+Multiple path elements and multiple paths can be combined. For example, to get the
+disk attachments and the network interface cards, both with their statistics:
+
+....
+POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics
+....
+
+IMPORTANT: Almost all the operations that retrieve objects support the `follow`
+parameter, but make sure to explicitly check the reference documentation, as
+some operations may not support it, or may provide advice on how to use
+it to get the best performance.
+
+IMPORTANT: Using the `follow` parameter moves the overhead from the
+client side to the server side. When you request additional data, the
+server must fetch and merge it with the basic data. That consumes CPU
+and memory in the server side, and will in most cases require additional
+database queries. That may adversely affect the performance of the server,
+especially in large scale environments. Make sure to test your application
+in a realistic environment, and use the `follow` parameter only when
+justified.
+
 === Permissions
 
 Many of the services that manage a single object provide a reference to

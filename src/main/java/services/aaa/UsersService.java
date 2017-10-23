@@ -17,6 +17,7 @@ limitations under the License.
 package services.aaa;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -132,7 +133,7 @@ public interface UsersService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         /**
          * The list of users.
          *

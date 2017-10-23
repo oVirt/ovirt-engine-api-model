@@ -17,6 +17,7 @@ limitations under the License.
 package services.externalhostproviders;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -68,7 +69,7 @@ public interface ExternalComputeResourcesService {
      * @date 24 Apr 2017
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         /**
          * List of external computer resources.
          *

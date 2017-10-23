@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -99,7 +100,7 @@ public interface TemplateService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The information about the template or template version.
          *

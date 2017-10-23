@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -29,7 +30,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Service
 @Area("SLA")
 public interface VmNumaNodeService {
-    interface Get {
+    interface Get extends Follow {
         @Out VirtualNumaNode node();
     }
 

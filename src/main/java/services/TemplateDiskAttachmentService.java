@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -41,7 +42,7 @@ public interface TemplateDiskAttachmentService {
      * @date 7 Jul 2016
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         @Out DiskAttachment attachment();
     }
 

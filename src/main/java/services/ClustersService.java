@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -139,7 +140,7 @@ public interface ClustersService {
      * @date 06 Oct 2017
      * @status updated_by_docs
      */
-    interface List {
+    interface List extends Follow {
         @Out Cluster[] clusters();
 
         /**
