@@ -17,6 +17,7 @@ limitations under the License.
 package services.externalhostproviders;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.KatelloErratum;
@@ -65,7 +66,7 @@ public interface KatelloErratumService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * Retrieves the representation of the Katello erratum.
          *

@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -216,7 +217,7 @@ public interface ImageTransferService {
      * @status added
      * @since 4.0.4
      */
-    interface Get {
+    interface Get extends Follow {
         @Out ImageTransfer imageTransfer();
     }
 

@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -43,7 +44,7 @@ public interface AffinityLabelsService {
      * @date 15 Apr 2017
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         @Out AffinityLabel[] labels();
 
         /**

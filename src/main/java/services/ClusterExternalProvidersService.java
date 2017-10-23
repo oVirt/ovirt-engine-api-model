@@ -18,6 +18,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ExternalProvider;
@@ -45,7 +46,7 @@ public interface ClusterExternalProvidersService {
      * @status updated_by_docs
      * @since 4.2
      */
-    interface List {
+    interface List extends Follow {
         @Out
         ExternalProvider[] providers();
     }

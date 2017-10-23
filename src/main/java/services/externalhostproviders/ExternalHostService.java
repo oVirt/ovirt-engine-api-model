@@ -17,6 +17,7 @@ limitations under the License.
 package services.externalhostproviders;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ExternalHost;
@@ -24,7 +25,7 @@ import types.ExternalHost;
 @Service
 @Area("Infrastructure")
 public interface ExternalHostService {
-    interface Get {
+    interface Get extends Follow {
         @Out ExternalHost host();
     }
 }

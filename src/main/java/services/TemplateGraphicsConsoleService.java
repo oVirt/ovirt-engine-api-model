@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -33,7 +34,7 @@ public interface TemplateGraphicsConsoleService {
      * @date 31 Oct 2016
      * @status added
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The information about the graphics console of the template.
          *

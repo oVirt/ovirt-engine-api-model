@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -25,7 +26,7 @@ import types.Filter;
 @Service
 @Area("SLA")
 public interface FilterService {
-    interface Get {
+    interface Get extends Follow {
         @Out Filter result();
 
         /**

@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -56,7 +57,7 @@ public interface ClusterFeaturesService {
      * @status added
      * @since 4.1.6
      */
-    interface List {
+    interface List extends Follow {
         /**
          * Retrieved features.
          *

@@ -17,6 +17,7 @@ limitations under the License.
 package services.aaa;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -87,7 +88,7 @@ public interface SshPublicKeysService {
      * @date 25 Jul 2017
      * @status updated_by_docs
      */
-    interface List {
+    interface List extends Follow {
         @Out SshPublicKey[] keys();
 
         /**

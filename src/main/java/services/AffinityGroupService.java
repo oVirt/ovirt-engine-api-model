@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -54,7 +55,7 @@ public interface AffinityGroupService {
      * @date 31 Jan 2017
      * @status updated_by_docs
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The affinity group.
          *

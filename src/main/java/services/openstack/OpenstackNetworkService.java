@@ -17,6 +17,7 @@ limitations under the License.
 package services.openstack;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -26,7 +27,7 @@ import types.OpenStackNetwork;
 @Service
 @Area("Network")
 public interface OpenstackNetworkService {
-    interface Get {
+    interface Get extends Follow {
         @Out OpenStackNetwork network();
     }
 

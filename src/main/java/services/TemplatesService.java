@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -319,7 +320,7 @@ public interface TemplatesService {
      * @date 20 Oct 2017
      * @status updated_by_docs
      */
-    interface List {
+    interface List extends Follow {
         /**
          * The list of virtual machine templates.
          *

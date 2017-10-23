@@ -16,6 +16,7 @@ limitations under the License.
 
 package services;
 
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.ClusterLevel;
@@ -57,7 +58,7 @@ public interface ClusterLevelsService {
      * @date 12 Dec 2016
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         /**
          * Retrieved cluster levels.
          *

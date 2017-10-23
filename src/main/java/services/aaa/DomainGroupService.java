@@ -17,6 +17,7 @@ limitations under the License.
 package services.aaa;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Group;
@@ -24,7 +25,7 @@ import types.Group;
 @Service
 @Area("Infrastructure")
 public interface DomainGroupService {
-    interface Get {
+    interface Get extends Follow {
         @Out Group get();
     }
 }

@@ -17,6 +17,7 @@ limitations under the License.
 package services.openstack;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
@@ -87,7 +88,7 @@ public interface OpenstackVolumeProvidersService {
      * @date 14 Sep 2016
      * @status added
      */
-    interface List {
+    interface List extends Follow {
         @Out OpenStackVolumeProvider[] providers();
 
         /**

@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -91,7 +92,7 @@ public interface QuotaStorageLimitsService {
      * @date 5 Sep 2017
      * @status updated_by_docs
      */
-    interface List {
+    interface List extends Follow {
         @Out QuotaStorageLimit[] limits();
 
         /**

@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
@@ -338,7 +339,7 @@ public interface HostService extends MeasurableService {
      * @date 17 Oct 17
      * @status updated_by_docs
      */
-    interface Get {
+    interface Get extends Follow {
         /**
          * The queried host.
          *

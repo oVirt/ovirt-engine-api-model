@@ -17,6 +17,7 @@ limitations under the License.
 package services;
 
 import annotations.Area;
+import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
@@ -44,7 +45,7 @@ public interface LinkLayerDiscoveryProtocolService {
      * @status updated_by_docs
      * @since 4.1.6
      */
-    interface List {
+    interface List extends Follow {
 
         /**
          * Retrieves a list of information elements received by LLDP.
