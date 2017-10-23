@@ -30321,6 +30321,33 @@ request like this:</p>
 &lt;/snapshot&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>For including only a sub-set of disks in the snapshots, add <code>disk_attachments</code> element to the
+request body. Note that disks which are not specified in <code>disk_attachments</code> element will not be a
+part of the snapshot. If an empty <code>disk_attachments</code> element is passed, the snapshot will include
+only the virtual machine configuration. If no <code>disk_attachments</code> element is passed, then all
+the disks will be included in the snapshot.</p>
+</div>
+<div class="paragraph">
+<p>For each disk, <code>image_id</code> element can be specified for setting the new active image id.
+This is used in order to restore a chain of images from backup. I.e. when restoring
+a disk with snapshots, the relevant <code>image_id</code> should be specified for each snapshot
+(so the identifiers of the disk snapshots are identical to the backup).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;snapshot&gt;
+  &lt;description&gt;My snapshot&lt;/description&gt;
+  &lt;disk_attachments&gt;
+    &lt;disk_attachment&gt;
+      &lt;disk id="123"&gt;
+        &lt;image_id&gt;456&lt;/image_id&gt;
+      &lt;/disk&gt;
+    &lt;/disk_attachment&gt;
+  &lt;/disk_attachments&gt;
+&lt;/snapshot&gt;</code></pre>
+</div>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -72449,7 +72476,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-23 07:45:23 UTC
+Last updated 2017-10-23 07:52:32 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
