@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2017 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import org.ovirt.api.metamodel.annotations.Allowed;
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Method;
+import org.ovirt.api.metamodel.annotations.Mixin;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Required;
 import org.ovirt.api.metamodel.annotations.Root;
@@ -35,6 +36,7 @@ public class ModelAnnotations {
     public static final String IN = In.class.getName();
     public static final String LINK = Link.class.getName();
     public static final String METHOD = Method.class.getName();
+    public static final String MIXIN = Mixin.class.getName();
     public static final String OUT = Out.class.getName();
     public static final String REQUIRED = Required.class.getName();
     public static final String ROOT = Root.class.getName();

@@ -62,9 +62,6 @@ public class Tool {
     // Reference to the object used to add built-in types to the model:
     @Inject private BuiltinTypes builtinTypes;
 
-    // Reference to the object used to add built-in parameters to model methods.
-    @Inject private BuiltinParameters builtinParameters;
-
     // The names of the command line options:
     private static final String MODEL_OPTION = "model";
     private static final String IN_SCHEMA_OPTION = "in-schema";
@@ -317,9 +314,6 @@ public class Tool {
 
         // Add the built-in types to the model:
         builtinTypes.addBuiltinTypes(model);
-
-        // Add the built-in parameters to model methods.
-        builtinParameters.addBuiltinParameters(model);
 
         // Extract the version prefix from the command line and copy it to the object that manages names:
         String versionPrefix = line.getOptionValue(VERSION_PREFIX_OPTION);

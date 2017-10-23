@@ -16,6 +16,7 @@ limitations under the License.
 
 package org.ovirt.api.metamodel.analyzer;
 
+import static java.util.stream.Collectors.toList;
 import static org.ovirt.api.metamodel.analyzer.ModelNameParser.parseJavaName;
 
 import java.io.File;
@@ -268,6 +269,11 @@ public class ModelAnalyzer {
         analyzeAnnotations(javaClass, type);
         analyzeDocumentation(javaClass, type);
 
+        // Find the mix-ins:
+        List<JavaClass> javaMixins = javaClass.getInterfaces().stream()
+            .filter(javaInterface -> isAnnotatedWith(javaInterface, ModelAnnotations.MIXIN))
+            .collect(toList());
+
         // Analyze the base type:
         JavaClass javaSuperClass = null;
         if (javaClass.isInterface()) {
@@ -285,11 +291,16 @@ public class ModelAnalyzer {
             assignType(baseTypeName, type::setBase);
         }
 
-        // Analyze the members:
-        javaClass.getMethods(false).forEach(x -> analyzeStructMember(x, type));
+        // Analyze the members for the type and all the mix-ins:
+        analyzeStructMembers(javaClass, type);
+        javaMixins.forEach(javaMixin -> analyzeStructMembers(javaMixin, type));
 
         // Add the type to the model:
         model.addType(type);
+    }
+
+    private void analyzeStructMembers(JavaClass javaClass, StructType type) {
+        javaClass.getMethods(false).forEach(javaMethod -> analyzeStructMember(javaMethod, type));
     }
 
     private void analyzeStructMember(JavaMethod javaMethod, StructType type) {
@@ -339,26 +350,31 @@ public class ModelAnalyzer {
         analyzeAnnotations(javaClass, service);
         analyzeDocumentation(javaClass, service);
 
+        // Find the mix-ins:
+        List<JavaClass> javaMixins = javaClass.getInterfaces().stream()
+            .filter(javaInterface -> isAnnotatedWith(javaInterface, ModelAnnotations.MIXIN))
+            .collect(toList());
+
         // Analyze the base service:
-        JavaClass javaSuperClass = null;
+        JavaClass javaSuper = null;
         if (javaClass.isInterface()) {
-            List<JavaClass> javaSuperInterfaces = javaClass.getInterfaces();
-            if (javaSuperInterfaces != null && javaSuperInterfaces.size() > 0) {
-                javaSuperClass = javaSuperInterfaces.get(0);
+            List<JavaClass> javaSupers = javaClass.getInterfaces();
+            if (!javaSupers.isEmpty()) {
+                javaSuper = javaSupers.get(0);
             }
         }
         else {
-            javaSuperClass = javaClass.getSuperJavaClass();
+            javaSuper = javaClass.getSuperJavaClass();
         }
-        if (javaSuperClass != null) {
-            String javaSuperClassName = removeSuffix(javaSuperClass.getName(), SERVICE_SUFFIX);
+        if (javaSuper != null) {
+            String javaSuperClassName = removeSuffix(javaSuper.getName(), SERVICE_SUFFIX);
             Name baseTypeName = parseJavaName(javaSuperClassName);
             assignService(baseTypeName, service::setBase);
         }
 
-        // Analyze the members:
-        javaClass.getNestedClasses().forEach(x -> analyzeNestedClass(x, service));
-        javaClass.getMethods().forEach(x -> analyzeServiceMember(x, service));
+        // Analyze the members of the service and all the mix-ins:
+        analyzeServiceMembers(javaClass, service);
+        javaMixins.forEach(javaMixin -> analyzeServiceMembers(javaMixin, service));
 
         // Add the type to the model:
         model.addService(service);
@@ -375,6 +391,11 @@ public class ModelAnalyzer {
         }
     }
 
+    private void analyzeServiceMembers(JavaClass javaClass, Service service) {
+        javaClass.getNestedClasses().forEach(x -> analyzeNestedClass(x, service));
+        javaClass.getMethods().forEach(x -> analyzeServiceMember(x, service));
+    }
+
     private void analyzeServiceMember(JavaMethod javaMethod, Service service) {
         if (isAnnotatedWith(javaMethod, ModelAnnotations.SERVICE)) {
             analyzeServiceLocator(javaMethod, service);
@@ -387,7 +408,7 @@ public class ModelAnalyzer {
      */
     private void analyzeNestedClass(JavaClass javaClass, Service service) {
         // Create the method:
-        Method method = createMethod(javaClass, service);
+        Method method = analyzeMethod(javaClass, service);
 
         // After all other members have been analyzed, handle input detail information.
         analyzeInputDetail(javaClass, method, service);
@@ -396,14 +417,20 @@ public class ModelAnalyzer {
         service.addMethod(method);
     }
 
-    public Method createMethod(JavaClass javaClass, Service service) {
+    public Method analyzeMethod(JavaClass javaClass, Service service) {
         Method method = new Method();
         analyzeName(javaClass, method);
         analyzeAnnotations(javaClass, method);
         analyzeDocumentation(javaClass, method);
 
-        // Analyze the members:
-        javaClass.getMethods().forEach(x -> analyzeMethodMember(x, method));
+        // Find the mix-ins:
+        List<JavaClass> javaMixins = javaClass.getInterfaces().stream()
+            .filter(javaInterface -> isAnnotatedWith(javaInterface, ModelAnnotations.MIXIN))
+            .collect(toList());
+
+        // Analyze the members of the method and the mix-ins:
+        analyzeMethodMembers(javaClass, method);
+        javaMixins.forEach(javaMixin -> analyzeMethodMembers(javaMixin, method));
 
         // Add the member to the service:
         method.setDeclaringService(service);
@@ -412,11 +439,15 @@ public class ModelAnalyzer {
         return method;
     }
 
+    private void analyzeMethodMembers(JavaClass javaClass, Method method) {
+        javaClass.getMethods().forEach(x -> analyzeMethodMember(x, method));
+    }
+
     public void createSignatures(JavaClass javaClass, Service service, Method method) {
         for (JavaClass innerClass : javaClass.getNestedClasses()) {
             //an inner class is expected to be an interface
             assert innerClass.isInterface();
-            Method childMethod = createMethod(innerClass, service);
+            Method childMethod = analyzeMethod(innerClass, service);
             copyParameters(childMethod, method);
             analyzeInputDetail(innerClass, childMethod, service);
             childMethod.setBase(method);
