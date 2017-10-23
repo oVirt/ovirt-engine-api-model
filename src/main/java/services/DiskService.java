@@ -23,7 +23,9 @@ import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
+import types.DiskProfile;
 import types.Host;
+import types.Quota;
 import types.StorageDomain;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
@@ -61,6 +63,20 @@ public interface DiskService extends MeasurableService {
      * </action>
      * ----
      *
+     * If the disk profile or the quota used currently by the disk aren't defined for the new storage domain, then they
+     * can be explicitly specified. If they aren't then the first available disk profile and the default quota are used.
+     *
+     * For example, to explicitly use disk profile `987` and quota `753` send a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     *   <disk_profile id="987"/>
+     *   <quota id="753"/>
+     * </action>
+     * ----
+     *
      * @author Liron Aravot <laravot@redhat.com>
      * @date 14 Sep 2016
      * @status added
@@ -95,6 +111,8 @@ public interface DiskService extends MeasurableService {
         default void inputDetail() {
             or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
             or(optional(disk().name()), optional(disk().alias()));
+            optional(diskProfile().id());
+            optional(quota().id());
         }
         @In Disk disk();
 
@@ -122,6 +140,36 @@ public interface DiskService extends MeasurableService {
          * @status added
          */
         @In StorageDomain storageDomain();
+
+        /**
+         * Disk profile for the disk in the new storage domain.
+         *
+         * Disk profiles are defined for storage domains,
+         * so the old disk profile will not exist in the new storage domain.
+         * If this parameter is not used, the first disk profile from the new storage domain
+         * to which the user has permissions will be assigned to the disk.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 23 Oct 2017
+         * @status added
+         * @since 4.2
+         */
+        @In DiskProfile diskProfile();
+
+        /**
+         * Quota for the disk in the new storage domain.
+         *
+         * This optional parameter can be used to specify new quota for the disk,
+         * because the current quota may not be defined for the new storage domain.
+         * If this parameter is not used and the old quota is not defined for the new storage domain,
+         * the default (unlimited) quota will be assigned to the disk.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 23 Oct 2017
+         * @status added
+         * @since 4.2
+         */
+        @In Quota quota();
 
         /**
          * Indicates if the copy should be performed asynchronously.
@@ -265,6 +313,24 @@ public interface DiskService extends MeasurableService {
      * </action>
      * ----
      *
+     * If the disk profile or the quota used currently by
+     * the disk aren't defined for the new storage domain,
+     * then they can be explicitly specified. If they aren't
+     * then the first available disk profile and the default
+     * quota are used.
+     *
+     * For example, to explicitly use disk profile `987` and
+     * quota `753` send a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     *   <disk_profile id="987"/>
+     *   <quota id="753"/>
+     * </action>
+     * ----
+     *
      * @author Amit Aviram <aaviram@redhat.com>
      * @date 14 Sep 2016
      * @status added
@@ -281,9 +347,41 @@ public interface DiskService extends MeasurableService {
         @InputDetail
         default void inputDetail() {
             or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            optional(diskProfile().id());
+            optional(quota().id());
         }
 
         @In StorageDomain storageDomain();
+
+        /**
+         * Disk profile for the disk in the new storage domain.
+         *
+         * Disk profiles are defined for storage domains,
+         * so the old disk profile will not exist in the new storage domain.
+         * If this parameter is not used, the first disk profile from the new storage domain
+         * to which the user has permissions will be assigned to the disk.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 23 Oct 2017
+         * @status added
+         * @since 4.2
+         */
+        @In DiskProfile diskProfile();
+
+        /**
+         * Quota for the disk in the new storage domain.
+         *
+         * This optional parameter can be used to specify new quota for the disk,
+         * because the current quota may not be defined for the new storage domain.
+         * If this parameter is not used and the old quota is not defined for the new storage domain,
+         * the default (unlimited) quota will be assigned to the disk.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 23 Oct 2017
+         * @status added
+         * @since 4.2
+         */
+        @In Quota quota();
 
         /**
          * Indicates if the move should be performed asynchronously.
