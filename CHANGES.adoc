@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.11 / Oct 25 2017
+
+New features:
+
+* Add support for mix-ins using the new `@Mixin` annotation.
+
 == 1.2.10 / Aug 2 2017
 
 * Add `Image.size` to the list of exceptions of integer
