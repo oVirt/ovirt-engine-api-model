@@ -34,31 +34,25 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <registration_configuration>
  *     <lun_mappings>
  *       <registration_lun_mapping>
- *         <from id="418de86e-09b4-47b4-a923-419e7f5bd803">
- *         </from>
- *         <to id="418de86e-09b4-47b4-a923-419e7f5bd803">
- *           <alias>weTestLun</alias>
- *           <lun_storage>
- *             <type>iscsi</type>
- *             <logical_units>
- *               <logical_unit id="36001405fb1ddb4b91e44078b10f8cde2">
- *                 <product_id>fileio12</product_id>
- *                 <vendor_id>LIO-ORG</vendor_id>
- *                 <lun_mapping>1</lun_mapping>
- *                 <discard_max_size>4194304</discard_max_size>
- *                 <discard_zeroes_data>false</discard_zeroes_data>
- *                 <serial>SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94</serial>
- *                 <physical_volume_id>4194304</physical_volume_id>
- *                 <size>5368709120</size>
- *                 <address>10.35.16.55</address>
- *                 <port>3260</port>
- *                 <portal>1</portal>
- *                 <target>iqn.2015-07.com.mlipchuk6.redhat:444</target>
+ *     <lun_mappings>
+ *      <registration_lun_mapping>
+ *        <from id="111">
+ *        </from>
+ *        <to id="222">
+ *          <alias>weTestLun</alias>
+ *          <lun_storage>
+ *            <type>iscsi</type>
+ *            <logical_units>
+ *               <logical_unit id="36001405fb1ddb4b91e44078f1fffcfef">
+ *                  <address>44.33.11.22</address>
+ *                  <port>3260</port>
+ *                  <portal>1</portal>
+ *                  <target>iqn.2017-11.com.name.redhat:444</target>
  *               </logical_unit>
- *             </logical_units>
- *           </lun_storage>
- *         </to>
- *       </registration_lun_mapping>
+ *            </logical_units>
+ *          </lun_storage>
+ *        </to>
+ *      </registration_lun_mapping>
  *     </lun_mappings>
  *   </registration_configuration>
  * </action>
