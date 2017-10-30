@@ -171,6 +171,8 @@ public interface HostNic extends Identified {
      *
      * * data.current.rx - The rate in bytes per second of data received.
      * * data.current.tx - The rate in bytes per second of data transmitted.
+     * * data.current.rx.bps - The rate in bits per second of data received.
+     * * data.current.tx.bps - The rate in bits per second of data transmitted.
      * * data.total.rx - Total received data.
      * * data.total.tx - Total transmitted data.
      * * errors.total.rx - Total errors from receiving data.
