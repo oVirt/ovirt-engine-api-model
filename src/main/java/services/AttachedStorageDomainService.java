@@ -57,29 +57,64 @@ public interface AttachedStorageDomainService {
     /**
      * This operation deactivates an attached storage domain.
      * Once the storage domain is deactivated it will not be used with the data center.
+     * For example, to deactivate storage domain `456`, send the following request:
      *
      * [source]
      * ----
      * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
      * ----
      *
-     * The deactivate action does not take any action specific parameters,
-     * so the request body should contain an empty `action`:
+     * With a request body like this:
      *
      * [source,xml]
      * ----
      * <action/>
      * ----
      *
+     * If the `force` parameter is `true` then the operation will succeed, even if the OVF update which takes place
+     * before the deactivation of the storage domain failed. If the `force` parameter is `false` and the OVF update failed,
+     * the deactivation of the storage domain will also fail.
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 06 Nov 2017
+     * @status updated_by_docs
      */
     interface Deactivate {
         /**
          * Indicates if the deactivation should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Indicates if the operation should succeed and the storage domain should be moved to a deactivated state, even if
+         * the OVF update for the storage domain failed.
+         * For example, to deactivate storage domain `456` using force flag, send the following request:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <force>true</force>
+         * <action>
+         * ----
+         *
+         * This parameter is optional, and the default value is `false`.
+         *
+         * @author Eyal Shenitzky<eshenitz@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 06 Nov 2017
+         * @status updated_by_docs
+         * @since 4.2
+         */
+        @In Boolean force();
     }
 
     interface Get extends Follow {
