@@ -65,9 +65,9 @@ public interface TemplatesService {
      * The disks of the template can be customized, making some of their characteristics different from the disks of the
      * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
      * of the original virtual machine and the characteristics that you want to change. For example, if the original
-     * virtual machine has a disk with the identifier `456`, and, for that disk, you want to change the format to
-     * <<types/disk_format, _Copy On Write_>> and make the disk <<types/disk, sparse>>, send a request body
-     * like this:
+     * virtual machine has a disk with the identifier `456`, and, for that disk, you want to change the name to `mydisk`
+     * the format to <<types/disk_format, _Copy On Write_>> and make it <<types/disk, sparse>>, send a request body like
+     * this:
      *
      * [source,xml]
      * ----
@@ -77,6 +77,7 @@ public interface TemplatesService {
      *     <disk_attachments>
      *       <disk_attachment>
      *         <disk id="456">
+     *           <name>mydisk</name>
      *           <format>cow</format>
      *           <sparse>true</sparse>
      *         </disk>
