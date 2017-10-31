@@ -20,29 +20,58 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /*
- * Represents OpenStack network provider type.
+ * Represents an OpenStack network provider type.
  *
  * @author Mor Kalfon <mkalfon@redhat.com>
- * @date 14 Dec 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 6 Nov 2017
+ * @status updated_by_docs
  */
 @Type
 public interface OpenStackNetworkProvider extends OpenStackProvider {
     /**
-     * Network plugin type.
+     * Network plug-in type.
+     *
+     * Since version 4.2 of the {engine-name}, this attribute has been deprecated in favour of `external_plugin_type`.
+     * This attribute is only valid for providers of type `open_vswitch`, and will only be returned when
+     * the value of the `external_plugin_type` attribute value is equal to `open_vswitch`.
+     *
+     * If both `plugin_type` and `external_plugin_type` are specified during an update, the value of `plugin_type` will
+     * be ignored.
+     *
+     * For external providers this value will not be shown and will be ignored during update requests.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
      */
+    @Deprecated
     NetworkPluginType pluginType();
+
+    /**
+     * Network plug-in type.
+     *
+     * This attribute allows you to choose the correct provider driver on the host when an external NIC is added or
+     * modified. If automated installation of the driver is supported (only available for some predefined
+     * implementations, for example `ovirt-provider-ovn`), this attribute will also allow the system to decide which
+     * driver implementation to install on newly added hosts.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
+     * @since 4.2
+     */
+    String externalPluginType();
 
     /**
      * Agent configuration settings.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
      */
     AgentConfiguration agentConfiguration();
 
@@ -72,26 +101,29 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * Reference to the certificates list.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
      */
     @Link Certificate[] certificates();
 
     /**
-     * Reference to OpenStack networks list.
+     * Reference to the OpenStack networks list.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
      */
     @Link OpenStackNetwork[] networks();
 
     /**
-     * Reference to OpenStack networks subnets list.
+     * Reference to the OpenStack networks subnets list.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 6 Nov 2017
+     * @status updated_by_docs
      */
     @Link OpenStackSubnet[] subnets();
 }
