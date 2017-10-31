@@ -17,7 +17,34 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Network plug-in type.
+ *
+ * Specifies the provider driver implementation on the host.
+ *
+ * Since version 4.2 of the {engine-name}, this type has been deprecated in favour of the `external_plugin_type`
+ * attribute of the `OpenStackNetworkProvider` type.
+ *
+ * @author Marcin Mirecki <mmirecki@redhat.com>
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 6 Nov 2017
+ * @status updated_by_docs
+ */
 @Type
+@Deprecated
 public enum NetworkPluginType {
+    /**
+     * Open vSwitch.
+     *
+     * Specifies that http://openvswitch.org[Open vSwitch] based driver implementation should be used for this provider.
+     *
+     * Since version 4.2 of the {engine-name}, this value has been deprecated. Use the string `open_vswitch` in the
+     * `OpenStackNetworkProvider.external_plugin_type` attribute instead.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 3 Nov 2017
+     * @status added
+     */
+    @Deprecated
     OPEN_VSWITCH;
 }
