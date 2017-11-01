@@ -18,6 +18,7 @@ package types;
 
 import java.util.Date;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
@@ -116,4 +117,32 @@ public interface Api {
      * status updated_by_docs
      */
     Date time();
+
+    /**
+     * Reference to the authenticated user.
+     *
+     * The authenticated user is the user whose credentials were verified in order to accept the current request. In the
+     * current version of the system the authenticated user and the effective user are always the same. In the future,
+     * when support for user impersonation is introduced, they will be potentially different.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 1 Nov 2017
+     * @status added
+     * @since 4.2
+     */
+    @Link User authenticatedUser();
+
+    /**
+     * Reference to the effective user.
+     *
+     * The effective user is the user whose permissions apply during the current request. In the current version of the
+     * system the authenticated user and the effective user are always the same. In the future, when support for user
+     * impersonation is introduced, they will be potentially different.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 1 Nov 2017
+     * @status added
+     * @since 4.2
+     */
+    @Link User effectiveUser();
 }
