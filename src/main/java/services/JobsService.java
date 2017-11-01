@@ -149,6 +149,28 @@ public interface JobsService {
         @Out Job[] jobs();
 
         /**
+         * A query string used to restrict the returned jobs.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 13 Nov 2017
+         * @status added
+         * @since 4.2
+         */
+        @In String search();
+
+        /**
+         * Indicates if the search performed using the `search` parameter should be performed taking case into
+         * account. The default value is `true`, which means that case is taken into account. If you want to search
+         * ignoring case set it to `false`.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 13 Nov 2017
+         * @status added
+         * @since 4.2
+         */
+        @In Boolean caseSensitive();
+
+        /**
          * Sets the maximum number of jobs to return. If not specified all the jobs are returned.
          */
         @In Integer max();
