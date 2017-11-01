@@ -19,6 +19,7 @@ package org.ovirt.api.metamodel.tool;
 import static java.util.stream.Collectors.joining;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -363,12 +364,16 @@ public class JaxrsGenerator extends JavaGenerator {
     }
 
     private void writeHelperInvocation(JavaClassName helperClassName, String parameterName, Name methodName) {
+        javaBuffer.addImport(InvocationTargetException.class);
         String helperMethodName = "get" + javaNames.getJavaClassStyleName(methodName) + "Signature";
         javaBuffer.addLine("try {");
         javaBuffer.addLine("return (Response)(" + helperClassName.getSimpleName() + "." + helperMethodName + "(" + parameterName
                 + ").invoke(this, " + parameterName + "));");
         javaBuffer.addLine("}");
-        javaBuffer.addLine("catch(Exception e) {");
+        javaBuffer.addLine("catch(InvocationTargetException e) {");
+        javaBuffer.addLine("throw (RuntimeException)e.getTargetException();");
+        javaBuffer.addLine("}");
+        javaBuffer.addLine("catch(IllegalAccessException | NoSuchMethodException | SecurityException e) {");
         javaBuffer.addLine("throw new IllegalStateException(\"Failed to find or invoke API method. The failure is in auto-generated code and indicates a bug in the JAX-RS intrafaces generation process\", e);");
         javaBuffer.addLine("}");
     }
