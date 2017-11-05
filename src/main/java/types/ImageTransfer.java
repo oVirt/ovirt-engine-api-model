@@ -86,6 +86,17 @@ public interface ImageTransfer extends Identified {
     ImageTransferDirection direction();
 
     /**
+     * Indicates whether there's at least one active session for this transfer, i,e
+     * there's at least one live transfer session between the client and the daemon.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 8 Nov 2017
+     * @status added
+     * @since 4.2
+     */
+    Boolean active();
+
+    /**
      * The image which is targeted for input or output.
      *
      * IMPORTANT: This attribute is deprecated since version
