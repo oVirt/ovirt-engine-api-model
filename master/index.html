@@ -9012,7 +9012,8 @@ so the request body should contain an empty <code>action</code>:</p>
 <h4 id="services/attached_storage_domain/methods/deactivate"><a class="anchor" href="#services/attached_storage_domain/methods/deactivate"></a>6.24.2. deactivate <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>This operation deactivates an attached storage domain.
-Once the storage domain is deactivated it will not be used with the data center.</p>
+Once the storage domain is deactivated it will not be used with the data center.
+For example, to deactivate storage domain <code>456</code>, send the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9020,13 +9021,17 @@ Once the storage domain is deactivated it will not be used with the data center.
 </div>
 </div>
 <div class="paragraph">
-<p>The deactivate action does not take any action specific parameters,
-so the request body should contain an empty <code>action</code>:</p>
+<p>With a request body like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If the <code>force</code> parameter is <code>true</code> then the operation will succeed, even if the OVF update which takes place
+before the deactivation of the storage domain failed. If the <code>force</code> parameter is <code>false</code> and the OVF update failed,
+the deactivation of the storage domain will also fail.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 67. Parameters summary</caption>
@@ -9051,8 +9056,41 @@ so the request body should contain an empty <code>action</code>:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the deactivation should be performed asynchronously.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>force</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the operation should succeed and the storage domain should be moved to a deactivated state, even if
+the OVF update for the storage domain failed.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/attached_storage_domain/methods/deactivate/parameters/force"><a class="anchor" href="#services/attached_storage_domain/methods/deactivate/parameters/force"></a>force</h5>
+<div class="paragraph">
+<p>Indicates if the operation should succeed and the storage domain should be moved to a deactivated state, even if
+the OVF update for the storage domain failed.
+For example, to deactivate storage domain <code>456</code> using force flag, send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;force&gt;true&lt;/force&gt;
+&lt;action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parameter is optional, and the default value is <code>false</code>.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/attached_storage_domain/methods/get"><a class="anchor" href="#services/attached_storage_domain/methods/get"></a>6.24.3. get <span class="small">GET</span></h4>
@@ -75977,7 +76015,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-27 07:47:23 UTC
+Last updated 2017-11-06 08:08:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
