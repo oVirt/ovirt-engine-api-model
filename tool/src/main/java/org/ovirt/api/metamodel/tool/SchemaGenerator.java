@@ -116,6 +116,7 @@ public class SchemaGenerator {
         addMemberSchemaTypeNameException("host", "memory", "xs:long");
         addMemberSchemaTypeNameException("host-nic", "speed", "xs:long");
         addMemberSchemaTypeNameException("image", "size", "xs:long");
+        addMemberSchemaTypeNameException("image-transfer", "size", "xs:long");
         addMemberSchemaTypeNameException("logical-unit", "discard-max-size", "xs:long");
         addMemberSchemaTypeNameException("logical-unit", "size", "xs:long");
         addMemberSchemaTypeNameException("memory-policy", "guaranteed", "xs:long");
