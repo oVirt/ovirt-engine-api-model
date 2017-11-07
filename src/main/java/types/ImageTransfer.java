@@ -97,6 +97,16 @@ public interface ImageTransfer extends Identified {
     Boolean active();
 
     /**
+     * Indicates the amount of transferred bytes.
+     *
+     * @author Idan Shaby <ishaby@redhat.com>
+     * @date 8 Nov 2017
+     * @status added
+     * @since 4.2
+     */
+    Integer transferred();
+
+    /**
      * The image which is targeted for input or output.
      *
      * IMPORTANT: This attribute is deprecated since version
