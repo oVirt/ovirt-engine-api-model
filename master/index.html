@@ -61569,6 +61569,16 @@ The label binds the network to the host network interface by the label <code>id<
 </div>
 <div class="sect2">
 <h3 id="types/network_plugin_type"><a class="anchor" href="#types/network_plugin_type"></a>7.161. NetworkPluginType <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>Network plug-in type.</p>
+</div>
+<div class="paragraph">
+<p>Specifies the provider driver implementation on the host.</p>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the oVirt Engine, this type has been deprecated in favour of the <code>external_plugin_type</code>
+attribute of the <code>OpenStackNetworkProvider</code> type.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1049. Values summary</caption>
 <colgroup>
@@ -61584,10 +61594,23 @@ The label binds the network to the host network interface by the label <code>id<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>open_vswitch</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open vSwitch.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/network_plugin_type/values/open_vswitch"><a class="anchor" href="#types/network_plugin_type/values/open_vswitch"></a>7.161.1. open_vswitch</h4>
+<div class="paragraph">
+<p>Open vSwitch.</p>
+</div>
+<div class="paragraph">
+<p>Specifies that <a href="http://openvswitch.org">Open vSwitch</a> based driver implementation should be used for this provider.</p>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the oVirt Engine, this value has been deprecated. Use the string <code>open_vswitch</code> in the
+<code>OpenStackNetworkProvider.external_plugin_type</code> attribute instead.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/network_status"><a class="anchor" href="#types/network_status"></a>7.162. NetworkStatus <span class="small">enum</span></h3>
@@ -62623,6 +62646,11 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable description in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_plugin_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network plug-in type.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
@@ -62640,7 +62668,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>plugin_type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_plugin_type">NetworkPluginType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Network plugin type.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network plug-in type.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>properties</code></p></td>
@@ -62680,7 +62708,37 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.1. read_only</h4>
+<h4 id="types/open_stack_network_provider/attributes/external_plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/external_plugin_type"></a>7.176.1. external_plugin_type</h4>
+<div class="paragraph">
+<p>Network plug-in type.</p>
+</div>
+<div class="paragraph">
+<p>This attribute allows you to choose the correct provider driver on the host when an external NIC is added or
+modified. If automated installation of the driver is supported (only available for some predefined
+implementations, for example <code>ovirt-provider-ovn</code>), this attribute will also allow the system to decide which
+driver implementation to install on newly added hosts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/plugin_type"></a>7.176.2. plugin_type</h4>
+<div class="paragraph">
+<p>Network plug-in type.</p>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the oVirt Engine, this attribute has been deprecated in favour of <code>external_plugin_type</code>.
+This attribute is only valid for providers of type <code>open_vswitch</code>, and will only be returned when
+the value of the <code>external_plugin_type</code> attribute value is equal to <code>open_vswitch</code>.</p>
+</div>
+<div class="paragraph">
+<p>If both <code>plugin_type</code> and <code>external_plugin_type</code> are specified during an update, the value of <code>plugin_type</code> will
+be ignored.</p>
+</div>
+<div class="paragraph">
+<p>For external providers this value will not be shown and will be ignored during update requests.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.3. read_only</h4>
 <div class="paragraph">
 <p>Indicates whether the provider is read-only.</p>
 </div>
@@ -62690,7 +62748,7 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.2. requires_authentication</h4>
+<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.4. requires_authentication</h4>
 <div class="paragraph">
 <p>Defines whether provider authentication is required or not.</p>
 </div>
@@ -62720,12 +62778,12 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>networks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/open_stack_network">OpenStackNetwork[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to OpenStack networks list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the OpenStack networks list.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>subnets</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/open_stack_subnet">OpenStackSubnet[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to OpenStack networks subnets list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the OpenStack networks subnets list.</p></td>
 </tr>
 </tbody>
 </table>
@@ -76015,7 +76073,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-06 08:08:48 UTC
+Last updated 2017-11-07 07:48:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
