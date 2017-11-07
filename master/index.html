@@ -12920,6 +12920,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 &lt;/action&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If the disk profile or the quota used currently by the disk aren&#8217;t defined for the new storage domain, then they
+can be explicitly specified. If they aren&#8217;t then the first available disk profile and the default quota are used.</p>
+</div>
+<div class="paragraph">
+<p>For example, to explicitly use disk profile <code>987</code> and quota <code>753</code> send a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;storage_domain id="456"/&gt;
+  &lt;disk_profile id="987"/&gt;
+  &lt;quota id="753"/&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 147. Parameters summary</caption>
 <colgroup>
@@ -12950,10 +12966,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_profile">DiskProfile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disk profile for the disk in the new storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the results should be filtered according to the permissions of the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quota</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/quota">Quota</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quota for the disk in the new storage domain.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
@@ -12963,6 +12991,30 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/disk/methods/copy/parameters/disk_profile"><a class="anchor" href="#services/disk/methods/copy/parameters/disk_profile"></a>disk_profile</h5>
+<div class="paragraph">
+<p>Disk profile for the disk in the new storage domain.</p>
+</div>
+<div class="paragraph">
+<p>Disk profiles are defined for storage domains,
+so the old disk profile will not exist in the new storage domain.
+If this parameter is not used, the first disk profile from the new storage domain
+to which the user has permissions will be assigned to the disk.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/disk/methods/copy/parameters/quota"><a class="anchor" href="#services/disk/methods/copy/parameters/quota"></a>quota</h5>
+<div class="paragraph">
+<p>Quota for the disk in the new storage domain.</p>
+</div>
+<div class="paragraph">
+<p>This optional parameter can be used to specify new quota for the disk,
+because the current quota may not be defined for the new storage domain.
+If this parameter is not used and the old quota is not defined for the new storage domain,
+the default (unlimited) quota will be assigned to the disk.</p>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/disk/methods/copy/parameters/storage_domain"><a class="anchor" href="#services/disk/methods/copy/parameters/storage_domain"></a>storage_domain</h5>
 <div class="paragraph">
@@ -13099,6 +13151,26 @@ request:</p>
 &lt;/action&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If the disk profile or the quota used currently by
+the disk aren&#8217;t defined for the new storage domain,
+then they can be explicitly specified. If they aren&#8217;t
+then the first available disk profile and the default
+quota are used.</p>
+</div>
+<div class="paragraph">
+<p>For example, to explicitly use disk profile <code>987</code> and
+quota <code>753</code> send a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;storage_domain id="456"/&gt;
+  &lt;disk_profile id="987"/&gt;
+  &lt;quota id="753"/&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 150. Parameters summary</caption>
 <colgroup>
@@ -13123,10 +13195,22 @@ request:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the move should be performed asynchronously.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_profile">DiskProfile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disk profile for the disk in the new storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the results should be filtered according to the permissions of the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quota</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/quota">Quota</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quota for the disk in the new storage domain.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
@@ -13136,6 +13220,30 @@ request:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/disk/methods/move/parameters/disk_profile"><a class="anchor" href="#services/disk/methods/move/parameters/disk_profile"></a>disk_profile</h5>
+<div class="paragraph">
+<p>Disk profile for the disk in the new storage domain.</p>
+</div>
+<div class="paragraph">
+<p>Disk profiles are defined for storage domains,
+so the old disk profile will not exist in the new storage domain.
+If this parameter is not used, the first disk profile from the new storage domain
+to which the user has permissions will be assigned to the disk.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/disk/methods/move/parameters/quota"><a class="anchor" href="#services/disk/methods/move/parameters/quota"></a>quota</h5>
+<div class="paragraph">
+<p>Quota for the disk in the new storage domain.</p>
+</div>
+<div class="paragraph">
+<p>This optional parameter can be used to specify new quota for the disk,
+because the current quota may not be defined for the new storage domain.
+If this parameter is not used and the old quota is not defined for the new storage domain,
+the default (unlimited) quota will be assigned to the disk.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/disk/methods/refresh_lun"><a class="anchor" href="#services/disk/methods/refresh_lun"></a>6.50.5. refreshlun <span class="small">POST</span></h4>
@@ -47412,6 +47520,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_profile">DiskProfile</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk[]</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -47549,6 +47662,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy_ticket</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/proxy_ticket">ProxyTicket</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quota</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/quota">Quota</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -76073,7 +76191,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 07:48:34 UTC
+Last updated 2017-11-07 13:15:35 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
