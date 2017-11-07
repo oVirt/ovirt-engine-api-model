@@ -82,9 +82,26 @@ public interface NetworksService {
      * </network>
      * ----
      *
+     * To create a network named `exnetwork` on top of an external _OpenStack_ network provider `456` send a request
+     * like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/networks
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <network>
+     *   <name>exnetwork</name>
+     *   <external_provider id="456"/>
+     *   <data_center id="123"/>
+     * </network>
+     * ----
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 24 Oct 2016
+     * @author Petr Horacek <phoracek@redhat.com>
+     * @date 12 Nov 2017
      * @status added
      */
     interface Add {
@@ -101,6 +118,7 @@ public interface NetworksService {
             optional(network().stp());
             optional(network().vlan().id());
             optional(network().usages()[COLLECTION]);
+            optional(network().externalProvider().id());
         }
         @In @Out Network network();
     }
