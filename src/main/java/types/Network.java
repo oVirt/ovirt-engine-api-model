@@ -243,4 +243,16 @@ public interface Network extends Identified {
      * @status updated_by_docs
      */
     @Link VnicProfile[] vnicProfiles();
+
+    /**
+     * An optional reference to the _OpenStack_ network provider on which the network is created.
+     *
+     * If it is specified when a network is created, a matching _OpenStack_ network will be also created.
+     *
+     * @author Petr Horacek <phoracek@redhat.com>
+     * @date 7 November 2017
+     * @status added
+     * @since 4.2
+     */
+    @Link OpenStackNetworkProvider externalProvider();
 }
