@@ -21,20 +21,25 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Configuration format types.
  *
  * @author Sharon Gratch <sgratch@redhat.com>
- * @date 24 Apr 2017
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 09 Nov 2017
+ * @status updated_by_docs
  */
 @Type
 public enum ConfigurationType {
     /**
-     * ConfigurationType of type OVF.
+     * ConfigurationType of type oVirt-compatible OVF.
      *
-     * OVF stands for Open Virtualization Format, and it is is an open standard for packaging and distributing of a 
-     * virtual machine and software to be run in a virtual machine.
+     * The provided virtual machine configuration conforms with the oVirt-compatible form of the Open Virtualization
+     * Format (OVF).
+     * Note that the oVirt-compatible form of the OVF may differ from the OVF standard that is used by other vendors.
+     * This value should be used for an OVF configuration that is taken from a storage domain.
      *
      * @author Sharon Gratch <sgratch@redhat.com>
-     * @date 24 Apr 2017
-     * @status added
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 09 Nov 2017
+     * @status updated_by_docs
      */
     OVF;
 }
