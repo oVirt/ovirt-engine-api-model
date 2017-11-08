@@ -48365,6 +48365,55 @@ Each fence agent belongs to a single host.</p>
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 846. Links summary</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authenticated_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/user">User</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the authenticated user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>effective_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/user">User</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the effective user.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="types/api/links/authenticated_user"><a class="anchor" href="#types/api/links/authenticated_user"></a>7.8.1. authenticated_user</h4>
+<div class="paragraph">
+<p>Reference to the authenticated user.</p>
+</div>
+<div class="paragraph">
+<p>The authenticated user is the user whose credentials were verified in order to accept the current request. In the
+current version of the system the authenticated user and the effective user are always the same. In the future,
+when support for user impersonation is introduced, they will be potentially different.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/api/links/effective_user"><a class="anchor" href="#types/api/links/effective_user"></a>7.8.2. effective_user</h4>
+<div class="paragraph">
+<p>Reference to the effective user.</p>
+</div>
+<div class="paragraph">
+<p>The effective user is the user whose permissions apply during the current request. In the current version of the
+system the authenticated user and the effective user are always the same. In the future, when support for user
+impersonation is introduced, they will be potentially different.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/api_summary"><a class="anchor" href="#types/api_summary"></a>7.9. ApiSummary <span class="small">struct</span></h3>
@@ -48372,7 +48421,7 @@ Each fence agent belongs to a single host.</p>
 <p>A summary containing the total number of relevant objects, such as virtual machines, hosts, and storage domains.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 846. Attributes summary</caption>
+<caption class="title">Table 847. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48416,7 +48465,7 @@ Each fence agent belongs to a single host.</p>
 object.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 847. Attributes summary</caption>
+<caption class="title">Table 848. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48469,7 +48518,7 @@ deploy one on the virtual machine operating system.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 848. Attributes summary</caption>
+<caption class="title">Table 849. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48506,7 +48555,7 @@ deploy one on the virtual machine operating system.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 849. Links summary</caption>
+<caption class="title">Table 850. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48531,7 +48580,7 @@ deploy one on the virtual machine operating system.</p>
 <div class="sect2">
 <h3 id="types/architecture"><a class="anchor" href="#types/architecture"></a>7.12. Architecture <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 850. Values summary</caption>
+<caption class="title">Table 851. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -48581,7 +48630,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <div class="sect2">
 <h3 id="types/authorized_key"><a class="anchor" href="#types/authorized_key"></a>7.13. AuthorizedKey <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 851. Attributes summary</caption>
+<caption class="title">Table 852. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48623,7 +48672,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 852. Links summary</caption>
+<caption class="title">Table 853. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48648,7 +48697,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <div class="sect2">
 <h3 id="types/auto_numa_status"><a class="anchor" href="#types/auto_numa_status"></a>7.14. AutoNumaStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 853. Values summary</caption>
+<caption class="title">Table 854. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -48678,7 +48727,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <div class="sect2">
 <h3 id="types/balance"><a class="anchor" href="#types/balance"></a>7.15. Balance <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 854. Attributes summary</caption>
+<caption class="title">Table 855. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48715,7 +48764,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 855. Links summary</caption>
+<caption class="title">Table 856. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48745,7 +48794,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <div class="sect2">
 <h3 id="types/bios"><a class="anchor" href="#types/bios"></a>7.16. Bios <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 856. Attributes summary</caption>
+<caption class="title">Table 857. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48770,7 +48819,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <div class="sect2">
 <h3 id="types/block_statistic"><a class="anchor" href="#types/block_statistic"></a>7.17. BlockStatistic <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 857. Attributes summary</caption>
+<caption class="title">Table 858. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48798,7 +48847,7 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <p>Represents a network interfaces bond.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 858. Attributes summary</caption>
+<caption class="title">Table 859. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48855,7 +48904,7 @@ Only required when adding bonded interfaces.</p>
 Only required when adding bonded interfaces.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 859. Links summary</caption>
+<caption class="title">Table 860. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48919,7 +48968,7 @@ It is retrieved from <code>/sys/class/net/bondX/bonding/active_slave</code> file
 <p>Represents a bookmark in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 860. Attributes summary</caption>
+<caption class="title">Table 861. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -48968,7 +49017,7 @@ in the engine.</p></td>
 <p>Configuration of the boot sequence of a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 861. Attributes summary</caption>
+<caption class="title">Table 862. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49003,7 +49052,7 @@ order.</p>
 <p>Represents the kinds of devices that a virtual machine can boot from.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 862. Values summary</caption>
+<caption class="title">Table 863. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -49052,7 +49101,7 @@ machine is connected to.</p>
 for virtual machines and templates.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 863. Attributes summary</caption>
+<caption class="title">Table 864. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49081,7 +49130,7 @@ for this virtual machine (or template), or not.</p></td>
 <p>Defines the options of the IP address assignment method to a NIC.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 864. Values summary</caption>
+<caption class="title">Table 865. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -49148,7 +49197,7 @@ more information.</p>
 <div class="sect2">
 <h3 id="types/brick_profile_detail"><a class="anchor" href="#types/brick_profile_detail"></a>7.24. BrickProfileDetail <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 865. Attributes summary</caption>
+<caption class="title">Table 866. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49170,7 +49219,7 @@ more information.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 866. Links summary</caption>
+<caption class="title">Table 867. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49195,7 +49244,7 @@ more information.</p>
 <div class="sect2">
 <h3 id="types/cdrom"><a class="anchor" href="#types/cdrom"></a>7.25. Cdrom <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 867. Attributes summary</caption>
+<caption class="title">Table 868. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49237,7 +49286,7 @@ more information.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 868. Links summary</caption>
+<caption class="title">Table 869. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49284,7 +49333,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/certificate"><a class="anchor" href="#types/certificate"></a>7.26. Certificate <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 869. Attributes summary</caption>
+<caption class="title">Table 870. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49347,7 +49396,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <a href="#types/initialization/attributes/cloud_init">cloud_init</a> attribute documentation for details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 870. Attributes summary</caption>
+<caption class="title">Table 871. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49534,7 +49583,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 871. Attributes summary</caption>
+<caption class="title">Table 872. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -49879,7 +49928,7 @@ compatibility version 4.1 or higher.</p>
 the new compatibility version.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 872. Links summary</caption>
+<caption class="title">Table 873. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50007,7 +50056,7 @@ for this cluster.
 <p>Type represents an additional feature that is available at a cluster level.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 873. Attributes summary</caption>
+<caption class="title">Table 874. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50044,7 +50093,7 @@ for this cluster.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 874. Links summary</caption>
+<caption class="title">Table 875. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50072,7 +50121,7 @@ for this cluster.
 <p>Describes the capabilities supported by a specific cluster level.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 875. Attributes summary</caption>
+<caption class="title">Table 876. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50119,7 +50168,7 @@ for this cluster.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 876. Links summary</caption>
+<caption class="title">Table 877. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50144,7 +50193,7 @@ for this cluster.
 <div class="sect2">
 <h3 id="types/configuration"><a class="anchor" href="#types/configuration"></a>7.31. Configuration <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 877. Attributes summary</caption>
+<caption class="title">Table 878. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50269,7 +50318,7 @@ for this cluster.
 <p>Configuration format types.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 878. Values summary</caption>
+<caption class="title">Table 879. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -50304,7 +50353,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <p>Representation for serial console device.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 879. Attributes summary</caption>
+<caption class="title">Table 880. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50329,7 +50378,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/core"><a class="anchor" href="#types/core"></a>7.34. Core <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 880. Attributes summary</caption>
+<caption class="title">Table 881. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50359,7 +50408,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/cpu"><a class="anchor" href="#types/cpu"></a>7.35. Cpu <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 881. Attributes summary</caption>
+<caption class="title">Table 882. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50424,7 +50473,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/cpu_mode"><a class="anchor" href="#types/cpu_mode"></a>7.36. CpuMode <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 882. Values summary</caption>
+<caption class="title">Table 883. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -50454,7 +50503,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/cpu_profile"><a class="anchor" href="#types/cpu_profile"></a>7.37. CpuProfile <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 883. Attributes summary</caption>
+<caption class="title">Table 884. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50491,7 +50540,7 @@ virtual machine and software to be run in a virtual machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 884. Links summary</caption>
+<caption class="title">Table 885. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50526,7 +50575,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/cpu_topology"><a class="anchor" href="#types/cpu_topology"></a>7.38. CpuTopology <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 885. Attributes summary</caption>
+<caption class="title">Table 886. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50561,7 +50610,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/cpu_tune"><a class="anchor" href="#types/cpu_tune"></a>7.39. CpuTune <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 886. Attributes summary</caption>
+<caption class="title">Table 887. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50589,7 +50638,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <p>Describes a supported CPU type.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 887. Attributes summary</caption>
+<caption class="title">Table 888. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50624,7 +50673,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/creation_status"><a class="anchor" href="#types/creation_status"></a>7.41. CreationStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 888. Values summary</caption>
+<caption class="title">Table 889. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -50661,7 +50710,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <p>Custom property representation.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 889. Attributes summary</caption>
+<caption class="title">Table 890. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50696,7 +50745,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/data_center"><a class="anchor" href="#types/data_center"></a>7.43. DataCenter <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 890. Attributes summary</caption>
+<caption class="title">Table 891. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50815,7 +50864,7 @@ virtual machine and software to be run in a virtual machine.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 891. Links summary</caption>
+<caption class="title">Table 892. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50876,7 +50925,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/data_center_status"><a class="anchor" href="#types/data_center_status"></a>7.44. DataCenterStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 892. Values summary</caption>
+<caption class="title">Table 893. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -50921,7 +50970,7 @@ virtual machine and software to be run in a virtual machine.</p>
 <p>A device wraps links to potential parents of a device.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 893. Attributes summary</caption>
+<caption class="title">Table 894. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -50958,7 +51007,7 @@ virtual machine and software to be run in a virtual machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 894. Links summary</caption>
+<caption class="title">Table 895. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51008,7 +51057,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Represents a virtual disk device.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 895. Attributes summary</caption>
+<caption class="title">Table 896. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51333,7 +51382,7 @@ zeros, the disk will be deleted immediately.</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 896. Links summary</caption>
+<caption class="title">Table 897. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51478,7 +51527,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Describes how a disk is attached to a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 897. Attributes summary</caption>
+<caption class="title">Table 898. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51614,7 +51663,7 @@ scenario cannot be automatically detected. To avoid migrating these virtual mach
 attribute to <code>true</code>, to indicate the virtual machine is using SCSI reservations.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 898. Links summary</caption>
+<caption class="title">Table 899. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51653,7 +51702,7 @@ attribute to <code>true</code>, to indicate the virtual machine is using SCSI re
 <p>The underlying storage format of disks.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 899. Values summary</caption>
+<caption class="title">Table 900. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -51682,7 +51731,7 @@ attribute to <code>true</code>, to indicate the virtual machine is using SCSI re
 <p>The underlying storage interface of disks communication with controller.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 900. Values summary</caption>
+<caption class="title">Table 901. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -51737,7 +51786,7 @@ address, using the SCSI protocol.</p>
 <div class="sect2">
 <h3 id="types/disk_profile"><a class="anchor" href="#types/disk_profile"></a>7.50. DiskProfile <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 901. Attributes summary</caption>
+<caption class="title">Table 902. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51774,7 +51823,7 @@ address, using the SCSI protocol.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 902. Links summary</caption>
+<caption class="title">Table 903. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -51809,7 +51858,7 @@ address, using the SCSI protocol.</p>
 <div class="sect2">
 <h3 id="types/disk_snapshot"><a class="anchor" href="#types/disk_snapshot"></a>7.51. DiskSnapshot <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 903. Attributes summary</caption>
+<caption class="title">Table 904. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52134,7 +52183,7 @@ zeros, the disk will be deleted immediately.</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 904. Links summary</caption>
+<caption class="title">Table 905. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52284,7 +52333,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Current status representation for disk.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 905. Values summary</caption>
+<caption class="title">Table 906. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -52324,7 +52373,7 @@ until the disk is freed.</p>
 <div class="sect2">
 <h3 id="types/disk_storage_type"><a class="anchor" href="#types/disk_storage_type"></a>7.53. DiskStorageType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 906. Values summary</caption>
+<caption class="title">Table 907. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -52354,7 +52403,7 @@ until the disk is freed.</p>
 <div class="sect2">
 <h3 id="types/disk_type"><a class="anchor" href="#types/disk_type"></a>7.54. DiskType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 907. Values summary</caption>
+<caption class="title">Table 908. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -52383,7 +52432,7 @@ until the disk is freed.</p>
 <p>Represents a graphic console configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 908. Attributes summary</caption>
+<caption class="title">Table 909. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52592,7 +52641,7 @@ to connect to the graphic console of the virtual
 machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 909. Values summary</caption>
+<caption class="title">Table 910. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -52638,7 +52687,7 @@ control another machine.</p>
 <p>Represents the DNS resolver configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 910. Attributes summary</caption>
+<caption class="title">Table 911. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52671,7 +52720,7 @@ control another machine.</p>
 <p>Represents the DNS resolver configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 911. Attributes summary</caption>
+<caption class="title">Table 912. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52705,7 +52754,7 @@ control another machine.</p>
 <p>This type represents a directory service domain.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 912. Attributes summary</caption>
+<caption class="title">Table 913. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52747,7 +52796,7 @@ control another machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 913. Links summary</caption>
+<caption class="title">Table 914. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52787,7 +52836,7 @@ This information is used to add new users to the oVirt environment.</p>
 <p>Type representing an external entity status.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 914. Values summary</caption>
+<caption class="title">Table 915. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -52838,7 +52887,7 @@ might be relevant.</p></td>
 <div class="sect2">
 <h3 id="types/entity_profile_detail"><a class="anchor" href="#types/entity_profile_detail"></a>7.61. EntityProfileDetail <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 915. Attributes summary</caption>
+<caption class="title">Table 916. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52863,7 +52912,7 @@ might be relevant.</p></td>
 <div class="sect2">
 <h3 id="types/error_handling"><a class="anchor" href="#types/error_handling"></a>7.62. ErrorHandling <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 916. Attributes summary</caption>
+<caption class="title">Table 917. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -52891,7 +52940,7 @@ might be relevant.</p></td>
 <p>Type representing an event.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 917. Attributes summary</caption>
+<caption class="title">Table 918. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53010,7 +53059,7 @@ order. On the other hand this <code>index</code> attribute is guaranteed to stay
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 918. Links summary</caption>
+<caption class="title">Table 919. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53115,7 +53164,7 @@ Event can be associated with a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/external_compute_resource"><a class="anchor" href="#types/external_compute_resource"></a>7.64. ExternalComputeResource <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 919. Attributes summary</caption>
+<caption class="title">Table 920. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53167,7 +53216,7 @@ Event can be associated with a virtual machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 920. Links summary</caption>
+<caption class="title">Table 921. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53192,7 +53241,7 @@ Event can be associated with a virtual machine.</p>
 <div class="sect2">
 <h3 id="types/external_discovered_host"><a class="anchor" href="#types/external_discovered_host"></a>7.65. ExternalDiscoveredHost <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 921. Attributes summary</caption>
+<caption class="title">Table 922. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53249,7 +53298,7 @@ Event can be associated with a virtual machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 922. Links summary</caption>
+<caption class="title">Table 923. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53283,7 +53332,7 @@ See <a href="https://access.redhat.com/products/red-hat-satellite" class="bare">
 for more details on Red Hat Satellite.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 923. Attributes summary</caption>
+<caption class="title">Table 924. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53326,7 +53375,7 @@ of FQDN (Fully Qualified Domain Name).</p></td>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 924. Links summary</caption>
+<caption class="title">Table 925. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53352,7 +53401,7 @@ that the host is managed by.</p></td>
 <div class="sect2">
 <h3 id="types/external_host_group"><a class="anchor" href="#types/external_host_group"></a>7.67. ExternalHostGroup <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 925. Attributes summary</caption>
+<caption class="title">Table 926. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53409,7 +53458,7 @@ that the host is managed by.</p></td>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 926. Links summary</caption>
+<caption class="title">Table 927. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53443,7 +53492,7 @@ See <a href="https://access.redhat.com/products/red-hat-satellite" class="bare">
 for more details on Red Hat Satellite.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 927. Attributes summary</caption>
+<caption class="title">Table 928. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53518,7 +53567,7 @@ for more details on Red Hat Satellite.</p>
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 928. Links summary</caption>
+<caption class="title">Table 929. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53594,7 +53643,7 @@ Such as installed software, system definitions, passwords and more.</p>
 <p>Describes how an external network provider is provisioned on a host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 929. Attributes summary</caption>
+<caption class="title">Table 930. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53631,7 +53680,7 @@ Such as installed software, system definitions, passwords and more.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 930. Links summary</caption>
+<caption class="title">Table 931. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53664,7 +53713,7 @@ Such as installed software, system definitions, passwords and more.</p>
 <p>Represents an external provider.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 931. Attributes summary</caption>
+<caption class="title">Table 932. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53749,7 +53798,7 @@ and <a href="#types/storage_domain">storage domains</a>, and allows an external
 system to update status of objects it is aware of.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 932. Values summary</caption>
+<caption class="title">Table 933. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -53825,7 +53874,7 @@ the administrator.</p>
 <p>Represents the type of the external system that is associated with the <code>step</code>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 933. Values summary</caption>
+<caption class="title">Table 934. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -53854,7 +53903,7 @@ the administrator.</p>
 <p>Describes the parameters for the virtual machine import operation from an external system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 934. Attributes summary</caption>
+<caption class="title">Table 935. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -53917,7 +53966,7 @@ the administrator.</p>
 <p>More examples can be found at <a href="http://libguestfs.org/virt-v2v.1.html" class="bare">http://libguestfs.org/virt-v2v.1.html</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 935. Links summary</caption>
+<caption class="title">Table 936. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54010,7 +54059,7 @@ If not specified, one is selected automatically.</p>
 <p>Describes the type of external hypervisor system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 936. Values summary</caption>
+<caption class="title">Table 937. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -54040,7 +54089,7 @@ If not specified, one is selected automatically.</p>
 <div class="sect2">
 <h3 id="types/fault"><a class="anchor" href="#types/fault"></a>7.75. Fault <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 937. Attributes summary</caption>
+<caption class="title">Table 938. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54073,7 +54122,7 @@ If not specified, one is selected automatically.</p>
 <p>Type representing the type of the fence operation.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 938. Values summary</caption>
+<caption class="title">Table 939. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -54114,7 +54163,7 @@ If not specified, one is selected automatically.</p>
 <p>Type representing a cluster fencing policy.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 939. Attributes summary</caption>
+<caption class="title">Table 940. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54198,7 +54247,7 @@ get fenced.</p>
 <div class="sect2">
 <h3 id="types/file"><a class="anchor" href="#types/file"></a>7.78. File <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 940. Attributes summary</caption>
+<caption class="title">Table 941. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54245,7 +54294,7 @@ get fenced.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 941. Links summary</caption>
+<caption class="title">Table 942. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54270,7 +54319,7 @@ get fenced.</p>
 <div class="sect2">
 <h3 id="types/filter"><a class="anchor" href="#types/filter"></a>7.79. Filter <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 942. Attributes summary</caption>
+<caption class="title">Table 943. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54312,7 +54361,7 @@ get fenced.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 943. Links summary</caption>
+<caption class="title">Table 944. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54340,7 +54389,7 @@ get fenced.</p>
 <p>Describes all firewall types supported by the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 944. Values summary</caption>
+<caption class="title">Table 945. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -54394,7 +54443,7 @@ more information, see the <code>iptables</code> manual page.</p>
 <p>The underlying representation of a floppy file.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 945. Attributes summary</caption>
+<caption class="title">Table 946. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54436,7 +54485,7 @@ more information, see the <code>iptables</code> manual page.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 946. Links summary</caption>
+<caption class="title">Table 947. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54483,7 +54532,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/fop_statistic"><a class="anchor" href="#types/fop_statistic"></a>7.82. FopStatistic <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 947. Attributes summary</caption>
+<caption class="title">Table 948. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54513,7 +54562,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_brick"><a class="anchor" href="#types/gluster_brick"></a>7.83. GlusterBrick <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 948. Attributes summary</caption>
+<caption class="title">Table 949. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54600,7 +54649,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 949. Links summary</caption>
+<caption class="title">Table 950. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54657,7 +54706,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_brick_advanced_details"><a class="anchor" href="#types/gluster_brick_advanced_details"></a>7.84. GlusterBrickAdvancedDetails <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 950. Attributes summary</caption>
+<caption class="title">Table 951. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54729,7 +54778,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 951. Links summary</caption>
+<caption class="title">Table 952. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54776,7 +54825,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_brick_memory_info"><a class="anchor" href="#types/gluster_brick_memory_info"></a>7.85. GlusterBrickMemoryInfo <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 952. Attributes summary</caption>
+<caption class="title">Table 953. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54801,7 +54850,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_brick_status"><a class="anchor" href="#types/gluster_brick_status"></a>7.86. GlusterBrickStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 953. Values summary</caption>
+<caption class="title">Table 954. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -54831,7 +54880,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_client"><a class="anchor" href="#types/gluster_client"></a>7.87. GlusterClient <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 954. Attributes summary</caption>
+<caption class="title">Table 955. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54871,7 +54920,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_hook"><a class="anchor" href="#types/gluster_hook"></a>7.88. GlusterHook <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 955. Attributes summary</caption>
+<caption class="title">Table 956. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54948,7 +54997,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 956. Links summary</caption>
+<caption class="title">Table 957. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -54978,7 +55027,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_hook_status"><a class="anchor" href="#types/gluster_hook_status"></a>7.89. GlusterHookStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 957. Values summary</caption>
+<caption class="title">Table 958. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -55008,7 +55057,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_memory_pool"><a class="anchor" href="#types/gluster_memory_pool"></a>7.90. GlusterMemoryPool <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 958. Attributes summary</caption>
+<caption class="title">Table 959. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55088,7 +55137,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_server_hook"><a class="anchor" href="#types/gluster_server_hook"></a>7.91. GlusterServerHook <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 959. Attributes summary</caption>
+<caption class="title">Table 960. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55140,7 +55189,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 960. Links summary</caption>
+<caption class="title">Table 961. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55165,7 +55214,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_state"><a class="anchor" href="#types/gluster_state"></a>7.92. GlusterState <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 961. Values summary</caption>
+<caption class="title">Table 962. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -55195,7 +55244,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_volume"><a class="anchor" href="#types/gluster_volume"></a>7.93. GlusterVolume <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 962. Attributes summary</caption>
+<caption class="title">Table 963. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55272,7 +55321,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 963. Links summary</caption>
+<caption class="title">Table 964. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55307,7 +55356,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_volume_profile_details"><a class="anchor" href="#types/gluster_volume_profile_details"></a>7.94. GlusterVolumeProfileDetails <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 964. Attributes summary</caption>
+<caption class="title">Table 965. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55357,7 +55406,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <div class="sect2">
 <h3 id="types/gluster_volume_status"><a class="anchor" href="#types/gluster_volume_status"></a>7.95. GlusterVolumeStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 965. Values summary</caption>
+<caption class="title">Table 966. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -55390,7 +55439,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Type representing the type of Gluster Volume.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 966. Values summary</caption>
+<caption class="title">Table 967. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -55552,7 +55601,7 @@ will be removed in future release.</p>
 <div class="sect2">
 <h3 id="types/grace_period"><a class="anchor" href="#types/grace_period"></a>7.97. GracePeriod <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 967. Attributes summary</caption>
+<caption class="title">Table 968. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55577,7 +55626,7 @@ will be removed in future release.</p>
 <div class="sect2">
 <h3 id="types/graphics_console"><a class="anchor" href="#types/graphics_console"></a>7.98. GraphicsConsole <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 968. Attributes summary</caption>
+<caption class="title">Table 969. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55634,7 +55683,7 @@ will be removed in future release.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 969. Links summary</caption>
+<caption class="title">Table 970. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55672,7 +55721,7 @@ will be removed in future release.</p>
 <p>The graphics protocol used to connect to the graphic console.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 970. Values summary</caption>
+<caption class="title">Table 971. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -55718,7 +55767,7 @@ control another machine.</p>
 <p>This type represents all groups in the directory service.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 971. Attributes summary</caption>
+<caption class="title">Table 972. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55765,7 +55814,7 @@ control another machine.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 972. Links summary</caption>
+<caption class="title">Table 973. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55856,7 +55905,7 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 973. Attributes summary</caption>
+<caption class="title">Table 974. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55939,7 +55988,7 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 974. Attributes summary</caption>
+<caption class="title">Table 975. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -55997,7 +56046,7 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <p>Type representing high availability of a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 975. Attributes summary</caption>
+<caption class="title">Table 976. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -56103,7 +56152,7 @@ will set the label as follows:</p>
 <p>Represents a hook.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 976. Attributes summary</caption>
+<caption class="title">Table 977. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -56150,7 +56199,7 @@ will set the label as follows:</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 977. Links summary</caption>
+<caption class="title">Table 978. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -56178,7 +56227,7 @@ will set the label as follows:</p>
 <p>Represents content type of hook script.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 978. Values summary</caption>
+<caption class="title">Table 979. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -56207,7 +56256,7 @@ will set the label as follows:</p>
 <p>Type represents a stage of volume event at which hook executes.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 979. Values summary</caption>
+<caption class="title">Table 980. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -56236,7 +56285,7 @@ will set the label as follows:</p>
 <p>Type represents the status of a hook.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 980. Values summary</caption>
+<caption class="title">Table 981. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -56269,7 +56318,7 @@ will set the label as follows:</p>
 <p>Type representing a host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 981. Attributes summary</caption>
+<caption class="title">Table 982. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -56649,7 +56698,7 @@ memory consumption and increases host performance.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 982. Links summary</caption>
+<caption class="title">Table 983. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -56922,7 +56971,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/host_device"><a class="anchor" href="#types/host_device"></a>7.109. HostDevice <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 983. Attributes summary</caption>
+<caption class="title">Table 984. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57007,7 +57056,7 @@ This statistics sub-collection is read-only.
 <p>For example: <code>pcieport</code> or <code>uhci_hcd</code>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 984. Links summary</caption>
+<caption class="title">Table 985. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57043,7 +57092,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/host_device_passthrough"><a class="anchor" href="#types/host_device_passthrough"></a>7.110. HostDevicePassthrough <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 985. Attributes summary</caption>
+<caption class="title">Table 986. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57142,7 +57191,7 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 986. Attributes summary</caption>
+<caption class="title">Table 987. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57332,7 +57381,7 @@ and <code>false</code> for a bridgeless network.</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 987. Links summary</caption>
+<caption class="title">Table 988. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57382,7 +57431,7 @@ and <code>false</code> for a bridgeless network.</p>
 <p>Describes the virtual functions configuration of an SR-IOV-enabled physical function NIC.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 988. Attributes summary</caption>
+<caption class="title">Table 989. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57447,7 +57496,7 @@ is always set to <code>stomp</code> since <code>xml</code> was removed.
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 989. Values summary</caption>
+<caption class="title">Table 990. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -57476,7 +57525,7 @@ is always set to <code>stomp</code> since <code>xml</code> was removed.
 <p>Type representing a host status.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 990. Values summary</caption>
+<caption class="title">Table 991. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -57632,7 +57681,7 @@ to 'maintenance' status.</p>
 <div class="sect2">
 <h3 id="types/host_storage"><a class="anchor" href="#types/host_storage"></a>7.115. HostStorage <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 991. Attributes summary</caption>
+<caption class="title">Table 992. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57762,7 +57811,7 @@ range of 0 to 65535. For more details see the description of the <code>retrans</
 range of 0 to 65535. For more details see the description of the <code>timeo</code> mount option in the <code>nfs</code> man page.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 992. Links summary</caption>
+<caption class="title">Table 993. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57791,7 +57840,7 @@ range of 0 to 65535. For more details see the description of the <code>timeo</co
 <p>This enumerated type is used to determine which type of operating system is used by the host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 993. Values summary</caption>
+<caption class="title">Table 994. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -57833,7 +57882,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 <div class="sect2">
 <h3 id="types/hosted_engine"><a class="anchor" href="#types/hosted_engine"></a>7.117. HostedEngine <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 994. Attributes summary</caption>
+<caption class="title">Table 995. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57881,7 +57930,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 <p>Icon of virtual machine or template.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 995. Attributes summary</caption>
+<caption class="title">Table 996. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57956,7 +58005,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 <p>This interface is the base model for all types that represent objects with an identifier.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 996. Attributes summary</caption>
+<caption class="title">Table 997. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -57999,7 +58048,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 <p>Represents an image entity.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 997. Attributes summary</caption>
+<caption class="title">Table 998. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -58046,7 +58095,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 998. Links summary</caption>
+<caption class="title">Table 999. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -58074,7 +58123,7 @@ and will handle its own installation instead of having RPMs pushed to it by the 
 <p>Represents the file type of an image.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 999. Values summary</caption>
+<caption class="title">Table 1000. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -58115,7 +58164,7 @@ to boot and install a virtual machine.</p>
 <p>This type contains information regarding an image transfer being performed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1000. Attributes summary</caption>
+<caption class="title">Table 1001. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -58201,7 +58250,7 @@ available only if the image transfer entity is in the <a href="#types/image_tran
 phase. See <code>phase</code> for details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1001. Links summary</caption>
+<caption class="title">Table 1002. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -58273,7 +58322,7 @@ or to transfer from an image- choosing <code>download</code> as an ImageTransfer
 documentation.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1002. Values summary</caption>
+<caption class="title">Table 1003. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -58307,7 +58356,7 @@ defines a specific point in a transfer flow.</p>
 information.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1003. Values summary</caption>
+<caption class="title">Table 1004. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -58441,7 +58490,7 @@ the phase will be changed to <code>transferring</code>, or <code>paused_system</
 The inheritance order is virtual machine &#8594; cluster &#8594; engine-config.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1004. Values summary</caption>
+<caption class="title">Table 1005. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -58471,7 +58520,7 @@ The inheritance order is virtual machine &#8594; cluster &#8594; engine-config.<
 <div class="sect2">
 <h3 id="types/initialization"><a class="anchor" href="#types/initialization"></a>7.126. Initialization <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1005. Attributes summary</caption>
+<caption class="title">Table 1006. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -58741,7 +58790,7 @@ attributes are not used in instance types.
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1006. Attributes summary</caption>
+<caption class="title">Table 1007. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59164,7 +59213,7 @@ memory while the virtual machine is running.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1007. Links summary</caption>
+<caption class="title">Table 1008. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59240,7 +59289,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <div class="sect2">
 <h3 id="types/io"><a class="anchor" href="#types/io"></a>7.128. Io <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1008. Attributes summary</caption>
+<caption class="title">Table 1009. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59268,7 +59317,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>Represents the IP configuration of a network interface.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1009. Attributes summary</caption>
+<caption class="title">Table 1010. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59371,7 +59420,7 @@ be inferred from the value of the <code>address</code> attribute.
 (and optinally default gateway) must be provided in the IP configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1010. Attributes summary</caption>
+<caption class="title">Table 1011. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59404,7 +59453,7 @@ be inferred from the value of the <code>address</code> attribute.
 <p>Defines the values for the IP protocol version.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1011. Values summary</caption>
+<caption class="title">Table 1012. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -59430,7 +59479,7 @@ be inferred from the value of the <code>address</code> attribute.
 <div class="sect2">
 <h3 id="types/iscsi_bond"><a class="anchor" href="#types/iscsi_bond"></a>7.132. IscsiBond <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1012. Attributes summary</caption>
+<caption class="title">Table 1013. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59467,7 +59516,7 @@ be inferred from the value of the <code>address</code> attribute.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1013. Links summary</caption>
+<caption class="title">Table 1014. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59502,7 +59551,7 @@ be inferred from the value of the <code>address</code> attribute.
 <div class="sect2">
 <h3 id="types/iscsi_details"><a class="anchor" href="#types/iscsi_details"></a>7.133. IscsiDetails <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1014. Attributes summary</caption>
+<caption class="title">Table 1015. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59612,7 +59661,7 @@ A job can contain multiple steps in a hierarchic structure.
 The steps can be processed in parallel, depends on the implementation of the flow.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1015. Attributes summary</caption>
+<caption class="title">Table 1016. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59685,7 +59734,7 @@ The steps can be processed in parallel, depends on the implementation of the flo
 External jobs are managed externally, by the creator of the job.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1016. Links summary</caption>
+<caption class="title">Table 1017. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59719,7 +59768,7 @@ External jobs are managed externally, by the creator of the job.</p>
 <p>Represents the status of the job.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1017. Values summary</caption>
+<caption class="title">Table 1018. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -59789,7 +59838,7 @@ the system was unexpectedly restarted.</p>
 <p>Type representing a Katello erratum.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1018. Attributes summary</caption>
+<caption class="title">Table 1019. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59878,7 +59927,7 @@ the system was unexpectedly restarted.</p>
 <p>The supported types are <code>bugfix</code>, <code>enhancement</code> or <code>security</code>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1019. Links summary</caption>
+<caption class="title">Table 1020. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59909,7 +59958,7 @@ the system was unexpectedly restarted.</p>
 <div class="sect2">
 <h3 id="types/kdump_status"><a class="anchor" href="#types/kdump_status"></a>7.137. KdumpStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1020. Values summary</caption>
+<caption class="title">Table 1021. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -59939,7 +59988,7 @@ the system was unexpectedly restarted.</p>
 <div class="sect2">
 <h3 id="types/kernel"><a class="anchor" href="#types/kernel"></a>7.138. Kernel <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1021. Attributes summary</caption>
+<caption class="title">Table 1022. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -59964,7 +60013,7 @@ the system was unexpectedly restarted.</p>
 <div class="sect2">
 <h3 id="types/ksm"><a class="anchor" href="#types/ksm"></a>7.139. Ksm <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1022. Attributes summary</caption>
+<caption class="title">Table 1023. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60032,7 +60081,7 @@ The <code>name</code> of a property is exactly the same string which is used in 
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1023. Attributes summary</caption>
+<caption class="title">Table 1024. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60110,7 +60159,7 @@ Only available if <code>type</code> is <code>127</code>.</p>
 <p>Enum representing a severity of an event.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1024. Values summary</caption>
+<caption class="title">Table 1025. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -60174,7 +60223,7 @@ Used to warn something might be wrong.</p>
 <div class="sect2">
 <h3 id="types/logical_unit"><a class="anchor" href="#types/logical_unit"></a>7.142. LogicalUnit <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1025. Attributes summary</caption>
+<caption class="title">Table 1026. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60323,7 +60372,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <div class="sect2">
 <h3 id="types/lun_status"><a class="anchor" href="#types/lun_status"></a>7.143. LunStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1026. Values summary</caption>
+<caption class="title">Table 1027. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -60356,7 +60405,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <p>Represents a MAC address of a virtual network interface.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1027. Attributes summary</caption>
+<caption class="title">Table 1028. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60403,7 +60452,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1028. Attributes summary</caption>
+<caption class="title">Table 1029. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60476,7 +60525,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <div class="sect2">
 <h3 id="types/memory_over_commit"><a class="anchor" href="#types/memory_over_commit"></a>7.146. MemoryOverCommit <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1029. Attributes summary</caption>
+<caption class="title">Table 1030. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60504,7 +60553,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <p>Logical grouping of memory related properties of virtual machine-like entities.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1030. Attributes summary</caption>
+<caption class="title">Table 1031. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60562,7 +60611,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <div class="sect2">
 <h3 id="types/message_broker_type"><a class="anchor" href="#types/message_broker_type"></a>7.148. MessageBrokerType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1031. Values summary</caption>
+<caption class="title">Table 1032. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -60588,7 +60637,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <div class="sect2">
 <h3 id="types/method"><a class="anchor" href="#types/method"></a>7.149. Method <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1032. Attributes summary</caption>
+<caption class="title">Table 1033. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60613,7 +60662,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <div class="sect2">
 <h3 id="types/migrate_on_error"><a class="anchor" href="#types/migrate_on_error"></a>7.150. MigrateOnError <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1033. Values summary</caption>
+<caption class="title">Table 1034. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -60646,7 +60695,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <p>Defines the bandwidth used by migration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1034. Attributes summary</caption>
+<caption class="title">Table 1035. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60685,7 +60734,7 @@ that value to the nearest lower MiB boundary: in this case 1073741824 (1 GiB).</
 <p>Defines how the migration bandwidth is assigned.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1035. Values summary</caption>
+<caption class="title">Table 1036. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -60726,7 +60775,7 @@ If nothing is detected, bandwidth falls back to the hypervisor_default value.</p
 <p>The type for migration options.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1036. Attributes summary</caption>
+<caption class="title">Table 1037. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60758,7 +60807,7 @@ If nothing is detected, bandwidth falls back to the hypervisor_default value.</p
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1037. Links summary</caption>
+<caption class="title">Table 1038. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60787,7 +60836,7 @@ If nothing is detected, bandwidth falls back to the hypervisor_default value.</p
 how many parallel migrations are allowed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1038. Attributes summary</caption>
+<caption class="title">Table 1039. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60884,7 +60933,7 @@ how many parallel migrations are allowed.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1039. Attributes summary</caption>
+<caption class="title">Table 1040. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -60995,7 +61044,7 @@ omitted from any active cluster host. <code>operational</code> otherwise.</p>
 display traffic with the <code>vm</code> and <code>display</code> values.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1040. Links summary</caption>
+<caption class="title">Table 1041. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61204,7 +61253,7 @@ Changes to network attachment configuration must be explicitly committed.
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1041. Attributes summary</caption>
+<caption class="title">Table 1042. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61380,7 +61429,7 @@ The following keys are valid for <code>bridge_opts</code>:</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1042. Links summary</caption>
+<caption class="title">Table 1043. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61421,7 +61470,7 @@ The following keys are valid for <code>bridge_opts</code>:</p>
 <div class="sect2">
 <h3 id="types/network_configuration"><a class="anchor" href="#types/network_configuration"></a>7.157. NetworkConfiguration <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1043. Attributes summary</caption>
+<caption class="title">Table 1044. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61484,7 +61533,7 @@ does not exist on the NICs.</p>
 <p>If any part of the version is not present, it is represented by -1.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1044. Attributes summary</caption>
+<caption class="title">Table 1045. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61550,7 +61599,7 @@ This is a example of the XML representation:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1045. Attributes summary</caption>
+<caption class="title">Table 1046. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61592,7 +61641,7 @@ This is a example of the XML representation:</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1046. Links summary</caption>
+<caption class="title">Table 1047. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61621,7 +61670,7 @@ This is a example of the XML representation:</p>
 The label binds the network to the host network interface by the label <code>id</code>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1047. Attributes summary</caption>
+<caption class="title">Table 1048. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61658,7 +61707,7 @@ The label binds the network to the host network interface by the label <code>id<
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1048. Links summary</caption>
+<caption class="title">Table 1049. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61698,7 +61747,7 @@ The label binds the network to the host network interface by the label <code>id<
 attribute of the <code>OpenStackNetworkProvider</code> type.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1049. Values summary</caption>
+<caption class="title">Table 1050. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -61733,7 +61782,7 @@ attribute of the <code>OpenStackNetworkProvider</code> type.</p>
 <div class="sect2">
 <h3 id="types/network_status"><a class="anchor" href="#types/network_status"></a>7.162. NetworkStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1050. Values summary</caption>
+<caption class="title">Table 1051. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -61762,7 +61811,7 @@ attribute of the <code>OpenStackNetworkProvider</code> type.</p>
 <p>This type indicates the purpose that the network is used for in the cluster.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1051. Values summary</caption>
+<caption class="title">Table 1052. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -61828,7 +61877,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <div class="sect2">
 <h3 id="types/nfs_profile_detail"><a class="anchor" href="#types/nfs_profile_detail"></a>7.164. NfsProfileDetail <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1052. Attributes summary</caption>
+<caption class="title">Table 1053. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61858,7 +61907,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <div class="sect2">
 <h3 id="types/nfs_version"><a class="anchor" href="#types/nfs_version"></a>7.165. NfsVersion <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1053. Values summary</caption>
+<caption class="title">Table 1054. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -61923,7 +61972,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1054. Attributes summary</caption>
+<caption class="title">Table 1055. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -61990,7 +62039,7 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1055. Links summary</caption>
+<caption class="title">Table 1056. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62098,7 +62147,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>The type describes the configuration of a virtual network interface.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1056. Attributes summary</caption>
+<caption class="title">Table 1057. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62151,7 +62200,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Defines the options for an emulated virtual network interface device model.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1057. Values summary</caption>
+<caption class="title">Table 1058. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -62196,7 +62245,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>Network interface card status.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1058. Values summary</caption>
+<caption class="title">Table 1059. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -62245,7 +62294,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1059. Attributes summary</caption>
+<caption class="title">Table 1060. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62302,7 +62351,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1060. Links summary</caption>
+<caption class="title">Table 1061. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62417,7 +62466,7 @@ This statistics sub-collection is read-only.
 <p>Represents the pinning of a virtual NUMA node to a physical NUMA node.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1061. Attributes summary</caption>
+<caption class="title">Table 1062. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62464,7 +62513,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/numa_tune_mode"><a class="anchor" href="#types/numa_tune_mode"></a>7.172. NumaTuneMode <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1062. Values summary</caption>
+<caption class="title">Table 1063. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -62494,7 +62543,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/open_stack_image"><a class="anchor" href="#types/open_stack_image"></a>7.173. OpenStackImage <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1063. Attributes summary</caption>
+<caption class="title">Table 1064. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62531,7 +62580,7 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1064. Links summary</caption>
+<caption class="title">Table 1065. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62556,7 +62605,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/open_stack_image_provider"><a class="anchor" href="#types/open_stack_image_provider"></a>7.174. OpenStackImageProvider <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1065. Attributes summary</caption>
+<caption class="title">Table 1066. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62636,7 +62685,7 @@ This statistics sub-collection is read-only.
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1066. Links summary</caption>
+<caption class="title">Table 1067. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62667,7 +62716,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/open_stack_network"><a class="anchor" href="#types/open_stack_network"></a>7.175. OpenStackNetwork <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1067. Attributes summary</caption>
+<caption class="title">Table 1068. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62704,7 +62753,7 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1068. Links summary</caption>
+<caption class="title">Table 1069. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62729,7 +62778,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/open_stack_network_provider"><a class="anchor" href="#types/open_stack_network_provider"></a>7.176. OpenStackNetworkProvider <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1069. Attributes summary</caption>
+<caption class="title">Table 1070. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62874,7 +62923,7 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1070. Links summary</caption>
+<caption class="title">Table 1071. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -62915,7 +62964,7 @@ agent is automatically installed on the hosts, or it can be an external provider
 OpenStack API, in which case the virtual interface driver is a custom solution installed manually.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1071. Values summary</caption>
+<caption class="title">Table 1072. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -62955,7 +63004,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/open_stack_provider"><a class="anchor" href="#types/open_stack_provider"></a>7.178. OpenStackProvider <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1072. Attributes summary</caption>
+<caption class="title">Table 1073. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63039,7 +63088,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/open_stack_subnet"><a class="anchor" href="#types/open_stack_subnet"></a>7.179. OpenStackSubnet <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1073. Attributes summary</caption>
+<caption class="title">Table 1074. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63104,7 +63153,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <p>Values can be <code>v4' for IPv4 or `v6</code> for IPv6.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1074. Links summary</caption>
+<caption class="title">Table 1075. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63130,7 +63179,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/open_stack_volume_provider"><a class="anchor" href="#types/open_stack_volume_provider"></a>7.180. OpenStackVolumeProvider <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1075. Attributes summary</caption>
+<caption class="title">Table 1076. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63210,7 +63259,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1076. Links summary</caption>
+<caption class="title">Table 1077. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63251,7 +63300,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/open_stack_volume_type"><a class="anchor" href="#types/open_stack_volume_type"></a>7.181. OpenStackVolumeType <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1077. Attributes summary</caption>
+<caption class="title">Table 1078. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63293,7 +63342,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1078. Links summary</caption>
+<caption class="title">Table 1079. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63318,7 +63367,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/openstack_volume_authentication_key"><a class="anchor" href="#types/openstack_volume_authentication_key"></a>7.182. OpenstackVolumeAuthenticationKey <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1079. Attributes summary</caption>
+<caption class="title">Table 1080. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63375,7 +63424,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1080. Links summary</caption>
+<caption class="title">Table 1081. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63400,7 +63449,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <div class="sect2">
 <h3 id="types/openstack_volume_authentication_key_usage_type"><a class="anchor" href="#types/openstack_volume_authentication_key_usage_type"></a>7.183. OpenstackVolumeAuthenticationKeyUsageType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1081. Values summary</caption>
+<caption class="title">Table 1082. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -63425,7 +63474,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <p>Information describing the operating system. This is used for both virtual machines and hosts.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1082. Attributes summary</caption>
+<caption class="title">Table 1083. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63637,7 +63686,7 @@ Read only for hosts.
 <p>Represents a guest operating system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1083. Attributes summary</caption>
+<caption class="title">Table 1084. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63699,7 +63748,7 @@ Read only for hosts.
 <div class="sect2">
 <h3 id="types/option"><a class="anchor" href="#types/option"></a>7.186. Option <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1084. Attributes summary</caption>
+<caption class="title">Table 1085. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63744,7 +63793,7 @@ that the system rely on user&#8217;s selection and does not verify it by inspect
 installed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1085. Values summary</caption>
+<caption class="title">Table 1086. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -63863,7 +63912,7 @@ installed.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1086. Attributes summary</caption>
+<caption class="title">Table 1087. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63888,7 +63937,7 @@ installed.</p>
 <div class="sect2">
 <h3 id="types/payload"><a class="anchor" href="#types/payload"></a>7.189. Payload <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1087. Attributes summary</caption>
+<caption class="title">Table 1088. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63923,7 +63972,7 @@ installed.</p>
 <div class="sect2">
 <h3 id="types/payload_encoding"><a class="anchor" href="#types/payload_encoding"></a>7.190. PayloadEncoding <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1088. Values summary</caption>
+<caption class="title">Table 1089. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -63952,7 +64001,7 @@ installed.</p>
 <p>Type represents a permission.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1089. Attributes summary</caption>
+<caption class="title">Table 1090. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -63989,7 +64038,7 @@ installed.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1090. Links summary</caption>
+<caption class="title">Table 1091. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64067,7 +64116,7 @@ installed.</p>
 <p>Type represents a permit.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1091. Attributes summary</caption>
+<caption class="title">Table 1092. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64109,7 +64158,7 @@ installed.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1092. Links summary</caption>
+<caption class="title">Table 1093. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64134,7 +64183,7 @@ installed.</p>
 <div class="sect2">
 <h3 id="types/pm_proxy"><a class="anchor" href="#types/pm_proxy"></a>7.193. PmProxy <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1093. Attributes summary</caption>
+<caption class="title">Table 1094. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64159,7 +64208,7 @@ installed.</p>
 <div class="sect2">
 <h3 id="types/pm_proxy_type"><a class="anchor" href="#types/pm_proxy_type"></a>7.194. PmProxyType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1094. Values summary</caption>
+<caption class="title">Table 1095. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -64192,7 +64241,7 @@ installed.</p>
 <p>Holds the types of all internal policy unit types.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1095. Values summary</caption>
+<caption class="title">Table 1096. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -64226,7 +64275,7 @@ installed.</p>
 <div class="sect2">
 <h3 id="types/power_management"><a class="anchor" href="#types/power_management"></a>7.197. PowerManagement <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1096. Attributes summary</caption>
+<caption class="title">Table 1097. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64337,7 +64386,7 @@ This is set to <code>true</code> when a host has power management enabled, unles
 <div class="sect2">
 <h3 id="types/power_management_status"><a class="anchor" href="#types/power_management_status"></a>7.198. PowerManagementStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1097. Values summary</caption>
+<caption class="title">Table 1098. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -64367,7 +64416,7 @@ This is set to <code>true</code> when a host has power management enabled, unles
 <div class="sect2">
 <h3 id="types/product"><a class="anchor" href="#types/product"></a>7.199. Product <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1098. Attributes summary</caption>
+<caption class="title">Table 1099. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64439,7 +64488,7 @@ oVirt environment. This includes the name of the product, the <code>vendor</code
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1099. Attributes summary</caption>
+<caption class="title">Table 1100. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64480,7 +64529,7 @@ oVirt environment. This includes the name of the product, the <code>vendor</code
 <div class="sect2">
 <h3 id="types/profile_detail"><a class="anchor" href="#types/profile_detail"></a>7.201. ProfileDetail <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1100. Attributes summary</caption>
+<caption class="title">Table 1101. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64525,7 +64574,7 @@ oVirt environment. This includes the name of the product, the <code>vendor</code
 <div class="sect2">
 <h3 id="types/property"><a class="anchor" href="#types/property"></a>7.202. Property <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1101. Attributes summary</caption>
+<caption class="title">Table 1102. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64555,7 +64604,7 @@ oVirt environment. This includes the name of the product, the <code>vendor</code
 <div class="sect2">
 <h3 id="types/proxy_ticket"><a class="anchor" href="#types/proxy_ticket"></a>7.203. ProxyTicket <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1102. Attributes summary</caption>
+<caption class="title">Table 1103. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64590,7 +64639,7 @@ while V4 storage domains also support QCOW2 version 3.
 For more information about features of the different QCOW versions, see <a href="http://wiki.qemu.org/Features/Qcow3">here</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1103. Values summary</caption>
+<caption class="title">Table 1104. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -64643,7 +64692,7 @@ relevant.</p>
 <code>outbound_average_upperlimit</code> and <code>outbound_average_realtime</code> are relevant.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1104. Attributes summary</caption>
+<caption class="title">Table 1105. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64936,7 +64985,7 @@ set.</p>
 <p>See <a href="https://libvirt.org/formatnetwork.html#elementQoS">Libvirt-QOS</a> for further details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1105. Links summary</caption>
+<caption class="title">Table 1106. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -64965,7 +65014,7 @@ set.</p>
 <p>This type represents the kind of resource the <a href="#types/qos">Quality of service (QoS)</a> can be assigned to.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1106. Values summary</caption>
+<caption class="title">Table 1107. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -65018,7 +65067,7 @@ set.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1107. Attributes summary</caption>
+<caption class="title">Table 1108. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65095,7 +65144,7 @@ set.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1108. Links summary</caption>
+<caption class="title">Table 1109. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65130,7 +65179,7 @@ set.</p>
 <div class="sect2">
 <h3 id="types/quota_cluster_limit"><a class="anchor" href="#types/quota_cluster_limit"></a>7.208. QuotaClusterLimit <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1109. Attributes summary</caption>
+<caption class="title">Table 1110. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65187,7 +65236,7 @@ set.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1110. Links summary</caption>
+<caption class="title">Table 1111. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65217,7 +65266,7 @@ set.</p>
 <div class="sect2">
 <h3 id="types/quota_mode_type"><a class="anchor" href="#types/quota_mode_type"></a>7.209. QuotaModeType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1111. Values summary</caption>
+<caption class="title">Table 1112. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -65247,7 +65296,7 @@ set.</p>
 <div class="sect2">
 <h3 id="types/quota_storage_limit"><a class="anchor" href="#types/quota_storage_limit"></a>7.210. QuotaStorageLimit <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1112. Attributes summary</caption>
+<caption class="title">Table 1113. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65294,7 +65343,7 @@ set.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1113. Links summary</caption>
+<caption class="title">Table 1114. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65324,7 +65373,7 @@ set.</p>
 <div class="sect2">
 <h3 id="types/range"><a class="anchor" href="#types/range"></a>7.211. Range <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1114. Attributes summary</caption>
+<caption class="title">Table 1115. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65357,7 +65406,7 @@ set.</p>
 <p>Determines maximum speed of consumption of bytes from random number generator device.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1115. Attributes summary</caption>
+<caption class="title">Table 1116. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65412,7 +65461,7 @@ a virtual machine, template, etc.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1116. Links summary</caption>
+<caption class="title">Table 1117. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65474,7 +65523,7 @@ a virtual machine, template, etc.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1117. Links summary</caption>
+<caption class="title">Table 1118. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65536,7 +65585,7 @@ a virtual machine, template, etc.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1118. Links summary</caption>
+<caption class="title">Table 1119. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65724,7 +65773,7 @@ takes place in the oVirt Engine.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1119. Attributes summary</caption>
+<caption class="title">Table 1120. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65802,7 +65851,7 @@ the domain name will be changed.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1120. Links summary</caption>
+<caption class="title">Table 1121. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65885,7 +65934,7 @@ An example of an XML representation using this mapping:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1121. Links summary</caption>
+<caption class="title">Table 1122. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65952,7 +66001,7 @@ An example of an XML representation using this mapping:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1122. Links summary</caption>
+<caption class="title">Table 1123. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -65989,7 +66038,7 @@ using <code>name</code>.</p>
 <div class="sect2">
 <h3 id="types/reported_configuration"><a class="anchor" href="#types/reported_configuration"></a>7.220. ReportedConfiguration <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1123. Attributes summary</caption>
+<caption class="title">Table 1124. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66029,7 +66078,7 @@ using <code>name</code>.</p>
 <div class="sect2">
 <h3 id="types/reported_device"><a class="anchor" href="#types/reported_device"></a>7.221. ReportedDevice <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1124. Attributes summary</caption>
+<caption class="title">Table 1125. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66081,7 +66130,7 @@ using <code>name</code>.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1125. Links summary</caption>
+<caption class="title">Table 1126. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66106,7 +66155,7 @@ using <code>name</code>.</p>
 <div class="sect2">
 <h3 id="types/reported_device_type"><a class="anchor" href="#types/reported_device_type"></a>7.222. ReportedDeviceType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1126. Values summary</caption>
+<caption class="title">Table 1127. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66128,7 +66177,7 @@ using <code>name</code>.</p>
 <div class="sect2">
 <h3 id="types/resolution_type"><a class="anchor" href="#types/resolution_type"></a>7.223. ResolutionType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1127. Values summary</caption>
+<caption class="title">Table 1128. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66157,7 +66206,7 @@ using <code>name</code>.</p>
 <p>Random number generator (RNG) device model.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1128. Attributes summary</caption>
+<caption class="title">Table 1129. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66190,7 +66239,7 @@ using <code>name</code>.</p>
 <p>Representing the random generator backend types.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1129. Values summary</caption>
+<caption class="title">Table 1130. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66233,7 +66282,7 @@ instance types) and entities associated with clusters with compatibility version
 <p>Represents a system role.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1130. Attributes summary</caption>
+<caption class="title">Table 1131. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66288,7 +66337,7 @@ instance types) and entities associated with clusters with compatibility version
 <p>Roles with mutable set to <code>false</code> are predefined roles.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1131. Links summary</caption>
+<caption class="title">Table 1132. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66324,7 +66373,7 @@ A user which was granted at least one administrative role is considered
 an administrator.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1132. Values summary</caption>
+<caption class="title">Table 1133. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66350,7 +66399,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/scheduling_policy"><a class="anchor" href="#types/scheduling_policy"></a>7.228. SchedulingPolicy <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1133. Attributes summary</caption>
+<caption class="title">Table 1134. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66402,7 +66451,7 @@ an administrator.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1134. Links summary</caption>
+<caption class="title">Table 1135. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66437,7 +66486,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/scheduling_policy_unit"><a class="anchor" href="#types/scheduling_policy_unit"></a>7.229. SchedulingPolicyUnit <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1135. Attributes summary</caption>
+<caption class="title">Table 1136. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66497,7 +66546,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/scsi_generic_i_o"><a class="anchor" href="#types/scsi_generic_i_o"></a>7.230. ScsiGenericIO <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1136. Values summary</caption>
+<caption class="title">Table 1137. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66526,7 +66575,7 @@ an administrator.</p>
 <p>Represents SELinux in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1137. Attributes summary</caption>
+<caption class="title">Table 1138. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66554,7 +66603,7 @@ an administrator.</p>
 <p>Represents an SELinux enforcement mode.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1138. Values summary</caption>
+<caption class="title">Table 1139. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66584,7 +66633,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/serial_number"><a class="anchor" href="#types/serial_number"></a>7.233. SerialNumber <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1139. Attributes summary</caption>
+<caption class="title">Table 1140. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66614,7 +66663,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/serial_number_policy"><a class="anchor" href="#types/serial_number_policy"></a>7.234. SerialNumberPolicy <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1140. Values summary</caption>
+<caption class="title">Table 1141. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -66647,7 +66696,7 @@ an administrator.</p>
 <p>Describes a user session to a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1141. Attributes summary</caption>
+<caption class="title">Table 1142. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66725,7 +66774,7 @@ an administrator.</p>
 <p>Currently not used. Intended for info about how the user is connected: through SPICE, VNC, SSH, or RDP.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1142. Links summary</caption>
+<caption class="title">Table 1143. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66765,7 +66814,7 @@ an administrator.</p>
 <div class="sect2">
 <h3 id="types/skip_if_connectivity_broken"><a class="anchor" href="#types/skip_if_connectivity_broken"></a>7.236. SkipIfConnectivityBroken <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1143. Attributes summary</caption>
+<caption class="title">Table 1144. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66820,7 +66869,7 @@ lost connectivity then fencing will not take place.</p>
 configuration in the fencing policy.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1144. Attributes summary</caption>
+<caption class="title">Table 1145. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -66875,7 +66924,7 @@ get fenced.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1145. Attributes summary</caption>
+<caption class="title">Table 1146. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67457,7 +67506,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 Optionally set by user when shutting down the virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1146. Links summary</caption>
+<caption class="title">Table 1147. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67677,7 +67726,7 @@ is used to track history.</p>
 <p>Represents the current status of the snapshot.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1147. Values summary</caption>
+<caption class="title">Table 1148. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -67719,7 +67768,7 @@ is used to track history.</p>
 <p>Represents the type of the snapshot.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1148. Values summary</caption>
+<caption class="title">Table 1149. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -67775,7 +67824,7 @@ down.</p>
 <p>This type contains references to special objects, such as blank templates and the root of a hierarchy of tags.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1149. Links summary</caption>
+<caption class="title">Table 1150. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67805,7 +67854,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/spm"><a class="anchor" href="#types/spm"></a>7.242. Spm <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1150. Attributes summary</caption>
+<caption class="title">Table 1151. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67835,7 +67884,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/spm_status"><a class="anchor" href="#types/spm_status"></a>7.243. SpmStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1151. Values summary</caption>
+<caption class="title">Table 1152. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -67865,7 +67914,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/ssh"><a class="anchor" href="#types/ssh"></a>7.244. Ssh <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1152. Attributes summary</caption>
+<caption class="title">Table 1153. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67925,7 +67974,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/ssh_authentication_method"><a class="anchor" href="#types/ssh_authentication_method"></a>7.245. SshAuthenticationMethod <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1153. Values summary</caption>
+<caption class="title">Table 1154. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -67951,7 +68000,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/ssh_public_key"><a class="anchor" href="#types/ssh_public_key"></a>7.246. SshPublicKey <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1154. Attributes summary</caption>
+<caption class="title">Table 1155. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -67993,7 +68042,7 @@ down.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1155. Links summary</caption>
+<caption class="title">Table 1156. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68018,7 +68067,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/sso"><a class="anchor" href="#types/sso"></a>7.247. Sso <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1156. Attributes summary</caption>
+<caption class="title">Table 1157. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68043,7 +68092,7 @@ down.</p>
 <div class="sect2">
 <h3 id="types/sso_method"><a class="anchor" href="#types/sso_method"></a>7.248. SsoMethod <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1157. Values summary</caption>
+<caption class="title">Table 1158. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68137,7 +68186,7 @@ This statistics sub-collection is read-only.
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1158. Attributes summary</caption>
+<caption class="title">Table 1159. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68194,7 +68243,7 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1159. Links summary</caption>
+<caption class="title">Table 1160. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68259,7 +68308,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/statistic_kind"><a class="anchor" href="#types/statistic_kind"></a>7.250. StatisticKind <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1160. Values summary</caption>
+<caption class="title">Table 1161. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68285,7 +68334,7 @@ This statistics sub-collection is read-only.
 <div class="sect2">
 <h3 id="types/statistic_unit"><a class="anchor" href="#types/statistic_unit"></a>7.251. StatisticUnit <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1161. Values summary</caption>
+<caption class="title">Table 1162. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68336,7 +68385,7 @@ Step is used to describe and track a specific execution unit which is part of a 
 Some steps support reporting their progress.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1162. Attributes summary</caption>
+<caption class="title">Table 1163. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68419,7 +68468,7 @@ Some steps support reporting their progress.</p>
 External steps are managed externally, by the creator of the step.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1163. Links summary</caption>
+<caption class="title">Table 1164. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68463,7 +68512,7 @@ External steps are managed externally, by the creator of the step.</p>
 <p>Type representing a step type.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1164. Values summary</caption>
+<caption class="title">Table 1165. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68551,7 +68600,7 @@ Used to verify the correctness of parameters and the validity of the parameters 
 <p>Represents the status of the step.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1165. Values summary</caption>
+<caption class="title">Table 1166. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -68633,7 +68682,7 @@ the system was unexpectedly restarted.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1166. Attributes summary</caption>
+<caption class="title">Table 1167. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68735,7 +68784,7 @@ the system was unexpectedly restarted.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1167. Links summary</caption>
+<caption class="title">Table 1168. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68760,7 +68809,7 @@ the system was unexpectedly restarted.</p>
 <div class="sect2">
 <h3 id="types/storage_connection_extension"><a class="anchor" href="#types/storage_connection_extension"></a>7.256. StorageConnectionExtension <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1168. Attributes summary</caption>
+<caption class="title">Table 1169. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68812,7 +68861,7 @@ the system was unexpectedly restarted.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1169. Links summary</caption>
+<caption class="title">Table 1170. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -68870,7 +68919,7 @@ the system was unexpectedly restarted.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1170. Attributes summary</caption>
+<caption class="title">Table 1171. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69088,7 +69137,7 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 <code>wipe_after_delete</code> value.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1171. Links summary</caption>
+<caption class="title">Table 1172. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69184,7 +69233,7 @@ the <code>dataCenters</code> element instead.</p>
 volume on the storage domain, this Sanlock resource is used to provide storage base locking.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1172. Links summary</caption>
+<caption class="title">Table 1173. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69209,7 +69258,7 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 <div class="sect2">
 <h3 id="types/storage_domain_status"><a class="anchor" href="#types/storage_domain_status"></a>7.259. StorageDomainStatus <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1173. Values summary</caption>
+<caption class="title">Table 1174. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69270,7 +69319,7 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 <p>Indicates the kind of data managed by a <a href="#types/storage_domain">storage domain</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1174. Values summary</caption>
+<caption class="title">Table 1175. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69351,7 +69400,7 @@ from an OpenStack Cincer block storage service.</p>
 <p>Type which represents a format of <a href="#types/storage_domain">storage domain</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1175. Values summary</caption>
+<caption class="title">Table 1176. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69423,7 +69472,7 @@ and clone from snapshot. Support for Unicode metadata is added, for non-English 
 <p>Type representing a storage domain type.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1176. Values summary</caption>
+<caption class="title">Table 1177. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69497,7 +69546,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 <p>Describes all switch types supported by the Manager.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1177. Values summary</caption>
+<caption class="title">Table 1178. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -69526,7 +69575,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 <p>Type representing a configuration option of the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1178. Attributes summary</caption>
+<caption class="title">Table 1179. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69574,7 +69623,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 <p>Type representing a pair of value and version of a configuration option.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1179. Attributes summary</caption>
+<caption class="title">Table 1180. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69607,7 +69656,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 <p>Represents a tag in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1180. Attributes summary</caption>
+<caption class="title">Table 1181. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69644,7 +69693,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1181. Links summary</caption>
+<caption class="title">Table 1182. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -69698,7 +69747,7 @@ For more details on Gluster please go to <a href="https://www.gluster.org/">Glus
 This allows a rapid instanstiation of virtual machines with common configuration and disk states.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1182. Attributes summary</caption>
+<caption class="title">Table 1183. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70121,7 +70170,7 @@ memory while the virtual machine is running.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1183. Links summary</caption>
+<caption class="title">Table 1184. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70200,7 +70249,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>Type representing a status of a virtual machine template.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1184. Values summary</caption>
+<caption class="title">Table 1185. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -70233,7 +70282,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>Type representing a version of a virtual machine template.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1185. Attributes summary</caption>
+<caption class="title">Table 1186. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70266,7 +70315,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 The index 1 represents the original version of a template that is also called base version.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1186. Links summary</caption>
+<caption class="title">Table 1187. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70295,7 +70344,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Type representing a ticket that allows virtual machine access.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1187. Attributes summary</caption>
+<caption class="title">Table 1188. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70328,7 +70377,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Time zone representation.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1188. Attributes summary</caption>
+<caption class="title">Table 1189. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70367,7 +70416,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Type representing a transparent huge pages (THP) support.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1189. Attributes summary</caption>
+<caption class="title">Table 1190. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70395,7 +70444,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Protocol used to access a Gluster volume.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1190. Values summary</caption>
+<caption class="title">Table 1191. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -70421,7 +70470,7 @@ The index 1 represents the original version of a template that is also called ba
 <div class="sect2">
 <h3 id="types/unmanaged_network"><a class="anchor" href="#types/unmanaged_network"></a>7.274. UnmanagedNetwork <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1191. Attributes summary</caption>
+<caption class="title">Table 1192. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70458,7 +70507,7 @@ The index 1 represents the original version of a template that is also called ba
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1192. Links summary</caption>
+<caption class="title">Table 1193. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70491,7 +70540,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Configuration of the USB device of a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1193. Attributes summary</caption>
+<caption class="title">Table 1194. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70524,7 +70573,7 @@ The index 1 represents the original version of a template that is also called ba
 <p>Type of USB device redirection.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1194. Values summary</caption>
+<caption class="title">Table 1195. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -70576,7 +70625,7 @@ for USB redirection are provided by the <code>virt-viewer</code> package. On Win
 <p>Represents a user in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1195. Attributes summary</caption>
+<caption class="title">Table 1196. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70684,7 +70733,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is a required parameter when adding a new user.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1196. Links summary</caption>
+<caption class="title">Table 1197. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70735,7 +70784,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <div class="sect2">
 <h3 id="types/value"><a class="anchor" href="#types/value"></a>7.278. Value <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1197. Attributes summary</caption>
+<caption class="title">Table 1198. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70765,7 +70814,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <div class="sect2">
 <h3 id="types/value_type"><a class="anchor" href="#types/value_type"></a>7.279. ValueType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1198. Values summary</caption>
+<caption class="title">Table 1199. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -70795,7 +70844,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <div class="sect2">
 <h3 id="types/vcpu_pin"><a class="anchor" href="#types/vcpu_pin"></a>7.280. VcpuPin <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1199. Attributes summary</caption>
+<caption class="title">Table 1200. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70825,7 +70874,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <div class="sect2">
 <h3 id="types/vendor"><a class="anchor" href="#types/vendor"></a>7.281. Vendor <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1200. Attributes summary</caption>
+<caption class="title">Table 1201. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70865,7 +70914,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <div class="sect2">
 <h3 id="types/version"><a class="anchor" href="#types/version"></a>7.282. Version <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1201. Attributes summary</caption>
+<caption class="title">Table 1202. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70934,7 +70983,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 If it supported we use virtio driver for SCSI guest device.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1202. Attributes summary</caption>
+<caption class="title">Table 1203. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -70986,7 +71035,7 @@ If it supported we use virtio driver for SCSI guest device.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1203. Attributes summary</caption>
+<caption class="title">Table 1204. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71048,7 +71097,7 @@ If it supported we use virtio driver for SCSI guest device.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1204. Links summary</caption>
+<caption class="title">Table 1205. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71168,7 +71217,7 @@ This statistics sub-collection is read-only.
 <p>Type representing a Virtual LAN (VLAN) type.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1205. Attributes summary</caption>
+<caption class="title">Table 1206. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71196,7 +71245,7 @@ This statistics sub-collection is read-only.
 <p>Represents a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1206. Attributes summary</caption>
+<caption class="title">Table 1207. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71749,7 +71798,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 Optionally set by user when shutting down the virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1207. Links summary</caption>
+<caption class="title">Table 1208. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -71961,7 +72010,7 @@ is used to track history.</p>
 <div class="sect2">
 <h3 id="types/vm_affinity"><a class="anchor" href="#types/vm_affinity"></a>7.287. VmAffinity <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1208. Values summary</caption>
+<caption class="title">Table 1209. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -71995,7 +72044,7 @@ is used to track history.</p>
 This is used by virtual machines, templates and instance types.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1209. Attributes summary</caption>
+<caption class="title">Table 1210. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72403,7 +72452,7 @@ memory while the virtual machine is running.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1210. Links summary</caption>
+<caption class="title">Table 1211. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72444,7 +72493,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <div class="sect2">
 <h3 id="types/vm_device_type"><a class="anchor" href="#types/vm_device_type"></a>7.289. VmDeviceType <span class="small">enum</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1211. Values summary</caption>
+<caption class="title">Table 1212. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -72470,7 +72519,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <div class="sect2">
 <h3 id="types/vm_placement_policy"><a class="anchor" href="#types/vm_placement_policy"></a>7.290. VmPlacementPolicy <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1212. Attributes summary</caption>
+<caption class="title">Table 1213. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72492,7 +72541,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1213. Links summary</caption>
+<caption class="title">Table 1214. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72520,7 +72569,7 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>Type represeting a virtual machines pool.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1214. Attributes summary</caption>
+<caption class="title">Table 1215. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72642,7 +72691,7 @@ not created). The state of the virtual machine is preserved even when the virtua
 different user.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1215. Links summary</caption>
+<caption class="title">Table 1216. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -72708,7 +72757,7 @@ the pool&#8217;s template.</p>
 <p>Type represeting the deallocation policy of virtual machines in a virtual machines pool.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1216. Values summary</caption>
+<caption class="title">Table 1217. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -72759,7 +72808,7 @@ explicitly by removing the user&#8217;s permissions on that virtual machine.</p>
 <p>Type represeting a status of a virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1217. Values summary</caption>
+<caption class="title">Table 1218. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -72915,7 +72964,7 @@ unresponsive, the virtual machine gets paused.</p>
 in the moment the storage gets available again.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1218. Values summary</caption>
+<caption class="title">Table 1219. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -72981,7 +73030,7 @@ want the virtual machine to get resumed.</p>
 <p>Type containing information related to virtual machines on a particular host.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1219. Attributes summary</caption>
+<caption class="title">Table 1220. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73019,7 +73068,7 @@ want the virtual machine to get resumed.</p>
 <p>Type representing what the virtual machine is optimized for.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1220. Values summary</caption>
+<caption class="title">Table 1221. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -73146,7 +73195,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 <div class="sect2">
 <h3 id="types/vnic_pass_through"><a class="anchor" href="#types/vnic_pass_through"></a>7.297. VnicPassThrough <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1221. Attributes summary</caption>
+<caption class="title">Table 1222. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73174,7 +73223,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 <p>Describes whether the vNIC is to be implemented as a pass-through device or a virtual one.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1222. Values summary</caption>
+<caption class="title">Table 1223. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -73203,7 +73252,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 <p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nic">NIC</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1223. Attributes summary</caption>
+<caption class="title">Table 1224. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73333,7 +73382,7 @@ Enabling port mirroring reduces the privacy of other network users.
 </table>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1224. Links summary</caption>
+<caption class="title">Table 1225. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73447,7 +73496,7 @@ NIC.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1225. Attributes summary</caption>
+<caption class="title">Table 1226. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73474,7 +73523,7 @@ NIC.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1226. Links summary</caption>
+<caption class="title">Table 1227. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73499,7 +73548,7 @@ NIC.</p>
 <div class="sect2">
 <h3 id="types/volume_group"><a class="anchor" href="#types/volume_group"></a>7.301. VolumeGroup <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1227. Attributes summary</caption>
+<caption class="title">Table 1228. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73537,7 +73586,7 @@ NIC.</p>
 <p>This type represents a watchdog configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1228. Attributes summary</caption>
+<caption class="title">Table 1229. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73589,7 +73638,7 @@ NIC.</p>
 <p>Model of watchdog device. Currently supported only I6300ESB.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1229. Links summary</caption>
+<caption class="title">Table 1230. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73640,7 +73689,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>This type describes available watchdog actions.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1230. Values summary</caption>
+<caption class="title">Table 1231. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -73687,7 +73736,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <p>This type represents the watchdog model.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1231. Values summary</caption>
+<caption class="title">Table 1232. Values summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -73734,7 +73783,7 @@ machines.</p>
 <div class="sect2">
 <h3 id="types/weight"><a class="anchor" href="#types/weight"></a>7.305. Weight <span class="small">struct</span></h3>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1232. Attributes summary</caption>
+<caption class="title">Table 1233. Attributes summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -73776,7 +73825,7 @@ machines.</p>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1233. Links summary</caption>
+<caption class="title">Table 1234. Links summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -76191,7 +76240,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 13:15:35 UTC
+Last updated 2017-11-08 08:13:17 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
