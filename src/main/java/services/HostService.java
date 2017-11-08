@@ -385,7 +385,12 @@ public interface HostService extends MeasurableService {
     }
 
     /**
-     * Installs VDSM and related software on the host. The host type defines additional parameters for the action.
+     * Installs the latest version of VDSM and related software on the host.
+     *
+     * The action also performs every configuration steps on the host which is done during adding host to the engine:
+     * kdump configuration, hosted-engine deploy, kernel options changes, etc.
+     *
+     * The host type defines additional parameters for the action.
      *
      * Example of installing a host, using `curl` and JSON, plain:
      *
