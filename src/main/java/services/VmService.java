@@ -142,8 +142,9 @@ public interface VmService extends MeasurableService {
     }
 
     /**
-     * Exports a virtual machine to an export domain.
+     * Exports the virtual machine.
      *
+     * A virtual machine can be exported to an export domain.
      * For example, to export virtual machine `123` to the export domain `myexport`:
      *
      * [source]
@@ -164,10 +165,32 @@ public interface VmService extends MeasurableService {
      * </action>
      * ----
      *
+     * Since version 4.2 of the engine it is also possible to export a virtual machine as a virtual appliance (OVA).
+     * For example, to export virtual machine `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/export
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     *   <directory>/home/ovirt</directory>
+     *   <filename>myvm.ova</filename>
+     * </action>
+     * ----
+     *
      * @author Tal Nisan <tisan@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 28 Mar 2017
-     * @status updated_by_docs
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 10 Nov 2017
+     * @status added
      */
     interface Export {
         /**
@@ -211,11 +234,70 @@ public interface VmService extends MeasurableService {
          */
         @In Boolean async();
 
-        @InputDetail
-        default void inputDetail() {
-            optional(discardSnapshots());
-            optional(exclusive());
-            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        /**
+         * Exports a virtual machine to an export domain.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @date 10 Nov 2017
+         * @status added
+         */
+        interface ToExportDomain extends Export {
+            @InputDetail
+            default void inputDetail() {
+                optional(discardSnapshots());
+                optional(exclusive());
+                or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+            }
+        }
+
+        /**
+         * Exports a virtual machine as an OVA file to a given path on a specified host.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @date 09 Nov 2017
+         * @status added
+         * @since 4.2
+         */
+        interface ToPathOnHost extends Export {
+            /**
+             * The host to generate the OVA file on.
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @date 09 Nov 2017
+             * @status added
+             * @since 4.2
+             */
+            @In Host host();
+
+            /**
+             * An absolute path of a directory on the host to generate the OVA file in.
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @date 09 Nov 2017
+             * @status added
+             * @since 4.2
+             */
+            @In String directory();
+
+            /**
+             * The name of the OVA file.
+             *
+             * This is an optional parameter, if it is not specified then the name of OVA file is determined according
+             * to the name of the virtual machine. It will conform the following pattern: "<virtual machine name>.ova".
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @date 14 Nov 2017
+             * @status added
+             * @since 4.2
+             */
+            @In String filename();
+
+            @InputDetail
+            default void inputDetail() {
+                mandatory(directory());
+                optional(filename());
+                or(mandatory(host().id()), mandatory(host().name()));
+            }
         }
     }
 
