@@ -207,7 +207,7 @@ public interface VmService extends MeasurableService {
         default void inputDetail() {
             optional(discardSnapshots());
             optional(exclusive());
-            or(optional(storageDomain().id()), optional(storageDomain().name()));
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
         }
     }
 
