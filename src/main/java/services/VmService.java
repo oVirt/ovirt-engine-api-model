@@ -192,6 +192,14 @@ public interface VmService extends MeasurableService {
          */
         @In Boolean exclusive();
 
+        /**
+         * The (export) storage domain to export the virtual machine to.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 14 Nov 2017
+         * @status updated_by_docs
+         */
         @In StorageDomain storageDomain();
 
         /**
