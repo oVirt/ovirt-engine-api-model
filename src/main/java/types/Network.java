@@ -255,4 +255,15 @@ public interface Network extends Identified {
      * @since 4.2
      */
     @Link OpenStackNetworkProvider externalProvider();
+
+    /**
+     * An optional reference to a network that should be used for physical network access. Valid only if
+     * `external_provider` is specified.
+     *
+     * @author Petr Horacek <phoracek@redhat.com>
+     * @date 7 November 2017
+     * @status added
+     * @since 4.2
+     */
+    @Link Network externalProviderPhysicalNetwork();
 }

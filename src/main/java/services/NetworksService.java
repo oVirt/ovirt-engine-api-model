@@ -119,6 +119,7 @@ public interface NetworksService {
             optional(network().vlan().id());
             optional(network().usages()[COLLECTION]);
             optional(network().externalProvider().id());
+            optional(network().externalProviderPhysicalNetwork().id());
         }
         @In @Out Network network();
     }
