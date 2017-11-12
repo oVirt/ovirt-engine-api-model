@@ -29,7 +29,6 @@ import types.Vm;
 import types.VnicProfileMapping;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
-import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
@@ -101,14 +100,19 @@ public interface StorageDomainVmService {
      * </action>
      * ----
      *
+     * If you register an entity without specifying the cluster ID or name,
+     * the cluster name from the entity's OVF will be used (unless the register request also includes the
+     * cluster mapping).
+     *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 20 Nov 2017
+     * @status updated_by_docs
      */
     interface Import {
         @InputDetail
         default void inputDetail() {
-            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            or(optional(cluster().id()), optional(cluster().name()));
             optional(clone());
             optional(exclusive());
             optional(vm().name());
@@ -218,7 +222,7 @@ public interface StorageDomainVmService {
 
         @InputDetail
         default void inputDetail() {
-            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            or(optional(cluster().id()), optional(cluster().name()));
             optional(registrationConfiguration());
         }
     }

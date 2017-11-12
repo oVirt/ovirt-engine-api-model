@@ -30,7 +30,6 @@ import types.Vm;
 import types.VnicProfileMapping;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
-import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
@@ -65,14 +64,19 @@ public interface StorageDomainTemplateService {
      * </action>
      * ----
      *
+     * If you register an entity without specifying the cluster ID or name,
+     * the cluster name from the entity's OVF will be used (unless the register request also includes the
+     * cluster mapping).
+     *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 16 Sep 2016
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 20 Nov 2017
+     * @status updated_by_docs
      */
     interface Import {
         @InputDetail
         default void inputDetail() {
-            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            or(optional(cluster().id()), optional(cluster().name()));
             optional(clone());
             optional(exclusive());
             optional(template().name());
@@ -82,12 +86,13 @@ public interface StorageDomainTemplateService {
         /**
          * Use the optional `clone` parameter to generate new UUIDs for the imported template and its entities.
          *
-         * The user might want to import a template with the `clone` parameter set to `false` when importing a template
-         * from an export domain, with templates that was exported by a different {product-name} environment.
+         * You can import a template with the `clone` parameter set to `false` when importing a template
+         * from an export domain, with templates that were exported by a different {product-name} environment.
          *
          * @author Amit Aviram <aaviram@redhat.com>
-         * @date 16 Sep 2016
-         * @status added
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 20 Nov 2017
+         * @status updated_by_docs
          */
         @In Boolean clone();
         @In Cluster cluster();
@@ -103,17 +108,18 @@ public interface StorageDomainTemplateService {
     }
 
     /**
-     * Register the Template means importing the Template from the data domain, by inserting the configuration of the
-     * Template and disks into the DB without the copy process.
+     * Register the Template means importing the Template from the data domain by inserting the configuration of the
+     * Template and disks into the database without the copy process.
      *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
-     * @status added
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 20 Nov 2017
+     * @status updated_by_docs
      */
     interface Register {
         @InputDetail
         default void inputDetail() {
-            or(mandatory(cluster().id()), mandatory(cluster().name()));
+            or(optional(cluster().id()), optional(cluster().name()));
             optional(clone());
             optional(exclusive());
             optional(template().name());
@@ -127,13 +133,14 @@ public interface StorageDomainTemplateService {
         /**
          * Indicates whether a template is allowed to be registered with only some of its disks.
          *
-         * If this flag is `true`, the engine will not fail in the validation process if an image is not found, but
+         * If this flag is `true`, the system will not fail in the validation process if an image is not found, but
          * instead it will allow the template to be registered without the missing disks. This is mainly used during
          * registration of a template when some of the storage domains are not available. The default value is `false`.
          *
          * @author Maor Lipchuk <mlipchuk@redhat.com>
-         * @date 17 Nov 2016
-         * @status added
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 20 Nov 2017
+         * @status updated_by_docs
          * @since 4.1
          */
         @In Boolean allowPartialImport();
