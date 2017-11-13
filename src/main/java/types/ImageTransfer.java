@@ -33,7 +33,7 @@ public interface ImageTransfer extends Identified {
 
     /**
      * The URL of the proxy server that the user inputs or outputs to. This attribute is
-     * available only if the image transfer entity is in the <<types/image_transfer_phase, transferring>>
+     * available only if the image transfer is in the <<types/image_transfer_phase, transferring>>
      * phase. See `phase` for details.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -43,6 +43,21 @@ public interface ImageTransfer extends Identified {
      * @since 4.0.4
      */
     String proxyUrl();
+
+    /**
+     * The URL of the daemon server that the user can input or output to directly.
+     *
+     * This is as an alternative to the `proxy_url`. I.e. if the client has access to the host machine, it could bypass
+     * the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
+     * available only if the image transfer is in the <<types/image_transfer_phase, transferring>>
+     * phase. See `phase` for details.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 13 Nov 2017
+     * @status added
+     * @since 4.2.0
+     */
+    String transferUrl();
 
     /**
      * The signed ticket that should be attached as an `Authentication` header in the
