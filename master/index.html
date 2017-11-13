@@ -25500,6 +25500,13 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+account.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -25517,8 +25524,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of jobs to return.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned jobs.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/jobs/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/jobs/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
+<div class="paragraph">
+<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
+ignoring case set it to <code>false</code>.</p>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/jobs/methods/list/parameters/follow"><a class="anchor" href="#services/jobs/methods/list/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -76251,7 +76272,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 09:50:20 UTC
+Last updated 2017-11-13 09:04:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
