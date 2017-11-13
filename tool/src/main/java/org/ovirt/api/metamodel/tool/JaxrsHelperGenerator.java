@@ -207,15 +207,15 @@ public class JaxrsHelperGenerator extends JavaGenerator {
             if (i!=0 || startWithOperator) {
                 builder.append(operator.getPaddedSign());
             }
-            builder.append(paramName).append(getAttributePath(list.subList(0, i+1)));
-            if (!builder.toString().endsWith(".size()==0")) {
+            builder.append(paramName).append(getAttributePath(list.subList(0, i+1), operator));
+            if ( (!builder.toString().endsWith(".size()==0")) && (!builder.toString().endsWith(".size()!=0")) ) {
                 builder.append(operator.comaprison).append("null");
             }
         }
         return builder.toString();
     }
 
-    private String getAttributePath(List<MemberInvolvementTree> list) {
+    private String getAttributePath(List<MemberInvolvementTree> list, Operator operator) {
         StringBuilder attributePath = new StringBuilder();
         for (int i=0; i<list.size(); i++) {
             MemberInvolvementTree current = list.get(i);
@@ -224,7 +224,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                 Name name = ((ListType)current.getType()).getElementType().getName();
                 String getterName = javaNames.getJavaClassStyleName(name) + "s";
                 if (i==list.size()-1) { //the last element of the expression is a collection
-                    attributePath.append(".get").append(getterName).append("().size()==0");
+                    attributePath.append(".get").append(getterName).append(operator==Operator.AND ? "().size()!=0" : "().size()==0");
                 }
                 else {
                     //TODO: !=null and .isEmpty() checks for collections missing at this point due to complexity
