@@ -18,6 +18,7 @@ package org.ovirt.api.metamodel.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.ovirt.engine.api.builders.V4Builders.boot;
 import static org.ovirt.engine.api.builders.V4Builders.cpu;
 import static org.ovirt.engine.api.builders.V4Builders.disk;
 import static org.ovirt.engine.api.builders.V4Builders.sso;
@@ -39,12 +40,11 @@ import org.apache.commons.io.output.NullOutputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.ovirt.api.metamodel.runtime.xml.XmlWriter;
-import org.ovirt.engine.api.types.V4Sso;
+import org.ovirt.engine.api.types.V4BootDevice;
 import org.ovirt.engine.api.types.V4SsoMethodId;
 import org.ovirt.engine.api.types.V4Vm;
 import org.ovirt.engine.api.types.V4VmType;
 import org.ovirt.engine.api.xml.V4XmlVmWriter;
-import types.SsoMethodId;
 
 /**
  * Tests for the classes that convert V4 objects into XML. Note that the tests are centered around an specific class,
@@ -421,6 +421,33 @@ public class XmlWriterTest {
         V4Vm object = vm().properties(strings).build();
         assertEquals(
             "<vm><properties>value1</properties><properties>value2</properties></vm>",
+            objectToXml(object)
+        );
+    }
+
+    /**
+     * Checks that lists of enum values are written correctly.
+     */
+    @Test
+    public void testWriteEnumList() {
+        V4Vm object = vm()
+            .boot(
+                boot()
+                .devices(
+                    V4BootDevice.CDROM,
+                    V4BootDevice.HD
+                )
+            )
+            .build();
+        assertEquals(
+            "<vm>" +
+              "<boot>" +
+                "<devices>" +
+                  "<device>cdrom</device>" +
+                  "<device>hd</device>" +
+                "</devices>" +
+              "</boot>" +
+            "</vm>",
             objectToXml(object)
         );
     }

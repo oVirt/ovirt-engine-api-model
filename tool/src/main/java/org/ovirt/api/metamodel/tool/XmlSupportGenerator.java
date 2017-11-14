@@ -643,9 +643,21 @@ public class XmlSupportGenerator extends JavaGenerator {
         else if (type instanceof ListType) {
             ListType listType = (ListType) type;
             Type elementType = listType.getElementType();
-            if (elementType instanceof StructType || elementType instanceof EnumType) {
+            if (elementType instanceof StructType) {
                 JavaClassName writerName = javaTypes.getXmlWriterName(elementType);
                 String elementTag = schemaNames.getSchemaTagName(elementType.getName());
+                javaBuffer.addImport(writerName);
+                javaBuffer.addLine(
+                    "%1$s.writeMany(object.%2$s().iterator(), \"%3$s\", \"%4$s\", writer);",
+                    writerName.getSimpleName(),
+                    field,
+                    elementTag,
+                    tag
+                );
+            }
+            else if (elementType instanceof EnumType) {
+                JavaClassName writerName = javaTypes.getXmlWriterName(elementType);
+                String elementTag = schemaNames.getSchemaTagName(names.getSingular(name));
                 javaBuffer.addImport(writerName);
                 javaBuffer.addLine(
                     "%1$s.writeMany(object.%2$s().iterator(), \"%3$s\", \"%4$s\", writer);",
