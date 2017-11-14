@@ -28380,7 +28380,7 @@ the attributes will be ignored.</p>
 <div class="sect2">
 <h3 id="services/openstack_network_provider"><a class="anchor" href="#services/openstack_network_provider"></a>6.149. OpenstackNetworkProvider</h3>
 <div class="paragraph">
-<p>This service manages OpenStack network provider.</p>
+<p>This service manages the OpenStack network provider.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 450. Methods summary</caption>
@@ -62849,6 +62849,11 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines the external provider authentication URL address.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto_sync</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -62921,7 +62926,42 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/external_plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/external_plugin_type"></a>7.176.1. external_plugin_type</h4>
+<h4 id="types/open_stack_network_provider/attributes/auto_sync"><a class="anchor" href="#types/open_stack_network_provider/attributes/auto_sync"></a>7.176.1. auto_sync</h4>
+<div class="paragraph">
+<p>Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p>
+</div>
+<div class="paragraph">
+<p>If <code>true</code>, the networks of this provider are automatically and cyclically synchronized to oVirt in
+the background.
+This means that all new networks of this provider are imported, and all discarded networks are removed
+from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.</p>
+</div>
+<div class="paragraph">
+<p>The automatically initiated import triggers the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The networks of the external provider will be imported to every <a href="#types/data_center">data center</a>
+in the data centers of the clusters that have that external provider as the default provider.</p>
+</li>
+<li>
+<p>A <a href="#types/vnic_profile">vNIC profile</a> will be created for each involved data center and network.</p>
+</li>
+<li>
+<p>The networks will be assigned to each cluster that has that external provider as the default provider.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All users are allowed to use the new vNIC Profile.</p>
+</div>
+<div class="paragraph">
+<p>The default is <code>false</code> for backwards compatibility.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/external_plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/external_plugin_type"></a>7.176.2. external_plugin_type</h4>
 <div class="paragraph">
 <p>Network plug-in type.</p>
 </div>
@@ -62933,7 +62973,7 @@ driver implementation to install on newly added hosts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/plugin_type"></a>7.176.2. plugin_type</h4>
+<h4 id="types/open_stack_network_provider/attributes/plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/plugin_type"></a>7.176.3. plugin_type</h4>
 <div class="paragraph">
 <p>Network plug-in type.</p>
 </div>
@@ -62951,7 +62991,7 @@ be ignored.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.3. read_only</h4>
+<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.4. read_only</h4>
 <div class="paragraph">
 <p>Indicates whether the provider is read-only.</p>
 </div>
@@ -62961,7 +63001,7 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.4. requires_authentication</h4>
+<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.5. requires_authentication</h4>
 <div class="paragraph">
 <p>Defines whether provider authentication is required or not.</p>
 </div>
@@ -76272,7 +76312,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 09:04:15 UTC
+Last updated 2017-11-14 07:23:21 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
