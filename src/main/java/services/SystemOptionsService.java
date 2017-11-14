@@ -26,6 +26,7 @@ import org.ovirt.api.metamodel.annotations.Service;
  * @status added
  * @since 4.2
  */
+@Service
 public interface SystemOptionsService {
     /**
      * Returns a reference to the service that provides values of specific configuration option.
