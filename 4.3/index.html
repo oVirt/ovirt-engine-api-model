@@ -25500,6 +25500,13 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+account.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -25517,8 +25524,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of jobs to return.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned jobs.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/jobs/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/jobs/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
+<div class="paragraph">
+<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
+account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
+ignoring case set it to <code>false</code>.</p>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/jobs/methods/list/parameters/follow"><a class="anchor" href="#services/jobs/methods/list/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -27270,6 +27291,24 @@ data center.</p>
 &lt;/network&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To create a network named <code>exnetwork</code> on top of an external <em>OpenStack</em> network provider <code>456</code> send a request
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/networks</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;network&gt;
+  &lt;name&gt;exnetwork&lt;/name&gt;
+  &lt;external_provider id="456"/&gt;
+  &lt;data_center id="123"/&gt;
+&lt;/network&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 425. Parameters summary</caption>
 <colgroup>
@@ -28359,7 +28398,7 @@ the attributes will be ignored.</p>
 <div class="sect2">
 <h3 id="services/openstack_network_provider"><a class="anchor" href="#services/openstack_network_provider"></a>6.149. OpenstackNetworkProvider</h3>
 <div class="paragraph">
-<p>This service manages OpenStack network provider.</p>
+<p>This service manages the OpenStack network provider.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 450. Methods summary</caption>
@@ -40103,9 +40142,9 @@ like this:</p>
 <p>The disks of the template can be customized, making some of their characteristics different from the disks of the
 original virtual machine. To do so use the <code>vm.disk_attachments</code> attribute, specifying the identifier of the disk
 of the original virtual machine and the characteristics that you want to change. For example, if the original
-virtual machine has a disk with the identifier <code>456</code>, and, for that disk, you want to change the format to
-<a href="#types/disk_format"><em>Copy On Write</em></a> and make the disk <a href="#types/disk">sparse</a>, send a request body
-like this:</p>
+virtual machine has a disk with the identifier <code>456</code>, and, for that disk, you want to change the name to <code>mydisk</code>
+the format to <a href="#types/disk_format"><em>Copy On Write</em></a> and make it <a href="#types/disk">sparse</a>, send a request body like
+this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -40115,6 +40154,7 @@ like this:</p>
     &lt;disk_attachments&gt;
       &lt;disk_attachment&gt;
         &lt;disk id="456"&gt;
+          &lt;name&gt;mydisk&lt;/name&gt;
           &lt;format&gt;cow&lt;/format&gt;
           &lt;sparse&gt;true&lt;/sparse&gt;
         &lt;/disk&gt;
@@ -41156,7 +41196,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exports a virtual machine to an export domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exports the virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>freezefilesystems</code></p></td>
@@ -41389,10 +41429,11 @@ empty <code>action</code>:</p>
 <div class="sect3">
 <h4 id="services/vm/methods/export"><a class="anchor" href="#services/vm/methods/export"></a>6.238.5. export <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Exports a virtual machine to an export domain.</p>
+<p>Exports the virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>For example, to export virtual machine <code>123</code> to the export domain <code>myexport</code>:</p>
+<p>A virtual machine can be exported to an export domain.
+For example, to export virtual machine <code>123</code> to the export domain <code>myexport</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -41410,6 +41451,29 @@ empty <code>action</code>:</p>
   &lt;/storage_domain&gt;
   &lt;exclusive&gt;true&lt;/exclusive&gt;
   &lt;discard_snapshots&gt;true&lt;/discard_snapshots&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the engine it is also possible to export a virtual machine as a virtual appliance (OVA).
+For example, to export virtual machine <code>123</code> as an OVA file named <code>myvm.ova</code> that is placed in the directory <code>/home/ovirt/</code> on host <code>myhost</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/export</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;host&gt;
+    &lt;name&gt;myhost&lt;/name&gt;
+  &lt;/host&gt;
+  &lt;directory&gt;/home/ovirt&lt;/directory&gt;
+  &lt;filename&gt;myvm.ova&lt;/filename&gt;
 &lt;/action&gt;</code></pre>
 </div>
 </div>
@@ -41454,7 +41518,7 @@ it already exists in the export domain (override).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The (export) storage domain to export the virtual machine to.</p></td>
 </tr>
 </tbody>
 </table>
@@ -47510,6 +47574,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_snapshots</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -47541,6 +47610,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fence_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filename</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -50331,19 +50405,37 @@ for this cluster.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ova</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ConfigurationType of type standard OVF.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ovf</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ConfigurationType of type OVF.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ConfigurationType of type oVirt-compatible OVF.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/configuration_type/values/ovf"><a class="anchor" href="#types/configuration_type/values/ovf"></a>7.32.1. ovf</h4>
+<h4 id="types/configuration_type/values/ova"><a class="anchor" href="#types/configuration_type/values/ova"></a>7.32.1. ova</h4>
 <div class="paragraph">
-<p>ConfigurationType of type OVF.</p>
+<p>ConfigurationType of type standard OVF.</p>
 </div>
 <div class="paragraph">
-<p>OVF stands for Open Virtualization Format, and it is is an open standard for packaging and distributing of a
-virtual machine and software to be run in a virtual machine.</p>
+<p>The provided virtual machine configuration conforms with the Open Virtualization Format (OVF) standard.
+This value should be used for an OVF configuration that is extracted from an Open Virtual Appliance (OVA) that
+was generated by oVirt or by other vendors.
+See <a href="https://www.dmtf.org/standards/ovf">here</a> for the OVF specification.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/configuration_type/values/ovf"><a class="anchor" href="#types/configuration_type/values/ovf"></a>7.32.2. ovf</h4>
+<div class="paragraph">
+<p>ConfigurationType of type oVirt-compatible OVF.</p>
+</div>
+<div class="paragraph">
+<p>The provided virtual machine configuration conforms with the oVirt-compatible form of the Open Virtualization
+Format (OVF).
+Note that the oVirt-compatible form of the OVF may differ from the OVF standard that is used by other vendors.
+This value should be used for an OVF configuration that is taken from a storage domain.</p>
 </div>
 </div>
 </div>
@@ -58185,6 +58277,12 @@ to boot and install a virtual machine.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>active</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether there&#8217;s at least one active session for this transfer, i,e
+there&#8217;s at least one live transfer session between the client and the daemon.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -58226,6 +58324,16 @@ receiving image data (<code>download</code>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The signed ticket that should be attached as an <code>Authentication</code> header in the
 HTTPS request for the proxy server to input or output to (See the <code>proxy_url</code> attribute).</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transfer_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the daemon server that the user can input or output to directly.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transferred</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the amount of transferred bytes.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect3">
@@ -58252,7 +58360,19 @@ documentation.</p>
 <h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.122.3. proxy_url</h4>
 <div class="paragraph">
 <p>The URL of the proxy server that the user inputs or outputs to. This attribute is
-available only if the image transfer entity is in the <a href="#types/image_transfer_phase">transferring</a>
+available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
+phase. See <code>phase</code> for details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.122.4. transfer_url</h4>
+<div class="paragraph">
+<p>The URL of the daemon server that the user can input or output to directly.</p>
+</div>
+<div class="paragraph">
+<p>This is as an alternative to the <code>proxy_url</code>. I.e. if the client has access to the host machine, it could bypass
+the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
+available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
 phase. See <code>phase</code> for details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -58294,7 +58414,7 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.122.4. image</h4>
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.122.5. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -61075,6 +61195,16 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the data center that the network is a member of.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/open_stack_network_provider">OpenStackNetworkProvider</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_provider_physical_network</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional reference to a network that should be used for physical network access.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the labels assigned to the network.</p></td>
@@ -61102,6 +61232,22 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 <div class="paragraph">
 <p>A reference to the cluster this network is attached to. Will be filled only if the network is accessed from the
 cluster level.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.155.5. external_provider</h4>
+<div class="paragraph">
+<p>An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p>
+</div>
+<div class="paragraph">
+<p>If it is specified when a network is created, a matching <em>OpenStack</em> network will be also created.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.155.6. external_provider_physical_network</h4>
+<div class="paragraph">
+<p>An optional reference to a network that should be used for physical network access. Valid only if
+<code>external_provider</code> is specified.</p>
 </div>
 </div>
 </div>
@@ -62809,6 +62955,11 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines the external provider authentication URL address.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto_sync</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -62881,7 +63032,42 @@ This statistics sub-collection is read-only.
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/external_plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/external_plugin_type"></a>7.176.1. external_plugin_type</h4>
+<h4 id="types/open_stack_network_provider/attributes/auto_sync"><a class="anchor" href="#types/open_stack_network_provider/attributes/auto_sync"></a>7.176.1. auto_sync</h4>
+<div class="paragraph">
+<p>Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p>
+</div>
+<div class="paragraph">
+<p>If <code>true</code>, the networks of this provider are automatically and cyclically synchronized to oVirt in
+the background.
+This means that all new networks of this provider are imported, and all discarded networks are removed
+from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.</p>
+</div>
+<div class="paragraph">
+<p>The automatically initiated import triggers the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The networks of the external provider will be imported to every <a href="#types/data_center">data center</a>
+in the data centers of the clusters that have that external provider as the default provider.</p>
+</li>
+<li>
+<p>A <a href="#types/vnic_profile">vNIC profile</a> will be created for each involved data center and network.</p>
+</li>
+<li>
+<p>The networks will be assigned to each cluster that has that external provider as the default provider.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All users are allowed to use the new vNIC Profile.</p>
+</div>
+<div class="paragraph">
+<p>The default is <code>false</code> for backwards compatibility.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/external_plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/external_plugin_type"></a>7.176.2. external_plugin_type</h4>
 <div class="paragraph">
 <p>Network plug-in type.</p>
 </div>
@@ -62893,7 +63079,7 @@ driver implementation to install on newly added hosts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/plugin_type"></a>7.176.2. plugin_type</h4>
+<h4 id="types/open_stack_network_provider/attributes/plugin_type"><a class="anchor" href="#types/open_stack_network_provider/attributes/plugin_type"></a>7.176.3. plugin_type</h4>
 <div class="paragraph">
 <p>Network plug-in type.</p>
 </div>
@@ -62911,7 +63097,7 @@ be ignored.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.3. read_only</h4>
+<h4 id="types/open_stack_network_provider/attributes/read_only"><a class="anchor" href="#types/open_stack_network_provider/attributes/read_only"></a>7.176.4. read_only</h4>
 <div class="paragraph">
 <p>Indicates whether the provider is read-only.</p>
 </div>
@@ -62921,7 +63107,7 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.4. requires_authentication</h4>
+<h4 id="types/open_stack_network_provider/attributes/requires_authentication"><a class="anchor" href="#types/open_stack_network_provider/attributes/requires_authentication"></a>7.176.5. requires_authentication</h4>
 <div class="paragraph">
 <p>Defines whether provider authentication is required or not.</p>
 </div>
@@ -65727,32 +65913,24 @@ takes place in the oVirt Engine.</p>
       &lt;/registration_domain_mapping&gt;
     &lt;/domain_mappings&gt;
     &lt;lun_mappings&gt;
-      &lt;registration_lun_mapping&gt;
-        &lt;from id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
-        &lt;/from&gt;
-        &lt;to id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
-          &lt;alias&gt;weTestLun&lt;/alias&gt;
-          &lt;lun_storage&gt;
-            &lt;type&gt;iscsi&lt;/type&gt;
-            &lt;logical_units&gt;
-              &lt;logical_unit id="36001405fb1ddb4b91e44078b10f8cde2"&gt;
-                &lt;product_id&gt;fileio12&lt;/product_id&gt;
-                &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
-                &lt;lun_mapping&gt;1&lt;/lun_mapping&gt;
-                &lt;discard_max_size&gt;4194304&lt;/discard_max_size&gt;
-                &lt;discard_zeroes_data&gt;false&lt;/discard_zeroes_data&gt;
-                &lt;serial&gt;SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94&lt;/serial&gt;
-                &lt;physical_volume_id&gt;4194304&lt;/physical_volume_id&gt;
-                &lt;size&gt;5368709120&lt;/size&gt;
-                &lt;address&gt;10.35.16.55&lt;/address&gt;
-                &lt;port&gt;3260&lt;/port&gt;
-                &lt;portal&gt;1&lt;/portal&gt;
-                &lt;target&gt;iqn.2015-07.com.mlipchuk6.redhat:444&lt;/target&gt;
+     &lt;registration_lun_mapping&gt;
+       &lt;from id="111"&gt;
+       &lt;/from&gt;
+       &lt;to id="222"&gt;
+         &lt;alias&gt;weTestLun&lt;/alias&gt;
+         &lt;lun_storage&gt;
+           &lt;type&gt;iscsi&lt;/type&gt;
+           &lt;logical_units&gt;
+              &lt;logical_unit id="36001405fb1ddb4b91e44078f1fffcfef"&gt;
+                 &lt;address&gt;44.33.11.22&lt;/address&gt;
+                 &lt;port&gt;3260&lt;/port&gt;
+                 &lt;portal&gt;1&lt;/portal&gt;
+                 &lt;target&gt;iqn.2017-11.com.name.redhat:444&lt;/target&gt;
               &lt;/logical_unit&gt;
-            &lt;/logical_units&gt;
-          &lt;/lun_storage&gt;
-        &lt;/to&gt;
-      &lt;/registration_lun_mapping&gt;
+           &lt;/logical_units&gt;
+         &lt;/lun_storage&gt;
+       &lt;/to&gt;
+     &lt;/registration_lun_mapping&gt;
     &lt;/lun_mappings&gt;
     &lt;affinity_group_mappings&gt;
      &lt;registration_affinity_group_mapping&gt;
@@ -65909,31 +66087,25 @@ An example of an XML representation using this mapping:</p>
   &lt;registration_configuration&gt;
     &lt;lun_mappings&gt;
       &lt;registration_lun_mapping&gt;
-        &lt;from id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
-        &lt;/from&gt;
-        &lt;to id="418de86e-09b4-47b4-a923-419e7f5bd803"&gt;
-          &lt;alias&gt;weTestLun&lt;/alias&gt;
-          &lt;lun_storage&gt;
-            &lt;type&gt;iscsi&lt;/type&gt;
-            &lt;logical_units&gt;
-              &lt;logical_unit id="36001405fb1ddb4b91e44078b10f8cde2"&gt;
-                &lt;product_id&gt;fileio12&lt;/product_id&gt;
-                &lt;vendor_id&gt;LIO-ORG&lt;/vendor_id&gt;
-                &lt;lun_mapping&gt;1&lt;/lun_mapping&gt;
-                &lt;discard_max_size&gt;4194304&lt;/discard_max_size&gt;
-                &lt;discard_zeroes_data&gt;false&lt;/discard_zeroes_data&gt;
-                &lt;serial&gt;SLIO-ORG_fileio12_e546cafa-7546-4816-8b9f-609cbc938c94&lt;/serial&gt;
-                &lt;physical_volume_id&gt;4194304&lt;/physical_volume_id&gt;
-                &lt;size&gt;5368709120&lt;/size&gt;
-                &lt;address&gt;10.35.16.55&lt;/address&gt;
-                &lt;port&gt;3260&lt;/port&gt;
-                &lt;portal&gt;1&lt;/portal&gt;
-                &lt;target&gt;iqn.2015-07.com.mlipchuk6.redhat:444&lt;/target&gt;
+    &lt;lun_mappings&gt;
+     &lt;registration_lun_mapping&gt;
+       &lt;from id="111"&gt;
+       &lt;/from&gt;
+       &lt;to id="222"&gt;
+         &lt;alias&gt;weTestLun&lt;/alias&gt;
+         &lt;lun_storage&gt;
+           &lt;type&gt;iscsi&lt;/type&gt;
+           &lt;logical_units&gt;
+              &lt;logical_unit id="36001405fb1ddb4b91e44078f1fffcfef"&gt;
+                 &lt;address&gt;44.33.11.22&lt;/address&gt;
+                 &lt;port&gt;3260&lt;/port&gt;
+                 &lt;portal&gt;1&lt;/portal&gt;
+                 &lt;target&gt;iqn.2017-11.com.name.redhat:444&lt;/target&gt;
               &lt;/logical_unit&gt;
-            &lt;/logical_units&gt;
-          &lt;/lun_storage&gt;
-        &lt;/to&gt;
-      &lt;/registration_lun_mapping&gt;
+           &lt;/logical_units&gt;
+         &lt;/lun_storage&gt;
+       &lt;/to&gt;
+     &lt;/registration_lun_mapping&gt;
     &lt;/lun_mappings&gt;
   &lt;/registration_configuration&gt;
 &lt;/action&gt;</code></pre>
@@ -76246,7 +76418,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 08:47:34 UTC
+Last updated 2017-11-15 08:39:56 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
