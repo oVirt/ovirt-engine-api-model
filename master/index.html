@@ -27291,6 +27291,24 @@ data center.</p>
 &lt;/network&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To create a network named <code>exnetwork</code> on top of an external <em>OpenStack</em> network provider <code>456</code> send a request
+like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/networks</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;network&gt;
+  &lt;name&gt;exnetwork&lt;/name&gt;
+  &lt;external_provider id="456"/&gt;
+  &lt;data_center id="123"/&gt;
+&lt;/network&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 425. Parameters summary</caption>
 <colgroup>
@@ -61160,6 +61178,11 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the data center that the network is a member of.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/open_stack_network_provider">OpenStackNetworkProvider</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the labels assigned to the network.</p></td>
@@ -61187,6 +61210,15 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 <div class="paragraph">
 <p>A reference to the cluster this network is attached to. Will be filled only if the network is accessed from the
 cluster level.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.155.5. external_provider</h4>
+<div class="paragraph">
+<p>An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p>
+</div>
+<div class="paragraph">
+<p>If it is specified when a network is created, a matching <em>OpenStack</em> network will be also created.</p>
 </div>
 </div>
 </div>
@@ -76357,7 +76389,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-15 07:58:43 UTC
+Last updated 2017-11-15 08:14:16 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
