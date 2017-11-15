@@ -551,10 +551,44 @@ public interface HostService extends MeasurableService {
     /**
      * Discovers iSCSI targets on the host, using the initiator details.
      *
+     * For example, to discover iSCSI targets available in `myiscsi.example.com`,
+     * from host `123`, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/iscsidiscover
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <iscsi>
+     *     <address>myiscsi.example.com</address>
+     *   </iscsi>
+     * </action>
+     * ----
+     *
+     * The result will be like this:
+     *
+     * [source,xml]
+     * ----
+     * <discovered_targets>
+     *   <iscsi_details>
+     *     <address>10.35.1.72</address>
+     *     <port>3260</port>
+     *     <portal>10.35.1.72:3260,1</portal>
+     *     <target>iqn.2015-08.com.tgt:444</target>
+     *   </iscsi_details>
+     * </discovered_targets>
+     * ----
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
+     * @author Ala Hino <ahino@redhat.com>
      * @date 17 Oct 17
-     * @status updated_by_docs
+     * @status added
      */
     interface IscsiDiscover {
         @InputDetail
@@ -574,12 +608,27 @@ public interface HostService extends MeasurableService {
         /**
          * The iSCSI targets.
          *
+         * Since version 4.2 of the engine, this parameter is deprecated, use
+         * `discovered_targets` instead.
+         *
          * @author Oved Ourfali <oourfali@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
+         * @author Ala Hino <ahino@redhat.com>
          * @date 17 Oct 17
-         * @status updated_by_docs
+         * @status added
          */
+        @Deprecated
         @Out String[] iscsiTargets();
+
+        /**
+         * The discovered targets including all connection information.
+         *
+         * @author Ala Hino <ahino@redhat.com>
+         * @date 15 Nov 17
+         * @status added
+         * @since 4.2
+         */
+        @Out IscsiDetails[] discoveredTargets();
 
         /**
          * Indicates if the discovery should be performed asynchronously.
