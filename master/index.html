@@ -58325,6 +58325,11 @@ receiving image data (<code>download</code>).</p></td>
 HTTPS request for the proxy server to input or output to (See the <code>proxy_url</code> attribute).</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transfer_url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the daemon server that the user can input or output to directly.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transferred</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the amount of transferred bytes.</p></td>
@@ -58355,7 +58360,19 @@ documentation.</p>
 <h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.122.3. proxy_url</h4>
 <div class="paragraph">
 <p>The URL of the proxy server that the user inputs or outputs to. This attribute is
-available only if the image transfer entity is in the <a href="#types/image_transfer_phase">transferring</a>
+available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
+phase. See <code>phase</code> for details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.122.4. transfer_url</h4>
+<div class="paragraph">
+<p>The URL of the daemon server that the user can input or output to directly.</p>
+</div>
+<div class="paragraph">
+<p>This is as an alternative to the <code>proxy_url</code>. I.e. if the client has access to the host machine, it could bypass
+the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
+available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
 phase. See <code>phase</code> for details.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -58397,7 +58414,7 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.122.4. image</h4>
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.122.5. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -76401,7 +76418,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-15 08:22:05 UTC
+Last updated 2017-11-15 08:29:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
