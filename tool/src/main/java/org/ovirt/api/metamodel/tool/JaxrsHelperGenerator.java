@@ -272,7 +272,7 @@ public class JaxrsHelperGenerator extends JavaGenerator {
 
     private void closeSignatureDetectionMethod() {
         javaBuffer.addLine("");
-        javaBuffer.addLine("throw new IllegalArgumentException(\"No matching signature found, make sure that mandatory attributes are provided.\");");
+        javaBuffer.addLine("throw new ValidationException(\"No matching signature found, make sure that mandatory attributes are provided.\");");
         javaBuffer.addLine("}");
         javaBuffer.addLine("");
     }
