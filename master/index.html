@@ -61183,6 +61183,11 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>external_provider_physical_network</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional reference to a network that should be used for physical network access.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the labels assigned to the network.</p></td>
@@ -61219,6 +61224,13 @@ cluster level.</p>
 </div>
 <div class="paragraph">
 <p>If it is specified when a network is created, a matching <em>OpenStack</em> network will be also created.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.155.6. external_provider_physical_network</h4>
+<div class="paragraph">
+<p>An optional reference to a network that should be used for physical network access. Valid only if
+<code>external_provider</code> is specified.</p>
 </div>
 </div>
 </div>
@@ -76389,7 +76401,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-15 08:14:16 UTC
+Last updated 2017-11-15 08:22:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
