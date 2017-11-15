@@ -41178,7 +41178,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exports a virtual machine to an export domain.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exports the virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>freezefilesystems</code></p></td>
@@ -41411,10 +41411,11 @@ empty <code>action</code>:</p>
 <div class="sect3">
 <h4 id="services/vm/methods/export"><a class="anchor" href="#services/vm/methods/export"></a>6.238.5. export <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Exports a virtual machine to an export domain.</p>
+<p>Exports the virtual machine.</p>
 </div>
 <div class="paragraph">
-<p>For example, to export virtual machine <code>123</code> to the export domain <code>myexport</code>:</p>
+<p>A virtual machine can be exported to an export domain.
+For example, to export virtual machine <code>123</code> to the export domain <code>myexport</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -41432,6 +41433,29 @@ empty <code>action</code>:</p>
   &lt;/storage_domain&gt;
   &lt;exclusive&gt;true&lt;/exclusive&gt;
   &lt;discard_snapshots&gt;true&lt;/discard_snapshots&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the engine it is also possible to export a virtual machine as a virtual appliance (OVA).
+For example, to export virtual machine <code>123</code> as an OVA file named <code>myvm.ova</code> that is placed in the directory <code>/home/ovirt/</code> on host <code>myhost</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/export</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;host&gt;
+    &lt;name&gt;myhost&lt;/name&gt;
+  &lt;/host&gt;
+  &lt;directory&gt;/home/ovirt&lt;/directory&gt;
+  &lt;filename&gt;myvm.ova&lt;/filename&gt;
 &lt;/action&gt;</code></pre>
 </div>
 </div>
@@ -47532,6 +47556,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_snapshots</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -47563,6 +47592,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fence_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filename</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -76312,7 +76346,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-14 19:15:24 UTC
+Last updated 2017-11-15 07:52:31 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
