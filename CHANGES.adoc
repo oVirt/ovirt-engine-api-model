@@ -3,9 +3,22 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.13 / Nov 15 2017
+
+Bug fixes:
+
+* Revert the addition of `ImageTransfer.size` to the list of exceptions
+  of integer attributes that are represented using `xs:long` instead
+  of `xs:int`.
+
+* Fix bug in signature detection when a collection is involved.
+
+* Fix XML tag for list of enums
+  https://bugzilla.redhat.com/1512850[#1512850].
+
 == 1.2.12 / Nov 8 2017
 
-New Features:
+New features:
 
 * Add `ImageTransfer.size` and `ImageTransfer.transferred` to the list
   of exceptions of integer attributes that are represented using `xs:long`
