@@ -207,15 +207,15 @@ public class JaxrsHelperGenerator extends JavaGenerator {
             if (i!=0 || startWithOperator) {
                 builder.append(operator.getPaddedSign());
             }
-            builder.append(paramName).append(getAttributePath(list.subList(0, i+1), operator));
-            if ( (!builder.toString().endsWith(".size()==0")) && (!builder.toString().endsWith(".size()!=0")) ) {
+            builder.append(paramName).append(getAttributePath(list.subList(0, i+1), paramName,  operator));
+            if ( (!builder.toString().endsWith(".size() == 0")) && (!builder.toString().endsWith(".size() > 0")) ) {
                 builder.append(operator.comaprison).append("null");
             }
         }
         return builder.toString();
     }
 
-    private String getAttributePath(List<MemberInvolvementTree> list, Operator operator) {
+    private String getAttributePath(List<MemberInvolvementTree> list, String paramName, Operator operator) {
         StringBuilder attributePath = new StringBuilder();
         for (int i=0; i<list.size(); i++) {
             MemberInvolvementTree current = list.get(i);
@@ -224,17 +224,20 @@ public class JaxrsHelperGenerator extends JavaGenerator {
                 Name name = ((ListType)current.getType()).getElementType().getName();
                 String getterName = javaNames.getJavaClassStyleName(name) + "s";
                 if (i==list.size()-1) { //the last element of the expression is a collection
-                    attributePath.append(".get").append(getterName).append(operator==Operator.AND ? "().size()!=0" : "().size()==0");
+                    StringBuilder soFar = new StringBuilder(paramName).append(attributePath).append(".get").append(getterName).append("()");
+                    if (operator==Operator.AND) {
+                        attributePath.append("!=null && ").append(soFar).append("!=null && ");
+                        attributePath.append(soFar).append(".size() > 0");
+                    }
+                    else {
+                        attributePath.append("==null || ").append(soFar).append("==null || ");
+                        attributePath.append(soFar).append(".size() == 0");
+                    }
                 }
                 else {
-                    //TODO: !=null and .isEmpty() checks for collections missing at this point due to complexity
-                    //in adding them. Only the full check is added, e.g:
-                    //"disk.getTarget().getLogicalUnits().getLogicalUnits().get(0).getLunStorage()!=null"
-                    //this means the NullPointer or InderOutOfBound exceptions are possible for bad collection input
                     attributePath.append(".get").append(getterName).append("().get(0)");
                 }
             }
-
         }
         return attributePath.toString();
     }
