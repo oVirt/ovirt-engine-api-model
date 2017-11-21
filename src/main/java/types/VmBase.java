@@ -354,11 +354,33 @@ public interface VmBase extends Identified {
     Icon largeIcon();
 
     /**
-     * Reference to virtual machine's initialization configuration.
+     * Reference to the virtual machine's initialization configuration.
+     *
+     * NOTE: Since {product-name} 4.1.8 this property can be cleared by sending an empty tag.
+     *
+     * For example, to clear the `initialization` attribute send a request like this:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/vms/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <vm>
+     *   <initialization/>
+     * </vm>
+     * ----
+     *
+     * The response to such a request, and requests with the header `All-Content: true` will still contain this attribute.
      *
      * @author Marek Libra <mlibra@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 23 Nov 2017
+     * @status updated_by_docs
      */
     Initialization initialization();
 
