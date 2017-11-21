@@ -59,15 +59,28 @@ public interface VmBase extends Identified {
      * </vm>
      * ----
      *
+     * Memory hot plug is supported from {product-name} 3.6 onwards. You can use the example above to increase
+     * memory while the virtual machine is in state <<types/vm_status/values/up, up>>. The size increment must be
+     * dividable by the value of the `HotPlugMemoryBlockSizeMb` configuration value (256 MiB by default). If the memory
+     * size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+     * Each successful memory hot plug operation creates one or two new memory devices.
+     *
+     * Memory hot unplug is supported since {product-name} 4.2 onwards. Memory hot unplug can only be performed
+     * when the virtual machine is in state <<types/vm_status/values/up, up>>. Only previously hot plugged memory
+     * devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+     * of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+     * configuration without rounding.
+     *
      * NOTE: Memory in the example is converted to bytes using the following formula: +
      * 1 GiB = 2^30^ bytes = 1073741824 bytes.
      *
-     * NOTE: Memory hot plug is supported from {product-name} 3.6 onwards. You can use the example above to increase
-     * memory while the virtual machine is running.
+     * NOTE: {engine-name} internally rounds values down to whole MiBs (1MiB = 2^20^ bytes)
      *
      * @author Yanir Quinn <yquinn@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 8 Dec 2016
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 23 Nov 2017
      * @status updated_by_docs
      */
     Integer memory();
