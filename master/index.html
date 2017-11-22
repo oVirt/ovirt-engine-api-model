@@ -14241,6 +14241,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 and <code>format</code> attributes.</p>
 </div>
 <div class="paragraph">
+<p>Note that block storage domains (i.e., storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
+FCP) don&#8217;t support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
+explicitly.</p>
+</div>
+<div class="paragraph">
 <p>To create a new floating image disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain
 with an id <code>123</code>, send a request as follows:</p>
 </div>
@@ -76485,7 +76490,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-22 09:42:22 UTC
+Last updated 2017-11-22 09:47:54 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
