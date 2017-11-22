@@ -3,9 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.4 / Nov 22 2017
+
+New features:
+
+* Added new `discoveredTargers` output parameter to the operation that
+  discovers host iSCSI storage
+  https://bugzilla.redhat.com/1510860[#1510860].
+
 == 4.3.3 / Nov 15 2017
 
-New Features:
+New features:
 
 * Add `OVA` value to the `ConfigurationType` enumerated type.
 
