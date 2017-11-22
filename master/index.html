@@ -21042,6 +21042,42 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 <div class="paragraph">
 <p>Discovers iSCSI targets on the host, using the initiator details.</p>
 </div>
+<div class="paragraph">
+<p>For example, to discover iSCSI targets available in <code>myiscsi.example.com</code>,
+from host <code>123</code>, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/hosts/123/iscsidiscover</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;iscsi&gt;
+    &lt;address&gt;myiscsi.example.com&lt;/address&gt;
+  &lt;/iscsi&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;discovered_targets&gt;
+  &lt;iscsi_details&gt;
+    &lt;address&gt;10.35.1.72&lt;/address&gt;
+    &lt;port&gt;3260&lt;/port&gt;
+    &lt;portal&gt;10.35.1.72:3260,1&lt;/portal&gt;
+    &lt;target&gt;iqn.2015-08.com.tgt:444&lt;/target&gt;
+  &lt;/iscsi_details&gt;
+&lt;/discovered_targets&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 303. Parameters summary</caption>
 <colgroup>
@@ -21066,6 +21102,12 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the discovery should be performed asynchronously.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>discovered_targets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The discovered targets including all connection information.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iscsi</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -21079,6 +21121,16 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/iscsi_discover/parameters/iscsi_targets"><a class="anchor" href="#services/host/methods/iscsi_discover/parameters/iscsi_targets"></a>iscsi_targets</h5>
+<div class="paragraph">
+<p>The iSCSI targets.</p>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the engine, this parameter is deprecated, use
+<code>discovered_targets</code> instead.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/iscsi_login"><a class="anchor" href="#services/host/methods/iscsi_login"></a>6.98.11. iscsilogin <span class="small">POST</span></h4>
@@ -47591,6 +47643,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_snapshots</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>discovered_targets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails[]</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -76428,7 +76485,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-20 08:31:44 UTC
+Last updated 2017-11-22 09:42:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
