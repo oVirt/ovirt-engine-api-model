@@ -7,7 +7,7 @@ API model.
 
 New features:
 
-* Added new `discoveredTargers` output parameter to the operation that
+* Added new `discovered_targets` output parameter to the operation that
   discovers host iSCSI storage
   https://bugzilla.redhat.com/1510860[#1510860].
 
