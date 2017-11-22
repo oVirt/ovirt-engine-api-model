@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.14 / Nov 22 2017
+
+Bug fixes:
+
+* Handle exceptions in collection validation
+  https://bugzilla.redhat.com/1510755[#1510755].
+
+* No signature found should throw validation exception
+  https://bugzilla.redhat.com/1510764[#1510764].
+
 == 1.2.13 / Nov 15 2017
 
 Bug fixes:
