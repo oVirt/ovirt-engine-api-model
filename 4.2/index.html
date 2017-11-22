@@ -14241,6 +14241,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 and <code>format</code> attributes.</p>
 </div>
 <div class="paragraph">
+<p>Note that block storage domains (i.e., storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
+FCP) don&#8217;t support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
+explicitly.</p>
+</div>
+<div class="paragraph">
 <p>To create a new floating image disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain
 with an id <code>123</code>, send a request as follows:</p>
 </div>
@@ -21042,6 +21047,42 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 <div class="paragraph">
 <p>Discovers iSCSI targets on the host, using the initiator details.</p>
 </div>
+<div class="paragraph">
+<p>For example, to discover iSCSI targets available in <code>myiscsi.example.com</code>,
+from host <code>123</code>, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/hosts/123/iscsidiscover</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;iscsi&gt;
+    &lt;address&gt;myiscsi.example.com&lt;/address&gt;
+  &lt;/iscsi&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result will be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;discovered_targets&gt;
+  &lt;iscsi_details&gt;
+    &lt;address&gt;10.35.1.72&lt;/address&gt;
+    &lt;port&gt;3260&lt;/port&gt;
+    &lt;portal&gt;10.35.1.72:3260,1&lt;/portal&gt;
+    &lt;target&gt;iqn.2015-08.com.tgt:444&lt;/target&gt;
+  &lt;/iscsi_details&gt;
+&lt;/discovered_targets&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 303. Parameters summary</caption>
 <colgroup>
@@ -21066,6 +21107,12 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the discovery should be performed asynchronously.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>discovered_targets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The discovered targets including all connection information.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iscsi</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -21079,6 +21126,16 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/iscsi_discover/parameters/iscsi_targets"><a class="anchor" href="#services/host/methods/iscsi_discover/parameters/iscsi_targets"></a>iscsi_targets</h5>
+<div class="paragraph">
+<p>The iSCSI targets.</p>
+</div>
+<div class="paragraph">
+<p>Since version 4.2 of the engine, this parameter is deprecated, use
+<code>discovered_targets</code> instead.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/iscsi_login"><a class="anchor" href="#services/host/methods/iscsi_login"></a>6.98.11. iscsilogin <span class="small">POST</span></h4>
@@ -35567,8 +35624,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>register</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Register the Template means importing the Template from the data domain, by inserting the configuration of the
-Template and disks into the DB without the copy process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Register the Template means importing the Template from the data domain by inserting the configuration of the
+Template and disks into the database without the copy process.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
@@ -35645,6 +35702,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 &lt;/action&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If you register an entity without specifying the cluster ID or name,
+the cluster name from the entity&#8217;s OVF will be used (unless the register request also includes the
+cluster mapping).</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 612. Parameters summary</caption>
 <colgroup>
@@ -35712,16 +35774,16 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>Use the optional <code>clone</code> parameter to generate new UUIDs for the imported template and its entities.</p>
 </div>
 <div class="paragraph">
-<p>The user might want to import a template with the <code>clone</code> parameter set to <code>false</code> when importing a template
-from an export domain, with templates that was exported by a different oVirt environment.</p>
+<p>You can import a template with the <code>clone</code> parameter set to <code>false</code> when importing a template
+from an export domain, with templates that were exported by a different oVirt environment.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="services/storage_domain_template/methods/register"><a class="anchor" href="#services/storage_domain_template/methods/register"></a>6.201.3. register <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Register the Template means importing the Template from the data domain, by inserting the configuration of the
-Template and disks into the DB without the copy process.</p>
+<p>Register the Template means importing the Template from the data domain by inserting the configuration of the
+Template and disks into the database without the copy process.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 613. Parameters summary</caption>
@@ -35797,7 +35859,7 @@ registered.</p></td>
 <p>Indicates whether a template is allowed to be registered with only some of its disks.</p>
 </div>
 <div class="paragraph">
-<p>If this flag is <code>true</code>, the engine will not fail in the validation process if an image is not found, but
+<p>If this flag is <code>true</code>, the system will not fail in the validation process if an image is not found, but
 instead it will allow the template to be registered without the missing disks. This is mainly used during
 registration of a template when some of the storage domains are not available. The default value is <code>false</code>.</p>
 </div>
@@ -36091,6 +36153,11 @@ of the template that have the identifiers <code>123</code> and <code>456</code> 
   &lt;/disks&gt;
 &lt;/action&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If you register an entity without specifying the cluster ID or name,
+the cluster name from the entity&#8217;s OVF will be used (unless the register request also includes the
+cluster mapping).</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 619. Parameters summary</caption>
@@ -47560,6 +47627,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_snapshots</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>discovered_targets</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_details">IscsiDetails[]</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -76397,7 +76469,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-15 08:47:59 UTC
+Last updated 2017-11-22 10:08:26 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
