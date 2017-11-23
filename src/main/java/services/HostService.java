@@ -587,8 +587,8 @@ public interface HostService extends MeasurableService {
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @author Ala Hino <ahino@redhat.com>
-     * @date 17 Oct 17
-     * @status added
+     * @date 23 Nov 2017
+     * @status updated_by_docs
      */
     interface IscsiDiscover {
         @InputDetail
@@ -614,8 +614,8 @@ public interface HostService extends MeasurableService {
          * @author Oved Ourfali <oourfali@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
          * @author Ala Hino <ahino@redhat.com>
-         * @date 17 Oct 17
-         * @status added
+         * @date 23 Nov 2017
+         * @status updated_by_docs
          */
         @Deprecated
         @Out String[] iscsiTargets();
@@ -624,8 +624,8 @@ public interface HostService extends MeasurableService {
          * The discovered targets including all connection information.
          *
          * @author Ala Hino <ahino@redhat.com>
-         * @date 15 Nov 17
-         * @status added
+         * @date 23 Nov 2017
+         * @status updated_by_docs
          * @since 4.2
          */
         @Out IscsiDetails[] discoveredTargets();
