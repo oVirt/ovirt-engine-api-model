@@ -59085,7 +59085,7 @@ attributes are not used in instance types.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/initialization">Initialization</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s initialization configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the virtual machine&#8217;s initialization configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io</code></p></td>
@@ -59278,13 +59278,52 @@ If set, the virtual machine will be automatically restarted when it unexpectedly
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/large_icon"><a class="anchor" href="#types/instance_type/attributes/large_icon"></a>7.127.4. large_icon</h4>
+<h4 id="types/instance_type/attributes/initialization"><a class="anchor" href="#types/instance_type/attributes/initialization"></a>7.127.4. initialization</h4>
+<div class="paragraph">
+<p>Reference to the virtual machine&#8217;s initialization configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since oVirt 4.1.8 this property can be cleared by sending an empty tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to clear the <code>initialization</code> attribute send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;initialization/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response to such a request, and requests with the header <code>All-Content: true</code> will still contain this attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/instance_type/attributes/large_icon"><a class="anchor" href="#types/instance_type/attributes/large_icon"></a>7.127.5. large_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s large icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/lease"><a class="anchor" href="#types/instance_type/attributes/lease"></a>7.127.5. lease</h4>
+<h4 id="types/instance_type/attributes/lease"><a class="anchor" href="#types/instance_type/attributes/lease"></a>7.127.6. lease</h4>
 <div class="paragraph">
 <p>Reference to the storage domain this virtual machine/template lease reside on.</p>
 </div>
@@ -59297,7 +59336,7 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/memory"><a class="anchor" href="#types/instance_type/attributes/memory"></a>7.127.6. memory</h4>
+<h4 id="types/instance_type/attributes/memory"><a class="anchor" href="#types/instance_type/attributes/memory"></a>7.127.7. memory</h4>
 <div class="paragraph">
 <p>The virtual machine&#8217;s memory, in bytes.</p>
 </div>
@@ -59347,7 +59386,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/migration_downtime"><a class="anchor" href="#types/instance_type/attributes/migration_downtime"></a>7.127.7. migration_downtime</h4>
+<h4 id="types/instance_type/attributes/migration_downtime"><a class="anchor" href="#types/instance_type/attributes/migration_downtime"></a>7.127.8. migration_downtime</h4>
 <div class="paragraph">
 <p>Maximum time the virtual machine can be non responsive during its live migration to another host in ms.</p>
 </div>
@@ -59356,7 +59395,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/origin"><a class="anchor" href="#types/instance_type/attributes/origin"></a>7.127.8. origin</h4>
+<h4 id="types/instance_type/attributes/origin"><a class="anchor" href="#types/instance_type/attributes/origin"></a>7.127.9. origin</h4>
 <div class="paragraph">
 <p>The origin of this virtual machine.</p>
 </div>
@@ -59399,13 +59438,13 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/small_icon"><a class="anchor" href="#types/instance_type/attributes/small_icon"></a>7.127.9. small_icon</h4>
+<h4 id="types/instance_type/attributes/small_icon"><a class="anchor" href="#types/instance_type/attributes/small_icon"></a>7.127.10. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/sso"><a class="anchor" href="#types/instance_type/attributes/sso"></a>7.127.10. sso</h4>
+<h4 id="types/instance_type/attributes/sso"><a class="anchor" href="#types/instance_type/attributes/sso"></a>7.127.11. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -67296,7 +67335,7 @@ get fenced.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/initialization">Initialization</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s initialization configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the virtual machine&#8217;s initialization configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io</code></p></td>
@@ -67545,13 +67584,52 @@ If set, the virtual machine will be automatically restarted when it unexpectedly
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/large_icon"><a class="anchor" href="#types/snapshot/attributes/large_icon"></a>7.238.4. large_icon</h4>
+<h4 id="types/snapshot/attributes/initialization"><a class="anchor" href="#types/snapshot/attributes/initialization"></a>7.238.4. initialization</h4>
+<div class="paragraph">
+<p>Reference to the virtual machine&#8217;s initialization configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since oVirt 4.1.8 this property can be cleared by sending an empty tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to clear the <code>initialization</code> attribute send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;initialization/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response to such a request, and requests with the header <code>All-Content: true</code> will still contain this attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/snapshot/attributes/large_icon"><a class="anchor" href="#types/snapshot/attributes/large_icon"></a>7.238.5. large_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s large icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/lease"><a class="anchor" href="#types/snapshot/attributes/lease"></a>7.238.5. lease</h4>
+<h4 id="types/snapshot/attributes/lease"><a class="anchor" href="#types/snapshot/attributes/lease"></a>7.238.6. lease</h4>
 <div class="paragraph">
 <p>Reference to the storage domain this virtual machine/template lease reside on.</p>
 </div>
@@ -67564,7 +67642,7 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/memory"><a class="anchor" href="#types/snapshot/attributes/memory"></a>7.238.6. memory</h4>
+<h4 id="types/snapshot/attributes/memory"><a class="anchor" href="#types/snapshot/attributes/memory"></a>7.238.7. memory</h4>
 <div class="paragraph">
 <p>The virtual machine&#8217;s memory, in bytes.</p>
 </div>
@@ -67614,7 +67692,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/migration_downtime"><a class="anchor" href="#types/snapshot/attributes/migration_downtime"></a>7.238.7. migration_downtime</h4>
+<h4 id="types/snapshot/attributes/migration_downtime"><a class="anchor" href="#types/snapshot/attributes/migration_downtime"></a>7.238.8. migration_downtime</h4>
 <div class="paragraph">
 <p>Maximum time the virtual machine can be non responsive during its live migration to another host in ms.</p>
 </div>
@@ -67623,14 +67701,14 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/next_run_configuration_exists"><a class="anchor" href="#types/snapshot/attributes/next_run_configuration_exists"></a>7.238.8. next_run_configuration_exists</h4>
+<h4 id="types/snapshot/attributes/next_run_configuration_exists"><a class="anchor" href="#types/snapshot/attributes/next_run_configuration_exists"></a>7.238.9. next_run_configuration_exists</h4>
 <div class="paragraph">
 <p>Virtual machine configuration has been changed and requires restart of the virtual machine.
 Changed configuration is applied at processing the virtual machine&#8217;s <em>shut down</em>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/origin"><a class="anchor" href="#types/snapshot/attributes/origin"></a>7.238.9. origin</h4>
+<h4 id="types/snapshot/attributes/origin"><a class="anchor" href="#types/snapshot/attributes/origin"></a>7.238.10. origin</h4>
 <div class="paragraph">
 <p>The origin of this virtual machine.</p>
 </div>
@@ -67673,7 +67751,7 @@ Changed configuration is applied at processing the virtual machine&#8217;s <em>s
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/persist_memorystate"><a class="anchor" href="#types/snapshot/attributes/persist_memorystate"></a>7.238.10. persist_memorystate</h4>
+<h4 id="types/snapshot/attributes/persist_memorystate"><a class="anchor" href="#types/snapshot/attributes/persist_memorystate"></a>7.238.11. persist_memorystate</h4>
 <div class="paragraph">
 <p>Indicates if the content of the memory of the virtual machine is included in the snapshot.</p>
 </div>
@@ -67682,7 +67760,7 @@ Changed configuration is applied at processing the virtual machine&#8217;s <em>s
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/placement_policy"><a class="anchor" href="#types/snapshot/attributes/placement_policy"></a>7.238.11. placement_policy</h4>
+<h4 id="types/snapshot/attributes/placement_policy"><a class="anchor" href="#types/snapshot/attributes/placement_policy"></a>7.238.12. placement_policy</h4>
 <div class="paragraph">
 <p>The configuration of the virtual machine&#8217;s placement policy.</p>
 </div>
@@ -67737,20 +67815,20 @@ hosts to which the virtual machine is pinned.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/small_icon"><a class="anchor" href="#types/snapshot/attributes/small_icon"></a>7.238.12. small_icon</h4>
+<h4 id="types/snapshot/attributes/small_icon"><a class="anchor" href="#types/snapshot/attributes/small_icon"></a>7.238.13. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/sso"><a class="anchor" href="#types/snapshot/attributes/sso"></a>7.238.13. sso</h4>
+<h4 id="types/snapshot/attributes/sso"><a class="anchor" href="#types/snapshot/attributes/sso"></a>7.238.14. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/attributes/stop_reason"><a class="anchor" href="#types/snapshot/attributes/stop_reason"></a>7.238.14. stop_reason</h4>
+<h4 id="types/snapshot/attributes/stop_reason"><a class="anchor" href="#types/snapshot/attributes/stop_reason"></a>7.238.15. stop_reason</h4>
 <div class="paragraph">
 <p>The reason the virtual machine was stopped.
 Optionally set by user when shutting down the virtual machine.</p>
@@ -67914,13 +67992,13 @@ Optionally set by user when shutting down the virtual machine.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/affinity_labels"><a class="anchor" href="#types/snapshot/links/affinity_labels"></a>7.238.15. affinity_labels</h4>
+<h4 id="types/snapshot/links/affinity_labels"><a class="anchor" href="#types/snapshot/links/affinity_labels"></a>7.238.16. affinity_labels</h4>
 <div class="paragraph">
 <p>Optional. Used for labeling of sub-clusters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/katello_errata"><a class="anchor" href="#types/snapshot/links/katello_errata"></a>7.238.16. katello_errata</h4>
+<h4 id="types/snapshot/links/katello_errata"><a class="anchor" href="#types/snapshot/links/katello_errata"></a>7.238.17. katello_errata</h4>
 <div class="paragraph">
 <p>Lists all the Katello errata assigned to the virtual machine.</p>
 </div>
@@ -67956,7 +68034,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/original_template"><a class="anchor" href="#types/snapshot/links/original_template"></a>7.238.17. original_template</h4>
+<h4 id="types/snapshot/links/original_template"><a class="anchor" href="#types/snapshot/links/original_template"></a>7.238.18. original_template</h4>
 <div class="paragraph">
 <p>References the original template used to create the virtual machine.</p>
 </div>
@@ -70094,7 +70172,7 @@ This allows a rapid instanstiation of virtual machines with common configuration
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/initialization">Initialization</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s initialization configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the virtual machine&#8217;s initialization configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io</code></p></td>
@@ -70287,13 +70365,52 @@ If set, the virtual machine will be automatically restarted when it unexpectedly
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/large_icon"><a class="anchor" href="#types/template/attributes/large_icon"></a>7.267.4. large_icon</h4>
+<h4 id="types/template/attributes/initialization"><a class="anchor" href="#types/template/attributes/initialization"></a>7.267.4. initialization</h4>
+<div class="paragraph">
+<p>Reference to the virtual machine&#8217;s initialization configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since oVirt 4.1.8 this property can be cleared by sending an empty tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to clear the <code>initialization</code> attribute send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;initialization/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response to such a request, and requests with the header <code>All-Content: true</code> will still contain this attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/template/attributes/large_icon"><a class="anchor" href="#types/template/attributes/large_icon"></a>7.267.5. large_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s large icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/lease"><a class="anchor" href="#types/template/attributes/lease"></a>7.267.5. lease</h4>
+<h4 id="types/template/attributes/lease"><a class="anchor" href="#types/template/attributes/lease"></a>7.267.6. lease</h4>
 <div class="paragraph">
 <p>Reference to the storage domain this virtual machine/template lease reside on.</p>
 </div>
@@ -70306,7 +70423,7 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/memory"><a class="anchor" href="#types/template/attributes/memory"></a>7.267.6. memory</h4>
+<h4 id="types/template/attributes/memory"><a class="anchor" href="#types/template/attributes/memory"></a>7.267.7. memory</h4>
 <div class="paragraph">
 <p>The virtual machine&#8217;s memory, in bytes.</p>
 </div>
@@ -70356,7 +70473,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/migration_downtime"><a class="anchor" href="#types/template/attributes/migration_downtime"></a>7.267.7. migration_downtime</h4>
+<h4 id="types/template/attributes/migration_downtime"><a class="anchor" href="#types/template/attributes/migration_downtime"></a>7.267.8. migration_downtime</h4>
 <div class="paragraph">
 <p>Maximum time the virtual machine can be non responsive during its live migration to another host in ms.</p>
 </div>
@@ -70365,7 +70482,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/origin"><a class="anchor" href="#types/template/attributes/origin"></a>7.267.8. origin</h4>
+<h4 id="types/template/attributes/origin"><a class="anchor" href="#types/template/attributes/origin"></a>7.267.9. origin</h4>
 <div class="paragraph">
 <p>The origin of this virtual machine.</p>
 </div>
@@ -70408,13 +70525,13 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/small_icon"><a class="anchor" href="#types/template/attributes/small_icon"></a>7.267.9. small_icon</h4>
+<h4 id="types/template/attributes/small_icon"><a class="anchor" href="#types/template/attributes/small_icon"></a>7.267.10. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/sso"><a class="anchor" href="#types/template/attributes/sso"></a>7.267.10. sso</h4>
+<h4 id="types/template/attributes/sso"><a class="anchor" href="#types/template/attributes/sso"></a>7.267.11. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -71612,7 +71729,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/initialization">Initialization</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s initialization configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the virtual machine&#8217;s initialization configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io</code></p></td>
@@ -71846,13 +71963,52 @@ If set, the virtual machine will be automatically restarted when it unexpectedly
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/large_icon"><a class="anchor" href="#types/vm/attributes/large_icon"></a>7.286.4. large_icon</h4>
+<h4 id="types/vm/attributes/initialization"><a class="anchor" href="#types/vm/attributes/initialization"></a>7.286.4. initialization</h4>
+<div class="paragraph">
+<p>Reference to the virtual machine&#8217;s initialization configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since oVirt 4.1.8 this property can be cleared by sending an empty tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to clear the <code>initialization</code> attribute send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;initialization/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response to such a request, and requests with the header <code>All-Content: true</code> will still contain this attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm/attributes/large_icon"><a class="anchor" href="#types/vm/attributes/large_icon"></a>7.286.5. large_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s large icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/lease"><a class="anchor" href="#types/vm/attributes/lease"></a>7.286.5. lease</h4>
+<h4 id="types/vm/attributes/lease"><a class="anchor" href="#types/vm/attributes/lease"></a>7.286.6. lease</h4>
 <div class="paragraph">
 <p>Reference to the storage domain this virtual machine/template lease reside on.</p>
 </div>
@@ -71865,7 +72021,7 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/memory"><a class="anchor" href="#types/vm/attributes/memory"></a>7.286.6. memory</h4>
+<h4 id="types/vm/attributes/memory"><a class="anchor" href="#types/vm/attributes/memory"></a>7.286.7. memory</h4>
 <div class="paragraph">
 <p>The virtual machine&#8217;s memory, in bytes.</p>
 </div>
@@ -71915,7 +72071,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/migration_downtime"><a class="anchor" href="#types/vm/attributes/migration_downtime"></a>7.286.7. migration_downtime</h4>
+<h4 id="types/vm/attributes/migration_downtime"><a class="anchor" href="#types/vm/attributes/migration_downtime"></a>7.286.8. migration_downtime</h4>
 <div class="paragraph">
 <p>Maximum time the virtual machine can be non responsive during its live migration to another host in ms.</p>
 </div>
@@ -71924,14 +72080,14 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/next_run_configuration_exists"><a class="anchor" href="#types/vm/attributes/next_run_configuration_exists"></a>7.286.8. next_run_configuration_exists</h4>
+<h4 id="types/vm/attributes/next_run_configuration_exists"><a class="anchor" href="#types/vm/attributes/next_run_configuration_exists"></a>7.286.9. next_run_configuration_exists</h4>
 <div class="paragraph">
 <p>Virtual machine configuration has been changed and requires restart of the virtual machine.
 Changed configuration is applied at processing the virtual machine&#8217;s <em>shut down</em>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/origin"><a class="anchor" href="#types/vm/attributes/origin"></a>7.286.9. origin</h4>
+<h4 id="types/vm/attributes/origin"><a class="anchor" href="#types/vm/attributes/origin"></a>7.286.10. origin</h4>
 <div class="paragraph">
 <p>The origin of this virtual machine.</p>
 </div>
@@ -71974,7 +72130,7 @@ Changed configuration is applied at processing the virtual machine&#8217;s <em>s
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/placement_policy"><a class="anchor" href="#types/vm/attributes/placement_policy"></a>7.286.10. placement_policy</h4>
+<h4 id="types/vm/attributes/placement_policy"><a class="anchor" href="#types/vm/attributes/placement_policy"></a>7.286.11. placement_policy</h4>
 <div class="paragraph">
 <p>The configuration of the virtual machine&#8217;s placement policy.</p>
 </div>
@@ -72029,20 +72185,20 @@ hosts to which the virtual machine is pinned.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/small_icon"><a class="anchor" href="#types/vm/attributes/small_icon"></a>7.286.11. small_icon</h4>
+<h4 id="types/vm/attributes/small_icon"><a class="anchor" href="#types/vm/attributes/small_icon"></a>7.286.12. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/sso"><a class="anchor" href="#types/vm/attributes/sso"></a>7.286.12. sso</h4>
+<h4 id="types/vm/attributes/sso"><a class="anchor" href="#types/vm/attributes/sso"></a>7.286.13. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/attributes/stop_reason"><a class="anchor" href="#types/vm/attributes/stop_reason"></a>7.286.13. stop_reason</h4>
+<h4 id="types/vm/attributes/stop_reason"><a class="anchor" href="#types/vm/attributes/stop_reason"></a>7.286.14. stop_reason</h4>
 <div class="paragraph">
 <p>The reason the virtual machine was stopped.
 Optionally set by user when shutting down the virtual machine.</p>
@@ -72201,13 +72357,13 @@ Optionally set by user when shutting down the virtual machine.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/affinity_labels"><a class="anchor" href="#types/vm/links/affinity_labels"></a>7.286.14. affinity_labels</h4>
+<h4 id="types/vm/links/affinity_labels"><a class="anchor" href="#types/vm/links/affinity_labels"></a>7.286.15. affinity_labels</h4>
 <div class="paragraph">
 <p>Optional. Used for labeling of sub-clusters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/katello_errata"><a class="anchor" href="#types/vm/links/katello_errata"></a>7.286.15. katello_errata</h4>
+<h4 id="types/vm/links/katello_errata"><a class="anchor" href="#types/vm/links/katello_errata"></a>7.286.16. katello_errata</h4>
 <div class="paragraph">
 <p>Lists all the Katello errata assigned to the virtual machine.</p>
 </div>
@@ -72243,7 +72399,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/original_template"><a class="anchor" href="#types/vm/links/original_template"></a>7.286.16. original_template</h4>
+<h4 id="types/vm/links/original_template"><a class="anchor" href="#types/vm/links/original_template"></a>7.286.17. original_template</h4>
 <div class="paragraph">
 <p>References the original template used to create the virtual machine.</p>
 </div>
@@ -72391,7 +72547,7 @@ This is used by virtual machines, templates and instance types.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/initialization">Initialization</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s initialization configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference to the virtual machine&#8217;s initialization configuration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io</code></p></td>
@@ -72569,13 +72725,52 @@ If set, the virtual machine will be automatically restarted when it unexpectedly
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/large_icon"><a class="anchor" href="#types/vm_base/attributes/large_icon"></a>7.288.4. large_icon</h4>
+<h4 id="types/vm_base/attributes/initialization"><a class="anchor" href="#types/vm_base/attributes/initialization"></a>7.288.4. initialization</h4>
+<div class="paragraph">
+<p>Reference to the virtual machine&#8217;s initialization configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since oVirt 4.1.8 this property can be cleared by sending an empty tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to clear the <code>initialization</code> attribute send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;initialization/&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response to such a request, and requests with the header <code>All-Content: true</code> will still contain this attribute.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_base/attributes/large_icon"><a class="anchor" href="#types/vm_base/attributes/large_icon"></a>7.288.5. large_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s large icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/lease"><a class="anchor" href="#types/vm_base/attributes/lease"></a>7.288.5. lease</h4>
+<h4 id="types/vm_base/attributes/lease"><a class="anchor" href="#types/vm_base/attributes/lease"></a>7.288.6. lease</h4>
 <div class="paragraph">
 <p>Reference to the storage domain this virtual machine/template lease reside on.</p>
 </div>
@@ -72588,7 +72783,7 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/memory"><a class="anchor" href="#types/vm_base/attributes/memory"></a>7.288.6. memory</h4>
+<h4 id="types/vm_base/attributes/memory"><a class="anchor" href="#types/vm_base/attributes/memory"></a>7.288.7. memory</h4>
 <div class="paragraph">
 <p>The virtual machine&#8217;s memory, in bytes.</p>
 </div>
@@ -72638,7 +72833,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/migration_downtime"><a class="anchor" href="#types/vm_base/attributes/migration_downtime"></a>7.288.7. migration_downtime</h4>
+<h4 id="types/vm_base/attributes/migration_downtime"><a class="anchor" href="#types/vm_base/attributes/migration_downtime"></a>7.288.8. migration_downtime</h4>
 <div class="paragraph">
 <p>Maximum time the virtual machine can be non responsive during its live migration to another host in ms.</p>
 </div>
@@ -72647,7 +72842,7 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/origin"><a class="anchor" href="#types/vm_base/attributes/origin"></a>7.288.8. origin</h4>
+<h4 id="types/vm_base/attributes/origin"><a class="anchor" href="#types/vm_base/attributes/origin"></a>7.288.9. origin</h4>
 <div class="paragraph">
 <p>The origin of this virtual machine.</p>
 </div>
@@ -72690,13 +72885,13 @@ memory while the virtual machine is running.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/small_icon"><a class="anchor" href="#types/vm_base/attributes/small_icon"></a>7.288.9. small_icon</h4>
+<h4 id="types/vm_base/attributes/small_icon"><a class="anchor" href="#types/vm_base/attributes/small_icon"></a>7.288.10. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/sso"><a class="anchor" href="#types/vm_base/attributes/sso"></a>7.288.10. sso</h4>
+<h4 id="types/vm_base/attributes/sso"><a class="anchor" href="#types/vm_base/attributes/sso"></a>7.288.11. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -76490,7 +76685,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-22 17:53:06 UTC
+Last updated 2017-11-23 08:33:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
