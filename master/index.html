@@ -59358,6 +59358,20 @@ from this template to be preconfigured with this storage domain as the location 
 &lt;/vm&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
+memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
+size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+Each successful memory hot plug operation creates one or two new memory devices.</p>
+</div>
+<div class="paragraph">
+<p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
+when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+configuration without rounding.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -59378,8 +59392,7 @@ Memory in the example is converted to bytes using the following formula:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is running.
+oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> bytes)
 </td>
 </tr>
 </table>
@@ -60787,7 +60800,7 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <div class="sect2">
 <h3 id="types/memory_policy"><a class="anchor" href="#types/memory_policy"></a>7.147. MemoryPolicy <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Logical grouping of memory related properties of virtual machine-like entities.</p>
+<p>Logical grouping of memory-related properties of virtual machine-like entities.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1031. Attributes summary</caption>
@@ -60812,12 +60825,12 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>guaranteed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The amount of memory, in bytes, that is guaranteed to not be drained by the balloon mechanism.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum virtual machine&#8217;s memory, in bytes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum virtual machine memory, in bytes.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>over_commit</code></p></td>
@@ -60832,12 +60845,35 @@ of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/memory_policy/attributes/max"><a class="anchor" href="#types/memory_policy/attributes/max"></a>7.147.1. max</h4>
+<h4 id="types/memory_policy/attributes/guaranteed"><a class="anchor" href="#types/memory_policy/attributes/guaranteed"></a>7.147.1. guaranteed</h4>
 <div class="paragraph">
-<p>Maximum virtual machine&#8217;s memory, in bytes.</p>
+<p>The amount of memory, in bytes, that is guaranteed to not be drained by the balloon mechanism.</p>
 </div>
 <div class="paragraph">
-<p>The user provides the value in bytes, and the engine rounds the value down to the nearest lower MiB value.</p>
+<p>The oVirt Engine internally rounds this value down to whole MiB (1MiB = 2<sup>20</sup> bytes).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It can be updated while the virtual machine is running since oVirt 4.2 onwards, provided
+<a href="#types/vm/attributes/memory">memory</a> is updated in the same request as well, and the virtual machine is in
+state <a href="#types/vm_status/values/up">up</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/memory_policy/attributes/max"><a class="anchor" href="#types/memory_policy/attributes/max"></a>7.147.2. max</h4>
+<div class="paragraph">
+<p>Maximum virtual machine memory, in bytes.</p>
+</div>
+<div class="paragraph">
+<p>The user provides the value in bytes, and the oVirt Engine rounds the value down to the nearest lower MiB value.</p>
 </div>
 <div class="paragraph">
 <p>For example, if the user enters a value of 1073741825 (1 GiB + 1 byte), then the oVirt Engine will truncate
@@ -67664,6 +67700,20 @@ from this template to be preconfigured with this storage domain as the location 
 &lt;/vm&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
+memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
+size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+Each successful memory hot plug operation creates one or two new memory devices.</p>
+</div>
+<div class="paragraph">
+<p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
+when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+configuration without rounding.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -67684,8 +67734,7 @@ Memory in the example is converted to bytes using the following formula:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is running.
+oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> bytes)
 </td>
 </tr>
 </table>
@@ -70445,6 +70494,20 @@ from this template to be preconfigured with this storage domain as the location 
 &lt;/vm&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
+memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
+size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+Each successful memory hot plug operation creates one or two new memory devices.</p>
+</div>
+<div class="paragraph">
+<p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
+when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+configuration without rounding.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -70465,8 +70528,7 @@ Memory in the example is converted to bytes using the following formula:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is running.
+oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> bytes)
 </td>
 </tr>
 </table>
@@ -72043,6 +72105,20 @@ from this template to be preconfigured with this storage domain as the location 
 &lt;/vm&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
+memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
+size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+Each successful memory hot plug operation creates one or two new memory devices.</p>
+</div>
+<div class="paragraph">
+<p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
+when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+configuration without rounding.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -72063,8 +72139,7 @@ Memory in the example is converted to bytes using the following formula:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is running.
+oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> bytes)
 </td>
 </tr>
 </table>
@@ -72805,6 +72880,20 @@ from this template to be preconfigured with this storage domain as the location 
 &lt;/vm&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
+memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
+size increment is not dividable by this value, the memory size change is only stored to next run configuration.
+Each successful memory hot plug operation creates one or two new memory devices.</p>
+</div>
+<div class="paragraph">
+<p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
+when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
+of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
+configuration without rounding.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -72825,8 +72914,7 @@ Memory in the example is converted to bytes using the following formula:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is running.
+oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> bytes)
 </td>
 </tr>
 </table>
@@ -76685,7 +76773,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-23 08:33:12 UTC
+Last updated 2017-11-23 08:48:08 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
