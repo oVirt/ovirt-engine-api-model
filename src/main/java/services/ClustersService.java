@@ -82,7 +82,7 @@ public interface ClustersService {
      *   </cpu>
      *   <data_center id="123"/>
      *   <external_network_providers>
-     *     <external_provider id="321"/>
+     *     <external_provider name="ovirt-provider-ovn"/>
      *   </external_network_providers>
      * </cluster>
      * ----
@@ -124,7 +124,8 @@ public interface ClustersService {
             optional(cluster().virtService());
             or(optional(cluster().managementNetwork().id()), optional(cluster().managementNetwork().name()));
             or(optional(cluster().schedulingPolicy().id()), optional(cluster().schedulingPolicy().name()));
-            optional(cluster().externalNetworkProviders()[COLLECTION].id());
+            or(optional(cluster().externalNetworkProviders()[COLLECTION].id()),
+                    optional(cluster().externalNetworkProviders()[COLLECTION].name()));
         }
         @In @Out Cluster cluster();
     }

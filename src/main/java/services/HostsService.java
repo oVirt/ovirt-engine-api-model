@@ -97,7 +97,7 @@ public interface HostsService {
      *   <root_password>123456</root_password>
      *   <external_network_provider_configurations>
      *     <external_network_provider_configuration>
-     *       <external_network_provider id="123"/>
+     *       <external_network_provider name="ovirt-provider-ovn"/>
      *     </external_network_provider_configuration>
      *   </external_network_provider_configurations>
      * </host>
@@ -126,7 +126,8 @@ public interface HostsService {
             optional(host().protocol());
             optional(host().spm().priority());
             optional(host().powerManagement().pmProxies()[COLLECTION].type());
-            optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().id());
+            or(optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().id()),
+                optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().name()));
         }
 
         /**
