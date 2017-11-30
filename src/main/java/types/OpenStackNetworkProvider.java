@@ -155,4 +155,20 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * @since 4.2
      */
     Boolean autoSync();
+
+    /**
+     * Indicates whether the provider is unmanaged by {product-name}.
+     *
+     * If `true`, authentication and subnet control are entirely left to the external provider and are
+     * unmanaged by {product-name}.
+     *
+     * The default is `false` for backwards compatibility.
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 04 December 2017
+     * @status updated_by_docs
+     * @since 4.2.1
+     */
+    Boolean unmanaged();
 }

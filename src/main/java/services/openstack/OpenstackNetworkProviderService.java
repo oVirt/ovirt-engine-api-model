@@ -98,6 +98,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
             optional(provider().properties()[COLLECTION].name());
             optional(provider().properties()[COLLECTION].value());
             optional(provider().autoSync());
+            optional(provider().unmanaged());
         }
         /**
          * The provider to update.

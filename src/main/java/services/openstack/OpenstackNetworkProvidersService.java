@@ -57,6 +57,7 @@ public interface OpenstackNetworkProvidersService {
             optional(provider().properties()[COLLECTION].name());
             optional(provider().properties()[COLLECTION].value());
             optional(provider().autoSync());
+            optional(provider().unmanaged());
         }
         @In @Out OpenStackNetworkProvider provider();
     }
