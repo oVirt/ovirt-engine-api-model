@@ -63167,6 +63167,11 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">The type of provider.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unmanaged</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the provider is unmanaged by oVirt.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines URL address of the external provider.</p></td>
@@ -63260,6 +63265,19 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/unmanaged"><a class="anchor" href="#types/open_stack_network_provider/attributes/unmanaged"></a>7.176.6. unmanaged</h4>
+<div class="paragraph">
+<p>Indicates whether the provider is unmanaged by oVirt.</p>
+</div>
+<div class="paragraph">
+<p>If <code>true</code>, authentication and subnet control are entirely left to the external provider and are
+unmanaged by oVirt.</p>
+</div>
+<div class="paragraph">
+<p>The default is <code>false</code> for backwards compatibility.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1071. Links summary</caption>
@@ -76773,7 +76791,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-30 11:09:15 UTC
+Last updated 2017-12-04 08:13:46 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
