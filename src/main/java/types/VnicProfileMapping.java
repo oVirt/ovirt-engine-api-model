@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Maps an external virtual NIC profile to one that exists in the {engine-name}.
+ * Deprecated type that maps an external virtual NIC profile to one that exists in the {engine-name}.
  *
  * If, for example, the desired virtual NIC profile's mapping includes the following two lines:
  *
@@ -38,7 +38,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * |===
  *
- * It should be expressed in the following form:
+ * The following form is deprecated since 4.2.1 and will be removed in the future:
  *
  * [source,xml]
  * ----
@@ -56,45 +56,63 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </vnic_profile_mappings>
  * ----
  *
+ *
  * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+ * @author Eitan Raviv <eraviv@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>
  * @date 20 Feb 2017
- * @status updated_by_docs
+ * @status added
  * @since 4.1
  */
 @Type
+@Deprecated
 public interface VnicProfileMapping {
 
     /**
-     * Specifies the name of the external network.
+     * Deprecated attribute describing the name of the external network.
+     *
+     * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine,
+     * and preserved only for backward compatibility. It will be removed in the future.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @author Eitan Raviv <eraviv@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017
-     * @status updated_by_docs
+     * @status added
      * @since 4.1
      */
+    @Deprecated
     String sourceNetworkName();
 
     /**
-     * Specifies the name of the external network profile.
+     * Deprecated attribute describing the name of the external network profile.
+     *
+     * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine,
+     * and preserved only for backward compatibility. It will be removed in the future.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @author Eitan Raviv <eraviv@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017
-     * @status updated_by_docs
+     * @status added
      * @since 4.1
      */
+    @Deprecated
     String sourceNetworkProfileName();
 
     /**
-     * Points to an existing virtual NIC profile.
+     * Deprecated attribute describing an existing virtual NIC profile.
+     *
+     * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine,
+     * and preserved only for backward compatibility. It will be removed in the future.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+     * @author Eitan Raviv <eraviv@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 31 Jan 2017
-     * @status updated_by_docs
+     * @status added
      * @since 4.1
      */
+    @Deprecated
     @Link VnicProfile targetVnicProfile();
 }

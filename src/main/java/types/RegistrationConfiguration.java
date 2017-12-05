@@ -49,6 +49,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * - Permissions mapping.
  * - Affinity Group mapping.
  * - Affinity Label mapping.
+ * - Virtual NIC profile mapping.
  *
  * Each mapping will be used for its specific OVF's data once the register operation
  * takes place in the {engine-name}.
@@ -129,6 +130,26 @@ import org.ovirt.api.metamodel.annotations.Type;
  *        </to>
  *      </registration_affinity_label_mapping>
  *     </affinity_label_mappings>
+ *     <vnic_profile_mappings>
+ *       <registration_vnic_profile_mapping>
+ *         <from>
+ *           <name>gold</name>
+ *           <network>
+ *             <name>red</name>
+ *           </network>
+ *         </from>
+ *         <to id="738dd914-8ec8-4a8b-8628-34672a5d449b"/>
+ *       </registration_vnic_profile_mapping>
+ *       <registration_vnic_profile_mapping>
+ *         <from>
+ *           <name>silver</name>
+ *           <network>
+ *             <name>blue</name>
+ *           </network>
+ *         </from>
+ *         <to id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/>
+ *       </registration_vnic_profile_mapping>
+ *     </vnic_profile_mappings>
  *   </registration_configuration>
  * </action>
  * ----
@@ -136,7 +157,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>
  * @date 20 Oct 2017
- * @status updated_by_docs
+ * @status added
  * @since 4.2
  */
 @Type
@@ -207,4 +228,14 @@ public interface RegistrationConfiguration {
      * @since 4.2
      */
     RegistrationAffinityLabelMapping[] affinityLabelMappings();
+
+    /**
+     * Mapping rules for virtual NIC profiles that will be applied during the register process.
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 04 Dec 2017
+     * @status added
+     * @since 4.2.1
+     */
+    RegistrationVnicProfileMapping[] vnicProfileMappings();
 }
