@@ -175,13 +175,19 @@ public interface StorageDomainVmService {
         @In Boolean allowPartialImport();
 
         /**
-         * Mapping rules for virtual NIC profiles that will be applied during the import process.
+         * Deprecated attribute describing mapping rules for virtual NIC profiles that will be applied during the import\register process.
+         *
+         * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
+         * compatibility. It will be removed in the future. To specify `vnic_profile_mappings` use the `vnic_profile_mappings`
+         * attribute inside the <<types/registration_configuration, RegistrationConfiguration>> type.
          *
          * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
+         * @author Eitan Raviv <eraviv@redhat.com>
          * @date 26 Sep 2016
          * @status added
          * @since 4.1
          */
+        @Deprecated
         @In VnicProfileMapping[] vnicProfileMappings();
 
         /**
