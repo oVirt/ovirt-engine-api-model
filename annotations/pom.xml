@@ -23,7 +23,7 @@ limitations under the License.
   <parent>
     <groupId>org.ovirt.engine.api</groupId>
     <artifactId>metamodel-parent</artifactId>
-    <version>1.2.16</version>
+    <version>1.2.17-SNAPSHOT</version>
   </parent>
 
   <artifactId>metamodel-annotations</artifactId>
