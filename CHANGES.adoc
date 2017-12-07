@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.2.16 / Dec 7 2017
+
+Bug fixes:
+
+* Fix signature combining `or` and `mandatory`
+  https://bugzilla.redhat.com/1523072[#1523072].
+
 == 1.2.15 / Nov 22 2017
 
 Bug fixes:
