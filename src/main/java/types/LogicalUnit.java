@@ -62,11 +62,16 @@ public interface LogicalUnit {
      * https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[documentation]
      * of `queue-sysfs` for `discard_zeroes_data`.
      *
+     * IMPORTANT: Since version 4.2.1 of the system, the support for this attribute has
+     * been removed as the sysfs file, `discard_zeroes_data`, was deprecated in the kernel.
+     * It is preserved for backwards compatibility, but the value will always be `false`.
+     *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 17 Nov 2016
+     * @date 18 Dec 2017
      * @status updated_by_docs
      * @since 4.1
      */
+    @Deprecated
     Boolean discardZeroesData();
 }
