@@ -133,18 +133,18 @@ public interface StorageDomain extends Identified {
      * discard zeroes the data if all of the
      * <<types/logical_unit, logical unit>>s that it is built from support it;
      * that is, if each logical unit's `discard_zeroes_data` value is true.
-     * This is one of the conditions necessary for a virtual disk in this
-     * storage domain to have both `wipe_after_delete` and `pass_discard` attributes enabled.
-     * Since the engine cannot check if the underlying block device supports
-     * the property that discard zeroes the data for file storage domains,
-     * this attribute will not be reported for them at all.
+     *
+     * IMPORTANT: Since version 4.2.1 of the system, the support for this attribute has
+     * been removed as the sysfs file, `discard_zeroes_data`, was deprecated in the kernel.
+     * It is preserved for backwards compatibility, but the value will always be `false`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 29 Nov 2016
+     * @date 18 Dec 2017
      * @status updated_by_docs
      * @since 4.1
      */
+    @Deprecated
     Boolean supportsDiscardZeroesData();
 
     Boolean _import(); // TODO: Should be an action parameter.
