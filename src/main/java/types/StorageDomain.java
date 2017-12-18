@@ -114,13 +114,10 @@ public interface StorageDomain extends Identified {
      * is greater than 0.
      * This is one of the conditions necessary for a virtual disk in this
      * storage domain to have its `pass_discard` attribute enabled.
-     * Since the engine cannot check if the underlying block device supports
-     * discard for file storage domains, this attribute will not be reported
-     * for them at all.
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 29 Nov 2016
+     * @date 18 Dec 2017
      * @status updated_by_docs
      * @since 4.1
      */
