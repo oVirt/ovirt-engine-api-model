@@ -60658,6 +60658,20 @@ For more information please see the
 <a href="https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt">documentation</a>
 of <code>queue-sysfs</code> for <code>discard_zeroes_data</code>.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since version 4.2.1 of the system, the support for this attribute has
+been removed as the sysfs file, <code>discard_zeroes_data</code>, was deprecated in the kernel.
+It is preserved for backwards compatibility, but the value will always be <code>false</code>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -69699,12 +69713,21 @@ discard zeroes the data.
 A <a href="#types/storage_domain">storage domain</a> only supports the property that
 discard zeroes the data if all of the
 <a href="#types/logical_unit">logical unit</a>s that it is built from support it;
-that is, if each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.
-This is one of the conditions necessary for a virtual disk in this
-storage domain to have both <code>wipe_after_delete</code> and <code>pass_discard</code> attributes enabled.
-Since the engine cannot check if the underlying block device supports
-the property that discard zeroes the data for file storage domains,
-this attribute will not be reported for them at all.</p>
+that is, if each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since version 4.2.1 of the system, the support for this attribute has
+been removed as the sysfs file, <code>discard_zeroes_data</code>, was deprecated in the kernel.
+It is preserved for backwards compatibility, but the value will always be <code>false</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -77035,7 +77058,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-12-20 10:27:05 UTC
+Last updated 2017-12-20 18:55:58 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
