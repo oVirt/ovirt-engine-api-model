@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.5 / Dec 20 2017
+
+New features:
+
+* Add support for setting external network providers by name when adding
+  or updating a cluster https://bugzilla.redhat.com/1511369[#1511369].
+
+* Add new `unmanaged` attribute to the `OpenStackNetworkProvider` type.
+
+* Move virtual NIC profile mappings insde registration configuration
+   https://bugzilla.redhat.com/1522799[#1522799].
+
 == 4.3.4 / Nov 22 2017
 
 New features:
