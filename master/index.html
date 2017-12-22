@@ -20425,7 +20425,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>install</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Installs VDSM and related software on the host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Installs the latest version of VDSM and related software on the host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iscsidiscover</code></p></td>
@@ -20905,7 +20905,14 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/host/methods/install"><a class="anchor" href="#services/host/methods/install"></a>6.98.9. install <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Installs VDSM and related software on the host. The host type defines additional parameters for the action.</p>
+<p>Installs the latest version of VDSM and related software on the host.</p>
+</div>
+<div class="paragraph">
+<p>The action also performs every configuration steps on the host which is done during adding host to the engine:
+kdump configuration, hosted-engine deploy, kernel options changes, etc.</p>
+</div>
+<div class="paragraph">
+<p>The host type defines additional parameters for the action.</p>
 </div>
 <div class="paragraph">
 <p>Example of installing a host, using <code>curl</code> and JSON, plain:</p>
@@ -77055,7 +77062,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-12-20 18:58:59 UTC
+Last updated 2017-12-22 10:42:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
