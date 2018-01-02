@@ -253,6 +253,16 @@ public interface Disk extends Device {
     DiskStorageType storageType();
     String logicalName();
 
+    /**
+     * Indicates the actual content residing on the disk.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 27 Dec 2017
+     * @since 4.2.1
+     * @status added
+     */
+    DiskContentType contentType();
+
     @Link StorageDomain storageDomain();
 
     /**
