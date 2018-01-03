@@ -3,6 +3,22 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.28 / Jan 3 2018
+
+New features:
+
+* Deprecate the `discard_zeroes_data` attribute of the `LogicalUnit`
+  type and the `supports_discard_zeroes_data` of the `StorageDomain`
+  type, as they have been removed from the kernel.
+
+* Add new `content_type` attribute to the `Disk` type
+  https://bugzilla.redhat.com/1511420[#1511420].
+
+Bug fixes:
+
+* Make CPU type optional when adding a cluster
+  https://bugzilla.redhat.com/1525912[#1525912].
+
 == 4.2.27 / Dec 20 2017
 
 New features:
