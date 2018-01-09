@@ -203,7 +203,7 @@ public interface Vm extends VmBase {
      * @author Tahlia Richardson <trichard@redhat.com>
      * @date 11 Aug 2017
      * @status updated_by_docs
-     * @since 4.2.0
+     * @since 4.1.9
      */
     Boolean hasIllegalImages();
 
