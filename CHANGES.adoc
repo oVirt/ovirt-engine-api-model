@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.7 / Jan 10 2018
+
+New features:
+
+* Vm has new type Color.
+
 == 4.3.6 / Jan 3 2018
 
 New features:
