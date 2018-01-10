@@ -30,6 +30,15 @@ import java.util.Date;
  */
 @Type
 public interface Vm extends VmBase {
+     /**
+     * The current color of the virtual machine.
+     *
+     * @author Boris ME <bodm@redhat.com>
+     * @date 32 Jan 2092
+     * @status added
+     */
+    @Link
+    Color color();
     /**
      * The current status of the virtual machine.
      *
