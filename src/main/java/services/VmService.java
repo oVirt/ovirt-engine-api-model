@@ -29,6 +29,7 @@ import types.Disk;
 import types.Host;
 import types.Snapshot;
 import types.StorageDomain;
+import types.StorageDomainLease;
 import types.Vm;
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
@@ -602,6 +603,23 @@ public interface VmService extends MeasurableService {
     interface PreviewSnapshot {
         @In Disk[] disks();
         @In Boolean restoreMemory();
+
+        /**
+         * Specify the lease storage domain ID to use in the preview of the snapshot.
+         * If lease parameter is not passed, then the previewed snapshot lease storage domain will be used.
+         * If lease parameter is passed with empty storage domain parameter, then no lease will be used
+         * for the snapshot preview.
+         * If lease parameter is passed with storage domain parameter then the storage domain ID can be the
+         * active snapshot lease storage domain ID or, the previewed snapshot lease storage domain ID only.
+         * This is an optional parameter, set by default to `null`
+         *
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 11 Jan 2018
+         * @status added
+         * @since 4.2.2
+         */
+        @In StorageDomainLease lease();
+
         @In Snapshot snapshot();
         @In Vm vm();
 
@@ -618,6 +636,7 @@ public interface VmService extends MeasurableService {
         default void inputDetail() {
             mandatory(snapshot().id());
             optional(restoreMemory());
+            optional(lease());
             optional(disks()[COLLECTION].id());
             optional(disks()[COLLECTION].imageId());
             optional(disks()[COLLECTION].snapshot().id());
