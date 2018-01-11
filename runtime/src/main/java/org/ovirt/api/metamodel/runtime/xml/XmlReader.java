@@ -393,21 +393,27 @@ public class XmlReader implements AutoCloseable {
     }
 
     /**
-     * Reads an list of string elements with same element name, assuming that the cursor is positioned at the start
-     * element that contains the value of the string and ends when different element name found.
+     * Reads an list of string elements with same element name, assuming that the cursor is positioned at the list
+     * element that contains the list of values with the string and ends when different element name found.
      */
     public List<String> readStrings() {
         List<String> values = new ArrayList<>();
         String startingLocalName = reader.getLocalName();
         String currentLocalName = startingLocalName;
 
-        while (forward()) {
+        // Skip the plural element, which holds the other elements:
+        next();
+
+        // Read the actual values of elements:
+        boolean forward = true;
+        while (forward) {
+            forward = forward();
             currentLocalName = reader.getLocalName();
-            if (currentLocalName.equals(startingLocalName)) {
-                values.add(readString());
+            if (!forward && currentLocalName.equals(startingLocalName)) {
+                skip();
             }
             else {
-                skip();
+                values.add(readString());
             }
         }
         return values;

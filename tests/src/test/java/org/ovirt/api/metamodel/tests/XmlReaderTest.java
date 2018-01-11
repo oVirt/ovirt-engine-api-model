@@ -413,7 +413,7 @@ public class XmlReaderTest {
      */
     @Test
     public void testReadStringListEndElement() {
-        XmlReader reader = openReader("<action><value>1</value><value>2</value></action>");
+        XmlReader reader = openReader("<action><values><value>1</value><value>2</value></values></action>");
         reader.next();
         reader.readStrings();
         assertEquals(XMLStreamConstants.END_ELEMENT, reader.getEventType());
@@ -425,7 +425,7 @@ public class XmlReaderTest {
      */
     @Test
     public void testReadBooleanListEndElement() {
-        XmlReader reader = openReader("<action><value>true</value><value>false</value></action>");
+        XmlReader reader = openReader("<action><values><value>true</value><value>false</value></values></action>");
         reader.next();
         reader.readBooleans();
         assertEquals(XMLStreamConstants.END_ELEMENT, reader.getEventType());
@@ -439,7 +439,7 @@ public class XmlReaderTest {
     @Test
     public void testReadStringList() {
         List<String> expected = Arrays.asList("1", "2");
-        XmlReader reader = openReader("<action><value>1</value><value>2</value></action>");
+        XmlReader reader = openReader("<action><values><value>1</value><value>2</value></values></action>");
         reader.next();
         List<String> strings = reader.readStrings();
         assertEquals(expected, strings);
@@ -451,7 +451,7 @@ public class XmlReaderTest {
     @Test
     public void testReadBooleanList() {
         List<Boolean> expected = Arrays.asList(true, false);
-        XmlReader reader = openReader("<action><value>true</value><value>false</value></action>");
+        XmlReader reader = openReader("<action><values><value>true</value><value>false</value></values></action>");
         reader.next();
         List<Boolean> booleans = reader.readBooleans();
         assertEquals(expected, booleans);
