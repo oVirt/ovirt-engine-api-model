@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.1.41 / Jan 11 2018
+
+New features:
+
+* Add `hasIllegalImages` parameter to `Vm` type
+  Bug-Url: https://bugzilla.redhat.com/1372163[#1372163].
+
 == 4.1.40 / Oct 13 2017
 
 Bug fixes:
