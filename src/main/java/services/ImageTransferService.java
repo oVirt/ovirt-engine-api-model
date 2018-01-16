@@ -31,8 +31,9 @@ import annotations.Area;
  *
  * After doing that, the transfer is managed by this service.
  *
- * E.g., for uploading to the disk image with id `52cb593f-837c-4633-a444-35a0a0383706`,
- * the client can use oVirt's Python's SDK as follows:
+ * E.g., for uploading/downloading a disk with id `52cb593f-837c-4633-a444-35a0a0383706`:
+ *
+ * *Using oVirt's Python's SDK:*
  *
  * [source,python]
  * ----
@@ -200,6 +201,102 @@ import annotations.Area;
  * the disk's status will be changed to `Illegal`. Otherwise it will be changed to
  * <<types/image_transfer_phase, finished_success>>, and the disk will be ready
  * to be used. In both cases, the transfer entity will be removed shortly after.
+ *
+ *
+ * *Using HTTP and cURL calls:*
+ *
+ * - For upload, create a new disk first:
+ * * Specify 'initial_size' and 'provisioned_size' in bytes.
+ * * 'initial_size' must be bigger or the same as the size of the uploaded data.
+ *
+ * [source]
+ * ----
+ * POST /ovirt-engine/api/disks
+ * ----
+ *
+ * With a request body as follows:
+ *
+ * [source,xml]
+ * ----
+ * <disk>
+ *   <storage_domains>
+ *     <storage_domain id="123"/>
+ *   </storage_domains>
+ *   <alias>mydisk</alias>
+ *   <initial_size>1073741824</initial_size>
+ *   <provisioned_size>1073741824</provisioned_size>
+ *   <format>raw</format>
+ * </disk>
+ * ----
+ *
+ *
+ * - Create a new image transfer for downloading/uploading a `disk` with id `456`:
+ *
+ *
+ * [source]
+ * ----
+ * POST /ovirt-engine/api/imagetransfers
+ * ----
+ *
+ * With a request body as follows:
+ *
+ * [source,xml]
+ * ----
+ * <image_transfer>
+ *   <disk id="456"/>
+ *   <direction>upload|download</direction>
+ * </image_transfer>
+ * ----
+ *
+ * Will respond:
+ *
+ * [source,xml]
+ * ----
+ * <image_transfer id="123">
+ *   <direction>download|upload</direction>
+ *   <phase>initializing|transferring</phase>
+ *   <proxy_url>https://proxy_fqdn:54323/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb</proxy_url>
+ *   <transfer_url>https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb</transfer_url>
+ *   ...
+ * </image_transfer>
+ * ----
+ *
+ * Note: If the phase is 'initializing', poll the `image_transfer` till its phase changes to 'transferring'.
+ *
+ * - Use the 'transfer_url' or 'proxy_url' to invoke a curl command:
+ * - use 'transfer_url' for transferring directly from/to ovirt-imageio-daemon,
+ *   or, use 'proxy_url' for transferring from/to ovirt-imageio-proxy.
+ *   Note: using the proxy would mitigate scenarios where there's no direct connectivity
+ *   to the daemon machine, e.g. vdsm machines are on a different network than the engine.
+ *
+ * -- Download:
+ *
+ * [source,shell]
+ * ----
+ * $ curl --cacert /etc/pki/ovirt-engine/ca.pem https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb -o <output_file>
+ * ----
+ *
+ * -- Upload:
+ *
+ * [source,shell]
+ * ----
+ * $ curl --cacert /etc/pki/ovirt-engine/ca.pem --upload-file <file_to_upload> -X PUT https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb
+ * ----
+ *
+ * - Finalize the image transfer by invoking the action:
+ *
+ * [source]
+ * ----
+ * POST /ovirt-engine/api/imagetransfers/123/finalize
+ * ----
+ *
+ * With a request body as follows:
+ *
+ * [source,xml]
+ * ----
+ * <action />
+ * ----
+ *
  *
  * @author Amit Aviram <aaviram@redhat.com>
  * @date 30 Aug 2016
