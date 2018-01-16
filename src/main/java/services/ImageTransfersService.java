@@ -48,6 +48,47 @@ public interface ImageTransfersService {
      * IMPORTANT: The `image` attribute is deprecated since version 4.2 of the engine.
      * Use the `disk` or `snapshot` attributes instead.
      *
+     * *Creating a new image transfer for downloading or uploading a `disk`:*
+     *
+     * To create an image transfer to download or upload a disk with id `123`,
+     * send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/imagetransfers
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <image_transfer>
+     *   <disk id="123"/>
+     *   <direction>upload|download</direction>
+     * </image_transfer>
+     * ----
+     *
+     *
+     * *Creating a new image transfer for downloading or uploading a `disk_snapshot`:*
+     *
+     * To create an image transfer to download or upload a `disk_snapshot` with id `456`,
+     * send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/imagetransfers
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <image_transfer>
+     *   <snapshot id="456"/>
+     *   <direction>download|upload</direction>
+     * </image_transfer>
+     * ----
+     *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 13 Sep 2017
