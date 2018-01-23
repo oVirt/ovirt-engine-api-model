@@ -1135,6 +1135,39 @@ public interface HostService extends MeasurableService {
     }
 
     /**
+     * To synchronize all networks on the host, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/syncallnetworks
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Leon Goldberg <lgoldber@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 07 Feb 18
+     * @since 4.2.2
+     * @status updated_by_docs
+     */
+    interface SyncAllNetworks {
+        /**
+         * Indicates if the action should be performed asynchronously.
+         *
+         * @author Leon Goldberg <lgoldber@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 30 Jan 18
+         * @status updated_by_docs
+         */
+        @In Boolean async();
+    }
+
+    /**
      * A reference to the host permission service.
      * Use this service to manage permissions on the host object.
      *
