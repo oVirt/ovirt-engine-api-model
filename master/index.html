@@ -23200,8 +23200,10 @@ data to/from.</p>
 <p>After doing that, the transfer is managed by this service.</p>
 </div>
 <div class="paragraph">
-<p>E.g., for uploading to the disk image with id <code>52cb593f-837c-4633-a444-35a0a0383706</code>,
-the client can use oVirt&#8217;s Python&#8217;s SDK as follows:</p>
+<p>E.g., for uploading/downloading a disk with id <code>52cb593f-837c-4633-a444-35a0a0383706</code>:</p>
+</div>
+<div class="paragraph">
+<p><strong>Using oVirt&#8217;s Python&#8217;s SDK:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -23393,6 +23395,136 @@ the disk&#8217;s status will be changed to <code>Illegal</code>. Otherwise it wi
 <a href="#types/image_transfer_phase">finished_success</a>, and the disk will be ready
 to be used. In both cases, the transfer entity will be removed shortly after.</p>
 </div>
+<div class="paragraph">
+<p><strong>Using HTTP and cURL calls:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For upload, create a new disk first:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Specify 'initial_size' and 'provisioned_size' in bytes.</p>
+</li>
+<li>
+<p>'initial_size' must be bigger or the same as the size of the uploaded data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;disk&gt;
+  &lt;storage_domains&gt;
+    &lt;storage_domain id="123"/&gt;
+  &lt;/storage_domains&gt;
+  &lt;alias&gt;mydisk&lt;/alias&gt;
+  &lt;initial_size&gt;1073741824&lt;/initial_size&gt;
+  &lt;provisioned_size&gt;1073741824&lt;/provisioned_size&gt;
+  &lt;format&gt;raw&lt;/format&gt;
+&lt;/disk&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a new image transfer for downloading/uploading a <code>disk</code> with id <code>456</code>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;image_transfer&gt;
+  &lt;disk id="456"/&gt;
+  &lt;direction&gt;upload|download&lt;/direction&gt;
+&lt;/image_transfer&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will respond:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;image_transfer id="123"&gt;
+  &lt;direction&gt;download|upload&lt;/direction&gt;
+  &lt;phase&gt;initializing|transferring&lt;/phase&gt;
+  &lt;proxy_url&gt;https://proxy_fqdn:54323/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb&lt;/proxy_url&gt;
+  &lt;transfer_url&gt;https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb&lt;/transfer_url&gt;
+  ...
+&lt;/image_transfer&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note: If the phase is 'initializing', poll the <code>image_transfer</code> till its phase changes to 'transferring'.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the 'transfer_url' or 'proxy_url' to invoke a curl command:</p>
+</li>
+<li>
+<p>use 'transfer_url' for transferring directly from/to ovirt-imageio-daemon,
+or, use 'proxy_url' for transferring from/to ovirt-imageio-proxy.
+Note: using the proxy would mitigate scenarios where there&#8217;s no direct connectivity
+to the daemon machine, e.g. vdsm machines are on a different network than the engine.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8201;&#8212;&#8201;Download:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">$ curl --cacert /etc/pki/ovirt-engine/ca.pem https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb -o &lt;output_file&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8201;&#8212;&#8201;Upload:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell" data-lang="shell">$ curl --cacert /etc/pki/ovirt-engine/ca.pem --upload-file &lt;file_to_upload&gt; -X PUT https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Finalize the image transfer by invoking the action:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers/123/finalize</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action /&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 340. Methods summary</caption>
 <colgroup>
@@ -23564,6 +23696,52 @@ Use the <code>disk</code> or <code>snapshot</code> attributes instead.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p><strong>Creating a new image transfer for downloading or uploading a <code>disk</code>:</strong></p>
+</div>
+<div class="paragraph">
+<p>To create an image transfer to download or upload a disk with id <code>123</code>,
+send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;image_transfer&gt;
+  &lt;disk id="123"/&gt;
+  &lt;direction&gt;upload|download&lt;/direction&gt;
+&lt;/image_transfer&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Creating a new image transfer for downloading or uploading a <code>disk_snapshot</code>:</strong></p>
+</div>
+<div class="paragraph">
+<p>To create an image transfer to download or upload a <code>disk_snapshot</code> with id <code>456</code>,
+send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;image_transfer&gt;
+  &lt;snapshot id="456"/&gt;
+  &lt;direction&gt;download|upload&lt;/direction&gt;
+&lt;/image_transfer&gt;</code></pre>
+</div>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 343. Parameters summary</caption>
@@ -77114,7 +77292,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-09 15:24:15 UTC
+Last updated 2018-01-23 12:13:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
