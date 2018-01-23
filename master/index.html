@@ -42244,6 +42244,12 @@ be inspected. Once that inspection is finished, the state of the virtual machine
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lease</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain_lease">StorageDomainLease</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the lease storage domain ID to use in the preview of the snapshot.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>restore_memory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -42263,6 +42269,18 @@ be inspected. Once that inspection is finished, the state of the virtual machine
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/vm/methods/preview_snapshot/parameters/lease"><a class="anchor" href="#services/vm/methods/preview_snapshot/parameters/lease"></a>lease</h5>
+<div class="paragraph">
+<p>Specify the lease storage domain ID to use in the preview of the snapshot.
+If lease parameter is not passed, then the previewed snapshot lease storage domain will be used.
+If lease parameter is passed with empty storage domain parameter, then no lease will be used
+for the snapshot preview.
+If lease parameter is passed with storage domain parameter then the storage domain ID can be the
+active snapshot lease storage domain ID or, the previewed snapshot lease storage domain ID only.
+This is an optional parameter, set by default to <code>null</code></p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/vm/methods/reboot"><a class="anchor" href="#services/vm/methods/reboot"></a>6.238.12. reboot <span class="small">POST</span></h4>
@@ -47980,6 +47998,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>job</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/job">Job</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lease</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain_lease">StorageDomainLease</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -77292,7 +77315,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-01-23 12:13:57 UTC
+Last updated 2018-01-23 15:45:00 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
