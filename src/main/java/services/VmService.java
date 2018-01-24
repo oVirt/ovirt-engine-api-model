@@ -609,8 +609,8 @@ public interface VmService extends MeasurableService {
          * If lease parameter is not passed, then the previewed snapshot lease storage domain will be used.
          * If lease parameter is passed with empty storage domain parameter, then no lease will be used
          * for the snapshot preview.
-         * If lease parameter is passed with storage domain parameter then the storage domain ID can be the
-         * active snapshot lease storage domain ID or, the previewed snapshot lease storage domain ID only.
+         * If lease parameter is passed with storage domain parameter then the storage domain ID can be
+         * only one of the leases domain IDs that belongs to one of the virtual machine snapshots.
          * This is an optional parameter, set by default to `null`
          *
          * @author Eyal Shenitzky <eshenitz@redhat.com>
