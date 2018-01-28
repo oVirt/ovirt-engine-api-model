@@ -412,6 +412,9 @@ public interface Vm extends VmBase {
     /**
      * Statistics data collected from this virtual machine.
      *
+     * Note that some statistics, notably memory.bufferd and memory.cahced are
+     * available only when oVirt Guest Agent is installed in the VM.
+     *
      * @author Marek Libra <mlibra@redhat.com>
      * @date 12 Dec 2016
      * @status added
