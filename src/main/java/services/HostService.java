@@ -1106,7 +1106,17 @@ public interface HostService extends MeasurableService {
         }
         @In NetworkAttachment[] modifiedNetworkAttachments();
         @In NetworkAttachment[] removedNetworkAttachments();
+
+        /**
+         * A list of network attachments that will be synchronized.
+         *
+         * @author Leon Goldberg <lgoldber@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 31 Jan 18
+         * @status updated_by_docs
+         */
         @In NetworkAttachment[] synchronizedNetworkAttachments();
+
         @In HostNic[] modifiedBonds();
         @In HostNic[] removedBonds();
         @In NetworkLabel[] modifiedLabels();
