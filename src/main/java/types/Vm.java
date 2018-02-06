@@ -96,52 +96,6 @@ public interface Vm extends VmBase {
     Payload[] payloads();
 
     /**
-     * The configuration of the virtual machine's placement policy.
-     *
-     * This configuration can be updated to pin a virtual machine to one or more hosts.
-     *
-     * NOTE: Virtual machines that are pinned to multiple hosts cannot be live migrated, but in the event of a host
-     * failure, any virtual machine configured to be highly available is automatically restarted on one of the other
-     * hosts to which the virtual machine is pinned.
-     *
-     * For example, to pin a virtual machine to two hosts, send the following request:
-     *
-     * [source]
-     * ----
-     * PUT /api/vms/123
-     * ----
-     *
-     * With a request body like this:
-     *
-     * [source,xml]
-     * ----
-     * <vm>
-     *   <high_availability>
-     *     <enabled>true</enabled>
-     *     <priority>1</priority>
-     *   </high_availability>
-     *   <placement_policy>
-     *     <hosts>
-     *       <host>
-     *         <name>Host1</name>
-     *       </host>
-     *       <host>
-     *         <name>Host2</name>
-     *       </host>
-     *     </hosts>
-     *     <affinity>pinned</affinity>
-     *   </placement_policy>
-     * </vm>
-     * ----
-     *
-     * @author Phillip Bailey <phbailey@redhat.com>
-     * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 02 Dec 2016
-     * @status updated_by_docs
-     */
-    VmPlacementPolicy placementPolicy();
-
-    /**
      * Fully qualified domain name of the virtual machine.
      *
      * @author Marek Libra <mlibra@redhat.com>
