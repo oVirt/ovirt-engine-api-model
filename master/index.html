@@ -59499,6 +59499,11 @@ attributes are not used in instance types.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Operating system type installed on the virtual machine.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>placement_policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_placement_policy">VmPlacementPolicy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The configuration of the virtual machine&#8217;s placement policy.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rng_device</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/rng_device">RngDevice</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Random Number Generator device configuration for this virtual machine.</p></td>
@@ -59812,13 +59817,68 @@ oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/small_icon"><a class="anchor" href="#types/instance_type/attributes/small_icon"></a>7.128.10. small_icon</h4>
+<h4 id="types/instance_type/attributes/placement_policy"><a class="anchor" href="#types/instance_type/attributes/placement_policy"></a>7.128.10. placement_policy</h4>
+<div class="paragraph">
+<p>The configuration of the virtual machine&#8217;s placement policy.</p>
+</div>
+<div class="paragraph">
+<p>This configuration can be updated to pin a virtual machine to one or more hosts.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Virtual machines that are pinned to multiple hosts cannot be live migrated, but in the event of a host
+failure, any virtual machine configured to be highly available is automatically restarted on one of the other
+hosts to which the virtual machine is pinned.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to pin a virtual machine to two hosts, send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;high_availability&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;priority&gt;1&lt;/priority&gt;
+  &lt;/high_availability&gt;
+  &lt;placement_policy&gt;
+    &lt;hosts&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host1&lt;/name&gt;
+      &lt;/host&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host2&lt;/name&gt;
+      &lt;/host&gt;
+    &lt;/hosts&gt;
+    &lt;affinity&gt;pinned&lt;/affinity&gt;
+  &lt;/placement_policy&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/instance_type/attributes/small_icon"><a class="anchor" href="#types/instance_type/attributes/small_icon"></a>7.128.11. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/instance_type/attributes/sso"><a class="anchor" href="#types/instance_type/attributes/sso"></a>7.128.11. sso</h4>
+<h4 id="types/instance_type/attributes/sso"><a class="anchor" href="#types/instance_type/attributes/sso"></a>7.128.12. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -70830,6 +70890,11 @@ This allows a rapid instanstiation of virtual machines with common configuration
 <td class="tableblock halign-left valign-top"><p class="tableblock">Operating system type installed on the virtual machine.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>placement_policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_placement_policy">VmPlacementPolicy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The configuration of the virtual machine&#8217;s placement policy.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rng_device</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/rng_device">RngDevice</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Random Number Generator device configuration for this virtual machine.</p></td>
@@ -71143,13 +71208,68 @@ oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/small_icon"><a class="anchor" href="#types/template/attributes/small_icon"></a>7.269.10. small_icon</h4>
+<h4 id="types/template/attributes/placement_policy"><a class="anchor" href="#types/template/attributes/placement_policy"></a>7.269.10. placement_policy</h4>
+<div class="paragraph">
+<p>The configuration of the virtual machine&#8217;s placement policy.</p>
+</div>
+<div class="paragraph">
+<p>This configuration can be updated to pin a virtual machine to one or more hosts.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Virtual machines that are pinned to multiple hosts cannot be live migrated, but in the event of a host
+failure, any virtual machine configured to be highly available is automatically restarted on one of the other
+hosts to which the virtual machine is pinned.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to pin a virtual machine to two hosts, send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;high_availability&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;priority&gt;1&lt;/priority&gt;
+  &lt;/high_availability&gt;
+  &lt;placement_policy&gt;
+    &lt;hosts&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host1&lt;/name&gt;
+      &lt;/host&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host2&lt;/name&gt;
+      &lt;/host&gt;
+    &lt;/hosts&gt;
+    &lt;affinity&gt;pinned&lt;/affinity&gt;
+  &lt;/placement_policy&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/template/attributes/small_icon"><a class="anchor" href="#types/template/attributes/small_icon"></a>7.269.11. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/template/attributes/sso"><a class="anchor" href="#types/template/attributes/sso"></a>7.269.11. sso</h4>
+<h4 id="types/template/attributes/sso"><a class="anchor" href="#types/template/attributes/sso"></a>7.269.12. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -73242,6 +73362,11 @@ This is used by virtual machines, templates and instance types.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Operating system type installed on the virtual machine.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>placement_policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_placement_policy">VmPlacementPolicy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The configuration of the virtual machine&#8217;s placement policy.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>rng_device</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/rng_device">RngDevice</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Random Number Generator device configuration for this virtual machine.</p></td>
@@ -73540,13 +73665,68 @@ oVirt Engine internally rounds values down to whole MiBs (1MiB = 2<sup>20</sup> 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/small_icon"><a class="anchor" href="#types/vm_base/attributes/small_icon"></a>7.290.10. small_icon</h4>
+<h4 id="types/vm_base/attributes/placement_policy"><a class="anchor" href="#types/vm_base/attributes/placement_policy"></a>7.290.10. placement_policy</h4>
+<div class="paragraph">
+<p>The configuration of the virtual machine&#8217;s placement policy.</p>
+</div>
+<div class="paragraph">
+<p>This configuration can be updated to pin a virtual machine to one or more hosts.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Virtual machines that are pinned to multiple hosts cannot be live migrated, but in the event of a host
+failure, any virtual machine configured to be highly available is automatically restarted on one of the other
+hosts to which the virtual machine is pinned.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, to pin a virtual machine to two hosts, send the following request:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>PUT /api/vms/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;vm&gt;
+  &lt;high_availability&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;priority&gt;1&lt;/priority&gt;
+  &lt;/high_availability&gt;
+  &lt;placement_policy&gt;
+    &lt;hosts&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host1&lt;/name&gt;
+      &lt;/host&gt;
+      &lt;host&gt;
+        &lt;name&gt;Host2&lt;/name&gt;
+      &lt;/host&gt;
+    &lt;/hosts&gt;
+    &lt;affinity&gt;pinned&lt;/affinity&gt;
+  &lt;/placement_policy&gt;
+&lt;/vm&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_base/attributes/small_icon"><a class="anchor" href="#types/vm_base/attributes/small_icon"></a>7.290.11. small_icon</h4>
 <div class="paragraph">
 <p>Virtual machine&#8217;s small icon. Either set by user or refers to image set according to operating system.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_base/attributes/sso"><a class="anchor" href="#types/vm_base/attributes/sso"></a>7.290.11. sso</h4>
+<h4 id="types/vm_base/attributes/sso"><a class="anchor" href="#types/vm_base/attributes/sso"></a>7.290.12. sso</h4>
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
@@ -77397,7 +77577,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-02-07 12:39:44 UTC
+Last updated 2018-02-07 17:13:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
