@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API metamodel.
 
+== 1.3.0 / Feb 8 2017
+
+Bug fixes:
+
+* Fix reading of list of strings. 
+
 == 1.2.16 / Dec 7 2017
 
 Bug fixes:
