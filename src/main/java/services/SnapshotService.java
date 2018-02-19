@@ -90,6 +90,37 @@ public interface SnapshotService {
             optional(disks()[COLLECTION].id());
             optional(disks()[COLLECTION].imageId());
         }
+        /**
+         * Specify the disks included in the snapshot's restore.
+         *
+         * For each disk parameter, it is also required to specify its `image_id`.
+         *
+         * For example, to restore a snapshot with an identifier `456` of a virtual machine with identifier `123`, including
+         * a disk with identifier `111` and `image_id` of `222`, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vms/123/snapshots/456/restore
+         * ----
+         *
+         * Request body:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <disks>
+         *     <disk id="111">
+         *       <image_id>222</image_id>
+         *     </disk>
+         *   </disks>
+         * </action>
+         * ----
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 28 Feb 2018
+         * @status updated_by_docs
+         */
         @In Disk[] disks();
         @In Boolean restoreMemory();
 
