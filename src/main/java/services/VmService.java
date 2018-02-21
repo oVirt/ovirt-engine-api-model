@@ -601,6 +601,38 @@ public interface VmService extends MeasurableService {
      * @status updated_by_docs
      */
     interface PreviewSnapshot {
+        /**
+         * Specify the disks included in the snapshot's preview.
+         *
+         * For each disk parameter, it is also required to specify its `image_id`.
+         *
+         * For example, to preview a snapshot with identifier `456` which includes a disk with identifier `111` and its
+         * `image_id` as `222`, send a request like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vms/123/previewsnapshot
+         * ----
+         *
+         * Request body:
+         *
+         * [source,xml]
+         * ----
+         * <action>
+         *   <disks>
+         *     <disk id="111">
+         *       <image_id>222</image_id>
+         *     </disk>
+         *   </disks>
+         *   <snapshot id="456"/>
+         * </action>
+         * ----
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 28 Feb 2018
+         * @status updated_by_docs
+         */
         @In Disk[] disks();
         @In Boolean restoreMemory();
 
