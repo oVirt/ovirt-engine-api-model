@@ -106,6 +106,7 @@ public interface UserService {
         @In Boolean async();
     }
 
+    @Service DomainUserGroupsService groups();
     @Service AssignedRolesService roles();
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
