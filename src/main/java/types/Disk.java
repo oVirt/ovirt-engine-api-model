@@ -29,6 +29,15 @@ import org.ovirt.api.metamodel.annotations.Type;
  */
 @Type
 public interface Disk extends Device {
+
+    /**
+     * A human-readable name in plain text.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 02 Mar 2018
+     * @status updated_by_docs
+     */
     String alias();
     String imageId();
 
@@ -76,12 +85,13 @@ public interface Disk extends Device {
      * The total size of the disk including all of its snapshots, in bytes.
      *
      * The total size is the number of bytes actually used by the disk plus the size of its snapshots.
-     * It won't be populated for direct LUN and Cinder disks.
+     * It will not be populated for direct LUN and Cinder disks.
      * For disks without snapshots the total size is equal to the actual size.
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
-     * @date 21 Aug 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 02 Mar 2018
+     * @status updated_by_docs
      * @since 4.2.0
      */
     Integer totalSize();
@@ -257,11 +267,26 @@ public interface Disk extends Device {
      * Indicates the actual content residing on the disk.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 27 Dec 2017
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 02 Mar 2018
+     * @status updated_by_docs
      * @since 4.2.1
-     * @status added
      */
     DiskContentType contentType();
+
+    /**
+     * A human-readable name in plain text.
+     *
+     * Deprecated in favor of the `alias` attribute. It always returns the same value as `alias`.
+     * If both `alias` and this property are set during a write operation, the value of `alias` is used.
+     *
+     * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 02 Mar 2018
+     * @status updated_by_docs
+     */
+    @Override
+    String name();
 
     @Link StorageDomain storageDomain();
 
