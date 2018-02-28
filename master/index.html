@@ -32866,7 +32866,7 @@ request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disks</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the disks included in the snapshot&#8217;s restore.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>restore_memory</code></p></td>
@@ -32876,6 +32876,38 @@ request like this:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/snapshot/methods/restore/parameters/disks"><a class="anchor" href="#services/snapshot/methods/restore/parameters/disks"></a>disks</h5>
+<div class="paragraph">
+<p>Specify the disks included in the snapshot&#8217;s restore.</p>
+</div>
+<div class="paragraph">
+<p>For each disk parameter, it is also required to specify its <code>image_id</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, to restore a snapshot with an identifier <code>456</code> of a virtual machine with identifier <code>123</code>, including
+a disk with identifier <code>111</code> and <code>image_id</code> of <code>222</code>, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/snapshots/456/restore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Request body:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
+  &lt;disks&gt;
+    &lt;disk id="111"&gt;
+      &lt;image_id&gt;222&lt;/image_id&gt;
+    &lt;/disk&gt;
+  &lt;/disks&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -77683,7 +77715,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-02-28 08:40:25 UTC
+Last updated 2018-02-28 08:53:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
