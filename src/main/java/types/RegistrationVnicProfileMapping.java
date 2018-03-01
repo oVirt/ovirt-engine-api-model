@@ -21,12 +21,13 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Maps an external virtual NIC profile to one that exists in the {engine-name}.
+ * The target may be specified as a profile ID or a pair of profile name and network name.
  *
  * If, for example, the desired virtual NIC profile mapping includes the following lines:
  *
  * [cols="25,35,40"]
  * |===
- * |Source network name|Source network profile name|Target virtual NIC profile ID
+ * |Source network name|Source network profile name|Target virtual NIC profile ID\names
  *
  * |`red`
  * |`gold`
@@ -35,6 +36,14 @@ import org.ovirt.api.metamodel.annotations.Type;
  * |`<empty>` (no network name)
  * |`<empty>` (no network profile name)
  * |`892a12ec-2028-4451-80aa-ff3bf55d6bac`
+ *
+ * |`blue`
+ * |`silver`
+ * |`orange\copper`
+ *
+ * |`yellow`
+ * |`platinum`
+ * |`<empty>` (no profile)
  *
  * |`green`
  * |`bronze`
@@ -64,6 +73,34 @@ import org.ovirt.api.metamodel.annotations.Type;
  *       </network>
  *     </from>
  *     <to id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/>
+ *   </registration_vnic_profile_mapping>
+ *   <registration_vnic_profile_mapping>
+ *     <from>
+ *       <name>silver</name>
+ *       <network>
+ *         <name>blue</name>
+ *       </network>
+ *     </from>
+ *     <to>
+ *       <name>copper</name>
+ *       <network>
+ *         <name>orange</name>
+ *       </network>
+ *     </to>
+ *   </registration_vnic_profile_mapping>
+ *   <registration_vnic_profile_mapping>
+ *     <from>
+ *       <name>platinum</name>
+ *       <network>
+ *         <name>yellow</name>
+ *       </network>
+ *     </from>
+ *     <to>
+ *       <name></name>
+ *       <network>
+ *         <name></name>
+ *       </network>
+ *     </to>
  *   </registration_vnic_profile_mapping>
  *   <registration_vnic_profile_mapping>
  *     <from>
@@ -97,7 +134,9 @@ public interface RegistrationVnicProfileMapping {
 
     /**
      * Reference to to an existing virtual NIC profile.
-     * It should be specified using its `name`.
+     * It should be specified using its `name` or `id`.
+     * Either `name` or `id` should be specified but not
+     * both.
      *
      * @author Eitan Raviv <eraviv@redhat.com>
      * @date 05 Dec 2017
