@@ -147,7 +147,12 @@ import org.ovirt.api.metamodel.annotations.Type;
  *             <name>blue</name>
  *           </network>
  *         </from>
- *         <to id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/>
+ *         <to>
+ *           <name>copper</name>
+ *           <network>
+ *             <name>orange</name>
+ *           </network>
+ *         </to>
  *       </registration_vnic_profile_mapping>
  *     </vnic_profile_mappings>
  *   </registration_configuration>
