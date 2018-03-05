@@ -20,6 +20,9 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Type representing kind of operating system.
  *
+ * WARNING: This type has been deprecated with the introduction of the <<types/operating_system_info, OperatingSystemInfo>> type.
+ * Operating systems are available as a top-level collection in the API: <<services/operating_systems, operating_systems>>
+ *
  * The end-user declares the type of the operating system installed in the virtual machine (guest operating system) by
  * selecting one of these values. This declaration enables the system to tune the virtual machine configuration for
  * better user experience. For example, the system chooses devices that are most suitable for the operating system. Note
@@ -31,6 +34,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * @status added
  */
 @Type
+@Deprecated
 public enum OsType {
     /**
      * This value is mapped to `other`.
