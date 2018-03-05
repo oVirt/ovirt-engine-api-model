@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.30 / Mar 5 2018
+
+New features:
+
+* Add service to list user groups
+  https://bugzilla.redhat.com/1545716[1545716].
+
 == 4.2.29 / Feb 7 2018
 
 New features:
