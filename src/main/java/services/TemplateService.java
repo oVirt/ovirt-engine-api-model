@@ -17,12 +17,14 @@ limitations under the License.
 package services;
 
 import mixins.Follow;
+
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 
 import annotations.Area;
+import types.Host;
 import types.StorageDomain;
 import types.Template;
 
@@ -35,8 +37,9 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.or;
  * Manages the virtual machine template and template versions.
  *
  * @author Tomas Jelinek <tjelinek@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 03 Mar 2018
+ * @status updated_by_docs
  */
 @Service
 @Area("Virtualization")
@@ -44,7 +47,7 @@ public interface TemplateService {
     /**
      * Exports a template to the data center export domain.
      *
-     * For example, the operation can be facilitated using the following request:
+     * For example, send the following request:
      *
      * [source]
      * ----
@@ -62,15 +65,11 @@ public interface TemplateService {
      * ----
      *
      * @author Liron Aravot <laravot@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     interface Export {
-        @InputDetail
-        default void inputDetail() {
-            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
-            optional(exclusive());
-        }
         /**
          * Indicates if the existing templates with the same name should be overwritten.
          *
@@ -78,8 +77,9 @@ public interface TemplateService {
          * Set this parameter to `true` to change this behavior and overwrite any existing template.
          *
          * @author Liron Aravot <laravot@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @In Boolean exclusive();
 
@@ -87,31 +87,108 @@ public interface TemplateService {
          * Specifies the destination export storage domain.
          *
          * @author Liron Aravot <laravot@redhat.com>
-         * @date 14 Sep 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @In StorageDomain storageDomain();
+
+        /**
+         * Exports a template to an export domain.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
+         */
+        interface ToExportDomain extends Export {
+            @InputDetail
+            default void inputDetail() {
+                or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+                optional(exclusive());
+            }
+        }
+
+        /**
+         * Exports a template as an OVA file to a given path on a specified host.
+         *
+         * @author Arik Hadas <ahadas@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
+         * @since 4.2.3
+         */
+        interface ToPathOnHost extends Export {
+            /**
+             * The host to generate the OVA file on.
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @author Tahlia Richardson <trichard@redhat.com>
+             * @date 03 Mar 2018
+             * @status updated_by_docs
+             * @since 4.2.3
+             */
+            @In Host host();
+
+            /**
+             * An absolute path of a directory on the host to generate the OVA file in.
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @author Tahlia Richardson <trichard@redhat.com>
+             * @date 03 Mar 2018
+             * @status updated_by_docs
+             * @since 4.2.3
+             */
+            @In String directory();
+
+            /**
+             * The name of the OVA file.
+             *
+             * This is an optional parameter. If it is not specified, the name of the OVA file is determined according
+             * to the name of the template. It will conform to the following pattern: "<template name>.ova".
+             *
+             * @author Arik Hadas <ahadas@redhat.com>
+             * @author Tahlia Richardson <trichard@redhat.com>
+             * @date 03 Mar 2018
+             * @status updated_by_docs
+             * @since 4.2.3
+             */
+            @In String filename();
+
+            @InputDetail
+            default void inputDetail() {
+                or(mandatory(host().id()), mandatory(host().name()));
+                mandatory(directory());
+                optional(filename());
+            }
+        }
     }
 
     /**
      * Returns the information about this template or template version.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     interface Get extends Follow {
         /**
          * The information about the template or template version.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
-         * @date 12 Dec 2016
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @Out Template template();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
@@ -120,9 +197,9 @@ public interface TemplateService {
      * Updates the template.
      *
      * The `name`, `description`, `type`, `memory`, `cpu`, `topology`, `os`, `high_availability`, `display`,
-     * `stateless`, `usb` and `timezone` elements can be updated after a template has been created.
+     * `stateless`, `usb`, and `timezone` elements can be updated after a template has been created.
      *
-     * For example, to update a template to so that it has 1 GiB of memory send a request like this:
+     * For example, to update a template so that it has 1 GiB of memory send a request like this:
      *
      * [source]
      * ----
@@ -151,8 +228,9 @@ public interface TemplateService {
      * ----
      *
      * @author Shahar Havivi <shavivi@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     interface Update {
         @InputDetail
@@ -226,6 +304,10 @@ public interface TemplateService {
 
         /**
          * Indicates if the update should be performed asynchronously.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -239,12 +321,16 @@ public interface TemplateService {
      * ----
      *
      * @author Shahar Havivi <shavivi@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     interface Remove {
         /**
-         * Indicates if the remove should be performed asynchronously.
+         * Indicates if the removal should be performed asynchronously.
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 03 Mar 2018
+         * @status updated_by_docs
          */
         @In Boolean async();
     }
@@ -253,8 +339,9 @@ public interface TemplateService {
      * Returns a reference to the service that manages the permissions that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service AssignedPermissionsService permissions();
 
@@ -262,8 +349,9 @@ public interface TemplateService {
      * Returns a reference to the service that manages the tags that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service AssignedTagsService tags();
 
@@ -271,17 +359,19 @@ public interface TemplateService {
      * Returns a reference to the service that manages the graphical consoles that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service TemplateGraphicsConsolesService graphicsConsoles();
 
     /**
-     * Returns a reference to the service that manages the CDROMs that are associated with the template.
+     * Returns a reference to the service that manages the CD-ROMs that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service TemplateCdromsService cdroms();
 
@@ -289,8 +379,9 @@ public interface TemplateService {
      * Returns a reference to the service that manages the NICs that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service TemplateNicsService nics();
 
@@ -298,18 +389,20 @@ public interface TemplateService {
      * Returns a reference to the service that manages the _watchdogs_ that are associated with the template.
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service TemplateWatchdogsService watchdogs();
 
     /**
-     * Reference to the service that manages a specific
+     * Returns a reference to the service that manages a specific
      * disk attachment of the template.
      *
      * @author Tal Nisan <tnisan@redhat.com>
-     * @date 7 Jul 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 03 Mar 2018
+     * @status updated_by_docs
      */
     @Service TemplateDiskAttachmentsService diskAttachments();
 }
