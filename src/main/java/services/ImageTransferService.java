@@ -361,6 +361,17 @@ public interface ImageTransferService {
     interface Resume {}
 
     /**
+     * Cancel the image transfer session. This terminates the transfer operation and removes the partial image.
+     *
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 28 Mar 2018
+     * @status update_by_docs
+     * @since 4.2.3
+     */
+    interface Cancel {}
+
+    /**
      * After finishing to transfer the data, finalize the transfer.
      *
      * This will make sure that the data being transferred is valid and fits the
