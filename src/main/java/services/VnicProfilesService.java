@@ -66,6 +66,8 @@ public interface VnicProfilesService {
      * For more details of how the default network filter is calculated please refer to
      * the documentation in <<services/network_filters,NetworkFilters>>.
      *
+     * NOTE: The automatically created vNIC profile for the external network will be without network filter.
+     *
      * The output of creating a new VNIC profile depends in the  body  arguments that were given.
      * In case no network filter was given, the default network filter will be configured. For example:
      *
@@ -107,8 +109,10 @@ public interface VnicProfilesService {
      *
      * @author Alona Kaplan <alkaplan@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Ales Musil <amusil@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 15 May 2018
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
@@ -137,8 +141,9 @@ public interface VnicProfilesService {
      * The order of the returned list of vNIC profiles isn't guaranteed.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 15 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
 
@@ -146,8 +151,9 @@ public interface VnicProfilesService {
          * The list of all vNIC profiles.
          *
          * @author Dominik Holler <dholler@redhat.com>
-         * @date 12 Dec 2016
-         * @status added
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 15 May 2018
+         * @status updated_by_docs
          */
         @Out VnicProfile[] profiles();
 
@@ -155,8 +161,9 @@ public interface VnicProfilesService {
          * Sets the maximum number of profiles to return. If not specified all the profiles are returned.
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 16 Dec 2016
-         * @status added
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 15 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
     }
