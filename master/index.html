@@ -51696,7 +51696,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>alias</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bootable</code></p></td>
@@ -51752,11 +51752,6 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lun_storage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_storage">HostStorage</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -51910,17 +51905,7 @@ here only for backwards compatibility, and it will be removed in the future.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/name"><a class="anchor" href="#types/disk/attributes/name"></a>7.46.6. name</h4>
-<div class="paragraph">
-<p>A human-readable name in plain text.</p>
-</div>
-<div class="paragraph">
-<p>Deprecated in favor of the <code>alias</code> attribute. It always returns the same value as <code>alias</code>.
-If both <code>alias</code> and this property are set during a write operation, the value of <code>alias</code> is used.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="types/disk/attributes/provisioned_size"><a class="anchor" href="#types/disk/attributes/provisioned_size"></a>7.46.7. provisioned_size</h4>
+<h4 id="types/disk/attributes/provisioned_size"><a class="anchor" href="#types/disk/attributes/provisioned_size"></a>7.46.6. provisioned_size</h4>
 <div class="paragraph">
 <p>The virtual size of the disk, in bytes.</p>
 </div>
@@ -51929,7 +51914,7 @@ If both <code>alias</code> and this property are set during a write operation, t
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/qcow_version"><a class="anchor" href="#types/disk/attributes/qcow_version"></a>7.46.8. qcow_version</h4>
+<h4 id="types/disk/attributes/qcow_version"><a class="anchor" href="#types/disk/attributes/qcow_version"></a>7.46.7. qcow_version</h4>
 <div class="paragraph">
 <p>The underlying QCOW version of a QCOW volume.
 The QCOW version specifies to the qemu which qemu version the volume supports.
@@ -51940,7 +51925,7 @@ For more information about features of the different QCOW versions, see <a href=
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/read_only"><a class="anchor" href="#types/disk/attributes/read_only"></a>7.46.9. read_only</h4>
+<h4 id="types/disk/attributes/read_only"><a class="anchor" href="#types/disk/attributes/read_only"></a>7.46.8. read_only</h4>
 <div class="paragraph">
 <p>Indicates if the disk is in read-only mode.</p>
 </div>
@@ -51966,7 +51951,7 @@ In order to attach a disk in read only mode use the <code>read_only</code> attri
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/shareable"><a class="anchor" href="#types/disk/attributes/shareable"></a>7.46.10. shareable</h4>
+<h4 id="types/disk/attributes/shareable"><a class="anchor" href="#types/disk/attributes/shareable"></a>7.46.9. shareable</h4>
 <div class="paragraph">
 <p>Indicates if the disk can be attached to multiple virtual machines.</p>
 </div>
@@ -51987,18 +51972,18 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/total_size"><a class="anchor" href="#types/disk/attributes/total_size"></a>7.46.11. total_size</h4>
+<h4 id="types/disk/attributes/total_size"><a class="anchor" href="#types/disk/attributes/total_size"></a>7.46.10. total_size</h4>
 <div class="paragraph">
 <p>The total size of the disk including all of its snapshots, in bytes.</p>
 </div>
 <div class="paragraph">
 <p>The total size is the number of bytes actually used by the disk plus the size of its snapshots.
-It will not be populated for direct LUN and Cinder disks.
+It won&#8217;t be populated for direct LUN and Cinder disks.
 For disks without snapshots the total size is equal to the actual size.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.46.12. wipe_after_delete</h4>
+<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.46.11. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -52092,7 +52077,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.46.13. statistics</h4>
+<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.46.12. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -52127,7 +52112,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.46.14. storage_domains</h4>
+<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.46.13. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -52146,7 +52131,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.46.15. vms</h4>
+<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.46.14. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -52558,7 +52543,7 @@ address, using the SCSI protocol.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>alias</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bootable</code></p></td>
@@ -52614,11 +52599,6 @@ address, using the SCSI protocol.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lun_storage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_storage">HostStorage</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -52772,17 +52752,7 @@ here only for backwards compatibility, and it will be removed in the future.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/name"><a class="anchor" href="#types/disk_snapshot/attributes/name"></a>7.52.6. name</h4>
-<div class="paragraph">
-<p>A human-readable name in plain text.</p>
-</div>
-<div class="paragraph">
-<p>Deprecated in favor of the <code>alias</code> attribute. It always returns the same value as <code>alias</code>.
-If both <code>alias</code> and this property are set during a write operation, the value of <code>alias</code> is used.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="types/disk_snapshot/attributes/provisioned_size"><a class="anchor" href="#types/disk_snapshot/attributes/provisioned_size"></a>7.52.7. provisioned_size</h4>
+<h4 id="types/disk_snapshot/attributes/provisioned_size"><a class="anchor" href="#types/disk_snapshot/attributes/provisioned_size"></a>7.52.6. provisioned_size</h4>
 <div class="paragraph">
 <p>The virtual size of the disk, in bytes.</p>
 </div>
@@ -52791,7 +52761,7 @@ If both <code>alias</code> and this property are set during a write operation, t
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/qcow_version"><a class="anchor" href="#types/disk_snapshot/attributes/qcow_version"></a>7.52.8. qcow_version</h4>
+<h4 id="types/disk_snapshot/attributes/qcow_version"><a class="anchor" href="#types/disk_snapshot/attributes/qcow_version"></a>7.52.7. qcow_version</h4>
 <div class="paragraph">
 <p>The underlying QCOW version of a QCOW volume.
 The QCOW version specifies to the qemu which qemu version the volume supports.
@@ -52802,7 +52772,7 @@ For more information about features of the different QCOW versions, see <a href=
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/read_only"><a class="anchor" href="#types/disk_snapshot/attributes/read_only"></a>7.52.9. read_only</h4>
+<h4 id="types/disk_snapshot/attributes/read_only"><a class="anchor" href="#types/disk_snapshot/attributes/read_only"></a>7.52.8. read_only</h4>
 <div class="paragraph">
 <p>Indicates if the disk is in read-only mode.</p>
 </div>
@@ -52828,7 +52798,7 @@ In order to attach a disk in read only mode use the <code>read_only</code> attri
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/shareable"><a class="anchor" href="#types/disk_snapshot/attributes/shareable"></a>7.52.10. shareable</h4>
+<h4 id="types/disk_snapshot/attributes/shareable"><a class="anchor" href="#types/disk_snapshot/attributes/shareable"></a>7.52.9. shareable</h4>
 <div class="paragraph">
 <p>Indicates if the disk can be attached to multiple virtual machines.</p>
 </div>
@@ -52849,18 +52819,18 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/total_size"><a class="anchor" href="#types/disk_snapshot/attributes/total_size"></a>7.52.11. total_size</h4>
+<h4 id="types/disk_snapshot/attributes/total_size"><a class="anchor" href="#types/disk_snapshot/attributes/total_size"></a>7.52.10. total_size</h4>
 <div class="paragraph">
 <p>The total size of the disk including all of its snapshots, in bytes.</p>
 </div>
 <div class="paragraph">
 <p>The total size is the number of bytes actually used by the disk plus the size of its snapshots.
-It will not be populated for direct LUN and Cinder disks.
+It won&#8217;t be populated for direct LUN and Cinder disks.
 For disks without snapshots the total size is equal to the actual size.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.52.12. wipe_after_delete</h4>
+<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.52.11. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -52959,7 +52929,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.52.13. statistics</h4>
+<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.52.12. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -52994,7 +52964,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.52.14. storage_domains</h4>
+<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.52.13. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -53013,7 +52983,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.52.15. vms</h4>
+<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.52.14. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -77804,7 +77774,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 08:57:21 UTC
+Last updated 2018-03-23 08:53:18 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
