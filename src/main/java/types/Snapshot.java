@@ -94,4 +94,14 @@ public interface Snapshot extends Vm {
      * @status added
      */
     @Link Vm vm();
+
+    /**
+     * List of disks linked to the snapshot.
+     *
+     * @author Ondra Machacek <omachace@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 12 Sep 2018
+     * @status updated_by_docs
+     */
+    @Link Disk[] disks();
 }
