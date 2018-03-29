@@ -5209,6 +5209,9 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/image_transfer/methods/get">GET</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a></p>
 </li>
 <li>
+<p><a href="#services/image_transfer/methods/cancel">POST</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a>/<a href="#services/image_transfer">cancel</a></p>
+</li>
+<li>
 <p><a href="#services/image_transfer/methods/extend">POST</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a>/<a href="#services/image_transfer">extend</a></p>
 </li>
 <li>
@@ -23672,6 +23675,10 @@ to the daemon machine, e.g. vdsm machines are on a different network than the en
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cancel the image transfer session.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>extend</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extend the image transfer session.</p></td>
 </tr>
@@ -23694,13 +23701,19 @@ to the daemon machine, e.g. vdsm machines are on a different network than the en
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/extend"><a class="anchor" href="#services/image_transfer/methods/extend"></a>6.113.1. extend <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/cancel"><a class="anchor" href="#services/image_transfer/methods/cancel"></a>6.113.1. cancel <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Cancel the image transfer session. This terminates the transfer operation and removes the partial image.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="services/image_transfer/methods/extend"><a class="anchor" href="#services/image_transfer/methods/extend"></a>6.113.2. extend <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Extend the image transfer session.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/finalize"><a class="anchor" href="#services/image_transfer/methods/finalize"></a>6.113.2. finalize <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/finalize"><a class="anchor" href="#services/image_transfer/methods/finalize"></a>6.113.3. finalize <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>After finishing to transfer the data, finalize the transfer.</p>
 </div>
@@ -23712,7 +23725,7 @@ and that the image doesn&#8217;t have a backing file.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/get"><a class="anchor" href="#services/image_transfer/methods/get"></a>6.113.3. get <span class="small">GET</span></h4>
+<h4 id="services/image_transfer/methods/get"><a class="anchor" href="#services/image_transfer/methods/get"></a>6.113.4. get <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Get the image transfer entity.</p>
 </div>
@@ -23756,13 +23769,13 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/pause"><a class="anchor" href="#services/image_transfer/methods/pause"></a>6.113.4. pause <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/pause"><a class="anchor" href="#services/image_transfer/methods/pause"></a>6.113.5. pause <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Pause the image transfer session.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/resume"><a class="anchor" href="#services/image_transfer/methods/resume"></a>6.113.5. resume <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/resume"><a class="anchor" href="#services/image_transfer/methods/resume"></a>6.113.6. resume <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Resume the image transfer session. The client will need to poll the transfer&#8217;s phase until
 it is different than <code>resuming</code>. For example:</p>
@@ -77774,7 +77787,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-23 08:53:18 UTC
+Last updated 2018-03-29 12:41:17 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
