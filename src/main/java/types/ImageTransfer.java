@@ -122,6 +122,19 @@ public interface ImageTransfer extends Identified {
     Integer transferred();
 
     /**
+     * The timeout in seconds of client inactivity, after which the transfer is aborted by the {engine-name}.
+     * To disable the inactivity timeout specify '0'. If not specified, the value is defaulted to the
+     * `engine-config` value: TransferImageClientInactivityTimeoutInSeconds.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 12 Apr 2018
+     * @status updated_by_docs
+     * @since 4.2.3
+     */
+    Integer inactivityTimeout();
+
+    /**
      * The image which is targeted for input or output.
      *
      * IMPORTANT: This attribute is deprecated since version

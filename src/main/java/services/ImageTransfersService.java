@@ -26,6 +26,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ImageTransfer;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages image transfers, for performing Image I/O API in {product-name}.
@@ -97,6 +98,11 @@ public interface ImageTransfersService {
      */
     interface Add {
         @In @Out ImageTransfer imageTransfer();
+
+        @InputDetail
+        default void inputDetail() {
+            optional(imageTransfer().inactivityTimeout());
+        }
 
         @Deprecated
         interface ForImage extends Add {
