@@ -5209,6 +5209,9 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/image_transfer/methods/get">GET</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a></p>
 </li>
 <li>
+<p><a href="#services/image_transfer/methods/cancel">POST</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a>/<a href="#services/image_transfer">cancel</a></p>
+</li>
+<li>
 <p><a href="#services/image_transfer/methods/extend">POST</a> /<a href="#services/image_transfers">imagetransfers</a>/<a href="#services/image_transfer">{imagetransfer:id}</a>/<a href="#services/image_transfer">extend</a></p>
 </li>
 <li>
@@ -23672,6 +23675,10 @@ to the daemon machine, e.g. vdsm machines are on a different network than the en
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cancel the image transfer session.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>extend</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extend the image transfer session.</p></td>
 </tr>
@@ -23694,13 +23701,19 @@ to the daemon machine, e.g. vdsm machines are on a different network than the en
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/extend"><a class="anchor" href="#services/image_transfer/methods/extend"></a>6.113.1. extend <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/cancel"><a class="anchor" href="#services/image_transfer/methods/cancel"></a>6.113.1. cancel <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Cancel the image transfer session. This terminates the transfer operation and removes the partial image.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="services/image_transfer/methods/extend"><a class="anchor" href="#services/image_transfer/methods/extend"></a>6.113.2. extend <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Extend the image transfer session.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/finalize"><a class="anchor" href="#services/image_transfer/methods/finalize"></a>6.113.2. finalize <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/finalize"><a class="anchor" href="#services/image_transfer/methods/finalize"></a>6.113.3. finalize <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>After finishing to transfer the data, finalize the transfer.</p>
 </div>
@@ -23712,7 +23725,7 @@ and that the image doesn&#8217;t have a backing file.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/get"><a class="anchor" href="#services/image_transfer/methods/get"></a>6.113.3. get <span class="small">GET</span></h4>
+<h4 id="services/image_transfer/methods/get"><a class="anchor" href="#services/image_transfer/methods/get"></a>6.113.4. get <span class="small">GET</span></h4>
 <div class="paragraph">
 <p>Get the image transfer entity.</p>
 </div>
@@ -23756,13 +23769,13 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/pause"><a class="anchor" href="#services/image_transfer/methods/pause"></a>6.113.4. pause <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/pause"><a class="anchor" href="#services/image_transfer/methods/pause"></a>6.113.5. pause <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Pause the image transfer session.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/image_transfer/methods/resume"><a class="anchor" href="#services/image_transfer/methods/resume"></a>6.113.5. resume <span class="small">POST</span></h4>
+<h4 id="services/image_transfer/methods/resume"><a class="anchor" href="#services/image_transfer/methods/resume"></a>6.113.6. resume <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Resume the image transfer session. The client will need to poll the transfer&#8217;s phase until
 it is different than <code>resuming</code>. For example:</p>
@@ -38951,7 +38964,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>Exports a template to the data center export domain.</p>
 </div>
 <div class="paragraph">
-<p>For example, the operation can be facilitated using the following request:</p>
+<p>For example, send the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -39092,7 +39105,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the remove should be performed asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the removal should be performed asynchronously.</p></td>
 </tr>
 </tbody>
 </table>
@@ -39104,10 +39117,10 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="paragraph">
 <p>The <code>name</code>, <code>description</code>, <code>type</code>, <code>memory</code>, <code>cpu</code>, <code>topology</code>, <code>os</code>, <code>high_availability</code>, <code>display</code>,
-<code>stateless</code>, <code>usb</code> and <code>timezone</code> elements can be updated after a template has been created.</p>
+<code>stateless</code>, <code>usb</code>, and <code>timezone</code> elements can be updated after a template has been created.</p>
 </div>
 <div class="paragraph">
-<p>For example, to update a template to so that it has 1 GiB of memory send a request like this:</p>
+<p>For example, to update a template so that it has 1 GiB of memory send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -64715,6 +64728,19 @@ Read only for hosts.
 <div class="paragraph">
 <p>Type representing kind of operating system.</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This type has been deprecated with the introduction of the <a href="#types/operating_system_info">OperatingSystemInfo</a> type.
+Operating systems are available as a top-level collection in the API: <a href="#services/operating_systems">operating_systems</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The end-user declares the type of the operating system installed in the virtual machine (guest operating system) by
 selecting one of these values. This declaration enables the system to tune the virtual machine configuration for
@@ -66710,7 +66736,12 @@ takes place in the oVirt Engine.</p>
             &lt;name&gt;blue&lt;/name&gt;
           &lt;/network&gt;
         &lt;/from&gt;
-        &lt;to id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/&gt;
+        &lt;to&gt;
+          &lt;name&gt;copper&lt;/name&gt;
+          &lt;network&gt;
+            &lt;name&gt;orange&lt;/name&gt;
+          &lt;/network&gt;
+        &lt;/to&gt;
       &lt;/registration_vnic_profile_mapping&gt;
     &lt;/vnic_profile_mappings&gt;
   &lt;/registration_configuration&gt;
@@ -66982,7 +67013,8 @@ using <code>name</code>.</p>
 <div class="sect2">
 <h3 id="types/registration_vnic_profile_mapping"><a class="anchor" href="#types/registration_vnic_profile_mapping"></a>7.221. RegistrationVnicProfileMapping <span class="small">struct</span></h3>
 <div class="paragraph">
-<p>Maps an external virtual NIC profile to one that exists in the oVirt Engine.</p>
+<p>Maps an external virtual NIC profile to one that exists in the oVirt Engine.
+The target may be specified as a profile ID or a pair of profile name and network name.</p>
 </div>
 <div class="paragraph">
 <p>If, for example, the desired virtual NIC profile mapping includes the following lines:</p>
@@ -66997,7 +67029,7 @@ using <code>name</code>.</p>
 <tr>
 <th class="tableblock halign-left valign-top">Source network name</th>
 <th class="tableblock halign-left valign-top">Source network profile name</th>
-<th class="tableblock halign-left valign-top">Target virtual NIC profile ID</th>
+<th class="tableblock halign-left valign-top">Target virtual NIC profile ID\names</th>
 </tr>
 </thead>
 <tbody>
@@ -67010,6 +67042,16 @@ using <code>name</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code> (no network name)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code> (no network profile name)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>892a12ec-2028-4451-80aa-ff3bf55d6bac</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>silver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orange\copper</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yellow</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>platinum</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code> (no profile)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>green</code></p></td>
@@ -67041,6 +67083,34 @@ using <code>name</code>.</p>
       &lt;/network&gt;
     &lt;/from&gt;
     &lt;to id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/&gt;
+  &lt;/registration_vnic_profile_mapping&gt;
+  &lt;registration_vnic_profile_mapping&gt;
+    &lt;from&gt;
+      &lt;name&gt;silver&lt;/name&gt;
+      &lt;network&gt;
+        &lt;name&gt;blue&lt;/name&gt;
+      &lt;/network&gt;
+    &lt;/from&gt;
+    &lt;to&gt;
+      &lt;name&gt;copper&lt;/name&gt;
+      &lt;network&gt;
+        &lt;name&gt;orange&lt;/name&gt;
+      &lt;/network&gt;
+    &lt;/to&gt;
+  &lt;/registration_vnic_profile_mapping&gt;
+  &lt;registration_vnic_profile_mapping&gt;
+    &lt;from&gt;
+      &lt;name&gt;platinum&lt;/name&gt;
+      &lt;network&gt;
+        &lt;name&gt;yellow&lt;/name&gt;
+      &lt;/network&gt;
+    &lt;/from&gt;
+    &lt;to&gt;
+      &lt;name&gt;&lt;/name&gt;
+      &lt;network&gt;
+        &lt;name&gt;&lt;/name&gt;
+      &lt;/network&gt;
+    &lt;/to&gt;
   &lt;/registration_vnic_profile_mapping&gt;
   &lt;registration_vnic_profile_mapping&gt;
     &lt;from&gt;
@@ -67093,7 +67163,9 @@ network profile. Both should be specified using their
 <h4 id="types/registration_vnic_profile_mapping/links/to"><a class="anchor" href="#types/registration_vnic_profile_mapping/links/to"></a>7.221.2. to</h4>
 <div class="paragraph">
 <p>Reference to to an existing virtual NIC profile.
-It should be specified using its <code>name</code>.</p>
+It should be specified using its <code>name</code> or <code>id</code>.
+Either <code>name</code> or <code>id</code> should be specified but not
+both.</p>
 </div>
 </div>
 </div>
@@ -77715,7 +77787,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-05 10:01:05 UTC
+Last updated 2018-04-04 16:00:07 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
