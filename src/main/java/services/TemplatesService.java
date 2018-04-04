@@ -223,8 +223,6 @@ public interface TemplatesService {
 
         @InputDetail
         default void inputDetail() {
-            mandatory(template().name());
-            or(mandatory(template().vm().id()), mandatory(template().vm().name()));
             optional(template().bios().bootMenu().enabled());
             optional(template().cluster().id());
             optional(template().cluster().name());
@@ -299,6 +297,39 @@ public interface TemplatesService {
             optional(template().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(template().sso().methods()[COLLECTION].id());
             optional(template().storageErrorResumeBehaviour());
+        }
+
+        /**
+         * Add a virtual machine template to the system from an existing virtual machine.
+         *
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 16 Apr 2018
+         * @status updated_by_docs
+         */
+        interface FromVm extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(template().name());
+                or(mandatory(template().vm().id()), mandatory(template().vm().name()));
+            }
+        }
+
+        /**
+         * Add a virtual machine template to the system from a configuration. Requires the configuration type, the configuration data, and the target cluster.
+         *
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 16 Apr 2018
+         * @status updated_by_docs
+         */
+        interface FromConfiguration extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(template().initialization().configuration().data());
+                mandatory(template().initialization().configuration().type());
+                or(mandatory(template().cluster().id()), mandatory(template().cluster().name()));
+                optional(template().initialization().regenerateIds());
+                optional(template().name());
+            }
         }
     }
 
