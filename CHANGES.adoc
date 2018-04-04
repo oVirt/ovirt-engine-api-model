@@ -3,6 +3,20 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.9 / Apr 4 2018
+
+New features:
+
+* Add `cancel` action to transfer image session.
+
+* Add `export` template as OVA to a given path on a host 
+  https://bugzilla.redhat.com/1526033[#1526033].
+
+Bug fixes:
+
+* Deprecate `OsType`
+  https://bugzilla.redhat.com/1537679[#1537679].
+
 == 4.3.8 / Mar 5 2018
 
 New features:
