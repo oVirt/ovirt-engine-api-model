@@ -22,26 +22,40 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Represents a guest operating system.
  *
  * @author Jakub Niedermertl <jniederm@redhat.com>
+ * @author Billy Burmester <bburmest@redhat.com>
  * @date 24 Apr 2017
- * @state added
+ * @status updated_by_docs
  */
 @Type
 public interface OperatingSystemInfo extends Identified {
     /**
-     * Large icon of the guest operating system. Maximum dimensions width: 150px, height: 120px.
+     * Large icon of the guest operating system. Maximum dimensions: width 150px, height 120px.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
      * @date 24 Apr 2017
-     * @state added
+     * @status updated_by_docs
      */
     Icon largeIcon();
 
     /**
-     * Small icon of the guest operating system. Maximum dimensions width: 43px, height: 43px.
+     * Small icon of the guest operating system. Maximum dimensions: width 43px, height 43px.
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
      * @date 24 Apr 2017
-     * @state added
+     * @status updated_by_docs
      */
     Icon smallIcon();
+
+    /**
+     * Operating system architecture.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 12 Apr 2018
+     * @status updated_by_docs
+     * @since 4.2.4
+     */
+    Architecture architecture();
 }
