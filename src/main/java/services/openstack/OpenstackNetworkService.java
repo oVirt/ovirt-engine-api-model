@@ -34,6 +34,10 @@ public interface OpenstackNetworkService {
     /**
      * This operation imports an external network into oVirt.
      * The network will be added to the data center specified.
+     *
+     * @author Marcin Mirecki <mmirecki@redhat.com>
+     * @date 15 March 2016
+     * @status added
      */
     interface Import {
 
@@ -42,11 +46,25 @@ public interface OpenstackNetworkService {
          * Data center is mandatory, and can be specified
          * using the `id` or `name` attributes, the rest of
          * the attributes will be ignored.
+         *
+         * NOTE: If <<types/open_stack_network_provider/attributes/auto_sync,`auto_sync`>> is
+         * enabled for the provider, the network might be already imported automatically. To
+         * prevent this, automatic import can be disabled by setting the `auto_sync` to false
+         * and enabled after importing the network again.
+         *
+         * @author Marcin Mirecki <mmirecki@redhat.com>
+         * @author Dominik Holler <dholler@redhat.com>
+         * @date 09 April 2018
+         * @status updated
          */
         @In DataCenter dataCenter();
 
         /**
          * Indicates if the import should be performed asynchronously.
+         *
+         * @author Marcin Mirecki <mmirecki@redhat.com>
+         * @date 15 March 2016
+         * @status added
          */
         @In Boolean async();
     }
