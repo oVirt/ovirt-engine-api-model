@@ -32,7 +32,23 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Service
 @Area("Storage")
 public interface StorageDomainService {
+    /**
+     * Retrieves the description of the storage domain.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 12 Apr 2018
+     * @status updated_by_docs
+     */
     interface Get extends Follow {
+        /**
+         * The description of the storage domain.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 12 Apr 2018
+         * @status updated_by_docs
+         */
         @Out StorageDomain storageDomain();
 
         /**
@@ -59,7 +75,23 @@ public interface StorageDomainService {
         default void inputDetail() {
             mandatory(host().id());
         }
+        /**
+         * Indicates the data center's host.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 12 Apr 2018
+         * @status updated_by_docs
+         */
         @In Host host();
+        /**
+         * Indicates whether the storage domain is attached to the data center.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 12 Apr 2018
+         * @status updated_by_docs
+         */
         @Out Boolean isAttached();
 
         /**
@@ -126,6 +158,14 @@ public interface StorageDomainService {
             optional(storageDomain().wipeAfterDelete());
         }
 
+        /**
+         * The updated storage domain.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 12 Apr 2018
+         * @status updated_by_docs
+         */
         @In @Out StorageDomain storageDomain();
 
         /**
