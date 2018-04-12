@@ -236,7 +236,40 @@ public interface ClusterService {
         @In Boolean async();
     }
 
-    /**
+     /**
+      * Synchronizes all networks on the cluster.
+      *
+      * [source]
+      * ----
+      * POST /ovirt-engine/api/clusters/123/syncallnetworks
+      * ----
+      *
+      * With a request body like this:
+      *
+      * [source,xml]
+      * ----
+      * <action/>
+      * ----
+      *
+      * @author Eitan Raviv <eraviv@redhat.com>
+      * @author Avital Pinnick <apinnick@redhat.com>      
+      * @date 17 April 2018
+      * @since 4.3
+      * @status updated_by_docs
+      */
+     interface SyncAllNetworks {
+         /**
+          * Indicates if the action should be performed asynchronously.
+          *
+          * @author Eitan Raviv <eraviv@redhat.com>
+          * @author Avital Pinnick <apinnick@redhat.com>
+          * @date 17 April 2018
+          * @status updated_by_docs
+          */
+         @In Boolean async();
+     }
+
+     /**
      * A reference to the service that manages affinity groups.
      *
      * @author Yaniv Bronheim <ybronhei@redhat.com>
