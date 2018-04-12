@@ -34571,7 +34571,7 @@ This parameter will give the option to not perform the status check of the LUNs.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the description of the storage domain.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>isattached</code></p></td>
@@ -34603,6 +34603,9 @@ of this storage domain.</p></td>
 </table>
 <div class="sect3">
 <h4 id="services/storage_domain/methods/get"><a class="anchor" href="#services/storage_domain/methods/get"></a>6.195.1. get <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Retrieves the description of the storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 587. Parameters summary</caption>
 <colgroup>
@@ -34636,7 +34639,7 @@ of this storage domain.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The description of the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -34682,13 +34685,13 @@ Executing this API will cause the host to disconnect from the storage domain.</p
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the data center&#8217;s host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>is_attached</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the storage domain is attached to the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -34981,7 +34984,7 @@ request as follows:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The updated storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -77787,7 +77790,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-04 15:56:34 UTC
+Last updated 2018-04-12 10:12:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
