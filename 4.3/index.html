@@ -28782,6 +28782,21 @@ Data center is mandatory, and can be specified
 using the <code>id</code> or <code>name</code> attributes, the rest of
 the attributes will be ignored.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is
+enabled for the provider, the network might be already imported automatically. To
+prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false
+and enabled after importing the network again.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -34571,7 +34586,7 @@ This parameter will give the option to not perform the status check of the LUNs.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>get</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retrieves the description of the storage domain.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>isattached</code></p></td>
@@ -34603,6 +34618,9 @@ of this storage domain.</p></td>
 </table>
 <div class="sect3">
 <h4 id="services/storage_domain/methods/get"><a class="anchor" href="#services/storage_domain/methods/get"></a>6.195.1. get <span class="small">GET</span></h4>
+<div class="paragraph">
+<p>Retrieves the description of the storage domain.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 587. Parameters summary</caption>
 <colgroup>
@@ -34636,7 +34654,7 @@ of this storage domain.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The description of the storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -34682,13 +34700,13 @@ Executing this API will cause the host to disconnect from the storage domain.</p
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates the data center&#8217;s host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>is_attached</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the storage domain is attached to the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -34981,7 +34999,7 @@ request as follows:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The updated storage domain.</p></td>
 </tr>
 </tbody>
 </table>
@@ -48332,6 +48350,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>seal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snapshot</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/snapshot">Snapshot</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -58888,6 +58911,11 @@ receiving image data (<code>download</code>).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inactivity_timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout in seconds of client inactivity, after which the transfer is aborted by the oVirt Engine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
@@ -58932,7 +58960,15 @@ The default direction for the transfer will be <code>upload</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/phase"><a class="anchor" href="#types/image_transfer/attributes/phase"></a>7.123.2. phase</h4>
+<h4 id="types/image_transfer/attributes/inactivity_timeout"><a class="anchor" href="#types/image_transfer/attributes/inactivity_timeout"></a>7.123.2. inactivity_timeout</h4>
+<div class="paragraph">
+<p>The timeout in seconds of client inactivity, after which the transfer is aborted by the oVirt Engine.
+To disable the inactivity timeout specify '0'. If not specified, the value is defaulted to the
+<code>engine-config</code> value: TransferImageClientInactivityTimeoutInSeconds.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/attributes/phase"><a class="anchor" href="#types/image_transfer/attributes/phase"></a>7.123.3. phase</h4>
 <div class="paragraph">
 <p>The current phase of the image transfer in progress. Each transfer needs a managed
 session, which must be opened for the user to input or output an image.
@@ -58941,7 +58977,7 @@ documentation.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.123.3. proxy_url</h4>
+<h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.123.4. proxy_url</h4>
 <div class="paragraph">
 <p>The URL of the proxy server that the user inputs or outputs to. This attribute is
 available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
@@ -58949,7 +58985,7 @@ phase. See <code>phase</code> for details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.123.4. transfer_url</h4>
+<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.123.5. transfer_url</h4>
 <div class="paragraph">
 <p>The URL of the daemon server that the user can input or output to directly.</p>
 </div>
@@ -58998,7 +59034,7 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.5. image</h4>
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.6. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -64644,6 +64680,11 @@ Read only for hosts.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>architecture</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/architecture">Architecture</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operating system architecture.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -64678,13 +64719,13 @@ Read only for hosts.
 <div class="sect3">
 <h4 id="types/operating_system_info/attributes/large_icon"><a class="anchor" href="#types/operating_system_info/attributes/large_icon"></a>7.186.1. large_icon</h4>
 <div class="paragraph">
-<p>Large icon of the guest operating system. Maximum dimensions width: 150px, height: 120px.</p>
+<p>Large icon of the guest operating system. Maximum dimensions: width 150px, height 120px.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="types/operating_system_info/attributes/small_icon"><a class="anchor" href="#types/operating_system_info/attributes/small_icon"></a>7.186.2. small_icon</h4>
 <div class="paragraph">
-<p>Small icon of the guest operating system. Maximum dimensions width: 43px, height: 43px.</p>
+<p>Small icon of the guest operating system. Maximum dimensions: width 43px, height 43px.</p>
 </div>
 </div>
 </div>
@@ -77787,7 +77828,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-04 16:00:07 UTC
+Last updated 2018-04-16 18:22:09 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
