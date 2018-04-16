@@ -3,6 +3,19 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.10 / Apr 16 2018
+
+New features:
+
+* ImageTransfer - adding 'clientInactivityTimeout' property
+  https://bugzilla.redhat.com/1563278[#1563278].
+
+* Add architecture to OperatingSystemInfo
+  https://bugzilla.redhat.com/1552026[#1552026].
+
+* Add import template from configuration
+  https://bugzilla.redhat.com/1526032[#1526032].
+
 == 4.3.9 / Apr 4 2018
 
 New features:
