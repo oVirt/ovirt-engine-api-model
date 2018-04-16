@@ -28782,6 +28782,21 @@ Data center is mandatory, and can be specified
 using the <code>id</code> or <code>name</code> attributes, the rest of
 the attributes will be ignored.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is
+enabled for the provider, the network might be already imported automatically. To
+prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false
+and enabled after importing the network again.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -77813,7 +77828,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-16 08:10:22 UTC
+Last updated 2018-04-16 08:16:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
