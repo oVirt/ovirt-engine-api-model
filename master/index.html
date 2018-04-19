@@ -28741,7 +28741,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <h4 id="services/openstack_network/methods/import"><a class="anchor" href="#services/openstack_network/methods/import"></a>6.149.2. import <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>This operation imports an external network into oVirt.
-The network will be added to the data center specified.</p>
+The network will be added to the specified data center.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 452. Parameters summary</caption>
@@ -28779,7 +28779,7 @@ The network will be added to the data center specified.</p>
 <div class="paragraph">
 <p>The data center into which the network is to be imported.
 Data center is mandatory, and can be specified
-using the <code>id</code> or <code>name</code> attributes, the rest of
+using the <code>id</code> or <code>name</code> attributes. The rest of
 the attributes will be ignored.</p>
 </div>
 <div class="admonitionblock note">
@@ -28790,9 +28790,9 @@ the attributes will be ignored.</p>
 </td>
 <td class="content">
 If <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is
-enabled for the provider, the network might be already imported automatically. To
-prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false
-and enabled after importing the network again.
+enabled for the provider, the network might be imported automatically. To
+prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false,
+and enabling it again after importing the network.
 </td>
 </tr>
 </table>
@@ -77828,7 +77828,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-16 18:16:22 UTC
+Last updated 2018-04-19 10:05:21 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
