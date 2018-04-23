@@ -27,6 +27,15 @@ import types.IscsiBond;
 @Area("Storage")
 public interface IscsiBondService {
     interface Get extends Follow {
+
+        /**
+         * The iSCSI bond.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 11 May 2018
+         * @status updated_by_docs
+         */
         @Out IscsiBond bond();
     }
 
@@ -56,6 +65,15 @@ public interface IscsiBondService {
      * @status added
      */
     interface Update {
+
+        /**
+         * The iSCSI bond to update.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 11 May 2018
+         * @status updated_by_docs
+         */
         @In @Out IscsiBond bond();
 
         /**
@@ -75,8 +93,9 @@ public interface IscsiBondService {
      * ----
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 11 May 2018
+     * @status updated_by_docs
      */
     interface Remove {
         /**
