@@ -100,6 +100,15 @@ public interface DiskAttachmentsService {
                 mandatory(attachment().disk().id());
             }
         }
+
+        /**
+         * The disk attachment to add to the virtual machine.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 11 May 2018
+         * @status updated_by_docs
+         */
         @In @Out DiskAttachment attachment();
     }
 
@@ -109,10 +118,20 @@ public interface DiskAttachmentsService {
      * The order of the returned list of disks attachments isn't guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 11 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
+
+        /**
+         * A list of disk attachments that are attached to the virtual machine.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 11 May 2018
+         * @status updated_by_docs
+         */
         @Out DiskAttachment[] attachments();
     }
 
