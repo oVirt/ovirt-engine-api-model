@@ -44,7 +44,7 @@ public interface DiskService extends MeasurableService {
     /**
      * This operation copies a disk to the specified storage domain.
      *
-     * For example, copy of a disk can be facilitated using the following request:
+     * For example, a disk can be copied using the following request:
      *
      * [source]
      * ----
@@ -63,10 +63,10 @@ public interface DiskService extends MeasurableService {
      * </action>
      * ----
      *
-     * If the disk profile or the quota used currently by the disk aren't defined for the new storage domain, then they
-     * can be explicitly specified. If they aren't then the first available disk profile and the default quota are used.
+     * If the disk profile or the quota currently used by the disk are not defined for the new storage domain, they
+     * can be explicitly specified. If they are not specified, the first available disk profile and the default quota are used.
      *
-     * For example, to explicitly use disk profile `987` and quota `753` send a request body like this:
+     * For example, to specify disk profile `987` and quota `753`, send a request body like this:
      *
      * [source,xml]
      * ----
@@ -78,13 +78,14 @@ public interface DiskService extends MeasurableService {
      * ----
      *
      * @author Liron Aravot <laravot@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 03 May 2018
+     * @status updated_by_docs
      */
     interface Copy {
         /**
          * Description of the resulting disk. The only accepted value is the `name` attribute, which will be the name
-         * used for the new disk. For example, to copy disk `123` using `myname` as the name for the new disk, send
+         * used for the new disk. For example, to copy disk `123`, with `myname` as the name of the new disk, send
          * a request like this:
          *
          * ....
@@ -104,8 +105,9 @@ public interface DiskService extends MeasurableService {
          * ----
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 4 Jan 2017
-         * @status added
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 03 May 2018
+         * @status updated_by_docs
          */
         @InputDetail
         default void inputDetail() {
@@ -117,8 +119,8 @@ public interface DiskService extends MeasurableService {
         @In Disk disk();
 
         /**
-         * The storage domain where the new disk will be created. Can be specified using the `id` or `name`
-         * attributes. For example, to copy a disk to the storage domain named `mydata` send a request like this:
+         * The storage domain where the new disk is created. This can be specified using the `id` or `name`
+         * attributes. For example, to copy a disk to the storage domain called `mydata`, send a request like this:
          *
          * ....
          * POST /ovirt-engine/api/storagedomains/123/disks/789
@@ -136,8 +138,9 @@ public interface DiskService extends MeasurableService {
          * ----
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 4 Jan 2017
-         * @status added
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 03 May 2018
+         * @status updated_by_docs
          */
         @In StorageDomain storageDomain();
 
@@ -186,7 +189,7 @@ public interface DiskService extends MeasurableService {
      * This operation updates the disk with the appropriate parameters.
      * The only field that can be updated is `qcow_version`.
      *
-     * For example, update disk can be facilitated using the following request:
+     * For example, disk update can be done using the following request:
      *
      * [source]
      * ----
@@ -202,12 +205,13 @@ public interface DiskService extends MeasurableService {
      * </disk>
      * ----
      *
-     * Since the backend operation is asynchronous the disk element which will be returned
+     * Since the backend operation is asynchronous, the disk element that is returned
      * to the user might not be synced with the changed properties.
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
-     * @date 21 Nov 2016
-     * @status added
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 03 May 2018
+     * @status updated_by_docs
      * @since 4.1
      */
     interface Update {
@@ -251,17 +255,26 @@ public interface DiskService extends MeasurableService {
      */
     interface Export {
         /**
-         * The export storage domain where the disk should be exported to.
+         * The export storage domain where the disk will be exported to.
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
-         * @date 4 Jan 2017
-         * @status added
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 03 May 2018
+         * @status updated_by_docs
          */
         @InputDetail
         default void inputDetail() {
             or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
         }
 
+        /**
+         * The export storage domain where the disk will be exported to.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 03 May 2018
+         * @status updated_by_docs
+         */
         @In StorageDomain storageDomain();
 
         /**
@@ -351,6 +364,14 @@ public interface DiskService extends MeasurableService {
             optional(quota().id());
         }
 
+        /**
+         * The storage domain where the disk will be moved to.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 03 May 2018
+         * @status updated_by_docs
+         */
         @In StorageDomain storageDomain();
 
         /**
