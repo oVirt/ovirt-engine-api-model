@@ -46,6 +46,15 @@ public interface AttachedStorageDomainsService {
      * @status added
      */
     interface Add {
+
+        /**
+         * The storage domain to attach to the data center.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 15 May 2018
+         * @status updated_by_docs
+         */
         @In @Out StorageDomain storageDomain();
 
         @InputDetail
@@ -60,10 +69,20 @@ public interface AttachedStorageDomainsService {
      * The order of the returned storage domains isn't guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 15 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
+
+        /**
+         * A list of storage domains that are attached to the data center.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 15 May 2018
+         * @status updated_by_docs
+         */
         @Out StorageDomain[] storageDomains();
 
         /**
