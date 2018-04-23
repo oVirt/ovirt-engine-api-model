@@ -30,11 +30,12 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
 /**
- * Manages the set of storage domains of the system.
+ * Manages the set of storage domains in the system.
  *
  * @author Juan Hernandez <juan.hernadez@redhat.com>
- * @date 15 Apr 2017
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 3 May 2018
+ * @status updated_by_docs
  */
 @Service
 @Area("Storage")
@@ -42,21 +43,21 @@ public interface StorageDomainsService {
     /**
      * Adds a new storage domain.
      *
-     * Creation of a new <<types/storage_domain,StorageDomain>> requires the `name`, `type`, `host` and `storage`
-     * attributes. Identify the `host` attribute with the `id` or `name` attributes. In oVirt 3.6 and later you can
-     * enable the wipe after delete option by default on the storage domain. To configure this, specify
+     * Creation of a new <<types/storage_domain,StorageDomain>> requires the `name`, `type`, `host`, and `storage`
+     * attributes. Identify the `host` attribute with the `id` or `name` attributes. In {product-name} 3.6 and
+     * later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
      * `wipe_after_delete` in the POST request. This option can be edited after the domain is created, but doing so will
      * not change the wipe after delete property of disks that already exist.
      *
-     * To add a new storage domain with specified `name`, `type`, `storage.type`, `storage.address` and `storage.path`
-     * and by using a host with an id `123`, send a request as follows:
+     * To add a new storage domain with specified `name`, `type`, `storage.type`, `storage.address`, and `storage.path`,
+     * and using a host with an id `123`, send a request like this:
      *
      * [source]
      * ----
      * POST /ovirt-engine/api/storageDomains
      * ----
      *
-     * With a request body as follows:
+     * With a request body like this:
      *
      * [source,xml]
      * ----
@@ -115,10 +116,20 @@ public interface StorageDomainsService {
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tal Nisan <tnisan@redhat.com>
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 3 May 2018
+     * @status updated_by_docs
      */
     interface Add {
+
+        /**
+         * The storage domain to add.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
+         */
         @In @Out StorageDomain storageDomain();
         @InputDetail
         default void inputDetail() {
@@ -132,11 +143,12 @@ public interface StorageDomainsService {
         }
 
         /**
-         * Add a new storage domain to the system using a direct lun.
+         * Add a new storage domain to the system using a direct LUN.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         interface DirectLun extends Add {
             @InputDetail
@@ -165,8 +177,9 @@ public interface StorageDomainsService {
          * Import an existing block storage domain to the system using the targets already connected to the host.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         interface BlockDomain extends Add {
             @InputDetail
@@ -180,8 +193,9 @@ public interface StorageDomainsService {
          * Add a new storage domain to the system using the storage on the given host and path.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         interface ByPath extends Add {
             @InputDetail
@@ -195,11 +209,12 @@ public interface StorageDomainsService {
         }
 
         /**
-         * Add a new storage domain to the system using the storage on the localhost at the given path.
+         * Add a new storage domain to the system using the storage on the local host at the given path.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         interface Local extends Add {
             @InputDetail
@@ -212,11 +227,12 @@ public interface StorageDomainsService {
         }
 
         /**
-         * Add a new storage domain to the system using the gluster or posixfs storage.
+         * Add a new storage domain to the system using Gluster or POSIX FS storage.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         interface GlusterOrPostfs extends Add {
             @InputDetail
@@ -233,37 +249,63 @@ public interface StorageDomainsService {
     }
 
     /**
-     * Returns the list of storage domains of the system.
+     * Returns the list of storage domains in the system.
      *
      * The order of the returned list of storage domains is guaranteed only if the `sortby` clause is included
      * in the `search` parameter.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 3 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
+
+        /**
+         * A list of the storage domains in the system.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
+         */
         @Out StorageDomain[] storageDomains();
 
         /**
-         * Sets the maximum number of storage domains to return. If not specified all the storage domains are returned.
+         * Sets the maximum number of storage domains to return. If not specified, all the storage domains are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
 
         /**
          * A query string used to restrict the returned storage domains.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         @In String search();
 
         /**
-         * Indicates if the search performed using the `search` parameter should be performed taking case into
-         * account. The default value is `true`, which means that case is taken into account. If you want to search
-         * ignoring case set it to `false`.
+         * Indicates if the search should be performed taking case into account.
+         * The default value is `true`, which means that case is taken into account. If you want to search
+         * ignoring case, set it to `false`.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         @In Boolean caseSensitive();
 
         /**
          * Indicates if the results should be filtered according to the permissions of the user.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
          */
         @In Boolean filter();
     }
