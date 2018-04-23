@@ -97,6 +97,15 @@ public interface ImageTransfersService {
      * @since 4.0.4
      */
     interface Add {
+
+        /**
+         * The image transfer to add.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
+         */
         @In @Out ImageTransfer imageTransfer();
 
         @InputDetail
@@ -146,6 +155,15 @@ public interface ImageTransfersService {
      * @since 4.0.4
      */
     interface List extends Follow {
+
+        /**
+         * A list of image transfers that are currently being performed.
+         *
+         * @author Idan Shaby <ishaby@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 3 May 2018
+         * @status updated_by_docs
+         */
         @Out ImageTransfer[] ImageTransfer();
     }
 
