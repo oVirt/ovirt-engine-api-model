@@ -134,6 +134,9 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * the background.
      * This means that all new networks of this provider are imported, and all discarded networks are removed
      * from all <<types/cluster,clusters>> that have this external provider as the default provider.
+     * If the name of a network is changed on the provider, the change is synchronized to the network entity in
+     * {product-name}. Furthermore, if a new cluster that has the provider as the default provider is added,
+     * already imported networks are attached to this new cluster during synchronization.
      *
      * The automatically initiated import triggers the following steps:
      *
@@ -150,7 +153,7 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 14 Nov 2017
+     * @date 04 May 2018
      * @status updated_by_docs
      * @since 4.2
      */
