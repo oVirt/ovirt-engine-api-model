@@ -62,6 +62,20 @@ public interface TemplatesService {
      * </template>
      * ----
      *
+     * Since version 4.3, in order to create virtual machine template from a snapshot send a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <template>
+     *   <name>mytemplate</name>
+     *   <vm id="123">
+     *     <snapshots>
+     *       <snapshot id="456"/>
+     *     </snapshots>
+     *   </vm>
+     * </template>
+     * ----
+     *
      * The disks of the template can be customized, making some of their characteristics different from the disks of the
      * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
      * of the original virtual machine and the characteristics that you want to change. For example, if the original
@@ -329,6 +343,23 @@ public interface TemplatesService {
                 or(mandatory(template().cluster().id()), mandatory(template().cluster().name()));
                 optional(template().initialization().regenerateIds());
                 optional(template().name());
+            }
+        }
+
+        /**
+         * Add a virtual machine template to the system from a snapshot.
+         *
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 25 Apr 2018
+         * @status added
+         * @since 4.3
+         */
+        interface FromVmSnapshot extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(template().name());
+                or(mandatory(template().vm().id()), mandatory(template().vm().name()));
+                mandatory(template().vm().snapshots()[COLLECTION].id());
             }
         }
     }
