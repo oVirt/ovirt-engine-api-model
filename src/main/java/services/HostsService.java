@@ -41,10 +41,10 @@ public interface HostsService {
     /**
      * Creates a new host.
      *
-     * The host is created based on the attributes of the `host` parameter. The `name`, `address` and `root_password`
+     * The host is created based on the attributes of the `host` parameter. The `name`, `address`, and `root_password`
      * properties are required.
      *
-     * For example, to add a host send the following request:
+     * For example, to add a host, send the following request:
      *
      * [source]
      * ----
@@ -65,8 +65,8 @@ public interface HostsService {
      * NOTE: The `root_password` element is only included in the client-provided initial representation and is not
      * exposed in the representations returned from subsequent requests.
      *
-     * IMPORTANT: Since version 4.1.2 of the engine when a host is newly added we override the host firewall
-     * definitions by default.
+     * IMPORTANT: Since version 4.1.2 of the engine, when a host is newly added, the host's firewall
+     * definitions are overridden by default.
      *
      * To add a hosted engine host, use the optional `deploy_hosted_engine` parameter:
      *
@@ -75,11 +75,11 @@ public interface HostsService {
      * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true
      * ----
      *
-     * If the cluster has a default external network provider which is supported for automatic deployment,
+     * If the cluster has a default external network provider that is supported for automatic deployment,
      * the external network provider is deployed when adding the host.
      * Only external network providers for OVN are supported for the automatic deployment.
-     * To deploy an external network provider that differs to what is defined in the clusters, overwrite the external
-     * network provider when adding hosts by sending a request like this:
+     * To deploy an external network provider other than the one defined in the clusters, overwrite the external
+     * network provider when adding hosts, by sending the following request:
      *
      * [source]
      * ----
@@ -106,8 +106,8 @@ public interface HostsService {
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>
-     * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 09 Oct 2017
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 06 May 2018
      * @status updated_by_docs
      */
     interface Add {
@@ -131,22 +131,22 @@ public interface HostsService {
         }
 
         /**
-         * The host definition from which to create the new host is passed as parameter, and the newly created host
+         * The host definition with which the new host is created is passed as a parameter, and the newly created host
          * is returned.
          */
         @In @Out Host host();
 
         /**
-         * When set to `true` it means this host should deploy also hosted engine components. Missing value is treated
-         * as `true` i.e deploy. Omitting this parameter means `false` and will perform no operation in hosted engine
-         * area.
+         * When set to `true`, this host deploys the hosted engine components. A missing value is treated
+         * as `true`, i.e., deploy the hosted engine components. Omitting this parameter equals `false`, and
+         * the host performs no operation in the hosted engine area.
          */
         @In Boolean deployHostedEngine();
 
         /**
-         * When set to `true` it means this host should un-deploy hosted engine components and this host will not
-         * function as part of the High Availability cluster. Missing value is treated as `true` i.e un-deploy.
-         * Omitting this parameter means `false` and will perform no operation in hosted engine area.
+         * When set to `true`, this host un-deploys the hosted engine components and does not
+         * function as part of the High Availability cluster. A missing value is treated as `true`, i.e., un-deploy.
+         * Omitting this parameter equals `false` and the host performs no operation in the hosted engine area.
          */
         @In Boolean undeployHostedEngine();
 
@@ -154,8 +154,9 @@ public interface HostsService {
          * Add a new host to the system providing the host root password. This has been deprecated and provided for backwards compatibility.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 06 May 2018
+         * @status updated_by_docs
          */
         interface UsingRootPassword extends Add {
             @InputDetail
@@ -192,7 +193,7 @@ public interface HostsService {
      * GET /ovirt-engine/api/hosts
      * ....
      *
-     * The response body will be something like this:
+     * The response body will be similar to this:
      *
      * [source,xml]
      * ----
@@ -211,8 +212,9 @@ public interface HostsService {
      * the `search` parameter.
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 06 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out Host[] hosts();
@@ -262,6 +264,25 @@ public interface HostsService {
          * @status updated_by_docs
          */
         @In Boolean allContent();
+
+        /**
+         * Accepts a comma-separated list of virtual machine IDs and returns the hosts
+         * that these virtual machines can be migrated to.
+         *
+         * For example, to retrieve the list of hosts to which the virtual machine with ID 123 and
+         * the virtual machine with ID 456 can be migrated to, send the following request:
+         *
+         * ....
+         * GET /ovirt-engine/api/hosts?migration_target_of=123,456
+         * ....
+         *
+         * @author Tomas Jelinek <tjelinek@redhat.com>
+         * @author Avital Pinnick <apinnick@redhat.com>
+         * @date 06 May 2018
+         * @status updated_by_docs
+         * @since 4.3
+         */
+        @In String migrationTargetOf();
 
     }
 
