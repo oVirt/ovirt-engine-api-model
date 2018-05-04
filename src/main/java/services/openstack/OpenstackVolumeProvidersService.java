@@ -59,8 +59,9 @@ public interface OpenstackVolumeProvidersService {
      * ----
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface Add {
         default void inputDetail() {
@@ -82,19 +83,33 @@ public interface OpenstackVolumeProvidersService {
     /**
      * Retrieves the list of volume providers.
      *
-     * The order of the returned list of volume providers isn't guaranteed.
+     * The order of the returned list of volume providers is not guaranteed.
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out OpenStackVolumeProvider[] providers();
 
         /**
-         * Sets the maximum number of providers to return. If not specified all the providers are returned.
+         * Sets the maximum number of providers to return. If not specified, all the providers are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned volume providers.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
+         */
+        @In String search();
     }
 
     @Service OpenstackVolumeProviderService provider(String id);

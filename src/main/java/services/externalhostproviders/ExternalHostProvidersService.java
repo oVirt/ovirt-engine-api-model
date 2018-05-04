@@ -31,11 +31,12 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Area("Infrastructure")
 public interface ExternalHostProvidersService {
     /**
-     * Add a new external host provider to the system.
+     * Adds a new external host provider to the system.
      *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
@@ -53,19 +54,34 @@ public interface ExternalHostProvidersService {
     /**
      * Returns the list of external host providers.
      *
-     * The order of the returned list of host providers isn't guaranteed.
+     * The order of the returned list of host providers is not guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out ExternalHostProvider[] providers();
 
         /**
-         * Sets the maximum number of providers to return. If not specified all the providers are returned.
+         * Sets the maximum number of providers to return. If not specified, all the providers are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned external host providers.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
+         */
+        @In String search();
+
     }
 
     @Service ExternalHostProviderService provider(String id);

@@ -32,16 +32,21 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
  * This service manages OpenStack network providers.
  *
  * @author Mor Kalfon <mkalfon@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Tahlia Richardson <trichard@redhat.com>
+ * @date 9 May 2018
+ * @status updated_by_docs
  */
 @Service
 @Area("Network")
 public interface OpenstackNetworkProvidersService {
 
     /**
-     * The operation adds a new network provider to the system.
+     * Adds a new network provider to the system.
      * If the `type` property is not present, a default value of `NEUTRON` will be used.
+     *
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
@@ -65,27 +70,42 @@ public interface OpenstackNetworkProvidersService {
     /**
      * Returns the list of providers.
      *
-     * The order of the returned list of providers isn't guaranteed.
+     * The order of the returned list of providers is not guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out OpenStackNetworkProvider[] providers();
 
         /**
-         * Sets the maximum number of providers to return. If not specified all the providers are returned.
+         * Sets the maximum number of providers to return. If not specified, all the providers are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned OpenStack network providers.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
+         */
+        @In String search();
     }
 
     /**
-     * Reference to OpenStack network provider service.
+     * Reference to the OpenStack network provider service.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     @Service OpenstackNetworkProviderService provider(String id);
 }

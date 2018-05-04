@@ -32,11 +32,12 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Area("Storage")
 public interface OpenstackImageProvidersService {
     /**
-     * Add a new OpenStack image provider to the system.
+     * Adds a new OpenStack image provider to the system.
      *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
@@ -58,19 +59,33 @@ public interface OpenstackImageProvidersService {
     /**
      * Returns the list of providers.
      *
-     * The order of the returned list of providers isn't guaranteed.
+     * The order of the returned list of providers is not guaranteed.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
-     * @status added
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 9 May 2018
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out OpenStackImageProvider[] providers();
 
         /**
-         * Sets the maximum number of providers to return. If not specified all the providers are returned.
+         * Sets the maximum number of providers to return. If not specified, all the providers are returned.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned OpenStack image providers.
+         *
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 9 May 2018
+         * @status updated_by_docs
+         */
+        @In String search();
     }
 
     @Service OpenstackImageProviderService provider(String id);
