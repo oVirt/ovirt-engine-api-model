@@ -66,6 +66,12 @@ public interface ExternalHostProvidersService {
          * Sets the maximum number of providers to return. If not specified all the providers are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned external host providers.
+         */
+        @In String search();
+
     }
 
     @Service ExternalHostProviderService provider(String id);

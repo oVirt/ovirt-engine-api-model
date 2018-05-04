@@ -71,6 +71,11 @@ public interface OpenstackImageProvidersService {
          * Sets the maximum number of providers to return. If not specified all the providers are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned OpenStack image providers.
+         */
+        @In String search();
     }
 
     @Service OpenstackImageProviderService provider(String id);

@@ -78,6 +78,11 @@ public interface OpenstackNetworkProvidersService {
          * Sets the maximum number of providers to return. If not specified all the providers are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned OpenStack network providers.
+         */
+        @In String search();
     }
 
     /**

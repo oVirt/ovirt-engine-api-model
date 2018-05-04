@@ -95,6 +95,11 @@ public interface OpenstackVolumeProvidersService {
          * Sets the maximum number of providers to return. If not specified all the providers are returned.
          */
         @In Integer max();
+
+        /**
+         * A query string used to restrict the returned volume providers.
+         */
+        @In String search();
     }
 
     @Service OpenstackVolumeProviderService provider(String id);
