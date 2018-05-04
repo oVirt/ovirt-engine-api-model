@@ -63868,7 +63868,10 @@ This statistics sub-collection is read-only.
 <p>If <code>true</code>, the networks of this provider are automatically and cyclically synchronized to oVirt in
 the background.
 This means that all new networks of this provider are imported, and all discarded networks are removed
-from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.</p>
+from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.
+If the name of a network is changed on the provider, the change is synchronized to the network entity in
+oVirt. Furthermore, if a new cluster that has the provider as the default provider is added,
+already imported networks are attached to this new cluster during synchronization.</p>
 </div>
 <div class="paragraph">
 <p>The automatically initiated import triggers the following steps:</p>
@@ -77882,7 +77885,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-23 05:36:39 UTC
+Last updated 2018-05-04 06:40:14 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
