@@ -495,6 +495,26 @@ public interface DiskService extends MeasurableService {
     }
 
     /**
+     * Reduces the size of the disk image.
+     *
+     * Invokes _reduce_ on the logical volume (i.e. this is only applicable for block storage domains).
+     * This is applicable for floating disks and disks attached to non-running virtual machines.
+     * There is no need to specify the size as the optimal size is calculated automatically.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @author Emma Heftman <eheftman@redhat.com>
+     * @date 3 June 2018
+     * @status updated_by_docs
+     * @since 4.2.5
+     */
+    interface Reduce {
+        /**
+         * Indicates if the remove should be performed asynchronously.
+         */
+        @In Boolean async();
+    }
+
+    /**
      * Reference to the service that manages the permissions assigned to the disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
