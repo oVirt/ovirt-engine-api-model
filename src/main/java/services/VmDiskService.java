@@ -91,5 +91,25 @@ public interface VmDiskService extends MeasurableService {
         @In Boolean async();
     }
 
+    /**
+     * Reduces the size of the disk image.
+     *
+     * Invokes _reduce_ on the logical volume (i.e. this is only applicable for block storage domains).
+     * This is applicable for floating disks and disks attached to non-running virtual machines.
+     * There is no need to specify the size as the optimal size is calculated automatically.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @author Emma Heftman <eheftman@redhat.com>
+     * @date 3 June 2018
+     * @status updated_by_docs
+     * @since 4.3
+     */
+    interface Reduce {
+        /**
+         * Indicates if the remove should be performed asynchronously.
+         */
+        @In Boolean async();
+    }
+
     @Service AssignedPermissionsService permissions();
 }
