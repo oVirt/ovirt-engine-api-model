@@ -128,28 +128,32 @@ public interface Qos extends Identified {
     Integer cpuLimit();
 
     /**
-     * The desired average inbound bit rate in Mbps.
+     * The desired average inbound bit rate in Mbps (Megabits per sec).
      *
      * Used to configure virtual machines networks. If defined, `inbound_peak` and `inbound_burst` also has to be set.
      *
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 Jun 2018
+     * @status updated_by_docs
      */
     Integer inboundAverage();
 
     /**
-     * The maximum inbound rate in Mbps.
+     * The maximum inbound rate in Mbps (Megabits per sec).
      *
      * Used to configure virtual machines networks. If defined, `inbound_average` and `inbound_burst` also has to be set.
      *
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 June 2018
+     * @status updated_by_docs
      */
     Integer inboundPeak();
 
@@ -167,20 +171,22 @@ public interface Qos extends Identified {
     Integer inboundBurst();
 
     /**
-     * The desired average outbound bit rate in Mbps.
+     * The desired average outbound bit rate in Mbps (Megabits per sec).
      *
      * Used to configure virtual machines networks. If defined, `outbound_peak` and `outbound_burst` also has to be set.
      *
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 June 2018
+     * @status updated_by_docs
      */
     Integer outboundAverage();
 
     /**
-     * The maximum outbound rate in Mbps.
+     * The maximum outbound rate in Mbps (Megabits per sec).
      *
      * Used to configure virtual machines networks. If defined, `outbound_average` and `outbound_burst` also has to be
      * set.
@@ -188,8 +194,10 @@ public interface Qos extends Identified {
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 June 2018
+     * @status updated_by_docs
      */
     Integer outboundPeak();
 
@@ -221,7 +229,7 @@ public interface Qos extends Identified {
     Integer outboundAverageLinkshare();
 
     /**
-     * The maximum bandwidth to be used by a network in Mbps.
+     * The maximum bandwidth to be used by a network in Mbps (Megabits per sec).
      *
      * Used to configure host networks. If `outboundAverageUpperlimit` and `outbound_average_realtime` are provided, the
      * `outbound_averageUpperlimit` must not be lower than the `outbound_average_realtime`.
@@ -229,21 +237,25 @@ public interface Qos extends Identified {
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 June 2018
+     * @status updated_by_docs
      */
     Integer outboundAverageUpperlimit();
 
     /**
-     * The committed rate in Mbps.
+     * The committed rate in Mbps (Megabits per sec).
      *
      * Used to configure host networks. The minimum bandwidth required by a network. The committed rate requested is not
      * guaranteed and will vary depending on the network infrastructure and the committed rate requested by other
      * networks on the same logical link.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 04 June 2018
+     * @status updated_by_docs
      */
     Integer outboundAverageRealtime();
 
