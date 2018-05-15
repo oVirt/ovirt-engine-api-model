@@ -40707,6 +40707,21 @@ like this:</p>
 </div>
 </div>
 <div class="paragraph">
+<p>Since version 4.3, in order to create virtual machine template from a snapshot send a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;template&gt;
+  &lt;name&gt;mytemplate&lt;/name&gt;
+  &lt;vm id="123"&gt;
+    &lt;snapshots&gt;
+      &lt;snapshot id="456"/&gt;
+    &lt;/snapshots&gt;
+  &lt;/vm&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>The disks of the template can be customized, making some of their characteristics different from the disks of the
 original virtual machine. To do so use the <code>vm.disk_attachments</code> attribute, specifying the identifier of the disk
 of the original virtual machine and the characteristics that you want to change. For example, if the original
@@ -77909,7 +77924,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-07 10:00:41 UTC
+Last updated 2018-05-15 12:06:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
