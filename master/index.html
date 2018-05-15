@@ -12966,7 +12966,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>This operation copies a disk to the specified storage domain.</p>
 </div>
 <div class="paragraph">
-<p>For example, copy of a disk can be facilitated using the following request:</p>
+<p>For example, a disk can be copied using the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12987,11 +12987,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <div class="paragraph">
-<p>If the disk profile or the quota used currently by the disk aren&#8217;t defined for the new storage domain, then they
-can be explicitly specified. If they aren&#8217;t then the first available disk profile and the default quota are used.</p>
+<p>If the disk profile or the quota currently used by the disk are not defined for the new storage domain, they
+can be explicitly specified. If they are not specified, the first available disk profile and the default quota are used.</p>
 </div>
 <div class="paragraph">
-<p>For example, to explicitly use disk profile <code>987</code> and quota <code>753</code> send a request body like this:</p>
+<p>For example, to specify disk profile <code>987</code> and quota <code>753</code>, send a request body like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13053,7 +13053,7 @@ can be explicitly specified. If they aren&#8217;t then the first available disk 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain where the new disk will be created.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain where the new disk is created.</p></td>
 </tr>
 </tbody>
 </table>
@@ -13084,8 +13084,8 @@ the default (unlimited) quota will be assigned to the disk.</p>
 <div class="sect4">
 <h5 id="services/disk/methods/copy/parameters/storage_domain"><a class="anchor" href="#services/disk/methods/copy/parameters/storage_domain"></a>storage_domain</h5>
 <div class="paragraph">
-<p>The storage domain where the new disk will be created. Can be specified using the <code>id</code> or <code>name</code>
-attributes. For example, to copy a disk to the storage domain named <code>mydata</code> send a request like this:</p>
+<p>The storage domain where the new disk is created. This can be specified using the <code>id</code> or <code>name</code>
+attributes. For example, to copy a disk to the storage domain called <code>mydata</code>, send a request like this:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -13144,7 +13144,7 @@ attributes. For example, to copy a disk to the storage domain named <code>mydata
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The export storage domain where the disk will be exported to.</p></td>
 </tr>
 </tbody>
 </table>
@@ -13282,7 +13282,7 @@ quota <code>753</code> send a request body like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain where the disk will be moved to.</p></td>
 </tr>
 </tbody>
 </table>
@@ -13426,7 +13426,7 @@ having derived disks are also not allowed.</p>
 The only field that can be updated is <code>qcow_version</code>.</p>
 </div>
 <div class="paragraph">
-<p>For example, update disk can be facilitated using the following request:</p>
+<p>For example, disk update can be done using the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13444,7 +13444,7 @@ The only field that can be updated is <code>qcow_version</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Since the backend operation is asynchronous the disk element which will be returned
+<p>Since the backend operation is asynchronous, the disk element that is returned
 to the user might not be synced with the changed properties.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -77923,7 +77923,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-15 12:43:12 UTC
+Last updated 2018-05-15 12:50:56 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
