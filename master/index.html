@@ -37212,7 +37212,7 @@ The request only apply to storage domains that are attached.</p>
 <div class="sect2">
 <h3 id="services/storage_domains"><a class="anchor" href="#services/storage_domains"></a>6.208. StorageDomains</h3>
 <div class="paragraph">
-<p>Manages the set of storage domains of the system.</p>
+<p>Manages the set of storage domains in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 632. Methods summary</caption>
@@ -37233,7 +37233,7 @@ The request only apply to storage domains that are attached.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains of the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains in the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37243,15 +37243,15 @@ The request only apply to storage domains that are attached.</p>
 <p>Adds a new storage domain.</p>
 </div>
 <div class="paragraph">
-<p>Creation of a new <a href="#types/storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code> and <code>storage</code>
-attributes. Identify the <code>host</code> attribute with the <code>id</code> or <code>name</code> attributes. In oVirt 3.6 and later you can
-enable the wipe after delete option by default on the storage domain. To configure this, specify
+<p>Creation of a new <a href="#types/storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code>, and <code>storage</code>
+attributes. Identify the <code>host</code> attribute with the <code>id</code> or <code>name</code> attributes. In oVirt 3.6 and
+later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
 <code>wipe_after_delete</code> in the POST request. This option can be edited after the domain is created, but doing so will
 not change the wipe after delete property of disks that already exist.</p>
 </div>
 <div class="paragraph">
-<p>To add a new storage domain with specified <code>name</code>, <code>type</code>, <code>storage.type</code>, <code>storage.address</code> and <code>storage.path</code>
-and by using a host with an id <code>123</code>, send a request as follows:</p>
+<p>To add a new storage domain with specified <code>name</code>, <code>type</code>, <code>storage.type</code>, <code>storage.address</code>, and <code>storage.path</code>,
+and using a host with an id <code>123</code>, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37259,7 +37259,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>With a request body as follows:</p>
+<p>With a request body like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37338,7 +37338,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain to add.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37346,7 +37346,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 <div class="sect3">
 <h4 id="services/storage_domains/methods/list"><a class="anchor" href="#services/storage_domains/methods/list"></a>6.208.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Returns the list of storage domains of the system.</p>
+<p>Returns the list of storage domains in the system.</p>
 </div>
 <div class="paragraph">
 <p>The order of the returned list of storage domains is guaranteed only if the <code>sortby</code> clause is included
@@ -37373,8 +37373,7 @@ in the <code>search</code> parameter.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search should be performed taking case into account.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
@@ -37404,16 +37403,16 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domains</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of the storage domains in the system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/storage_domains/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/storage_domains/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
 <div class="paragraph">
-<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
-ignoring case set it to <code>false</code>.</p>
+<p>Indicates if the search should be performed taking case into account.
+The default value is <code>true</code>, which means that case is taken into account. If you want to search
+ignoring case, set it to <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -37426,7 +37425,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/storage_domains/methods/list/parameters/max"><a class="anchor" href="#services/storage_domains/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of storage domains to return. If not specified all the storage domains are returned.</p>
+<p>Sets the maximum number of storage domains to return. If not specified, all the storage domains are returned.</p>
 </div>
 </div>
 </div>
@@ -77924,7 +77923,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-15 12:28:43 UTC
+Last updated 2018-05-15 12:32:13 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
