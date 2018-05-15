@@ -22749,11 +22749,11 @@ This parameter will give the option to not perform the status check of the LUNs.
 <p>Creates a new host.</p>
 </div>
 <div class="paragraph">
-<p>The host is created based on the attributes of the <code>host</code> parameter. The <code>name</code>, <code>address</code> and <code>root_password</code>
+<p>The host is created based on the attributes of the <code>host</code> parameter. The <code>name</code>, <code>address</code>, and <code>root_password</code>
 properties are required.</p>
 </div>
 <div class="paragraph">
-<p>For example, to add a host send the following request:</p>
+<p>For example, to add a host, send the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -22792,8 +22792,8 @@ exposed in the representations returned from subsequent requests.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Since version 4.1.2 of the engine when a host is newly added we override the host firewall
-definitions by default.
+Since version 4.1.2 of the engine, when a host is newly added, the host&#8217;s firewall
+definitions are overridden by default.
 </td>
 </tr>
 </table>
@@ -22807,11 +22807,11 @@ definitions by default.
 </div>
 </div>
 <div class="paragraph">
-<p>If the cluster has a default external network provider which is supported for automatic deployment,
+<p>If the cluster has a default external network provider that is supported for automatic deployment,
 the external network provider is deployed when adding the host.
 Only external network providers for OVN are supported for the automatic deployment.
-To deploy an external network provider that differs to what is defined in the clusters, overwrite the external
-network provider when adding hosts by sending a request like this:</p>
+To deploy an external network provider other than the one defined in the clusters, overwrite the external
+network provider when adding hosts, by sending the following request:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -22857,20 +22857,20 @@ network provider when adding hosts by sending a request like this:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>deploy_hosted_engine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should deploy also hosted engine components.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code>, this host deploys the hosted engine components.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The host definition from which to create the new host is passed as parameter, and the newly created host
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host definition with which the new host is created is passed as a parameter, and the newly created host
 is returned.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undeploy_hosted_engine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code> it means this host should un-deploy hosted engine components and this host will not
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code>, this host un-deploys the hosted engine components and does not
 function as part of the High Availability cluster.</p></td>
 </tr>
 </tbody>
@@ -22878,17 +22878,17 @@ function as part of the High Availability cluster.</p></td>
 <div class="sect4">
 <h5 id="services/hosts/methods/add/parameters/deploy_hosted_engine"><a class="anchor" href="#services/hosts/methods/add/parameters/deploy_hosted_engine"></a>deploy_hosted_engine</h5>
 <div class="paragraph">
-<p>When set to <code>true</code> it means this host should deploy also hosted engine components. Missing value is treated
-as <code>true</code> i.e deploy. Omitting this parameter means <code>false</code> and will perform no operation in hosted engine
-area.</p>
+<p>When set to <code>true</code>, this host deploys the hosted engine components. A missing value is treated
+as <code>true</code>, i.e., deploy the hosted engine components. Omitting this parameter equals <code>false</code>, and
+the host performs no operation in the hosted engine area.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="services/hosts/methods/add/parameters/undeploy_hosted_engine"><a class="anchor" href="#services/hosts/methods/add/parameters/undeploy_hosted_engine"></a>undeploy_hosted_engine</h5>
 <div class="paragraph">
-<p>When set to <code>true</code> it means this host should un-deploy hosted engine components and this host will not
-function as part of the High Availability cluster. Missing value is treated as <code>true</code> i.e un-deploy.
-Omitting this parameter means <code>false</code> and will perform no operation in hosted engine area.</p>
+<p>When set to <code>true</code>, this host un-deploys the hosted engine components and does not
+function as part of the High Availability cluster. A missing value is treated as <code>true</code>, i.e., un-deploy.
+Omitting this parameter equals <code>false</code> and the host performs no operation in the hosted engine area.</p>
 </div>
 </div>
 </div>
@@ -22906,7 +22906,7 @@ Omitting this parameter means <code>false</code> and will perform no operation i
 </div>
 </div>
 <div class="paragraph">
-<p>The response body will be something like this:</p>
+<p>The response body will be similar to this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -22980,6 +22980,13 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sets the maximum number of hosts to return.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>migration_target_of</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepts a comma-separated list of virtual machine IDs and returns the hosts
+that these virtual machines can be migrated to.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -23044,6 +23051,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <h5 id="services/hosts/methods/list/parameters/max"><a class="anchor" href="#services/hosts/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
 <p>Sets the maximum number of hosts to return. If not specified all the hosts are returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/hosts/methods/list/parameters/migration_target_of"><a class="anchor" href="#services/hosts/methods/list/parameters/migration_target_of"></a>migration_target_of</h5>
+<div class="paragraph">
+<p>Accepts a comma-separated list of virtual machine IDs and returns the hosts
+that these virtual machines can be migrated to.</p>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the list of hosts to which the virtual machine with ID 123 and
+the virtual machine with ID 456 can be migrated to, send the following request:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts?migration_target_of=123,456</pre>
+</div>
 </div>
 </div>
 </div>
@@ -77923,7 +77946,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-15 13:05:09 UTC
+Last updated 2018-05-15 13:12:14 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
