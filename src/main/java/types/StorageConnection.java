@@ -41,22 +41,136 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface StorageConnection extends Identified {
     // Common to all types of storage connections:
+    /**
+     * A storage server connection's address.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String address();
+
+    /**
+     * A storage server connection's type.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     StorageType type();
 
     // For NFS:
+    /**
+     * The path of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String path();
+
+    /**
+     * The mount options of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String mountOptions();
+
+    /**
+     * The VFS type of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String vfsType();
+
+    /**
+     * The NFS version of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     NfsVersion nfsVersion();
+
+    /**
+     * The NFS timeo value of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     Integer nfsTimeo();
+
+    /**
+     * The NFS retrans value of an NFS storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     Integer nfsRetrans();
 
     // For iSCSI:
+    /**
+     * The port of an iSCSI storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     Integer port();
+
+    /**
+     * The target of an iSCSI storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String target();
+
+    /**
+     * The user name of an iSCSI storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String username();
+
+    /**
+     * The password of an iSCSI storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String password();
+
+    /**
+     * The portal of an iSCSI storage server connection.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
+     */
     String portal();
 
     // Link to the host:
