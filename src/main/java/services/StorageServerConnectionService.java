@@ -36,7 +36,7 @@ public interface StorageServerConnectionService {
     /**
      * Updates the storage connection.
      *
-     * For example, to change the address of the storage server send a request like this:
+     * For example, to change the address of an NFS storage server, send a request like this:
      *
      * [source,xml]
      * ----
@@ -49,23 +49,40 @@ public interface StorageServerConnectionService {
      * ----
      * <storage_connection>
      *   <address>mynewnfs.example.com</address>
-     *   <host>
-     *     <name>myhost</name>
-     *   </host>
+     * </storage_connection>
+     * ----
+     *
+     * To change the connection of an iSCSI storage server, send a request like this:
+     *
+     * [source,xml]
+     * ----
+     * PUT /ovirt-engine/api/storageconnections/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <storage_connection>
+     *   <port>3260</port>
+     *   <target>iqn.2017-01.com.myhost:444</target>
      * </storage_connection>
      * ----
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 17 May 2018
+     * @status updated_by_docs
      */
     interface Update {
         /**
          * Update the specified iSCSI storage connection in the system.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 17 May 2018
+         * @status updated_by_docs
          */
         interface Iscsi extends Update {
             @InputDetail
@@ -78,11 +95,12 @@ public interface StorageServerConnectionService {
         }
 
         /**
-         * Update the specified nfs storage connection in the system.
+         * Update the specified NFS storage connection in the system.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 17 May 2018
+         * @status updated_by_docs
          */
         interface Nfs extends Update {
             @InputDetail
@@ -96,11 +114,12 @@ public interface StorageServerConnectionService {
         }
 
         /**
-         * Update the specified vfs storage connection in the system.
+         * Update the specified VFS storage connection in the system.
          *
          * @author Ori Liel <oliel@redhat.com>
-         * @date 18 Jan 2017
-         * @status added
+         * @author Billy Burmester <bburmest@redhat.com>
+         * @date 17 May 2018
+         * @status updated_by_docs
          */
         interface Vfs extends Update {
             @InputDetail
