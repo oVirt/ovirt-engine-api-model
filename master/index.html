@@ -37586,7 +37586,7 @@ send a request like this:</p>
 <p>Updates the storage connection.</p>
 </div>
 <div class="paragraph">
-<p>For example, to change the address of the storage server send a request like this:</p>
+<p>For example, to change the address of an NFS storage server, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37600,9 +37600,25 @@ send a request like this:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_connection&gt;
   &lt;address&gt;mynewnfs.example.com&lt;/address&gt;
-  &lt;host&gt;
-    &lt;name&gt;myhost&lt;/name&gt;
-  &lt;/host&gt;
+&lt;/storage_connection&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To change the connection of an iSCSI storage server, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">PUT /ovirt-engine/api/storageconnections/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_connection&gt;
+  &lt;port&gt;3260&lt;/port&gt;
+  &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
 &lt;/storage_connection&gt;</code></pre>
 </div>
 </div>
@@ -77946,7 +77962,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-15 13:12:14 UTC
+Last updated 2018-05-17 07:10:06 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
