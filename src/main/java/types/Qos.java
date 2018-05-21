@@ -158,15 +158,17 @@ public interface Qos extends Identified {
     Integer inboundPeak();
 
     /**
-     * The amount of data that can be delivered in a single burst in MiB.
+     * The amount of data that can be delivered in a single burst, in MB.
      *
-     * Used to configure virtual machines networks. If defined, `inbound_average` and `inbound_peak` also has to be set.
+     * Used to configure virtual machine networks. If defined, `inbound_average` and `inbound_peak` must also be set.
      *
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 04 Jun 2018
+     * @status updated_by_docs
      */
     Integer inboundBurst();
 
@@ -202,16 +204,18 @@ public interface Qos extends Identified {
     Integer outboundPeak();
 
     /**
-     * The amount of data that can be sent in a single burst in MiB.
+     * The amount of data that can be sent in a single burst, in MB.
      *
-     * Used to configure virtual machines networks. If defined, `outbound_average` and `outbound_peak` also has to be
+     * Used to configure virtual machine networks. If defined, `outbound_average` and `outbound_peak` must also be
      * set.
      *
      * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 04 Jun 2018
+     * @status updated_by_docs
      */
     Integer outboundBurst();
 
