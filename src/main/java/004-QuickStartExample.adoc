@@ -1,48 +1,45 @@
-== Quick start example
+== Quick Start Examples
 
-This chapter provides an example to demonstrate the REST API's ability
-to setup a basic {product-name} environment and create a virtual machine.
-In addition to the standard prerequisites, this example requires the
+The examples in this section show you how to use the REST API to set up
+a basic {product-name} environment and to create a virtual machine.
+In addition to the standard prerequisites, these examples require the
 following:
 
-* A networked and configured {product-name} installation;
+* A networked and configured {product-name} installation.
 
-* An ISO file containing a desired virtual machine operating system to
-install. This chapter uses https://www.centos.org[CentOS] 7 for our
-installation ISO example; and
+* An ISO file containing the virtual machine operating system you want to
+install. This chapter uses link:https://www.centos.org[CentOS] 7 for the
+installation ISO example.
 
-* {product-name}'s `engine-iso-uploader` tool to upload your chosen
-operating system ISO file.
+The API examples use link:https://curl.haxx.se[`curl`] to demonstrate API
+requests with a client application. You can use any application that sends
+HTTP requests.
 
-This example uses https://curl.haxx.se[`curl`] to demonstrate API
-requests with a client application. Note that any application capable of
-HTTP requests can substitute for `curl`.
-
-IMPORTANT: For simplicity, the HTTP request headers in this example omit
-the `Host` and `Authorization` headers. However, these fields are mandatory
+[IMPORTANT]
+====
+The HTTP request headers in this example omit the `Host` and
+`Authorization` headers. However, these fields are mandatory
 and require data specific to your installation of {product-name}.
 
-IMPORTANT: All the `curl` examples use `admin@internal` as the user
-name, `mypassword` as the password, `/etc/pki/ovirt-engine/ca.pem` as the
-certificate location and `myengine.example.com` as the host name. These
-are just examples, Make sure to replace them with valid values for your
+The `curl` examples use `admin@internal` for the user
+name, `mypassword` for the password, `/etc/pki/ovirt-engine/ca.pem` for the
+certificate location, and `myengine.example.com` for the host name. You must
+replace them with the correct values for your environment.
+====
+
+{product-name} generates a unique identifier for the `id`
+attribute for each resource. Identifier codes in this example will
+differ from the identifier codes in your {product-name}
 environment.
 
-NOTE: {product-name} generates an unique identifier for the `id`
-attribute for each resource. Identifier codes in this example might
-appear different to the identifier codes in your {product-name}
-environment.
+In many examples, some attributes of the results returned by the
+API have been omitted, for brevity. See, for example, the
+<<types/cluster, Cluster>> reference for a complete list of attributes.
 
-NOTE: In many examples of this section some of the attributes of results
-returned by the API have been omitted, to make them shorter. You can
-always use the reference to find the complete list of attributes. For
-example, if you want to see the complete list of attributes of the
-`Cluster` type, just go <<types/cluster, here>>.
-
-=== Example: Access API entry point
+=== Access API entry point
 
 The following request retrieves a representation of the main entry point
-for version 4 of of the API:
+for version 4 of the API:
 
 ....
 GET /ovirt-engine/api HTTP/1.1
@@ -50,7 +47,7 @@ Version: 4
 Accept: application/xml
 ....
 
-Same request, but using the `/v4` URL prefix instead of the `Version`
+The same request, but using the `/v4` URL prefix instead of the `Version`
 header:
 
 ....
@@ -58,7 +55,7 @@ GET /ovirt-engine/api/v4 HTTP/1.1
 Accept: application/xml
 ....
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 curl \
@@ -70,7 +67,7 @@ curl \
 https://myengine.example.com/ovirt-engine/api
 ....
 
-The result will be an object of type <<types/api, Api>>:
+The result is an object of type <<types/api, Api>>:
 
 [source,xml]
 ----
@@ -143,10 +140,10 @@ product_info>>, <<types/special_objects, special_objects>> and
 <<types/api_summary, summary>>. This data is covered in chapters
 outside this example.
 
-=== Example: List data centers
+=== List data centers
 
 {product-name} creates a `Default` data center on installation. This
-example uses the `Default` data center as the basis for our virtual
+example uses the `Default` data center as the basis for the virtual
 environment.
 
 The following request retrieves a representation of the data centers:
@@ -156,7 +153,7 @@ GET /ovirt-engine/api/datacenters HTTP/1.1
 Accept: application/xml
 ....
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -212,7 +209,7 @@ domains attached to the data center:
 That service is used to attach storage domains from the main
 `storagedomains` collection, which this example covers later.
 
-=== Example: List host clusters
+=== List host clusters
 
 {product-name} creates a `Default` hosts cluster on installation. This
 example uses the `Default` cluster to group resources in your
@@ -226,7 +223,7 @@ GET /ovirt-engine/api/clusters HTTP/1.1
 Accept: application/xml
 ....
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 curl \
@@ -278,15 +275,15 @@ The `networks` link is a reference to the <<services/data_center_networks,
 service>> that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.
 
-=== Example: List logical networks
+=== List logical networks
 
 {product-name} creates a default `ovirtmgmt` network on installation.
 This network acts as the management network for {engine-name} to access
 hosts.
 
-This network is associated with our `Default` cluster and is a member of
+This network is associated with the `Default` cluster and is a member of
 the `Default` data center. This example uses the `ovirtmgmt` network to
-connect our virtual machines.
+connect the virtual machines.
 
 The following request retrieves the list of logical networks:
 
@@ -295,7 +292,7 @@ GET /ovirt-engine/api/networks HTTP/1.1
 Accept: application/xml
 ....
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -335,7 +332,7 @@ relationship using the data center's `id`.
 The `ovirtmgmt` network is also attached to the `Default` cluster through a
 relationship in the cluster's network sub-collection.
 
-=== Example: List hosts
+=== List hosts
 
 This example retrieves the list of hosts and shows a host named `myhost`
 registered with the virtualization environment:
@@ -346,7 +343,7 @@ Accept: application/xml
 ....
 
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -400,7 +397,7 @@ This host is a member of the `Default` cluster and accessing the `nics`
 sub-collection shows this host has a connection to the `ovirtmgmt`
 network.
 
-=== Example: Create NFS data storage
+=== Create NFS data storage
 
 An NFS data storage domain is an exported NFS share attached to a data
 center and provides storage for virtualized guest images. Creation of a
@@ -494,7 +491,7 @@ storage domain resource (of type <<types/storage_domain, StorageDomain>>):
 </storage_domain>
 ----
 
-=== Example: Create NFS ISO storage
+=== Create NFS ISO storage
 
 An NFS ISO storage domain is a mounted NFS share attached to a data
 center and provides storage for DVD/CD-ROM ISO and virtual floppy disk
@@ -582,7 +579,7 @@ storage domain resource (of type <<types/storage_domain, StorageDomain>>):
 </storage_domain>
 ----
 
-=== Example: Attach storage domains to data center
+=== Attach storage domains to data center
 
 The following example attaches the `mydata` and `myisos` storage domains
 to the `Default` data center.
@@ -604,7 +601,7 @@ With a request body like this:
 </storage_domain>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -639,7 +636,7 @@ With a request body like this:
 </storage_domain>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -657,7 +654,7 @@ Same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
 ....
 
-=== Example: Create virtual machine
+=== Create virtual machine
 
 The following example creates a virtual machine called `myvm` on the
 `Default` cluster using the virtualization environment's `Blank`
@@ -698,7 +695,7 @@ And the request body should be like this:
 </vm>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -765,7 +762,7 @@ The response body will be an object of the <<types/vm, Vm>> type:
 </vm>
 ----
 
-=== Example: Create a virtual machine NIC
+=== Create a virtual machine NIC
 
 The following example creates a virtual network interface to connect the
 example virtual machine to the `ovirtmgmt` network.
@@ -789,7 +786,7 @@ describing the NIC to be created:
 </nic>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -808,7 +805,7 @@ Same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/vms/007/nics
 ....
 
-=== Example: Create virtual machine disk
+=== Create virtual machine disk
 
 The following example creates an 8 GiB _copy-on-write_ disk for the
 example virtual machine.
@@ -845,7 +842,7 @@ virtual machine:
 </disk_attachment>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -879,18 +876,18 @@ https://myengine.example.com/ovirt-engine/api/vms/007/diskattachments
 The `storage_domains` attribute tells the API to store the disk on the
 `mydata` storage domain.
 
-=== Example: Attach ISO image to virtual machine
+=== Attach ISO image to virtual machine
 
-The boot media for our example virtual machine requires an CD-ROM or DVD
+The boot media for the following virtual machine example requires a CD-ROM or DVD
 ISO image for an operating system installation. This example uses a
-CentOS 7 image for installation.
+CentOS 7 image.
 
 ISO images must be available in the `myisos` ISO domain for the virtual
-machines to use. {product-name} provides an uploader tool that ensures
-that the ISO images are uploaded into the correct directory path with
-the correct user permissions.
+machines to use. You can use <<services/image_transfers>> to create an
+image transfer and <<services/image_transfer>> to upload the ISO
+image.
 
-Once the ISO is uploaded, an API can be used to request the list of
+Once the ISO image is uploaded, an API can be used to request the list of
 files from the ISO storage domain:
 
 ....
@@ -898,7 +895,7 @@ GET /ovirt-engine/api/storagedomains/006/files HTTP/1.1
 Accept: application/xml
 ....
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -923,7 +920,7 @@ File>>, one for each available ISO (or floppy) image:
 </files>
 ----
 
-An API user attaches the `CentOS-7-x86_64-Minimal.iso` to our example
+An API user attaches the `CentOS-7-x86_64-Minimal.iso` to the example
 virtual machine. Attaching an ISO image is equivalent to using the
 _Change CD_ button in the administration or user portal applications.
 
@@ -946,7 +943,7 @@ ISO (or floppy) image:
 </cdrom>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
@@ -967,7 +964,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-
 For more details see the documentation of the <<services/vm_cdrom,
 service>> that manages virtual machine CD-ROMS.
 
-=== Example: Start the virtual machine
+=== Start the virtual machine
 
 The virtual environment is complete and the virtual machine contains all
 necessary components to function. This example starts the virtual
@@ -998,7 +995,7 @@ The request body should be like this:
 </action>
 ----
 
-Same request, using the `curl` command:
+The same request, using the `curl` command:
 
 ....
 # curl \
