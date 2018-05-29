@@ -9777,7 +9777,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain to attach to the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -9823,7 +9823,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domains</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of storage domains that are attached to the data center.</p></td>
 </tr>
 </tbody>
 </table>
@@ -13724,7 +13724,7 @@ value.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_attachment">DiskAttachment</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The disk attachment to add to the virtual machine.</p></td>
 </tr>
 </tbody>
 </table>
@@ -13758,7 +13758,7 @@ value.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>attachments</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_attachment">DiskAttachment[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of disk attachments that are attached to the virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
@@ -16806,7 +16806,7 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add a new external host provider to the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new external host provider to the system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
@@ -16817,7 +16817,7 @@ to run following request where 123 is an id of a provider.</p>
 <div class="sect3">
 <h4 id="services/external_host_providers/methods/add"><a class="anchor" href="#services/external_host_providers/methods/add"></a>6.76.1. add <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Add a new external host provider to the system.</p>
+<p>Adds a new external host provider to the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 220. Parameters summary</caption>
@@ -16851,7 +16851,7 @@ to run following request where 123 is an id of a provider.</p>
 <p>Returns the list of external host providers.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of host providers isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of host providers is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 221. Parameters summary</caption>
@@ -16888,6 +16888,12 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned external host providers.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -16900,7 +16906,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/external_host_providers/methods/list/parameters/max"><a class="anchor" href="#services/external_host_providers/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of providers to return. If not specified all the providers are returned.</p>
+<p>Sets the maximum number of providers to return. If not specified, all the providers are returned.</p>
 </div>
 </div>
 </div>
@@ -23910,7 +23916,7 @@ send the following request:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image_transfer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/image_transfer">ImageTransfer</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image transfer to add.</p></td>
 </tr>
 </tbody>
 </table>
@@ -23951,7 +23957,7 @@ being performed.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image_transfer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/image_transfer">ImageTransfer[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of image transfers that are currently being performed.</p></td>
 </tr>
 </tbody>
 </table>
@@ -25256,7 +25262,7 @@ types are returned.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bond</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_bond">IscsiBond</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The iSCSI bond.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
@@ -25365,7 +25371,7 @@ update the iSCSI bond <code>456</code> of data center <code>123</code>, send a r
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bond</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/iscsi_bond">IscsiBond</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The iSCSI bond to update.</p></td>
 </tr>
 </tbody>
 </table>
@@ -28491,7 +28497,7 @@ to run following request where 123 is an id of a provider.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Add a new OpenStack image provider to the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new OpenStack image provider to the system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
@@ -28502,7 +28508,7 @@ to run following request where 123 is an id of a provider.</p>
 <div class="sect3">
 <h4 id="services/openstack_image_providers/methods/add"><a class="anchor" href="#services/openstack_image_providers/methods/add"></a>6.147.1. add <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>Add a new OpenStack image provider to the system.</p>
+<p>Adds a new OpenStack image provider to the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 446. Parameters summary</caption>
@@ -28536,7 +28542,7 @@ to run following request where 123 is an id of a provider.</p>
 <p>Returns the list of providers.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of providers isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of providers is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 447. Parameters summary</caption>
@@ -28573,6 +28579,12 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned OpenStack image providers.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -28585,7 +28597,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/openstack_image_providers/methods/list/parameters/max"><a class="anchor" href="#services/openstack_image_providers/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of providers to return. If not specified all the providers are returned.</p>
+<p>Sets the maximum number of providers to return. If not specified, all the providers are returned.</p>
 </div>
 </div>
 </div>
@@ -28741,7 +28753,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <h4 id="services/openstack_network/methods/import"><a class="anchor" href="#services/openstack_network/methods/import"></a>6.149.2. import <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>This operation imports an external network into oVirt.
-The network will be added to the data center specified.</p>
+The network will be added to the specified data center.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 452. Parameters summary</caption>
@@ -28779,7 +28791,7 @@ The network will be added to the data center specified.</p>
 <div class="paragraph">
 <p>The data center into which the network is to be imported.
 Data center is mandatory, and can be specified
-using the <code>id</code> or <code>name</code> attributes, the rest of
+using the <code>id</code> or <code>name</code> attributes. The rest of
 the attributes will be ignored.</p>
 </div>
 <div class="admonitionblock note">
@@ -28790,9 +28802,9 @@ the attributes will be ignored.</p>
 </td>
 <td class="content">
 If <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is
-enabled for the provider, the network might be already imported automatically. To
-prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false
-and enabled after importing the network again.
+enabled for the provider, the network might be imported automatically. To
+prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false,
+and enabling it again after importing the network.
 </td>
 </tr>
 </table>
@@ -29081,7 +29093,7 @@ for the OpenStack network provider with identifier <code>1234</code>, send a req
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The operation adds a new network provider to the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds a new network provider to the system.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
@@ -29092,7 +29104,7 @@ for the OpenStack network provider with identifier <code>1234</code>, send a req
 <div class="sect3">
 <h4 id="services/openstack_network_providers/methods/add"><a class="anchor" href="#services/openstack_network_providers/methods/add"></a>6.151.1. add <span class="small">POST</span></h4>
 <div class="paragraph">
-<p>The operation adds a new network provider to the system.
+<p>Adds a new network provider to the system.
 If the <code>type</code> property is not present, a default value of <code>NEUTRON</code> will be used.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -29127,7 +29139,7 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 <p>Returns the list of providers.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of providers isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of providers is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 461. Parameters summary</caption>
@@ -29164,6 +29176,12 @@ If the <code>type</code> property is not present, a default value of <code>NEUTR
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned OpenStack network providers.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -29176,7 +29194,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/openstack_network_providers/methods/list/parameters/max"><a class="anchor" href="#services/openstack_network_providers/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of providers to return. If not specified all the providers are returned.</p>
+<p>Sets the maximum number of providers to return. If not specified, all the providers are returned.</p>
 </div>
 </div>
 </div>
@@ -30034,7 +30052,7 @@ to run following request where 123 is an id of a provider.</p>
 <p>Retrieves the list of volume providers.</p>
 </div>
 <div class="paragraph">
-<p>The order of the returned list of volume providers isn&#8217;t guaranteed.</p>
+<p>The order of the returned list of volume providers is not guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 485. Parameters summary</caption>
@@ -30071,6 +30089,12 @@ to run following request where 123 is an id of a provider.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>search</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A query string used to restrict the returned volume providers.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -30083,7 +30107,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/openstack_volume_providers/methods/list/parameters/max"><a class="anchor" href="#services/openstack_volume_providers/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of providers to return. If not specified all the providers are returned.</p>
+<p>Sets the maximum number of providers to return. If not specified, all the providers are returned.</p>
 </div>
 </div>
 </div>
@@ -37134,7 +37158,7 @@ The request only apply to storage domains that are attached.</p>
 <div class="sect2">
 <h3 id="services/storage_domains"><a class="anchor" href="#services/storage_domains"></a>6.208. StorageDomains</h3>
 <div class="paragraph">
-<p>Manages the set of storage domains of the system.</p>
+<p>Manages the set of storage domains in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 631. Methods summary</caption>
@@ -37155,7 +37179,7 @@ The request only apply to storage domains that are attached.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains of the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns the list of storage domains in the system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37165,15 +37189,15 @@ The request only apply to storage domains that are attached.</p>
 <p>Adds a new storage domain.</p>
 </div>
 <div class="paragraph">
-<p>Creation of a new <a href="#types/storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code> and <code>storage</code>
-attributes. Identify the <code>host</code> attribute with the <code>id</code> or <code>name</code> attributes. In oVirt 3.6 and later you can
-enable the wipe after delete option by default on the storage domain. To configure this, specify
+<p>Creation of a new <a href="#types/storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code>, and <code>storage</code>
+attributes. Identify the <code>host</code> attribute with the <code>id</code> or <code>name</code> attributes. In oVirt 3.6 and
+later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
 <code>wipe_after_delete</code> in the POST request. This option can be edited after the domain is created, but doing so will
 not change the wipe after delete property of disks that already exist.</p>
 </div>
 <div class="paragraph">
-<p>To add a new storage domain with specified <code>name</code>, <code>type</code>, <code>storage.type</code>, <code>storage.address</code> and <code>storage.path</code>
-and by using a host with an id <code>123</code>, send a request as follows:</p>
+<p>To add a new storage domain with specified <code>name</code>, <code>type</code>, <code>storage.type</code>, <code>storage.address</code>, and <code>storage.path</code>,
+and using a host with an id <code>123</code>, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37181,7 +37205,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>With a request body as follows:</p>
+<p>With a request body like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37260,7 +37284,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The storage domain to add.</p></td>
 </tr>
 </tbody>
 </table>
@@ -37268,7 +37292,7 @@ and by using a host with an id <code>123</code>, send a request as follows:</p>
 <div class="sect3">
 <h4 id="services/storage_domains/methods/list"><a class="anchor" href="#services/storage_domains/methods/list"></a>6.208.2. list <span class="small">GET</span></h4>
 <div class="paragraph">
-<p>Returns the list of storage domains of the system.</p>
+<p>Returns the list of storage domains in the system.</p>
 </div>
 <div class="paragraph">
 <p>The order of the returned list of storage domains is guaranteed only if the <code>sortby</code> clause is included
@@ -37295,8 +37319,7 @@ in the <code>search</code> parameter.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>case_sensitive</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the search should be performed taking case into account.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
@@ -37326,16 +37349,16 @@ account.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage_domains</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_domain">StorageDomain[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of the storage domains in the system.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect4">
 <h5 id="services/storage_domains/methods/list/parameters/case_sensitive"><a class="anchor" href="#services/storage_domains/methods/list/parameters/case_sensitive"></a>case_sensitive</h5>
 <div class="paragraph">
-<p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
-account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
-ignoring case set it to <code>false</code>.</p>
+<p>Indicates if the search should be performed taking case into account.
+The default value is <code>true</code>, which means that case is taken into account. If you want to search
+ignoring case, set it to <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -37348,7 +37371,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect4">
 <h5 id="services/storage_domains/methods/list/parameters/max"><a class="anchor" href="#services/storage_domains/methods/list/parameters/max"></a>max</h5>
 <div class="paragraph">
-<p>Sets the maximum number of storage domains to return. If not specified all the storage domains are returned.</p>
+<p>Sets the maximum number of storage domains to return. If not specified, all the storage domains are returned.</p>
 </div>
 </div>
 </div>
@@ -37486,7 +37509,7 @@ send a request like this:</p>
 <p>Updates the storage connection.</p>
 </div>
 <div class="paragraph">
-<p>For example, to change the address of the storage server send a request like this:</p>
+<p>For example, to change the address of an NFS storage server, send a request like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -37500,9 +37523,25 @@ send a request like this:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_connection&gt;
   &lt;address&gt;mynewnfs.example.com&lt;/address&gt;
-  &lt;host&gt;
-    &lt;name&gt;myhost&lt;/name&gt;
-  &lt;/host&gt;
+&lt;/storage_connection&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To change the connection of an iSCSI storage server, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">PUT /ovirt-engine/api/storageconnections/123</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_connection&gt;
+  &lt;port&gt;3260&lt;/port&gt;
+  &lt;target&gt;iqn.2017-01.com.myhost:444&lt;/target&gt;
 &lt;/storage_connection&gt;</code></pre>
 </div>
 </div>
@@ -47613,6 +47652,18 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>Please note that there is a default network filter to each VNIC profile.
 For more details of how the default network filter is calculated please refer to
 the documentation in <a href="#services/network_filters">NetworkFilters</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The automatically created vNIC profile for the external network will be without network filter.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The output of creating a new VNIC profile depends in the  body  arguments that were given.
@@ -63814,7 +63865,10 @@ This statistics sub-collection is read-only.
 <p>If <code>true</code>, the networks of this provider are automatically and cyclically synchronized to oVirt in
 the background.
 This means that all new networks of this provider are imported, and all discarded networks are removed
-from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.</p>
+from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.
+If the name of a network is changed on the provider, the change is synchronized to the network entity in
+oVirt. Furthermore, if a new cluster that has the provider as the default provider is added,
+already imported networks are attached to this new cluster during synchronization.</p>
 </div>
 <div class="paragraph">
 <p>The automatically initiated import triggers the following steps:</p>
@@ -69937,7 +69991,7 @@ the system was unexpectedly restarted.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A storage server connection&#8217;s address.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -69957,7 +70011,7 @@ the system was unexpectedly restarted.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mount_options</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The mount options of an NFS storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
@@ -69967,57 +70021,57 @@ the system was unexpectedly restarted.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nfs_retrans</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The NFS retrans value of an NFS storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nfs_timeo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The NFS timeo value of an NFS storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nfs_version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/nfs_version">NfsVersion</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The NFS version of an NFS storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password of an iSCSI storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path of an NFS storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port of an iSCSI storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>portal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The portal of an iSCSI storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>target</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target of an iSCSI storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_type">StorageType</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A storage server connection&#8217;s type.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user name of an iSCSI storage server connection.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vfs_type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The VFS type of an NFS storage server connection.</p></td>
 </tr>
 </tbody>
 </table>
@@ -77828,7 +77882,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-16 18:44:56 UTC
+Last updated 2018-05-29 08:47:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
