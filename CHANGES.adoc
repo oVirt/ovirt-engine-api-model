@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.33 / May 29 2018
+
+New features:
+
+* Add search parameter to providers
+  https://bugzilla.redhat.com/1572071[#1572071].
+
 == 4.2.32 / Apr 16 2018
 
 New features:
