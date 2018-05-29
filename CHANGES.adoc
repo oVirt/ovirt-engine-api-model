@@ -3,6 +3,20 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.11 / May 29 2018
+New features:
+
+* Add 'sync all networks in cluster'
+  https://bugzilla.redhat.com/1558847[#1558847].
+
+* Add search parameter to providers
+  https://bugzilla.redhat.com/1572071[#1572071].
+
+* Support create a template from snapshot
+  https://bugzilla.redhat.com/1570486[#1570486].
+
+* Add migrationTargetOf to HostsService.
+
 == 4.3.10 / Apr 16 2018
 
 New features:
