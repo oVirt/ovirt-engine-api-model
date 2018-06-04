@@ -172,6 +172,7 @@ public interface ImageTransfer extends Identified {
 
     /**
      * The host which will be used to write to the image which is targeted for input or output.
+     * If not specified, an active host will be randomly selected from the data center.
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
