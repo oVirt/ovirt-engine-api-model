@@ -65877,7 +65877,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inbound_burst</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The amount of data that can be delivered in a single burst in MiB.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The amount of data that can be delivered in a single burst, in MB.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inbound_peak</code></p></td>
@@ -65942,7 +65942,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_burst</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The amount of data that can be sent in a single burst in MiB.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The amount of data that can be sent in a single burst, in MB.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_peak</code></p></td>
@@ -65980,10 +65980,10 @@ relevant.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/inbound_burst"><a class="anchor" href="#types/qos/attributes/inbound_burst"></a>7.206.3. inbound_burst</h4>
 <div class="paragraph">
-<p>The amount of data that can be delivered in a single burst in MiB.</p>
+<p>The amount of data that can be delivered in a single burst, in MB.</p>
 </div>
 <div class="paragraph">
-<p>Used to configure virtual machines networks. If defined, <code>inbound_average</code> and <code>inbound_peak</code> also has to be set.</p>
+<p>Used to configure virtual machine networks. If defined, <code>inbound_average</code> and <code>inbound_peak</code> must also be set.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="https://libvirt.org/formatnetwork.html#elementQoS">Libvirt-QOS</a> for further details.</p>
@@ -66105,10 +66105,10 @@ networks on the same logical link.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/outbound_burst"><a class="anchor" href="#types/qos/attributes/outbound_burst"></a>7.206.15. outbound_burst</h4>
 <div class="paragraph">
-<p>The amount of data that can be sent in a single burst in MiB.</p>
+<p>The amount of data that can be sent in a single burst, in MB.</p>
 </div>
 <div class="paragraph">
-<p>Used to configure virtual machines networks. If defined, <code>outbound_average</code> and <code>outbound_peak</code> also has to be
+<p>Used to configure virtual machine networks. If defined, <code>outbound_average</code> and <code>outbound_peak</code> must also be
 set.</p>
 </div>
 <div class="paragraph">
@@ -77974,7 +77974,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-06-04 12:14:56 UTC
+Last updated 2018-06-04 12:31:12 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
