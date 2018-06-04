@@ -31,18 +31,35 @@ import annotations.Area;
  *
  * After doing that, the transfer is managed by this service.
  *
- * E.g., for uploading/downloading a disk with id `52cb593f-837c-4633-a444-35a0a0383706`:
- *
  * *Using oVirt's Python's SDK:*
+ *
+ * Uploading a `disk` with id `123` (on a random host in the data center):
  *
  * [source,python]
  * ----
  * transfers_service = system_service.image_transfers_service()
  * transfer = transfers_service.add(
  *    types.ImageTransfer(
- *       image=types.Image(
- *          id='52cb593f-837c-4633-a444-35a0a0383706'
+ *       disk=types.Disk(
+ *          id='123'
  *       )
+ *    )
+ * )
+ * ----
+ *
+ * Uploading a `disk` with id `123` on `host` id `456`:
+ *
+ * [source,python]
+ * ----
+ * transfers_service = system_service.image_transfers_service()
+ * transfer = transfers_service.add(
+ *    types.ImageTransfer(
+ *       disk=types.Disk(
+ *          id='123'
+ *       ),
+ *       host=types.Host(
+ *          id='456'
+ *      )
  *    )
  * )
  * ----
@@ -58,8 +75,8 @@ import annotations.Area;
  * transfers_service = system_service.image_transfers_service()
  * transfer = transfers_service.add(
  *    types.ImageTransfer(
- *       image=types.Image(
- *          id='52cb593f-837c-4633-a444-35a0a0383706'
+ *       disk=types.Disk(
+ *          id='123'
  *       ),
  *       direction=types.ImageTransferDirection.DOWNLOAD
  *    )
@@ -310,8 +327,9 @@ public interface ImageTransferService {
      * Get the image transfer entity.
      *
      * @author Amit Aviram <aaviram@redhat.com>
-     * @date 30 Aug 2016
-     * @status added
+     * @author Billy Burmester <bburmest@redhat.com>
+     * @date 12 Jun 2018
+     * @status updated_by_docs
      * @since 4.0.4
      */
     interface Get extends Follow {
