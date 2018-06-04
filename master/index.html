@@ -65872,7 +65872,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inbound_average</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The desired average inbound bit rate in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The desired average inbound bit rate in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inbound_burst</code></p></td>
@@ -65882,7 +65882,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>inbound_peak</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum inbound rate in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum inbound rate in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max_iops</code></p></td>
@@ -65922,7 +65922,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_average</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The desired average outbound bit rate in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The desired average outbound bit rate in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_average_linkshare</code></p></td>
@@ -65932,12 +65932,12 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_average_realtime</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The committed rate in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The committed rate in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_average_upperlimit</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum bandwidth to be used by a network in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum bandwidth to be used by a network in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_burst</code></p></td>
@@ -65947,7 +65947,7 @@ relevant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>outbound_peak</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum outbound rate in Mbps.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum outbound rate in Mbps (Megabits per sec).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
@@ -65968,7 +65968,7 @@ relevant.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/inbound_average"><a class="anchor" href="#types/qos/attributes/inbound_average"></a>7.206.2. inbound_average</h4>
 <div class="paragraph">
-<p>The desired average inbound bit rate in Mbps.</p>
+<p>The desired average inbound bit rate in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure virtual machines networks. If defined, <code>inbound_peak</code> and <code>inbound_burst</code> also has to be set.</p>
@@ -65992,7 +65992,7 @@ relevant.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/inbound_peak"><a class="anchor" href="#types/qos/attributes/inbound_peak"></a>7.206.4. inbound_peak</h4>
 <div class="paragraph">
-<p>The maximum inbound rate in Mbps.</p>
+<p>The maximum inbound rate in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure virtual machines networks. If defined, <code>inbound_average</code> and <code>inbound_burst</code> also has to be set.</p>
@@ -66058,7 +66058,7 @@ relevant.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/outbound_average"><a class="anchor" href="#types/qos/attributes/outbound_average"></a>7.206.11. outbound_average</h4>
 <div class="paragraph">
-<p>The desired average outbound bit rate in Mbps.</p>
+<p>The desired average outbound bit rate in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure virtual machines networks. If defined, <code>outbound_peak</code> and <code>outbound_burst</code> also has to be set.</p>
@@ -66081,7 +66081,7 @@ of shares of all networks on that link. By default this is a number in the range
 <div class="sect3">
 <h4 id="types/qos/attributes/outbound_average_realtime"><a class="anchor" href="#types/qos/attributes/outbound_average_realtime"></a>7.206.13. outbound_average_realtime</h4>
 <div class="paragraph">
-<p>The committed rate in Mbps.</p>
+<p>The committed rate in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure host networks. The minimum bandwidth required by a network. The committed rate requested is not
@@ -66092,7 +66092,7 @@ networks on the same logical link.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/outbound_average_upperlimit"><a class="anchor" href="#types/qos/attributes/outbound_average_upperlimit"></a>7.206.14. outbound_average_upperlimit</h4>
 <div class="paragraph">
-<p>The maximum bandwidth to be used by a network in Mbps.</p>
+<p>The maximum bandwidth to be used by a network in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure host networks. If <code>outboundAverageUpperlimit</code> and <code>outbound_average_realtime</code> are provided, the
@@ -66118,7 +66118,7 @@ set.</p>
 <div class="sect3">
 <h4 id="types/qos/attributes/outbound_peak"><a class="anchor" href="#types/qos/attributes/outbound_peak"></a>7.206.16. outbound_peak</h4>
 <div class="paragraph">
-<p>The maximum outbound rate in Mbps.</p>
+<p>The maximum outbound rate in Mbps (Megabits per sec).</p>
 </div>
 <div class="paragraph">
 <p>Used to configure virtual machines networks. If defined, <code>outbound_average</code> and <code>outbound_burst</code> also has to be
@@ -77974,7 +77974,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-29 07:44:42 UTC
+Last updated 2018-06-04 12:14:56 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
