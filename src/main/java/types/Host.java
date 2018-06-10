@@ -393,6 +393,18 @@ public interface Host extends Identified {
     Boolean updateAvailable();
 
     /**
+     * Specifies whether a network-related operation, such as 'setup networks' or
+     * 'sync networks', is currently being executed on this host.
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @since 4.2.6
+     * @date 08 Aug 2018
+     * @status updated_by_docs
+     */
+    Boolean networkOperationInProgress();
+
+    /**
      * Specifies whether host device passthrough is enabled on this host.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
