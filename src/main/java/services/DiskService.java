@@ -291,6 +291,26 @@ public interface DiskService extends MeasurableService {
          * @status added
          */
         @Out Disk disk();
+
+        /**
+         * Indicates if all of the attributes of the disk should be included in the response.
+         *
+         * By default the following disk attributes are excluded:
+         *
+         * - `vms`
+         *
+         * For example, to retrieve the complete representation of disk '123':
+         *
+         * ....
+         * GET /ovirt-engine/api/disks/123?all_content=true
+         * ....
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @author Tahlia Richardson <trichard@redhat.com>
+         * @date 19 Jun 2018
+         * @status updated_by_docs
+         */
+        @In Boolean allContent();
     }
 
     /**
