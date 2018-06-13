@@ -119,6 +119,25 @@ public interface StorageServerConnectionsService {
         }
 
         /**
+         * Add a Glusterfs storage connection to the system.
+         *
+         * @author Denis Chaplygin <dchaplyg@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 19 Jun 2018
+         * @status updated_by_docs
+         */
+        interface Glusterfs extends Add {
+            @InputDetail
+            default void inputDetail() {
+                mandatory(connection().path());
+                mandatory(connection().vfsType());
+                optional(connection().address());
+                optional(connection().mountOptions());
+                optional(connection().glusterVolume());
+            }
+        }
+
+        /**
          * Add a local storage connection to the system.
          *
          * @author Ori Liel <oliel@redhat.com>

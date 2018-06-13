@@ -132,6 +132,24 @@ public interface StorageServerConnectionService {
         }
 
         /**
+         * Update the specified Glusterfs storage connection in the system.
+         *
+         * @author Denis Chaplygin <dchaplyg@redhat.com>
+         * @author Byron Gravenorst <bgraveno@redhat.com>
+         * @date 19 Jun 2018
+         * @status updated_by_docs
+         */
+        interface Glusterfs extends Update {
+            @InputDetail
+            default void inputDetail() {
+                optional(connection().path());
+                optional(connection().vfsType());
+                optional(connection().address());
+                optional(connection().mountOptions());
+                optional(connection().glusterVolume());
+            }
+        }
+        /**
          * Update the specified local storage connection in the system.
          *
          * @author Ori Liel <oliel@redhat.com>
