@@ -173,6 +173,16 @@ public interface StorageConnection extends Identified {
      */
     String portal();
 
+    /**
+     * Link to the gluster volume, used by that storage domain.
+     *
+     * @author Denis Chaplygin <dchaplyg@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @date 19 Jun 2018
+     * @status updated_by_docs
+     */
+    @Link GlusterVolume glusterVolume();
+
     // Link to the host:
     @Link Host host();
 }
