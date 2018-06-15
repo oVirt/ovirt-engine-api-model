@@ -23465,19 +23465,37 @@ data to/from.</p>
 <p>After doing that, the transfer is managed by this service.</p>
 </div>
 <div class="paragraph">
-<p>E.g., for uploading/downloading a disk with id <code>52cb593f-837c-4633-a444-35a0a0383706</code>:</p>
+<p><strong>Using oVirt&#8217;s Python&#8217;s SDK:</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>Using oVirt&#8217;s Python&#8217;s SDK:</strong></p>
+<p>Uploading a <code>disk</code> with id <code>123</code> (on a random host in the data center):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
 transfer = transfers_service.add(
    types.ImageTransfer(
-      image=types.Image(
-         id='52cb593f-837c-4633-a444-35a0a0383706'
+      disk=types.Disk(
+         id='123'
       )
+   )
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uploading a <code>disk</code> with id <code>123</code> on <code>host</code> id <code>456</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
+transfer = transfers_service.add(
+   types.ImageTransfer(
+      disk=types.Disk(
+         id='123'
+      ),
+      host=types.Host(
+         id='456'
+     )
    )
 )</code></pre>
 </div>
@@ -23495,8 +23513,8 @@ This will grant a read permission from the image, instead of a write permission.
 <pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
 transfer = transfers_service.add(
    types.ImageTransfer(
-      image=types.Image(
-         id='52cb593f-837c-4633-a444-35a0a0383706'
+      disk=types.Disk(
+         id='123'
       ),
       direction=types.ImageTransferDirection.DOWNLOAD
    )
@@ -59303,7 +59321,14 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.6. image</h4>
+<h4 id="types/image_transfer/links/host"><a class="anchor" href="#types/image_transfer/links/host"></a>7.123.6. host</h4>
+<div class="paragraph">
+<p>The host which will be used to write to the image which is targeted for input or output.
+If not specified, an active host will be randomly selected from the data center.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.7. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -78100,7 +78125,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-06-04 13:42:19 UTC
+Last updated 2018-06-15 13:24:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
