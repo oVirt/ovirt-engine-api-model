@@ -311,6 +311,7 @@ public interface TemplatesService {
             optional(template().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(template().sso().methods()[COLLECTION].id());
             optional(template().storageErrorResumeBehaviour());
+            optional(template().multiQueuesEnabled());
         }
 
         /**

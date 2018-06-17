@@ -530,4 +530,15 @@ public interface VmBase extends Identified {
      * @status updated_by_docs
      */
     VmPlacementPolicy placementPolicy();
+
+     /**
+     * If `true`, each virtual interface will get the optimal number of queues, depending on the available virtual Cpus.
+     *
+     * @author Alona Kaplan <alkaplan@redhat.com>
+     * @date 14 June 2018
+     * @status added
+     * @since 4.2.5
+     */
+    Boolean multiQueuesEnabled();
+
 }
