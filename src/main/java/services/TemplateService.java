@@ -299,6 +299,7 @@ public interface TemplateService {
             optional(template().os().boot().devices()[COLLECTION]);
             optional(template().sso().methods()[COLLECTION].id());
             optional(template().storageErrorResumeBehaviour());
+            optional(template().multiQueuesEnabled());
         }
         @In @Out Template template();
 

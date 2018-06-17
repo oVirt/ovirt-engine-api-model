@@ -324,6 +324,7 @@ public interface VmsService {
             optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].cpuSet());
             optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(vm().storageErrorResumeBehaviour());
+            optional(vm().multiQueuesEnabled());
         }
 
         /**
