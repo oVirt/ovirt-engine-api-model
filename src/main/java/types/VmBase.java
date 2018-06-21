@@ -337,6 +337,17 @@ public interface VmBase extends Identified {
      */
     CustomProperty[] customProperties();
     String customEmulatedMachine();
+
+    /**
+     * Chipset and BIOS type combination.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 21 Jun 2018
+     * @status added
+     * @since 4.3
+     */
+    BiosType biosType();
+
     String customCpuModel();
 
     /**
