@@ -161,9 +161,17 @@ public interface NetworkService {
      * DELETE /ovirt-engine/api/datacenters/123/networks/456
      * ----
      *
+     * NOTE: To remove an external logical network, the network has to be removed directly from its provider by
+     * https://developer.openstack.org/api-ref/network[OpenStack Networking API].
+     * The entity representing the external network inside {product-name} is removed automatically,
+     * if <<types/open_stack_network_provider/attributes/auto_sync,`auto_sync`>> is enabled for the provider,
+     * otherwise the entity has to be removed using this method.
+     *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 24 Oct 2016
-     * @status added
+     * @author Domininik Holler <dholler@redhat.com>
+     * @author Emma Heftman <eheftman@redhat.com>
+     * @date 2 July 2018
+     * @status updated-by-docs
      */
     interface Remove {
         /**
