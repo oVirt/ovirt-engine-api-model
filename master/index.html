@@ -13182,6 +13182,12 @@ attributes. For example, to copy a disk to the storage domain called <code>mydat
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the disk should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Out</p></td>
@@ -13195,6 +13201,30 @@ attributes. For example, to copy a disk to the storage domain called <code>mydat
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/disk/methods/get/parameters/all_content"><a class="anchor" href="#services/disk/methods/get/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all of the attributes of the disk should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the following disk attributes are excluded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>vms</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of disk '123':</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/disks/123?all_content=true</pre>
+</div>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/disk/methods/get/parameters/follow"><a class="anchor" href="#services/disk/methods/get/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -78125,7 +78155,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-06-15 13:24:19 UTC
+Last updated 2018-06-21 08:56:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
