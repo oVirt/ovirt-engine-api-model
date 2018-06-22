@@ -540,9 +540,12 @@ public interface VmService extends MeasurableService {
          * Specifies the cluster the virtual machine should migrate to. This is an optional parameter. By default, the
          * virtual machine is migrated to another host within the same cluster.
          *
+         * WARNING: Live migration to another cluster is not supported. Strongly consider the target cluster's hardware
+         * architecture and network architecture before attempting a migration.
+         *
          * @author Arik Hadas <ahadas@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
-         * @date 28 Mar 2017
+         * @date 09 Jul 2018
          * @status updated_by_docs
          */
         @In Cluster cluster();
