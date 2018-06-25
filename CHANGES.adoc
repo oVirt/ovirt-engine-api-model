@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.12 / Jun 25 2018
+New features:
+
+* Added Reduce action to Disk services
+  https://bugzilla.redhat.com/1443963[#1443963].
+
 == 4.3.11 / May 29 2018
 New features:
 
