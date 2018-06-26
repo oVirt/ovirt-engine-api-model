@@ -114,9 +114,13 @@ public interface NetworkService {
      * </network>
      * ----
      *
+     * NOTE: Updating external networks is not propagated to the provider.
+     *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 24 Oct 2016
-     * @status added
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Emma Heftman <eheftman@redhat.com>
+     * @date 17 Sep 2018
+     * @status updated_by_docs
      */
     interface Update {
         @InputDetail
