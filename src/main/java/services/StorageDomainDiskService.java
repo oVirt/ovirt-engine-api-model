@@ -206,7 +206,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * @author Emma Heftman <eheftman@redhat.com>
      * @date 3 June 2018
      * @status updated_by_docs
-     * @since 4.3
+     * @since 4.2.5
      */
     interface Reduce {
         /**
