@@ -261,6 +261,23 @@ public interface VmsService {
          */
         @In Boolean clonePermissions();
 
+        /**
+         * Relevant for admin users only. Indicates whether to assign UserVmManager role
+         * on the created Virtual Machine for this user. This will enable the user to later access
+         * the Virtual Machine as though he were a non-admin user, foregoing his admin permissions
+         * (by providing filter=true).
+         *
+         * NOTE: admin-as-user (meaning providing filter=true) POST requests on an existing Virtual
+         * Machine will fail unless the Virtual Machine has been previously created by the admin as
+         * a user (meaning with filter=true).
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 27 Jun 2018
+         * @status added
+         * @since 4.0.0
+         */
+        @In Boolean filter();
+
         @InputDetail
         default void inputDetail() {
             optional(vm().bios().bootMenu().enabled());
