@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.13 / Jun 27 2018
+New features:
+
+* Add 'Multi Queues Enabled' to VmBase
+  https://bugzilla.redhat.com/1574771[1574771].
+
 == 4.3.12 / Jun 25 2018
 New features:
 
