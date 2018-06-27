@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.34 / Jun 27 2018
+New features:
+
+* Add 'Multi Queues Enabled' to VmBase
+  https://bugzilla.redhat.com/1574771[1574771].
+
+* Added Reduce action to Disk services
+  https://bugzilla.redhat.com/1443963[#1443963].
+
+* Add documentation to DiskService
+  https://bugzilla.redhat.com/1585572[1585572].
+
 == 4.2.33 / May 29 2018
 
 New features:
