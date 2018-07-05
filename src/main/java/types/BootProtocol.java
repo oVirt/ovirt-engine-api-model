@@ -54,6 +54,23 @@ public enum BootProtocol {
     DHCP,
 
     /**
+     * DHCP alongside Stateless address auto-configuration (SLAAC)
+     *
+     * The SLAAC mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862]. Please refer to the
+     * https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[Stateless address auto-configuration] article
+     * and the https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[DHCP] article for
+     * more information.
+     *
+     * NOTE: The value is valid for IPv6 addresses only.
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Byron Gravenorst <bgraveno@redhat.com>
+     * @since 10 Jul 2018
+     * @status updated_by_docs
+     */
+    POLY_DHCP_AUTOCONF,
+
+    /**
      * Statically-defined address, mask and gateway.
      *
      * @author Megan Lewis <melewis@redhat.com>
