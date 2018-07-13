@@ -87,6 +87,9 @@ public interface VmNumaNodeService {
      * DELETE /ovirt-engine/api/vms/123/numanodes/456
      * ----
      *
+     * NOTE: It's required to remove the numa nodes from the highest index
+     * first.
+     *
      * @author Andrej Krejcir <akrejcir@redhat.com>
      * @date 14 Sep 2016
      * @status added
