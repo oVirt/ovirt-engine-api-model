@@ -50131,6 +50131,11 @@ for this virtual machine (or template), or not.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No address configuration.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>poly_dhcp_autoconf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DHCP alongside Stateless address auto-configuration (SLAAC)
+</p><p class="tableblock">The SLAAC mechanism is defined by <a href="http://tools" class="bare">http://tools</a>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>static</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Statically-defined address, mask and gateway.</p></td>
 </tr>
@@ -50167,6 +50172,30 @@ The value is valid for IPv6 addresses only.
 <div class="paragraph">
 <p>Please refer to <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">this wikipedia article</a> for
 more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/boot_protocol/values/poly_dhcp_autoconf"><a class="anchor" href="#types/boot_protocol/values/poly_dhcp_autoconf"></a>7.23.3. poly_dhcp_autoconf</h4>
+<div class="paragraph">
+<p>DHCP alongside Stateless address auto-configuration (SLAAC)</p>
+</div>
+<div class="paragraph">
+<p>The SLAAC mechanism is defined by <a href="http://tools.ietf.org/html/rfc4862">RFC 4862</a>. Please refer to the
+<a href="https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration">Stateless address auto-configuration</a> article
+and the <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP</a> article for
+more information.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The value is valid for IPv6 addresses only.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -78209,7 +78238,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-12 11:26:35 UTC
+Last updated 2018-07-16 05:37:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
