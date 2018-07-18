@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.35 / Jul 18 2018
+New features:
+
+* Poly dhcpv6 and autoconf iface config
+  https://bugzilla.redhat.com/1360839[1360839].
+
 == 4.2.34 / Jun 27 2018
 New features:
 
