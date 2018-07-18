@@ -23418,19 +23418,37 @@ data to/from.</p>
 <p>After doing that, the transfer is managed by this service.</p>
 </div>
 <div class="paragraph">
-<p>E.g., for uploading/downloading a disk with id <code>52cb593f-837c-4633-a444-35a0a0383706</code>:</p>
+<p><strong>Using oVirt&#8217;s Python&#8217;s SDK:</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>Using oVirt&#8217;s Python&#8217;s SDK:</strong></p>
+<p>Uploading a <code>disk</code> with id <code>123</code> (on a random host in the data center):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
 transfer = transfers_service.add(
    types.ImageTransfer(
-      image=types.Image(
-         id='52cb593f-837c-4633-a444-35a0a0383706'
+      disk=types.Disk(
+         id='123'
       )
+   )
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uploading a <code>disk</code> with id <code>123</code> on <code>host</code> id <code>456</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
+transfer = transfers_service.add(
+   types.ImageTransfer(
+      disk=types.Disk(
+         id='123'
+      ),
+      host=types.Host(
+         id='456'
+     )
    )
 )</code></pre>
 </div>
@@ -23448,8 +23466,8 @@ This will grant a read permission from the image, instead of a write permission.
 <pre class="highlightjs highlight"><code class="language-python" data-lang="python">transfers_service = system_service.image_transfers_service()
 transfer = transfers_service.add(
    types.ImageTransfer(
-      image=types.Image(
-         id='52cb593f-837c-4633-a444-35a0a0383706'
+      disk=types.Disk(
+         id='123'
       ),
       direction=types.ImageTransferDirection.DOWNLOAD
    )
@@ -26852,6 +26870,22 @@ result as if we would just remove that network. However it might be more specifi
 <div class="content">
 <pre class="highlightjs highlight"><code>DELETE /ovirt-engine/api/datacenters/123/networks/456</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To remove an external logical network, the network has to be removed directly from its provider by
+<a href="https://developer.openstack.org/api-ref/network">OpenStack Networking API</a>.
+The entity representing the external network inside oVirt is removed automatically,
+if <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is enabled for the provider,
+otherwise the entity has to be removed using this method.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 409. Parameters summary</caption>
@@ -42537,6 +42571,19 @@ from an external console.</p>
 <p>Specifies the cluster the virtual machine should migrate to. This is an optional parameter. By default, the
 virtual machine is migrated to another host within the same cluster.</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Live migration to another cluster is not supported. Strongly consider the target cluster&#8217;s hardware
+architecture and network architecture before attempting a migration.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="services/vm/methods/migrate/parameters/force"><a class="anchor" href="#services/vm/methods/migrate/parameters/force"></a>force</h5>
@@ -45777,6 +45824,19 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="content">
 <pre class="highlightjs highlight"><code>DELETE /ovirt-engine/api/vms/123/numanodes/456</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It&#8217;s required to remove the numa nodes from the highest index
+first.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 797. Parameters summary</caption>
@@ -49992,6 +50052,11 @@ for this virtual machine (or template), or not.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No address configuration.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>poly_dhcp_autoconf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DHCP alongside Stateless address auto-configuration (SLAAC)
+</p><p class="tableblock">The SLAAC mechanism is defined by <a href="http://tools" class="bare">http://tools</a>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>static</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Statically-defined address, mask and gateway.</p></td>
 </tr>
@@ -50028,6 +50093,30 @@ The value is valid for IPv6 addresses only.
 <div class="paragraph">
 <p>Please refer to <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">this wikipedia article</a> for
 more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/boot_protocol/values/poly_dhcp_autoconf"><a class="anchor" href="#types/boot_protocol/values/poly_dhcp_autoconf"></a>7.23.3. poly_dhcp_autoconf</h4>
+<div class="paragraph">
+<p>DHCP alongside Stateless address auto-configuration (SLAAC)</p>
+</div>
+<div class="paragraph">
+<p>The SLAAC mechanism is defined by <a href="http://tools.ietf.org/html/rfc4862">RFC 4862</a>. Please refer to the
+<a href="https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration">Stateless address auto-configuration</a> article
+and the <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP</a> article for
+more information.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The value is valid for IPv6 addresses only.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -59241,7 +59330,14 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.6. image</h4>
+<h4 id="types/image_transfer/links/host"><a class="anchor" href="#types/image_transfer/links/host"></a>7.123.6. host</h4>
+<div class="paragraph">
+<p>The host which will be used to write to the image which is targeted for input or output.
+If not specified, an active host will be randomly selected from the data center.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.123.7. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -78063,7 +78159,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-06-27 12:47:50 UTC
+Last updated 2018-07-18 10:03:42 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
