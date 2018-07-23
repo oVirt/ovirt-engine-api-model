@@ -21,4 +21,15 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface Bios {
     BootMenu bootMenu();
+
+    /**
+     * Chipset and BIOS type combination.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 24 Jul 2018
+     * @status updated_by_docs
+     * @since 4.3
+     */
+    BiosType type();
 }
