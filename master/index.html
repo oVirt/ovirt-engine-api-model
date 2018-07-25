@@ -47533,6 +47533,12 @@ attribute:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies if the permissions of the template should be copied to the virtual machine.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relevant for admin users only.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
@@ -47617,6 +47623,29 @@ create a virtual machine from the <code>mytemplate</code> template copying its p
   &lt;/cluster&gt;
 &lt;/vm&gt;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vms/methods/add/parameters/filter"><a class="anchor" href="#services/vms/methods/add/parameters/filter"></a>filter</h5>
+<div class="paragraph">
+<p>Relevant for admin users only. Indicates whether to assign UserVmManager role
+on the created Virtual Machine for this user. This will enable the user to later access
+the Virtual Machine as though he were a non-admin user, foregoing his admin permissions
+(by providing filter=true).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+admin-as-user (meaning providing filter=true) POST requests on an existing Virtual
+Machine will fail unless the Virtual Machine has been previously created by the admin as
+a user (meaning with filter=true).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -78323,7 +78352,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-18 08:49:06 UTC
+Last updated 2018-07-25 10:51:16 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
