@@ -58,6 +58,7 @@
          documentation: -->
     <product.name>oVirt</product.name>
     <engine.name>oVirt Engine</engine.name>
+    <hypervisor.name>oVirt Node</hypervisor.name>
 
     <!-- The separator used in the identifiers of the sections of the
          generated AsciiDoc: -->
@@ -158,6 +159,7 @@
                 <argument>--adoc-separator=${adoc.separator}</argument>
                 <argument>--adoc-attribute=product-name:${product.name}</argument>
                 <argument>--adoc-attribute=engine-name:${engine.name}</argument>
+                <argument>--adoc-attribute=hypervisor-name:${hypervisor.name}</argument>
                 <argument>--adoc-attribute=icons:font</argument>
                 <argument>--adoc-separator=${adoc.separator}</argument>
                 <argument>--docs=${project.basedir}/target/generated-adoc</argument>
@@ -197,6 +199,7 @@
                <attributes>
                  <product-name>${product.name}</product-name>
                  <engine-name>${engine.name}</engine-name>
+                 <hypervisor-name>${hypervisor.name}</hypervisor-name>
                  <linkcss>${adoc.linkcss}</linkcss>
                  <toc>right</toc>
                  <sectnums>true</sectnums>
@@ -391,6 +394,7 @@
                    <attributes>
                      <product-name>${product.name}</product-name>
                      <engine-name>${engine.name}</engine-name>
+                     <hypervisor-name>${hypervisor.name}</hypervisor-name>
                      <toc />
                      <sectnums>true</sectnums>
                      <sectlinks>true</sectlinks>
