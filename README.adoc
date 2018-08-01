@@ -425,6 +425,10 @@ value is `oVirt`.
 source AsciiDoc files contain the `{engine-name}` variable. The default
 value is `oVirt Engine`.
 
+`hypervisor.name`:: The value of this property will be used where the
+source AsciiDoc files contain the `{hypervisor-name}` variable. The default
+value is `oVirt Node`.
+
 For example, https://www.redhat.com[_Red Hat_] uses the following
 command to build their branded version of the documentation for their
 https://www.redhat.com/en/technologies/virtualization[_RHV_] product:

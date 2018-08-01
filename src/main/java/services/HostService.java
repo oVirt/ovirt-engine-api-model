@@ -513,7 +513,7 @@ public interface HostService extends MeasurableService {
         @In Host host();
 
         /**
-         * When installing an {product-name} node a image ISO file is required.
+         * When installing {hypervisor-name}, an ISO image file is required.
          *
          * @author Megan Lewis <melewis@redhat.com>
          * @date 17 Oct 17
