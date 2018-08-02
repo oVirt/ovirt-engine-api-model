@@ -20,12 +20,13 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type representing a virtual machine template.
- * This allows a rapid instanstiation of virtual machines with common configuration and disk states.
+ * The type that represents a virtual machine template.
+ * Templates allow for a rapid instantiation of virtual machines with common configuration and disk states.
  *
  * @author Arik Hadas <ahadas@redhat.com>
- * @date 12 Dec 2016
- * @status added
+ * @author Megan Lewis <melewis@redhat.com>
+ * @date 02 Aug 2018
+ * @status updated_by_docs
  */
 @Type
 public interface Template extends VmBase {
@@ -33,8 +34,9 @@ public interface Template extends VmBase {
      * The status of the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     TemplateStatus status();
 
@@ -42,76 +44,84 @@ public interface Template extends VmBase {
      * The virtual machine configuration associated with this template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     Vm vm();
 
     /**
-     * Indicates whether this is a base version or a sub version of another template.
+     * Indicates whether this is the base version or a sub-version of another template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     TemplateVersion version();
 
     /**
-     * References to the CD-ROM devices attached to the template.
+     * Reference to the CD-ROM devices attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link Cdrom[] cdroms();
 
     /**
-     * References to the graphic consoles attached to the template.
+     * Reference to the graphic consoles attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link GraphicsConsole[] graphicsConsoles();
 
     /**
-     * References to the network interfaces attached to the template.
+     * Reference to the network interfaces attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link Nic[] nics();
 
     /**
-     * References to the user permissions attached to the template.
+     * Reference to the user permissions attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link Permission[] permissions();
 
     /**
-     * References to the tags attached to the template.
+     * Reference to the tags attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link Tag[] tags();
 
     /**
-     * References to the watchdog devices attached to the template.
+     * Reference to the watchdog devices attached to the template.
      *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Megan Lewis <melewis@redhat.com>
+     * @date 02 Aug 2018
+     * @status updated_by_docs
      */
     @Link Watchdog[] watchdogs();
 
     /**
-     * References to the disks attached to the template.
+     * Reference to the disks attached to the template.
      *
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 28 Dec 2016
