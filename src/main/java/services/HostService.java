@@ -823,6 +823,8 @@ public interface HostService extends MeasurableService {
          * Indicates if the host should be rebooted after upgrade.
          * By default the host is rebooted.
          *
+         * NOTE: This parameter is ignored for {hypervisor-name}, which is always rebooted after upgrade.
+         *
          * @author Ondra Machacek <omachace@redhat.com>
          * @author Byron Gravenorst <bgraveno@redhat.com>
          * @date 20 Oct 2017
