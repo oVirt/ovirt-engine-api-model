@@ -358,6 +358,33 @@ public interface Cluster extends Identified {
     FirewallType firewallType();
 
     /**
+     * The memory consumption threshold for logging audit log events.
+     *
+     * For percentage, an audit log event is logged if the used memory is more that the value specified.
+     * For absolute value, an audit log event is logged when the the free memory falls below the value specified in MB.
+     *
+     * @author Nori Ravi <rnori@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 10 Aug 2018
+     * @since 4.3
+     * @status updated_by_docs
+     */
+    Integer logMaxMemoryUsedThreshold();
+
+    /**
+     * The memory consumption threshold type for logging audit log events.
+     *
+     * You can choose between 'percentage' and 'absolute_value_in_mb'.
+     *
+     * @author Nori Ravi <rnori@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 10 Aug 2018
+     * @since 4.3
+     * @status updated_by_docs
+     */
+    LogMaxMemoryUsedThresholdType logMaxMemoryUsedThresholdType();
+
+    /**
      * Custom features that are enabled for the cluster.
      *
      * @author Sahina Bose <sabose@redhat.com>
