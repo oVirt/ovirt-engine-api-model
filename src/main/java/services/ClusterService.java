@@ -252,9 +252,9 @@ public interface ClusterService {
       * ----
       *
       * @author Eitan Raviv <eraviv@redhat.com>
-      * @author Avital Pinnick <apinnick@redhat.com>      
+      * @author Avital Pinnick <apinnick@redhat.com>
       * @date 17 April 2018
-      * @since 4.3
+      * @since 4.2.6
       * @status updated_by_docs
       */
      interface SyncAllNetworks {
