@@ -21240,7 +21240,7 @@ default one.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>image</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When installing an oVirt node a image ISO file is required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When installing oVirt Node, an ISO image file is required.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>root_password</code></p></td>
@@ -21960,6 +21960,18 @@ upgrade Vintage Node hosts and it is not relevant for other hosts types.</p>
 <div class="paragraph">
 <p>Indicates if the host should be rebooted after upgrade.
 By default the host is rebooted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This parameter is ignored for oVirt Node, which is always rebooted after upgrade.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -47533,6 +47545,12 @@ attribute:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies if the permissions of the template should be copied to the virtual machine.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relevant for admin users only.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
@@ -47617,6 +47635,29 @@ create a virtual machine from the <code>mytemplate</code> template copying its p
   &lt;/cluster&gt;
 &lt;/vm&gt;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vms/methods/add/parameters/filter"><a class="anchor" href="#services/vms/methods/add/parameters/filter"></a>filter</h5>
+<div class="paragraph">
+<p>Relevant for admin users only. Indicates whether to assign UserVmManager role
+on the created Virtual Machine for this user. This will enable the user to later access
+the Virtual Machine as though he were a non-admin user, foregoing his admin permissions
+(by providing filter=true).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+admin-as-user (meaning providing filter=true) POST requests on an existing Virtual
+Machine will fail unless the Virtual Machine has been previously created by the admin as
+a user (meaning with filter=true).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -49802,6 +49843,11 @@ in line with the other architectures, like X86_64 or PPC64.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boot_menu</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boot_menu">BootMenu</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
 </tr>
 </tbody>
 </table>
@@ -57563,6 +57609,12 @@ reference.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_operation_in_progress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether a network-related operation, such as 'setup networks' or
+'sync networks', is currently being executed on this host.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>numa_supported</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether <em>non uniform memory access</em> (NUMA) is supported on this host.</p></td>
@@ -59996,11 +60048,6 @@ attributes are not used in instance types.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios">Bios</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s BIOS configuration.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios_type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -68574,11 +68621,6 @@ get fenced.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s BIOS configuration.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios_type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -71476,11 +71518,6 @@ This allows a rapid instanstiation of virtual machines with common configuration
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s BIOS configuration.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios_type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -73096,11 +73133,6 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s BIOS configuration.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios_type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -73966,11 +73998,6 @@ This is used by virtual machines, templates and instance types.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios">Bios</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reference to virtual machine&#8217;s BIOS configuration.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bios_type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/bios_type">BiosType</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chipset and BIOS type combination.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -78323,7 +78350,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-18 08:53:22 UTC
+Last updated 2018-08-09 08:53:24 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
