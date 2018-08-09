@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.15 / Aug 9 2018
+New features:
+
+* Move biosType from VmBase to Bios
+  https://bugzilla.redhat.com/1327846[1327846].
+ 
+* Add note to upgrade host 
+  https://bugzilla.redhat.com/1603020[1603020].
+
+* Indicate network operation in progress
+  https://bugzilla.redhat.com/1477599[1477599].
+
 == 4.3.14 / Jul 18 2018
 New features:
 
