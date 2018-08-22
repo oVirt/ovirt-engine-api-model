@@ -393,13 +393,17 @@ public interface Host extends Identified {
     Boolean updateAvailable();
 
     /**
-     * Specifies whether a network-related operation, such as 'setup networks' or
-     * 'sync networks', is currently being executed on this host.
+     * Specifies whether a network-related operation, such as 'setup networks',
+     * 'sync networks', or 'refresh capabilities', is currently being executed on this host.
+     *
+     * NOTE: The header `All-Content:true` must be added to the request in order for this
+     * attribute to be included in the response.
      *
      * @author Eitan Raviv <eraviv@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
+     * @author Moshe Sheena <msheena@redhat.com>
      * @since 4.2.6
-     * @date 08 Aug 2018
+     * @date 21 Sept 2018
      * @status updated_by_docs
      */
     Boolean networkOperationInProgress();
