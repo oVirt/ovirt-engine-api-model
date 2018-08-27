@@ -94,6 +94,9 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
             optional(provider().password());
             optional(provider().requiresAuthentication());
             optional(provider().tenantName());
+            optional(provider().userDomainName());
+            optional(provider().projectName());
+            optional(provider().projectDomainName());
             optional(provider().username());
             optional(provider().properties()[COLLECTION].name());
             optional(provider().properties()[COLLECTION].value());
