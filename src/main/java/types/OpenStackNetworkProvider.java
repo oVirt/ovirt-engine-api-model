@@ -174,4 +174,38 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
      * @since 4.2.1
      */
     Boolean unmanaged();
+
+    /**
+     * Defines the domain name of the `username` in <<types/external_provider, ExternalProvider>> for
+     * OpenStack Identity API v3.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 30 Aug 2018
+     * @status updated_by_docs
+     * @since 4.2.7
+     */
+    String userDomainName();
+
+    /**
+     * Defines the project name for OpenStack Identity API v3.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 30 Aug 2018
+     * @status updated_by_docs
+     * @since 4.2.7
+     */
+    String projectName();
+
+    /**
+     * Defines the project's domain name for OpenStack Identity API v3.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 30 Aug 2018
+     * @status updated_by_docs
+     * @since 4.2.7
+     */
+    String projectDomainName();
 }

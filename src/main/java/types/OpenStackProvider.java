@@ -20,5 +20,14 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public interface OpenStackProvider extends ExternalProvider {
+
+    /**
+     * Defines the tenant name for OpenStack Identity API v2.0.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @date 30 Aug 2018
+     * @status updated_by_docs
+     */
     String tenantName();
 }

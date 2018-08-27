@@ -52,6 +52,9 @@ public interface OpenstackNetworkProvidersService {
             optional(provider().password());
             optional(provider().requiresAuthentication());
             optional(provider().tenantName());
+            optional(provider().userDomainName());
+            optional(provider().projectName());
+            optional(provider().projectDomainName());
             optional(provider().url());
             optional(provider().username());
             optional(provider().properties()[COLLECTION].name());
