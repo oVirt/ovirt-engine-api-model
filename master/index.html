@@ -64129,7 +64129,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64150,6 +64150,12 @@ This statistics sub-collection is read-only.
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_image_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_image_provider/attributes/tenant_name"></a>7.177.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1077. Links summary</caption>
@@ -64310,6 +64316,16 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Network plug-in type.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>project_domain_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the project&#8217;s domain name for OpenStack Identity API v3.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>project_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the project name for OpenStack Identity API v3.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>properties</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array of provider name/value properties.</p></td>
@@ -64327,7 +64343,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
@@ -64343,6 +64359,12 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines URL address of the external provider.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_domain_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the domain name of the <code>username</code> in <a href="#types/external_provider">ExternalProvider</a> for
+OpenStack Identity API v3.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
@@ -64439,7 +64461,13 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/unmanaged"><a class="anchor" href="#types/open_stack_network_provider/attributes/unmanaged"></a>7.179.6. unmanaged</h4>
+<h4 id="types/open_stack_network_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_network_provider/attributes/tenant_name"></a>7.179.6. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/unmanaged"><a class="anchor" href="#types/open_stack_network_provider/attributes/unmanaged"></a>7.179.7. unmanaged</h4>
 <div class="paragraph">
 <p>Indicates whether the provider is unmanaged by oVirt.</p>
 </div>
@@ -64589,7 +64617,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64610,6 +64638,12 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_provider/attributes/tenant_name"></a>7.181.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 </div>
 </div>
@@ -64764,7 +64798,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64785,6 +64819,12 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_volume_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_volume_provider/attributes/tenant_name"></a>7.183.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1087. Links summary</caption>
@@ -78397,7 +78437,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-04 07:58:14 UTC
+Last updated 2018-09-04 18:33:23 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
