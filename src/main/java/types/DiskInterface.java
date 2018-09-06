@@ -63,5 +63,16 @@ public enum DiskInterface {
      * @date 24 Apr 2017
      * @status added
      */
-    SPAPR_VSCSI;
+    SPAPR_VSCSI,
+
+    /**
+     * SATA controller device.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 12 Sep 2018
+     * @status updated_by_docs
+     * @since 4.3
+     */
+    SATA;
 }
