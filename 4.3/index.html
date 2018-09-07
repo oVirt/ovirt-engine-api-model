@@ -449,21 +449,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_handling_errors">3.10. Handling errors</a></li>
 </ul>
 </li>
-<li><a href="#documents/004_quick_start_example">4. Quick start example</a>
+<li><a href="#documents/004_quick_start_example">4. Quick Start Examples</a>
 <ul class="sectlevel2">
-<li><a href="#_example_access_api_entry_point">4.1. Example: Access API entry point</a></li>
-<li><a href="#_example_list_data_centers">4.2. Example: List data centers</a></li>
-<li><a href="#_example_list_host_clusters">4.3. Example: List host clusters</a></li>
-<li><a href="#_example_list_logical_networks">4.4. Example: List logical networks</a></li>
-<li><a href="#_example_list_hosts">4.5. Example: List hosts</a></li>
-<li><a href="#_example_create_nfs_data_storage">4.6. Example: Create NFS data storage</a></li>
-<li><a href="#_example_create_nfs_iso_storage">4.7. Example: Create NFS ISO storage</a></li>
-<li><a href="#_example_attach_storage_domains_to_data_center">4.8. Example: Attach storage domains to data center</a></li>
-<li><a href="#_example_create_virtual_machine">4.9. Example: Create virtual machine</a></li>
-<li><a href="#_example_create_a_virtual_machine_nic">4.10. Example: Create a virtual machine NIC</a></li>
-<li><a href="#_example_create_virtual_machine_disk">4.11. Example: Create virtual machine disk</a></li>
-<li><a href="#_example_attach_iso_image_to_virtual_machine">4.12. Example: Attach ISO image to virtual machine</a></li>
-<li><a href="#_example_start_the_virtual_machine">4.13. Example: Start the virtual machine</a></li>
+<li><a href="#_access_api_entry_point">4.1. Access API entry point</a></li>
+<li><a href="#_list_data_centers">4.2. List data centers</a></li>
+<li><a href="#_list_host_clusters">4.3. List host clusters</a></li>
+<li><a href="#_list_logical_networks">4.4. List logical networks</a></li>
+<li><a href="#_list_hosts">4.5. List hosts</a></li>
+<li><a href="#_create_nfs_data_storage">4.6. Create NFS data storage</a></li>
+<li><a href="#_create_nfs_iso_storage">4.7. Create NFS ISO storage</a></li>
+<li><a href="#_attach_storage_domains_to_data_center">4.8. Attach storage domains to data center</a></li>
+<li><a href="#_create_virtual_machine">4.9. Create virtual machine</a></li>
+<li><a href="#_create_a_virtual_machine_nic">4.10. Create a virtual machine NIC</a></li>
+<li><a href="#_create_virtual_machine_disk">4.11. Create virtual machine disk</a></li>
+<li><a href="#_attach_iso_image_to_virtual_machine">4.12. Attach ISO image to virtual machine</a></li>
+<li><a href="#_start_the_virtual_machine">4.13. Start the virtual machine</a></li>
 </ul>
 </li>
 <li><a href="#requests">5. Requests</a></li>
@@ -2723,34 +2723,30 @@ attribute it will respond with the following HTTP response line:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="documents/004_quick_start_example"><a class="anchor" href="#documents/004_quick_start_example"></a>4. Quick start example</h2>
+<h2 id="documents/004_quick_start_example"><a class="anchor" href="#documents/004_quick_start_example"></a>4. Quick Start Examples</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This chapter provides an example to demonstrate the REST API&#8217;s ability
-to setup a basic oVirt environment and create a virtual machine.
-In addition to the standard prerequisites, this example requires the
+<p>The examples in this section show you how to use the REST API to set up
+a basic oVirt environment and to create a virtual machine.
+In addition to the standard prerequisites, these examples require the
 following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A networked and configured oVirt installation;</p>
+<p>A networked and configured oVirt installation.</p>
 </li>
 <li>
-<p>An ISO file containing a desired virtual machine operating system to
-install. This chapter uses <a href="https://www.centos.org">CentOS</a> 7 for our
-installation ISO example; and</p>
-</li>
-<li>
-<p>oVirt&#8217;s <code>engine-iso-uploader</code> tool to upload your chosen
-operating system ISO file.</p>
+<p>An ISO file containing the virtual machine operating system you want to
+install. This chapter uses <a href="https://www.centos.org">CentOS</a> 7 for the
+installation ISO example.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>This example uses <a href="https://curl.haxx.se"><code>curl</code></a> to demonstrate API
-requests with a client application. Note that any application capable of
-HTTP requests can substitute for <code>curl</code>.</p>
+<p>The API examples use <a href="https://curl.haxx.se"><code>curl</code></a> to demonstrate API
+requests with a client application. You can use any application that sends
+HTTP requests.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2759,65 +2755,37 @@ HTTP requests can substitute for <code>curl</code>.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-For simplicity, the HTTP request headers in this example omit
-the <code>Host</code> and <code>Authorization</code> headers. However, these fields are mandatory
-and require data specific to your installation of oVirt.
+<div class="paragraph">
+<p>The HTTP request headers in this example omit the <code>Host</code> and
+<code>Authorization</code> headers. However, these fields are mandatory
+and require data specific to your installation of oVirt.</p>
+</div>
+<div class="paragraph">
+<p>The <code>curl</code> examples use <code>admin@internal</code> for the user
+name, <code>mypassword</code> for the password, <code>/etc/pki/ovirt-engine/ca.pem</code> for the
+certificate location, and <code>myengine.example.com</code> for the host name. You must
+replace them with the correct values for your environment.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-All the <code>curl</code> examples use <code>admin@internal</code> as the user
-name, <code>mypassword</code> as the password, <code>/etc/pki/ovirt-engine/ca.pem</code> as the
-certificate location and <code>myengine.example.com</code> as the host name. These
-are just examples, Make sure to replace them with valid values for your
-environment.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>oVirt generates a unique identifier for the <code>id</code>
+attribute for each resource. Identifier codes in this example will
+differ from the identifier codes in your oVirt
+environment.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-oVirt generates an unique identifier for the <code>id</code>
-attribute for each resource. Identifier codes in this example might
-appear different to the identifier codes in your oVirt
-environment.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In many examples of this section some of the attributes of results
-returned by the API have been omitted, to make them shorter. You can
-always use the reference to find the complete list of attributes. For
-example, if you want to see the complete list of attributes of the
-<code>Cluster</code> type, just go <a href="#types/cluster">here</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>In many examples, some attributes of the results returned by the
+API have been omitted, for brevity. See, for example, the
+<a href="#types/cluster">Cluster</a> reference for a complete list of attributes.</p>
 </div>
 <div class="sect2">
-<h3 id="_example_access_api_entry_point"><a class="anchor" href="#_example_access_api_entry_point"></a>4.1. Example: Access API entry point</h3>
+<h3 id="_access_api_entry_point"><a class="anchor" href="#_access_api_entry_point"></a>4.1. Access API entry point</h3>
 <div class="paragraph">
 <p>The following request retrieves a representation of the main entry point
-for version 4 of of the API:</p>
+for version 4 of the API:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2827,7 +2795,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, but using the <code>/v4</code> URL prefix instead of the <code>Version</code>
+<p>The same request, but using the <code>/v4</code> URL prefix instead of the <code>Version</code>
 header:</p>
 </div>
 <div class="literalblock">
@@ -2837,7 +2805,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2851,7 +2819,7 @@ https://myengine.example.com/ovirt-engine/api</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result will be an object of type <a href="#types/api">Api</a>:</p>
+<p>The result is an object of type <a href="#types/api">Api</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2938,10 +2906,10 @@ outside this example.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_list_data_centers"><a class="anchor" href="#_example_list_data_centers"></a>4.2. Example: List data centers</h3>
+<h3 id="_list_data_centers"><a class="anchor" href="#_list_data_centers"></a>4.2. List data centers</h3>
 <div class="paragraph">
 <p>oVirt creates a <code>Default</code> data center on installation. This
-example uses the <code>Default</code> data center as the basis for our virtual
+example uses the <code>Default</code> data center as the basis for the virtual
 environment.</p>
 </div>
 <div class="paragraph">
@@ -2954,7 +2922,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3017,7 +2985,7 @@ domains attached to the data center:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_list_host_clusters"><a class="anchor" href="#_example_list_host_clusters"></a>4.3. Example: List host clusters</h3>
+<h3 id="_list_host_clusters"><a class="anchor" href="#_list_host_clusters"></a>4.3. List host clusters</h3>
 <div class="paragraph">
 <p>oVirt creates a <code>Default</code> hosts cluster on installation. This
 example uses the <code>Default</code> cluster to group resources in your
@@ -3034,7 +3002,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3093,16 +3061,16 @@ section examines the networks collection in more detail.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_list_logical_networks"><a class="anchor" href="#_example_list_logical_networks"></a>4.4. Example: List logical networks</h3>
+<h3 id="_list_logical_networks"><a class="anchor" href="#_list_logical_networks"></a>4.4. List logical networks</h3>
 <div class="paragraph">
 <p>oVirt creates a default <code>ovirtmgmt</code> network on installation.
 This network acts as the management network for oVirt Engine to access
 hosts.</p>
 </div>
 <div class="paragraph">
-<p>This network is associated with our <code>Default</code> cluster and is a member of
+<p>This network is associated with the <code>Default</code> cluster and is a member of
 the <code>Default</code> data center. This example uses the <code>ovirtmgmt</code> network to
-connect our virtual machines.</p>
+connect the virtual machines.</p>
 </div>
 <div class="paragraph">
 <p>The following request retrieves the list of logical networks:</p>
@@ -3114,7 +3082,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3160,7 +3128,7 @@ relationship in the cluster&#8217;s network sub-collection.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_list_hosts"><a class="anchor" href="#_example_list_hosts"></a>4.5. Example: List hosts</h3>
+<h3 id="_list_hosts"><a class="anchor" href="#_list_hosts"></a>4.5. List hosts</h3>
 <div class="paragraph">
 <p>This example retrieves the list of hosts and shows a host named <code>myhost</code>
 registered with the virtualization environment:</p>
@@ -3172,7 +3140,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3232,7 +3200,7 @@ network.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_create_nfs_data_storage"><a class="anchor" href="#_example_create_nfs_data_storage"></a>4.6. Example: Create NFS data storage</h3>
+<h3 id="_create_nfs_data_storage"><a class="anchor" href="#_create_nfs_data_storage"></a>4.6. Create NFS data storage</h3>
 <div class="paragraph">
 <p>An NFS data storage domain is an exported NFS share attached to a data
 center and provides storage for virtualized guest images. Creation of a
@@ -3335,7 +3303,7 @@ storage domain resource (of type <a href="#types/storage_domain">StorageDomain</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_create_nfs_iso_storage"><a class="anchor" href="#_example_create_nfs_iso_storage"></a>4.7. Example: Create NFS ISO storage</h3>
+<h3 id="_create_nfs_iso_storage"><a class="anchor" href="#_create_nfs_iso_storage"></a>4.7. Create NFS ISO storage</h3>
 <div class="paragraph">
 <p>An NFS ISO storage domain is a mounted NFS share attached to a data
 center and provides storage for DVD/CD-ROM ISO and virtual floppy disk
@@ -3431,7 +3399,7 @@ storage domain resource (of type <a href="#types/storage_domain">StorageDomain</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_attach_storage_domains_to_data_center"><a class="anchor" href="#_example_attach_storage_domains_to_data_center"></a>4.8. Example: Attach storage domains to data center</h3>
+<h3 id="_attach_storage_domains_to_data_center"><a class="anchor" href="#_attach_storage_domains_to_data_center"></a>4.8. Attach storage domains to data center</h3>
 <div class="paragraph">
 <p>The following example attaches the <code>mydata</code> and <code>myisos</code> storage domains
 to the <code>Default</code> data center.</p>
@@ -3457,7 +3425,7 @@ Content-type: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3497,7 +3465,7 @@ Content-type: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3518,7 +3486,7 @@ https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains</pr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_create_virtual_machine"><a class="anchor" href="#_example_create_virtual_machine"></a>4.9. Example: Create virtual machine</h3>
+<h3 id="_create_virtual_machine"><a class="anchor" href="#_create_virtual_machine"></a>4.9. Create virtual machine</h3>
 <div class="paragraph">
 <p>The following example creates a virtual machine called <code>myvm</code> on the
 <code>Default</code> cluster using the virtualization environment&#8217;s <code>Blank</code>
@@ -3562,7 +3530,7 @@ Content-type: application/xml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3633,7 +3601,7 @@ https://myengine.example.com/ovirt-engine/api/vms</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_create_a_virtual_machine_nic"><a class="anchor" href="#_example_create_a_virtual_machine_nic"></a>4.10. Example: Create a virtual machine NIC</h3>
+<h3 id="_create_a_virtual_machine_nic"><a class="anchor" href="#_create_a_virtual_machine_nic"></a>4.10. Create a virtual machine NIC</h3>
 <div class="paragraph">
 <p>The following example creates a virtual network interface to connect the
 example virtual machine to the <code>ovirtmgmt</code> network.</p>
@@ -3661,7 +3629,7 @@ describing the NIC to be created:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3683,7 +3651,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/nics</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_create_virtual_machine_disk"><a class="anchor" href="#_example_create_virtual_machine_disk"></a>4.11. Example: Create virtual machine disk</h3>
+<h3 id="_create_virtual_machine_disk"><a class="anchor" href="#_create_virtual_machine_disk"></a>4.11. Create virtual machine disk</h3>
 <div class="paragraph">
 <p>The following example creates an 8 GiB <em>copy-on-write</em> disk for the
 example virtual machine.</p>
@@ -3723,7 +3691,7 @@ virtual machine:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3761,20 +3729,20 @@ https://myengine.example.com/ovirt-engine/api/vms/007/diskattachments</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_attach_iso_image_to_virtual_machine"><a class="anchor" href="#_example_attach_iso_image_to_virtual_machine"></a>4.12. Example: Attach ISO image to virtual machine</h3>
+<h3 id="_attach_iso_image_to_virtual_machine"><a class="anchor" href="#_attach_iso_image_to_virtual_machine"></a>4.12. Attach ISO image to virtual machine</h3>
 <div class="paragraph">
-<p>The boot media for our example virtual machine requires an CD-ROM or DVD
+<p>The boot media for the following virtual machine example requires a CD-ROM or DVD
 ISO image for an operating system installation. This example uses a
-CentOS 7 image for installation.</p>
+CentOS 7 image.</p>
 </div>
 <div class="paragraph">
 <p>ISO images must be available in the <code>myisos</code> ISO domain for the virtual
-machines to use. oVirt provides an uploader tool that ensures
-that the ISO images are uploaded into the correct directory path with
-the correct user permissions.</p>
+machines to use. You can use <a href="#services/image_transfers">ImageTransfers</a> to create an
+image transfer and <a href="#services/image_transfer">ImageTransfer</a> to upload the ISO
+image.</p>
 </div>
 <div class="paragraph">
-<p>Once the ISO is uploaded, an API can be used to request the list of
+<p>Once the ISO image is uploaded, an API can be used to request the list of
 files from the ISO storage domain:</p>
 </div>
 <div class="literalblock">
@@ -3784,7 +3752,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3811,7 +3779,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains/006/files</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>An API user attaches the <code>CentOS-7-x86_64-Minimal.iso</code> to our example
+<p>An API user attaches the <code>CentOS-7-x86_64-Minimal.iso</code> to the example
 virtual machine. Attaching an ISO image is equivalent to using the
 <em>Change CD</em> button in the administration or user portal applications.</p>
 </div>
@@ -3838,7 +3806,7 @@ ISO (or floppy) image:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3862,7 +3830,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example_start_the_virtual_machine"><a class="anchor" href="#_example_start_the_virtual_machine"></a>4.13. Example: Start the virtual machine</h3>
+<h3 id="_start_the_virtual_machine"><a class="anchor" href="#_start_the_virtual_machine"></a>4.13. Start the virtual machine</h3>
 <div class="paragraph">
 <p>The virtual environment is complete and the virtual machine contains all
 necessary components to function. This example starts the virtual
@@ -3897,7 +3865,7 @@ Content-type: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Same request, using the <code>curl</code> command:</p>
+<p>The same request, using the <code>curl</code> command:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -64161,7 +64129,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64182,6 +64150,12 @@ This statistics sub-collection is read-only.
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_image_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_image_provider/attributes/tenant_name"></a>7.177.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1077. Links summary</caption>
@@ -64342,6 +64316,16 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Network plug-in type.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>project_domain_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the project&#8217;s domain name for OpenStack Identity API v3.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>project_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the project name for OpenStack Identity API v3.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>properties</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array of provider name/value properties.</p></td>
@@ -64359,7 +64343,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
@@ -64375,6 +64359,12 @@ This statistics sub-collection is read-only.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines URL address of the external provider.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_domain_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the domain name of the <code>username</code> in <a href="#types/external_provider">ExternalProvider</a> for
+OpenStack Identity API v3.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>username</code></p></td>
@@ -64471,7 +64461,13 @@ operations are allowed, as they are required for the provisioning of virtual NIC
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/open_stack_network_provider/attributes/unmanaged"><a class="anchor" href="#types/open_stack_network_provider/attributes/unmanaged"></a>7.179.6. unmanaged</h4>
+<h4 id="types/open_stack_network_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_network_provider/attributes/tenant_name"></a>7.179.6. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_network_provider/attributes/unmanaged"><a class="anchor" href="#types/open_stack_network_provider/attributes/unmanaged"></a>7.179.7. unmanaged</h4>
 <div class="paragraph">
 <p>Indicates whether the provider is unmanaged by oVirt.</p>
 </div>
@@ -64621,7 +64617,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64642,6 +64638,12 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_provider/attributes/tenant_name"></a>7.181.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 </div>
 </div>
@@ -64796,7 +64798,7 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tenant_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the tenant name for OpenStack Identity API v2.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>url</code></p></td>
@@ -64817,6 +64819,12 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="paragraph">
 <p>If authentication is required, both <code>username</code> and <code>password</code> attributes will be used during authentication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/open_stack_volume_provider/attributes/tenant_name"><a class="anchor" href="#types/open_stack_volume_provider/attributes/tenant_name"></a>7.183.2. tenant_name</h4>
+<div class="paragraph">
+<p>Defines the tenant name for OpenStack Identity API v2.0.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1087. Links summary</caption>
@@ -70622,6 +70630,11 @@ the system was unexpectedly restarted.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gluster_volume</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/gluster_volume">GlusterVolume</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Link to the gluster volume, used by that storage domain.</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
@@ -78429,7 +78442,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-29 11:58:28 UTC
+Last updated 2018-09-07 10:29:54 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
