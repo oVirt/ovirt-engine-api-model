@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.2.37 / Sep 7 2018
+New features:
+
+*  Add support for OpenStack Identity API v3
+   https://bugzilla.redhat.com/1598391[1598391].
+
+*  Added linkedGlusterVolume to the StorageServerConnection
+   type and services
+   https://bugzilla.redhat.com/1563257[1563257].
+
 == 4.2.36 / Aug 9 2018
 New features:
 
