@@ -51,17 +51,19 @@ public interface CpuProfilesService {
     /**
      * Returns the list of CPU profiles of the system.
      *
-     * The order of the returned list of CPU profiles isn't guranteed.
+     * The order of the returned list of CPU profiles is random.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 13 Sept 2018
      * @status added
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out CpuProfile[] profile();
 
         /**
-         * Sets the maximum number of profiles to return. If not specified all the profiles are returned.
+         * Sets the maximum number of profiles to return. If not specified, all the profiles are returned.
          */
         @In Integer max();
     }

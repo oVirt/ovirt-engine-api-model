@@ -29,17 +29,19 @@ public interface HostHooksService {
     /**
      * Returns the list of hooks configured for the host.
      *
-     * The order of the returned list of hooks isn't guranteed.
+     * The order of the returned list of hooks is random.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 15 Apr 2017
+     * @author Avital Pinnick <apinnick@redhat.com>
+     * @date 13 Sept 2018
      * @status added
+     * @status updated_by_docs
      */
     interface List extends Follow {
         @Out Hook[] hooks();
 
         /**
-         * Sets the maximum number of hooks to return. If not specified all the hooks are returned.
+         * Sets the maximum number of hooks to return. If not specified, all the hooks are returned.
          */
         @In Integer max();
     }
