@@ -30,6 +30,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 @Area("Storage")
 public interface StorageServerConnectionService {
     interface Get extends Follow {
+        // TODO: need a correction of the typo
         @Out StorageConnection conection();
     }
 
