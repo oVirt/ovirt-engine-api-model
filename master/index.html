@@ -57625,8 +57625,8 @@ reference.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_operation_in_progress</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether a network-related operation, such as 'setup networks' or
-'sync networks', is currently being executed on this host.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether a network-related operation, such as 'setup networks',
+'sync networks', or 'refresh capabilities', is currently being executed on this host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>numa_supported</code></p></td>
@@ -57791,14 +57791,34 @@ For more information on libvirt please go to <a href="https://libvirt.org">libvi
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/override_iptables"><a class="anchor" href="#types/host/attributes/override_iptables"></a>7.110.6. override_iptables</h4>
+<h4 id="types/host/attributes/network_operation_in_progress"><a class="anchor" href="#types/host/attributes/network_operation_in_progress"></a>7.110.6. network_operation_in_progress</h4>
+<div class="paragraph">
+<p>Specifies whether a network-related operation, such as 'setup networks',
+'sync networks', or 'refresh capabilities', is currently being executed on this host.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The header <code>All-Content:true</code> must be added to the request in order for this
+attribute to be included in the response.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host/attributes/override_iptables"><a class="anchor" href="#types/host/attributes/override_iptables"></a>7.110.7. override_iptables</h4>
 <div class="paragraph">
 <p>Specifies whether we should override firewall definitions.
 This applies only when the host is installed or re-installed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/protocol"><a class="anchor" href="#types/host/attributes/protocol"></a>7.110.7. protocol</h4>
+<h4 id="types/host/attributes/protocol"><a class="anchor" href="#types/host/attributes/protocol"></a>7.110.8. protocol</h4>
 <div class="paragraph">
 <p>The protocol that the engine uses to communicate with
 the host.</p>
@@ -57818,7 +57838,7 @@ is always set to <code>stomp</code> since <code>xml</code> was removed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/se_linux"><a class="anchor" href="#types/host/attributes/se_linux"></a>7.110.8. se_linux</h4>
+<h4 id="types/host/attributes/se_linux"><a class="anchor" href="#types/host/attributes/se_linux"></a>7.110.9. se_linux</h4>
 <div class="paragraph">
 <p>The host SElinux status.
 <em>Security-Enhanced Linux (SELinux)</em> is a component in the Linux kernel
@@ -57826,7 +57846,7 @@ that provides a mechanism for supporting access control security policies.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/spm"><a class="anchor" href="#types/host/attributes/spm"></a>7.110.9. spm</h4>
+<h4 id="types/host/attributes/spm"><a class="anchor" href="#types/host/attributes/spm"></a>7.110.10. spm</h4>
 <div class="paragraph">
 <p>The host <em>storage pool manager</em> (SPM) status and definition.
 Use it to set the SPM priority of this host, and to see whether this is the current
@@ -57834,13 +57854,13 @@ SPM or not.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/status_detail"><a class="anchor" href="#types/host/attributes/status_detail"></a>7.110.10. status_detail</h4>
+<h4 id="types/host/attributes/status_detail"><a class="anchor" href="#types/host/attributes/status_detail"></a>7.110.11. status_detail</h4>
 <div class="paragraph">
 <p>The host status details. Relevant for Gluster hosts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/transparent_huge_pages"><a class="anchor" href="#types/host/attributes/transparent_huge_pages"></a>7.110.11. transparent_huge_pages</h4>
+<h4 id="types/host/attributes/transparent_huge_pages"><a class="anchor" href="#types/host/attributes/transparent_huge_pages"></a>7.110.12. transparent_huge_pages</h4>
 <div class="paragraph">
 <p>Transparent huge page support expands the size of memory pages beyond the standard 4 KiB limit. This reduces
 memory consumption and increases host performance.</p>
@@ -57867,7 +57887,7 @@ memory consumption and increases host performance.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/attributes/version"><a class="anchor" href="#types/host/attributes/version"></a>7.110.12. version</h4>
+<h4 id="types/host/attributes/version"><a class="anchor" href="#types/host/attributes/version"></a>7.110.13. version</h4>
 <div class="paragraph">
 <p>The version of VDSM.</p>
 </div>
@@ -58001,7 +58021,7 @@ memory consumption and increases host performance.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/host/links/external_network_provider_configurations"><a class="anchor" href="#types/host/links/external_network_provider_configurations"></a>7.110.13. external_network_provider_configurations</h4>
+<h4 id="types/host/links/external_network_provider_configurations"><a class="anchor" href="#types/host/links/external_network_provider_configurations"></a>7.110.14. external_network_provider_configurations</h4>
 <div class="paragraph">
 <p>External network providers provisioned on the host.</p>
 </div>
@@ -58010,7 +58030,7 @@ memory consumption and increases host performance.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/links/katello_errata"><a class="anchor" href="#types/host/links/katello_errata"></a>7.110.14. katello_errata</h4>
+<h4 id="types/host/links/katello_errata"><a class="anchor" href="#types/host/links/katello_errata"></a>7.110.15. katello_errata</h4>
 <div class="paragraph">
 <p>Lists all the Katello errata assigned to the host.</p>
 </div>
@@ -58046,7 +58066,7 @@ memory consumption and increases host performance.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host/links/statistics"><a class="anchor" href="#types/host/links/statistics"></a>7.110.15. statistics</h4>
+<h4 id="types/host/links/statistics"><a class="anchor" href="#types/host/links/statistics"></a>7.110.16. statistics</h4>
 <div class="paragraph">
 <p>Each host resource exposes a statistics sub-collection for host-specific statistics.</p>
 </div>
@@ -78458,7 +78478,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-17 13:46:22 UTC
+Last updated 2018-09-21 07:44:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
