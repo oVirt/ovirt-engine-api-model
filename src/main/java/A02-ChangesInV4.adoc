@@ -337,7 +337,7 @@ of CPU:
 
 [source,xml]
 ----
-<cpu id="Intel Conroe Family">
+<cpu id="Intel Nehalem Family">
   <architecture>X86_64</architecture>
   ...
 </cpu>
@@ -350,7 +350,7 @@ attribute has been replaced with a new `type` element:
 [source,xml]
 ----
 <cpu>
-  <type>Intel Conroe Family</type>
+  <type>Intel Nehalem Family</type>
   <architecture>X86_64</architecture>
 </cpu>
 ----
@@ -1594,7 +1594,7 @@ all the cluster levels supported by the system:
   <cluster_level id="3.6" href="/clusterlevels/3.6">
     <cpu_types>
       <cpu_type>
-        <name>Intel Conroe Family</name>
+        <name>Intel Nehalem Family</name>
         <level>2</level>
         <architecture>x86_64</architecture>
       </cpu_type>
@@ -1619,7 +1619,7 @@ This will return the details of that version:
 <cluster_level id="3.6" href="/clusterlevels/3.6">
   <cpu_types>
     <cpu_type>
-      <name>Intel Conroe Family</name>
+      <name>Intel Nehalem Family</name>
       <level>2</level>
       <architecture>x86_64</architecture>
     </cpu_type>

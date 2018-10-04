@@ -46,7 +46,7 @@ public interface ClusterLevelService {
      * <cluster_level id="3.6">
      *   <cpu_types>
      *     <cpu_type>
-     *       <name>Intel Conroe Family</name>
+     *       <name>Intel Nehalem Family</name>
      *       <level>3</level>
      *       <architecture>x86_64</architecture>
      *     </cpu_type>
@@ -63,8 +63,9 @@ public interface ClusterLevelService {
      * ----
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 04 Oct 2018
+     * @status updated_by_docs
      */
     interface Get extends Follow {
         /**

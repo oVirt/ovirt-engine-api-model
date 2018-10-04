@@ -28,10 +28,11 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface CpuType {
     /**
-     * The name of the CPU type, for example `Intel Conroe Family`.
+     * The name of the CPU type, for example `Intel Nehalem Family`.
      *
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 28 Oct 2016
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 04 Oct 2018
      * @status updated_by_docs
      */
     String name();

@@ -57,7 +57,7 @@ public interface ClustersService {
      * <cluster>
      *   <name>mycluster</name>
      *   <cpu>
-     *     <type>Intel Penryn Family</type>
+     *     <type>Intel Nehalem Family</type>
      *   </cpu>
      *   <data_center id="123"/>
      * </cluster>
@@ -78,7 +78,7 @@ public interface ClustersService {
      * <cluster>
      *   <name>mycluster</name>
      *   <cpu>
-     *     <type>Intel Penryn Family</type>
+     *     <type>Intel Nehalem Family</type>
      *   </cpu>
      *   <data_center id="123"/>
      *   <external_network_providers>
@@ -90,7 +90,8 @@ public interface ClustersService {
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 06 Oct 2017
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 04 Oct 2018
      * @status updated_by_docs
      */
     interface Add {

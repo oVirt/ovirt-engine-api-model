@@ -248,7 +248,7 @@ The result will be a list of objects of type <<types/cluster, Cluster>>:
     ...
     <cpu>
       <architecture>x86_64</architecture>
-      <type>Intel Conroe Family</type>
+      <type>Intel Nehalem Family</type>
     </cpu>
     <version>
       <major>4</major>

@@ -66,7 +66,7 @@ public interface ClusterService {
      *   <ballooning_enabled>false</ballooning_enabled>
      *   <cpu>
      *     <architecture>x86_64</architecture>
-     *     <type>Intel Penryn Family</type>
+     *     <type>Intel Nehalem Family</type>
      *   </cpu>
      *   <error_handling>
      *     <on_error>migrate</on_error>
@@ -122,7 +122,8 @@ public interface ClusterService {
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 06 Oct 2017
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 04 Oct 2018
      * @status updated_by_docs
      */
     interface Get extends Follow {
