@@ -68,8 +68,7 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
     /**
      * Deprecated Agent configuration settings.
      *
-     * WARNING: Please note that this attribute has been deprecated since version 4.3.6 of the Engine,
-     * and preserved only for backward compatibility. It will be removed in version 4.4.0.
+     * Ignored, because the deployment of OpenStack Neutron agent is dropped since {product-name} 4.4.0.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

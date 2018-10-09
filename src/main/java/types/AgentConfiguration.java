@@ -22,12 +22,13 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Deprecated Agent configuration settings.
  *
- * WARNING: Please note that this attribute has been deprecated since version 4.3.6 of the Engine,
- * and preserved only for backward compatibility. It will be removed in version 4.4.0.
+ * Ignored, because the deployment of OpenStack Neutron agent is dropped since {product-name} 4.4.0.
+ * The deployment of OpenStack hosts can be done by Red Hat OpenStack Platform Director or TripleO.
  *
  * @author Dominik Holler <dholler@redhat.com>
+ * @author Tahlia Richardson <trichard@redhat.com>
  * @date 11 Jun 2019
- * @status added
+ * @status updated
  */
 @Deprecated
 @Type
