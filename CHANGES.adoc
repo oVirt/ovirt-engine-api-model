@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.18 / Oct 11 2018
+New features:
+
+* Added SATA to DiskInterface enum.
+
+* Add disks link to Snapshot type.
+
 == 4.3.17 / Sep 7 2018
 New features:
 
