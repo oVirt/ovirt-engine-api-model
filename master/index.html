@@ -3029,7 +3029,7 @@ https://myengine.example.com/ovirt-engine/api/clusters</pre>
     ...
     &lt;cpu&gt;
       &lt;architecture&gt;x86_64&lt;/architecture&gt;
-      &lt;type&gt;Intel Conroe Family&lt;/type&gt;
+      &lt;type&gt;Intel Nehalem Family&lt;/type&gt;
     &lt;/cpu&gt;
     &lt;version&gt;
       &lt;major&gt;4&lt;/major&gt;
@@ -10462,7 +10462,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
   &lt;ballooning_enabled&gt;false&lt;/ballooning_enabled&gt;
   &lt;cpu&gt;
     &lt;architecture&gt;x86_64&lt;/architecture&gt;
-    &lt;type&gt;Intel Penryn Family&lt;/type&gt;
+    &lt;type&gt;Intel Nehalem Family&lt;/type&gt;
   &lt;/cpu&gt;
   &lt;error_handling&gt;
     &lt;on_error&gt;migrate&lt;/on_error&gt;
@@ -11270,7 +11270,7 @@ information which describes the cluster level:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster_level id="3.6"&gt;
   &lt;cpu_types&gt;
     &lt;cpu_type&gt;
-      &lt;name&gt;Intel Conroe Family&lt;/name&gt;
+      &lt;name&gt;Intel Nehalem Family&lt;/name&gt;
       &lt;level&gt;3&lt;/level&gt;
       &lt;architecture&gt;x86_64&lt;/architecture&gt;
     &lt;/cpu_type&gt;
@@ -11717,7 +11717,7 @@ or <code>name</code> attribute.</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
   &lt;name&gt;mycluster&lt;/name&gt;
   &lt;cpu&gt;
-    &lt;type&gt;Intel Penryn Family&lt;/type&gt;
+    &lt;type&gt;Intel Nehalem Family&lt;/type&gt;
   &lt;/cpu&gt;
   &lt;data_center id="123"/&gt;
 &lt;/cluster&gt;</code></pre>
@@ -11740,7 +11740,7 @@ every host that is added to the cluster, send a request like this:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster&gt;
   &lt;name&gt;mycluster&lt;/name&gt;
   &lt;cpu&gt;
-    &lt;type&gt;Intel Penryn Family&lt;/type&gt;
+    &lt;type&gt;Intel Nehalem Family&lt;/type&gt;
   &lt;/cpu&gt;
   &lt;data_center id="123"/&gt;
   &lt;external_network_providers&gt;
@@ -51804,7 +51804,7 @@ This value should be used for an OVF configuration that is taken from a storage 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the CPU type, for example <code>Intel Conroe Family</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the CPU type, for example <code>Intel Nehalem Family</code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -76842,7 +76842,7 @@ of CPU:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu id="Intel Conroe Family"&gt;
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu id="Intel Nehalem Family"&gt;
   &lt;architecture&gt;X86_64&lt;/architecture&gt;
   ...
 &lt;/cpu&gt;</code></pre>
@@ -76856,7 +76856,7 @@ attribute has been replaced with a new <code>type</code> element:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cpu&gt;
-  &lt;type&gt;Intel Conroe Family&lt;/type&gt;
+  &lt;type&gt;Intel Nehalem Family&lt;/type&gt;
   &lt;architecture&gt;X86_64&lt;/architecture&gt;
 &lt;/cpu&gt;</code></pre>
 </div>
@@ -78272,7 +78272,7 @@ all the cluster levels supported by the system:</p>
   &lt;cluster_level id="3.6" href="/clusterlevels/3.6"&gt;
     &lt;cpu_types&gt;
       &lt;cpu_type&gt;
-        &lt;name&gt;Intel Conroe Family&lt;/name&gt;
+        &lt;name&gt;Intel Nehalem Family&lt;/name&gt;
         &lt;level&gt;2&lt;/level&gt;
         &lt;architecture&gt;x86_64&lt;/architecture&gt;
       &lt;/cpu_type&gt;
@@ -78300,7 +78300,7 @@ itself:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;cluster_level id="3.6" href="/clusterlevels/3.6"&gt;
   &lt;cpu_types&gt;
     &lt;cpu_type&gt;
-      &lt;name&gt;Intel Conroe Family&lt;/name&gt;
+      &lt;name&gt;Intel Nehalem Family&lt;/name&gt;
       &lt;level&gt;2&lt;/level&gt;
       &lt;architecture&gt;x86_64&lt;/architecture&gt;
     &lt;/cpu_type&gt;
@@ -78483,7 +78483,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-11 11:16:26 UTC
+Last updated 2018-11-08 09:32:08 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
