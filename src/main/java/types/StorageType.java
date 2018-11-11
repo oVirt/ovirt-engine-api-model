@@ -99,5 +99,19 @@ public enum StorageType {
      * @date 05 Dec 2016
      * @status added
      */
-    CINDER;
+    CINDER,
+
+    /**
+     * Managed block storage domain.
+     * A storage domain managed using cinderlib.
+     * For supported storage drivers, see https://docs.openstack.org/cinder/rocky/drivers.html[Available Drivers].
+     *
+     * @author Benny Zlotnik <bzlotnik@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 18 Dec 2018
+     * @since 4.3
+     * @status updated_by_docs
+
+     */
+    MANAGED_BLOCK_STORAGE;
 }

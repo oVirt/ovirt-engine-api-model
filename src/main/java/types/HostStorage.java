@@ -63,6 +63,76 @@ public interface HostStorage extends Identified {
   VolumeGroup volumeGroup();
   Boolean overrideLuns();
 
+  // For managed block storage:
+  /**
+   * The driver name as expected by cinder.
+   * For available drivers and their names, see https://docs.openstack.org/cinder/rocky/configuration/block-storage/volume-drivers.html[Volume drivers].
+   *
+   * @author Benny Zlotnik <bzlotnik@redhat.com>
+   * @author Steve Goodman <sgoodman@redhat.com>
+   * @since 4.3
+   * @date 18 Dec 2018
+   * @status updated_by_docs
+   */
+  String driverName();
+
+  /**
+   * The options to be passed when creating a storage domain
+   * using a cinder driver.
+   *
+   *
+   * For example (Kaminario backend):
+   * [source]
+   * ----
+   * POST /ovirt-engine/api/storagedomains/
+   * ----
+   *
+   * [source,xml]
+   * ----
+   * <storage_domain>
+   *  <name>kamniraio-cinder</name>
+   *  <type>managed_block_storage</type>
+   *  <storage>
+   *    <type>managed_block_storage</type>
+   *    <driver_name>kaminario</driver_name>
+   *    <driver_options>
+   *      <property>
+   *        <name>san_ip</name>
+   *        <value>192.168.1.1</value>
+   *      </property>
+   *      <property>
+   *        <name>san_login</name>
+   *        <value>username</value>
+   *      </property>
+   *      <property>
+   *        <name>san_password</name>
+   *        <value>password</value>
+   *      </property>
+   *      <property>
+   *        <name>use_multipath_for_image_xfer</name>
+   *        <value>true</value>
+   *      </property>
+   *      <property>
+   *        <name>volume_driver</name>
+   *        <value>cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver</value>
+   *      </property>
+   *    </driver_options>
+   *  </storage>
+   *  <host>
+   *    <name>host</name>
+   *    </host>
+   * </storage_domain>
+   * ----
+   *
+   * @author Benny Zlotnik <bzlotnik@redhat.com>
+   * @author Steve Goodman <sgoodman@redhat.com>
+   * @date 18 Dec 2018
+   * @since 4.3
+   * @status updated_by_docs
+   */
+  Property[] driverOptions();
+
+
   // Link to the host:
   @Link Host host();
 }

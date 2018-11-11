@@ -19,5 +19,17 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public enum DiskStorageType {
-    IMAGE, LUN, CINDER;
+    IMAGE, LUN, CINDER,
+
+    /**
+     * A storage type, used for a storage domain that was created
+     * using a cinderlib driver.
+     *
+     * @author Benny Zlotnik <bzlotnik@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 18 Dec 2018
+     * @since 4.3
+     * @status updated_by_docs
+     */
+    MANAGED_BLOCK_STORAGE;
 }

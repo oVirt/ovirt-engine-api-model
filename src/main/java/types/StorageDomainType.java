@@ -77,5 +77,16 @@ public enum StorageDomainType {
      * @date 24 Apr 2017
      * @status added
      */
-    VOLUME;
+    VOLUME,
+
+    /**
+     * Managed block storage domains are created on block storage devices. These domains are accessed and managed by cinder.
+     *
+     * @author Benny Zlotnik <bzlotnik@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @since 4.3
+     * @date 18 Dec 2018
+     * @status updated_by_docs
+     */
+    MANAGED_BLOCK_STORAGE;
 }
