@@ -132,6 +132,76 @@ public interface HostStorage extends Identified {
    */
   Property[] driverOptions();
 
+    /**
+     * Parameters containing sensitive information, to be passed when creating a storage domain
+     * using a cinder driver. These parameters are encrypted when they are saved.
+     *
+     * For example, the following XML encrypts and saves a username, password and SAN IP address:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/storagedomains/
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <storage_domain>
+     *  <name>kamniraio-cinder</name>
+     *  <type>managed_block_storage</type>
+     *  <storage>
+     *    <type>managed_block_storage</type>
+     *    <driver_name>kaminario</driver_name>
+     *    <driver_options>
+     *      <property>
+     *        <name>san_ip</name>
+     *        <value>192.168.1.1</value>
+     *      </property>
+     *      <property>
+     *        <name>san_login</name>
+     *        <value>username</value>
+     *      </property>
+     *      <property>
+     *        <name>san_password</name>
+     *        <value>password</value>
+     *      </property>
+     *      <property>
+     *        <name>use_multipath_for_image_xfer</name>
+     *        <value>true</value>
+     *      </property>
+     *      <property>
+     *        <name>volume_driver</name>
+     *        <value>cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver</value>
+     *      </property>
+     *    </driver_options>
+     *    <driver_sensitive_options>
+     *      <property>
+     *        <name>username</name>
+     *        <value>admin</value>
+     *      </property>
+     *      <property>
+     *        <name>password</name>
+     *        <value>123</value>
+     *      </property>
+     *      <property>
+     *        <name>san_ip</name>
+     *        <value>192.168.1.1</value>
+     *      </property>
+     *    </driver_sensitive_options>
+     *  </storage>
+     *  <host>
+     *    <name>host</name>
+     *  </host>
+     * </storage_domain>
+     * ----
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 18 Dec 2018
+     * @since 4.3
+     * @status updated_by_docs
+     */
+    Property[] driverSensitiveOptions();
+
 
   // Link to the host:
   @Link Host host();
