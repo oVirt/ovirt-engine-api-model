@@ -266,4 +266,20 @@ public interface Network extends Identified {
      * @since 4.2
      */
     @Link Network externalProviderPhysicalNetwork();
+
+    /**
+     * Specifies the default value of the port security enabled attribute of OpenStack ports created in
+     * this network. Applies only to external networks.
+     *
+     * When port security is active on a port, the OpenStack networking API security groups are applied
+     * to that port.
+     *
+     * When the value is not set, the provider will fallback to its configured default.
+     *
+     * @author Miguel Duarte Barroso <mdbarroso@redhat.com>
+     * @date 26 November 2018
+     * @status added
+     * @since 4.3
+     */
+    Boolean portSecurityEnabled();
 }
