@@ -746,6 +746,7 @@ public interface HostService extends MeasurableService {
             optional(host().powerManagement().enabled());
             optional(host().powerManagement().kdumpDetection());
             optional(host().spm().priority());
+            optional(host().vgpuPlacement());
             or(optional(host().cluster().id()), optional(host().cluster().name()));
 //            optional(host().powerManagement()[COLLECTION].propietary!!();
         }

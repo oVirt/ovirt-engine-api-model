@@ -125,6 +125,7 @@ public interface HostsService {
             optional(host().powerManagement().kdumpDetection());
             optional(host().protocol());
             optional(host().spm().priority());
+            optional(host().vgpuPlacement());
             optional(host().powerManagement().pmProxies()[COLLECTION].type());
             or(optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().id()),
                 optional(host().externalNetworkProviderConfigurations()[COLLECTION].externalNetworkProvider().name()));

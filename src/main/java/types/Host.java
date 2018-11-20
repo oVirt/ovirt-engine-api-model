@@ -417,6 +417,17 @@ public interface Host extends Identified {
      */
     HostDevicePassthrough devicePassthrough();
 
+    /**
+     * Specifies the vGPU placement strategy.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @author Tahlia Richardson <trichard@redhat.com>
+     * @since 4.3
+     * @date 26 Nov 2018
+     * @status updated_by_docs
+     */
+    VgpuPlacement vgpuPlacement();
+
     @Link Cluster cluster();
     @Link Hook[] hooks();
     @Link ExternalHostProvider externalHostProvider();
