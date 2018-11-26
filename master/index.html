@@ -62465,6 +62465,12 @@ how many parallel migrations are allowed.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_security_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the default value of the port security enabled attribute of OpenStack ports created in
+this network.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>profile_required</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether upon creation of the network a virtual network interface profile should automatically be
@@ -62498,21 +62504,35 @@ created.</p></td>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/network/attributes/required"><a class="anchor" href="#types/network/attributes/required"></a>7.158.1. required</h4>
+<h4 id="types/network/attributes/port_security_enabled"><a class="anchor" href="#types/network/attributes/port_security_enabled"></a>7.158.1. port_security_enabled</h4>
+<div class="paragraph">
+<p>Specifies the default value of the port security enabled attribute of OpenStack ports created in
+this network. Applies only to external networks.</p>
+</div>
+<div class="paragraph">
+<p>When port security is active on a port, the OpenStack networking API security groups are applied
+to that port.</p>
+</div>
+<div class="paragraph">
+<p>When the value is not set, the provider will fallback to its configured default.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/attributes/required"><a class="anchor" href="#types/network/attributes/required"></a>7.158.2. required</h4>
 <div class="paragraph">
 <p>Defines whether the network is mandatory for all the hosts in the cluster. In case a 'required'
 <code>operational</code> network is omitted from a host, the host will be marked as <code>non_operational</code>,</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/attributes/status"><a class="anchor" href="#types/network/attributes/status"></a>7.158.2. status</h4>
+<h4 id="types/network/attributes/status"><a class="anchor" href="#types/network/attributes/status"></a>7.158.3. status</h4>
 <div class="paragraph">
 <p>The status of the network. <code>non_operational</code> if the network defined as 'required' and
 omitted from any active cluster host. <code>operational</code> otherwise.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/attributes/usages"><a class="anchor" href="#types/network/attributes/usages"></a>7.158.3. usages</h4>
+<h4 id="types/network/attributes/usages"><a class="anchor" href="#types/network/attributes/usages"></a>7.158.4. usages</h4>
 <div class="paragraph">
 <p>Defines a set of usage elements for the network.</p>
 </div>
@@ -62579,14 +62599,14 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/cluster"><a class="anchor" href="#types/network/links/cluster"></a>7.158.4. cluster</h4>
+<h4 id="types/network/links/cluster"><a class="anchor" href="#types/network/links/cluster"></a>7.158.5. cluster</h4>
 <div class="paragraph">
 <p>A reference to the cluster this network is attached to. Will be filled only if the network is accessed from the
 cluster level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.158.5. external_provider</h4>
+<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.158.6. external_provider</h4>
 <div class="paragraph">
 <p>An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p>
 </div>
@@ -62595,7 +62615,7 @@ cluster level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.158.6. external_provider_physical_network</h4>
+<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.158.7. external_provider_physical_network</h4>
 <div class="paragraph">
 <p>An optional reference to a network that should be used for physical network access. Valid only if
 <code>external_provider</code> is specified.</p>
@@ -78483,7 +78503,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 12:52:31 UTC
+Last updated 2018-11-26 12:34:06 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
