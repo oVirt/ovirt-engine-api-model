@@ -77,4 +77,19 @@ public interface Initialization {
     String userName();
     String activeDirectoryOu();
     String orgName();
+
+    /**
+     * Attribute specifying the cloud-init protocol to
+     * use for formatting the cloud-init network parameters.
+     * If omitted, a default value is used, as described in
+     * the <<types/cloud init protocol, CloudInitProtocol>>
+     *
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 03 Dec 2018
+     * @since 4.2.8
+     * @status updated_by_docs
+     */
+    CloudInitNetworkProtocol cloudInitNetworkProtocol();
 }
