@@ -171,11 +171,18 @@ public interface HostService extends MeasurableService {
      * <action/>
      * ----
      *
+     * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
+     * the <<services/host/methods/setup_networks, setupnetworks>> request, in which case the new
+     * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
+     * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
+     * waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>> request.
+     *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Martin Mucha <mmucha@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 17 Oct 17
-     * @status updated_by_docs
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 03 Dec 2018
+     * @status added
      */
     interface CommitNetConfig {
         /**
@@ -1080,13 +1087,22 @@ public interface HostService extends MeasurableService {
      * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
      * when the host is rebooted, remember to call <<services/host/methods/commit_net_config, commitnetconfig>>.
      *
+     * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
+     * the <<services/host/methods/setup_networks, setupnetworks>> request, in which case the new
+     * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
+     * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
+     * waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>> request.
+     *
+     *
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 17 Oct 17
-     * @status updated_by_docs
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 03 Dec 2018
+     * @status added
      */
     interface SetupNetworks {
         @InputDetail
         default void inputDetail() {
+            optional(commitOnSuccess());
             optional(checkConnectivity());
             optional(connectivityTimeout());
             or(optional(modifiedNetworkAttachments()[COLLECTION].hostNic().name()), optional(modifiedNetworkAttachments()[COLLECTION].hostNic().id()));
@@ -1124,6 +1140,21 @@ public interface HostService extends MeasurableService {
         @In HostNic[] removedBonds();
         @In NetworkLabel[] modifiedLabels();
         @In NetworkLabel[] removedLabels();
+
+        /**
+         * Specifies whether to automatically save the configuration in the {hypervisor-name} upon completing
+         * the setup and re-establishing connectivity between the {hypervisor-name} and {engine-name},
+         * and without waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>>
+         * request.
+         * The default value is `false`, which means that the configuration will not be
+         * saved automatically.
+         *
+         * @author Eitan Raviv <eraviv@redhat.com>
+         * @date 03 Dec 2018
+         * @since 4.3
+         * @status added
+         */
+        @In Boolean commitOnSuccess();
         @In Boolean checkConnectivity();
         @In Integer connectivityTimeout();
 
