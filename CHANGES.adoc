@@ -3,6 +3,15 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.19 / Dec 4 2018
+New features:
+
+* Add vGPU placement to Host
+  https://bugzilla.redhat.com/1641125[1641125].
+
+* Specify cloud-init protocol in vm intialization
+  https://bugzilla.redhat.com/1611889[1611889].
+
 == 4.3.18 / Oct 11 2018
 New features:
 
