@@ -76,5 +76,17 @@ public enum StorageFormat {
      * @status added
      * @since 4.1
      */
-    V4;
+    V4,
+
+    /**
+     * Version 5 of the storage domain format is applicable to NFS, POSIX, and Gluster storage domains.
+     *
+     * Added support for 4096 bytes block sizes and variable sanlock alignments.
+     *
+     * @author Denis Chaplygin <dchaplyg@redhat.com>
+     * @date 11 Dec 2018
+     * @status added
+     * @since 4.3
+     */
+    V5;
 }
