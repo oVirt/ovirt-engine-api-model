@@ -140,6 +140,7 @@ public interface StorageDomainsService {
             optional(storageDomain().criticalSpaceActionBlocker());
             optional(storageDomain().warningLowSpaceIndicator());
             optional(storageDomain().backup());
+            optional(storageDomain().blockSize());
         }
 
         /**

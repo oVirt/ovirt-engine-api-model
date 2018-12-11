@@ -185,6 +185,18 @@ public interface StorageDomain extends Identified {
     Boolean backup();
 
     /**
+     * Specifies block size in bytes for a storage domain.
+     * Can be omitted and in that case will be defaulted to 512 bytes.
+     * Not all storage domains support all possible sizes.
+     *
+     * @author Denis Chaplygin <dchaplyg@redhat.com>
+     * @date 11 Dec 2018
+     * @status added
+     * @since 4.3
+     */
+    Integer blockSize();
+
+    /**
      * A set of links to the data centers that the storage domain is attached to.
      *
      * @author Tahlia Richardson <trichard@redhat.com>
