@@ -20782,6 +20782,22 @@ automatically reverts to the previous networking configuration.
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
+the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+configuration is automatically saved in the oVirt Node upon completing the setup and
+re-establishing connectivity between the oVirt Node and oVirt Engine, and without
+waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 300. Parameters summary</caption>
 <colgroup>
@@ -21652,6 +21668,22 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
+the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+configuration is automatically saved in the oVirt Node upon completing the setup and
+re-establishing connectivity between the oVirt Node and oVirt Engine, and without
+waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 311. Parameters summary</caption>
 <colgroup>
@@ -21680,6 +21712,15 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit_on_success</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether to automatically save the configuration in the oVirt Node upon completing
+the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
+and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+request.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectivity_timeout</code></p></td>
@@ -21731,6 +21772,17 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/setup_networks/parameters/commit_on_success"><a class="anchor" href="#services/host/methods/setup_networks/parameters/commit_on_success"></a>commit_on_success</h5>
+<div class="paragraph">
+<p>Specifies whether to automatically save the configuration in the oVirt Node upon completing
+the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
+and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+request.
+The default value is <code>false</code>, which means that the configuration will not be
+saved automatically.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/sync_all_networks"><a class="anchor" href="#services/host/methods/sync_all_networks"></a>6.99.15. syncallnetworks <span class="small">POST</span></h4>
@@ -48467,6 +48519,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit_on_success</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>connection</code></p></td>
@@ -78610,7 +78667,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-04 11:06:21 UTC
+Last updated 2018-12-18 08:01:15 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
