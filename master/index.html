@@ -53704,6 +53704,11 @@ until the disk is freed.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lun</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A storage type, used for a storage domain that was created
+using a cinderlib driver.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -59055,6 +59060,17 @@ to 'maintenance' status.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable description in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The driver name as expected by cinder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_options</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The options to be passed when creating a storage domain
+using a cinder driver.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
@@ -59142,14 +59158,73 @@ to 'maintenance' status.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.118.1. nfs_retrans</h4>
+<h4 id="types/host_storage/attributes/driver_name"><a class="anchor" href="#types/host_storage/attributes/driver_name"></a>7.118.1. driver_name</h4>
+<div class="paragraph">
+<p>The driver name as expected by cinder.
+For available drivers and their names, see <a href="https://docs.openstack.org/cinder/rocky/configuration/block-storage/volume-drivers.html">Volume drivers</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_storage/attributes/driver_options"><a class="anchor" href="#types/host_storage/attributes/driver_options"></a>7.118.2. driver_options</h4>
+<div class="paragraph">
+<p>The options to be passed when creating a storage domain
+using a cinder driver.</p>
+</div>
+<div class="paragraph">
+<p>For example (Kaminario backend):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/storagedomains/</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+ &lt;name&gt;kamniraio-cinder&lt;/name&gt;
+ &lt;type&gt;managed_block_storage&lt;/type&gt;
+ &lt;storage&gt;
+   &lt;type&gt;managed_block_storage&lt;/type&gt;
+   &lt;driver_name&gt;kaminario&lt;/driver_name&gt;
+   &lt;driver_options&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_ip&lt;/name&gt;
+       &lt;value&gt;192.168.1.1&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_login&lt;/name&gt;
+       &lt;value&gt;username&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_password&lt;/name&gt;
+       &lt;value&gt;password&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;use_multipath_for_image_xfer&lt;/name&gt;
+       &lt;value&gt;true&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;volume_driver&lt;/name&gt;
+       &lt;value&gt;cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver&lt;/value&gt;
+     &lt;/property&gt;
+   &lt;/driver_options&gt;
+ &lt;/storage&gt;
+ &lt;host&gt;
+   &lt;name&gt;host&lt;/name&gt;
+   &lt;/host&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.118.3. nfs_retrans</h4>
 <div class="paragraph">
 <p>The number of times to retry a request before attempting further recovery actions. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>retrans</code> mount option in the <code>nfs</code> man page.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.118.2. nfs_timeo</h4>
+<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.118.4. nfs_timeo</h4>
 <div class="paragraph">
 <p>The time in tenths of a second to wait for a response before retrying NFS requests. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>timeo</code> mount option in the <code>nfs</code> man page.</p>
@@ -71367,6 +71442,10 @@ data centers and oVirt environments.</p></td>
 virtual machines.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Managed block storage domains are created on block storage devices.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>volume</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume domains store logical volumes that can be used as disks for virtual machines.</p></td>
 </tr>
@@ -71404,7 +71483,13 @@ across different data centers.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain_type/values/volume"><a class="anchor" href="#types/storage_domain_type/values/volume"></a>7.265.5. volume</h4>
+<h4 id="types/storage_domain_type/values/managed_block_storage"><a class="anchor" href="#types/storage_domain_type/values/managed_block_storage"></a>7.265.5. managed_block_storage</h4>
+<div class="paragraph">
+<p>Managed block storage domains are created on block storage devices. These domains are accessed and managed by cinder.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/volume"><a class="anchor" href="#types/storage_domain_type/values/volume"></a>7.265.6. volume</h4>
 <div class="paragraph">
 <p>Volume domains store logical volumes that can be used as disks for virtual machines. For example, volumes
 from an OpenStack Cincer block storage service.</p>
@@ -71526,6 +71611,10 @@ and clone from snapshot. Support for Unicode metadata is added, for non-English 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storage domain on Local storage.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Managed block storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nfs</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NFS storage domain.</p></td>
 </tr>
@@ -71554,6 +71643,14 @@ For more details on Glance please go to <a href="https://wiki.openstack.org/wiki
 <div class="paragraph">
 <p>Gluster-FS storage domain.
 For more details on Gluster please go to <a href="https://www.gluster.org/">Gluster</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_type/values/managed_block_storage"><a class="anchor" href="#types/storage_type/values/managed_block_storage"></a>7.267.4. managed_block_storage</h4>
+<div class="paragraph">
+<p>Managed block storage domain.
+A storage domain managed using cinderlib.
+For supported storage drivers, see <a href="https://docs.openstack.org/cinder/rocky/drivers.html">Available Drivers</a>.</p>
 </div>
 </div>
 </div>
@@ -78667,7 +78764,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-18 08:01:15 UTC
+Last updated 2018-12-19 11:40:47 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
