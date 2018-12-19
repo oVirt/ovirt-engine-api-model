@@ -3,6 +3,21 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.20 / Dec 19 2018
+New features:
+
+* Added block size Storage domain property
+  https://bugzilla.redhat.com/1592916[1592916].
+
+* Added V5 storage format
+  https://bugzilla.redhat.com/1592916[1592916].
+
+* Add driverSensitiveOptions to managed block storage type.
+
+* Add managed block storage type.
+
+* Setup networks commit on success.
+
 == 4.3.19 / Dec 4 2018
 New features:
 
