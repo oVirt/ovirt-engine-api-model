@@ -71103,6 +71103,11 @@ the system was unexpectedly restarted.</p>
 domain or not.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>block_size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies block size in bytes for a storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -71215,7 +71220,15 @@ or importing a data storage domain.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.262.2. discard_after_delete</h4>
+<h4 id="types/storage_domain/attributes/block_size"><a class="anchor" href="#types/storage_domain/attributes/block_size"></a>7.262.2. block_size</h4>
+<div class="paragraph">
+<p>Specifies block size in bytes for a storage domain.
+Can be omitted and in that case will be defaulted to 512 bytes.
+Not all storage domains support all possible sizes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.262.3. discard_after_delete</h4>
 <div class="paragraph">
 <p>Indicates whether <a href="#types/disk">disk</a>s' blocks on block <a href="#types/storage_domain">storage domain</a>s will be
 discarded right before they are deleted.</p>
@@ -71253,7 +71266,7 @@ deleted:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.262.3. supports_discard</h4>
+<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.262.4. supports_discard</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
 A <a href="#types/storage_domain">storage domain</a> only supports discard
@@ -71265,7 +71278,7 @@ storage domain to have its <code>pass_discard</code> attribute enabled.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.262.4. supports_discard_zeroes_data</h4>
+<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.262.5. supports_discard_zeroes_data</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
@@ -71290,7 +71303,7 @@ It is preserved for backwards compatibility, but the value will always be <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.262.5. wipe_after_delete</h4>
+<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.262.6. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Serves as the default value of <code>wipe_after_delete</code> for <a href="#types/disk">disk</a>s on this
 <a href="#types/storage_domain">storage domain</a>.</p>
@@ -71379,7 +71392,7 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.262.6. data_center</h4>
+<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.262.7. data_center</h4>
 <div class="paragraph">
 <p>A link to the data center that the storage domain is attached to. This is preserved for backwards
 compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
@@ -78849,7 +78862,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-19 21:21:22 UTC
+Last updated 2018-12-19 21:24:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
