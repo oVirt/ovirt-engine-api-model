@@ -20782,6 +20782,22 @@ automatically reverts to the previous networking configuration.
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
+the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+configuration is automatically saved in the oVirt Node upon completing the setup and
+re-establishing connectivity between the oVirt Node and oVirt Engine, and without
+waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 300. Parameters summary</caption>
 <colgroup>
@@ -21652,6 +21668,22 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
+the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+configuration is automatically saved in the oVirt Node upon completing the setup and
+re-establishing connectivity between the oVirt Node and oVirt Engine, and without
+waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 311. Parameters summary</caption>
 <colgroup>
@@ -21680,6 +21712,15 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit_on_success</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether to automatically save the configuration in the oVirt Node upon completing
+the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
+and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+request.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectivity_timeout</code></p></td>
@@ -21731,6 +21772,17 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/setup_networks/parameters/commit_on_success"><a class="anchor" href="#services/host/methods/setup_networks/parameters/commit_on_success"></a>commit_on_success</h5>
+<div class="paragraph">
+<p>Specifies whether to automatically save the configuration in the oVirt Node upon completing
+the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
+and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+request.
+The default value is <code>false</code>, which means that the configuration will not be
+saved automatically.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/sync_all_networks"><a class="anchor" href="#services/host/methods/sync_all_networks"></a>6.99.15. syncallnetworks <span class="small">POST</span></h4>
@@ -48469,6 +48521,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit_on_success</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>connection</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/storage_connection">StorageConnection</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -53646,6 +53703,11 @@ until the disk is freed.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lun</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A storage type, used for a storage domain that was created
+using a cinderlib driver.</p></td>
 </tr>
 </tbody>
 </table>
@@ -58998,6 +59060,23 @@ to 'maintenance' status.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable description in plain text.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The driver name as expected by cinder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_options</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The options to be passed when creating a storage domain
+using a cinder driver.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_sensitive_options</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameters containing sensitive information, to be passed when creating a storage domain
+using a cinder driver.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
@@ -59085,14 +59164,139 @@ to 'maintenance' status.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.118.1. nfs_retrans</h4>
+<h4 id="types/host_storage/attributes/driver_name"><a class="anchor" href="#types/host_storage/attributes/driver_name"></a>7.118.1. driver_name</h4>
+<div class="paragraph">
+<p>The driver name as expected by cinder.
+For available drivers and their names, see <a href="https://docs.openstack.org/cinder/rocky/configuration/block-storage/volume-drivers.html">Volume drivers</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_storage/attributes/driver_options"><a class="anchor" href="#types/host_storage/attributes/driver_options"></a>7.118.2. driver_options</h4>
+<div class="paragraph">
+<p>The options to be passed when creating a storage domain
+using a cinder driver.</p>
+</div>
+<div class="paragraph">
+<p>For example (Kaminario backend):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/storagedomains/</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+ &lt;name&gt;kamniraio-cinder&lt;/name&gt;
+ &lt;type&gt;managed_block_storage&lt;/type&gt;
+ &lt;storage&gt;
+   &lt;type&gt;managed_block_storage&lt;/type&gt;
+   &lt;driver_name&gt;kaminario&lt;/driver_name&gt;
+   &lt;driver_options&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_ip&lt;/name&gt;
+       &lt;value&gt;192.168.1.1&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_login&lt;/name&gt;
+       &lt;value&gt;username&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_password&lt;/name&gt;
+       &lt;value&gt;password&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;use_multipath_for_image_xfer&lt;/name&gt;
+       &lt;value&gt;true&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;volume_driver&lt;/name&gt;
+       &lt;value&gt;cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver&lt;/value&gt;
+     &lt;/property&gt;
+   &lt;/driver_options&gt;
+ &lt;/storage&gt;
+ &lt;host&gt;
+   &lt;name&gt;host&lt;/name&gt;
+   &lt;/host&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_storage/attributes/driver_sensitive_options"><a class="anchor" href="#types/host_storage/attributes/driver_sensitive_options"></a>7.118.3. driver_sensitive_options</h4>
+<div class="paragraph">
+<p>Parameters containing sensitive information, to be passed when creating a storage domain
+using a cinder driver. These parameters are encrypted when they are saved.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following XML encrypts and saves a username, password and SAN IP address:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/storagedomains/</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;storage_domain&gt;
+ &lt;name&gt;kamniraio-cinder&lt;/name&gt;
+ &lt;type&gt;managed_block_storage&lt;/type&gt;
+ &lt;storage&gt;
+   &lt;type&gt;managed_block_storage&lt;/type&gt;
+   &lt;driver_name&gt;kaminario&lt;/driver_name&gt;
+   &lt;driver_options&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_ip&lt;/name&gt;
+       &lt;value&gt;192.168.1.1&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_login&lt;/name&gt;
+       &lt;value&gt;username&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_password&lt;/name&gt;
+       &lt;value&gt;password&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;use_multipath_for_image_xfer&lt;/name&gt;
+       &lt;value&gt;true&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;volume_driver&lt;/name&gt;
+       &lt;value&gt;cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver&lt;/value&gt;
+     &lt;/property&gt;
+   &lt;/driver_options&gt;
+   &lt;driver_sensitive_options&gt;
+     &lt;property&gt;
+       &lt;name&gt;username&lt;/name&gt;
+       &lt;value&gt;admin&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;password&lt;/name&gt;
+       &lt;value&gt;123&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;san_ip&lt;/name&gt;
+       &lt;value&gt;192.168.1.1&lt;/value&gt;
+     &lt;/property&gt;
+   &lt;/driver_sensitive_options&gt;
+ &lt;/storage&gt;
+ &lt;host&gt;
+   &lt;name&gt;host&lt;/name&gt;
+ &lt;/host&gt;
+&lt;/storage_domain&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.118.4. nfs_retrans</h4>
 <div class="paragraph">
 <p>The number of times to retry a request before attempting further recovery actions. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>retrans</code> mount option in the <code>nfs</code> man page.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.118.2. nfs_timeo</h4>
+<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.118.5. nfs_timeo</h4>
 <div class="paragraph">
 <p>The time in tenths of a second to wait for a response before retrying NFS requests. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>timeo</code> mount option in the <code>nfs</code> man page.</p>
@@ -70899,6 +71103,11 @@ the system was unexpectedly restarted.</p>
 domain or not.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>block_size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies block size in bytes for a storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Free text containing comments about this object.</p></td>
@@ -71011,7 +71220,15 @@ or importing a data storage domain.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.262.2. discard_after_delete</h4>
+<h4 id="types/storage_domain/attributes/block_size"><a class="anchor" href="#types/storage_domain/attributes/block_size"></a>7.262.2. block_size</h4>
+<div class="paragraph">
+<p>Specifies block size in bytes for a storage domain.
+Can be omitted and in that case will be defaulted to 512 bytes.
+Not all storage domains support all possible sizes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a>7.262.3. discard_after_delete</h4>
 <div class="paragraph">
 <p>Indicates whether <a href="#types/disk">disk</a>s' blocks on block <a href="#types/storage_domain">storage domain</a>s will be
 discarded right before they are deleted.</p>
@@ -71049,7 +71266,7 @@ deleted:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.262.3. supports_discard</h4>
+<h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a>7.262.4. supports_discard</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
 A <a href="#types/storage_domain">storage domain</a> only supports discard
@@ -71061,7 +71278,7 @@ storage domain to have its <code>pass_discard</code> attribute enabled.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.262.4. supports_discard_zeroes_data</h4>
+<h4 id="types/storage_domain/attributes/supports_discard_zeroes_data"><a class="anchor" href="#types/storage_domain/attributes/supports_discard_zeroes_data"></a>7.262.5. supports_discard_zeroes_data</h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
@@ -71086,7 +71303,7 @@ It is preserved for backwards compatibility, but the value will always be <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.262.5. wipe_after_delete</h4>
+<h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a>7.262.6. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Serves as the default value of <code>wipe_after_delete</code> for <a href="#types/disk">disk</a>s on this
 <a href="#types/storage_domain">storage domain</a>.</p>
@@ -71175,7 +71392,7 @@ Note that the configuration value <code>SANWipeAfterDelete</code> serves as the 
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.262.6. data_center</h4>
+<h4 id="types/storage_domain/links/data_center"><a class="anchor" href="#types/storage_domain/links/data_center"></a>7.262.7. data_center</h4>
 <div class="paragraph">
 <p>A link to the data center that the storage domain is attached to. This is preserved for backwards
 compatibility only, as the storage domain may be attached to multiple data centers (if it is an ISO domain). Use
@@ -71310,6 +71527,10 @@ data centers and oVirt environments.</p></td>
 virtual machines.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Managed block storage domains are created on block storage devices.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>volume</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume domains store logical volumes that can be used as disks for virtual machines.</p></td>
 </tr>
@@ -71347,7 +71568,13 @@ across different data centers.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/storage_domain_type/values/volume"><a class="anchor" href="#types/storage_domain_type/values/volume"></a>7.265.5. volume</h4>
+<h4 id="types/storage_domain_type/values/managed_block_storage"><a class="anchor" href="#types/storage_domain_type/values/managed_block_storage"></a>7.265.5. managed_block_storage</h4>
+<div class="paragraph">
+<p>Managed block storage domains are created on block storage devices. These domains are accessed and managed by cinder.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_domain_type/values/volume"><a class="anchor" href="#types/storage_domain_type/values/volume"></a>7.265.6. volume</h4>
 <div class="paragraph">
 <p>Volume domains store logical volumes that can be used as disks for virtual machines. For example, volumes
 from an OpenStack Cincer block storage service.</p>
@@ -71388,6 +71615,10 @@ from an OpenStack Cincer block storage service.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Version 4 of the storage domain format.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>v5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version 5 of the storage domain format is applicable to NFS, POSIX, and Gluster storage domains.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect3">
@@ -71423,6 +71654,15 @@ names are no longer included in the metadata. Template and virtual machine base 
 Metadata about virtual machine disk volumes is still stored in a logical volume on the domains. Virtual machine
 and template base images are no longer read only. This change enables live snapshots, live storage migration,
 and clone from snapshot. Support for Unicode metadata is added, for non-English volume names.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_format/values/v5"><a class="anchor" href="#types/storage_format/values/v5"></a>7.266.4. v5</h4>
+<div class="paragraph">
+<p>Version 5 of the storage domain format is applicable to NFS, POSIX, and Gluster storage domains.</p>
+</div>
+<div class="paragraph">
+<p>Added support for 4096 bytes block sizes and variable sanlock alignments.</p>
 </div>
 </div>
 </div>
@@ -71469,6 +71709,10 @@ and clone from snapshot. Support for Unicode metadata is added, for non-English 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storage domain on Local storage.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>managed_block_storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Managed block storage domain.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nfs</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NFS storage domain.</p></td>
 </tr>
@@ -71497,6 +71741,14 @@ For more details on Glance please go to <a href="https://wiki.openstack.org/wiki
 <div class="paragraph">
 <p>Gluster-FS storage domain.
 For more details on Gluster please go to <a href="https://www.gluster.org/">Gluster</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_type/values/managed_block_storage"><a class="anchor" href="#types/storage_type/values/managed_block_storage"></a>7.267.4. managed_block_storage</h4>
+<div class="paragraph">
+<p>Managed block storage domain.
+A storage domain managed using cinderlib.
+For supported storage drivers, see <a href="https://docs.openstack.org/cinder/rocky/drivers.html">Available Drivers</a>.</p>
 </div>
 </div>
 </div>
@@ -78610,7 +78862,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-04 11:13:02 UTC
+Last updated 2018-12-19 21:49:26 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
