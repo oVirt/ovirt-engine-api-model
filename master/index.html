@@ -71602,6 +71602,10 @@ from an OpenStack Cincer block storage service.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Version 4 of the storage domain format.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>v5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version 5 of the storage domain format is applicable to NFS, POSIX, and Gluster storage domains.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect3">
@@ -71637,6 +71641,15 @@ names are no longer included in the metadata. Template and virtual machine base 
 Metadata about virtual machine disk volumes is still stored in a logical volume on the domains. Virtual machine
 and template base images are no longer read only. This change enables live snapshots, live storage migration,
 and clone from snapshot. Support for Unicode metadata is added, for non-English volume names.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/storage_format/values/v5"><a class="anchor" href="#types/storage_format/values/v5"></a>7.266.4. v5</h4>
+<div class="paragraph">
+<p>Version 5 of the storage domain format is applicable to NFS, POSIX, and Gluster storage domains.</p>
+</div>
+<div class="paragraph">
+<p>Added support for 4096 bytes block sizes and variable sanlock alignments.</p>
 </div>
 </div>
 </div>
@@ -78836,7 +78849,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-19 11:50:08 UTC
+Last updated 2018-12-19 21:21:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
