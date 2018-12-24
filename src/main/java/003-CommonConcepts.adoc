@@ -583,7 +583,7 @@ In order to also follow the links to the disks, the following request
 can be used:
 
 ....
-POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk
+GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk
 ....
 
 That will result in the following response:
@@ -621,14 +621,14 @@ The path can be made as deep as needed. For example, to also get the statistics
 of the disks:
 
 ....
-POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics
+GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics
 ....
 
 Multiple path elements and multiple paths can be combined. For example, to get the
 disk attachments and the network interface cards, both with their statistics:
 
 ....
-POST /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics
+GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics
 ....
 
 IMPORTANT: Almost all the operations that retrieve objects support the `follow`
