@@ -1320,6 +1320,17 @@ public interface VmService extends MeasurableService {
     @Service VmWatchdogsService watchdogs();
 
     /**
+     * List of backups of this virtual machine.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 12 Dec 2018
+     * @status added
+     * @since 4.3
+     */
+    @Service
+    VmBackupsService backups();
+
+    /**
      * List of disks attached to this virtual machine.
      *
      * @author Megan Lewis <melewis@redhat.com>

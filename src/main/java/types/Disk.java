@@ -219,6 +219,16 @@ public interface Disk extends Device {
     Boolean active();
 
     /**
+     * The backup behavior supported by the disk.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 12 Dec 2018
+     * @status added
+     * @since 4.3
+     */
+    DiskBackup backup();
+
+    /**
      * Indicates if the disk is in read-only mode.
      *
      * Since version 4.0 this attribute is not shown in the API and was moved to <<types/disk_attachment,DiskAttachment>>.
