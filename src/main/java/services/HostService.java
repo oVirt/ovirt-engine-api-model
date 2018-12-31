@@ -121,6 +121,17 @@ public interface HostService extends MeasurableService {
          * @date 17 Oct 17
          * @status updated_by_docs
          */
+
+        /**
+         * When set to 'true', this host will be activated after its approval completes. When set to 'false'
+         * the host will remain in 'maintenance' status after its approval. Absence of this parameter will be
+         * interpreted as 'true', since the desired default behavior is activating the host after approval.
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 10 Dec 2018
+         * @since 4.3
+         * @status added
+         */
+        @In Boolean activate();
         interface UsingRootPassword extends Approve {
             @InputDetail
             default void inputDetail() {
@@ -455,6 +466,17 @@ public interface HostService extends MeasurableService {
             optional(host().overrideIptables());
             optional(image());
         }
+
+        /**
+         * When set to 'true', this host will be activated after its installation completes. When set to 'false'
+         * the host will remain in 'maintenance' status after its installation. Absence of this parameter will be
+         * interpreted as 'true', since the desired default behavior is activating the host after install.
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 10 Dec 2018
+         * @since 4.3
+         * @status added
+         */
+        @In Boolean activate();
 
         /**
          * Install VDSM and other packages required to get the host ready to be used in the engine providing the root

@@ -152,6 +152,18 @@ public interface HostsService {
         @In Boolean undeployHostedEngine();
 
         /**
+         * When set to `true`, this host will be activated after its installation completes. When set to `false`
+         * the host will remain in `maintenance` status after its installation. Absence of this parameter will be
+         * interpreted as `true`, since the desired default behavior is activating the host after install.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 10 Dec 2018
+         * @since 4.3
+         * @status added
+         */
+        @In Boolean activate();
+
+        /**
          * Add a new host to the system providing the host root password. This has been deprecated and provided for backwards compatibility.
          *
          * @author Ori Liel <oliel@redhat.com>
