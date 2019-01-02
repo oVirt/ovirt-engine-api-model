@@ -183,7 +183,7 @@ public interface HostNic extends Identified {
      * @date 31 Oct 2016
      * @status updated_by_docs
      */
-    Statistic[] statistics();
+    @Link Statistic[] statistics();
 
     Boolean checkConnectivity();
     Integer speed();
@@ -193,8 +193,9 @@ public interface HostNic extends Identified {
      * The maximum transmission unit for the interface.
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
-     * @date 22 Sept 2016
-     * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 03 Jan 2019
+     * @status updated_by_docs
      */
     Integer mtu();
 
@@ -218,7 +219,7 @@ public interface HostNic extends Identified {
      * @date 22 Sept 2016
      * @status added
      */
-    NetworkLabel[] networkLabels();
+    @Link NetworkLabel[] networkLabels();
 
     Property[] properties();
 
@@ -237,7 +238,8 @@ public interface HostNic extends Identified {
      *
      * @author Marcin Mirecki <mmirecki@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 31 Oct 2016
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 03 Jan 2019
      * @status updated_by_docs
      * @since 4.0.3
      */
