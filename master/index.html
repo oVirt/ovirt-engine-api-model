@@ -20723,6 +20723,12 @@ POST /ovirt-engine/api/hosts/123/syncallnetworks
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to 'true', this host will be activated after its approval completes.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -20742,6 +20748,14 @@ POST /ovirt-engine/api/hosts/123/syncallnetworks
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/approve/parameters/activate"><a class="anchor" href="#services/host/methods/approve/parameters/activate"></a>activate</h5>
+<div class="paragraph">
+<p>When set to 'true', this host will be activated after its approval completes. When set to 'false'
+the host will remain in 'maintenance' status after its approval. Absence of this parameter will be
+interpreted as 'true', since the desired default behavior is activating the host after approval.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="services/host/methods/commit_net_config"><a class="anchor" href="#services/host/methods/commit_net_config"></a>6.99.3. commitnetconfig <span class="small">POST</span></h4>
@@ -21205,6 +21219,12 @@ definitions by default.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to 'true', this host will be activated after its installation completes.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -21250,6 +21270,14 @@ not function as part of the High Availability cluster.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host/methods/install/parameters/activate"><a class="anchor" href="#services/host/methods/install/parameters/activate"></a>activate</h5>
+<div class="paragraph">
+<p>When set to 'true', this host will be activated after its installation completes. When set to 'false'
+the host will remain in 'maintenance' status after its installation. Absence of this parameter will be
+interpreted as 'true', since the desired default behavior is activating the host after install.</p>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/host/methods/install/parameters/deploy_hosted_engine"><a class="anchor" href="#services/host/methods/install/parameters/deploy_hosted_engine"></a>deploy_hosted_engine</h5>
 <div class="paragraph">
@@ -22966,6 +22994,12 @@ network provider when adding hosts, by sending the following request:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code>, this host will be activated after its installation completes.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>deploy_hosted_engine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -22987,6 +23021,14 @@ function as part of the High Availability cluster.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/hosts/methods/add/parameters/activate"><a class="anchor" href="#services/hosts/methods/add/parameters/activate"></a>activate</h5>
+<div class="paragraph">
+<p>When set to <code>true</code>, this host will be activated after its installation completes. When set to <code>false</code>
+the host will remain in <code>maintenance</code> status after its installation. Absence of this parameter will be
+interpreted as <code>true</code>, since the desired default behavior is activating the host after install.</p>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/hosts/methods/add/parameters/deploy_hosted_engine"><a class="anchor" href="#services/hosts/methods/add/parameters/deploy_hosted_engine"></a>deploy_hosted_engine</h5>
 <div class="paragraph">
@@ -48460,6 +48502,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>activate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow_partial_import</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
@@ -78862,7 +78909,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-31 08:48:24 UTC
+Last updated 2019-01-03 12:59:25 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
