@@ -64,7 +64,6 @@ import org.ovirt.api.metamodel.annotations.Type;
  *       "enabled" : "true",
  *       "merge_across_nodes" : "true"
  *     },
- *     "maintenance_reason_required" : "false",
  *     "memory_policy" : {
  *       "over_commit" : {
  *         "percent" : "100"
@@ -83,7 +82,6 @@ import org.ovirt.api.metamodel.annotations.Type;
  *         "id" : "00000000-0000-0000-0000-000000000000"
  *       }
  *     },
- *     "optional_reason" : "false",
  *     "required_rng_sources" : {
  *       "required_rng_source" : [ "random" ]
  *     },
@@ -223,8 +221,27 @@ public interface Cluster extends Identified {
     Boolean tunnelMigration();
     Boolean trustedService();
     Boolean haReservation();
+
+    /**
+     * This property has no longer any relevance and has been deprecated. Its default value is true.
+     *
+     * @author Dana Elfassy <delfassy@redhat.com>
+     * @date 3 January 2019
+     * @status added
+     */
+    @Deprecated
     Boolean optionalReason();
+
+    /**
+     * This property has no longer any relevance and has been deprecated. Its default value is true,
+     *
+     * @author Dana Elfassy <delfassy@redhat.com>
+     * @date 3 January 2019
+     * @status added
+     */
+    @Deprecated
     Boolean maintenanceReasonRequired();
+
     Boolean ballooningEnabled();
     Display display();
     Ksm ksm();

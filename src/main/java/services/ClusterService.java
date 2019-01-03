@@ -87,7 +87,6 @@ public interface ClusterService {
      *     <enabled>true</enabled>
      *     <merge_across_nodes>true</merge_across_nodes>
      *   </ksm>
-     *   <maintenance_reason_required>false</maintenance_reason_required>
      *   <memory_policy>
      *     <over_commit>
      *       <percent>100</percent>
@@ -103,7 +102,6 @@ public interface ClusterService {
      *     </bandwidth>
      *     <compressed>inherit</compressed>
      *   </migration>
-     *   <optional_reason>false</optional_reason>
      *   <required_rng_sources>
      *     <required_rng_source>random</required_rng_source>
      *   </required_rng_sources>

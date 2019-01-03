@@ -116,7 +116,6 @@ public interface ClustersService {
             optional(cluster().haReservation());
             optional(cluster().ksm().enabled());
             optional(cluster().ksm().mergeAcrossNodes());
-            optional(cluster().maintenanceReasonRequired());
             optional(cluster().memoryPolicy().overCommit().percent());
             optional(cluster().memoryPolicy().transparentHugePages().enabled());
             optional(cluster().threadsAsCores());
