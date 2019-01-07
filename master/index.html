@@ -58676,11 +58676,6 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable name in plain text.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The labels that are applied to this NIC.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>override_configuration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -58694,11 +58689,6 @@ containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>speed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>statistics</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/statistic">Statistic[]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the statistics of the NIC.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
@@ -58739,9 +58729,62 @@ It is retrieved from the <code>/sys/class/net/bondX/bonding/ad_aggregator</code>
 <p>Defines the bridged network status. Set to <code>true</code> for a bridged network
 and <code>false</code> for a bridgeless network.</p>
 </div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 998. Links summary</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network to which the interface should be connected.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_labels</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network_label">NetworkLabel[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The labels that are applied to this NIC.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>physical_function</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic">HostNic</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the physical function NIC of a SR-IOV virtual function NIC.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/qos">Qos</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the quality-of-service configuration of the interface.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>statistics</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/statistic">Statistic[]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the statistics of the NIC.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="types/host_nic/attributes/statistics"><a class="anchor" href="#types/host_nic/attributes/statistics"></a>7.114.3. statistics</h4>
+<h4 id="types/host_nic/links/network"><a class="anchor" href="#types/host_nic/links/network"></a>7.114.3. network</h4>
+<div class="paragraph">
+<p>A reference to the network to which the interface should be connected. A blank network ID is allowed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/host_nic/links/statistics"><a class="anchor" href="#types/host_nic/links/statistics"></a>7.114.4. statistics</h4>
 <div class="paragraph">
 <p>A link to the statistics of the NIC.</p>
 </div>
@@ -58775,49 +58818,6 @@ and <code>false</code> for a bridgeless network.</p>
 <p>errors.total.tx - Total errors from transmitting data.</p>
 </li>
 </ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 998. Links summary</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 60%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Summary</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host">Host</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the network to which the interface should be connected.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>physical_function</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/host_nic">HostNic</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A reference to the physical function NIC of a SR-IOV virtual function NIC.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>qos</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/qos">Qos</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A link to the quality-of-service configuration of the interface.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="types/host_nic/links/network"><a class="anchor" href="#types/host_nic/links/network"></a>7.114.4. network</h4>
-<div class="paragraph">
-<p>A reference to the network to which the interface should be connected. A blank network ID is allowed.</p>
 </div>
 </div>
 </div>
@@ -78909,7 +78909,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-03 12:59:25 UTC
+Last updated 2019-01-07 07:58:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
