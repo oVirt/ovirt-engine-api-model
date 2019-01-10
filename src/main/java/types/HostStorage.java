@@ -65,18 +65,6 @@ public interface HostStorage extends Identified {
 
   // For managed block storage:
   /**
-   * The driver name as expected by cinder.
-   * For available drivers and their names, see https://docs.openstack.org/cinder/rocky/configuration/block-storage/volume-drivers.html[Volume drivers].
-   *
-   * @author Benny Zlotnik <bzlotnik@redhat.com>
-   * @author Steve Goodman <sgoodman@redhat.com>
-   * @since 4.3
-   * @date 18 Dec 2018
-   * @status updated_by_docs
-   */
-  String driverName();
-
-  /**
    * The options to be passed when creating a storage domain
    * using a cinder driver.
    *
@@ -94,7 +82,6 @@ public interface HostStorage extends Identified {
    *  <type>managed_block_storage</type>
    *  <storage>
    *    <type>managed_block_storage</type>
-   *    <driver_name>kaminario</driver_name>
    *    <driver_options>
    *      <property>
    *        <name>san_ip</name>
@@ -150,7 +137,6 @@ public interface HostStorage extends Identified {
      *  <type>managed_block_storage</type>
      *  <storage>
      *    <type>managed_block_storage</type>
-     *    <driver_name>kaminario</driver_name>
      *    <driver_options>
      *      <property>
      *        <name>san_ip</name>
