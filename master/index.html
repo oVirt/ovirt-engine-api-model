@@ -10510,7 +10510,6 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
     &lt;enabled&gt;true&lt;/enabled&gt;
     &lt;merge_across_nodes&gt;true&lt;/merge_across_nodes&gt;
   &lt;/ksm&gt;
-  &lt;maintenance_reason_required&gt;false&lt;/maintenance_reason_required&gt;
   &lt;memory_policy&gt;
     &lt;over_commit&gt;
       &lt;percent&gt;100&lt;/percent&gt;
@@ -10526,7 +10525,6 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
     &lt;/bandwidth&gt;
     &lt;compressed&gt;inherit&lt;/compressed&gt;
   &lt;/migration&gt;
-  &lt;optional_reason&gt;false&lt;/optional_reason&gt;
   &lt;required_rng_sources&gt;
     &lt;required_rng_source&gt;random&lt;/required_rng_source&gt;
   &lt;/required_rng_sources&gt;
@@ -51338,7 +51336,6 @@ For more information, see
       "enabled" : "true",
       "merge_across_nodes" : "true"
     },
-    "maintenance_reason_required" : "false",
     "memory_policy" : {
       "over_commit" : {
         "percent" : "100"
@@ -51357,7 +51354,6 @@ For more information, see
         "id" : "00000000-0000-0000-0000-000000000000"
       }
     },
-    "optional_reason" : "false",
     "required_rng_sources" : {
       "required_rng_source" : [ "random" ]
     },
@@ -51522,7 +51518,7 @@ For more information, see
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maintenance_reason_required</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This property has no longer any relevance and has been deprecated.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memory_policy</code></p></td>
@@ -51542,7 +51538,7 @@ For more information, see
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>optional_reason</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This property has no longer any relevance and has been deprecated.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>required_rng_sources</code></p></td>
@@ -51701,7 +51697,19 @@ For absolute value, an audit log event is logged when the the free memory falls 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/attributes/required_rng_sources"><a class="anchor" href="#types/cluster/attributes/required_rng_sources"></a>7.32.7. required_rng_sources</h4>
+<h4 id="types/cluster/attributes/maintenance_reason_required"><a class="anchor" href="#types/cluster/attributes/maintenance_reason_required"></a>7.32.7. maintenance_reason_required</h4>
+<div class="paragraph">
+<p>This property has no longer any relevance and has been deprecated. Its default value is true,</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/cluster/attributes/optional_reason"><a class="anchor" href="#types/cluster/attributes/optional_reason"></a>7.32.8. optional_reason</h4>
+<div class="paragraph">
+<p>This property has no longer any relevance and has been deprecated. Its default value is true.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/cluster/attributes/required_rng_sources"><a class="anchor" href="#types/cluster/attributes/required_rng_sources"></a>7.32.9. required_rng_sources</h4>
 <div class="paragraph">
 <p>Set of random number generator (RNG) sources required from each host in the cluster.</p>
 </div>
@@ -51743,7 +51751,7 @@ compatibility version 4.1 or higher.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/attributes/version"><a class="anchor" href="#types/cluster/attributes/version"></a>7.32.8. version</h4>
+<h4 id="types/cluster/attributes/version"><a class="anchor" href="#types/cluster/attributes/version"></a>7.32.10. version</h4>
 <div class="paragraph">
 <p>The compatibility version of the cluster.</p>
 </div>
@@ -51883,7 +51891,7 @@ this cluster.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a>7.32.9. external_network_providers</h4>
+<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a>7.32.11. external_network_providers</h4>
 <div class="paragraph">
 <p>A reference to the external network provider available in the cluster.</p>
 </div>
@@ -51898,7 +51906,7 @@ This value may be overwritten for individual hosts during
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a>7.32.10. scheduling_policy</h4>
+<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a>7.32.12. scheduling_policy</h4>
 <div class="paragraph">
 <p>Reference to the default scheduling policy used by
 this cluster.</p>
@@ -79525,7 +79533,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-14 09:08:30 UTC
+Last updated 2019-01-14 12:41:17 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
