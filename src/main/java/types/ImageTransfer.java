@@ -181,4 +181,26 @@ public interface ImageTransfer extends Identified {
      * @since 4.0.4
      */
     @Link Host host();
+
+    /**
+     * The backup associated with the image transfer.
+     * Specify when initiating an image transfer for a disk that is part of a backup.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Jan 2019
+     * @status added
+     * @since 4.3
+     */
+    @Link Backup backup();
+
+    /**
+     * The format of the data sent during upload or received during download.
+     * If not specified, defaults to disk's format.
+     *
+     * @author Daniel Erez <derez@redhat.com>
+     * @date 14 Jan 2019
+     * @status added
+     * @since 4.3
+     */
+    DiskFormat format();
 }
