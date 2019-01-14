@@ -59737,11 +59737,6 @@ to 'maintenance' status.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human-readable description in plain text.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The driver name as expected by cinder.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>driver_options</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/property">Property[]</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The options to be passed when creating a storage domain
@@ -59841,14 +59836,7 @@ using a cinder driver.</p></td>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/driver_name"><a class="anchor" href="#types/host_storage/attributes/driver_name"></a>7.121.1. driver_name</h4>
-<div class="paragraph">
-<p>The driver name as expected by cinder.
-For available drivers and their names, see <a href="https://docs.openstack.org/cinder/rocky/configuration/block-storage/volume-drivers.html">Volume drivers</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="types/host_storage/attributes/driver_options"><a class="anchor" href="#types/host_storage/attributes/driver_options"></a>7.121.2. driver_options</h4>
+<h4 id="types/host_storage/attributes/driver_options"><a class="anchor" href="#types/host_storage/attributes/driver_options"></a>7.121.1. driver_options</h4>
 <div class="paragraph">
 <p>The options to be passed when creating a storage domain
 using a cinder driver.</p>
@@ -59868,7 +59856,6 @@ using a cinder driver.</p>
  &lt;type&gt;managed_block_storage&lt;/type&gt;
  &lt;storage&gt;
    &lt;type&gt;managed_block_storage&lt;/type&gt;
-   &lt;driver_name&gt;kaminario&lt;/driver_name&gt;
    &lt;driver_options&gt;
      &lt;property&gt;
        &lt;name&gt;san_ip&lt;/name&gt;
@@ -59900,7 +59887,7 @@ using a cinder driver.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/driver_sensitive_options"><a class="anchor" href="#types/host_storage/attributes/driver_sensitive_options"></a>7.121.3. driver_sensitive_options</h4>
+<h4 id="types/host_storage/attributes/driver_sensitive_options"><a class="anchor" href="#types/host_storage/attributes/driver_sensitive_options"></a>7.121.2. driver_sensitive_options</h4>
 <div class="paragraph">
 <p>Parameters containing sensitive information, to be passed when creating a storage domain
 using a cinder driver. These parameters are encrypted when they are saved.</p>
@@ -59920,7 +59907,6 @@ using a cinder driver. These parameters are encrypted when they are saved.</p>
  &lt;type&gt;managed_block_storage&lt;/type&gt;
  &lt;storage&gt;
    &lt;type&gt;managed_block_storage&lt;/type&gt;
-   &lt;driver_name&gt;kaminario&lt;/driver_name&gt;
    &lt;driver_options&gt;
      &lt;property&gt;
        &lt;name&gt;san_ip&lt;/name&gt;
@@ -59966,14 +59952,14 @@ using a cinder driver. These parameters are encrypted when they are saved.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.121.4. nfs_retrans</h4>
+<h4 id="types/host_storage/attributes/nfs_retrans"><a class="anchor" href="#types/host_storage/attributes/nfs_retrans"></a>7.121.3. nfs_retrans</h4>
 <div class="paragraph">
 <p>The number of times to retry a request before attempting further recovery actions. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>retrans</code> mount option in the <code>nfs</code> man page.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.121.5. nfs_timeo</h4>
+<h4 id="types/host_storage/attributes/nfs_timeo"><a class="anchor" href="#types/host_storage/attributes/nfs_timeo"></a>7.121.4. nfs_timeo</h4>
 <div class="paragraph">
 <p>The time in tenths of a second to wait for a response before retrying NFS requests. The value must be in the
 range of 0 to 65535. For more details see the description of the <code>timeo</code> mount option in the <code>nfs</code> man page.</p>
@@ -79539,7 +79525,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-14 09:04:42 UTC
+Last updated 2019-01-14 09:08:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
