@@ -60363,6 +60363,11 @@ there&#8217;s at least one live transfer session between the client and the daem
 receiving image data (<code>download</code>).</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>format</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_format">DiskFormat</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The format of the data sent during upload or received during download.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique identifier.</p></td>
@@ -60417,7 +60422,14 @@ The default direction for the transfer will be <code>upload</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/inactivity_timeout"><a class="anchor" href="#types/image_transfer/attributes/inactivity_timeout"></a>7.128.2. inactivity_timeout</h4>
+<h4 id="types/image_transfer/attributes/format"><a class="anchor" href="#types/image_transfer/attributes/format"></a>7.128.2. format</h4>
+<div class="paragraph">
+<p>The format of the data sent during upload or received during download.
+If not specified, defaults to disk&#8217;s format.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/attributes/inactivity_timeout"><a class="anchor" href="#types/image_transfer/attributes/inactivity_timeout"></a>7.128.3. inactivity_timeout</h4>
 <div class="paragraph">
 <p>The timeout in seconds of client inactivity, after which the transfer is aborted by the oVirt Engine.
 To disable the inactivity timeout specify '0'. If not specified, the value is defaulted to the
@@ -60425,7 +60437,7 @@ To disable the inactivity timeout specify '0'. If not specified, the value is de
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/phase"><a class="anchor" href="#types/image_transfer/attributes/phase"></a>7.128.3. phase</h4>
+<h4 id="types/image_transfer/attributes/phase"><a class="anchor" href="#types/image_transfer/attributes/phase"></a>7.128.4. phase</h4>
 <div class="paragraph">
 <p>The current phase of the image transfer in progress. Each transfer needs a managed
 session, which must be opened for the user to input or output an image.
@@ -60434,7 +60446,7 @@ documentation.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.128.4. proxy_url</h4>
+<h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a>7.128.5. proxy_url</h4>
 <div class="paragraph">
 <p>The URL of the proxy server that the user inputs or outputs to. This attribute is
 available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
@@ -60442,7 +60454,7 @@ phase. See <code>phase</code> for details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.128.5. transfer_url</h4>
+<h4 id="types/image_transfer/attributes/transfer_url"><a class="anchor" href="#types/image_transfer/attributes/transfer_url"></a>7.128.6. transfer_url</h4>
 <div class="paragraph">
 <p>The URL of the daemon server that the user can input or output to directly.</p>
 </div>
@@ -60468,6 +60480,11 @@ phase. See <code>phase</code> for details.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/backup">Backup</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The backup associated with the image transfer.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk">Disk</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The disk which is targeted for input or output.</p></td>
@@ -60491,14 +60508,21 @@ phase. See <code>phase</code> for details.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/host"><a class="anchor" href="#types/image_transfer/links/host"></a>7.128.6. host</h4>
+<h4 id="types/image_transfer/links/backup"><a class="anchor" href="#types/image_transfer/links/backup"></a>7.128.7. backup</h4>
+<div class="paragraph">
+<p>The backup associated with the image transfer.
+Specify when initiating an image transfer for a disk that is part of a backup.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/image_transfer/links/host"><a class="anchor" href="#types/image_transfer/links/host"></a>7.128.8. host</h4>
 <div class="paragraph">
 <p>The host which will be used to write to the image which is targeted for input or output.
 If not specified, an active host will be randomly selected from the data center.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.128.7. image</h4>
+<h4 id="types/image_transfer/links/image"><a class="anchor" href="#types/image_transfer/links/image"></a>7.128.9. image</h4>
 <div class="paragraph">
 <p>The image which is targeted for input or output.</p>
 </div>
@@ -79533,7 +79557,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-14 12:41:17 UTC
+Last updated 2019-01-16 09:10:40 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
