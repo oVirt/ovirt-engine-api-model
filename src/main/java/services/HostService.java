@@ -933,6 +933,18 @@ public interface HostService extends MeasurableService {
      * @status updated_by_docs
      */
     interface Remove {
+
+        /**
+         * Indicates that the host should be removed even if it is non-responsive,
+         * or if it is part of a Gluster Storage cluster and has volume bricks on it.
+         *
+         * @author Ori Liel<oliel@redhat.com>
+         * @date 17 Jan 2019
+         * @status added
+         * @since 4.3
+         */
+        @In Boolean force();
+
         /**
          * Indicates if the remove should be performed asynchronously.
          *
