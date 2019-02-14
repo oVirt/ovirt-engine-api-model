@@ -147,7 +147,8 @@
         <executions>
           <execution>
             <id>generate-doc</id>
-            <phase>generate-sources</phase>
+            <!-- Generate after compilation ('process-classes' phase) to ensure validity of analyzed files -->
+            <phase>process-classes</phase>
             <goals>
               <goal>java</goal>
             </goals>
@@ -188,7 +189,7 @@
          <executions>
            <execution>
              <id>generate-html</id>
-             <phase>compile</phase>
+             <phase>process-classes</phase>
              <goals>
                <goal>process-asciidoc</goal>
              </goals>
