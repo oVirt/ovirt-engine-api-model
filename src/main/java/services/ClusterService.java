@@ -25,6 +25,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import services.gluster.GlusterHooksService;
 import services.gluster.GlusterVolumesService;
 import types.Cluster;
+import types.ClusterUpgradeAction;
 
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
@@ -264,6 +265,52 @@ public interface ClusterService {
           * @author Avital Pinnick <apinnick@redhat.com>
           * @date 17 April 2018
           * @status updated_by_docs
+          */
+         @In Boolean async();
+     }
+
+     /**
+      * Start or finish upgrade process for the cluster based on the action value. This action marks the cluster for
+      * upgrade or clears the upgrade running flag on the cluster based on the action value which takes values of
+      * start or stop.
+      *
+      * [source]
+      * ----
+      * POST /ovirt-engine/api/clusters/123/upgrade
+      * ----
+      *
+      * With a request body like this to mark the cluster for upgrade:
+      *
+      * [source,xml]
+      * ----
+      * <action>
+      *     <upgrade_action>
+      *         start
+      *     </upgrade_action>
+      * </action>
+      * ----
+      *
+      * @author Ravi Nori <rnori@redhat.com>
+      * @date 13 March 2019
+      * @since 4.3.2
+      * @status added
+      */
+     interface Upgrade {
+         /**
+          * The action to be performed.
+          *
+          * @author Ravi Nori <rnori@redhat.com>
+          * @date 14 March 2019
+          * @status added
+          */
+         @In ClusterUpgradeAction upgradeAction();
+
+         /**
+          * Indicates if the action should be performed asynchronously.
+          *
+          * @author Ravi Nori <rnori@redhat.com>
+          * @date 13 March 2019
+          * @status added
           */
          @In Boolean async();
      }
