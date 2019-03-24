@@ -74,5 +74,45 @@ public enum DiskContentType {
      * @status added
      * @since 4.2.1
      */
-    ISO;
+    ISO,
+
+    /**
+     * The disk contains the Hosted Engine VM disk.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 17 Mar 2019
+     * @status added
+     * @since 4.3.3
+     */
+    HOSTED_ENGINE,
+
+    /**
+     * The disk contains the Hosted Engine Sanlock disk.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 17 Mar 2019
+     * @status added
+     * @since 4.3.3
+     */
+    HOSTED_ENGINE_SANLOCK,
+
+    /**
+     * The disk contains the Hosted Engine metadata disk.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 17 Mar 2019
+     * @status added
+     * @since 4.3.3
+     */
+    HOSTED_ENGINE_METADATA,
+
+    /**
+     * The disk contains the Hosted Engine configuration disk.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 17 Mar 2019
+     * @status added
+     * @since 4.3.3
+     */
+    HOSTED_ENGINE_CONFIGURATION;
 }
