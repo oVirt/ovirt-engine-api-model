@@ -344,4 +344,27 @@ public interface Disk extends Device {
      * @status updated_by_docs
      */
     @Link Statistic[] statistics();
+
+    /**
+     * Use external disk.
+     *
+     * An external disk can be a path to a local file or a block device, or a URL
+     * supported by QEMU such as:
+     *
+     * - nbd:<host>:<port>[:exportname=<export>]
+     * - nbd:unix:</path>[:exportname=<export>]
+     * - http://[<username>[:<password>]@]<host>/<path>
+     * - https://[<username>[:<password>]@]<host>/<path>
+     * - ftp://[<username>[:<password>]@]<host>/<path>
+     * - ftps://[<username>[:<password>]@]<host>/<path>
+     *
+     * See the QEMU manual for additional supported protocols and more info.
+     *
+     * @author Nir Soffer <nsoffer@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 20 Jan 2020
+     * @since 4.4.0
+     * @status updated_by_docs
+     */
+    String externalDisk();
 }
