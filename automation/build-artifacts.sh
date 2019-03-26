@@ -70,6 +70,7 @@ export JAVA_HOME="/usr/lib/jvm/java-1.8.0"
 mv "${tarball}" "${artifacts}"
 
 # Build the artifacts:
+${mvn} package -DskipTests
 ${mvn} package -DskipTests -Dadoc.linkcss=true -Ppublican
 for format in adoc csv html json xml
 do
