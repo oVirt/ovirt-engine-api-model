@@ -297,6 +297,27 @@ public interface HostsService {
          */
         @In String migrationTargetOf();
 
+        /**
+         * This parameter can be used with `migration_target_of`
+         * to get valid migration targets for the listed virtual machines
+         * and all other virtual machines that are in positive enforcing
+         * affinity with the listed virtual machines.
+         *
+         * This is useful in case the virtual machines will be migrated
+         * together with others in positive affinity groups.
+         *
+         * The default value is `false`.
+         *
+         * ....
+         * GET /ovirt-engine/api/hosts?migration_target_of=123,456&check_vms_in_affinity_closure=true
+         * ....
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 15 Apr 2019
+         * @status added
+         * @since 4.3.5
+         */
+        @In Boolean checkVmsInAffinityClosure();
     }
 
     /**
