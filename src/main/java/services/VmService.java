@@ -574,6 +574,18 @@ public interface VmService extends MeasurableService {
         @In Host host();
 
         /**
+         * Migrate also all other virtual machines in positive enforcing affinity groups with this virtual machine,
+         * that are running on the same host.
+         *
+         * The default value is `false`.
+         *
+         * @author Andrej Krejcir <akrejcir@redhat.com>
+         * @date 15 Apr 2019
+         * @status added
+         */
+        @In Boolean migrateVmsInAffinityClosure();
+
+        /**
          * Indicates if the migration should be performed asynchronously.
          *
          * @author Megan Lewis <melewis@redhat.com>
