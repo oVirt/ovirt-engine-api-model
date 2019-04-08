@@ -37,12 +37,13 @@ public interface NetworkLabelService {
      *
      * [source]
      * ----
-     * DELETE /ovirt-engine/api/networks/123/labels/exemplary
+     * DELETE /ovirt-engine/api/networks/123/networklabels/exemplary
      * ----
      *
      * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 08 Apr 2019
+     * @status updated
      */
     interface Remove {
         /**

@@ -46,19 +46,19 @@ public interface NetworkLabelsService {
      *
      * [source]
      * ----
-     * POST /ovirt-engine/api/networks/123/labels
+     * POST /ovirt-engine/api/networks/123/networklabels
      * ----
      *
      * With a request body like this:
      *
      * [source,xml]
      * ----
-     * <label id="mylabel"/>
+     * <network_label id="mylabel"/>
      * ----
      *
-     * @author Martin Mucha <mmucha@redhat.com>
-     * @date 14 Sep 2016
-     * @status added
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 08 Apr 2019
+     * @status updated
      */
     interface Add {
         @InputDetail
