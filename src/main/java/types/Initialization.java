@@ -82,7 +82,7 @@ public interface Initialization {
      * Attribute specifying the cloud-init protocol to
      * use for formatting the cloud-init network parameters.
      * If omitted, a default value is used, as described in
-     * the <<types/cloud init protocol, CloudInitProtocol>>
+     * the <<types/cloud_init_network_protocol, CloudInitNetworkProtocol>>
      *
      *
      * @author Eitan Raviv <eraviv@redhat.com>
