@@ -111,12 +111,15 @@ public enum ImageTransferPhase {
      * This phase will be set as a result of the user cancelling the transfer. The cancellation can only be performed
      * in the Administration Portal.
      *
+     * @deprecated To better distinguish between transfers cancelled by system and by user, this field has been marked
+     * as deprecated and might be removed in the next version of the API. Use 'CANCELLED_SYSTEM' or 'CANCELLED_USER' instead.
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 15 Nov 2016
      * @status updated_by_docs
      * @since 4.0.4
      */
+    @Deprecated
     CANCELLED,
 
     /**
@@ -160,7 +163,8 @@ public enum ImageTransferPhase {
 
     /**
      * Indicates that the targeted image failed the verification, and cannot be used. After reaching this phase,
-     * the image transfer entity will be deleted, and the targeted image will be set to illegal.
+     * the image transfer entity will be deleted, and the targeted image will be set to illegal. System cancelling the
+     * transfer will also result in this.
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -168,5 +172,45 @@ public enum ImageTransferPhase {
      * @status updated_by_docs
      * @since 4.0.4
      */
-    FINISHED_FAILURE;
+    FINISHED_FAILURE,
+
+    /**
+     * This phase will be set as a result of the system cancelling the transfer.
+     *
+     * @author Fedor Gavrilov <fgavrilo@redhat.com>
+     * @date 14 May 2019
+     * @status added
+     * @since 4.3.5
+     */
+    CANCELLED_SYSTEM,
+
+    /**
+     * This phase will be set as a result of the user cancelling the transfer.
+     *
+     * @author Fedor Gavrilov <fgavrilo@redhat.com>
+     * @date 14 May 2019
+     * @status added
+     * @since 4.3.5
+     */
+    CANCELLED_USER,
+
+    /**
+     * This phase indicates that the user cancelled the transfer, and necessary cleanup is being done.
+     *
+     * @author Fedor Gavrilov <fgavrilo@redhat.com>
+     * @date 14 May 2019
+     * @status added
+     * @since 4.3.5
+     */
+    FINALIZING_CLEANUP,
+
+    /**
+     * This phase indicates that the user cancelled the transfer, and necessary cleanup is done.
+     *
+     * @author Fedor Gavrilov <fgavrilo@redhat.com>
+     * @date 14 May 2019
+     * @status added
+     * @since 4.3.5
+     */
+    FINISHED_CLEANUP
 }
