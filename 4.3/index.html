@@ -23207,6 +23207,15 @@ the <code>search</code> parameter.</p>
 account.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>check_vms_in_affinity_closure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This parameter can be used with <code>migration_target_of</code>
+to get valid migration targets for the listed virtual machines
+and all other virtual machines that are in positive enforcing
+affinity with the listed virtual machines.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -23289,6 +23298,27 @@ specifically required.
 <p>Indicates if the search performed using the <code>search</code> parameter should be performed taking case into
 account. The default value is <code>true</code>, which means that case is taken into account. If you want to search
 ignoring case set it to <code>false</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/hosts/methods/list/parameters/check_vms_in_affinity_closure"><a class="anchor" href="#services/hosts/methods/list/parameters/check_vms_in_affinity_closure"></a>check_vms_in_affinity_closure</h5>
+<div class="paragraph">
+<p>This parameter can be used with <code>migration_target_of</code>
+to get valid migration targets for the listed virtual machines
+and all other virtual machines that are in positive enforcing
+affinity with the listed virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>This is useful in case the virtual machines will be migrated
+together with others in positive affinity groups.</p>
+</div>
+<div class="paragraph">
+<p>The default value is <code>false</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts?migration_target_of=123,456&amp;check_vms_in_affinity_closure=true</pre>
+</div>
 </div>
 </div>
 <div class="sect4">
@@ -27814,7 +27844,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>DELETE /ovirt-engine/api/networks/123/labels/exemplary</code></pre>
+<pre class="highlightjs highlight"><code>DELETE /ovirt-engine/api/networks/123/networklabels/exemplary</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -27886,7 +27916,7 @@ network interfaces to which the same label has been attached.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/networks/123/labels</code></pre>
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/networks/123/networklabels</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -27894,7 +27924,7 @@ network interfaces to which the same label has been attached.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;label id="mylabel"/&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;network_label id="mylabel"/&gt;</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -42842,6 +42872,13 @@ from an external console.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a specific host that the virtual machine should migrate to.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>migrate_vms_in_affinity_closure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Migrate also all other virtual machines in positive enforcing affinity groups with this virtual machine,
+that are running on the same host.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -42877,6 +42914,16 @@ This is an optional parameter. By default, it is set to <code>false</code>.</p>
 <p>Specifies a specific host that the virtual machine should migrate to. This is an optional parameter. By default,
 the oVirt Engine automatically selects a default host for migration within the same cluster. If an API user
 requires a specific host, the user can specify the host with either an <code>id</code> or <code>name</code> parameter.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vm/methods/migrate/parameters/migrate_vms_in_affinity_closure"><a class="anchor" href="#services/vm/methods/migrate/parameters/migrate_vms_in_affinity_closure"></a>migrate_vms_in_affinity_closure</h5>
+<div class="paragraph">
+<p>Migrate also all other virtual machines in positive enforcing affinity groups with this virtual machine,
+that are running on the same host.</p>
+</div>
+<div class="paragraph">
+<p>The default value is <code>false</code>.</p>
 </div>
 </div>
 </div>
@@ -49254,6 +49301,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maintenance_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>migrate_vms_in_affinity_closure</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -61095,7 +61147,7 @@ of these two types are as follows:</p>
 <p>Attribute specifying the cloud-init protocol to
 use for formatting the cloud-init network parameters.
 If omitted, a default value is used, as described in
-the <a href="#types/cloud init protocol">CloudInitProtocol</a></p>
+the <a href="#types/cloud_init_network_protocol">CloudInitNetworkProtocol</a></p>
 </div>
 </div>
 </div>
@@ -79697,7 +79749,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-25 13:45:24 UTC
+Last updated 2019-05-23 09:25:35 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
