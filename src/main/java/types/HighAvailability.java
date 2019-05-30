@@ -28,11 +28,17 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface HighAvailability {
     /**
-     * Define if the virtual machine should be consider highly available.
+     * Define if the virtual machine is considered highly available.
+     * Configuring a VM lease is highly recommended (refer to that section) in order to
+     * prevent split-brain scenarios. Use a boot disk's storage-domain or any other
+     * active storage-domain.
      *
      * @author Lukas Svaty <lsvaty@redhat.com>
      * @date 24 Apr 2017
      * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 10 Jun 2019
+     * @status updated_by_docs
      */
     Boolean enabled();
 
