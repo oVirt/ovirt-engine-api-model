@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.1 / Jun 3 2019
+New features:
+ 
+* Treat image transfers cancelled by user/system differently
+  https://bugzilla.redhat.com/1533362[1533362].
+
 == 4.4.0 / May 2 2019
 New features:
  
