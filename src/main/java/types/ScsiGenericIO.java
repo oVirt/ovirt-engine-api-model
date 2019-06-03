@@ -17,8 +17,39 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * When a direct LUN disk is using SCSI passthrough the privileged I/O policy is determined by this enum.
+ *
+ * @author Tal Nisan <tnisan@redhat.com>
+ * @date 5 Jun 2019
+ * @status added
+ */
 @Type
 public enum ScsiGenericIO {
+
+    /**
+     * Disallow privileged SCSI I/O.
+     *
+     * @date 5 Jun 2019
+     * @status added
+     */
     FILTERED,
-    UNFILTERED;
+
+    /**
+     * Allow privileged SCSI I/O.
+     *
+     * @date 5 Jun 2019
+     * @status added
+     */
+    UNFILTERED,
+
+    /**
+     * Disable SCSI passthrough.
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 5 Jun 2019
+     * @status added
+     * @since 4.3.5
+     */
+    DISABLED;
 }

@@ -258,6 +258,19 @@ public interface Disk extends Device {
     Boolean readOnly();
 
     HostStorage lunStorage();
+
+    /**
+     * Indicates whether SCSI passthrough is enable and its policy.
+     *
+     * Setting a value of `filtered`/`unfiltered` will enable SCSI passthrough for a LUN disk with unprivileged/privileged
+     * SCSI I/O.
+     * To disable SCSI passthrough the value should be set to `disabled`
+     *
+     * @author Tal Nisan <tnisan@redhat.com>
+     * @date 4 Jun 2019
+     * @status added
+     * @since 3.3
+     */
     ScsiGenericIO sgio();
     Boolean usesScsiReservation();
     DiskStorageType storageType();
