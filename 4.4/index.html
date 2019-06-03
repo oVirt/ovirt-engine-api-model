@@ -60799,6 +60799,18 @@ information.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set as a result of the user cancelling the transfer.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancelled_system</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set as a result of the system cancelling the transfer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cancelled_user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set as a result of the user cancelling the transfer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalizing_cleanup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This phase indicates that the user cancelled the transfer, and necessary cleanup is being done.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalizing_failure</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This phase can only be set in the Administration Portal, and indicates that there was an error during the transfer, and it
 is being finalized with a failure.</p></td>
@@ -60806,6 +60818,10 @@ is being finalized with a failure.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalizing_success</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set when the user calls <a href="#services/image_transfer/methods/finalize">finalize</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>finished_cleanup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This phase indicates that the user cancelled the transfer, and necessary cleanup is done.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finished_failure</code></p></td>
@@ -60868,7 +60884,8 @@ the phase will be changed to <code>finished_success</code> or <code>finished_fai
 <h4 id="types/image_transfer_phase/values/finished_failure"><a class="anchor" href="#types/image_transfer_phase/values/finished_failure"></a>7.131.3. finished_failure</h4>
 <div class="paragraph">
 <p>Indicates that the targeted image failed the verification, and cannot be used. After reaching this phase,
-the image transfer entity will be deleted, and the targeted image will be set to illegal.</p>
+the image transfer entity will be deleted, and the targeted image will be set to illegal. System cancelling the
+transfer will also result in this.</p>
 </div>
 </div>
 <div class="sect3">
@@ -79749,7 +79766,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-02 09:16:41 UTC
+Last updated 2019-06-03 09:52:40 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
