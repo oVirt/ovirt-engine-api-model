@@ -17,9 +17,53 @@ package types;
 
 import org.ovirt.api.metamodel.annotations.Type;
 
+/**
+ * Type representing the policy of a Serial Number.
+ *
+ * @author Martin Betak <mbetak@redhat.com>
+ * @author Eli Marcus <emarcus@redhat.com>
+ * @date 10 Jun 2019
+ * @status updated_by_docs
+ */
 @Type
 public enum SerialNumberPolicy {
+    /**
+     * This policy is the legacy policy. It will use the Host ID as the Serial Number.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 11 Jul 2019
+     * @status updated_by_docs
+     */
     HOST,
+
+    /**
+     * This policy will use the Virtual Machine ID as the Serial Number.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 11 Jul 2019
+     * @status updated_by_docs
+     */
     VM,
-    CUSTOM;
+
+    /**
+     * This policy allows the user to provide an arbitrary string as the Serial Number.
+     *
+     * @author Martin Betak <mbetak@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 10 Jun 2019
+     * @status updated_by_docs
+     */
+    CUSTOM,
+
+    /**
+     * This policy is used to remove the Serial Number Policy, moving it to default: null.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 3 Jun 2019
+     * @status added
+     * @since 4.4.0
+     */
+    NONE;
 }
