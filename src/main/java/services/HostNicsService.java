@@ -49,14 +49,38 @@ public interface HostNicsService {
          * Sets the maximum number of NICs to return. If not specified all the NICs are returned.
          */
         @In Integer max();
+
+        /**
+         * Indicates if all of the attributes of the host network interface should be included in the response.
+         *
+         * By default the following attributes are excluded:
+         *
+         * - `virtual_functions_configuration`
+         *
+         * For example, to retrieve the complete representation of network interface '456' of host '123':
+         *
+         * ....
+         * GET /ovirt-engine/api/hosts/123/nics?all_content=true
+         * ....
+         *
+         * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
+         * seldom used and require additional queries to the database. Use this parameter with caution and only when
+         * specifically required.
+         *
+         * @author Dominik Holler <dholler@redhat.com>
+         * @date 11 Jun 2019
+         * @status added
+         */
+        @In Boolean allContent();
     }
 
     /**
      * Reference to the service that manages a single network interface.
      *
      * @author Leon Goldberg <lgoldber@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 17 Jun 2019
+     * @status updated_by_docs
      */
     @Service HostNicService nic(String id);
 }
