@@ -66,13 +66,18 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
     String externalPluginType();
 
     /**
-     * Agent configuration settings.
+     * Deprecated Agent configuration settings.
+     *
+     * WARNING: Please note that this attribute has been deprecated since version 4.3.6 of the Engine,
+     * and preserved only for backward compatibility. It will be removed in version 4.4.0.
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 6 Nov 2017
-     * @status updated_by_docs
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 11 Jun 2019
+     * @status updated
      */
+    @Deprecated
     AgentConfiguration agentConfiguration();
 
     /**
