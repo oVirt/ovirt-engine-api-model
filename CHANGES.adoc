@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.25 / Jun 11 2019
+New features:
+
+* Allow setting a disk ScsiGenericIO to disabled
+  https://bugzilla.redhat.com/1714834[1714834].
+
 == 4.3.24 / Jun 3 2019
 New features:
 
