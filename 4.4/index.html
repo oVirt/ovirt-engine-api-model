@@ -53248,7 +53248,7 @@ propagated to the the guest operating system instead.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sgio</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/scsi_generic_i_o">ScsiGenericIO</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether SCSI passthrough is enable and its policy.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shareable</code></p></td>
@@ -53417,7 +53417,18 @@ In order to attach a disk in read only mode use the <code>read_only</code> attri
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/shareable"><a class="anchor" href="#types/disk/attributes/shareable"></a>7.51.9. shareable</h4>
+<h4 id="types/disk/attributes/sgio"><a class="anchor" href="#types/disk/attributes/sgio"></a>7.51.9. sgio</h4>
+<div class="paragraph">
+<p>Indicates whether SCSI passthrough is enable and its policy.</p>
+</div>
+<div class="paragraph">
+<p>Setting a value of <code>filtered</code>/<code>unfiltered</code> will enable SCSI passthrough for a LUN disk with unprivileged/privileged
+SCSI I/O.
+To disable SCSI passthrough the value should be set to <code>disabled</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk/attributes/shareable"><a class="anchor" href="#types/disk/attributes/shareable"></a>7.51.10. shareable</h4>
 <div class="paragraph">
 <p>Indicates if the disk can be attached to multiple virtual machines.</p>
 </div>
@@ -53438,7 +53449,7 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/total_size"><a class="anchor" href="#types/disk/attributes/total_size"></a>7.51.10. total_size</h4>
+<h4 id="types/disk/attributes/total_size"><a class="anchor" href="#types/disk/attributes/total_size"></a>7.51.11. total_size</h4>
 <div class="paragraph">
 <p>The total size of the disk including all of its snapshots, in bytes.</p>
 </div>
@@ -53449,7 +53460,7 @@ For disks without snapshots the total size is equal to the actual size.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.51.11. wipe_after_delete</h4>
+<h4 id="types/disk/attributes/wipe_after_delete"><a class="anchor" href="#types/disk/attributes/wipe_after_delete"></a>7.51.12. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -53543,7 +53554,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.51.12. statistics</h4>
+<h4 id="types/disk/links/statistics"><a class="anchor" href="#types/disk/links/statistics"></a>7.51.13. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -53578,7 +53589,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.51.13. storage_domains</h4>
+<h4 id="types/disk/links/storage_domains"><a class="anchor" href="#types/disk/links/storage_domains"></a>7.51.14. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -53597,7 +53608,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.51.14. vms</h4>
+<h4 id="types/disk/links/vms"><a class="anchor" href="#types/disk/links/vms"></a>7.51.15. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -54150,7 +54161,7 @@ propagated to the the guest operating system instead.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sgio</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/scsi_generic_i_o">ScsiGenericIO</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether SCSI passthrough is enable and its policy.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shareable</code></p></td>
@@ -54319,7 +54330,18 @@ In order to attach a disk in read only mode use the <code>read_only</code> attri
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/shareable"><a class="anchor" href="#types/disk_snapshot/attributes/shareable"></a>7.58.9. shareable</h4>
+<h4 id="types/disk_snapshot/attributes/sgio"><a class="anchor" href="#types/disk_snapshot/attributes/sgio"></a>7.58.9. sgio</h4>
+<div class="paragraph">
+<p>Indicates whether SCSI passthrough is enable and its policy.</p>
+</div>
+<div class="paragraph">
+<p>Setting a value of <code>filtered</code>/<code>unfiltered</code> will enable SCSI passthrough for a LUN disk with unprivileged/privileged
+SCSI I/O.
+To disable SCSI passthrough the value should be set to <code>disabled</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/disk_snapshot/attributes/shareable"><a class="anchor" href="#types/disk_snapshot/attributes/shareable"></a>7.58.10. shareable</h4>
 <div class="paragraph">
 <p>Indicates if the disk can be attached to multiple virtual machines.</p>
 </div>
@@ -54340,7 +54362,7 @@ example using a shared file system like <a href="https://www.gluster.org">Gluste
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/total_size"><a class="anchor" href="#types/disk_snapshot/attributes/total_size"></a>7.58.10. total_size</h4>
+<h4 id="types/disk_snapshot/attributes/total_size"><a class="anchor" href="#types/disk_snapshot/attributes/total_size"></a>7.58.11. total_size</h4>
 <div class="paragraph">
 <p>The total size of the disk including all of its snapshots, in bytes.</p>
 </div>
@@ -54351,7 +54373,7 @@ For disks without snapshots the total size is equal to the actual size.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.58.11. wipe_after_delete</h4>
+<h4 id="types/disk_snapshot/attributes/wipe_after_delete"><a class="anchor" href="#types/disk_snapshot/attributes/wipe_after_delete"></a>7.58.12. wipe_after_delete</h4>
 <div class="paragraph">
 <p>Indicates if the disk&#8217;s blocks will be read back as zeros after it is deleted:</p>
 </div>
@@ -54450,7 +54472,7 @@ zeros, the disk will be deleted immediately.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.58.12. statistics</h4>
+<h4 id="types/disk_snapshot/links/statistics"><a class="anchor" href="#types/disk_snapshot/links/statistics"></a>7.58.13. statistics</h4>
 <div class="paragraph">
 <p>Statistics exposed by the disk. For example:</p>
 </div>
@@ -54485,7 +54507,7 @@ follow the included link:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.58.13. storage_domains</h4>
+<h4 id="types/disk_snapshot/links/storage_domains"><a class="anchor" href="#types/disk_snapshot/links/storage_domains"></a>7.58.14. storage_domains</h4>
 <div class="paragraph">
 <p>The storage domains associated with this disk.</p>
 </div>
@@ -54504,7 +54526,7 @@ template.
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.58.14. vms</h4>
+<h4 id="types/disk_snapshot/links/vms"><a class="anchor" href="#types/disk_snapshot/links/vms"></a>7.58.15. vms</h4>
 <div class="paragraph">
 <p>References to the virtual machines that are using this device. A device may be used by several virtual machines;
 for example, a shared disk my be used simultaneously by two or more virtual machines.</p>
@@ -69529,6 +69551,9 @@ an administrator.</p>
 </div>
 <div class="sect2">
 <h3 id="types/scsi_generic_i_o"><a class="anchor" href="#types/scsi_generic_i_o"></a>7.239. ScsiGenericIO <span class="small">enum</span></h3>
+<div class="paragraph">
+<p>When a direct LUN disk is using SCSI passthrough the privileged I/O policy is determined by this enum.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1164. Values summary</caption>
 <colgroup>
@@ -69543,12 +69568,16 @@ an administrator.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disable SCSI passthrough.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filtered</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disallow privileged SCSI I/O.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>unfiltered</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow privileged SCSI I/O.</p></td>
 </tr>
 </tbody>
 </table>
@@ -79766,7 +79795,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-06-03 09:52:40 UTC
+Last updated 2019-06-11 12:50:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
