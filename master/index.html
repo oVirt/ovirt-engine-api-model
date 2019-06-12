@@ -58274,7 +58274,7 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Define if the virtual machine should be consider highly available.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define if the virtual machine is considered highly available.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>priority</code></p></td>
@@ -58284,7 +58284,16 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.110.1. priority</h4>
+<h4 id="types/high_availability/attributes/enabled"><a class="anchor" href="#types/high_availability/attributes/enabled"></a>7.110.1. enabled</h4>
+<div class="paragraph">
+<p>Define if the virtual machine is considered highly available.
+Configuring a VM lease is highly recommended (refer to that section) in order to
+prevent split-brain scenarios. Use a boot disk&#8217;s storage-domain or any other
+active storage-domain.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.110.2. priority</h4>
 <div class="paragraph">
 <p>Indicates the priority of the virtual machine inside the run and migration queues.</p>
 </div>
@@ -79795,7 +79804,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-06-11 12:47:06 UTC
+Last updated 2019-06-12 11:22:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
