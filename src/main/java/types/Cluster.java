@@ -471,7 +471,9 @@ public interface Cluster extends Identified {
     @Link Permission[] permissions();
 
     /**
-     * The name of the https://fedorahosted.org/tuned[tuned] profile
+     * The name of the tuned profile.
+     *
+     * https://fedorahosted.org/tuned[Tuned] profile
      * to set on all the hosts in the cluster. This is not mandatory
      * and relevant only for clusters with Gluster service.
      *

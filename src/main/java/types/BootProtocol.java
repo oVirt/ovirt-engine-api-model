@@ -54,7 +54,7 @@ public enum BootProtocol {
     DHCP,
 
     /**
-     * DHCP alongside Stateless address auto-configuration (SLAAC)
+     * DHCP alongside Stateless address auto-configuration (SLAAC).
      *
      * The SLAAC mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862]. Please refer to the
      * https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[Stateless address auto-configuration] article
