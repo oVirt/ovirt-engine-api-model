@@ -38,6 +38,8 @@ public interface TimeZone {
     String name();
 
     /**
+     * UTC offset.
+     *
      * Offset from https://en.wikipedia.org/wiki/Coordinated_Universal_Time[UTC].
      *
      * @author Shahar Havivi <shavivi@redhat.com>
