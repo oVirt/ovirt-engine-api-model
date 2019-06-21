@@ -80,6 +80,16 @@ public interface AffinityGroup extends Identified {
     AffinityRule hostsRule();
 
     /**
+     * Priority of the affinity group.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 21 Jun 2019
+     * @status added
+     * @since 4.3.6
+     */
+    Double priority();
+
+    /**
      * A reference to the cluster to which the affinity group applies.
      *
      * @author Martin Sivak <msivak@redhat.com>
