@@ -24,6 +24,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import services.AssignedPermissionsService;
 import services.AssignedRolesService;
 import services.AssignedTagsService;
+import services.EventSubscriptionsService;
 import types.User;
 
 /**
@@ -111,4 +112,15 @@ public interface UserService {
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
     @Service SshPublicKeysService sshPublicKeys();
+
+    /**
+     * List of event-subscriptions for this user.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 17 June 2019
+     * @status added
+     * @since 4.4.0
+     */
+    @Service EventSubscriptionsService eventSubscriptions();
+
 }
