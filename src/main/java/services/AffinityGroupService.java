@@ -16,15 +16,16 @@ limitations under the License.
 
 package services;
 
-import annotations.Area;
-import mixins.Follow;
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+
 import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
-import types.AffinityGroup;
 
-import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import annotations.Area;
+import mixins.Follow;
+import types.AffinityGroup;
 
 /**
  * This service manages a single affinity group.
@@ -137,4 +138,16 @@ public interface AffinityGroupService {
      * @status updated_by_docs
      */
     @Service AffinityGroupVmsService vms();
+
+    /**
+     * Returns a reference to the service that manages the
+     * list of all hosts attached to this affinity
+     * group.
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @date 26 Jun 2019
+     * @since 4.4
+     * @status added
+     */
+    @Service AffinityGroupHostsService hosts();
 }
