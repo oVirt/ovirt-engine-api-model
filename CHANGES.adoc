@@ -3,6 +3,15 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.3 / Jun 26 2019
+New features:
+
+* Add priority to AffinityGroup type
+  https://bugzilla.redhat.com/1680498[1680498].
+
+* Add allContent to HostNic Services
+  https://bugzilla.redhat.com/1718141[1718141].
+
 == 4.4.2 / Jun 11 2019
 New features:
 
