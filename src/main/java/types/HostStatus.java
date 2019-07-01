@@ -113,11 +113,14 @@ public enum HostStatus {
     /**
      * The host is pending administrator approval.
      * This is relevant only for vintage ovirt-node / RHV-H.
+     * This property is no longer relevant since Vintage Node is no longer supported, and has been deprecated.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
-     * @date 01 Dec 2016
+     * @author Dana Elfassy <delfassy@redhat.com>
+     * @date 19 Aug 2019
      * @status added
      */
+    @Deprecated
     PENDING_APPROVAL,
 
     /**

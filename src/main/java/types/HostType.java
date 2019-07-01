@@ -40,10 +40,15 @@ public enum HostType {
      * The host contains Red Hat Enterprise Virtualization Hypervisor (RHEV-H), a small-scaled version of Red Hat
      * Enterprise Linux, CentOS, or Fedora, used solely to host virtual machines.
      *
+     * This property is no longer relevant since Vintage Node is no longer supported, and has been deprecated.
+     *
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 31 Oct 2016
+     * @author Dana Elfassy <delfassy@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 17 Jul 2019
      * @status updated_by_docs
      */
+    @Deprecated
     RHEV_H,
 
     /**

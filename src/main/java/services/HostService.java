@@ -430,7 +430,7 @@ public interface HostService extends MeasurableService {
      * "https://engine.example.com/ovirt-engine/api/hosts/123"
      * ----
      *
-     * Example of installing a host, using `curl` and JSON, with hosted engine components:
+     * Example of installing a host using `curl` and JSON with hosted engine components:
      *
      * [source,bash]
      * ----
@@ -451,13 +451,14 @@ public interface HostService extends MeasurableService {
      * "https://engine.example.com/ovirt-engine/api/hosts/123?deploy_hosted_engine=true"
      * ----
      *
-     * IMPORTANT: Since version 4.1.2 of the engine when a host is reinstalled we override the host firewall
+     * IMPORTANT: Since version 4.1.2 of the engine, when a host is reinstalled we override the host firewall
      * definitions by default.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 17 Oct 17
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 17 Jul 2019
      * @status updated_by_docs
      */
     interface Install {
@@ -514,10 +515,11 @@ public interface HostService extends MeasurableService {
             }
         }
         /**
-         * The password of of the `root` user, used to connect to the host via SSH.
+         * The password of the `root` user used to connect to the host via SSH.
          *
          * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
+         * @author Eli Marcus <emarcus@redhat.com>
+         * @date 17 Jul 2019
          * @status updated_by_docs
          */
         @In String rootPassword();
@@ -560,8 +562,8 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
 
         /**
-         * When set to `true` it means this host should also deploy the self-hosted engine components. A missing value
-         * is treated as `true` i.e deploy. Omitting this parameter means `false` and will perform no operation in the
+         * When set to `true` this host will also deploy the self-hosted engine components. A missing value
+         * is treated as `true` i.e deploy. Omitting this parameter means `false` and will not perform any operation in the
          * self-hosted engine area.
          *
          * @author Megan Lewis <melewis@redhat.com>
@@ -571,12 +573,13 @@ public interface HostService extends MeasurableService {
         @In Boolean deployHostedEngine();
 
         /**
-         * When set to `true` it means this host should un-deploy the self-hosted engine components and this host will
-         * not function as part of the High Availability cluster. A missing value is treated as `true` i.e un-deploy
-         * Omitting this parameter means `false` and will perform no operation in the self-hosted engine area.
+         * When set to `true` this host will un-deploy the self-hosted engine components, and this host will
+         * not function as part of the High Availability cluster. A missing value is treated as `true` i.e un-deploy.
+         * Omitting this parameter means `false` and will not perform any operation in the self-hosted engine area.
          *
          * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
+         * @author Eli Marcus <emarcus@redhat.com>
+         * @date 17 Jul 2019
          * @status updated_by_docs
          */
         @In Boolean undeployHostedEngine();
@@ -835,29 +838,41 @@ public interface HostService extends MeasurableService {
     interface Upgrade {
 
         @InputDetail
+        /**
+         * This method is no longer relevant, since Vintage Node is no longer supported, and has been deprecated.
+         *
+         * @author Dana Elfassy <delfassy@redhat.com>
+         * @author Eli Marcus <emarcus@redhat.com>
+         * @date 17 Jul 2019
+         * @status updated_by_docs
+
+         */
+        @Deprecated
         default void inputDetail() {
             optional(image());
         }
 
         /**
-         * The image parameter specifies path to image, which is used for upgrade. This parameter is used only to
-         * upgrade Vintage Node hosts and it is not relevant for other hosts types.
+         * This property is no longer relevant, since Vintage Node is no longer supported, and has been deprecated.
          *
-         * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
+         * @author Dana Elfassy <delfassy@redhat.com>
+         * @author Eli Marcus <emarcus@redhat.com>
+         * @date 21 Aug 2019
          * @status updated_by_docs
          */
+        @Deprecated
         @In String image();
 
         /**
-         * Indicates if the host should be rebooted after upgrade.
+         * Indicates if the host should be rebooted after the upgrade.
          * By default the host is rebooted.
          *
-         * NOTE: This parameter is ignored for {hypervisor-name}, which is always rebooted after upgrade.
+         * NOTE: This parameter is ignored for {hypervisor-name}, which is always rebooted after the upgrade.
          *
          * @author Ondra Machacek <omachace@redhat.com>
          * @author Byron Gravenorst <bgraveno@redhat.com>
-         * @date 20 Oct 2017
+         * @author Eli Marcus <emarcus@redhat.com>
+         * @date 17 Jul 2019
          * @status updated_by_docs
          * @since 4.2
          */
@@ -1045,7 +1060,7 @@ public interface HostService extends MeasurableService {
      * <ip address="192.168.122.10" netmask="255.255.255.0"/>
      * ----
      *
-     * Using the Python SDK the same can be done with the following code:
+     * The same thing can be done using the Python SDK with the following code:
      *
      * [source,python]
      * ----
@@ -1130,8 +1145,10 @@ public interface HostService extends MeasurableService {
      *
      * @author Megan Lewis <melewis@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
-     * @date 03 Dec 2018
-     * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 17 Jul 2019
+     * @status updated_by_docs
+
      */
     interface SetupNetworks {
         @InputDetail
