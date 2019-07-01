@@ -150,4 +150,28 @@ public interface AffinityGroupService {
      * @status added
      */
     @Service AffinityGroupHostsService hosts();
+
+    /**
+     * Returns a reference to the service that manages the
+     * list of all virtual machine labels attached to this affinity
+     * group.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 22 Jul 2019
+     * @status added
+     * @since 4.3.6
+     */
+    @Service AffinityGroupVmLabelsService vmLabels();
+
+    /**
+     * Returns a reference to the service that manages the
+     * list of all host labels attached to this affinity
+     * group.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 22 Jul 2019
+     * @status added
+     * @since 4.3.6
+     */
+    @Service AffinityGroupHostLabelsService hostLabels();
 }

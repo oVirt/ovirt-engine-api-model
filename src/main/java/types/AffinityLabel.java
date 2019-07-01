@@ -56,4 +56,17 @@ public interface AffinityLabel extends Identified {
      * @status updated_by_docs
      */
     Boolean readOnly();
+
+    /**
+     * This property enables the legacy behavior for labels.
+     * If `true`, the label acts also as a positive enforcing VM-to-host affinity group.
+     *
+     * This parameter is only used for clusters with compatibility version 4.3 or lower.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 22 Jul 2019
+     * @status added
+     * @since 4.3.6
+     */
+    Boolean hasImplicitAffinityGroup();
 }

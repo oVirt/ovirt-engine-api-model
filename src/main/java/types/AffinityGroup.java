@@ -119,4 +119,25 @@ public interface AffinityGroup extends Identified {
      * @since 4.1
      */
     @Link Host[] hosts();
+
+    /**
+     * A list of all virtual machine labels assigned to this affinity group.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @date 22 Jul 2019
+     * @status added
+     * @since 4.3.6
+     */
+    @Link AffinityLabel[] vmLabels();
+
+    /**
+     * A list of all host labels assigned to this affinity group.
+     *
+     * @author Andrej Krejcir <akrejcir@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 28 Jul 2019
+     * @status updated_by_docs
+     * @since 4.3.6
+     */
+    @Link AffinityLabel[] hostLabels();
 }
