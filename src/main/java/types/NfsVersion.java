@@ -22,6 +22,17 @@ public enum NfsVersion {
     AUTO,
     V3,
     V4,
+
+    /**
+     * NFS 4.0.
+     *
+     * @author Fedor Gavrilov <fgavrilo@redhat.com>
+     * @date 1 Jul 2019
+     * @status added
+     * @since 4.3.6
+     */
+    V4_0,
+
     V4_1,
 
     /**
