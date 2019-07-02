@@ -22498,6 +22498,12 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the host network interface should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -22511,6 +22517,44 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host_nic/methods/get/parameters/all_content"><a class="anchor" href="#services/host_nic/methods/get/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all of the attributes of the host network interface should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the following attributes are excluded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>virtual_functions_configuration</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation network interface '456' of host '123':</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/nics/456?all_content=true</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These attributes are not included by default because retrieving them impacts performance. They are
+seldom used and require additional queries to the database. Use this parameter with caution and only when
+specifically required.
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/host_nic/methods/get/parameters/follow"><a class="anchor" href="#services/host_nic/methods/get/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -22621,6 +22665,12 @@ The input should be consisted of at least one of the following properties:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the host network interface should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -22640,6 +22690,44 @@ The input should be consisted of at least one of the following properties:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host_nics/methods/list/parameters/all_content"><a class="anchor" href="#services/host_nics/methods/list/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all of the attributes of the host network interface should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the following attributes are excluded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>virtual_functions_configuration</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of network interface '456' of host '123':</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/nics?all_content=true</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These attributes are not included by default because retrieving them impacts performance. They are
+seldom used and require additional queries to the database. Use this parameter with caution and only when
+specifically required.
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/host_nics/methods/list/parameters/follow"><a class="anchor" href="#services/host_nics/methods/list/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -49570,6 +49658,11 @@ that are members of that affinity group.</p></td>
 members of that affinity group.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>priority</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/decimal">Decimal</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority of the affinity group.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms_rule</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/affinity_rule">AffinityRule</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the affinity rule applied to virtual machines that are members of this affinity group.</p></td>
@@ -64652,6 +64745,10 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4_0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 4.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v4_1</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -64662,7 +64759,13 @@ This is the network where the ovirtmgmt bridge will be created.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/nfs_version/values/v4_2"><a class="anchor" href="#types/nfs_version/values/v4_2"></a>7.173.1. v4_2</h4>
+<h4 id="types/nfs_version/values/v4_0"><a class="anchor" href="#types/nfs_version/values/v4_0"></a>7.173.1. v4_0</h4>
+<div class="paragraph">
+<p>NFS 4.0.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/nfs_version/values/v4_2"><a class="anchor" href="#types/nfs_version/values/v4_2"></a>7.173.2. v4_2</h4>
 <div class="paragraph">
 <p>NFS 4.2.</p>
 </div>
@@ -79809,7 +79912,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-06-20 11:14:17 UTC
+Last updated 2019-07-02 12:47:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
