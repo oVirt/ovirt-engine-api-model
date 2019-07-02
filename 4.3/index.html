@@ -22498,6 +22498,12 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the host network interface should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -22511,6 +22517,44 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host_nic/methods/get/parameters/all_content"><a class="anchor" href="#services/host_nic/methods/get/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all of the attributes of the host network interface should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the following attributes are excluded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>virtual_functions_configuration</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation network interface '456' of host '123':</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/nics/456?all_content=true</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These attributes are not included by default because retrieving them impacts performance. They are
+seldom used and require additional queries to the database. Use this parameter with caution and only when
+specifically required.
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/host_nic/methods/get/parameters/follow"><a class="anchor" href="#services/host_nic/methods/get/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -22621,6 +22665,12 @@ The input should be consisted of at least one of the following properties:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all_content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if all of the attributes of the host network interface should be included in the response.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>follow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -22640,6 +22690,44 @@ The input should be consisted of at least one of the following properties:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/host_nics/methods/list/parameters/all_content"><a class="anchor" href="#services/host_nics/methods/list/parameters/all_content"></a>all_content</h5>
+<div class="paragraph">
+<p>Indicates if all of the attributes of the host network interface should be included in the response.</p>
+</div>
+<div class="paragraph">
+<p>By default the following attributes are excluded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>virtual_functions_configuration</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to retrieve the complete representation of network interface '456' of host '123':</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>GET /ovirt-engine/api/hosts/123/nics?all_content=true</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These attributes are not included by default because retrieving them impacts performance. They are
+seldom used and require additional queries to the database. Use this parameter with caution and only when
+specifically required.
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect4">
 <h5 id="services/host_nics/methods/list/parameters/follow"><a class="anchor" href="#services/host_nics/methods/list/parameters/follow"></a>follow</h5>
 <div class="paragraph">
@@ -51044,8 +51132,7 @@ for this virtual machine (or template), or not.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>poly_dhcp_autoconf</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DHCP alongside Stateless address auto-configuration (SLAAC)
-</p><p class="tableblock">The SLAAC mechanism is defined by <a href="http://tools" class="bare">http://tools</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DHCP alongside Stateless address auto-configuration (SLAAC).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>static</code></p></td>
@@ -51089,7 +51176,7 @@ more information.</p>
 <div class="sect3">
 <h4 id="types/boot_protocol/values/poly_dhcp_autoconf"><a class="anchor" href="#types/boot_protocol/values/poly_dhcp_autoconf"></a>7.26.3. poly_dhcp_autoconf</h4>
 <div class="paragraph">
-<p>DHCP alongside Stateless address auto-configuration (SLAAC)</p>
+<p>DHCP alongside Stateless address auto-configuration (SLAAC).</p>
 </div>
 <div class="paragraph">
 <p>The SLAAC mechanism is defined by <a href="http://tools.ietf.org/html/rfc4862">RFC 4862</a>. Please refer to the
@@ -51619,7 +51706,7 @@ For more information, see
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>gluster_tuned_profile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <a href="https://fedorahosted" class="bare">https://fedorahosted</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the tuned profile.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ha_reservation</code></p></td>
@@ -51803,7 +51890,10 @@ For clusters with a compatibility version of 4.2 and higher, the default firewal
 <div class="sect3">
 <h4 id="types/cluster/attributes/gluster_tuned_profile"><a class="anchor" href="#types/cluster/attributes/gluster_tuned_profile"></a>7.32.4. gluster_tuned_profile</h4>
 <div class="paragraph">
-<p>The name of the <a href="https://fedorahosted.org/tuned">tuned</a> profile
+<p>The name of the tuned profile.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://fedorahosted.org/tuned">Tuned</a> profile
 to set on all the hosts in the cluster. This is not mandatory
 and relevant only for clusters with Gluster service.</p>
 </div>
@@ -58274,7 +58364,7 @@ is only supported via the <code>roles</code> sub-collection.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Define if the virtual machine should be consider highly available.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define if the virtual machine is considered highly available.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>priority</code></p></td>
@@ -58284,7 +58374,16 @@ is only supported via the <code>roles</code> sub-collection.</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.110.1. priority</h4>
+<h4 id="types/high_availability/attributes/enabled"><a class="anchor" href="#types/high_availability/attributes/enabled"></a>7.110.1. enabled</h4>
+<div class="paragraph">
+<p>Define if the virtual machine is considered highly available.
+Configuring a VM lease is highly recommended (refer to that section) in order to
+prevent split-brain scenarios. Use a boot disk&#8217;s storage-domain or any other
+active storage-domain.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/high_availability/attributes/priority"><a class="anchor" href="#types/high_availability/attributes/priority"></a>7.110.2. priority</h4>
 <div class="paragraph">
 <p>Indicates the priority of the virtual machine inside the run and migration queues.</p>
 </div>
@@ -70801,7 +70900,7 @@ is used to track history.</p>
 </div>
 <div class="paragraph">
 <p>Note that some statistics, notably <code>memory.buffered</code> and <code>memory.cached</code>
-are available only when <a href="https://www.ovirt.org/documentation/internal/guest-agent/guest-agent">oVirt guest agent</a>
+are available only when <a href="https://www.ovirt.org/documentation/vmm-guide/chap-Installing_Linux_Virtual_Machines.html#installing-guest-agents-and-drivers">oVirt guest agent</a>
 is installed in the virtual machine.</p>
 </div>
 </div>
@@ -73661,12 +73760,15 @@ The index 1 represents the original version of a template that is also called ba
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>utc_offset</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Offset from <a href="https://en" class="bare">https://en</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UTC offset.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
 <h4 id="types/time_zone/attributes/utc_offset"><a class="anchor" href="#types/time_zone/attributes/utc_offset"></a>7.280.1. utc_offset</h4>
+<div class="paragraph">
+<p>UTC offset.</p>
+</div>
 <div class="paragraph">
 <p>Offset from <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a>.</p>
 </div>
@@ -75383,7 +75485,7 @@ is used to track history.</p>
 </div>
 <div class="paragraph">
 <p>Note that some statistics, notably <code>memory.buffered</code> and <code>memory.cached</code>
-are available only when <a href="https://www.ovirt.org/documentation/internal/guest-agent/guest-agent">oVirt guest agent</a>
+are available only when <a href="https://www.ovirt.org/documentation/vmm-guide/chap-Installing_Linux_Virtual_Machines.html#installing-guest-agents-and-drivers">oVirt guest agent</a>
 is installed in the virtual machine.</p>
 </div>
 </div>
@@ -79795,7 +79897,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-06-11 13:12:32 UTC
+Last updated 2019-07-02 13:16:20 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
