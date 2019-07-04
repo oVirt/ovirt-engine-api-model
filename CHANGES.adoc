@@ -3,6 +3,12 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.4 / Jul 4 2019
+New features:
+
+* It should be possible to specify exact v4.0 as NFS version
+  https://bugzilla.redhat.com/1690026[1690026].
+
 == 4.4.3 / Jun 26 2019
 New features:
 
