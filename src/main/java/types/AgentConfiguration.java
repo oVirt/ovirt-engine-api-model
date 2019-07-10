@@ -33,6 +33,14 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Deprecated
 @Type
 public interface AgentConfiguration {
+    /**
+     * Not recommended to use, because the Open vSwitch interface mappings are
+     * managed by VDSM since {product-name} 4.2.0.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 10 Jul 2019
+     * @status added
+     */
     String networkMappings();
     MessageBrokerType brokerType();
     String address();
