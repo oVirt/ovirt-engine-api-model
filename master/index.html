@@ -50262,7 +50262,8 @@ The deployment of OpenStack hosts can be done by Red Hat OpenStack Platform Dire
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network_mappings</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not recommended to use, because the Open vSwitch interface mappings are
+managed by VDSM since oVirt 4.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
@@ -50281,6 +50282,13 @@ The deployment of OpenStack hosts can be done by Red Hat OpenStack Platform Dire
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="types/agent_configuration/attributes/network_mappings"><a class="anchor" href="#types/agent_configuration/attributes/network_mappings"></a>7.7.1. network_mappings</h4>
+<div class="paragraph">
+<p>Not recommended to use, because the Open vSwitch interface mappings are
+managed by VDSM since oVirt 4.2.0.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="types/api"><a class="anchor" href="#types/api"></a>7.8. Api <span class="small">struct</span></h3>
@@ -80160,7 +80168,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-07-12 08:19:22 UTC
+Last updated 2019-07-16 07:24:02 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
