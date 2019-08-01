@@ -3,6 +3,23 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.5 / Jul 4 2019
+New features:
+
+* Added AffinityGroupHostsService
+  https://bugzilla.redhat.com/1652064[1652064].
+
+* Add new option to remove SerialNumberPolicy
+  https://bugzilla.redhat.com/1607414[1607414].
+
+* Add services for labels in affinity groups
+  https://bugzilla.redhat.com/1680499[1680499].
+
+Deprecations:
+
+* Announce the depreciation of Neutron agent configuration
+  https://bugzilla.redhat.com/1638675[1638675].
+
 == 4.4.4 / Jul 4 2019
 New features:
 
