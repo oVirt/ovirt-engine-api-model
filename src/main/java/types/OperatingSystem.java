@@ -60,10 +60,15 @@ public interface OperatingSystem {
      *
      * NOTE: Not used for hosts.
      *
+     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
+     * and will be removed in the future.
+     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 24 Apr 2017
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 27 Aug 2019
      * @state added
      */
+    @Deprecated
     String kernel();
 
     /**
@@ -73,10 +78,15 @@ public interface OperatingSystem {
      *
      * NOTE: Not used for hosts.
      *
+     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
+     * and will be removed in the future.
+     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 24 Apr 2017
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 27 Aug 2019
      * @state added
      */
+    @Deprecated
     String initrd();
 
     /**
@@ -84,10 +94,15 @@ public interface OperatingSystem {
      *
      * NOTE: Not used for hosts.
      *
+     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
+     * and will be removed in the future.
+     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @date 24 Apr 2017
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 27 Aug 2019
      * @state added
      */
+    @Deprecated
     String cmdline();
 
     /**
