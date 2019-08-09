@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.28 / Aug 9 2019
+New features:
+
+* Add services for labels in affinity groups
+  https://bugzilla.redhat.com/1680499[1680499].
+
+Deprecations:
+
+* Announce the depreciation of Neutron agent configuration
+  https://bugzilla.redhat.com/1638675[1638675].
+
 == 4.3.27 / Jul 4 2019
 New features:
 
