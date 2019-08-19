@@ -114,6 +114,19 @@ public interface Event extends Identified {
     Integer floodRate();
 
     /**
+     * Specifies whether the event should also be written
+     * to the ${hypervisor.name} log. If no host is specified
+     * the event description will be written to all hosts.
+     * Default is false.
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 19 Aug 2019
+     * @since 4.4
+     * @status added
+     */
+    Boolean logOnHost();
+
+    /**
      * Free text representing custom event data.
      *
      * @author Oved Ourfali <oourfali@redhat.com>

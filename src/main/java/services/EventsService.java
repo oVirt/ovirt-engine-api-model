@@ -75,8 +75,9 @@ public interface EventsService {
      * attribute, if provided, is simply ignored.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
-     * @date 7 Jul 2016
-     * @status added
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 19 Aug 2019
+     * @status updated
      */
     interface Add {
         @InputDetail
@@ -95,6 +96,7 @@ public interface EventsService {
             optional(event().template().id());
             optional(event().user().id());
             optional(event().vm().id());
+            optional(event().logOnHost());
         }
         @In @Out Event event();
     }
