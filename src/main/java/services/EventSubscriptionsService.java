@@ -31,7 +31,9 @@ public interface EventSubscriptionsService {
      * event-subscription for `host_high_cpu_use` for user `123`, and have the notification
      * sent to the e-mail address: `a@b.com`, send a request like this:
      *
-     * .... POST /ovirt-engine/api/users/123/eventsubscriptions ....
+     * ....
+     * POST /ovirt-engine/api/users/123/eventsubscriptions
+     * ....
      *
      * With a request body like this:
      *
@@ -41,7 +43,7 @@ public interface EventSubscriptionsService {
      *     <event>host_high_cpu_use</event>
      *     <address>a@b.com</address>
      * </event_subscription>
-     * -----
+     * ----
      *
      * The event name will become the ID of the new event-subscription entity:
      * GET .../api/users/123/eventsubscriptions/host_high_cpu_use
@@ -77,7 +79,7 @@ public interface EventSubscriptionsService {
 
 
     /**
-     * List the event-subscriptions for the provided user
+     * List the event-subscriptions for the provided user.
      *
      * For example to list event-subscriptions for user `123`:
      *
