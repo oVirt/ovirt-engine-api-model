@@ -223,6 +223,18 @@ public interface Cluster extends Identified {
     Boolean haReservation();
 
     /**
+     * Chipset and BIOS type combination.
+     *
+     * This value is used as default for all virtual machines in the cluster having `biosType` set to `CLUSTER_DEFAULT`.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 28 Aug 2019
+     * @status added
+     * @since 4.4
+     */
+    BiosType biosType();
+
+    /**
      * This property has no longer any relevance and has been deprecated. Its default value is true.
      *
      * @author Dana Elfassy <delfassy@redhat.com>

@@ -28,9 +28,21 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public enum BiosType {
     /**
+     * Use the cluster-wide default.
+     *
+     * This value cannot be used for cluster.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 28 Aug 2019
+     * @status added
+     * @since 4.4
+     */
+    CLUSTER_DEFAULT,
+
+    /**
      * i440fx chipset with SeaBIOS.
      *
-     * For non-x86 architectures this is the only value allowed.
+     * For non-x86 architectures this is the only non-default value allowed.
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @date 21 Jun 2018
