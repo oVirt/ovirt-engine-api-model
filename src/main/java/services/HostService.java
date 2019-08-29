@@ -886,6 +886,19 @@ public interface HostService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean async();
+
+	/**
+	 * Upgrade timeout.
+	 *
+	 * The maximum time to wait for upgrade to finish in minutes.
+	 * Default value is specified by `ANSIBLE_PLAYBOOK_EXEC_DEFAULT_TIMEOUT` configration option.
+	 *
+	 * @author Ondra Machacek <omacahce@redhat.com>
+	 * @date 29 Aug 2019
+	 * @status added
+	 * @since 4.3.6
+	 */
+	@In Integer timeout();
     }
 
     /**
