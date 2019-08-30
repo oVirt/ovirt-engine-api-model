@@ -3,6 +3,21 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.7 / Aug 30 2019
+New features:
+
+* Echo external event to oVirt log on host.
+
+* Cluster-wide BIOS Type default
+
+* Add timeout to host upgrade
+  https://bugzilla.redhat.com/1728617[1728617].
+
+Deprecations:
+
+* Drop ovirt node legacy support
+  https://bugzilla.redhat.com/1718790[1718790].
+  
 == 4.4.6 / Aug 9 2019
 New features:
 
