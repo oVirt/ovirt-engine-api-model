@@ -310,6 +310,16 @@ public interface HostService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean async();
+
+        /**
+         * Indicates if host should be put into maintenance after restart.
+         *
+         * @author Artur Socha <asocha@redhat.com>
+         * @date 10 Sep 19
+         * @since 4.4
+         * @status requires_text
+         */
+        @In Boolean maintenanceAfterRestart();
     }
 
     /**
