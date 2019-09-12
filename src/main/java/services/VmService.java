@@ -922,6 +922,17 @@ public interface VmService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean async();
+
+        /**
+         * The reason the virtual machine was stopped.
+         * Optionally set by user when shutting down the virtual machine.
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 12 Sep 2019
+         * @status added
+         * @since 4.4
+         */
+        @In String reason();
     }
 
     /**
@@ -1138,6 +1149,17 @@ public interface VmService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean async();
+
+        /**
+         * The reason the virtual machine was stopped.
+         * Optionally set by user when shutting down the virtual machine.
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 12 Sep 2019
+         * @status added
+         * @since 4.4
+         */
+        @In String reason();
     }
 
     /**
