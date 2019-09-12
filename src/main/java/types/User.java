@@ -97,4 +97,17 @@ public interface User extends Identified {
      */
     @Link Tag[] tags();
     @Link SshPublicKey[] sshPublicKeys();
+
+    /**
+     * User options allow you to save key/value properties
+     * which are used to customize the settings per individual
+     * user.
+     *
+     * @author Bohdan Iakymets <biakymet@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 10 Oct 2019
+     * @status updated_by_docs
+     * @since 4.4
+     */
+    Property[] userOptions();
 }

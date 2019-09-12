@@ -19,6 +19,7 @@ package services.aaa;
 import annotations.Area;
 import mixins.Follow;
 import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import services.AssignedPermissionsService;
@@ -26,7 +27,7 @@ import services.AssignedRolesService;
 import services.AssignedTagsService;
 import services.EventSubscriptionsService;
 import types.User;
-
+import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 /**
  * A service to manage a user in the system.
  * Use this service to either get users details or remove users.
@@ -85,6 +86,46 @@ public interface UserService {
          * @status added
          */
         @Out User user();
+    }
+
+
+    /**
+     * Updates information about the user.
+     *
+     * Only the `user_options` field can be updated.
+     *
+     * For example, to update user options:
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/users/123
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <user>
+     *    <user_options>
+     *       <property>
+     *          <name>test</name>
+     *          <value>test1</value>
+     *       </property>
+     *    </user_options>
+     * </user>
+     * ----
+     *
+     * @author Bohdan Iakymets <biakymet@redhat.com>
+     * @date 2 Oct 2019
+     * @status added
+     * @since 4.4
+     */
+    interface Update {
+        @InputDetail
+        default void inputDetail() {
+            optional(user().userOptions());
+        }
+        @In @Out User user();
     }
 
    /**
