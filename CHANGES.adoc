@@ -3,6 +3,17 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.8 / Sep 12 2019
+New features:
+
+* Add maintenance_after_restart to host fence action.
+  https://bugzilla.redhat.com/1574443[1574443].
+
+Deprecations:
+
+* Deprecate linux boot params
+  https://bugzilla.redhat.com/1732437[1732437].
+
 == 4.4.7 / Aug 30 2019
 New features:
 
