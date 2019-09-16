@@ -186,10 +186,19 @@ public interface DiskService extends MeasurableService {
     }
 
     /**
-     * This operation updates the disk with the appropriate parameters.
-     * The only field that can be updated is `qcow_version`.
+     * Updates the parameters of the specified disk.
      *
-     * For example, disk update can be done using the following request:
+     * This operation allows updating the following floating disk properties:
+     *
+     * * For Image disks: `size`, `alias`, `description`, `wipe_after_delete`, `shareable`, `backup` and `disk_profile`.
+     *
+     * * For LUN disks: `alias`, `description` and `shareable`.
+     *
+     * * For Cinder and Managed Block disks: `size`, `alias` and `description`.
+     *
+     * * For VM attached disks, the `qcow_version` can also be updated.
+     *
+     * For example, a disk's update can be done by using the following request:
      *
      * [source]
      * ----
@@ -202,6 +211,8 @@ public interface DiskService extends MeasurableService {
      * ----
      * <disk>
      *   <qcow_version>qcow2_v3</qcow_version>
+     *   <alias>new-alias</alias>
+     *   <description>new-desc</description>
      * </disk>
      * ----
      *
@@ -210,9 +221,10 @@ public interface DiskService extends MeasurableService {
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
      * @author Avital Pinnick <apinnick@redhat.com>
-     * @date 03 May 2018
-     * @status updated_by_docs
-     * @since 4.1
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @date 18 Sep 2019
+     * @status added
+     * @since 4.4.0
      */
     interface Update {
         @InputDetail
