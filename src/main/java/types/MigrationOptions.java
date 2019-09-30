@@ -32,6 +32,16 @@ public interface MigrationOptions {
     InheritableBoolean compressed();
 
     /**
+     * Specifies whether the migration should be encrypted or not.
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @date 30 Sep 2019
+     * @status added
+     * @since 4.4
+     */
+    InheritableBoolean encrypted();
+
+    /**
      * The bandwidth that is allowed to be used by the migration.
      *
      * @author Megan Lewis <melewis@redhat.com>
