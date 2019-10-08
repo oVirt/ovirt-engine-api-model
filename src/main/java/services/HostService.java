@@ -1275,6 +1275,57 @@ public interface HostService extends MeasurableService {
         @In Boolean async();
     }
 
+
+    /**
+     * Copy the network configuration of the specified host to current host.
+     *
+     * To copy networks from another host, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/copyhostnetworks
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *    <sourceHost id="456" />
+     * </action>
+     * ----
+     *
+     * @author Ales Musil <amusil@redhat.com>
+     * @date 15 Oct 2019
+     * @status added
+     * @since 4.4
+     */
+    interface CopyHostNetworks {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(sourceHost().id());
+        }
+
+        /**
+         * The host to copy networks from.
+         *
+         * @author Ales Musil <amusil@redhat.com>
+         * @date 15 Oct 2019
+         * @status added
+         */
+        @In Host sourceHost();
+
+        /**
+         * Indicates if the action should be performed asynchronously.
+         *
+         * @author Ales Musil <amusil@redhat.com>
+         * @date 15 Oct 2019
+         * @status added
+         */
+        @In Boolean async();
+    }
+
+
     /**
      * A reference to the host permission service.
      * Use this service to manage permissions on the host object.
