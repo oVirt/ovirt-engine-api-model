@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.9 / Oct 9 2019
+New features:
+
+* Add the support for stop and shutdown
+  https://bugzilla.redhat.com/1450351[1450351].
+
+* Add copyhostnetworks method
+  https://bugzilla.redhat.com/1627465[1627465].
+
+* Add encrypted to migration options
+  https://bugzilla.redhat.com/1739557[1739557].
+
 == 4.4.8 / Sep 12 2019
 New features:
 
