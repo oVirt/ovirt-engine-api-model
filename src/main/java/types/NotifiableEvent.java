@@ -158,6 +158,10 @@ public enum NotifiableEvent {
      */
     HOST_CERTIFICATION_HAS_EXPIRED,
     /**
+     * Host's certificate contains invalid subject alternative name (SAN)
+     */
+    HOST_CERTIFICATE_HAS_INVALID_SAN,
+    /**
      * Host state was set to non-operational due to inaccessible Storage Domain
      */
     HOST_SET_NONOPERATIONAL_DOMAIN,
