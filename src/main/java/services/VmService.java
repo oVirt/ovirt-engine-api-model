@@ -145,8 +145,8 @@ public interface VmService extends MeasurableService {
     /**
      * Exports the virtual machine.
      *
-     * A virtual machine can be exported to an export domain.
-     * For example, to export virtual machine `123` to the export domain `myexport`:
+     * A virtual machine can be exported to a storage domain.
+     * For example, to export virtual machine `123` to the storage domain `mysd`:
      *
      * [source]
      * ----
@@ -159,9 +159,9 @@ public interface VmService extends MeasurableService {
      * ----
      * <action>
      *   <storage_domain>
-     *     <name>myexport</name>
+     *     <name>mysd</name>
      *   </storage_domain>
-     *   <exclusive>true</exclusive>
+     *   <exported_vm_name>myvm-export</exported_vm_name>
      *   <discard_snapshots>true</discard_snapshots>
      * </action>
      * ----
@@ -209,12 +209,25 @@ public interface VmService extends MeasurableService {
          * Use the `exclusive` parameter when the virtual machine should be exported even if another copy of
          * it already exists in the export domain (override).
          *
+	 * @deprecated This parameter will be ignored, a unique name should be chosen for the exported VM
          * @author Tal Nisan <tisan@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
          * @date 28 Mar 2017
          * @status updated_by_docs
          */
         @In Boolean exclusive();
+
+        /**
+         * Use the optional `exported_vm_name` parameter to set the name for the exported virtual machine.
+         * The name has to be unique. If the name is not set, the exported virtual machine name
+         * will have an `-export`. For example: `myvm-export`.
+         *
+         * @author Benny Zlotnik
+         * @date 23 Oct 2019
+         * @status added
+	 * @since 4.4
+         */
+        @In String exportedVmName();
 
         /**
          * The (export) storage domain to export the virtual machine to.
@@ -299,6 +312,11 @@ public interface VmService extends MeasurableService {
                 optional(filename());
                 or(mandatory(host().id()), mandatory(host().name()));
             }
+        }
+
+        @InputDetail
+        default void inputDetail() {
+            optional(exportedVmName());
         }
     }
 
