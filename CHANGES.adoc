@@ -3,6 +3,14 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.10 / Oct 23 2019
+New features:
+
+* Added properties for user type.
+  
+* Add HOST_CERTIFICATE_HAS_INVALID_SAN event
+  https://bugzilla.redhat.com/1763084[1763084].
+
 == 4.4.9 / Oct 9 2019
 New features:
 
