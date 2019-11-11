@@ -190,11 +190,11 @@ public interface DiskService extends MeasurableService {
      *
      * This operation allows updating the following floating disk properties:
      *
-     * * For Image disks: `size`, `alias`, `description`, `wipe_after_delete`, `shareable`, `backup` and `disk_profile`.
+     * * For Image disks: `provisioned_size`, `alias`, `description`, `wipe_after_delete`, `shareable`, `backup` and `disk_profile`.
      *
      * * For LUN disks: `alias`, `description` and `shareable`.
      *
-     * * For Cinder and Managed Block disks: `size`, `alias` and `description`.
+     * * For Cinder and Managed Block disks: `provisioned_size`, `alias` and `description`.
      *
      * * For VM attached disks, the `qcow_version` can also be updated.
      *
