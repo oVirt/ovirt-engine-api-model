@@ -104,9 +104,32 @@ public interface VmService extends MeasurableService {
          */
         @In Boolean async();
 
+        /**
+         * Use the `discard_snapshots` parameter when the virtual machine should be clone with its
+         * snapshots collapsed. Default is true.
+         *
+         * @author Benny Zlotnik <bzlotnik@redhat.com>
+         * @date 13 Nov 2019
+         * @status added
+         * @since 4.4
+         */
+        @In Boolean discardSnapshots();
+
+        /**
+         * The storage domain on which the virtual machines disks will be copied to.
+         *
+         * @author Benny Zlotnik <bzlotnik@redhat.com>
+         * @date 13 Nov 2019
+         * @status added
+         * @since 4.4
+         */
+        @In StorageDomain storageDomain();
+
         @InputDetail
         default void inputDetail() {
             mandatory(vm().name());
+            optional(discardSnapshots());
+            or(optional(storageDomain().id()), optional(storageDomain().name()));
         }
     }
 
