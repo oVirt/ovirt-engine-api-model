@@ -41,6 +41,16 @@ public interface HostDevice extends Identified {
      */
     String driver();
 
+    /**
+    * List of all supported mdev types on the physical device,
+    *
+    * @author Lucia Jelinkova <ljelinko@redhat.com>
+    * @date 18 Nov 2019
+    * @status added
+    * @since 4.4
+    */
+    MDevType[] mDevTypes();
+
     @Link Host host();
     @Link HostDevice parentDevice();
     @Link Vm vm();
