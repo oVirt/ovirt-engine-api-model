@@ -40,8 +40,75 @@ public interface FenceAgentsService {
     /**
      * Add a new fencing-agent to the host.
      *
+     * [source]
+     *
+     * ----
+     * POST /ovirt-engine/api/hosts/123/fenceagents
+     *
+     * You should consult the /usr/sbin/fence_<agent_name> manual page for
+     * the legal parameters to [name1=value1, name2=value2,...] in the options field.
+     * If any parameter in options appears by name that means that it is mandatory.
+     * For example in <options>slot=7[,name1=value1, name2=value2,...]</options>
+     * slot is mandatory.
+     * ----
+     *
+     * apc, bladecenter, wti fencing agent/s sample request:
+     *
+     * [source,xml]
+     *
+     *   <agent>
+     *     <type>apc</type>
+     *     <order>1</order>
+     *     <ip>192.168.1.101</ip>
+     *     <user>user</user>
+     *     <password>xxx</password>
+     *     <port>9</port>
+     *     <options>slot=7[,name1=value1, name2=value2,...]</options>
+     *   </agent>
+     *
+     * apc_snmp, hpblade, ilo, ilo2, ilo_ssh, redfish, rsa fencing agent/s sample request:
+     *
+     * [source,xml]
+     *
+     *   <agent>
+     *     <type>apc_snmp</type>
+     *     <order>1</order>
+     *     <ip>192.168.1.101</ip>
+     *     <user>user</user>
+     *     <password>xxx</password>
+     *     <port>9</port>
+     *     <options>[name1=value1, name2=value2,...]</options>
+     *   </agent>
+     *
+     *
+     * cisco_ucs, drac5, eps fencing agent/s sample request:
+     *
+     * [source,xml]
+     *
+     *   <agent>
+     *     <type>cisco_ucs</type>
+     *     <order>1</order>
+     *     <ip>192.168.1.101</ip>
+     *     <user>user</user>
+     *     <password>xxx</password>
+     *     <options>slot=7[,name1=value1, name2=value2,...]</options>
+     *   </agent>
+     *
+     * drac7, ilo3, ilo4, ipmilan, rsb fencing agent/s sample request:
+     *
+     * [source,xml]
+     *
+     *   <agent>
+     *     <type>drac7</type>
+     *     <order>1</order>
+     *     <ip>192.168.1.101</ip>
+     *     <user>user</user>
+     *     <password>xxx</password>
+     *     <options>[name1=value1, name2=value2,...]</options>
+     *   </agent>
      * @author Ori Liel <oliel@redhat.com>
-     * @date 18 Jan 2017
+     * @author Eli Mesika <emesika@redhat.com>
+     * @date 26 Nov 2019
      * @status added
      */
     interface Add {
