@@ -35,11 +35,12 @@ public enum FirewallType {
      * `iptables`. `iptables` adds firewall rules to `/etc/sysconfig/iptables` using a special `iptables` syntax. For
      * more information, see the `iptables` manual page.
      *
-     * `iptables` is deprecated in cluster version 4.2 and will be removed in cluster version 4.3.
+     * `iptables` is deprecated in cluster version 4.2 and will be removed in a future cluster version.
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 11 Aug 2017
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 26 Nov 2019
      * @status updated_by_docs
      * @since 4.2
      */
@@ -49,7 +50,7 @@ public enum FirewallType {
      * FirewallD firewall type.
      *
      * When a cluster has the firewall type set to `firewalld`, the firewalls of all hosts in the cluster will be configured
-     * using `firewalld`. http://www.firewalld.org[FirewallD] replaced IPTables in version 4.2. It simplifies 
+     * using `firewalld`. http://www.firewalld.org[FirewallD] replaced IPTables in version 4.2. It simplifies
      * configuration using a command line program and dynamic configuration.
      *
      *
