@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.11 / Nov 02 2019
+New features:
+
+* Added 'discardSnapshots', 'storageDomain' params to VM clone
+
+* Added MDevType type and mDevTypes() to HostDevice
+
 == 4.4.10 / Oct 23 2019
 New features:
 
