@@ -1049,6 +1049,17 @@ public interface VmService extends MeasurableService {
         @In Boolean useSysprep();
 
         /**
+         * If set to `true`, the initialization type is set to _Ignition_. The default value is `false`.
+         * See https://coreos.com/ignition/docs/latest/[this] for details.
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 5 Dec 2019
+         * @status added
+         * @since 4.4.0
+         */
+        @In Boolean useIgnition();
+
+        /**
          * Indicates if the start action should be performed asynchronously.
          *
          * @author Megan Lewis <melewis@redhat.com>
@@ -1083,6 +1094,7 @@ public interface VmService extends MeasurableService {
             optional(pause());
             optional(useCloudInit());
             optional(useSysprep());
+            optional(useIgnition());
             optional(vm().customCpuModel());
             optional(vm().customEmulatedMachine());
             optional(vm().display().type());
