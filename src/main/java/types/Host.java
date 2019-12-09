@@ -433,7 +433,7 @@ public interface Host extends Identified {
     @Link ExternalHostProvider externalHostProvider();
     @Link StorageConnectionExtension[] storageConnectionExtensions();
     @Link AffinityLabel[] affinityLabels();
-    @Link Device[] devices();
+    @Link HostDevice[] devices();
     @Link Agent[] agents();
 
     /**
