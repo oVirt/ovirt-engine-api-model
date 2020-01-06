@@ -173,7 +173,7 @@ public interface Network extends Identified {
      */
     Boolean profileRequired();
 
-    /*
+    /**
      * The DNS resolver configuration will be reported when retrieving the network using GET.
      * It is optional both when creating a new network or updating existing one.
      *
