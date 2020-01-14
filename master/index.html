@@ -65273,7 +65273,7 @@ how many parallel migrations are allowed.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>dns_resolver_configuration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/dns_resolver_configuration">DnsResolverConfiguration</a></p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The DNS resolver configuration will be reported when retrieving the network using GET.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
@@ -65329,21 +65329,28 @@ created.</p></td>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="types/network/attributes/required"><a class="anchor" href="#types/network/attributes/required"></a>7.165.1. required</h4>
+<h4 id="types/network/attributes/dns_resolver_configuration"><a class="anchor" href="#types/network/attributes/dns_resolver_configuration"></a>7.165.1. dns_resolver_configuration</h4>
+<div class="paragraph">
+<p>The DNS resolver configuration will be reported when retrieving the network using GET.
+It is optional both when creating a new network or updating existing one.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/network/attributes/required"><a class="anchor" href="#types/network/attributes/required"></a>7.165.2. required</h4>
 <div class="paragraph">
 <p>Defines whether the network is mandatory for all the hosts in the cluster. In case a 'required'
 <code>operational</code> network is omitted from a host, the host will be marked as <code>non_operational</code>,</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/attributes/status"><a class="anchor" href="#types/network/attributes/status"></a>7.165.2. status</h4>
+<h4 id="types/network/attributes/status"><a class="anchor" href="#types/network/attributes/status"></a>7.165.3. status</h4>
 <div class="paragraph">
 <p>The status of the network. <code>non_operational</code> if the network defined as 'required' and
 omitted from any active cluster host. <code>operational</code> otherwise.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/attributes/usages"><a class="anchor" href="#types/network/attributes/usages"></a>7.165.3. usages</h4>
+<h4 id="types/network/attributes/usages"><a class="anchor" href="#types/network/attributes/usages"></a>7.165.4. usages</h4>
 <div class="paragraph">
 <p>Defines a set of usage elements for the network.</p>
 </div>
@@ -65410,14 +65417,14 @@ display traffic with the <code>vm</code> and <code>display</code> values.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/cluster"><a class="anchor" href="#types/network/links/cluster"></a>7.165.4. cluster</h4>
+<h4 id="types/network/links/cluster"><a class="anchor" href="#types/network/links/cluster"></a>7.165.5. cluster</h4>
 <div class="paragraph">
 <p>A reference to the cluster this network is attached to. Will be filled only if the network is accessed from the
 cluster level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.165.5. external_provider</h4>
+<h4 id="types/network/links/external_provider"><a class="anchor" href="#types/network/links/external_provider"></a>7.165.6. external_provider</h4>
 <div class="paragraph">
 <p>An optional reference to the <em>OpenStack</em> network provider on which the network is created.</p>
 </div>
@@ -65426,7 +65433,7 @@ cluster level.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.165.6. external_provider_physical_network</h4>
+<h4 id="types/network/links/external_provider_physical_network"><a class="anchor" href="#types/network/links/external_provider_physical_network"></a>7.165.7. external_provider_physical_network</h4>
 <div class="paragraph">
 <p>An optional reference to a network that should be used for physical network access. Valid only if
 <code>external_provider</code> is specified.</p>
@@ -82212,7 +82219,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-12-31 12:17:13 UTC
+Last updated 2020-01-14 07:54:52 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
