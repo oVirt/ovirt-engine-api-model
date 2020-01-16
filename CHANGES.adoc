@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.12 / Jan 16 2019
+New features:
+
+* introduce ignition initialization type
+
+Bug fixes:
+
+* Fix follow host devices issue
+  https://bugzilla.redhat.com/1772846[1772846]
+
+* Fix Travis faliure (by using openjdk instead of oraclejdk)
+
 == 4.4.11 / Nov 02 2019
 New features:
 
