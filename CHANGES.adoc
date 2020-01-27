@@ -3,6 +3,11 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.3.30 / Jan 27 2020
+Bug fixes:
+
+* Make Travis use openjdk instead of oraclejdk
+
 == 4.3.29 / Aug 30 2019
 New features:
 
