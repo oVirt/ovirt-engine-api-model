@@ -30,6 +30,12 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface Tag extends Identified {
 
     /**
+     * Artificial change to be reverted immediately!
+     * done only to trigger a travis build
+     */
+    String temp();
+
+    /**
      * Reference to the host which has this tag assigned.
      *
      * @author Ondra Machacek <omachace@redhat.com>
