@@ -13,9 +13,9 @@ deploy:
     skip_cleanup: true
     script: automation/deploy-on-gh-pages.sh master
     on:
-      all_branches: true
+      branch: master
   - provider: script
     skip_cleanup: true
     script: automation/deploy-on-gh-pages.sh tagged
     on:
-      tags: false
+      tags: true
