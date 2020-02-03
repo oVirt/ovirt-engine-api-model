@@ -406,4 +406,23 @@ public interface ClusterService {
       */
      @Service
      ClusterExternalProvidersService externalNetworkProviders();
+
+     /**
+      * Updates the Gluster heal info for all volumes in cluster.
+      *
+      * For example, Cluster `123`, send a request like
+      * this:
+      *
+      * [source]
+      * ----
+      * POST /ovirt-engine/api/clusters/123/updateglusterhealstatus
+      * ----
+      *
+      *
+      * @author Ritesh Chikatwar <rchikatw@redhat.com>
+      * @date 3 Feb 2020
+      * @status added
+      */
+     interface updateGlusterHealStatus {	
+     }
 }
