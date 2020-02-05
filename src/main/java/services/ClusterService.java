@@ -408,14 +408,14 @@ public interface ClusterService {
      ClusterExternalProvidersService externalNetworkProviders();
 
      /**
-      * Updates the Gluster heal info for all volumes in cluster.
+      * Refresh the Gluster heal info for all volumes in cluster.
       *
       * For example, Cluster `123`, send a request like
       * this:
       *
       * [source]
       * ----
-      * POST /ovirt-engine/api/clusters/123/updateglusterhealstatus
+      * POST /ovirt-engine/api/clusters/123/refreshglusterhealstatus
       * ----
       *
       *
@@ -423,6 +423,6 @@ public interface ClusterService {
       * @date 3 Feb 2020
       * @status added
       */
-     interface updateGlusterHealStatus {	
+     interface refreshGlusterHealStatus {
      }
 }
