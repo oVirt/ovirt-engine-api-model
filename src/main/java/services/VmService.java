@@ -1060,6 +1060,20 @@ public interface VmService extends MeasurableService {
         @In Boolean useIgnition();
 
         /**
+         * If set to `true`, the initialization type is set by the VM's OS.
+         * Windows will set to _Sysprep_, Linux to _cloud-init_ and RedHat CoreOS to _Ignition_.
+         * If any of the initialization-types are explicitly set (useCloudInit, useSysprep or useIgnition),
+         * they will be prioritized and this flag will be ignored.
+         * The default value is `false`.
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 9 Feb 2020
+         * @status added
+         * @since 4.4.0
+         */
+        @In Boolean useInitialization();
+
+        /**
          * Indicates if the start action should be performed asynchronously.
          *
          * @author Megan Lewis <melewis@redhat.com>
@@ -1095,6 +1109,7 @@ public interface VmService extends MeasurableService {
             optional(useCloudInit());
             optional(useSysprep());
             optional(useIgnition());
+            optional(useInitialization());
             optional(vm().customCpuModel());
             optional(vm().customEmulatedMachine());
             optional(vm().display().type());
