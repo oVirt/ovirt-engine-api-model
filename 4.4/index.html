@@ -4223,6 +4223,9 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/permission/methods/remove">DELETE</a> /<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/assigned_permissions">permissions</a>/<a href="#services/permission">{permission:id}</a></p>
 </li>
 <li>
+<p><a href="#services/cluster/methods/refresh_gluster_heal_status">POST</a> /<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/cluster">refreshglusterhealstatus</a></p>
+</li>
+<li>
 <p><a href="#services/cluster/methods/reset_emulated_machine">POST</a> /<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/cluster">resetemulatedmachine</a></p>
 </li>
 <li>
@@ -4497,6 +4500,9 @@ reverts back to disk for all future boots.</p>
 </li>
 <li>
 <p><a href="#services/permission/methods/remove">DELETE</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/assigned_permissions">permissions</a>/<a href="#services/permission">{permission:id}</a></p>
+</li>
+<li>
+<p><a href="#services/cluster/methods/refresh_gluster_heal_status">POST</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/cluster">refreshglusterhealstatus</a></p>
 </li>
 <li>
 <p><a href="#services/cluster/methods/reset_emulated_machine">POST</a> /<a href="#services/data_centers">datacenters</a>/<a href="#services/data_center">{datacenter:id}</a>/<a href="#services/clusters">clusters</a>/<a href="#services/cluster">{cluster:id}</a>/<a href="#services/cluster">resetemulatedmachine</a></p>
@@ -11112,6 +11118,10 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gets information about the cluster.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>refreshglusterhealstatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refresh the Gluster heal info for all volumes in cluster.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Removes the cluster from the system.</p></td>
 </tr>
@@ -11261,7 +11271,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/cluster/methods/remove"><a class="anchor" href="#services/cluster/methods/remove"></a>6.38.2. remove <span class="small">DELETE</span></h4>
+<h4 id="services/cluster/methods/refresh_gluster_heal_status"><a class="anchor" href="#services/cluster/methods/refresh_gluster_heal_status"></a>6.38.2. refreshglusterhealstatus <span class="small">POST</span></h4>
+<div class="paragraph">
+<p>Refresh the Gluster heal info for all volumes in cluster.</p>
+</div>
+<div class="paragraph">
+<p>For example, Cluster <code>123</code>, send a request like
+this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/clusters/123/refreshglusterhealstatus</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="services/cluster/methods/remove"><a class="anchor" href="#services/cluster/methods/remove"></a>6.38.3. remove <span class="small">DELETE</span></h4>
 <div class="paragraph">
 <p>Removes the cluster from the system.</p>
 </div>
@@ -11297,7 +11322,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/cluster/methods/reset_emulated_machine"><a class="anchor" href="#services/cluster/methods/reset_emulated_machine"></a>6.38.3. resetemulatedmachine <span class="small">POST</span></h4>
+<h4 id="services/cluster/methods/reset_emulated_machine"><a class="anchor" href="#services/cluster/methods/reset_emulated_machine"></a>6.38.4. resetemulatedmachine <span class="small">POST</span></h4>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 113. Parameters summary</caption>
 <colgroup>
@@ -11325,7 +11350,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/cluster/methods/sync_all_networks"><a class="anchor" href="#services/cluster/methods/sync_all_networks"></a>6.38.4. syncallnetworks <span class="small">POST</span></h4>
+<h4 id="services/cluster/methods/sync_all_networks"><a class="anchor" href="#services/cluster/methods/sync_all_networks"></a>6.38.5. syncallnetworks <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Synchronizes all networks on the cluster.</p>
 </div>
@@ -11369,7 +11394,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/cluster/methods/update"><a class="anchor" href="#services/cluster/methods/update"></a>6.38.5. update <span class="small">PUT</span></h4>
+<h4 id="services/cluster/methods/update"><a class="anchor" href="#services/cluster/methods/update"></a>6.38.6. update <span class="small">PUT</span></h4>
 <div class="paragraph">
 <p>Updates information about the cluster.</p>
 </div>
@@ -11429,7 +11454,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/cluster/methods/upgrade"><a class="anchor" href="#services/cluster/methods/upgrade"></a>6.38.6. upgrade <span class="small">POST</span></h4>
+<h4 id="services/cluster/methods/upgrade"><a class="anchor" href="#services/cluster/methods/upgrade"></a>6.38.7. upgrade <span class="small">POST</span></h4>
 <div class="paragraph">
 <p>Start or finish upgrade process for the cluster based on the action value. This action marks the cluster for
 upgrade or clears the upgrade running flag on the cluster based on the action value which takes values of
@@ -44607,6 +44632,12 @@ it can be started.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code>, the initialization type is set to <em>Ignition</em>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_initialization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code>, the initialization type is set by the VM&#8217;s OS.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_sysprep</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
@@ -44644,6 +44675,16 @@ See <a href="https://cloudinit.readthedocs.io/en/latest">this</a> for details.</
 <div class="paragraph">
 <p>If set to <code>true</code>, the initialization type is set to <em>Ignition</em>. The default value is <code>false</code>.
 See <a href="https://coreos.com/ignition/docs/latest/">this</a> for details.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vm/methods/start/parameters/use_initialization"><a class="anchor" href="#services/vm/methods/start/parameters/use_initialization"></a>use_initialization</h5>
+<div class="paragraph">
+<p>If set to <code>true</code>, the initialization type is set by the VM&#8217;s OS.
+Windows will set to <em>Sysprep</em>, Linux to <em>cloud-init</em> and RedHat CoreOS to <em>Ignition</em>.
+If any of the initialization-types are explicitly set (useCloudInit, useSysprep or useIgnition),
+they will be prioritized and this flag will be ignored.
+The default value is <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -50831,6 +50872,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_ignition</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_initialization</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -82233,7 +82279,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-01-16 11:45:22 UTC
+Last updated 2020-02-24 12:02:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
