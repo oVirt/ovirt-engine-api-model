@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.13 / Feb 24 2020
+New features:
+
+* Added refreshGlusterHealStatus to Cluster
+
+* Added allow start VM with generic initialization
+
 == 4.4.12 / Jan 16 2019
 New features:
 
