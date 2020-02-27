@@ -23,7 +23,6 @@ limitations under the License.
   </resources>
 
   <dependencies>
-    <module name="com.sun.xml.txw2"/>
     <module name="javax.json.api"/>
     <module name="javax.xml.stream.api"/>
   </dependencies>

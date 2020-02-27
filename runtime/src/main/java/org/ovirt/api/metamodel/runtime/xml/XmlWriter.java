@@ -35,8 +35,6 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
 
-import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
-
 /**
  * This class wraps the {@link XMLStreamWriter} class so that the methods don't send checked exceptions, in order to
  * simplify its usage together with streams and lambdas.
@@ -114,7 +112,6 @@ public class XmlWriter implements AutoCloseable {
             writer = factory.createXMLStreamWriter(result);
             if (indent) {
                 IndentingXMLStreamWriter indenter = new IndentingXMLStreamWriter(writer);
-                indenter.setIndentStep("  ");
                 writer = indenter;
             }
         }
@@ -409,6 +406,7 @@ public class XmlWriter implements AutoCloseable {
     /**
      * Closes the XML document and the underlying result.
      */
+    @Override
     public void close() {
         try {
             writer.writeEndDocument();

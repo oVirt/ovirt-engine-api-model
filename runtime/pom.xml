@@ -33,13 +33,6 @@ limitations under the License.
 
   <dependencies>
 
-    <!-- This is needed in order to generate nicely indented XML: -->
-    <dependency>
-      <groupId>com.sun.xml.txw2</groupId>
-      <artifactId>txw2</artifactId>
-      <version>20110809</version>
-    </dependency>
-
     <!-- This is needed in order to generate JSON: -->
     <dependency>
       <groupId>org.glassfish</groupId>
