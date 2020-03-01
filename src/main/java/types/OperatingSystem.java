@@ -60,15 +60,10 @@ public interface OperatingSystem {
      *
      * NOTE: Not used for hosts.
      *
-     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
-     * and will be removed in the future.
-     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @author Liran Rotenberg <lrotenbe@redhat.com>
-     * @date 27 Aug 2019
+     * @date 24 Apr 2017
      * @state added
      */
-    @Deprecated
     String kernel();
 
     /**
@@ -78,31 +73,22 @@ public interface OperatingSystem {
      *
      * NOTE: Not used for hosts.
      *
-     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
-     * and will be removed in the future.
-     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @author Liran Rotenberg <lrotenbe@redhat.com>
-     * @date 27 Aug 2019
+     * @date 24 Apr 2017
      * @state added
      */
-    @Deprecated
     String initrd();
 
     /**
-     * Custom kernel parameters for start the virtual machine with if Linux operating system is used.
+     * Custom kernel parameters for starting the virtual machine if Linux operating system is used.
      *
      * NOTE: Not used for hosts.
      *
-     * WARNING: Please note that this attribute has been deprecated since version 4.3 of the engine,
-     * and will be removed in the future.
-     *
      * @author Jakub Niedermertl <jniederm@redhat.com>
-     * @author Liran Rotenberg <lrotenbe@redhat.com>
-     * @date 27 Aug 2019
-     * @state added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 4 Mar 2020
+     * @status updated_by_docs
      */
-    @Deprecated
     String cmdline();
 
     /**
