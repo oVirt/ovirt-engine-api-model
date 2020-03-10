@@ -1279,6 +1279,9 @@ public interface HostService extends MeasurableService {
     /**
      * Copy the network configuration of the specified host to current host.
      *
+     * IMPORTANT: Any network attachments that are not present on the source host will be erased from the target host
+     * by the copy operation.
+     *
      * To copy networks from another host, send a request like this:
      *
      * [source]
@@ -1291,12 +1294,13 @@ public interface HostService extends MeasurableService {
      * [source,xml]
      * ----
      * <action>
-     *    <sourceHost id="456" />
+     *    <source_host id="456"/>
      * </action>
      * ----
      *
      * @author Ales Musil <amusil@redhat.com>
-     * @date 15 Oct 2019
+     * @author Andrej Cernek <acernek@redhat.com>
+     * @date 12 Mar 2020
      * @status added
      * @since 4.4
      */
