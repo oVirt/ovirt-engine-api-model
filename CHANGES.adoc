@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+* Make Travis use openjdk instead of oraclejdk
+
+== 4.3.31 / Mar 10 2020
+New features:
+
+* introduce generic initialize of vm
+
 == 4.3.30 / Jan 27 2020
 Bug fixes:
 
