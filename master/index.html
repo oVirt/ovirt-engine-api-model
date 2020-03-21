@@ -22010,6 +22010,19 @@ waiting for a separate <a href="#services/host/methods/commit_net_config">commit
 <div class="paragraph">
 <p>Copy the network configuration of the specified host to current host.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Any network attachments that are not present on the source host will be erased from the target host
+by the copy operation.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>To copy networks from another host, send a request like this:</p>
 </div>
@@ -22024,7 +22037,7 @@ waiting for a separate <a href="#services/host/methods/commit_net_config">commit
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action&gt;
-   &lt;sourceHost id="456" /&gt;
+   &lt;source_host id="456"/&gt;
 &lt;/action&gt;</code></pre>
 </div>
 </div>
@@ -82279,7 +82292,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-02-24 12:08:37 UTC
+Last updated 2020-03-21 18:47:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
