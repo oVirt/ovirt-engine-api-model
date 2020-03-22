@@ -3,6 +3,16 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.15 / Mar 22 2020
+
+Bug fixes:
+
+* fix wrong request example for CopyHostNetwork
+  https://bugzilla.redhat.com/1779637[1779637]
+
+* Revert "restapi: deprecate linux boot params"
+  https://bugzilla.redhat.com/1732437[1732437]
+
 == 4.4.13 / Feb 24 2020
 New features:
 
