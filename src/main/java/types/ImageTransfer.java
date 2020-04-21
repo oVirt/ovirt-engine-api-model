@@ -60,18 +60,6 @@ public interface ImageTransfer extends Identified {
     String transferUrl();
 
     /**
-     * The signed ticket that should be attached as an `Authentication` header in the
-     * HTTPS request for the proxy server to input or output to (See the `proxy_url` attribute).
-     *
-     * @author Amit Aviram <aaviram@redhat.com>
-     * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 15 Nov 2016
-     * @status updated_by_docs
-     * @since 4.0.4
-     */
-    String signedTicket();
-
-    /**
      * The current phase of the image transfer in progress. Each transfer needs a managed
      * session, which must be opened for the user to input or output an image.
      * Please refer to <<services/image_transfer, image transfer>> for further

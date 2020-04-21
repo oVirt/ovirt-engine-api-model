@@ -110,97 +110,31 @@ import annotations.Area;
  * of the service that manages it.
  *
  * If the session was successfully established - the returned transfer entity will
- * contain the <<types/image_transfer, proxy_url>> and <<types/image_transfer, signed_ticket>> attributes,
+ * contain the <<types/image_transfer, transfer_url>> and <<types/image_transfer, proxy_url>> attributes,
  * which the client needs to use in order to transfer the required data. The client can choose whatever
  * technique and tool for sending the HTTPS request with the image's data.
  *
- * - `proxy_url` is the address of a proxy server to the image, to do I/O to.
- * - `signed_ticket` is the content that needs to be added to the `Authentication`
- *    header in the HTTPS request, in order to perform a trusted communication.
+ * - `transfer_url` is the address of an imageio server running on one of the hypervisors.
+ * - `proxy_url` is the address of an imageio proxy server that can be used if
+ *   you cannot access transfer_url.
  *
- * For example, Python's HTTPSConnection can be used in order to perform a transfer,
- * so an `transfer_headers` dict is set for the upcoming transfer:
- *
- * [source,python]
- * ----
- * transfer_headers = {
- *    'Authorization' :  transfer.signed_ticket,
- * }
- * ----
- *
- * Using Python's `HTTPSConnection`, a new connection is established:
+ * To transfer the image, it is recommended to use the imageio client python library.
  *
  * [source,python]
  * ----
- * # Extract the URI, port, and path from the transfer's proxy_url.
- * url = urlparse.urlparse(transfer.proxy_url)
+ * from ovirt_imageio import client
  *
- * # Create a new instance of the connection.
- * proxy_connection = HTTPSConnection(
- *    url.hostname,
- *    url.port,
- *    context=ssl.SSLContext(ssl.PROTOCOL_SSLv23)
- * )
+ * # Upload qcow2 image to virtual disk:
+ * client.upload("disk.qcow2", transfer.transfer_url)
+ *
+ * # Download virtual disk to qcow2 image:
+ * client.download(transfer.transfer_url, "disk.qcow2")
  * ----
  *
- * For upload, the specific content range being sent must be noted in the `Content-Range` HTTPS
- * header. This can be used in order to split the transfer into several requests for
- * a more flexible process.
+ * You can also upload and download using imageio REST API. For more info
+ * on this, see imageio API documentation:
  *
- * For doing that, the client will have to repeatedly extend the transfer session
- * to keep the channel open. Otherwise, the session will terminate and the transfer will
- * get into `paused_system` phase, and HTTPS requests to the server will be rejected.
- *
- * E.g., the client can iterate on chunks of the file, and send them to the
- * proxy server while asking the service to extend the session:
- *
- * [source,python]
- * ----
- * path = "/path/to/image"
- * MB_per_request = 32
- * with open(path, "rb") as disk:
- *    size = os.path.getsize(path)
- *    chunk_size = 1024*1024*MB_per_request
- *    pos = 0
- *    while (pos < size):
- *       transfer_service.extend()
- *       transfer_headers['Content-Range'] = "bytes %d-%d/%d" % (pos, min(pos + chunk_size, size)-1, size)
- *       proxy_connection.request(
- *          'PUT',
- *          url.path,
- *          disk.read(chunk_size),
- *          headers=transfer_headers
- *       )
- *       r = proxy_connection.getresponse()
- *       print r.status, r.reason, "Completed", "{:.0%}".format(pos/ float(size))
- *       pos += chunk_size
- * ----
- *
- * Similarly, for a download transfer, a `Range` header must be sent, making the download process
- * more easily managed by downloading the disk in chunks.
- *
- * E.g., the client will again iterate on chunks of the disk image, but this time he/she will download
- * it to a local file, rather than uploading its own file to the image:
- *
- * [source,python]
- * ----
- * output_file = "/home/user/downloaded_image"
- * MiB_per_request = 32
- * chunk_size = 1024*1024*MiB_per_request
- * total = disk_size
- *
- * with open(output_file, "wb") as disk:
- *    pos = 0
- *    while pos < total:
- *       transfer_service.extend()
- *       transfer_headers['Range'] = "bytes=%d-%d" %  (pos, min(total, pos + chunk_size) - 1)
- *       proxy_connection.request('GET', proxy_url.path, headers=transfer_headers)
- *       r = proxy_connection.getresponse()
- *       disk.write(r.read())
- *       print "Completed", "{:.0%}".format(pos/ float(total))
- *       pos += chunk_size
- *
- * ----
+ *     http://ovirt.github.io/ovirt-imageio/images.html
  *
  * When finishing the transfer, the user should call
  * <<services/image_transfer/methods/finalize, finalize>>. This will make the
@@ -316,8 +250,9 @@ import annotations.Area;
  *
  *
  * @author Amit Aviram <aaviram@redhat.com>
- * @date 30 Aug 2016
- * @status added
+ * @author Eli Marcus <emarcus@redhat.com>
+ * @date 24 Aug 2020
+ * @status updated_by_docs
  * @since 4.0.4
  */
 @Service
