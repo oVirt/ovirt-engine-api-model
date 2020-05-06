@@ -223,6 +223,16 @@ public interface Cluster extends Identified {
     Boolean haReservation();
 
     /**
+     * Enable VNC encryption. Default value for this property is false.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 6 May 2020
+     * @status added
+     * @since 4.4
+     */
+    Boolean vncEncryption();
+
+    /**
      * Chipset and BIOS type combination.
      *
      * This value is used as default for all virtual machines in the cluster having `biosType` set to `CLUSTER_DEFAULT`.
