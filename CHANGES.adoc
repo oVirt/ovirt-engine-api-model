@@ -3,6 +3,13 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.16 / May 18 2020
+
+Bug fixes:
+
+* add vncEncryption property to Cluster
+  https://bugzilla.redhat.com/1827179[1827179]
+
 == 4.4.15 / Mar 22 2020
 
 Bug fixes:
