@@ -34543,6 +34543,9 @@ request like this:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Note: Confirm that the commit operation has completed before attempting to restart the virtual machine.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 576. Parameters summary</caption>
 <colgroup>
@@ -53187,6 +53190,11 @@ For more information, see
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vnc_encryption</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable VNC encryption.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect3">
@@ -53423,6 +53431,12 @@ compatibility version 4.1 or higher.</p>
 <p>In order to update the cluster compatibility version, all hosts in the cluster must support
 the new compatibility version.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="types/cluster/attributes/vnc_encryption"><a class="anchor" href="#types/cluster/attributes/vnc_encryption"></a>7.32.12. vnc_encryption</h4>
+<div class="paragraph">
+<p>Enable VNC encryption. Default value for this property is false.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 918. Links summary</caption>
 <colgroup>
@@ -53508,7 +53522,7 @@ this cluster.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a>7.32.12. external_network_providers</h4>
+<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a>7.32.13. external_network_providers</h4>
 <div class="paragraph">
 <p>A reference to the external network provider available in the cluster.</p>
 </div>
@@ -53523,7 +53537,7 @@ This value may be overwritten for individual hosts during
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a>7.32.13. scheduling_policy</h4>
+<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a>7.32.14. scheduling_policy</h4>
 <div class="paragraph">
 <p>Reference to the default scheduling policy used by
 this cluster.</p>
@@ -82253,7 +82267,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-22 11:24:19 UTC
+Last updated 2020-05-18 06:27:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
