@@ -498,14 +498,15 @@ public interface Cluster extends Identified {
     /**
      * The name of the tuned profile.
      *
-     * https://fedorahosted.org/tuned[Tuned] profile
+     * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance[Tuned] profile
      * to set on all the hosts in the cluster. This is not mandatory
      * and relevant only for clusters with Gluster service.
      *
      * @author Ramesh Nachimuthu <rnachimu@rednat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
+     * @author Ori Liel <oliel@redhat.com>
      * @date 06 Oct 2017
-     * @status updated_by_docs
+     * @status  updated_by_docs
      * @since 4.1
      */
     String glusterTunedProfile();
