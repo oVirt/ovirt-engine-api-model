@@ -1415,6 +1415,17 @@ public interface VmService extends MeasurableService {
     VmBackupsService backups();
 
     /**
+     * List of checkpoints of this virtual machine.
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 3 Jun 2020
+     * @status added
+     * @since 4.4
+     */
+    @Service
+    VmCheckpointsService checkpoints();
+
+    /**
      * List of disks attached to this virtual machine.
      *
      * @author Megan Lewis <melewis@redhat.com>
