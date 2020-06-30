@@ -3,6 +3,18 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.17 / Jun 30 2020
+
+New features:
+
+* incremental backup: added VmCheckpoint service
+  https://bugzilla.redhat.com/1813831
+
+Bug fixes:
+
+* Fix tuned link in Cluster documentation
+  http://bugzilla.redhat.com/1831952
+
 == 4.4.16 / May 18 2020
 
 Bug fixes:
@@ -50,7 +62,7 @@ New features:
 New features:
 
 * Added properties for user type.
-  
+
 * Add HOST_CERTIFICATE_HAS_INVALID_SAN event
   https://bugzilla.redhat.com/1763084[1763084].
 
@@ -91,7 +103,7 @@ Deprecations:
 
 * Drop ovirt node legacy support
   https://bugzilla.redhat.com/1718790[1718790].
-  
+
 == 4.4.6 / Aug 9 2019
 New features:
 
@@ -135,16 +147,16 @@ New features:
 
 * Allow setting a disk ScsiGenericIO to disabled
   https://bugzilla.redhat.com/1714834[1714834].
-  
+
 == 4.4.1 / Jun 3 2019
 New features:
- 
+
 * Treat image transfers cancelled by user/system differently
   https://bugzilla.redhat.com/1533362[1533362].
 
 == 4.4.0 / May 2 2019
 New features:
- 
+
 * Add new parameters to HostsService.List and VmService.Migrate
   https://bugzilla.redhat.com/1651406[1651406].
 
@@ -293,7 +305,7 @@ New features:
 
 * Add `cancel` action to transfer image session.
 
-* Add `export` template as OVA to a given path on a host 
+* Add `export` template as OVA to a given path on a host
   https://bugzilla.redhat.com/1526033[#1526033].
 
 Bug fixes:
