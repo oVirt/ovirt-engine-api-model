@@ -78,11 +78,11 @@ public interface SnapshotService {
      * ----
      * <action/>
      * ----
-     * Note: Confirm that the commit operation has completed before attempting to restart the virtual machine.
+     * NOTE: Confirm that the commit operation is finished and the virtual machine is down before running the virtual machine.
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Eli Marcus <emarcus@redhat.com>
-     * @date 2 Apr 2020
+     * @date 6 Jul 2020
      * @status updated_by_docs
      */
     interface Restore {

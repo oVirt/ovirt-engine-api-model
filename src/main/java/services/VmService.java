@@ -210,11 +210,14 @@ public interface VmService extends MeasurableService {
      * </action>
      * ----
      *
+     *NOTE: Confirm that the export operation has completed before attempting any actions on the export domain.
+     *
      * @author Tal Nisan <tisan@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 10 Nov 2017
-     * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 5 Jul 2020
+     * @status updated_by_docs
      */
     interface Export {
         /**
