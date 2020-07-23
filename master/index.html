@@ -34563,8 +34563,17 @@ request like this:</p>
 <pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;action/&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Note: Confirm that the commit operation has completed before attempting to restart the virtual machine.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Confirm that the commit operation is finished and the virtual machine is down before running the virtual machine.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 576. Parameters summary</caption>
@@ -43816,6 +43825,18 @@ For example, to export virtual machine <code>123</code> as an OVA file named <co
   &lt;filename&gt;myvm.ova&lt;/filename&gt;
 &lt;/action&gt;</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Confirm that the export operation has completed before attempting any actions on the export domain.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 756. Parameters summary</caption>
@@ -82731,7 +82752,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-06-30 17:24:05 UTC
+Last updated 2020-07-23 11:49:37 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
