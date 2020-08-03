@@ -16,6 +16,7 @@ limitations under the License.
 
 package types;
 
+import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
@@ -75,4 +76,15 @@ public interface MacPool extends Identified {
      * @status updated_by_docs
      */
     Range[] ranges();
+
+    /**
+     * Returns a reference to the permissions that are associated with the MacPool.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 22 September 2020
+     * @since 4.4.3
+     * @status added
+     */
+    @Link
+    Permission[] permissions();
 }

@@ -109,4 +109,15 @@ public interface MacPoolService {
          */
         @In Boolean async();
     }
+
+    /**
+     * Returns a reference to the service that manages the permissions that are associated with the MacPool.
+     *
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 22 September 2020
+     * @since 4.4.3
+     * @status added
+     */
+    @Service AssignedPermissionsService permissions();
+
 }
