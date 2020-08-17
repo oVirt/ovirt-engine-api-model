@@ -409,6 +409,16 @@ public interface Host extends Identified {
     Boolean networkOperationInProgress();
 
     /**
+     * Specifies whether the host should be reinstalled.
+     *
+     * @author Ori Liel <oliel@redhat.com>
+     * @since 4.4.3
+     * @date 17 Aug 2020
+     * @status added
+     */
+    Boolean reinstallationRequired();
+
+    /**
      * Specifies whether host device passthrough is enabled on this host.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
