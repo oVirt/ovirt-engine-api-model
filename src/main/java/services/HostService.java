@@ -456,9 +456,10 @@ public interface HostService extends MeasurableService {
      * --data '
      * {
      *   "root_password": "myrootpassword"
+         "deploy_hosted_engine" : "true"
      * }
      * ' \
-     * "https://engine.example.com/ovirt-engine/api/hosts/123?deploy_hosted_engine=true"
+     * "https://engine.example.com/ovirt-engine/api/hosts/123"
      * ----
      *
      * IMPORTANT: Since version 4.1.2 of the engine, when a host is reinstalled we override the host firewall
