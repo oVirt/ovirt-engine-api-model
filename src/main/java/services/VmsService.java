@@ -22,6 +22,7 @@ import org.ovirt.api.metamodel.annotations.In;
 import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
+import types.AutoPinningPolicy;
 import types.Vm;
 import static org.ovirt.api.metamodel.language.ApiLanguage.COLLECTION;
 import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
@@ -277,6 +278,43 @@ public interface VmsService {
          * @since 4.0.0
          */
         @In Boolean filter();
+
+        /**
+         * Specifies if and how the auto CPU and NUMA configuration is applied. An example for a request:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vms?auto_pinning_policy=existing/adjust
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <vm>
+         *   <name>myvm<name>
+         *   <template>
+         *     <name>mytemplate<name>
+         *   </template>
+         *   <cluster>
+         *     <name>mycluster<name>
+         *   </cluster>
+         *   <placement_policy>
+         *     <hosts>
+         *       <host>
+         *         <name>myhost</name>
+         *       </host>
+         *     </hosts>
+         *   </placement_policy>
+         * </vm>
+         * ----
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 1 Sep 2020
+         * @status added
+         * @since 4.4
+         */
+        @In AutoPinningPolicy autoPinningPolicy();
 
         @InputDetail
         default void inputDetail() {
