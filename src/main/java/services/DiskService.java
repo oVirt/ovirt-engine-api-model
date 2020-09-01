@@ -555,4 +555,25 @@ public interface DiskService extends MeasurableService {
      * @status added
      */
     @Service AssignedPermissionsService permissions();
+
+    /**
+     * Reference to the service that manages the DiskSnapshots.
+     *
+     * For example, to list all disk snapshots under the disks resource '123':
+     *
+     * ....
+     * GET /ovirt-engine/api/disks/123/disksnapshots
+     * ....
+     *
+     * For example, to retrieve a specific disk snapshot '789' under the disk resource '123':
+     * ....
+     * GET /ovirt-engine/api/disks/123/disksnapshots/789
+     * ....
+     *
+     * @author Ahmad Khiet <akhiet@redhat.com>
+     * @date 1 Sep 2020
+     * @status added
+     * @since 4.4.3
+     */
+    @Service DiskSnapshotsService diskSnapshots();
 }

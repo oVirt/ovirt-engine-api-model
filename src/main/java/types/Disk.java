@@ -306,6 +306,7 @@ public interface Disk extends Device {
     @Link Snapshot snapshot();
     @Link OpenStackVolumeType openstackVolumeType();
     @Link Permission[] permissions();
+    @Link DiskSnapshot[] diskSnapshots();
 
     /**
      * Statistics exposed by the disk. For example:
