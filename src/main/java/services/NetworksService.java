@@ -120,6 +120,7 @@ public interface NetworksService {
             optional(network().usages()[COLLECTION]);
             optional(network().externalProvider().id());
             optional(network().externalProviderPhysicalNetwork().id());
+            optional(network().portIsolation());
         }
         @In @Out Network network();
     }

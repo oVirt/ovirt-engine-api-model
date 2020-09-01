@@ -278,4 +278,18 @@ public interface Network extends Identified {
      * @since 4.2
      */
     @Link Network externalProviderPhysicalNetwork();
+
+    /**
+     * Defines whether communication between VMs running on the same host is blocked on this network.
+     * Applies only to VM networks. It is on the network administrator to ensure that the communication
+     * between multiple hosts is blocked.
+     * This attribute can be set only on network creation and cannot be edited.
+     * When the value is not set, communication between VMs running on the same host is allowed.
+
+     * @author Dominik Holler <dholler@redhat.com>
+     * @date 1 September 2020
+     * @status added
+     * @since 4.4.3
+     */
+    Boolean portIsolation();
 }
