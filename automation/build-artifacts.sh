@@ -62,18 +62,17 @@ git archive \
   HEAD
 
 # There may be several versions of Java installed in the build
-# enviroment, and we need to make sure that Java 8 is used, as
+# enviroment, and we need to make sure that Java 11 is used, as
 # it is required by the code generator:
-export JAVA_HOME="/usr/lib/jvm/java-1.8.0"
+export JAVA_HOME="/usr/lib/jvm/java-11"
 
 # Move the tarball to the artifacts directory:
 mv "${tarball}" "${artifacts}"
 
 # Build the artifacts:
-${mvn} package -DskipTests -Dadoc.linkcss=true -Ppublican
+${mvn} package -DskipTests -Dadoc.linkcss=true
 for format in adoc csv html json xml
 do
   mv target/generated-${format}/* "${artifacts}"
 done
-mkdir -p "${artifacts}/publican"
-mv target/generated-publican/publish/* "${artifacts}/publican"
+

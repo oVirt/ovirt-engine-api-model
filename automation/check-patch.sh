@@ -38,9 +38,9 @@ mkdir -p "${repository}"
 mvn="mvn -s ${settings} -Dmaven.repo.local=${repository}"
 
 # There may be several versions of Java installed in the build
-# enviroment, and we need to make sure that Java 8 is used, as
+# enviroment, and we need to make sure that Java 11 is used, as
 # it is required by the code generator:
-export JAVA_HOME="/usr/lib/jvm/java-1.8.0"
+export JAVA_HOME="/usr/lib/jvm/java-11"
 
 # Build the artifacts:
 ${mvn} install -Dadoc.linkcss=true
@@ -49,5 +49,7 @@ do
   mv target/generated-${format}/* "${artifacts}"
 done
 
-# Run findbugs:
-${mvn} findbugs:findbugs
+MAVEN_SETTINGS="/etc/maven/settings.xml"
+
+# Run spotbugs:
+${mvn} clean install com.github.spotbugs:spotbugs-maven-plugin:spotbugs -U -DskipTests -s ${MAVEN_SETTINGS}

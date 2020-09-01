@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.3.0</metamodel.version>
+    <metamodel.version>1.3.2</metamodel.version>
 
     <!-- The name of the product and the engine that will be used in the generated
          documentation: -->
@@ -90,14 +90,15 @@
     <pluginManagement>
       <plugins>
 
-        <!-- Make sure we use Java 8: -->
+        <!-- Make sure we use Java 11. -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
+          <version>3.8.0</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>11</source>
+            <target>11</target>
+            <release>11</release>
           </configuration>
         </plugin>
 
@@ -110,7 +111,7 @@
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>1.5.3</version>
+          <version>1.6.0</version>
         </plugin>
 
         <plugin>
@@ -267,6 +268,16 @@
         </configuration>
       </plugin>
 
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.12</version>
+        <configuration>
+          <xmlOutput>true</xmlOutput>
+          <xmlOutputDirectory>target/site</xmlOutputDirectory>
+        </configuration>
+      </plugin>
+
     </plugins>
 
   </build>
@@ -297,76 +308,7 @@
       </build>
     </profile>
 
-    <!-- This profile is used to generate the DocBook documentation: -->
-    <profile>
-      <id>publican</id>
-
-      <!-- Publican doesn't accept slashes inside section identifiers, so
-           we need to use a dashes instead: -->
-      <properties>
-        <adoc.separator>-</adoc.separator>
-      </properties>
-
-      <build>
-        <plugins>
-
-          <!-- Generate the DockBook file: -->
-          <plugin>
-            <groupId>org.asciidoctor</groupId>
-            <artifactId>asciidoctor-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-docbook</id>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>process-asciidoc</goal>
-                </goals>
-                <configuration>
-                  <sourceDirectory>${project.basedir}/target/generated-adoc</sourceDirectory>
-                  <outputDirectory>${project.basedir}/target/generated-docbook</outputDirectory>
-                  <backend>docbook5</backend>
-                  <doctype>book</doctype>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-          <!-- Prepare the generated DocBook so that it can be processed
-               by Publican, and then run Publican: -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>run-publican</id>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <mkdir dir="${project.basedir}/target/generated-publican" />
-                    <copy todir="${project.basedir}/target/generated-publican">
-                      <fileset dir="${project.basedir}/src/main/publican" />
-                    </copy>
-                    <xslt in="${project.basedir}/target/generated-docbook/model.xml" style="${project.basedir}/target/generated-publican/en-US/API_Guide.xsl" out="${project.basedir}/target/generated-publican/en-US/API_Guide.xml" />
-                    <exec executable="publican" dir="${project.basedir}/target/generated-publican">
-                      <arg value="build" />
-                      <arg value="--langs=en-US" />
-                      <arg value="--formats=html" />
-                      <arg value="--publish" />
-                    </exec>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- This profile is used to generate the PDF documentation: -->
+   <!-- This profile is used to generate the PDF documentation: -->
     <profile>
       <id>pdf</id>
       <build>

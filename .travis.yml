@@ -1,12 +1,11 @@
 language: java
 jdk:
-  - openjdk8
+  - java-11-openjdk-devel
 
 addons:
   apt:
     packages:
-      - publican
-      - python-lxml
+      - python3-lxml
 
 deploy:
   - provider: script

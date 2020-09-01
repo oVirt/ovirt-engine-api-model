@@ -1,6 +1,5 @@
 git
-java-1.8.0-openjdk-devel
+java-11-openjdk-devel
 maven
-publican
-python
-python-lxml
+python3
+python3-lxml
