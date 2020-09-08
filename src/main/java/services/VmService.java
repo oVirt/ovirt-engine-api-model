@@ -445,6 +445,24 @@ public interface VmService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean filter();
+
+        /**
+         * Indicates if the results should expose the OVF as it appears in OVA files of that VM. The OVF document
+         * describing the virtual machine. This parameter will work only when all_content=True is set.
+         * The OVF will be presented in `initialization.configuration.data`.
+         *
+         * For example:
+         * [source]
+         * ----
+         * GET /vms/{vm:id}?all_content=true&ovf_as_ova=true
+         * ----
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 08 Sep 2020
+         * @status added
+         * @since 4.4.3
+         */
+        @In Boolean ovfAsOva();
     }
 
     /**

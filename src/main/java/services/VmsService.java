@@ -506,6 +506,24 @@ public interface VmsService {
          * @since 4.0.6
          */
         @In Boolean allContent();
+
+        /**
+         * Indicates if the results should expose the OVF as it appears in OVA files of that VM. The OVF document
+         * describing the virtual machine. This parameter will work only when all_content=True is set.
+         * The OVF will be presented in `initialization.configuration.data`.
+         *
+         * For example:
+         * [source]
+         * ----
+         * GET /vms?all_content=true&ovf_as_ova=true
+         * ----
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 08 Sep 2020
+         * @status added
+         * @since 4.4.3
+         */
+        @In Boolean ovfAsOva();
     }
 
     @Service VmService vm(String id);
