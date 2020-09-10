@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2020 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,8 +23,12 @@ import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.DataCenter;
+import types.StorageDomain;
 
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
+import static org.ovirt.api.metamodel.language.ApiLanguage.or;
+
 /**
  * A service to manage a data center.
  *
@@ -178,6 +182,58 @@ public interface DataCenterService {
 
         /**
          * Indicates if the remove should be performed asynchronously.
+         */
+        @In Boolean async();
+    }
+
+    /**
+     * Used for manually setting a storage domain in the data center as a master.
+     * For example, for setting a storage domain with ID '456' as a master on a data center with ID '123',
+     * send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/setmaster
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <storage_domain id="456"/>
+     * </action>
+     * ----
+     *
+     * The new master storage domain can be also specified by its name.
+     *
+     * @author Shani Leviim <sleviim@redhat.com>
+     * @date 17 Nov 2020
+     * @status added
+     * @since 4.4.4
+     */
+    interface SetMaster {
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(storageDomain().id()), mandatory(storageDomain().name()));
+        }
+        /**
+         * The new master storage domain for the data center.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @date 17 Nov 2020
+         * @status added
+         * @since 4.4.4
+         */
+        @In StorageDomain storageDomain();
+
+        /**
+         * Indicates if the action should be performed asynchronously.
+         *
+         * @author Shani Leviim <sleviim@redhat.com>
+         * @date 17 Nov 2020
+         * @status added
+         * @since 4.4.4
          */
         @In Boolean async();
     }
