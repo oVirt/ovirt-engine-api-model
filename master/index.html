@@ -4817,6 +4817,15 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/disk/methods/copy">POST</a> /<a href="#services/disks">disks</a>/<a href="#services/disk">{disk:id}</a>/<a href="#services/disk">copy</a></p>
 </li>
 <li>
+<p><a href="#services/disk_snapshots/methods/list">GET</a> /<a href="#services/disks">disks</a>/<a href="#services/disk">{disk:id}</a>/<a href="#services/disk_snapshots">disksnapshots</a></p>
+</li>
+<li>
+<p><a href="#services/disk_snapshot/methods/get">GET</a> /<a href="#services/disks">disks</a>/<a href="#services/disk">{disk:id}</a>/<a href="#services/disk_snapshots">disksnapshots</a>/<a href="#services/disk_snapshot">{snapshot:id}</a></p>
+</li>
+<li>
+<p><a href="#services/disk_snapshot/methods/remove">DELETE</a> /<a href="#services/disks">disks</a>/<a href="#services/disk">{disk:id}</a>/<a href="#services/disk_snapshots">disksnapshots</a>/<a href="#services/disk_snapshot">{snapshot:id}</a></p>
+</li>
+<li>
 <p><a href="#services/disk/methods/export">POST</a> /<a href="#services/disks">disks</a>/<a href="#services/disk">{disk:id}</a>/<a href="#services/disk">export</a></p>
 </li>
 <li>
@@ -55526,6 +55535,11 @@ zeros, the disk will be deleted immediately.</p>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_snapshots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_snapshot">DiskSnapshot[]</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>instance_type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/instance_type">InstanceType</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Optionally references to an instance type the device is used by.</p></td>
@@ -56441,6 +56455,11 @@ zeros, the disk will be deleted immediately.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_profile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_profile">DiskProfile</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disk_snapshots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_snapshot">DiskSnapshot[]</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -82811,7 +82830,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-14 10:26:40 UTC
+Last updated 2020-09-14 11:31:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
