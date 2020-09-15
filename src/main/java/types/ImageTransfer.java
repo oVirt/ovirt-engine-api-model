@@ -191,4 +191,64 @@ public interface ImageTransfer extends Identified {
      * @since 4.3
      */
     DiskFormat format();
+
+    /**
+     * Download only the specified image instead of the entire image chain.
+     *
+     * If true, when using format="raw" and direction="download", the transfer
+     * includes data only from the specified disk snapshot, and unallocated
+     * areas are reported as holes.  By default, the transfer includes data
+     * from all disk snapshots.
+     *
+     * When specifying a disk snapshot, the transfer includes only data for the
+     * specified disk snapshot. When specifying a disk, the transfer includes
+     * only data from the active disk snaphost.
+     *
+     * This parameter has no effect when not using format="raw" or for
+     * direction="upload".
+     *
+     * Example: Downloading a single snapshot:
+     *
+     * [source,xml]
+     * ----
+     * <image_transfer>
+     *   <snapshot id="2fb24fa2-a5db-446b-b733-4654661cd56d"/>
+     *   <direction>download</direction>
+     *   <format>raw</format>
+     *   <shallow>true</shallow>
+     * </image_transfer>
+     * ----
+     *
+     * To download the active snapshot disk image (which is not accessible
+     * as a disk snapshot), specify the disk:
+     *
+     * [source,xml]
+     * ----
+     * <image_transfer>
+     *   <disk id="ff6be46d-ef5d-41d6-835c-4a68e8956b00"/>
+     *   <direction>download</direction>
+     *   <format>raw</format>
+     *   <shallow>true</shallow>
+     * </image_transfer>
+     * ----
+     *
+     * In both cases you can now download a qcow2 image using imageio client:
+     *
+     * [source,python]
+     * ----
+     * from ovirt_imageio import client
+     *
+     * client.download(
+     *   transfer.transfer_url,
+     *   "51275e7d-42e9-491f-9d65-b9211c897eac",
+     *   backing_file="07c0ccac-0845-4665-9097-d0a3b16cf43b",
+     *   backing_format="qcow2")
+     * ----
+     *
+     * @author Nir Soffer <nsoffer@redhat.com>
+     * @date 15 Sep 2020
+     * @status added
+     * @since 4.4.3
+     */
+    Boolean shallow();
 }
