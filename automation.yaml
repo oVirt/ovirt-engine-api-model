@@ -1,4 +1,4 @@
 distros:
-  - el7
+  - fc30
 release_branches:
   master: ovirt-master
