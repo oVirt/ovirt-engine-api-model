@@ -3,6 +3,30 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.18 / Sep 19 2020
+
+New features:
+
+* Upgrade to Java 11
+
+* Upgrade to Python 3
+
+* storage: list disk snapshots under disks service
+  Bug-Url: https://bugzilla.redhat.com/1702237
+
+* Introduce auto pinning policy
+  Bug-Url: https://bugzilla.redhat.com/1862968
+
+* Add portIsolation attribute to networks
+  Bug-Url: https://bugzilla.redhat.com/1725166
+
+* Expose Reinstallation-Required to Host
+
+Bug fixes:
+
+* imageio: Remove unused ImageTransfer.signed_ticket
+  Bug-Url: https://bugzilla.redhat.com/1862722
+
 == 4.4.17 / Jun 30 2020
 
 New features:
