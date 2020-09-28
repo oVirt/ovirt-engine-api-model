@@ -22,4 +22,14 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public interface DiskSnapshot extends Disk {
     @Link Disk disk();
+
+    /**
+     * Parent disk snapshot.
+     *
+     * @author Nir Soffer <nsoffer@redhat.com>
+     * @date 27 Sep 2020
+     * @status added
+     * @since 4.4.3
+     */
+    @Link DiskSnapshot parent();
 }
