@@ -49,6 +49,16 @@ public interface DiskSnapshotsService {
          * Sets the maximum number of snapshots to return. If not specified all the snapshots are returned.
          */
         @In Integer max();
+
+        /**
+         * If true return also active snapshots. If not specified active snapshots are not returned.
+         *
+         * @author Nir Soffer <nsoffer@redhat.com>
+         * @date 26 Sep 2020
+         * @status added
+         * @since 4.4.3
+         */
+        @In Boolean includeActive();
     }
 
     @Service DiskSnapshotService snapshot(String id);
