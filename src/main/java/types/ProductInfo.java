@@ -67,4 +67,9 @@ public interface ProductInfo {
      * The version number of the product.
      */
     Version version();
+
+    /**
+     * The ID of this particular installation of the product.
+     */
+    String id();
 }
