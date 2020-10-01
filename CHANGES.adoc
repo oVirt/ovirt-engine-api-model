@@ -3,6 +3,30 @@
 This document describes the relevant changes between releases of the
 API model.
 
+== 4.4.19 / Oct 1 2020
+
+New features:
+
+* Add ID of oVirt Installation.
+  https://bugzilla.redhat.com/1825020
+
+* DiskSnapshot: Add disk snapshot parent link
+  https://bugzilla.redhat.com/1847090
+
+* snapshots: Add option to include active snapshots
+  https://bugzilla.redhat.com/1847090
+
+* ImageTransfer: Support shallow download
+  https://bugzilla.redhat.com/1847090
+
+* Add Permissions for MacPool
+  https://bugzilla.redhat.com/1863051
+
+* Expose the VM OVF as OVA
+  https://bugzilla.redhat.com/1876234
+
+* Add External disk support
+
 == 4.4.18 / Sep 19 2020
 
 New features:
