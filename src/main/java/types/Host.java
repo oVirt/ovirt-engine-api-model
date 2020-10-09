@@ -582,12 +582,14 @@ public interface Host extends Identified {
     /**
      * External network providers provisioned on the host.
      *
-     * External network providers on the host can be controlled when <<services/hosts/methods/add,adding the host>>.
+     * This attribute is read-only. Setting it will have no effect on the host.
+     * The value of this parameter reflects the <<services/cluster_external_providers,Default Network Provider>>
+     * of the cluster.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 09 Oct 2017
-     * @status updated_by_docs
+     * @date 09 Oct 2020
+     * @status updated
      * @since 4.2
      */
     @Link ExternalNetworkProviderConfiguration[] externalNetworkProviderConfigurations();
