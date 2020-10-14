@@ -229,6 +229,16 @@ public interface Disk extends Device {
     DiskBackup backup();
 
     /**
+     * The backup type that was taken for the disk (full/incremental).
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 06 Oct 2020
+     * @status added
+     * @since 4.4.3
+     */
+    DiskBackupMode backupMode();
+
+    /**
      * Indicates if the disk is in read-only mode.
      *
      * Since version 4.0 this attribute is not shown in the API and was moved to <<types/disk_attachment,DiskAttachment>>.
