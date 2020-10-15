@@ -71,5 +71,5 @@ public interface ProductInfo {
     /**
      * The ID of this particular installation of the product.
      */
-    String id();
+    String instanceId();
 }
