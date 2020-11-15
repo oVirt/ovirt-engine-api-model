@@ -52,7 +52,6 @@ public interface VmBackupsService {
      *
      * [source,xml]
      * ----
-     * POST /ovirt-engine/api/vms/123/backups
      * <backup>
      *   <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
      *   <disks>
@@ -101,6 +100,27 @@ public interface VmBackupsService {
          * @since 4.3
          */
         @In @Out Backup backup();
+
+        /**
+         * Indicates if the backup will fail if VM failed to freeze or not.
+         *
+         * If requireConsistency=True VM backup will fail in case of a
+         * failure to freeze the VM.
+         *
+         * The REST API call should look like this:
+         *
+         * ....
+         * POST /ovirt-engine/api/vms/123/backups?require_consistency=true
+         * ....
+         *
+         * The default value of the requireConsistency flag is `false`.
+         *
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 12 Nov 2020
+         * @status added
+         * @since 4.4.4
+         */
+        @In Boolean requireConsistency();
     }
 
     /**
