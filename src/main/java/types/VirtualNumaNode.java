@@ -54,5 +54,14 @@ import org.ovirt.api.metamodel.annotations.Type;
 public interface VirtualNumaNode extends NumaNode {
     NumaNodePin[] numaNodePins();
 
+    /**
+     * How the NUMA topology is applied.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 23 Nov 2020
+     * @status added
+     */
+    NumaTuneMode numaTuneMode();
+
     @Link Vm vm();
 }

@@ -125,11 +125,14 @@ public interface Vm extends VmBase {
 
     /**
      * How the NUMA topology is applied.
+     * Deprecated in favor of NUMA tune per vNUMA node.
      *
      * @author Marek Libra <mlibra@redhat.com>
-     * @date 12 Dec 2016
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 23 Nov 2020
      * @status added
      */
+    @Deprecated
     NumaTuneMode numaTuneMode();
 
     /**

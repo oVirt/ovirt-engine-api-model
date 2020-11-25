@@ -55,6 +55,7 @@ public interface VmNumaNodesService {
      *   </cpu>
      *   <index>0</index>
      *   <memory>1024</memory>
+     *   <numa_tune_mode>strict</numa_tune_mode>
      * </vm_numa_node>
      * ----
      *
@@ -69,6 +70,7 @@ public interface VmNumaNodesService {
             mandatory(node().memory());
             mandatory(node().cpu().cores()[COLLECTION].index());
             optional(node().numaNodePins()[COLLECTION].index());
+            optional(node().numaTuneMode());
         }
         @In @Out VirtualNumaNode node();
     }

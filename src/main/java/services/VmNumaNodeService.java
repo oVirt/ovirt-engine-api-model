@@ -58,7 +58,8 @@ public interface VmNumaNodeService {
      * ----
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
-     * @date 14 Sep 2016
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 23 Nov 2020
      * @status added
      */
     interface Update {
@@ -68,6 +69,7 @@ public interface VmNumaNodeService {
             optional(node().memory());
             optional(node().cpu().cores()[COLLECTION].index());
             optional(node().numaNodePins()[COLLECTION].index());
+            optional(node().numaTuneMode());
         }
         @In @Out VirtualNumaNode node();
 
