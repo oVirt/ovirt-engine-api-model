@@ -1,5 +1,18 @@
 = Changes
 
+4.4.21 / Dec 3 2020
+
+New features:
+
+* Add NUMA tuning to each node
+  https://bugzilla.redhat.com/1729897
+
+* storage: Support manually setting a storage domain as a master
+  https://bugzilla.redhat.com/1576923
+
+* VmBackupsService: add requireConsistency flag to add VM backup
+  https://bugzilla.redhat.com/1894413
+
 4.4.20 / Oct 19 2020
 
 New features:
