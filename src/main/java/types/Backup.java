@@ -24,6 +24,16 @@ import java.util.Date;
 @Type
 public interface Backup extends Identified {
     /**
+     * The host that was used to start the backup.
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 3 Dec 2020
+     * @status added
+     * @since 4.4.4
+     */
+    @Link Host host();
+
+    /**
      * The checkpoint id at which to start the incremental backup.
      *
      * @author Daniel Erez <derez@redhat.com>
