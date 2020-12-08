@@ -239,6 +239,43 @@ public interface DataCenterService {
     }
 
     /**
+     * Currently, the storage pool manager (SPM) fails to
+     * switch to another host if the SPM has uncleared tasks.
+     * Clearing all finished tasks enables the SPM switching.
+     *
+     * For example, to clean all the finished tasks on a data center with ID `123` send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/datacenters/123/cleanfinishedtasks
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Pavel Bar <pbar@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 10 Dec 2020
+     * @status updated_by_docs
+     * @since 4.4.4
+     */
+    interface CleanFinishedTasks {
+        /**
+         * Indicates if the action should be performed asynchronously.
+         *
+         * @author Pavel Bar <pbar@redhat.com>
+         * @date 10 Dec 2020
+         * @status added
+         * @since 4.4.4
+         */
+        @In Boolean async();
+    }
+
+    /**
     * Attach and detach storage domains to and from a data center.
     *
     * For attaching a single storage domain we should use the following POST request:
