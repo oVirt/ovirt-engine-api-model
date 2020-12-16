@@ -126,6 +126,7 @@ public interface ClustersService {
             or(optional(cluster().schedulingPolicy().id()), optional(cluster().schedulingPolicy().name()));
             or(optional(cluster().externalNetworkProviders()[COLLECTION].id()),
                     optional(cluster().externalNetworkProviders()[COLLECTION].name()));
+            optional(cluster().fipsMode());
         }
         @In @Out Cluster cluster();
     }

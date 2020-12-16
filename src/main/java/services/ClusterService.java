@@ -188,6 +188,7 @@ public interface ClusterService {
             optional(cluster().version().minor());
             optional(cluster().virtService());
             or(optional(cluster().schedulingPolicy().id()), optional(cluster().schedulingPolicy().name()));
+            optional(cluster().fipsMode());
         }
         @In @Out Cluster cluster();
 

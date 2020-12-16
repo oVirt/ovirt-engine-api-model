@@ -510,4 +510,20 @@ public interface Cluster extends Identified {
      * @since 4.1
      */
     String glusterTunedProfile();
+
+    /**
+     * FIPS mode of the cluster.
+     *
+     * The https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening[FIPS] mode represents the cluster's policy towards hosts.
+     * Hosts added to the cluster will be checked to fulfill the cluster's FIPS mode, making them non-operational in
+     * case they don't.
+     * Unless a value is explicity provided, new clusters are initialized by default to `UNDEFINED`.
+     * This value changes automatically to the FIPS mode of the first host added to the cluster.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 16 Dec 2020
+     * @status added
+     * @since 4.4.5
+     */
+    FipsMode fipsMode();
 }
