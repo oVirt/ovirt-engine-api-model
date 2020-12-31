@@ -952,12 +952,44 @@ public interface VmService extends MeasurableService {
      * <action/>
      * ----
      *
+     * To shutdown the VM even if a backup is running for it,
+     * the action should include the 'force' element.
+     *
+     * For example, to force shutdown virtual machine `123`:
+     *
+     * ----
+     * POST /ovirt-engine/api/vms/123/shutdown
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *     <force>true</force>
+     * </action>
+     * ----
+     *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 28 Mar 2017
-     * @status updated_by_docs
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 4 Jan 2021
+     * @status added
      */
     interface Shutdown {
+        @InputDetail
+        default void inputDetail() {
+            optional(force());
+        }
+
+        /**
+         * Indicates if the VM should be forcibly shutdown even
+         * if a backup is running for it.
+         *
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 31 Dec 2020
+         * @status added
+         */
+        @In Boolean force();
+
         /**
          * Indicates if the shutdown should be performed asynchronously.
          *
@@ -1206,12 +1238,43 @@ public interface VmService extends MeasurableService {
      * <action/>
      * ----
      *
+     * To stop the VM even if a backup is running for it,
+     * the action should include the 'force' element.
+     *
+     * For example, to force stop virtual machine `123`:
+     *
+     * ----
+     * POST /ovirt-engine/api/vms/123/stop
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *     <force>true</force>
+     * </action>
+     * ----
+     *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 28 Mar 2017
-     * @status updated_by_docs
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 4 Jan 2021
+     * @status added
      */
     interface Stop {
+        @InputDetail
+        default void inputDetail() {
+            optional(force());
+        }
+
+        /**
+         * Indicates if the VM should be forcibly stop even
+         * if a backup is running for it.
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 31 Dec 2020
+         * @status added
+         */
+        @In Boolean force();
+
         /**
          * Indicates if the stop action should be performed asynchronously.
          *
