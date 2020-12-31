@@ -862,12 +862,44 @@ public interface VmService extends MeasurableService {
      * <action/>
      * ----
      *
+     * To reboot the VM even if a backup is running for it,
+     * the action should include the 'force' element.
+     *
+     * For example, to force reboot virtual machine `123`:
+     *
+     * ----
+     * POST /ovirt-engine/api/vms/123/reboot
+     * ----
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *     <force>true</force>
+     * </action>
+     * ----
+     *
      * @author Martin Betak <mbetak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 28 Mar 2017
-     * @status updated_by_docs
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 4 Jan 2021
+     * @status added
      */
     interface Reboot {
+        @InputDetail
+        default void inputDetail() {
+            optional(force());
+        }
+
+        /**
+         * Indicates if the VM should be forcibly rebooted even
+         * if a backup is running for it.
+         *
+         * @author Eyal Shenitzky <eshenitz@redhat.com>
+         * @date 31 Dec 2020
+         * @status added
+         */
+        @In Boolean force();
+
         /**
          * Indicates if the reboot should be performed asynchronously.
          *
