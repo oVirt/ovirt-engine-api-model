@@ -380,6 +380,7 @@ public interface VmsService {
             optional(vm().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(vm().storageErrorResumeBehaviour());
             optional(vm().multiQueuesEnabled());
+            optional(vm().virtioScsiMultiQueuesEnabled());
         }
 
         /**

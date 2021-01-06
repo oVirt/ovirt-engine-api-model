@@ -300,6 +300,7 @@ public interface TemplateService {
             optional(template().sso().methods()[COLLECTION].id());
             optional(template().storageErrorResumeBehaviour());
             optional(template().multiQueuesEnabled());
+            optional(template().virtioScsiMultiQueuesEnabled());
         }
         @In @Out Template template();
 

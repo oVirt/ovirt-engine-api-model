@@ -541,4 +541,15 @@ public interface VmBase extends Identified {
      */
     Boolean multiQueuesEnabled();
 
+     /**
+     * If `true`, the Virtio-SCSI devices will obtain a number of multiple queues, depending on the available virtual Cpus.
+     *
+     * @author Steven Rosenberg <srosenbe@redhat.com>
+     * @date 05 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+
+    Boolean virtioScsiMultiQueuesEnabled();
+
 }
