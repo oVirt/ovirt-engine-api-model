@@ -735,6 +735,52 @@ public interface VmService extends MeasurableService {
     }
 
     /**
+     * Apply an automatic CPU and NUMA configuration on the VM.
+     *
+     * An example for a request:
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/autopincpuandnumanodes
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <optimize_cpu_settings>true</optimize_cpu_settings>
+     * </action>
+     * ----
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 20 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    interface AutoPinCpuAndNumaNodes {
+        /**
+         * Specifies how the auto CPU and NUMA configuration is applied.
+         * If set to true, will adjust the CPU topology to fit the VM pinned host hardware.
+         * Otherwise, it will use the VM CPU topology.
+         *
+         * @author Liran Rotenberg <lrotenbe@redhat.com>
+         * @date 20 Jan 2021
+         * @status added
+         * @since 4.4.5
+         */
+        @In Boolean optimizeCpuSettings();
+
+        /**
+         * Indicates if the detach action should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 28 Mar 2017
+         * @status updated_by_docs
+         */
+        @In Boolean async();
+    }
+
+    /**
      * Update the virtual machine in the system for the given virtual machine id.
      *
      * @author Ori Liel <oliel@redhat.com>

@@ -241,6 +241,8 @@ public interface TemplateService {
             optional(template().cpu().architecture());
             optional(template().cpu().topology().cores());
             optional(template().cpu().topology().sockets());
+            optional(template().cpu().cpuTune().vcpuPins()[COLLECTION].cpuSet());
+            optional(template().cpu().cpuTune().vcpuPins()[COLLECTION].vcpu());
             optional(template().cpuProfile().id());
             optional(template().cpuShares());
             optional(template().customCpuModel());
@@ -275,6 +277,7 @@ public interface TemplateService {
             optional(template().os().kernel());
             optional(template().os().type());
             optional(template().vm().placementPolicy().affinity()); //TODO: check.
+            or(optional(template().placementPolicy().hosts()[COLLECTION].id()), optional(template().placementPolicy().hosts()[COLLECTION].name()));
             optional(template().serialNumber().policy());
             optional(template().serialNumber().value());
             optional(template().smallIcon().id());

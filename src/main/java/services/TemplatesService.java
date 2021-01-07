@@ -281,6 +281,7 @@ public interface TemplatesService {
             optional(template().os().kernel());
             optional(template().os().type());
             optional(template().vm().placementPolicy().affinity()); //TODO: check
+            or(optional(template().placementPolicy().hosts()[COLLECTION].id()), optional(template().placementPolicy().hosts()[COLLECTION].name()));
             optional(template().serialNumber().policy());
             optional(template().serialNumber().value());
             optional(template().smallIcon().id());
