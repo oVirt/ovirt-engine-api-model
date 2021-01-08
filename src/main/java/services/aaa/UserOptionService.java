@@ -1,0 +1,100 @@
+package services.aaa;
+
+import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
+
+import org.ovirt.api.metamodel.annotations.In;
+import org.ovirt.api.metamodel.annotations.InputDetail;
+import org.ovirt.api.metamodel.annotations.Out;
+import org.ovirt.api.metamodel.annotations.Service;
+
+import annotations.Area;
+import types.UserOption;
+
+@Service
+@Area("Infrastructure")
+public interface UserOptionService {
+    /**
+     * Returns a user profile property of type JSON.
+     *
+     * Example request(for user with identifier `123` and option with identifier `456`):
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/users/123/options/456
+     * ----
+     *
+     * The result will be the following XML document:
+     *
+     * [source,xml]
+     * ----
+     *   <user_option href="/ovirt-engine/api/users/123/options/456" id="456">
+     *     <name>SomeName</name>
+     *     <content>["any", "JSON"]</content>
+     *     <user href="/ovirt-engine/api/users/123" id="123"/>
+     *   </user_option>
+     * ----
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @date 11 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    interface Get {
+        @Out UserOption option();
+    }
+
+    /**
+     * Replaces an existing property of type JSON with a new one.
+     *
+     * Example request(for user with identifier `123` and option with identifier `456`):
+     *
+     * [source]
+     * ----
+     * PUT /ovirt-engine/api/users/123/options/456
+     * ----
+     *
+     * Payload:
+     *
+     * [source,xml]
+     * ----
+     * <user_option>
+     *   <name>SomeName</name>
+     *   <content>{"new" : "JSON"}</content>
+     * </user_option>
+     * ----
+     *
+     * The result will be the following XML document:
+     *
+     * [source,xml]
+     * ----
+     * <user_option href="/ovirt-engine/api/users/123/options/789" id="789">
+     *   <name>SomeName</name>
+     *   <content>{"new" : "JSON"}</content>
+     *   <user href="/ovirt-engine/api/users/123" id="123"/>
+     * </user_option>
+     * ----
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @date 11 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    interface Update {
+        @In @Out UserOption option();
+    }
+
+    /**
+     * Deletes an existing property of type JSON.
+     *
+     * Example request(for user with identifier `123` and option with identifier `456`):
+     *
+     * [source]
+     * ----
+     * DELETE /ovirt-engine/api/users/123/options/456
+     * ----
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @date 11 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    interface Remove {
+    }
+}

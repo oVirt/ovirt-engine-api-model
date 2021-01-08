@@ -108,6 +108,16 @@ public interface User extends Identified {
      * @date 10 Oct 2019
      * @status updated_by_docs
      * @since 4.4
+     * @deprecated  4.4.5
      */
+    @Deprecated
     Property[] userOptions();
+
+    /**
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @date 11 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    @Link UserOption[] options();
 }

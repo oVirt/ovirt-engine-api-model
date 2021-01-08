@@ -109,7 +109,7 @@ public interface UserService {
      *    <user_options>
      *       <property>
      *          <name>test</name>
-     *          <value>test1</value>
+     *          <value>["any","JSON"]</value>
      *       </property>
      *    </user_options>
      * </user>
@@ -119,7 +119,9 @@ public interface UserService {
      * @date 2 Oct 2019
      * @status added
      * @since 4.4
+     * @deprecated 4.4.5
      */
+    @Deprecated
     interface Update {
         @InputDetail
         default void inputDetail() {
@@ -153,6 +155,13 @@ public interface UserService {
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
     @Service SshPublicKeysService sshPublicKeys();
+    /**
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @date 11 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    @Service UserOptionsService options();
 
     /**
      * List of event-subscriptions for this user.
