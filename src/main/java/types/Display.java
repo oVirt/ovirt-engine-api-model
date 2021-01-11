@@ -76,13 +76,17 @@ public interface Display {
     Integer monitors();
 
     /**
+     * The engine now sets it automatically according to the operating system. Therefore, it has been deprecated
+     * since 4.4.5.
      * Indicates if to use one PCI slot for each monitor or to use a single PCI channel for all multiple monitors.
      * This option is only available for the SPICE console type and only for connecting a guest Linux based OS.
      *
      * @author Sharon Gratch <sgratch@redhat.com>
-     * @date 24 Apr 2017
-     * @status added
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 12 Jan 2021
+     * @status updated
      */
+    @Deprecated
     Boolean singleQxlPci();
 
     /**
