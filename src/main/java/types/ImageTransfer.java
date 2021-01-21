@@ -123,6 +123,20 @@ public interface ImageTransfer extends Identified {
     Integer inactivityTimeout();
 
     /**
+     * Timeout policy describes the action to be made after the inactivity timeout is passed.
+     * In case the timeout policy is ImageTransferTimeoutPolicy.CANCEL, the system will cancel the transfer and unlock the disk.
+     * ImageTransferTimeoutPolicy.LEGACY will perform the expected legacy behaviour, which will cancel the transfer if the direction
+     * is download, and puase it if its upload.
+     * In case the transfer policy is ImageTransferTimeoutPolicy.PAUSE, then, the transfer will be paused after the a timeout.
+     *
+     * @author Ahmad Khiet <akhiet@redhat.com>
+     * @date 21 Jan 2021
+     * @status added
+     * @since 4.4.5
+     */
+    ImageTransferTimeoutPolicy timeoutPolicy();
+
+    /**
      * The image which is targeted for input or output.
      *
      * IMPORTANT: This attribute is deprecated since version

@@ -103,14 +103,16 @@ public interface ImageTransfersService {
          *
          * @author Idan Shaby <ishaby@redhat.com>
          * @author Tahlia Richardson <trichard@redhat.com>
-         * @date 3 May 2018
-         * @status updated_by_docs
+         * @author Ahmad Khiet <akhiet@redhat.com>
+         * @date 21 Jan 2021
+         * @status added
          */
         @In @Out ImageTransfer imageTransfer();
 
         @InputDetail
         default void inputDetail() {
             optional(imageTransfer().inactivityTimeout());
+            optional(imageTransfer().timeoutPolicy());
         }
 
         @Deprecated
