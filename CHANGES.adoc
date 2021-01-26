@@ -1,5 +1,31 @@
 = Changes
 
+4.4.23 / Jan 26 2021
+
+New features:
+
+* expose VM cpu pinning and auto pinning
+  https://bugzilla.redhat.com/1688186
+
+* add timeout_policy attribute to imagetransfer
+  https://bugzilla.redhat.com/1892676
+
+* Add API for JSON based user profile props
+
+* add fips mode to cluster
+  https://bugzilla.redhat.com/1712481
+
+* depracate single qxl pci
+  https://bugzilla.redhat.com/1910411
+
+* VM: Add virtioScsiMultiQueuesEnabled
+
+* VmService: add force flag to reboot VM operation
+  https://bugzilla.redhat.com/1900564
+
+* VmService: add force flag to stop\shutdown VM operations
+  https://bugzilla.redhat.com/1900564
+
 4.4.22 / Dec 10 2020
 
 New features:
