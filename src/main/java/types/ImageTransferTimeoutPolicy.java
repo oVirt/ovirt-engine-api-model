@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2016 Red Hat, Inc.
+Copyright (c) 2021 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,9 +19,10 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The <<types/image_transfer, image transfer>> direction for a transfer.
+ * The <<types/image_transfer, image transfer>> timeout policy.
  *
- * Timeout Policy will define the next action to do after the image transfer time out.
+ * Define how the system handles a transfer when the client is inactive
+ * for inactivityTimeout seconds.
  *
  * Please refer to <<services/image_transfer, image transfer>> for further
  * documentation.
@@ -35,7 +36,8 @@ import org.ovirt.api.metamodel.annotations.Type;
 public enum ImageTransferTimeoutPolicy {
     /**
      * LEGACY policy will preserve the legacy functionality which is the default.
-     * The default behaviour will cancel the transfer if the direction is download, and puase it if its upload.
+     * The default behaviour will cancel the transfer if the direction is download,
+     * and pause it if its upload.
      *
      *
      * @author Ahmad Khiet <akhiet@redhat.com>
@@ -46,7 +48,8 @@ public enum ImageTransferTimeoutPolicy {
     LEGACY,
 
     /**
-     * After the timeout is passed the image transfer will be paused.
+     * Pause the transfer. The transfer can be resumed or canceled by the user.
+     * The disk will remain locked while the transfer is paused.
      *
      * @author Ahmad Khiet <akhiet@redhat.com>
      * @date 25 Jan 2021
@@ -56,7 +59,8 @@ public enum ImageTransferTimeoutPolicy {
     PAUSE,
 
     /**
-     * After the timeout is passed the image transfer will be canceld.
+     * Cancel the transfer and unlock the disk. For image transfer using upload
+     * direction, the disk is deleted.
      *
      * @author Ahmad Khiet <akhiet@redhat.com>
      * @date 25 Jan 2021
