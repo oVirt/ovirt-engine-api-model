@@ -512,14 +512,16 @@ public interface HostService extends MeasurableService {
          *
          * @author Ori Liel <oliel@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
-         * @status updated_by_docs
+         * @author Artur Socha <asocha@redhat.com>
+         * @date 29 Jan 21
+         * @status requires_text
          */
         interface UsingSsh extends Install {
             @InputDetail
             default void inputDetail() {
                 optional(ssh().authenticationMethod());
                 optional(ssh().fingerprint());
+                optional(ssh().publicKey());
                 optional(ssh().port());
                 optional(ssh().user().password());
                 optional(ssh().user().userName());
@@ -822,6 +824,7 @@ public interface HostService extends MeasurableService {
             @InputDetail
             default void inputDetail() {
                 optional(host().ssh().fingerprint());
+                optional(host().ssh().publicKey());
                 optional(host().ssh().port());
                 optional(host().ssh().user().userName());
             }

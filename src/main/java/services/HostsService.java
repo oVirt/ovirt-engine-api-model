@@ -179,7 +179,7 @@ public interface HostsService {
         }
 
         /**
-         * Add a new host to the system providing the ssh password or fingerprint.
+         * Add a new host to the system providing the ssh password, fingerprint or public key.
          *
          * @author Ori Liel <oliel@redhat.com>
          * @date 18 Jan 2017
@@ -190,6 +190,7 @@ public interface HostsService {
             default void inputDetail() {
                 optional(host().ssh().authenticationMethod());
                 optional(host().ssh().fingerprint());
+                optional(host().ssh().publicKey());
                 optional(host().ssh().port());
                 optional(host().ssh().user().password());
                 optional(host().ssh().user().userName());
