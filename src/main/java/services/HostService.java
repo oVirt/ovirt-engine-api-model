@@ -1056,8 +1056,8 @@ public interface HostService extends MeasurableService {
      *         <name>bond0</name>
      *       </host_nic>
      *       <ip_address_assignments>
-     *         <assignment_method>static</assignment_method>
      *         <ip_address_assignment>
+     *           <assignment_method>static</assignment_method>
      *           <ip>
      *             <address>192.168.122.10</address>
      *             <netmask>255.255.255.0</netmask>
