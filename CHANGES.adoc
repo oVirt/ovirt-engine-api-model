@@ -1,5 +1,24 @@
 = Changes
 
+4.4.24 / Feb 2 2021
+
+New features:
+
+* Use SSH public key as authentication method for host
+  https://bugzilla.redhat.com/1837221[1837221].
+
+Bug Fixes:
+
+* host.setupnetorks documentation
+  https://bugzilla.redhat.com/1802844[1802844]
+
+* ImageTransferTimeoutPolicy documentation
+  https://bugzilla.redhat.com/1892676[1892676]
+
+Deprecations:
+
+* Deprecate SSH public key fingerprint
+
 4.4.23 / Jan 26 2021
 
 New features:
