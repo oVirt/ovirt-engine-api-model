@@ -164,6 +164,14 @@ public interface HostsService {
         @In Boolean activate();
 
         /**
+         * Indicates if the host should be rebooted after successful installation. The default value is `true`.
+         *
+         * @author Dana Elfassy <delfassy@redhat.com>
+         * @date 3 Feb 2021
+         */
+        @In Boolean reboot();
+
+        /**
          * Add a new host to the system providing the host root password. This has been deprecated and provided for backwards compatibility.
          *
          * @author Ori Liel <oliel@redhat.com>

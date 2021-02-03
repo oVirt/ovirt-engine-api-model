@@ -132,6 +132,15 @@ public interface HostService extends MeasurableService {
          * @status added
          */
         @In Boolean activate();
+
+        /**
+         * Indicates if the host should be rebooted after successful installation. The default value is `true`.
+         *
+         * @author Dana Elfassy <delfassy@redhat.com>
+         * @date 3 Feb 2021
+         */
+        @In Boolean reboot();
+
         interface UsingRootPassword extends Approve {
             @InputDetail
             default void inputDetail() {
@@ -596,6 +605,14 @@ public interface HostService extends MeasurableService {
          * @status updated_by_docs
          */
         @In Boolean undeployHostedEngine();
+
+        /**
+         * Indicates if the host should be rebooted after successful installation. The default value is `true`.
+         *
+         * @author Dana Elfassy <delfassy@redhat.com>
+         * @date 3 Feb 2021
+         */
+        @In Boolean reboot();
     }
 
     /**
