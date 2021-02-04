@@ -1,5 +1,12 @@
 = Changes
 
+4.4.25 / Feb 4 2021
+
+New features:
+
+* Add reboot option to hoste deploy flow
+  https://bugzilla.redhat.com/1924823[1924823].
+
 4.4.24 / Feb 2 2021
 
 New features:
