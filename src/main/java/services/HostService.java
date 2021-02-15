@@ -616,7 +616,11 @@ public interface HostService extends MeasurableService {
     }
 
     /**
+     * This method has been deprecated since Engine version 4.4.6.
+     * DiscoverIscsi should be used instead.
+     *
      * Discovers iSCSI targets on the host, using the initiator details.
+     * Returns an array of strings containing the discovered data.
      *
      * For example, to discover iSCSI targets available in `myiscsi.example.com`,
      * from host `123`, send a request like this:
@@ -624,6 +628,73 @@ public interface HostService extends MeasurableService {
      * [source]
      * ----
      * POST /ovirt-engine/api/hosts/123/iscsidiscover
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <iscsi>
+     *     <address>myiscsi.example.com</address>
+     *   </iscsi>
+     * </action>
+     * ----
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @author Megan Lewis <melewis@redhat.com>
+     * @author Ala Hino <ahino@redhat.com>
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 15 Feb 2021
+     * @status updated
+     */
+    @Deprecated
+    interface IscsiDiscover {
+        @InputDetail
+        default void inputDetail() {
+            mandatory(iscsi().address());
+        }
+        /**
+         * The target iSCSI device.
+         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
+         */
+        @In IscsiDetails iscsi();
+
+        /**
+         * The iSCSI targets.
+         *         *
+         * @author Oved Ourfali <oourfali@redhat.com>
+         * @author Megan Lewis <melewis@redhat.com>
+         * @author Ala Hino <ahino@redhat.com>
+         * @date 23 Nov 2017
+         * @status updated_by_docs
+         */
+        @Out String[] iscsiTargets();
+
+        /**
+         * Indicates if the discovery should be performed asynchronously.
+         *
+         * @author Megan Lewis <melewis@redhat.com>
+         * @date 17 Oct 17
+         * @status updated_by_docs
+         */
+        @In Boolean async();
+    }
+
+    /**
+     * Discovers iSCSI targets on the host, using the initiator details.
+     * Returns a list of IscsiDetails objects containing the discovered data.
+     *
+     * For example, to discover iSCSI targets available in `myiscsi.example.com`,
+     * from host `123`, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/hosts/123/discoveriscsi
      * ----
      *
      * With a request body like this:
@@ -651,60 +722,47 @@ public interface HostService extends MeasurableService {
      * </discovered_targets>
      * ----
      *
-     * @author Oved Ourfali <oourfali@redhat.com>
-     * @author Megan Lewis <melewis@redhat.com>
-     * @author Ala Hino <ahino@redhat.com>
-     * @date 23 Nov 2017
-     * @status updated_by_docs
+     * @author Ori Liel <oliel@redhat.com>
+     * @date 15 Feb 2021
+     * @status added
+     * @since 4.4.6
      */
-    interface IscsiDiscover {
+    interface DiscoverIscsi {
+
         @InputDetail
         default void inputDetail() {
             mandatory(iscsi().address());
         }
+
         /**
          * The target iSCSI device.
          *
-         * @author Oved Ourfali <oourfali@redhat.com>
-         * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
-         * @status updated_by_docs
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 15 Feb 2021
+         * @status added
+         * @since 4.4.6
          */
         @In IscsiDetails iscsi();
 
         /**
-         * The iSCSI targets.
+         * Indicates if the discovery should be performed asynchronously.
          *
-         * Since version 4.2 of the engine, this parameter is deprecated, use
-         * `discovered_targets` instead.
-         *
-         * @author Oved Ourfali <oourfali@redhat.com>
-         * @author Megan Lewis <melewis@redhat.com>
-         * @author Ala Hino <ahino@redhat.com>
-         * @date 23 Nov 2017
-         * @status updated_by_docs
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 15 Feb 2021
+         * @status added
+         * @since 4.4.6
          */
-        @Deprecated
-        @Out String[] iscsiTargets();
+        @In Boolean async();
 
         /**
          * The discovered targets including all connection information.
          *
-         * @author Ala Hino <ahino@redhat.com>
-         * @date 23 Nov 2017
-         * @status updated_by_docs
-         * @since 4.2
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 15 Feb 2021
+         * @status added
+         * @since 4.4.6
          */
         @Out IscsiDetails[] discoveredTargets();
-
-        /**
-         * Indicates if the discovery should be performed asynchronously.
-         *
-         * @author Megan Lewis <melewis@redhat.com>
-         * @date 17 Oct 17
-         * @status updated_by_docs
-         */
-        @In Boolean async();
     }
 
     /**
