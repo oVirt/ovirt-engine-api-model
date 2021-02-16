@@ -111,8 +111,8 @@ public interface VnicProfilesService {
      * @author Dominik Holler <dholler@redhat.com>
      * @author Ales Musil <amusil@redhat.com>
      * @author Billy Burmester <bburmest@redhat.com>
-     * @date 15 May 2018
-     * @status updated_by_docs
+     * @date 30 March 2021
+     * @status updated
      */
     interface Add {
         @InputDetail
@@ -124,6 +124,7 @@ public interface VnicProfilesService {
             optional(profile().portMirroring());
             optional(profile().customProperties()[COLLECTION].name());
             optional(profile().customProperties()[COLLECTION].value());
+            optional(profile().failover());
         }
         /**
          * The vNIC profile that is being added.

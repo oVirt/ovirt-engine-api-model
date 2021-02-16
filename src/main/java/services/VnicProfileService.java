@@ -53,7 +53,8 @@ public interface VnicProfileService {
      * Updates details of a vNIC profile.
      *
      * @author Dominik Holler <dholler@redhat.com>
-     * @date 29 Jul 2019
+     * @author Ales Musil <amusil@redhat.com>
+     * @date 30 March 2021
      * @status updated
      */
     interface Update {
@@ -68,6 +69,7 @@ public interface VnicProfileService {
             optional(profile().customProperties()[COLLECTION].value());
             optional(profile().networkFilter());
             optional(profile().qos());
+            optional(profile().failover());
         }
         /**
          * The vNIC profile that is being updated.

@@ -143,6 +143,16 @@ public interface VnicProfile extends Identified {
     @Link NetworkFilter networkFilter();
 
     /**
+     * Failover vNIC profile for SR-IOV migration without downtime
+     *
+     * @author Ales Musil <amusil@redhat.com>
+     * @date 30 March 2021
+     * @since 4.4.6
+     * @status new
+     */
+    @Link VnicProfile failover();
+
+    /**
      * Permissions to allow usage of the vNIC profile.
      *
      * @author Dominik Holler <dholler@redhat.com>
