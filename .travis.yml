@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - java-11-openjdk-devel
+  - openjdk11
 
 addons:
   apt:
