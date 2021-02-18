@@ -1,5 +1,11 @@
 = Changes
 
+4.4.26 / Feb 18 2021
+
+Bug Fixes:
+
+* Fix travis doc generation
+
 4.4.25 / Feb 4 2021
 
 New features:
