@@ -115,6 +115,10 @@ public interface UserService {
      * </user>
      * ----
      *
+     * IMPORTANT: Since version 4.4.5 of the engine this operation is deprecated, and preserved only for backwards
+     * compatibility. It will be removed in the future. Please use the <<services/user_option, options>>
+     * endpoint instead.
+     *
      * @author Bohdan Iakymets <biakymet@redhat.com>
      * @date 2 Oct 2019
      * @status added

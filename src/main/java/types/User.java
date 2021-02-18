@@ -102,6 +102,9 @@ public interface User extends Identified {
      * User options allow you to save key/value properties
      * which are used to customize the settings per individual
      * user.
+     * Note that since version 4.4.5 this property is deprecated and preserved only for backwards
+     * compatibility. It will be removed in the future. Please use the <<services/user_option, options>>
+     * endpoint instead.
      *
      * @author Bohdan Iakymets <biakymet@redhat.com>
      * @author Eli Marcus <emarcus@redhat.com>
