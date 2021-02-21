@@ -552,4 +552,15 @@ public interface VmBase extends Identified {
 
     Boolean virtioScsiMultiQueuesEnabled();
 
+    /**
+     * If `true`, a TPM device is added to the virtual machine. By default the value is `false`.
+     * This property is only visible when fetching if "All-Content=true" header is set.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 21 Feb 2021
+     * @status added
+     * @since 4.4.5
+     */
+    Boolean tpmEnabled();
+
 }

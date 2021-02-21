@@ -79,6 +79,7 @@ public interface VmPoolsService {
             optional(pool().soundcardEnabled());
             optional(pool().type());
             optional(pool().useLatestTemplateVersion());
+            optional(pool().tpmEnabled());
         }
         /**
          * Pool to add.
