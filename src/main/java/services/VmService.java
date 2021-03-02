@@ -1007,6 +1007,35 @@ public interface VmService extends MeasurableService {
         @In Boolean force();
     }
 
+    /**
+     * Sends a reset request to a virtual machine.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/reset
+     * ----
+     *
+     * The reset action does not take any action specific parameters; therefore, the request body should contain an
+     * empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     * ----
+     *
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 1 Mar 2021
+     * @status added
+     */
+    interface Reset {
+        /**
+         * Indicates if the reset should be performed asynchronously.
+         */
+        @In Boolean async();
+    }
+
     interface ReorderMacAddresses {
         /**
          * Indicates if the action should be performed asynchronously.
