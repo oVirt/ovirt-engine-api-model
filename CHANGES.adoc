@@ -1,5 +1,21 @@
 = Changes
 
+4.4.27 / Mar 22 2021
+
+New features:
+
+* Add failover vnic profile link
+  https://bugzilla.redhat.com/1688177
+
+* Add VM Reset option
+  https://bugzilla.redhat.com/show_bug.cgi?id=1927718
+
+* introduce TPM device to VMs
+
+Bug Fixes:
+
+* Remove UPDATE operation from UserOptionService
+
 4.4.26 / Feb 18 2021
 
 Bug Fixes:
