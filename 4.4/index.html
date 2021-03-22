@@ -6120,9 +6120,6 @@ reverts back to disk for all future boots.</p>
 <p><a href="#services/user_option/methods/get">GET</a> /<a href="#services/users">users</a>/<a href="#services/user">{user:id}</a>/<a href="#services/user_options">options</a>/<a href="#services/user_option">{option:id}</a></p>
 </li>
 <li>
-<p><a href="#services/user_option/methods/update">PUT</a> /<a href="#services/users">users</a>/<a href="#services/user">{user:id}</a>/<a href="#services/user_options">options</a>/<a href="#services/user_option">{option:id}</a></p>
-</li>
-<li>
 <p><a href="#services/user_option/methods/remove">DELETE</a> /<a href="#services/users">users</a>/<a href="#services/user">{user:id}</a>/<a href="#services/user_options">options</a>/<a href="#services/user_option">{option:id}</a></p>
 </li>
 <li>
@@ -6469,6 +6466,9 @@ reverts back to disk for all future boots.</p>
 </li>
 <li>
 <p><a href="#services/vm_reported_device/methods/get">GET</a> /<a href="#services/vms">vms</a>/<a href="#services/vm">{vm:id}</a>/<a href="#services/vm_reported_devices">reporteddevices</a>/<a href="#services/vm_reported_device">{reporteddevice:id}</a></p>
+</li>
+<li>
+<p><a href="#services/vm/methods/reset">POST</a> /<a href="#services/vms">vms</a>/<a href="#services/vm">{vm:id}</a>/<a href="#services/vm">reset</a></p>
 </li>
 <li>
 <p><a href="#services/vm_sessions/methods/list">GET</a> /<a href="#services/vms">vms</a>/<a href="#services/vm">{vm:id}</a>/<a href="#services/vm_sessions">sessions</a></p>
@@ -43274,6 +43274,20 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 &lt;/user&gt;</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since version 4.4.5 of the engine this operation is deprecated, and preserved only for backwards
+compatibility. It will be removed in the future. Please use the <a href="#services/user_option">options</a>
+endpoint instead.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 744. Parameters summary</caption>
 <colgroup>
@@ -43323,10 +43337,6 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remove</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deletes an existing property of type JSON.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Replaces an existing property of type JSON with a new one.</p></td>
 </tr>
 </tbody>
 </table>
@@ -43395,73 +43405,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="services/user_option/methods/update"><a class="anchor" href="#services/user_option/methods/update"></a><a class="link" href="#services/user_option/methods/update">6.244.3. update <span class="small">PUT</span></a></h4>
-<div class="paragraph">
-<p>Replaces an existing property of type JSON with a new one.</p>
-</div>
-<div class="paragraph">
-<p>Example request(for user with identifier <code>123</code> and option with identifier <code>456</code>):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>PUT /ovirt-engine/api/users/123/options/456</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Payload:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;user_option&gt;
-  &lt;name&gt;SomeName&lt;/name&gt;
-  &lt;content&gt;{"new" : "JSON"}&lt;/content&gt;
-&lt;/user_option&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The result will be the following XML document:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;user_option href="/ovirt-engine/api/users/123/options/789" id="789"&gt;
-  &lt;name&gt;SomeName&lt;/name&gt;
-  &lt;content&gt;{"new" : "JSON"}&lt;/content&gt;
-  &lt;user href="/ovirt-engine/api/users/123" id="123"/&gt;
-&lt;/user_option&gt;</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 747. Parameters summary</caption>
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Direction</th>
-<th class="tableblock halign-left valign-top">Summary</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/user_option">UserOption</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In/Out</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="services/user_options"><a class="anchor" href="#services/user_options"></a><a class="link" href="#services/user_options">6.245. UserOptions</a></h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 748. Methods summary</caption>
+<caption class="title">Table 747. Methods summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -43508,7 +43456,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 749. Parameters summary</caption>
+<caption class="title">Table 748. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43561,7 +43509,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 750. Parameters summary</caption>
+<caption class="title">Table 749. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43593,7 +43541,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>A service to manage the users in the system.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 751. Methods summary</caption>
+<caption class="title">Table 750. Methods summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -43663,7 +43611,7 @@ authorization provider send a request body like this:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 752. Parameters summary</caption>
+<caption class="title">Table 751. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43728,7 +43676,7 @@ authorization provider send a request body like this:</p>
 <p>The order of the returned list of users isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 753. Parameters summary</caption>
+<caption class="title">Table 752. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43803,7 +43751,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect2">
 <h3 id="services/virtual_function_allowed_network"><a class="anchor" href="#services/virtual_function_allowed_network"></a><a class="link" href="#services/virtual_function_allowed_network">6.247. VirtualFunctionAllowedNetwork</a></h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 754. Methods summary</caption>
+<caption class="title">Table 753. Methods summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -43828,7 +43776,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/virtual_function_allowed_network/methods/get"><a class="anchor" href="#services/virtual_function_allowed_network/methods/get"></a><a class="link" href="#services/virtual_function_allowed_network/methods/get">6.247.1. get <span class="small">GET</span></a></h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 755. Parameters summary</caption>
+<caption class="title">Table 754. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43869,7 +43817,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/virtual_function_allowed_network/methods/remove"><a class="anchor" href="#services/virtual_function_allowed_network/methods/remove"></a><a class="link" href="#services/virtual_function_allowed_network/methods/remove">6.247.2. remove <span class="small">DELETE</span></a></h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 756. Parameters summary</caption>
+<caption class="title">Table 755. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43898,7 +43846,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect2">
 <h3 id="services/virtual_function_allowed_networks"><a class="anchor" href="#services/virtual_function_allowed_networks"></a><a class="link" href="#services/virtual_function_allowed_networks">6.248. VirtualFunctionAllowedNetworks</a></h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 757. Methods summary</caption>
+<caption class="title">Table 756. Methods summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -43923,7 +43871,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/virtual_function_allowed_networks/methods/add"><a class="anchor" href="#services/virtual_function_allowed_networks/methods/add"></a><a class="link" href="#services/virtual_function_allowed_networks/methods/add">6.248.1. add <span class="small">POST</span></a></h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 758. Parameters summary</caption>
+<caption class="title">Table 757. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -43957,7 +43905,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>The order of the returned list of networks isn&#8217;t guaranteed.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 759. Parameters summary</caption>
+<caption class="title">Table 758. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44011,7 +43959,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect2">
 <h3 id="services/vm"><a class="anchor" href="#services/vm"></a><a class="link" href="#services/vm">6.249. Vm</a></h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 760. Methods summary</caption>
+<caption class="title">Table 759. Methods summary</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -44084,6 +44032,10 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reset</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends a reset request to a virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutdown</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This operation sends a shutdown request to a virtual machine.</p></td>
 </tr>
@@ -44141,7 +44093,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 761. Parameters summary</caption>
+<caption class="title">Table 760. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44200,7 +44152,7 @@ therefore, the request body should contain an empty <code>action</code>:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 762. Parameters summary</caption>
+<caption class="title">Table 761. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44228,7 +44180,7 @@ therefore, the request body should contain an empty <code>action</code>:</p>
 <div class="sect3">
 <h4 id="services/vm/methods/clone"><a class="anchor" href="#services/vm/methods/clone"></a><a class="link" href="#services/vm/methods/clone">6.249.3. clone <span class="small">POST</span></a></h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 763. Parameters summary</caption>
+<caption class="title">Table 762. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44288,7 +44240,7 @@ snapshots collapsed. Default is true.</p>
 <p>See the <a href="#services/vm/methods/preview_snapshot">preview_snapshot</a> operation for details.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 764. Parameters summary</caption>
+<caption class="title">Table 763. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44333,7 +44285,7 @@ empty <code>action</code>:</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 765. Parameters summary</caption>
+<caption class="title">Table 764. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44422,7 +44374,7 @@ Confirm that the export operation has completed before attempting any actions on
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 766. Parameters summary</caption>
+<caption class="title">Table 765. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44491,7 +44443,7 @@ manually with the API for virtual machines using OpenStack Volume (Cinder) disks
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 767. Parameters summary</caption>
+<caption class="title">Table 766. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44522,7 +44474,7 @@ manually with the API for virtual machines using OpenStack Volume (Cinder) disks
 <p>Retrieves the description of the virtual machine.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 768. Parameters summary</caption>
+<caption class="title">Table 767. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44706,7 +44658,7 @@ from an external console.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 769. Parameters summary</caption>
+<caption class="title">Table 768. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44755,7 +44707,7 @@ from an external console.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 770. Parameters summary</caption>
+<caption class="title">Table 769. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44810,7 +44762,7 @@ from an external console.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 771. Parameters summary</caption>
+<caption class="title">Table 770. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -44917,7 +44869,7 @@ be inspected. Once that inspection is finished, the state of the virtual machine
 <a href="#services/vm/methods/undo_snapshot">undo_snapshot</a> method.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 772. Parameters summary</caption>
+<caption class="title">Table 771. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -45059,7 +45011,7 @@ the action should include the 'force' element.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 773. Parameters summary</caption>
+<caption class="title">Table 772. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -45105,7 +45057,7 @@ if a backup is running for it.</p></td>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 774. Parameters summary</caption>
+<caption class="title">Table 773. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -45155,7 +45107,7 @@ cannot be removed without this flag set to true.</p>
 <div class="sect3">
 <h4 id="services/vm/methods/reorder_mac_addresses"><a class="anchor" href="#services/vm/methods/reorder_mac_addresses"></a><a class="link" href="#services/vm/methods/reorder_mac_addresses">6.249.15. reordermacaddresses <span class="small">POST</span></a></h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 775. Parameters summary</caption>
+<caption class="title">Table 774. Parameters summary</caption>
 <colgroup>
 <col style="width: 15%;">
 <col style="width: 15%;">
@@ -45181,7 +45133,55 @@ cannot be removed without this flag set to true.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/shutdown"><a class="anchor" href="#services/vm/methods/shutdown"></a><a class="link" href="#services/vm/methods/shutdown">6.249.16. shutdown <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/reset"><a class="anchor" href="#services/vm/methods/reset"></a><a class="link" href="#services/vm/methods/reset">6.249.16. reset <span class="small">POST</span></a></h4>
+<div class="paragraph">
+<p>Sends a reset request to a virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/reset</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The reset action does not take any action specific parameters; therefore, the request body should contain an
+empty <code>action</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;action/&gt;</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 775. Parameters summary</caption>
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 15%;">
+<col style="width: 20%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Direction</th>
+<th class="tableblock halign-left valign-top">Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>async</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the reset should be performed asynchronously.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="services/vm/methods/shutdown"><a class="anchor" href="#services/vm/methods/shutdown"></a><a class="link" href="#services/vm/methods/shutdown">6.249.17. shutdown <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>This operation sends a shutdown request to a virtual machine.</p>
 </div>
@@ -45268,7 +45268,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/start"><a class="anchor" href="#services/vm/methods/start"></a><a class="link" href="#services/vm/methods/start">6.249.17. start <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/start"><a class="anchor" href="#services/vm/methods/start"></a><a class="link" href="#services/vm/methods/start">6.249.18. start <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>Starts the virtual machine.</p>
 </div>
@@ -45445,7 +45445,7 @@ The default value is <code>false</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/stop"><a class="anchor" href="#services/vm/methods/stop"></a><a class="link" href="#services/vm/methods/stop">6.249.18. stop <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/stop"><a class="anchor" href="#services/vm/methods/stop"></a><a class="link" href="#services/vm/methods/stop">6.249.19. stop <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>This operation forces a virtual machine to power-off.</p>
 </div>
@@ -45532,7 +45532,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/suspend"><a class="anchor" href="#services/vm/methods/suspend"></a><a class="link" href="#services/vm/methods/suspend">6.249.19. suspend <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/suspend"><a class="anchor" href="#services/vm/methods/suspend"></a><a class="link" href="#services/vm/methods/suspend">6.249.20. suspend <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>This operation saves the virtual machine state to disk and stops it.
 Start a suspended virtual machine and restore the virtual machine state with the start action.</p>
@@ -45581,7 +45581,7 @@ therefore, the request body should contain an empty <code>action</code>:</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/thaw_filesystems"><a class="anchor" href="#services/vm/methods/thaw_filesystems"></a><a class="link" href="#services/vm/methods/thaw_filesystems">6.249.20. thawfilesystems <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/thaw_filesystems"><a class="anchor" href="#services/vm/methods/thaw_filesystems"></a><a class="link" href="#services/vm/methods/thaw_filesystems">6.249.21. thawfilesystems <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>Thaws virtual machine file systems.</p>
 </div>
@@ -45630,7 +45630,7 @@ with the API for virtual machines using OpenStack Volume (Cinder) disks.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/ticket"><a class="anchor" href="#services/vm/methods/ticket"></a><a class="link" href="#services/vm/methods/ticket">6.249.21. ticket <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/ticket"><a class="anchor" href="#services/vm/methods/ticket"></a><a class="link" href="#services/vm/methods/ticket">6.249.22. ticket <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>Generates a time-sensitive authentication token for accessing a virtual machine&#8217;s display.</p>
 </div>
@@ -45719,7 +45719,7 @@ a request:</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/undo_snapshot"><a class="anchor" href="#services/vm/methods/undo_snapshot"></a><a class="link" href="#services/vm/methods/undo_snapshot">6.249.22. undosnapshot <span class="small">POST</span></a></h4>
+<h4 id="services/vm/methods/undo_snapshot"><a class="anchor" href="#services/vm/methods/undo_snapshot"></a><a class="link" href="#services/vm/methods/undo_snapshot">6.249.23. undosnapshot <span class="small">POST</span></a></h4>
 <div class="paragraph">
 <p>Restores the virtual machine to the state it had before previewing the snapshot.</p>
 </div>
@@ -45753,7 +45753,7 @@ a request:</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="services/vm/methods/update"><a class="anchor" href="#services/vm/methods/update"></a><a class="link" href="#services/vm/methods/update">6.249.23. update <span class="small">PUT</span></a></h4>
+<h4 id="services/vm/methods/update"><a class="anchor" href="#services/vm/methods/update"></a><a class="link" href="#services/vm/methods/update">6.249.24. update <span class="small">PUT</span></a></h4>
 <div class="paragraph">
 <p>Update the virtual machine in the system for the given virtual machine id.</p>
 </div>
@@ -64831,6 +64831,11 @@ attributes are not used in instance types.
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tunnel_migration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the network data transfer will be encrypted during virtual machine live migration.</p></td>
@@ -65164,6 +65169,13 @@ hosts to which the virtual machine is pinned.
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/instance_type/attributes/tpm_enabled"><a class="anchor" href="#types/instance_type/attributes/tpm_enabled"></a><a class="link" href="#types/instance_type/attributes/tpm_enabled">7.140.13. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1082. Links summary</caption>
@@ -74442,6 +74454,11 @@ it&#8217;s configuration might differ from the stored one for the purpose of thi
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tunnel_migration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the network data transfer will be encrypted during virtual machine live migration.</p></td>
@@ -74801,6 +74818,13 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>The reason the virtual machine was stopped.
 Optionally set by user when shutting down the virtual machine.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="types/snapshot/attributes/tpm_enabled"><a class="anchor" href="#types/snapshot/attributes/tpm_enabled"></a><a class="link" href="#types/snapshot/attributes/tpm_enabled">7.256.17. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1227. Links summary</caption>
 <colgroup>
@@ -74965,13 +74989,13 @@ Optionally set by user when shutting down the virtual machine.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/affinity_labels"><a class="anchor" href="#types/snapshot/links/affinity_labels"></a><a class="link" href="#types/snapshot/links/affinity_labels">7.256.17. affinity_labels</a></h4>
+<h4 id="types/snapshot/links/affinity_labels"><a class="anchor" href="#types/snapshot/links/affinity_labels"></a><a class="link" href="#types/snapshot/links/affinity_labels">7.256.18. affinity_labels</a></h4>
 <div class="paragraph">
 <p>Optional. Used for labeling of sub-clusters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/katello_errata"><a class="anchor" href="#types/snapshot/links/katello_errata"></a><a class="link" href="#types/snapshot/links/katello_errata">7.256.18. katello_errata</a></h4>
+<h4 id="types/snapshot/links/katello_errata"><a class="anchor" href="#types/snapshot/links/katello_errata"></a><a class="link" href="#types/snapshot/links/katello_errata">7.256.19. katello_errata</a></h4>
 <div class="paragraph">
 <p>Lists all the Katello errata assigned to the virtual machine.</p>
 </div>
@@ -75007,7 +75031,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/original_template"><a class="anchor" href="#types/snapshot/links/original_template"></a><a class="link" href="#types/snapshot/links/original_template">7.256.19. original_template</a></h4>
+<h4 id="types/snapshot/links/original_template"><a class="anchor" href="#types/snapshot/links/original_template"></a><a class="link" href="#types/snapshot/links/original_template">7.256.20. original_template</a></h4>
 <div class="paragraph">
 <p>References the original template used to create the virtual machine.</p>
 </div>
@@ -75021,7 +75045,7 @@ is used to track history.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/snapshot/links/statistics"><a class="anchor" href="#types/snapshot/links/statistics"></a><a class="link" href="#types/snapshot/links/statistics">7.256.20. statistics</a></h4>
+<h4 id="types/snapshot/links/statistics"><a class="anchor" href="#types/snapshot/links/statistics"></a><a class="link" href="#types/snapshot/links/statistics">7.256.21. statistics</a></h4>
 <div class="paragraph">
 <p>Statistics data collected from this virtual machine.</p>
 </div>
@@ -77349,6 +77373,11 @@ Templates allow for a rapid instantiation of virtual machines with common config
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tunnel_migration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the network data transfer will be encrypted during virtual machine live migration.</p></td>
@@ -77682,6 +77711,13 @@ hosts to which the virtual machine is pinned.
 <div class="paragraph">
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/template/attributes/tpm_enabled"><a class="anchor" href="#types/template/attributes/tpm_enabled"></a><a class="link" href="#types/template/attributes/tpm_enabled">7.285.13. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1264. Links summary</caption>
@@ -78255,6 +78291,17 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 <code>uid</code> must be followed by the authorization provider name. For example, in the case of LDAP&#8217;s <code>uid</code> attribute it is:
 <code>myuser@myextension-authz</code>. In the case of Active Directory using <code>UPN</code> it is:
 <code>myuser@mysubdomain.mydomain.com@myextension-authz</code>. This attribute is a required parameter when adding a new user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/user/attributes/user_options"><a class="anchor" href="#types/user/attributes/user_options"></a><a class="link" href="#types/user/attributes/user_options">7.295.4. user_options</a></h4>
+<div class="paragraph">
+<p>User options allow you to save key/value properties
+which are used to customize the settings per individual
+user.
+Note that since version 4.4.5 this property is deprecated and preserved only for backwards
+compatibility. It will be removed in the future. Please use the <a href="#services/user_option">options</a>
+endpoint instead.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1277. Links summary</caption>
@@ -79179,6 +79226,11 @@ it&#8217;s configuration might differ from the stored one for the purpose of thi
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tunnel_migration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, the network data transfer will be encrypted during virtual machine live migration.</p></td>
@@ -79529,6 +79581,13 @@ The user can be automatically signed in the virtual machine&#8217;s operating sy
 <p>The reason the virtual machine was stopped.
 Optionally set by user when shutting down the virtual machine.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="types/vm/attributes/tpm_enabled"><a class="anchor" href="#types/vm/attributes/tpm_enabled"></a><a class="link" href="#types/vm/attributes/tpm_enabled">7.306.16. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1291. Links summary</caption>
 <colgroup>
@@ -79683,13 +79742,13 @@ Optionally set by user when shutting down the virtual machine.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/affinity_labels"><a class="anchor" href="#types/vm/links/affinity_labels"></a><a class="link" href="#types/vm/links/affinity_labels">7.306.16. affinity_labels</a></h4>
+<h4 id="types/vm/links/affinity_labels"><a class="anchor" href="#types/vm/links/affinity_labels"></a><a class="link" href="#types/vm/links/affinity_labels">7.306.17. affinity_labels</a></h4>
 <div class="paragraph">
 <p>Optional. Used for labeling of sub-clusters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/katello_errata"><a class="anchor" href="#types/vm/links/katello_errata"></a><a class="link" href="#types/vm/links/katello_errata">7.306.17. katello_errata</a></h4>
+<h4 id="types/vm/links/katello_errata"><a class="anchor" href="#types/vm/links/katello_errata"></a><a class="link" href="#types/vm/links/katello_errata">7.306.18. katello_errata</a></h4>
 <div class="paragraph">
 <p>Lists all the Katello errata assigned to the virtual machine.</p>
 </div>
@@ -79725,7 +79784,7 @@ Optionally set by user when shutting down the virtual machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/original_template"><a class="anchor" href="#types/vm/links/original_template"></a><a class="link" href="#types/vm/links/original_template">7.306.18. original_template</a></h4>
+<h4 id="types/vm/links/original_template"><a class="anchor" href="#types/vm/links/original_template"></a><a class="link" href="#types/vm/links/original_template">7.306.19. original_template</a></h4>
 <div class="paragraph">
 <p>References the original template used to create the virtual machine.</p>
 </div>
@@ -79739,7 +79798,7 @@ is used to track history.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm/links/statistics"><a class="anchor" href="#types/vm/links/statistics"></a><a class="link" href="#types/vm/links/statistics">7.306.19. statistics</a></h4>
+<h4 id="types/vm/links/statistics"><a class="anchor" href="#types/vm/links/statistics"></a><a class="link" href="#types/vm/links/statistics">7.306.20. statistics</a></h4>
 <div class="paragraph">
 <p>Statistics data collected from this virtual machine.</p>
 </div>
@@ -79990,6 +80049,11 @@ This is used by virtual machines, templates and instance types.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>time_zone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/time_zone">TimeZone</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The virtual machine&#8217;s time zone set by oVirt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tunnel_migration</code></p></td>
@@ -80316,6 +80380,13 @@ hosts to which the virtual machine is pinned.
 <p>Reference to the Single Sign On configuration this virtual machine is configured for.
 The user can be automatically signed in the virtual machine&#8217;s operating system when console is opened.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_base/attributes/tpm_enabled"><a class="anchor" href="#types/vm_base/attributes/tpm_enabled"></a><a class="link" href="#types/vm_base/attributes/tpm_enabled">7.308.13. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1294. Links summary</caption>
 <colgroup>
@@ -80510,6 +80581,11 @@ storage domains where the template is copied.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Virtual machine pool&#8217;s stateful flag.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tpm_enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, a TPM device is added to the virtual machine.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm_pool_type">VmPoolType</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The deallocation policy of virtual machines in the pool.</p></td>
@@ -80555,6 +80631,13 @@ machines from the pool faster.</p>
 not created). The state of the virtual machine is preserved even when the virtual machine is passed to a
 different user.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_pool/attributes/tpm_enabled"><a class="anchor" href="#types/vm_pool/attributes/tpm_enabled"></a><a class="link" href="#types/vm_pool/attributes/tpm_enabled">7.311.4. tpm_enabled</a></h4>
+<div class="paragraph">
+<p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
+This property is only visible when fetching if "All-Content=true" header is set.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1299. Links summary</caption>
 <colgroup>
@@ -80599,14 +80682,14 @@ different user.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a><a class="link" href="#types/vm_pool/links/instance_type">7.311.4. instance_type</a></h4>
+<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a><a class="link" href="#types/vm_pool/links/instance_type">7.311.5. instance_type</a></h4>
 <div class="paragraph">
 <p>Reference to the instance type on which this pool is based. It can be
 set only on pool creation and cannot be edited.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/vm"><a class="anchor" href="#types/vm_pool/links/vm"></a><a class="link" href="#types/vm_pool/links/vm">7.311.5. vm</a></h4>
+<h4 id="types/vm_pool/links/vm"><a class="anchor" href="#types/vm_pool/links/vm"></a><a class="link" href="#types/vm_pool/links/vm">7.311.6. vm</a></h4>
 <div class="paragraph">
 <p>Reference to an arbitrary virtual machine that is part of the pool.</p>
 </div>
@@ -81261,6 +81344,11 @@ Enabling port mirroring reduces the privacy of other network users.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>failover</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_profile">VnicProfile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Failover vNIC profile for SR-IOV migration without downtime</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/network">Network</a></p></td>
@@ -84162,7 +84250,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-02-18 08:12:54 UTC
+Last updated 2021-03-22 07:41:28 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
