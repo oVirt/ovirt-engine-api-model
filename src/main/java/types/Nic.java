@@ -87,6 +87,16 @@ public interface Nic extends Device {
     Boolean plugged();
 
     /**
+     * Defines if the NIC configuration on the virtual machine is
+     * synced with the configuration represented by engine.
+     *
+     * @author Eitan Raviv <eraviv@redhat.com>
+     * @date 6 Apr 2021
+     * @status updated
+     */
+    Boolean synced();
+
+    /**
      * Defines how an IP address is assigned to the NIC.
      *
      * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
