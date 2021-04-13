@@ -1,5 +1,12 @@
 = Changes
 
+4.4.28 / Apr 13 2021
+
+New features:
+
+* add vnic sync status on vnics
+  https://bugzilla.redhat.com/1113630
+
 4.4.27 / Mar 22 2021
 
 New features:
