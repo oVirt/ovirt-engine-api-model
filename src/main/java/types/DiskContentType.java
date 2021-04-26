@@ -114,5 +114,15 @@ public enum DiskContentType {
      * @status added
      * @since 4.3.3
      */
-    HOSTED_ENGINE_CONFIGURATION;
+    HOSTED_ENGINE_CONFIGURATION,
+
+    /**
+     * The disk contains protected VM backup data.
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 26 Apr 2021
+     * @status added
+     * @since 4.4.6
+     */
+    BACKUP_SCRATCH;
 }
