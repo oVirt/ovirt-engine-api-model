@@ -1,5 +1,12 @@
 = Changes
 
+4.4.29 / Apr 27 2021
+
+Bug Fixes:
+
+* Add BACKUP_SCRATCH disk type
+  https://bugzilla.redhat.com/1953558
+
 4.4.28 / Apr 13 2021
 
 New features:
