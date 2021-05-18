@@ -157,6 +157,16 @@ public interface SystemService {
      */
     @Service ExternalVmImportsService externalVmImports();
 
+    /**
+     * Reference to service facilitating import of external templates.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 12 May 2021
+     * @status added
+     * @since 4.4.7
+     */
+    @Service ExternalTemplateImportsService externalTemplateImports();
+
     @Service GroupsService groups();
     @Service HostsService hosts();
     @Service IconsService icons();
