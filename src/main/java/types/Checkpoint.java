@@ -44,6 +44,16 @@ public interface Checkpoint extends Identified {
     Date creationDate();
 
     /**
+     * The state of the checkpoint.
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @date 24 May 2021
+     * @status added
+     * @since 4.4.7
+     */
+    CheckpointState state();
+
+    /**
      * A reference to the virtual machine associated with the checkpoint.
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
