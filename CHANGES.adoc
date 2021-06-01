@@ -1,5 +1,15 @@
 = Changes
 
+4.4.30 / Jun 1 2021
+
+New features:
+
+* support external template import
+  https://bugzilla.redhat.com/1941581
+
+* Checkpoint: add 'state' field for a checkpoint
+* https://bugzilla.redhat.com/1952577
+
 4.4.29 / Apr 27 2021
 
 Bug Fixes:
