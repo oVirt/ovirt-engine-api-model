@@ -60,5 +60,25 @@ public enum BackupPhase {
      * @status added
      * @since 4.3
      */
-    FINALIZING
+    FINALIZING,
+
+    /**
+     * The final phase, indicates that the backup has finished successfully.
+     *
+     * @author Pavel Bar <pbar@redhat.com>
+     * @date 1 Jun 2021
+     * @status added
+     * @since 4.4.7
+     */
+    SUCCEEDED,
+
+    /**
+     * The final phase, indicates that the backup has failed.
+     *
+     * @author Pavel Bar <pbar@redhat.com>
+     * @date 1 Jun 2021
+     * @status added
+     * @since 4.4.7
+     */
+    FAILED
 }
