@@ -42,6 +42,16 @@ public interface MDevType {
     String name();
 
     /**
+     * MDev type human readable name.
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @date 09 Jun 2021
+     * @status added
+     * @since 4.4.7
+     */
+    String humanReadableName();
+
+    /**
      * MDev type available instances count.
      *
      * @author Lucia Jelinkova <ljelinko@redhat.com>
