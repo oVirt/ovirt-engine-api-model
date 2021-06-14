@@ -53338,6 +53338,10 @@ This id can be used as the <code>fromCheckpointId</code> in the next incremental
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>failed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The final phase, indicates that the backup has failed.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalizing</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In this phase, the backup is invoking 'stop_backup' operation in order to complete
 the backup and unlock the relevant disk.</p></td>
@@ -53355,6 +53359,10 @@ using image transfer.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>starting</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The phase is set before invoking 'start_backup' operation in vdsm/libvirt
 (which means that 'stop_backup' should be invoked to complete the flow).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>succeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The final phase, indicates that the backup has finished successfully.</p></td>
 </tr>
 </tbody>
 </table>
@@ -84496,7 +84504,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-06-01 07:00:48 UTC
+Last updated 2021-06-14 06:24:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
