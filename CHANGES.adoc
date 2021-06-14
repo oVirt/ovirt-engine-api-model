@@ -1,5 +1,14 @@
 = Changes
 
+4.4.31 / Jun 14 2021
+
+New features:
+
+* BackupPhase: add new backup finished phases
+  https://bugzilla.redhat.com/1849861
+
+* Add humanReadableName to MDevType
+
 4.4.30 / Jun 1 2021
 
 New features:
@@ -8,7 +17,7 @@ New features:
   https://bugzilla.redhat.com/1941581
 
 * Checkpoint: add 'state' field for a checkpoint
-* https://bugzilla.redhat.com/1952577
+  https://bugzilla.redhat.com/1952577
 
 4.4.29 / Apr 27 2021
 
