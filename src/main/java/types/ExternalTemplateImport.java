@@ -110,4 +110,21 @@ public interface ExternalTemplateImport {
      * @since 4.4.7
      */
     @Link Quota quota();
+
+    /**
+     * Optional. Indicates if the identifiers of the imported template
+     * should be regenerated.
+     *
+     * By default when a template is imported the identifiers
+     * are preserved. This means that the same template can't
+     * be imported multiple times, as that identifiers needs to be
+     * unique. To allow importing the same template multiple times set
+     * this parameter to `true`, as the default is `false`.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 14 Jun 2021
+     * @status added
+     * @since 4.4.7
+     */
+    Boolean clone();
 }
