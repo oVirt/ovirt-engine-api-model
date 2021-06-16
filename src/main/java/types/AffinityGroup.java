@@ -90,6 +90,21 @@ public interface AffinityGroup extends Identified {
     Double priority();
 
     /**
+     * Specifies if the affinity group is broken.
+     * Affinity group is considered broken when any of its rules are not satisfied.
+     * Broken field is a computed field in the engine.
+     * Because of that, this field is only usable in GET requests.
+     *
+     * @author Saif Abu Saleh <sabusale@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 22 Jun 2021
+     * @status updated_by_docs
+     * @since 4.4.8
+     */
+
+    Boolean broken();
+
+    /**
      * A reference to the cluster to which the affinity group applies.
      *
      * @author Martin Sivak <msivak@redhat.com>
