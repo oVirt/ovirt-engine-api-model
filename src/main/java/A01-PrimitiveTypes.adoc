@@ -6,7 +6,7 @@ This section describes the primitive data types supported by the API.
 [id="types/string"]
 === String [small]#primitive#
 
-A finite sequence of http://unicode.org[Unicode] characters.
+A finite sequence of https://home.unicode.org[Unicode] characters.
 
 [id="types/boolean"]
 === Boolean [small]#primitive#

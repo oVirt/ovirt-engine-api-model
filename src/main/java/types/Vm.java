@@ -370,12 +370,13 @@ public interface Vm extends VmBase {
      * Statistics data collected from this virtual machine.
      *
      * Note that some statistics, notably `memory.buffered` and `memory.cached`
-     * are available only when https://www.ovirt.org/documentation/vmm-guide/chap-Installing_Linux_Virtual_Machines.html#installing-guest-agents-and-drivers[oVirt guest agent]
+     * are available only when link:{URL_virt_product_docs}{URL_format}virtual_machine_management_guide/index#Installing_Guest_Agents_and_Drivers_Linux[{virt-product-fullname} guest agent]
      * is installed in the virtual machine.
      *
      * @author Marek Libra <mlibra@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 20 June 2021
+     * @status updated_by_docs
      */
     @Link Statistic[] statistics();
     @Link Tag[] tags();
