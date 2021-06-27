@@ -124,7 +124,7 @@ public interface ExternalTemplateImport {
      * @author Liran Rotenberg <lrotenbe@redhat.com>
      * @date 14 Jun 2021
      * @status added
-     * @since 4.4.7
+     * @since 4.4.8
      */
     Boolean clone();
 }
