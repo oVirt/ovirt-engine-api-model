@@ -381,6 +381,7 @@ public interface VmsService {
             optional(vm().storageErrorResumeBehaviour());
             optional(vm().multiQueuesEnabled());
             optional(vm().virtioScsiMultiQueuesEnabled());
+            optional(vm().virtioScsiMultiQueues());
             optional(vm().tpmEnabled());
         }
 

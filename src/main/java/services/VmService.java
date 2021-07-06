@@ -888,6 +888,7 @@ public interface VmService extends MeasurableService {
             optional(vm().storageErrorResumeBehaviour());
             optional(vm().multiQueuesEnabled());
             optional(vm().virtioScsiMultiQueuesEnabled());
+            optional(vm().virtioScsiMultiQueues());
             optional(vm().tpmEnabled());
         }
     }

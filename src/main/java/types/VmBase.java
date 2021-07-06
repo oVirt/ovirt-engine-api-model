@@ -542,15 +542,30 @@ public interface VmBase extends Identified {
     Boolean multiQueuesEnabled();
 
      /**
-     * If `true`, the Virtio-SCSI devices will obtain a number of multiple queues, depending on the available virtual Cpus.
+     * If `true`, the Virtio-SCSI devices will obtain a number of multiple queues depending on
+     * the available virtual Cpus and disks, or according to the specified virtioScsiMultiQueues.
      *
      * @author Steven Rosenberg <srosenbe@redhat.com>
+     * @author Saif Abu Saleh <sabusale@redhat.com>
      * @date 05 Jan 2021
      * @status added
      * @since 4.4.5
      */
 
     Boolean virtioScsiMultiQueuesEnabled();
+
+    /**
+     * Number of queues for a Virtio-SCSI contoller
+     * this field requires virtioScsiMultiQueuesEnabled to be true
+     * see virtioScsiMultiQueuesEnabled for more info
+     *
+     * @author Saif Abu Saleh <sabusale@redhat.com>
+     * @date 06 Jul 2021
+     * @status added
+     * @since 4.4.8
+     */
+
+    Integer virtioScsiMultiQueues();
 
     /**
      * If `true`, a TPM device is added to the virtual machine. By default the value is `false`.

@@ -314,6 +314,7 @@ public interface TemplatesService {
             optional(template().storageErrorResumeBehaviour());
             optional(template().multiQueuesEnabled());
             optional(template().virtioScsiMultiQueuesEnabled());
+            optional(template().virtioScsiMultiQueues());
             optional(template().tpmEnabled());
         }
 
