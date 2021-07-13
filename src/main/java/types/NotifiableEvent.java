@@ -636,5 +636,32 @@ public enum NotifiableEvent {
      * @date 15 Jul 2019
      * @status updated_by_docs
      */
-    USER_UPDATE_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED;
+    USER_UPDATE_VM_TEMPLATE_FROM_UNTRUSTED_TO_TRUSTED,
+
+    /**
+     * Faulty multipath paths on host
+     *
+     * @author Mark Kemel <mkemel@redhat.com>
+     * @date 25 Jul 2021
+     * @status added
+     */
+    FAULTY_MULTIPATHS_ON_HOST,
+
+    /**
+     * No faulty multipath paths on host
+     *
+     * @author Mark Kemel <mkemel@redhat.com>
+     * @date 25 Jul 2021
+     * @status added
+     */
+    NO_FAULTY_MULTIPATHS_ON_HOST,
+
+    /**
+     * Multipath devices without valid paths on host
+     *
+     * @author Mark Kemel <mkemel@redhat.com>
+     * @date 25 Jul 2021
+     * @status added
+     */
+    MULTIPATH_DEVICES_WITHOUT_VALID_PATHS_ON_HOST;
 }
