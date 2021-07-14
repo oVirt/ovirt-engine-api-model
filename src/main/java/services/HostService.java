@@ -722,9 +722,14 @@ public interface HostService extends MeasurableService {
      * </discovered_targets>
      * ----
      *
+     * IMPORTANT: When using this method to discover iscsi targets, you can use an FQDN or an 
+     * IP address, but you must use the iscsi details from the discovered targets results to log in 
+     * using the  iscsilogin method.
+     *
      * @author Ori Liel <oliel@redhat.com>
-     * @date 15 Feb 2021
-     * @status added
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 21 Jul 2021
+     * @status updated_by_docs
      * @since 4.4.6
      */
     interface DiscoverIscsi {
@@ -768,9 +773,14 @@ public interface HostService extends MeasurableService {
     /**
      * Login to iSCSI targets on the host, using the target details.
      *
+     *
+     * IMPORTANT: When using this method to log in, you must use the iscsi details from the 
+     * discovered targets results in the discoveriscsi method.
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
-     * @date 17 Oct 17
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 21 Jul 2021
      * @status updated_by_docs
      */
     interface IscsiLogin {
