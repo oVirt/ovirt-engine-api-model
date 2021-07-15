@@ -385,15 +385,11 @@ public interface Cluster extends Identified {
     /**
      * The type of firewall to be used on hosts in this cluster.
      *
-     * Up to version 4.1, it was always `iptables`. Since version 4.2, you can choose between `iptables` and `firewalld`.
-     * For clusters with a compatibility version of 4.2 and higher, the default firewall type is `firewalld`.
-     *
-     * `iptables` is deprecated in cluster version 4.2 and will be removed in a future cluster version.
-     *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>
-     * @date 26 Nov 2019
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 19 Jul 2021
      * @status updated_by_docs
      * @since 4.2
      */

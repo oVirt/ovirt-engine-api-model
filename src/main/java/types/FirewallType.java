@@ -31,16 +31,13 @@ public enum FirewallType {
     /**
      * IPTables firewall type.
      *
-     * When a cluster has the firewall type set to `iptables`, the firewalls of all hosts in the cluster will be configured using
-     * `iptables`. `iptables` adds firewall rules to `/etc/sysconfig/iptables` using a special `iptables` syntax. For
-     * more information, see the `iptables` manual page.
-     *
-     * `iptables` is deprecated in cluster version 4.2 and will be removed in a future cluster version.
+     * `iptables` is deprecated.
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>
-     * @date 26 Nov 2019
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 15 Jul 2021
      * @status updated_by_docs
      * @since 4.2
      */
