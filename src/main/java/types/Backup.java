@@ -75,6 +75,16 @@ public interface Backup extends Identified {
     Date creationDate();
 
     /**
+     * The backup last updated date.
+     *
+     * @author Pavel Bar <pbar@redhat.com>
+     * @date 28 Jul 2021
+     * @status added
+     * @since 4.4.8
+     */
+    Date lastUpdatedDate();
+
+    /**
      * A reference to the virtual machine associated with the backup.
      *
      * @author Daniel Erez <derez@redhat.com>
