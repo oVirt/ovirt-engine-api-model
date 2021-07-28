@@ -29,7 +29,6 @@ import services.externalhostproviders.EngineKatelloErrataService;
 import services.externalhostproviders.ExternalHostProvidersService;
 import services.openstack.OpenstackImageProvidersService;
 import services.openstack.OpenstackNetworkProvidersService;
-import services.openstack.OpenstackVolumeProvidersService;
 import types.Api;
 
 @Root
@@ -195,7 +194,6 @@ public interface SystemService {
     @Service NetworksService networks();
     @Service OpenstackImageProvidersService openstackImageProviders();
     @Service OpenstackNetworkProvidersService openstackNetworkProviders();
-    @Service OpenstackVolumeProvidersService openstackVolumeProviders();
     @Service OperatingSystemsService operatingSystems();
     @Service RolesService roles();
     @Service SchedulingPoliciesService schedulingPolicies();

@@ -332,8 +332,7 @@ public interface VmService extends MeasurableService {
      * Freezes virtual machine file systems.
      *
      * This operation freezes a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of
-     * a running virtual machine. Normally, this is done automatically by the manager, but this must be executed
-     * manually with the API for virtual machines using OpenStack Volume (Cinder) disks.
+     * a running virtual machine. Normally, this is done automatically by the manager.
      *
      * Example:
      *
@@ -1445,8 +1444,7 @@ public interface VmService extends MeasurableService {
      * Thaws virtual machine file systems.
      *
      * This operation thaws a virtual machine's file systems using the QEMU guest agent when taking a live snapshot of a
-     * running virtual machine. Normally, this is done automatically by the manager, but this must be executed manually
-     * with the API for virtual machines using OpenStack Volume (Cinder) disks.
+     * running virtual machine. Normally, this is done automatically by the manager.
      *
      * Example:
      *

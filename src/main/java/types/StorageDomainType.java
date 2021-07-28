@@ -70,16 +70,6 @@ public enum StorageDomainType {
     IMAGE,
 
     /**
-     * Volume domains store logical volumes that can be used as disks for virtual machines. For example, volumes
-     * from an OpenStack Cincer block storage service.
-     *
-     * @author Aleksei Slaikovskii <aslaikov@redhat.com>
-     * @date 24 Apr 2017
-     * @status added
-     */
-    VOLUME,
-
-    /**
      * Managed block storage domains are created on block storage devices. These domains are accessed and managed by cinder.
      *
      * @author Benny Zlotnik <bzlotnik@redhat.com>

@@ -76,7 +76,7 @@ public interface Disk extends Device {
      * The total size of the disk including all of its snapshots, in bytes.
      *
      * The total size is the number of bytes actually used by the disk plus the size of its snapshots.
-     * It won't be populated for direct LUN and Cinder disks.
+     * It won't be populated for direct LUN disks.
      * For disks without snapshots the total size is equal to the actual size.
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
