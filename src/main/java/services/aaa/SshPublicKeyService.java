@@ -31,6 +31,15 @@ public interface SshPublicKeyService {
         @Out SshPublicKey key();
     }
 
+    /**
+     * Replaces the key with a new resource.
+     *
+     * IMPORTANT: Since version 4.4.8 of the engine this operation is deprecated, and preserved only for backwards
+     * compatibility. It will be removed in the future. Instead please use DELETE followed by <<services/ssh_public_keys/methods/add, add operation>>.
+     *
+     * @deprecated 4.4.8
+     */
+    @Deprecated
     interface Update {
         @In @Out SshPublicKey key();
 
