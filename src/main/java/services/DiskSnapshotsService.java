@@ -59,6 +59,16 @@ public interface DiskSnapshotsService {
          * @since 4.4.3
          */
         @In Boolean includeActive();
+
+        /**
+         * If true return also template snapshots. If not specified template snapshots are not returned.
+         *
+         * @author Ori Liel <oliel@redhat.com>
+         * @date 8 Jul 2021
+         * @status added
+         * @since 4.4.8
+         */
+        @In Boolean includeTemplate();
     }
 
     @Service DiskSnapshotService snapshot(String id);
