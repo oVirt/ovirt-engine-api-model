@@ -578,4 +578,13 @@ public interface VmBase extends Identified {
      */
     Boolean tpmEnabled();
 
+    /**
+     * Specifies if and how the auto CPU and NUMA configuration is applied.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 03 Aug 2021
+     * @status added
+     * @since 4.4.8
+     */
+    AutoPinningPolicy autoPinningPolicy();
 }

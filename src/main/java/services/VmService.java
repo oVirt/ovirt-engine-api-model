@@ -889,6 +889,7 @@ public interface VmService extends MeasurableService {
             optional(vm().virtioScsiMultiQueuesEnabled());
             optional(vm().virtioScsiMultiQueues());
             optional(vm().tpmEnabled());
+            optional(vm().autoPinningPolicy());
         }
     }
 

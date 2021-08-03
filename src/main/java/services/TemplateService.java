@@ -306,6 +306,7 @@ public interface TemplateService {
             optional(template().virtioScsiMultiQueuesEnabled());
             optional(template().virtioScsiMultiQueues());
             optional(template().tpmEnabled());
+            optional(template().autoPinningPolicy());
         }
         @In @Out Template template();
 

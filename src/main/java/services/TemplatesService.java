@@ -316,6 +316,7 @@ public interface TemplatesService {
             optional(template().virtioScsiMultiQueuesEnabled());
             optional(template().virtioScsiMultiQueues());
             optional(template().tpmEnabled());
+            optional(template().autoPinningPolicy());
         }
 
         /**

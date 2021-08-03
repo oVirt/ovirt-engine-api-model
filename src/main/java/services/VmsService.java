@@ -383,6 +383,7 @@ public interface VmsService {
             optional(vm().virtioScsiMultiQueuesEnabled());
             optional(vm().virtioScsiMultiQueues());
             optional(vm().tpmEnabled());
+            optional(vm().autoPinningPolicy());
         }
 
         /**
