@@ -92,6 +92,16 @@ public enum StorageType {
     GLANCE,
 
     /**
+     * Cinder storage domain.
+     * For more details on Cinder please go to https://wiki.openstack.org/wiki/Cinder[Cinder].
+     *
+     * @author Oved Ourfali <oourfali@redhat.com>
+     * @date 05 Dec 2016
+     * @status added
+     */
+    CINDER,
+
+    /**
      * Managed block storage domain.
      * A storage domain managed using cinderlib.
      * For supported storage drivers, see https://docs.openstack.org/cinder/rocky/drivers.html[Available Drivers].

@@ -194,7 +194,7 @@ public interface DiskService extends MeasurableService {
      *
      * * For LUN disks: `alias`, `description` and `shareable`.
      *
-     * * For Managed Block disks: `provisioned_size`, `alias` and `description`.
+     * * For Cinder and Managed Block disks: `provisioned_size`, `alias` and `description`.
      *
      * * For VM attached disks, the `qcow_version` can also be updated.
      *

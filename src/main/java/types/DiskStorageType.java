@@ -19,7 +19,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 @Type
 public enum DiskStorageType {
-    IMAGE, LUN,
+    IMAGE, LUN, CINDER,
 
     /**
      * A storage type, used for a storage domain that was created
