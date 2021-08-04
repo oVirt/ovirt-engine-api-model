@@ -202,6 +202,7 @@ public interface DisksService {
                 or(optional(disk().storageDomains()[COLLECTION].id()), optional(disk().storageDomains()[COLLECTION].name()));
                 optional(disk().diskProfile().id());
                 optional(disk().name());
+                optional(disk().openstackVolumeType().name());
 //                optional(disk().size());
             }
         }

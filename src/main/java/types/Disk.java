@@ -314,6 +314,7 @@ public interface Disk extends Device {
     @Link Quota quota();
     @Link DiskProfile diskProfile();
     @Link Snapshot snapshot();
+    @Link OpenStackVolumeType openstackVolumeType();
     @Link Permission[] permissions();
     @Link DiskSnapshot[] diskSnapshots();
 
