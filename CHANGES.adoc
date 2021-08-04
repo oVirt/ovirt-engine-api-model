@@ -1,15 +1,18 @@
 = Changes
 
+4.4.34 / Aug 4 2021
+
+Reverted changes:
+
+* Revert "model: remove old cinder integration from api-model"
+  https://bugzilla.redhat.com/1950730
+
 4.4.33 / Aug 4 2021
 
 Reverted changes:
 
 * Revert "model: remove OpenstackVolume components references"
   https://bugzilla.redhat.com/1950730
-
-* Revert "model: remove OpenstackVolume components references"
-  https://bugzilla.redhat.com/1950730
-
 
 4.4.32 / Aug 4 2021
 
