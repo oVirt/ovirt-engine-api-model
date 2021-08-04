@@ -1,5 +1,35 @@
 = Changes
 
+4.4.32 / Aug 4 2021
+
+New features:
+
+* api-model: add auto pinning to vmbase
+  https://bugzilla.redhat.com/1979041
+
+* Get Snapshots - include_template flag
+  https://bugzilla.redhat.com/1900597
+
+* Backup: add "modification" date to vm_backups
+  https://bugzilla.redhat.com/1983636
+
+* Backup: add new 'lastUpdated' date field
+  https://bugzilla.redhat.com/1983636
+
+* add virtioScsiMultiQueues attribute to vmBase
+  https://bugzilla.redhat.com/1973251
+
+* NotifiableEvents: add multipath events
+  https://bugzilla.redhat.com/1691696
+
+* add broken flag to affinity group
+  https://bugzilla.redhat.com/1939286
+
+* rest-api: allow importing template as clone
+  https://bugzilla.redhat.com/1971317
+
+* Deprecate UPDATE on SshPublicKey
+
 4.4.31 / Jun 14 2021
 
 New features:
