@@ -1,5 +1,11 @@
 = Changes
 
+4.4.35 / Aug 4 2021
+
+Bug Fixes:
+
+* Fix HostService flake trailing whitespace
+
 4.4.34 / Aug 4 2021
 
 Reverted changes:
