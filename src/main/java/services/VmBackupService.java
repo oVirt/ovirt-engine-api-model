@@ -50,11 +50,7 @@ public interface VmBackupService {
          * <backups>
          *   <backup id="backup-uuid">
          *     <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
-         *     <disks>
-         *       <disk id="disk-uuid" />
-         *       ...
-         *       ...
-         *     </disks>
+         *     <link href="/ovirt-engine/api/vms/vm-uuid/backups/backup-uuid/disks" rel="disks"/>
          *     <status>initializing</status>
          *     <creation_date>
          *  </backup>
@@ -74,10 +70,26 @@ public interface VmBackupService {
      * Finalize the virtual machine backup entity.
      *
      * End backup, unlock resources, and perform cleanups.
+     * To finalize a virtual machine with an id '123' and a backup with an id '456'
+     * send a request as follows:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/backups/456/finalize
+     * ----
+     *
+     * With a request body as follows:
+     *
+     * [source,xml]
+     * ----
+     * <action />
+     * ----
      *
      * @author Daniel Erez <derez@redhat.com>
-     * @date 12 Dec 2018
-     * @status added
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 11 Oct 2021
+     * @status updated_by_docs
      * @since 4.3
      */
     interface Finalize {}

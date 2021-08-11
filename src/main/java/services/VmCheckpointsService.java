@@ -37,9 +37,17 @@ public interface VmCheckpointsService {
     /**
      * The list of virtual machine checkpoints.
      *
+     * To get a list of checkpoints for a virtual machine with an id '123', send a request as follows:
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/vms/123/checkpoints
+     * ----
+     *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
-     * @date 3 Jun 2020
-     * @status added
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 11 Oct 2021
+     * @status updated_by_docs
      * @since 4.4
      */
     interface List extends mixins.Follow {
@@ -53,7 +61,7 @@ public interface VmCheckpointsService {
          *     <link href="/ovirt-engine/api/vms/vm-uuid/checkpoints/checkpoint-uuid/disks" rel="disks"/>
          *     <parent_id>parent-checkpoint-uuid</parent_id>
          *     <creation_date>xxx</creation_date>
-         *     <vm href="/ovirt-engine/api/vmsvm-uuid" id="vm-uuid"/>
+         *     <vm href="/ovirt-engine/api/vm-uuid" id="vm-uuid"/>
          *  </checkpoint>
          * </checkpoints>
          * ----

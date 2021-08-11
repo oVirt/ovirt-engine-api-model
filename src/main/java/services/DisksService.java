@@ -54,7 +54,7 @@ public interface DisksService {
      * explicitly.
      *
      * To create a new floating image disk with specified `provisioned_size`, `format` and `name` on a storage domain
-     * with an id `123`, send a request as follows:
+     * with an id `123` and enabled for incremental backup, send a request as follows:
      *
      * [source]
      * ----
@@ -72,6 +72,7 @@ public interface DisksService {
      *   <name>mydisk</name>
      *   <provisioned_size>1048576</provisioned_size>
      *   <format>cow</format>
+     *   <backup>incremental</backup>
      * </disk>
      * ----
      *
@@ -174,8 +175,10 @@ public interface DisksService {
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Shani Leviim <sleviim@redhat.com>
      * @author Daniel Erez <derez@redhat.com>
-     * @date 11 Jan 2017
-     * @status added
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 17 October 2021
+     * @status updated _by_docs
      */
     interface Add {
         @InputDetail

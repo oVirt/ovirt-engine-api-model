@@ -95,6 +95,35 @@ public interface ImageTransfersService {
      * @date 13 Sep 2017
      * @status updated_by_docs
      * @since 4.0.4
+     *
+     *
+     * *Creating a new image transfer for downloading a backup `disk`:*
+     *
+     * To create an image transfer to download a backup with id '456' of `disk` with id `123`,
+     * send the following request:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/imagetransfers
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <image_transfer>
+     *   <disk id="123"/>
+     *   <direction>download</direction>
+     *   <backup id="456"></backup>
+     *   <format>raw</format>
+     * </image_transfer>
+     * ----
+     *
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 17 Oct 2021
+     * @status updated_by_docs
+     * @since 4.4.2
      */
     interface Add {
 

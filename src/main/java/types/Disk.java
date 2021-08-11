@@ -229,11 +229,13 @@ public interface Disk extends Device {
     DiskBackup backup();
 
     /**
-     * The backup type that was taken for the disk (full/incremental).
+     * The type of the disk backup (full/incremental),
+     * visible only when the disk backup is in progress.
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
-     * @date 06 Oct 2020
-     * @status added
+     * @author Steve Goodman <sgoodman@redhat.com>
+     * @date 11 Oct 2021
+     * @status updated_by_docs
      * @since 4.4.3
      */
     DiskBackupMode backupMode();
