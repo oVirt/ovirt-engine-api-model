@@ -1,0 +1,68 @@
+name: ovirt-engine-api-model GitHub Actions
+
+on: push
+
+env:
+  LD_LIBRARY_PATH: /usr/local/opt/curl/lib:$LD_LIBRARY_PATH
+  PYCURL_SSL_LIBRARY: openssl
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v2
+        with:
+            java-version: '11'
+            distribution: 'adopt'
+
+      - name: Set git defaults
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Install package dependencies
+        run: sudo apt-get install python3-lxml
+
+      - name: Create documentation
+        run: mvn package -DskipTests -Dadoc.linkcss=true
+
+      - name: Checkout to gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Set FOLDER variable according to push branch
+        run: |
+          if [[ ${GITHUB_REF} == 'refs/heads/master' ]];
+          then
+            echo "FOLDER='master'" >> $GITHUB_ENV;
+          else
+            echo "FOLDER=${GITHUB_REF: -3}" >> $GITHUB_ENV;
+          fi
+
+      - name: Move created documentation to gh-pages
+        run: |
+          mkdir -p ./gh-pages/${{env.FOLDER}}/
+          cp ./target/generated-html/asciidoctor.css ./gh-pages/${{env.FOLDER}}/asciidoctor.css
+          cp ./target/generated-html/model.html ./gh-pages/${{env.FOLDER}}/index.html
+
+      - name: Create index page
+        run: automation/create-index-page.sh
+
+      - name: Push changes to gh-pages
+        run: |
+          cd gh-pages
+          commit=$(git log --format="%H" -n 1)
+          description=$(git describe --always)
+          if git status --porcelain 2>/dev/null| grep -E "^??|^M"
+          then
+            git add .
+            git commit -m "gh-pages ${description} ${commit}"
+            git push
+          fi
+          cd ..
