@@ -438,6 +438,16 @@ public interface Host extends Identified {
      */
     VgpuPlacement vgpuPlacement();
 
+    /**
+     * Indicates if the host has correctly configured OVN.
+     *
+     * @author Ales Musil <amusil@redhat.com>
+     * @since 4.5
+     * @date 20 Sep 2021
+     * @status added
+     */
+    Boolean ovnConfigured();
+
     @Link Cluster cluster();
     @Link Hook[] hooks();
     @Link ExternalHostProvider externalHostProvider();
