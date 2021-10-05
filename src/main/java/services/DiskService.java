@@ -23,6 +23,7 @@ import org.ovirt.api.metamodel.annotations.InputDetail;
 import org.ovirt.api.metamodel.annotations.Out;
 import org.ovirt.api.metamodel.annotations.Service;
 import types.Disk;
+import types.DiskFormat;
 import types.DiskProfile;
 import types.Host;
 import types.Quota;
@@ -548,6 +549,53 @@ public interface DiskService extends MeasurableService {
          */
         @In Boolean async();
     }
+    /**
+     * Converts disk format and/or preallocation mode.
+     *
+     * For example, to convert the disk format from preallocated-cow to a sparse-raw image, 
+     * send a request like the following:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/disks/123/convert
+     * ----
+     *
+     * With the following request body:
+     *
+     * [source,xml]
+     * ----
+     *  <action>
+     *    <disk>
+     *      <sparse>true</sparse>
+     *      <format>raw</format>
+     *    </disk>
+     *  </action>
+     * ----
+     *
+     *
+     * @author Benny Zlotnik <bzlotnik@redhat.com>
+     * @author Eli Marcus <emarcus@redhat.com>
+     * @date 14 Dec 2021
+     * @status updated_by_docs
+     * @since 4.5
+     */
+    interface Convert extends Follow {
+        /**
+         * The description of the disk.
+         *
+         * @author Benny Zlotnik <bzlotnik@redhat.com>
+         * @date 5 Oct 2021
+         * @status added
+         * @since 4.5
+         */
+        @In Disk disk();
+
+        @InputDetail
+        default void inputDetail() {
+            or(mandatory(disk().format()), mandatory(disk().sparse()));
+        }
+    }
+
 
     /**
      * Reference to the service that manages the permissions assigned to the disk.
