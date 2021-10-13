@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2021 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -194,7 +194,9 @@ public interface DiskService extends MeasurableService {
      *
      * * For LUN disks: `alias`, `description` and `shareable`.
      *
-     * * For Cinder and Managed Block disks: `provisioned_size`, `alias` and `description`.
+     * * Cinder integration has been replaced by Managed Block Storage.
+     *
+     * * For Managed Block disks: `provisioned_size`, `alias` and `description`.
      *
      * * For VM attached disks, the `qcow_version` can also be updated.
      *

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015 Red Hat, Inc.
+Copyright (c) 2015-2021 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,6 +28,15 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 
+/**
+ * Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.
+ *
+ * @author Shani Leviim <sleviim@redhat.com>
+ * @date 14 Oct 2021
+ * @status added
+ */
+
+@Deprecated
 @Service
 @Area("Storage")
 public interface OpenstackVolumeProvidersService {

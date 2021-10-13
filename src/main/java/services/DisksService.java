@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2015-2021 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ public interface DisksService {
     /**
      * Adds a new floating disk.
      *
-     * There are three types of disks that can be added - disk image, direct LUN and
-     *  https://wiki.openstack.org/wiki/Cinder[Cinder] disk.
+     * There are three types of disks that can be added - disk image, direct LUN and Managed Block disk.
+     * https://wiki.openstack.org/wiki/Cinder[Cinder] integration has been replaced by Managed Block Storage.
      *
      * *Adding a new image disk:*
      *
@@ -119,32 +119,8 @@ public interface DisksService {
      *
      * *Adding a new Cinder disk:*
      *
-     * To create a new floating Cinder disk, send a request as follows:
-     *
-     * [source]
-     * ----
-     * POST /ovirt-engine/api/disks
-     * ----
-     *
-     * With a request body as follows:
-     *
-     * [source,xml]
-     * ----
-     * <disk>
-     *   <openstack_volume_type>
-     *     <name>myceph</name>
-     *   </openstack_volume_type>
-     *   <storage_domains>
-     *     <storage_domain>
-     *       <name>cinderDomain</name>
-     *     </storage_domain>
-     *   </storage_domains>
-     *   <provisioned_size>1073741824</provisioned_size>
-     *   <interface>virtio</interface>
-     *   <format>raw</format>
-     * </disk>
-     * ----
-     *
+     * Cinder integration has been replaced by Managed Block Storage.
+     * //TODO: Add an example for adding an MBS disk
      *
      * *Adding a floating disks in order to upload disk snapshots:*
      *
