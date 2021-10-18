@@ -14050,7 +14050,10 @@ having derived disks are also not allowed.</p>
 <p>For LUN disks: <code>alias</code>, <code>description</code> and <code>shareable</code>.</p>
 </li>
 <li>
-<p>For Cinder and Managed Block disks: <code>provisioned_size</code>, <code>alias</code> and <code>description</code>.</p>
+<p>Cinder integration has been replaced by Managed Block Storage.</p>
+</li>
+<li>
+<p>For Managed Block disks: <code>provisioned_size</code>, <code>alias</code> and <code>description</code>.</p>
 </li>
 <li>
 <p>For VM attached disks, the <code>qcow_version</code> can also be updated.</p>
@@ -14954,8 +14957,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>Adds a new floating disk.</p>
 </div>
 <div class="paragraph">
-<p>There are three types of disks that can be added - disk image, direct LUN and
- <a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a> disk.</p>
+<p>There are three types of disks that can be added - disk image, direct LUN and Managed Block disk.
+<a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a> integration has been replaced by Managed Block Storage.</p>
 </div>
 <div class="paragraph">
 <p><strong>Adding a new image disk:</strong></p>
@@ -15049,32 +15052,7 @@ send a request as follows:</p>
 <p><strong>Adding a new Cinder disk:</strong></p>
 </div>
 <div class="paragraph">
-<p>To create a new floating Cinder disk, send a request as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With a request body as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;disk&gt;
-  &lt;openstack_volume_type&gt;
-    &lt;name&gt;myceph&lt;/name&gt;
-  &lt;/openstack_volume_type&gt;
-  &lt;storage_domains&gt;
-    &lt;storage_domain&gt;
-      &lt;name&gt;cinderDomain&lt;/name&gt;
-    &lt;/storage_domain&gt;
-  &lt;/storage_domains&gt;
-  &lt;provisioned_size&gt;1073741824&lt;/provisioned_size&gt;
-  &lt;interface&gt;virtio&lt;/interface&gt;
-  &lt;format&gt;raw&lt;/format&gt;
-&lt;/disk&gt;</code></pre>
-</div>
+<p>Cinder integration has been replaced by Managed Block Storage.</p>
 </div>
 <div class="paragraph">
 <p><strong>Adding a floating disks in order to upload disk snapshots:</strong></p>
@@ -31097,6 +31075,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_authentication_key"><a class="anchor" href="#services/openstack_volume_authentication_key"></a><a class="link" href="#services/openstack_volume_authentication_key">6.164. OpenstackVolumeAuthenticationKey</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 500. Methods summary</caption>
 <colgroup>
@@ -31227,6 +31208,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_authentication_keys"><a class="anchor" href="#services/openstack_volume_authentication_keys"></a><a class="link" href="#services/openstack_volume_authentication_keys">6.165. OpenstackVolumeAuthenticationKeys</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 504. Methods summary</caption>
 <colgroup>
@@ -31343,6 +31327,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_provider"><a class="anchor" href="#services/openstack_volume_provider"></a><a class="link" href="#services/openstack_volume_provider">6.166. OpenstackVolumeProvider</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 507. Methods summary</caption>
 <colgroup>
@@ -31573,6 +31560,9 @@ to run following request where 123 is an id of a provider.</p>
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_providers"><a class="anchor" href="#services/openstack_volume_providers"></a><a class="link" href="#services/openstack_volume_providers">6.167. OpenstackVolumeProviders</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 513. Methods summary</caption>
 <colgroup>
@@ -31721,6 +31711,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_type"><a class="anchor" href="#services/openstack_volume_type"></a><a class="link" href="#services/openstack_volume_type">6.168. OpenstackVolumeType</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 516. Methods summary</caption>
 <colgroup>
@@ -31784,6 +31777,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="sect2">
 <h3 id="services/openstack_volume_types"><a class="anchor" href="#services/openstack_volume_types"></a><a class="link" href="#services/openstack_volume_types">6.169. OpenstackVolumeTypes</a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 518. Methods summary</caption>
 <colgroup>
@@ -70133,6 +70129,9 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="sect2">
 <h3 id="types/open_stack_volume_provider"><a class="anchor" href="#types/open_stack_volume_provider"></a><a class="link" href="#types/open_stack_volume_provider">7.199. OpenStackVolumeProvider <span class="small">struct</span></a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1160. Attributes summary</caption>
 <colgroup>
@@ -70260,6 +70259,9 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="sect2">
 <h3 id="types/open_stack_volume_type"><a class="anchor" href="#types/open_stack_volume_type"></a><a class="link" href="#types/open_stack_volume_type">7.200. OpenStackVolumeType <span class="small">struct</span></a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1162. Attributes summary</caption>
 <colgroup>
@@ -70327,6 +70329,9 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="sect2">
 <h3 id="types/openstack_volume_authentication_key"><a class="anchor" href="#types/openstack_volume_authentication_key"></a><a class="link" href="#types/openstack_volume_authentication_key">7.201. OpenstackVolumeAuthenticationKey <span class="small">struct</span></a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1164. Attributes summary</caption>
 <colgroup>
@@ -70409,6 +70414,9 @@ The standard OpenStack Neutron agent is used as the virtual interface driver.</p
 </div>
 <div class="sect2">
 <h3 id="types/openstack_volume_authentication_key_usage_type"><a class="anchor" href="#types/openstack_volume_authentication_key_usage_type"></a><a class="link" href="#types/openstack_volume_authentication_key_usage_type">7.202. OpenstackVolumeAuthenticationKeyUsageType <span class="small">enum</span></a></h3>
+<div class="paragraph">
+<p>Openstack Volume (Cinder) integration has been replaced by Managed Block Storage.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1166. Values summary</caption>
 <colgroup>
@@ -84245,7 +84253,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-07 08:01:01 UTC
+Last updated 2021-10-18 06:30:07 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
