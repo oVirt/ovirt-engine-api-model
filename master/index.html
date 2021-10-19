@@ -690,62 +690,8 @@
 </li>
 <li><a href="#documents/a02_changes_in_v4">Appendix B: Changes in version 4 of the API</a>
 <ul class="sectlevel2">
-<li><a href="#_removed_yaml_support">B.1. Removed YAML support</a></li>
-<li><a href="#_renamed_complex_types">B.2. Renamed complex types</a></li>
-<li><a href="#_replaced_the_status_type_with_enum_types">B.3. Replaced the <code>Status</code> type with enum types</a></li>
-<li><a href="#_remove_the_nic_network_and_port_mirroring_properties">B.4. Remove the NIC <code>network</code> and <code>port_mirroring</code> properties</a></li>
-<li><a href="#_remove_the_nic_active_property">B.5. Remove the NIC <code>active</code> property</a></li>
-<li><a href="#_remove_the_disk_type_property">B.6. Remove the disk <code>type</code> property</a></li>
-<li><a href="#_remove_the_disk_size_property">B.7. Remove the disk <code>size</code> property</a></li>
-<li><a href="#_removed_support_for_pinning_a_vm_to_a_single_host">B.8. Removed support for pinning a VM to a single host</a></li>
-<li><a href="#_removed_the_capabilities_permits_element">B.9. Removed the <code>capabilities.permits</code> element</a></li>
-<li><a href="#_removed_the_storage_manager_element">B.10. Removed the <code>storage_manager</code> element</a></li>
-<li><a href="#_removed_the_data_center_storage_type_element">B.11. Removed the data center <code>storage_type</code> element</a></li>
-<li><a href="#_remove_the_timezone_element">B.12. Remove the <code>timezone</code> element</a></li>
-<li><a href="#_removed_the_guest_info_element">B.13. Removed the <code>guest_info</code> element</a></li>
-<li><a href="#_replaced_cpu_id_attribute_with_type_element">B.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_cpu_topology">B.15. Use elements instead of attributes in CPU topology</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_vcpu_pin">B.16. Use elements instead of attributes in VCPU pin</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_vcpu_pin_2">B.17. Use elements instead of attributes in VCPU pin</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_memory_overcommit">B.18. Use elements instead of attributes in memory overcommit</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_console">B.19. Use elements instead of attributes in <code>console</code></a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_virtio_scsi">B.20. Use elements instead of attributes in VIRTIO SCSI</a></li>
-<li><a href="#_use_element_instead_of_attribute_for_power_management_agent_type">B.21. Use element instead of attribute for power management agent <code>type</code></a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_power_management_agent_options">B.22. Use elements instead of attributes in power management agent options</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_ip_address">B.23. Use elements instead of attributes in IP address:</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_mac_address">B.24. Use elements instead of attributes in MAC address:</a></li>
-<li><a href="#_use_elements_instead_of_attributes_in_boot_device">B.25. Use elements instead of attributes in boot device:</a></li>
-<li><a href="#_use_element_instead_of_attribute_for_operating_system_type">B.26. Use element instead of attribute for operating system <code>type</code></a></li>
-<li><a href="#_removed_the_force_parameter_from_the_request_to_retrieve_a_host">B.27. Removed the <code>force</code> parameter from the request to retrieve a host</a></li>
-<li><a href="#_removed_deprecated_host_power_management_configuration">B.28. Removed deprecated host power management configuration</a></li>
-<li><a href="#_use_multiple_boot_devices_device_instead_of_multiple_boot">B.29. Use multiple <code>boot.devices.device</code> instead of multiple <code>boot</code></a></li>
-<li><a href="#_removed_the_disks_clone_and_disks_detach_only_elements">B.30. Removed the <code>disks.clone</code> and <code>disks.detach_only</code> elements</a></li>
-<li><a href="#_rename_element_vmpool_to_vm_pool">B.31. Rename element <code>vmpool</code> to <code>vm_pool</code></a></li>
-<li><a href="#_use_logical_units_instead_of_multiple_logical_unit">B.32. Use <code>logical_units</code> instead of multiple <code>logical_unit</code></a></li>
-<li><a href="#_removed_the_snapshots_collapse_snapshots_element">B.33. Removed the <code>snapshots.collapse_snapshots</code> element</a></li>
-<li><a href="#_renamed_storage_and_host_storage_elements">B.34. Renamed <code>storage</code> and <code>host_storage</code> elements</a></li>
-<li><a href="#_removed_the_permissions_clone_element">B.35. Removed the <code>permissions.clone</code> element</a></li>
-<li><a href="#_renamed_the_random_number_generator_source_elements">B.36. Renamed the random number generator <code>source</code> elements</a></li>
-<li><a href="#_removed_the_intermediate_tag_parent_element">B.37. Removed the intermediate <code>tag.parent</code> element</a></li>
-<li><a href="#_remove_scheduling_built_in_names_and_thresholds">B.38. Remove scheduling built-in names and thresholds</a></li>
-<li><a href="#_removed_the_bricks_replica_count_and_bricks_stripe_count_elements">B.39. Removed the <code>bricks.replica_count</code> and <code>bricks.stripe_count</code> elements</a></li>
-<li><a href="#_renamed_the_statistics_type_property_to_kind">B.40. Renamed the statistics <code>type</code> property to <code>kind</code></a></li>
-<li><a href="#_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin">B.41. Use multiple <code>vcpu_pins.vcpu_pin</code> instead of multiple <code>vcpu_pin</code></a></li>
-<li><a href="#_use_force_parameter_to_force_remove_a_data_center">B.42. Use <code>force</code> parameter to force remove a data center</a></li>
-<li><a href="#_use_force_parameter_to_force_remove_a_host">B.43. Use <code>force</code> parameter to force remove a host</a></li>
-<li><a href="#_use_parameters_for_force_remove_storage_domain">B.44. Use parameters for force remove storage domain</a></li>
-<li><a href="#_use_host_parameter_to_remove_storage_server_connection">B.45. Use <code>host</code> parameter to remove storage server connection</a></li>
-<li><a href="#_use_force_and_storage_domain_parameters_to_remove_template_disks">B.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</a></li>
-<li><a href="#_dont_remove_disks_via_the_vm_disk_api">B.47. Don&#8217;t remove disks via the VM disk API</a></li>
-<li><a href="#_use_force_query_parameter_to_force_remove_a_virtual_machine">B.48. Use <code>force</code> query parameter to force remove a virtual machine</a></li>
-<li><a href="#_use_post_instead_of_delete_to_remove_multiple_bricks">B.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</a></li>
-<li><a href="#_removed_the_scheduling_policy_policy_element">B.50. Removed the <code>scheduling_policy.policy</code> element</a></li>
-<li><a href="#_added_snapshot_snapshot_type">B.51. Added <code>snapshot.snapshot_type</code></a></li>
-<li><a href="#_removed_move_action_from_vm">B.52. Removed <code>move</code> action from <code>VM</code></a></li>
-<li><a href="#_moved_reported_configurations_in_sync_to_network_attachment">B.53. Moved <code>reported_configurations.in_sync</code> to <code>network_attachment</code></a></li>
-<li><a href="#_replaced_capabilities_with_clusterlevels">B.54. Replaced <code>capabilities</code> with <code>clusterlevels</code></a></li>
-<li><a href="#_replaced_disks_with_diskattachments">B.55. Replaced <code>disks</code> with <code>diskattachments</code></a></li>
-<li><a href="#_use_iscsi_targets_element_to_discover_unregistered_storage">B.56. Use <code>iscsi_targets</code> element to discover unregistered storage</a></li>
+<li><a href="#_changes_in_api_version_4_0_succeeding_version_3_6">B.1. Changes in API version 4.0 (succeeding version 3.6)</a></li>
+<li><a href="#_changes_in_engine_version_4_5">B.2. Changes in Engine version 4.5</a></li>
 </ul>
 </li>
 </ul>
@@ -82106,17 +82052,19 @@ is UTC+2.
 <h2 id="documents/a02_changes_in_v4"><a class="anchor" href="#documents/a02_changes_in_v4"></a><a class="link" href="#documents/a02_changes_in_v4">Appendix B: Changes in version 4 of the API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section enumerates the backwards compatibility breaking changes
-that have been introduced in version 4 of the API.</p>
+<p>This section enumerates the backwards-compatibility breaking changes that
+have been introduced in and since version 4 of the API.</p>
 </div>
 <div class="sect2">
-<h3 id="_removed_yaml_support"><a class="anchor" href="#_removed_yaml_support"></a><a class="link" href="#_removed_yaml_support">B.1. Removed YAML support</a></h3>
+<h3 id="_changes_in_api_version_4_0_succeeding_version_3_6"><a class="anchor" href="#_changes_in_api_version_4_0_succeeding_version_3_6"></a><a class="link" href="#_changes_in_api_version_4_0_succeeding_version_3_6">B.1. Changes in API version 4.0 (succeeding version 3.6)</a></h3>
+<div class="sect3">
+<h4 id="_removed_yaml_support"><a class="anchor" href="#_removed_yaml_support"></a><a class="link" href="#_removed_yaml_support">B.1.1. Removed YAML support</a></h4>
 <div class="paragraph">
 <p>The support for YAML has been completely removed.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_renamed_complex_types"><a class="anchor" href="#_renamed_complex_types"></a><a class="link" href="#_renamed_complex_types">B.2. Renamed complex types</a></h3>
+<div class="sect3">
+<h4 id="_renamed_complex_types"><a class="anchor" href="#_renamed_complex_types"></a><a class="link" href="#_renamed_complex_types">B.1.2. Renamed complex types</a></h4>
 <div class="paragraph">
 <p>The following XML schema complex types have been renamed:</p>
 </div>
@@ -82283,8 +82231,8 @@ that have been introduced in version 4 of the API.</p>
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_replaced_the_status_type_with_enum_types"><a class="anchor" href="#_replaced_the_status_type_with_enum_types"></a><a class="link" href="#_replaced_the_status_type_with_enum_types">B.3. Replaced the <code>Status</code> type with enum types</a></h3>
+<div class="sect3">
+<h4 id="_replaced_the_status_type_with_enum_types"><a class="anchor" href="#_replaced_the_status_type_with_enum_types"></a><a class="link" href="#_replaced_the_status_type_with_enum_types">B.1.3. Replaced the <code>Status</code> type with enum types</a></h4>
 <div class="paragraph">
 <p>Currently the status of different objects is reported using the <code>Status</code>
 type, which contains a <code>state</code> string describing the status and another
@@ -82321,8 +82269,8 @@ the status of the same virtual machine will now be reported as follows:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_the_nic_network_and_port_mirroring_properties"><a class="anchor" href="#_remove_the_nic_network_and_port_mirroring_properties"></a><a class="link" href="#_remove_the_nic_network_and_port_mirroring_properties">B.4. Remove the NIC <code>network</code> and <code>port_mirroring</code> properties</a></h3>
+<div class="sect3">
+<h4 id="_remove_the_nic_network_and_port_mirroring_properties"><a class="anchor" href="#_remove_the_nic_network_and_port_mirroring_properties"></a><a class="link" href="#_remove_the_nic_network_and_port_mirroring_properties">B.1.4. Remove the NIC <code>network</code> and <code>port_mirroring</code> properties</a></h4>
 <div class="paragraph">
 <p>The NIC <code>network</code> and <code>port_mirroring</code> elements have been replaced by
 the <code>vnic_profile</code> element, so when creating or updating a NIC instead
@@ -82368,29 +82316,29 @@ because it is still used by the <code>initialization</code> element, but it will
 completely ignored if provided when creating or updating a NIC.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_the_nic_active_property"><a class="anchor" href="#_remove_the_nic_active_property"></a><a class="link" href="#_remove_the_nic_active_property">B.5. Remove the NIC <code>active</code> property</a></h3>
+<div class="sect3">
+<h4 id="_remove_the_nic_active_property"><a class="anchor" href="#_remove_the_nic_active_property"></a><a class="link" href="#_remove_the_nic_active_property">B.1.5. Remove the NIC <code>active</code> property</a></h4>
 <div class="paragraph">
 <p>The NIC <code>active</code> property was replaced by <code>plugged</code> some time ago. It
 has been completely removed now.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_the_disk_type_property"><a class="anchor" href="#_remove_the_disk_type_property"></a><a class="link" href="#_remove_the_disk_type_property">B.6. Remove the disk <code>type</code> property</a></h3>
+<div class="sect3">
+<h4 id="_remove_the_disk_type_property"><a class="anchor" href="#_remove_the_disk_type_property"></a><a class="link" href="#_remove_the_disk_type_property">B.1.6. Remove the disk <code>type</code> property</a></h4>
 <div class="paragraph">
 <p>The <code>type</code> property of disks has been removed, but kept in the XML
 schema and ignored. It has been completely removed now.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_the_disk_size_property"><a class="anchor" href="#_remove_the_disk_size_property"></a><a class="link" href="#_remove_the_disk_size_property">B.7. Remove the disk <code>size</code> property</a></h3>
+<div class="sect3">
+<h4 id="_remove_the_disk_size_property"><a class="anchor" href="#_remove_the_disk_size_property"></a><a class="link" href="#_remove_the_disk_size_property">B.1.7. Remove the disk <code>size</code> property</a></h4>
 <div class="paragraph">
 <p>The disk <code>size</code> property has been replaced by <code>provisioned_size</code> long
 ago. It has been completely removed now.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_support_for_pinning_a_vm_to_a_single_host"><a class="anchor" href="#_removed_support_for_pinning_a_vm_to_a_single_host"></a><a class="link" href="#_removed_support_for_pinning_a_vm_to_a_single_host">B.8. Removed support for pinning a VM to a single host</a></h3>
+<div class="sect3">
+<h4 id="_removed_support_for_pinning_a_vm_to_a_single_host"><a class="anchor" href="#_removed_support_for_pinning_a_vm_to_a_single_host"></a><a class="link" href="#_removed_support_for_pinning_a_vm_to_a_single_host">B.1.8. Removed support for pinning a VM to a single host</a></h4>
 <div class="paragraph">
 <p>Before version 3.6 the API had the possibility to pin a VM to a single
 host, using the <code>placement_policy</code> element of the VM entity:</p>
@@ -82437,8 +82385,8 @@ preserved. In 4.0 this has been removed, so applications will need to
 use the <code>hosts</code> element even if when pinning to a single host.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_capabilities_permits_element"><a class="anchor" href="#_removed_the_capabilities_permits_element"></a><a class="link" href="#_removed_the_capabilities_permits_element">B.9. Removed the <code>capabilities.permits</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_capabilities_permits_element"><a class="anchor" href="#_removed_the_capabilities_permits_element"></a><a class="link" href="#_removed_the_capabilities_permits_element">B.1.9. Removed the <code>capabilities.permits</code> element</a></h4>
 <div class="paragraph">
 <p>The list of permits is potentiall different for each cluster level, and
 it has been added to the <code>version</code> element long ago, but it has been
@@ -82474,16 +82422,16 @@ that cluster level, in particular the set of supported permits:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_storage_manager_element"><a class="anchor" href="#_removed_the_storage_manager_element"></a><a class="link" href="#_removed_the_storage_manager_element">B.10. Removed the <code>storage_manager</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_storage_manager_element"><a class="anchor" href="#_removed_the_storage_manager_element"></a><a class="link" href="#_removed_the_storage_manager_element">B.1.10. Removed the <code>storage_manager</code> element</a></h4>
 <div class="paragraph">
 <p>The <code>storage_manager</code> element was replaced by the <code>spm</code> element some
 time ago. The old one was kept for backwards compatibility, but it has
 been completely removed now.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_data_center_storage_type_element"><a class="anchor" href="#_removed_the_data_center_storage_type_element"></a><a class="link" href="#_removed_the_data_center_storage_type_element">B.11. Removed the data center <code>storage_type</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_data_center_storage_type_element"><a class="anchor" href="#_removed_the_data_center_storage_type_element"></a><a class="link" href="#_removed_the_data_center_storage_type_element">B.1.11. Removed the data center <code>storage_type</code> element</a></h4>
 <div class="paragraph">
 <p>Data centers used to be associated to a specific storage type (NFS,
 Fiber Channel, iSCSI, etc) but they have been changed some time so that
@@ -82493,8 +82441,8 @@ new <code>local</code> element was introduced to indicate this, and the old
 This old element has now been completely removed.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_the_timezone_element"><a class="anchor" href="#_remove_the_timezone_element"></a><a class="link" href="#_remove_the_timezone_element">B.12. Remove the <code>timezone</code> element</a></h3>
+<div class="sect3">
+<h4 id="_remove_the_timezone_element"><a class="anchor" href="#_remove_the_timezone_element"></a><a class="link" href="#_remove_the_timezone_element">B.1.12. Remove the <code>timezone</code> element</a></h4>
 <div class="paragraph">
 <p>The VM resource used to contain a <code>timezone</code> element to represent the
 time zone. This element only allowed a string:</p>
@@ -82525,8 +82473,8 @@ offset, it was replaced with a new structured <code>time_zone</code> element:</p
 removed now.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_guest_info_element"><a class="anchor" href="#_removed_the_guest_info_element"></a><a class="link" href="#_removed_the_guest_info_element">B.13. Removed the <code>guest_info</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_guest_info_element"><a class="anchor" href="#_removed_the_guest_info_element"></a><a class="link" href="#_removed_the_guest_info_element">B.1.13. Removed the <code>guest_info</code> element</a></h4>
 <div class="paragraph">
 <p>The <code>guest_info</code> element was used to hold information gathered by the
 guest agent, like the IP addresses and the fully qualified host name.
@@ -82604,8 +82552,8 @@ added to the VM resource:</p>
 contain.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_replaced_cpu_id_attribute_with_type_element"><a class="anchor" href="#_replaced_cpu_id_attribute_with_type_element"></a><a class="link" href="#_replaced_cpu_id_attribute_with_type_element">B.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</a></h3>
+<div class="sect3">
+<h4 id="_replaced_cpu_id_attribute_with_type_element"><a class="anchor" href="#_replaced_cpu_id_attribute_with_type_element"></a><a class="link" href="#_replaced_cpu_id_attribute_with_type_element">B.1.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</a></h4>
 <div class="paragraph">
 <p>The <code>cpu</code> element used to have an <code>id</code> attribute that indicates the type
 of CPU:</p>
@@ -82632,8 +82580,8 @@ attribute has been replaced with a new <code>type</code> element:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_cpu_topology"><a class="anchor" href="#_use_elements_instead_of_attributes_in_cpu_topology"></a><a class="link" href="#_use_elements_instead_of_attributes_in_cpu_topology">B.15. Use elements instead of attributes in CPU topology</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_cpu_topology"><a class="anchor" href="#_use_elements_instead_of_attributes_in_cpu_topology"></a><a class="link" href="#_use_elements_instead_of_attributes_in_cpu_topology">B.1.15. Use elements instead of attributes in CPU topology</a></h4>
 <div class="paragraph">
 <p>In the past the CPU topology element used attributes for its properties:</p>
 </div>
@@ -82662,8 +82610,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_vcpu_pin"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin"></a><a class="link" href="#_use_elements_instead_of_attributes_in_vcpu_pin">B.16. Use elements instead of attributes in VCPU pin</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_vcpu_pin"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin"></a><a class="link" href="#_use_elements_instead_of_attributes_in_vcpu_pin">B.1.16. Use elements instead of attributes in VCPU pin</a></h4>
 <div class="paragraph">
 <p>In the past the VCPU pin element used attributes for its properties:</p>
 </div>
@@ -82689,8 +82637,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_vcpu_pin_2"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin_2"></a><a class="link" href="#_use_elements_instead_of_attributes_in_vcpu_pin_2">B.17. Use elements instead of attributes in VCPU pin</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_vcpu_pin_2"><a class="anchor" href="#_use_elements_instead_of_attributes_in_vcpu_pin_2"></a><a class="link" href="#_use_elements_instead_of_attributes_in_vcpu_pin_2">B.1.17. Use elements instead of attributes in VCPU pin</a></h4>
 <div class="paragraph">
 <p>In the past the <code>version</code> element used attributes for its properties:</p>
 </div>
@@ -82713,8 +82661,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_memory_overcommit"><a class="anchor" href="#_use_elements_instead_of_attributes_in_memory_overcommit"></a><a class="link" href="#_use_elements_instead_of_attributes_in_memory_overcommit">B.18. Use elements instead of attributes in memory overcommit</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_memory_overcommit"><a class="anchor" href="#_use_elements_instead_of_attributes_in_memory_overcommit"></a><a class="link" href="#_use_elements_instead_of_attributes_in_memory_overcommit">B.1.18. Use elements instead of attributes in memory overcommit</a></h4>
 <div class="paragraph">
 <p>In the past the <code>overcommit</code> element used attributes for its properties:</p>
 </div>
@@ -82741,8 +82689,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_console"><a class="anchor" href="#_use_elements_instead_of_attributes_in_console"></a><a class="link" href="#_use_elements_instead_of_attributes_in_console">B.19. Use elements instead of attributes in <code>console</code></a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_console"><a class="anchor" href="#_use_elements_instead_of_attributes_in_console"></a><a class="link" href="#_use_elements_instead_of_attributes_in_console">B.1.19. Use elements instead of attributes in <code>console</code></a></h4>
 <div class="paragraph">
 <p>In the past the <code>console</code> element used attributes for its properties:</p>
 </div>
@@ -82763,8 +82711,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_virtio_scsi"><a class="anchor" href="#_use_elements_instead_of_attributes_in_virtio_scsi"></a><a class="link" href="#_use_elements_instead_of_attributes_in_virtio_scsi">B.20. Use elements instead of attributes in VIRTIO SCSI</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_virtio_scsi"><a class="anchor" href="#_use_elements_instead_of_attributes_in_virtio_scsi"></a><a class="link" href="#_use_elements_instead_of_attributes_in_virtio_scsi">B.1.20. Use elements instead of attributes in VIRTIO SCSI</a></h4>
 <div class="paragraph">
 <p>In the past the VIRTIO ISCSI element used attributes for its properties:</p>
 </div>
@@ -82785,8 +82733,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_element_instead_of_attribute_for_power_management_agent_type"><a class="anchor" href="#_use_element_instead_of_attribute_for_power_management_agent_type"></a><a class="link" href="#_use_element_instead_of_attribute_for_power_management_agent_type">B.21. Use element instead of attribute for power management agent <code>type</code></a></h3>
+<div class="sect3">
+<h4 id="_use_element_instead_of_attribute_for_power_management_agent_type"><a class="anchor" href="#_use_element_instead_of_attribute_for_power_management_agent_type"></a><a class="link" href="#_use_element_instead_of_attribute_for_power_management_agent_type">B.1.21. Use element instead of attribute for power management agent <code>type</code></a></h4>
 <div class="paragraph">
 <p>The power management <code>type</code> property was represented as an attribute:</p>
 </div>
@@ -82812,8 +82760,8 @@ replaced with an inner element:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_power_management_agent_options"><a class="anchor" href="#_use_elements_instead_of_attributes_in_power_management_agent_options"></a><a class="link" href="#_use_elements_instead_of_attributes_in_power_management_agent_options">B.22. Use elements instead of attributes in power management agent options</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_power_management_agent_options"><a class="anchor" href="#_use_elements_instead_of_attributes_in_power_management_agent_options"></a><a class="link" href="#_use_elements_instead_of_attributes_in_power_management_agent_options">B.1.22. Use elements instead of attributes in power management agent options</a></h4>
 <div class="paragraph">
 <p>In the past the power management agent options element used attributes
 for its properties:</p>
@@ -82847,8 +82795,8 @@ replaced with inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_ip_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_ip_address"></a><a class="link" href="#_use_elements_instead_of_attributes_in_ip_address">B.23. Use elements instead of attributes in IP address:</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_ip_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_ip_address"></a><a class="link" href="#_use_elements_instead_of_attributes_in_ip_address">B.1.23. Use elements instead of attributes in IP address:</a></h4>
 <div class="paragraph">
 <p>In the past the IP address element used attributes for its properties:</p>
 </div>
@@ -82870,8 +82818,8 @@ replaced with inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_mac_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_mac_address"></a><a class="link" href="#_use_elements_instead_of_attributes_in_mac_address">B.24. Use elements instead of attributes in MAC address:</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_mac_address"><a class="anchor" href="#_use_elements_instead_of_attributes_in_mac_address"></a><a class="link" href="#_use_elements_instead_of_attributes_in_mac_address">B.1.24. Use elements instead of attributes in MAC address:</a></h4>
 <div class="paragraph">
 <p>In the past the MAC address element used attributes for its properties:</p>
 </div>
@@ -82892,8 +82840,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_elements_instead_of_attributes_in_boot_device"><a class="anchor" href="#_use_elements_instead_of_attributes_in_boot_device"></a><a class="link" href="#_use_elements_instead_of_attributes_in_boot_device">B.25. Use elements instead of attributes in boot device:</a></h3>
+<div class="sect3">
+<h4 id="_use_elements_instead_of_attributes_in_boot_device"><a class="anchor" href="#_use_elements_instead_of_attributes_in_boot_device"></a><a class="link" href="#_use_elements_instead_of_attributes_in_boot_device">B.1.25. Use elements instead of attributes in boot device:</a></h4>
 <div class="paragraph">
 <p>In the past the boot device element used attributes for its properties:</p>
 </div>
@@ -82914,8 +82862,8 @@ replaced by inner elements:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_element_instead_of_attribute_for_operating_system_type"><a class="anchor" href="#_use_element_instead_of_attribute_for_operating_system_type"></a><a class="link" href="#_use_element_instead_of_attribute_for_operating_system_type">B.26. Use element instead of attribute for operating system <code>type</code></a></h3>
+<div class="sect3">
+<h4 id="_use_element_instead_of_attribute_for_operating_system_type"><a class="anchor" href="#_use_element_instead_of_attribute_for_operating_system_type"></a><a class="link" href="#_use_element_instead_of_attribute_for_operating_system_type">B.1.26. Use element instead of attribute for operating system <code>type</code></a></h4>
 <div class="paragraph">
 <p>The operating system <code>type</code> property was represented as an attribute:</p>
 </div>
@@ -82939,8 +82887,8 @@ replaced with an inner element:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_force_parameter_from_the_request_to_retrieve_a_host"><a class="anchor" href="#_removed_the_force_parameter_from_the_request_to_retrieve_a_host"></a><a class="link" href="#_removed_the_force_parameter_from_the_request_to_retrieve_a_host">B.27. Removed the <code>force</code> parameter from the request to retrieve a host</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_force_parameter_from_the_request_to_retrieve_a_host"><a class="anchor" href="#_removed_the_force_parameter_from_the_request_to_retrieve_a_host"></a><a class="link" href="#_removed_the_force_parameter_from_the_request_to_retrieve_a_host">B.1.27. Removed the <code>force</code> parameter from the request to retrieve a host</a></h4>
 <div class="paragraph">
 <p>The request to retrieve a host used to support a <code>force</code> matrix
 parameter to indicate that the data of the host should be refreshed
@@ -82977,8 +82925,8 @@ requests, first one to refresh the host:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_deprecated_host_power_management_configuration"><a class="anchor" href="#_removed_deprecated_host_power_management_configuration"></a><a class="link" href="#_removed_deprecated_host_power_management_configuration">B.28. Removed deprecated host power management configuration</a></h3>
+<div class="sect3">
+<h4 id="_removed_deprecated_host_power_management_configuration"><a class="anchor" href="#_removed_deprecated_host_power_management_configuration"></a><a class="link" href="#_removed_deprecated_host_power_management_configuration">B.1.28. Removed deprecated host power management configuration</a></h4>
 <div class="paragraph">
 <p>The host power management configuration used to be part of the host
 resource, using embedded configuration elements:</p>
@@ -83009,8 +82957,8 @@ completely removed, so the only way to query or modify the power management
 agents is now the <code>/hosts/123/fenceagents</code> sub-collection.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_multiple_boot_devices_device_instead_of_multiple_boot"><a class="anchor" href="#_use_multiple_boot_devices_device_instead_of_multiple_boot"></a><a class="link" href="#_use_multiple_boot_devices_device_instead_of_multiple_boot">B.29. Use multiple <code>boot.devices.device</code> instead of multiple <code>boot</code></a></h3>
+<div class="sect3">
+<h4 id="_use_multiple_boot_devices_device_instead_of_multiple_boot"><a class="anchor" href="#_use_multiple_boot_devices_device_instead_of_multiple_boot"></a><a class="link" href="#_use_multiple_boot_devices_device_instead_of_multiple_boot">B.1.29. Use multiple <code>boot.devices.device</code> instead of multiple <code>boot</code></a></h4>
 <div class="paragraph">
 <p>In the past the way to specify the boot sequence when starting a virtual
 machine was to use multiple <code>boot</code> elements, each containing a <code>dev</code>
@@ -83067,8 +83015,8 @@ can contain multiple devices:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_disks_clone_and_disks_detach_only_elements"><a class="anchor" href="#_removed_the_disks_clone_and_disks_detach_only_elements"></a><a class="link" href="#_removed_the_disks_clone_and_disks_detach_only_elements">B.30. Removed the <code>disks.clone</code> and <code>disks.detach_only</code> elements</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_disks_clone_and_disks_detach_only_elements"><a class="anchor" href="#_removed_the_disks_clone_and_disks_detach_only_elements"></a><a class="link" href="#_removed_the_disks_clone_and_disks_detach_only_elements">B.1.30. Removed the <code>disks.clone</code> and <code>disks.detach_only</code> elements</a></h4>
 <div class="paragraph">
 <p>These elements aren&#8217;t really part of the representation of disks, but
 parameters of the operations to add and remove virtual machines.</p>
@@ -83138,8 +83086,8 @@ parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_rename_element_vmpool_to_vm_pool"><a class="anchor" href="#_rename_element_vmpool_to_vm_pool"></a><a class="link" href="#_rename_element_vmpool_to_vm_pool">B.31. Rename element <code>vmpool</code> to <code>vm_pool</code></a></h3>
+<div class="sect3">
+<h4 id="_rename_element_vmpool_to_vm_pool"><a class="anchor" href="#_rename_element_vmpool_to_vm_pool"></a><a class="link" href="#_rename_element_vmpool_to_vm_pool">B.1.31. Rename element <code>vmpool</code> to <code>vm_pool</code></a></h4>
 <div class="paragraph">
 <p>The names of the elements that represent pools of virtual machines used
 to be <code>vmpool</code> and <code>vmpools</code>. They have been renamed to <code>vm_pool</code> and
@@ -83147,8 +83095,8 @@ to be <code>vmpool</code> and <code>vmpools</code>. They have been renamed to <c
 complex types (<code>VmPool</code> and <code>VmPools</code> in this case) and elements.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_logical_units_instead_of_multiple_logical_unit"><a class="anchor" href="#_use_logical_units_instead_of_multiple_logical_unit"></a><a class="link" href="#_use_logical_units_instead_of_multiple_logical_unit">B.32. Use <code>logical_units</code> instead of multiple <code>logical_unit</code></a></h3>
+<div class="sect3">
+<h4 id="_use_logical_units_instead_of_multiple_logical_unit"><a class="anchor" href="#_use_logical_units_instead_of_multiple_logical_unit"></a><a class="link" href="#_use_logical_units_instead_of_multiple_logical_unit">B.1.32. Use <code>logical_units</code> instead of multiple <code>logical_unit</code></a></h4>
 <div class="paragraph">
 <p>The logical units that are part of a volume group used to be reported as
 an unbounded number of <code>logical_unit</code> elements. For example, when
@@ -83210,8 +83158,8 @@ of logical units will be wrapped with the <code>logical_units</code> element:</p
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_snapshots_collapse_snapshots_element"><a class="anchor" href="#_removed_the_snapshots_collapse_snapshots_element"></a><a class="link" href="#_removed_the_snapshots_collapse_snapshots_element">B.33. Removed the <code>snapshots.collapse_snapshots</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_snapshots_collapse_snapshots_element"><a class="anchor" href="#_removed_the_snapshots_collapse_snapshots_element"></a><a class="link" href="#_removed_the_snapshots_collapse_snapshots_element">B.1.33. Removed the <code>snapshots.collapse_snapshots</code> element</a></h4>
 <div class="paragraph">
 <p>This element isn&#8217;t really part of the representation of snapshots, but
 a parameter of the operation that imports a virtual machine from an
@@ -83248,8 +83196,8 @@ query parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_renamed_storage_and_host_storage_elements"><a class="anchor" href="#_renamed_storage_and_host_storage_elements"></a><a class="link" href="#_renamed_storage_and_host_storage_elements">B.34. Renamed <code>storage</code> and <code>host_storage</code> elements</a></h3>
+<div class="sect3">
+<h4 id="_renamed_storage_and_host_storage_elements"><a class="anchor" href="#_renamed_storage_and_host_storage_elements"></a><a class="link" href="#_renamed_storage_and_host_storage_elements">B.1.34. Renamed <code>storage</code> and <code>host_storage</code> elements</a></h4>
 <div class="paragraph">
 <p>The host storage collection used the <code>storage</code> and <code>host_storage</code>
 elements and the <code>Storage</code> and <code>HostStorage</code> complex types to report the
@@ -83298,8 +83246,8 @@ outer element and <code>host_storage</code> as the inner element:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_permissions_clone_element"><a class="anchor" href="#_removed_the_permissions_clone_element"></a><a class="link" href="#_removed_the_permissions_clone_element">B.35. Removed the <code>permissions.clone</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_permissions_clone_element"><a class="anchor" href="#_removed_the_permissions_clone_element"></a><a class="link" href="#_removed_the_permissions_clone_element">B.1.35. Removed the <code>permissions.clone</code> element</a></h4>
 <div class="paragraph">
 <p>This element isn&#8217;t really part of the representation of permissions, but
 a parameter of the operations to create virtual machines or templates:</p>
@@ -83365,8 +83313,8 @@ query parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_renamed_the_random_number_generator_source_elements"><a class="anchor" href="#_renamed_the_random_number_generator_source_elements"></a><a class="link" href="#_renamed_the_random_number_generator_source_elements">B.36. Renamed the random number generator <code>source</code> elements</a></h3>
+<div class="sect3">
+<h4 id="_renamed_the_random_number_generator_source_elements"><a class="anchor" href="#_renamed_the_random_number_generator_source_elements"></a><a class="link" href="#_renamed_the_random_number_generator_source_elements">B.1.36. Renamed the random number generator <code>source</code> elements</a></h4>
 <div class="paragraph">
 <p>The random number generator sources used to be reported using a
 collection of <code>source</code> elements wrapped by an element with a name
@@ -83459,8 +83407,8 @@ reported as follows:</p>
 of just <code>source</code>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_intermediate_tag_parent_element"><a class="anchor" href="#_removed_the_intermediate_tag_parent_element"></a><a class="link" href="#_removed_the_intermediate_tag_parent_element">B.37. Removed the intermediate <code>tag.parent</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_intermediate_tag_parent_element"><a class="anchor" href="#_removed_the_intermediate_tag_parent_element"></a><a class="link" href="#_removed_the_intermediate_tag_parent_element">B.1.37. Removed the intermediate <code>tag.parent</code> element</a></h4>
 <div class="paragraph">
 <p>The relationship bettween a tag and it&#8217;s parent tag used to be
 represented using an intermedite <code>parent</code> tag, that in turn contains
@@ -83489,8 +83437,8 @@ used now:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_remove_scheduling_built_in_names_and_thresholds"><a class="anchor" href="#_remove_scheduling_built_in_names_and_thresholds"></a><a class="link" href="#_remove_scheduling_built_in_names_and_thresholds">B.38. Remove scheduling built-in names and thresholds</a></h3>
+<div class="sect3">
+<h4 id="_remove_scheduling_built_in_names_and_thresholds"><a class="anchor" href="#_remove_scheduling_built_in_names_and_thresholds"></a><a class="link" href="#_remove_scheduling_built_in_names_and_thresholds">B.1.38. Remove scheduling built-in names and thresholds</a></h4>
 <div class="paragraph">
 <p>In the past the specification of scheduling policies for clusters was
 based in built-in names and thresholds. For example a cluster that used
@@ -83571,8 +83519,8 @@ cluster only the <code>id</code> (and <code>href</code>) will be populated:</p>
 <p>When creating or updating a cluster only the <code>id</code> will be accepted.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_bricks_replica_count_and_bricks_stripe_count_elements"><a class="anchor" href="#_removed_the_bricks_replica_count_and_bricks_stripe_count_elements"></a><a class="link" href="#_removed_the_bricks_replica_count_and_bricks_stripe_count_elements">B.39. Removed the <code>bricks.replica_count</code> and <code>bricks.stripe_count</code> elements</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_bricks_replica_count_and_bricks_stripe_count_elements"><a class="anchor" href="#_removed_the_bricks_replica_count_and_bricks_stripe_count_elements"></a><a class="link" href="#_removed_the_bricks_replica_count_and_bricks_stripe_count_elements">B.1.39. Removed the <code>bricks.replica_count</code> and <code>bricks.stripe_count</code> elements</a></h4>
 <div class="paragraph">
 <p>These elements aren&#8217;t really part of the representation of a collection of
 bricks, but parameters of the operations to add and remove bricks. They have
@@ -83590,8 +83538,8 @@ parameters:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_renamed_the_statistics_type_property_to_kind"><a class="anchor" href="#_renamed_the_statistics_type_property_to_kind"></a><a class="link" href="#_renamed_the_statistics_type_property_to_kind">B.40. Renamed the statistics <code>type</code> property to <code>kind</code></a></h3>
+<div class="sect3">
+<h4 id="_renamed_the_statistics_type_property_to_kind"><a class="anchor" href="#_renamed_the_statistics_type_property_to_kind"></a><a class="link" href="#_renamed_the_statistics_type_property_to_kind">B.1.40. Renamed the statistics <code>type</code> property to <code>kind</code></a></h4>
 <div class="paragraph">
 <p>The statistics used to be represented using a <code>type</code> element that indicates the
 kind of statistic (gauge, counter, etc) and also a <code>type</code> attribute that
@@ -83627,8 +83575,8 @@ replaced by <code>kind</code>, and both <code>kind</code> and <code>type</code> 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin"><a class="anchor" href="#_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin"></a><a class="link" href="#_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin">B.41. Use multiple <code>vcpu_pins.vcpu_pin</code> instead of multiple <code>vcpu_pin</code></a></h3>
+<div class="sect3">
+<h4 id="_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin"><a class="anchor" href="#_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin"></a><a class="link" href="#_use_multiple_vcpu_pins_vcpu_pin_instead_of_multiple_vcpu_pin">B.1.41. Use multiple <code>vcpu_pins.vcpu_pin</code> instead of multiple <code>vcpu_pin</code></a></h4>
 <div class="paragraph">
 <p>In the past the way to specify the virtual to physical CPU pinning of a virtual
 machine was to use multiple <code>vcpu_pin</code> elements:</p>
@@ -83666,8 +83614,8 @@ been changed to use a wrapper element, in this case <code>vcpu_pins</code>:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_force_parameter_to_force_remove_a_data_center"><a class="anchor" href="#_use_force_parameter_to_force_remove_a_data_center"></a><a class="link" href="#_use_force_parameter_to_force_remove_a_data_center">B.42. Use <code>force</code> parameter to force remove a data center</a></h3>
+<div class="sect3">
+<h4 id="_use_force_parameter_to_force_remove_a_data_center"><a class="anchor" href="#_use_force_parameter_to_force_remove_a_data_center"></a><a class="link" href="#_use_force_parameter_to_force_remove_a_data_center">B.1.42. Use <code>force</code> parameter to force remove a data center</a></h4>
 <div class="paragraph">
 <p>The operation that removes a data center supports a <code>force</code> parameter.  In
 order to use it the <code>DELETE</code> operation used to support an optional action
@@ -83694,8 +83642,8 @@ parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_force_parameter_to_force_remove_a_host"><a class="anchor" href="#_use_force_parameter_to_force_remove_a_host"></a><a class="link" href="#_use_force_parameter_to_force_remove_a_host">B.43. Use <code>force</code> parameter to force remove a host</a></h3>
+<div class="sect3">
+<h4 id="_use_force_parameter_to_force_remove_a_host"><a class="anchor" href="#_use_force_parameter_to_force_remove_a_host"></a><a class="link" href="#_use_force_parameter_to_force_remove_a_host">B.1.43. Use <code>force</code> parameter to force remove a host</a></h4>
 <div class="paragraph">
 <p>The operation that removes a host supports a <code>force</code> parameter. In order to use
 it the <code>DELETE</code> operation used to support an optional action parameter:</p>
@@ -83721,8 +83669,8 @@ it the <code>DELETE</code> operation used to support an optional action paramete
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_parameters_for_force_remove_storage_domain"><a class="anchor" href="#_use_parameters_for_force_remove_storage_domain"></a><a class="link" href="#_use_parameters_for_force_remove_storage_domain">B.44. Use parameters for force remove storage domain</a></h3>
+<div class="sect3">
+<h4 id="_use_parameters_for_force_remove_storage_domain"><a class="anchor" href="#_use_parameters_for_force_remove_storage_domain"></a><a class="link" href="#_use_parameters_for_force_remove_storage_domain">B.1.44. Use parameters for force remove storage domain</a></h4>
 <div class="paragraph">
 <p>The operation that removes a storage domain supports the <code>force</code>, <code>destroy</code> and
 <code>host</code> parameters. These parameters were passed to the <code>DELETE</code> method using
@@ -83769,8 +83717,8 @@ following:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_host_parameter_to_remove_storage_server_connection"><a class="anchor" href="#_use_host_parameter_to_remove_storage_server_connection"></a><a class="link" href="#_use_host_parameter_to_remove_storage_server_connection">B.45. Use <code>host</code> parameter to remove storage server connection</a></h3>
+<div class="sect3">
+<h4 id="_use_host_parameter_to_remove_storage_server_connection"><a class="anchor" href="#_use_host_parameter_to_remove_storage_server_connection"></a><a class="link" href="#_use_host_parameter_to_remove_storage_server_connection">B.1.45. Use <code>host</code> parameter to remove storage server connection</a></h4>
 <div class="paragraph">
 <p>The operation that removes a storage server connection supports a <code>host</code>
 parameter. In order to use it the <code>DELETE</code> method used to support an optional
@@ -83799,8 +83747,8 @@ action parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_force_and_storage_domain_parameters_to_remove_template_disks"><a class="anchor" href="#_use_force_and_storage_domain_parameters_to_remove_template_disks"></a><a class="link" href="#_use_force_and_storage_domain_parameters_to_remove_template_disks">B.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</a></h3>
+<div class="sect3">
+<h4 id="_use_force_and_storage_domain_parameters_to_remove_template_disks"><a class="anchor" href="#_use_force_and_storage_domain_parameters_to_remove_template_disks"></a><a class="link" href="#_use_force_and_storage_domain_parameters_to_remove_template_disks">B.1.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</a></h4>
 <div class="paragraph">
 <p>The operation that removes a template disk supports the <code>force</code> and
 <code>storage_domain</code> parameters. In order to use it them the <code>DELETE</code> method used
@@ -83835,8 +83783,8 @@ query parameters <code>force</code> and <code>storage_domain</code>:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_dont_remove_disks_via_the_vm_disk_api"><a class="anchor" href="#_dont_remove_disks_via_the_vm_disk_api"></a><a class="link" href="#_dont_remove_disks_via_the_vm_disk_api">B.47. Don&#8217;t remove disks via the VM disk API</a></h3>
+<div class="sect3">
+<h4 id="_dont_remove_disks_via_the_vm_disk_api"><a class="anchor" href="#_dont_remove_disks_via_the_vm_disk_api"></a><a class="link" href="#_dont_remove_disks_via_the_vm_disk_api">B.1.47. Don&#8217;t remove disks via the VM disk API</a></h4>
 <div class="paragraph">
 <p>Removing an entity by deleting <code>/vms/123/disks/456</code> means removing the
 relationship between the VM and the disk - i.e., this operation should just
@@ -83851,8 +83799,8 @@ unreverseable consequences. To remove a disk, instead use the
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_force_query_parameter_to_force_remove_a_virtual_machine"><a class="anchor" href="#_use_force_query_parameter_to_force_remove_a_virtual_machine"></a><a class="link" href="#_use_force_query_parameter_to_force_remove_a_virtual_machine">B.48. Use <code>force</code> query parameter to force remove a virtual machine</a></h3>
+<div class="sect3">
+<h4 id="_use_force_query_parameter_to_force_remove_a_virtual_machine"><a class="anchor" href="#_use_force_query_parameter_to_force_remove_a_virtual_machine"></a><a class="link" href="#_use_force_query_parameter_to_force_remove_a_virtual_machine">B.1.48. Use <code>force</code> query parameter to force remove a virtual machine</a></h4>
 <div class="paragraph">
 <p>The operation that removes a virtual machine supports a <code>force</code> parameter. In
 order to use it the <code>DELETE</code> method used to support an optional action
@@ -83880,8 +83828,8 @@ parameter:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_post_instead_of_delete_to_remove_multiple_bricks"><a class="anchor" href="#_use_post_instead_of_delete_to_remove_multiple_bricks"></a><a class="link" href="#_use_post_instead_of_delete_to_remove_multiple_bricks">B.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</a></h3>
+<div class="sect3">
+<h4 id="_use_post_instead_of_delete_to_remove_multiple_bricks"><a class="anchor" href="#_use_post_instead_of_delete_to_remove_multiple_bricks"></a><a class="link" href="#_use_post_instead_of_delete_to_remove_multiple_bricks">B.1.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</a></h4>
 <div class="paragraph">
 <p>The operation that removes multiple Gluster bricks was implemented using the
 <code>DELETE</code> method and passing the list of bricks as the body of the request:</p>
@@ -83919,8 +83867,8 @@ has been replaced with a new <code>remove</code> action that uses the <code>POST
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_the_scheduling_policy_policy_element"><a class="anchor" href="#_removed_the_scheduling_policy_policy_element"></a><a class="link" href="#_removed_the_scheduling_policy_policy_element">B.50. Removed the <code>scheduling_policy.policy</code> element</a></h3>
+<div class="sect3">
+<h4 id="_removed_the_scheduling_policy_policy_element"><a class="anchor" href="#_removed_the_scheduling_policy_policy_element"></a><a class="link" href="#_removed_the_scheduling_policy_policy_element">B.1.50. Removed the <code>scheduling_policy.policy</code> element</a></h4>
 <div class="paragraph">
 <p>The element was kept for backward compatibility. Use <code>scheduling_policy.name</code>
 instead.</p>
@@ -83954,8 +83902,8 @@ instead.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_added_snapshot_snapshot_type"><a class="anchor" href="#_added_snapshot_snapshot_type"></a><a class="link" href="#_added_snapshot_snapshot_type">B.51. Added <code>snapshot.snapshot_type</code></a></h3>
+<div class="sect3">
+<h4 id="_added_snapshot_snapshot_type"><a class="anchor" href="#_added_snapshot_snapshot_type"></a><a class="link" href="#_added_snapshot_snapshot_type">B.1.51. Added <code>snapshot.snapshot_type</code></a></h4>
 <div class="paragraph">
 <p>Enums are being gradually introduces to the API. Some fields which were string
 until now, are replaced with an appropriate enum. One such field is vm.type.
@@ -83973,15 +83921,15 @@ type. So a new field has been added to snapshot entity:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_removed_move_action_from_vm"><a class="anchor" href="#_removed_move_action_from_vm"></a><a class="link" href="#_removed_move_action_from_vm">B.52. Removed <code>move</code> action from <code>VM</code></a></h3>
+<div class="sect3">
+<h4 id="_removed_move_action_from_vm"><a class="anchor" href="#_removed_move_action_from_vm"></a><a class="link" href="#_removed_move_action_from_vm">B.1.52. Removed <code>move</code> action from <code>VM</code></a></h4>
 <div class="paragraph">
 <p>The deprecated <code>move</code> action of the <code>VM</code> entity has been removed.  Instead, you
 can move inidividual disks.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_moved_reported_configurations_in_sync_to_network_attachment"><a class="anchor" href="#_moved_reported_configurations_in_sync_to_network_attachment"></a><a class="link" href="#_moved_reported_configurations_in_sync_to_network_attachment">B.53. Moved <code>reported_configurations.in_sync</code> to <code>network_attachment</code></a></h3>
+<div class="sect3">
+<h4 id="_moved_reported_configurations_in_sync_to_network_attachment"><a class="anchor" href="#_moved_reported_configurations_in_sync_to_network_attachment"></a><a class="link" href="#_moved_reported_configurations_in_sync_to_network_attachment">B.1.53. Moved <code>reported_configurations.in_sync</code> to <code>network_attachment</code></a></h4>
 <div class="paragraph">
 <p>In version 3 of the API the XML schema type <code>ReportedConfigurations</code> had a
 <code>in_sync</code> property:</p>
@@ -84019,8 +83967,8 @@ enclosing <code>network_attachment</code>:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_replaced_capabilities_with_clusterlevels"><a class="anchor" href="#_replaced_capabilities_with_clusterlevels"></a><a class="link" href="#_replaced_capabilities_with_clusterlevels">B.54. Replaced <code>capabilities</code> with <code>clusterlevels</code></a></h3>
+<div class="sect3">
+<h4 id="_replaced_capabilities_with_clusterlevels"><a class="anchor" href="#_replaced_capabilities_with_clusterlevels"></a><a class="link" href="#_replaced_capabilities_with_clusterlevels">B.1.54. Replaced <code>capabilities</code> with <code>clusterlevels</code></a></h4>
 <div class="paragraph">
 <p>The top level <code>capabilities</code> collection has been replaced by the new
 <code>clusterlevels</code> collection. This new collection will contain the information
@@ -84081,8 +84029,8 @@ itself:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_replaced_disks_with_diskattachments"><a class="anchor" href="#_replaced_disks_with_diskattachments"></a><a class="link" href="#_replaced_disks_with_diskattachments">B.55. Replaced <code>disks</code> with <code>diskattachments</code></a></h3>
+<div class="sect3">
+<h4 id="_replaced_disks_with_diskattachments"><a class="anchor" href="#_replaced_disks_with_diskattachments"></a><a class="link" href="#_replaced_disks_with_diskattachments">B.1.55. Replaced <code>disks</code> with <code>diskattachments</code></a></h4>
 <div class="paragraph">
 <p>In version 3 of the API virtual machines and templates had a <code>disks</code> collection
 containing all the information of the disks attached to them.  In version 4 of
@@ -84192,8 +84140,8 @@ specific storage domains will now look like this:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_iscsi_targets_element_to_discover_unregistered_storage"><a class="anchor" href="#_use_iscsi_targets_element_to_discover_unregistered_storage"></a><a class="link" href="#_use_iscsi_targets_element_to_discover_unregistered_storage">B.56. Use <code>iscsi_targets</code> element to discover unregistered storage</a></h3>
+<div class="sect3">
+<h4 id="_use_iscsi_targets_element_to_discover_unregistered_storage"><a class="anchor" href="#_use_iscsi_targets_element_to_discover_unregistered_storage"></a><a class="link" href="#_use_iscsi_targets_element_to_discover_unregistered_storage">B.1.56. Use <code>iscsi_targets</code> element to discover unregistered storage</a></h4>
 <div class="paragraph">
 <p>In version 3 of the API the operation to discover unregistered storage domains
 used to receive a list of iSCSI targets, using multiple <code>iscsi_target</code>
@@ -84240,6 +84188,14 @@ case. So the same request should now look like this:</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_changes_in_engine_version_4_5"><a class="anchor" href="#_changes_in_engine_version_4_5"></a><a class="link" href="#_changes_in_engine_version_4_5">B.2. Changes in Engine version 4.5</a></h3>
+<div class="sect3">
+<h4 id="_openstack_volume_cinder_integration_replaced_by_managed_block_storage"><a class="anchor" href="#_openstack_volume_cinder_integration_replaced_by_managed_block_storage"></a><a class="link" href="#_openstack_volume_cinder_integration_replaced_by_managed_block_storage">B.2.1. Openstack Volume (Cinder) integration replaced by Managed Block Storage.</a></h4>
+
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="footnotes">
@@ -84253,7 +84209,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-18 06:30:07 UTC
+Last updated 2021-10-19 07:13:53 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
