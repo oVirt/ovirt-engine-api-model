@@ -1,5 +1,21 @@
 = Changes
 
+4.5 / Oct 19 2021
+
+New features:
+
+* Add ovnConfigured to Host model
+  https://bugzilla.redhat.com/1940824
+
+Deprecations:
+
+* Deprecation of old Cinder integration
+  https://bugzilla.redhat.com/1950730
+
+General:
+
+* Generate API doc using GitHub Actions instead of Travis
+
 4.4.35 / Aug 11 2021
 
 Bug Fixes:
