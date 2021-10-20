@@ -24,6 +24,11 @@ import org.ovirt.api.metamodel.annotations.Type;
  * There are several types of network filters supported based on libvirt.
  * For more details about the different network filters see https://libvirt.org/firewall.html[here].
  *
+ * The default Network Filter is based on network type and configuration.
+ * VM network's default filter is `vdsm-no-mac-spoof` if `EnableMACAntiSpoofingFilterRules` is True, otherwise
+ * the filter is not configured, for `OVN` networks the filter is not configured.
+ *
+ *
  * In addition to libvirt's network filters, there are two additional network filters:
  * The first is called `vdsm-no-mac-spoofing` and is composed of `no-mac-spoofing` and `no-arp-mac-spoofing`.
  * The second is called `ovirt-no-filter` and is used when no network filter is to be defined for the virtual machine's NIC.
@@ -48,8 +53,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * If any part of the version is not present, it is represented by -1.
  *
  * @author Megan Lewis <melewis@redhat.com>
- * @date 21 Feb 2017
- * @status updated_by_docs
+ * @author Ales Musil <amusil@redhat.com>
+ * @date 21 Oct 2021
+ * @status update
  */
 @Type
 public interface NetworkFilter extends Identified {
