@@ -67561,6 +67561,11 @@ The following keys are valid for <code>bridge_opts</code>:</p>
 For more details about the different network filters see <a href="https://libvirt.org/firewall.html">here</a>.</p>
 </div>
 <div class="paragraph">
+<p>The default Network Filter is based on network type and configuration.
+VM network&#8217;s default filter is <code>vdsm-no-mac-spoof</code> if <code>EnableMACAntiSpoofingFilterRules</code> is True, otherwise
+the filter is not configured, for <code>OVN</code> networks the filter is not configured.</p>
+</div>
+<div class="paragraph">
 <p>In addition to libvirt&#8217;s network filters, there are two additional network filters:
 The first is called <code>vdsm-no-mac-spoofing</code> and is composed of <code>no-mac-spoofing</code> and <code>no-arp-mac-spoofing</code>.
 The second is called <code>ovirt-no-filter</code> and is used when no network filter is to be defined for the virtual machine&#8217;s NIC.
@@ -84209,7 +84214,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-19 08:50:59 UTC
+Last updated 2021-10-25 07:15:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
