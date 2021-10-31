@@ -389,4 +389,13 @@ public interface Vm extends VmBase {
      * @status updated_by_docs
      */
     @Link DiskAttachment[] diskAttachments();
+
+    /**
+     * The dynamic configuration of the virtual machine CPU.
+     *
+     * @author Liran Rotenebrg <lrotenbe@redhat.com>
+     * @date 13 Dec 2021
+     * @status added
+     */
+    @Link DynamicCpu dynamicCpu();
 }

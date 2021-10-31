@@ -581,10 +581,26 @@ public interface VmBase extends Identified {
     /**
      * Specifies if and how the auto CPU and NUMA configuration is applied.
      *
+     * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
+     * compatibility. It might be removed in the future. Please use CpuPinningPolicy instead.
+     *
      * @author Liran Rotenberg <lrotenbe@redhat.com>
      * @date 03 Aug 2021
      * @status added
      * @since 4.4.8
      */
+    @Deprecated
     AutoPinningPolicy autoPinningPolicy();
+
+    /**
+     * Specifies if and how the CPU and NUMA configuration is applied.
+     * When not specified the previous behavior of CPU pinning string will determine
+     * CpuPinningPolicy to None or Manual.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 13 Dec 2021
+     * @status added
+     * @since 4.5
+     */
+    CpuPinningPolicy cpuPinningPolicy();
 }

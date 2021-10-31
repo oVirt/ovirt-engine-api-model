@@ -17,12 +17,16 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Type representing what the CPU and NUMA pinning policy is.
  *
+ * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
+ * compatibility. It will be removed in the future. Instead please use CpuPinningPolicy.
+ *
  * @author Liran Rotenberg <lrotenbe@redhat.com>
  * @date 1 Sep 2020
  * @status added
  * @since 4.4
  */
 @Type
+@Deprecated
 public enum AutoPinningPolicy {
     /**
      * The CPU and NUMA pinning won't be calculated.

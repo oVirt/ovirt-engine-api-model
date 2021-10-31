@@ -280,7 +280,12 @@ public interface VmsService {
         @In Boolean filter();
 
         /**
-         * Specifies if and how the auto CPU and NUMA configuration is applied. An example for a request:
+         * Specifies if and how the auto CPU and NUMA configuration is applied.
+         *
+         * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
+         * compatibility. It will be removed in the future. Instead please use POST followed by <<services/vms/methods/add, add operation>>.
+         *
+         * An example for a request:
          *
          * [source]
          * ----
@@ -314,6 +319,7 @@ public interface VmsService {
          * @status added
          * @since 4.4
          */
+        @Deprecated
         @In AutoPinningPolicy autoPinningPolicy();
 
         @InputDetail

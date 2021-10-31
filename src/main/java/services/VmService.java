@@ -737,6 +737,9 @@ public interface VmService extends MeasurableService {
     /**
      * Apply an automatic CPU and NUMA configuration on the VM.
      *
+     * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
+     * compatibility. It will be removed in the future. Instead please use PUT followed by <<services/vm/methods/update, update operation>>.
+     *
      * An example for a request:
      * [source]
      * ----
@@ -757,6 +760,7 @@ public interface VmService extends MeasurableService {
      * @status added
      * @since 4.4.5
      */
+    @Deprecated
     interface AutoPinCpuAndNumaNodes {
         /**
          * Specifies how the auto CPU and NUMA configuration is applied.
