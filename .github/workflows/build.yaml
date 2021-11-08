@@ -38,11 +38,18 @@ jobs:
 
       - name: Set FOLDER variable according to push branch
         run: |
-          if [[ ${GITHUB_REF} == 'refs/heads/master' ]];
+          IFS="/" read _ type value <<<  ${GITHUB_REF}
+          if [[ ${type} == "heads" ]];
           then
-            echo "FOLDER='master'" >> $GITHUB_ENV;
-          else
-            echo "FOLDER=${GITHUB_REF: -3}" >> $GITHUB_ENV;
+            if [[ ${value} == "master" ]]
+            then
+              echo "FOLDER='master'" >> $GITHUB_ENV;
+            else
+              echo "FOLDER=${value: -3}" >> $GITHUB_ENV;
+            fi
+          elif [[ ${type} == "tags" ]]
+          then
+            echo "FOLDER=${value:0:3}" >> $GITHUB_ENV;
           fi
 
       - name: Move created documentation to gh-pages
