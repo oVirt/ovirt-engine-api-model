@@ -78,7 +78,28 @@ public interface VmBackupsService {
      * </backup>
      * ----
      *
+     * To provide the ID of the created backup, send a request like this:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/backups
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <backup id="backup-uuid">
+     *   <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
+     *   <disks>
+     *       <disk id="disk-uuid" />
+     *       ...
+     *   </disks>
+     * </backup>
+     * ----
+     *
      * @author Daniel Erez <derez@redhat.com>
+     * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Rolfe Dlugy-Hegwer <rdlugyhe@redhat.com>
      * @date 12 Dec 2018
      * @status added
