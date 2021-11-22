@@ -14920,7 +14920,7 @@ explicitly.</p>
 </div>
 <div class="paragraph">
 <p>To create a new floating image disk with specified <code>provisioned_size</code>, <code>format</code> and <code>name</code> on a storage domain
-with an id <code>123</code>, send a request as follows:</p>
+with an id <code>123</code> and enabled for incremental backup, send a request as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14939,6 +14939,7 @@ with an id <code>123</code>, send a request as follows:</p>
   &lt;name&gt;mydisk&lt;/name&gt;
   &lt;provisioned_size&gt;1048576&lt;/provisioned_size&gt;
   &lt;format&gt;cow&lt;/format&gt;
+  &lt;backup&gt;incremental&lt;/backup&gt;
 &lt;/disk&gt;</code></pre>
 </div>
 </div>
@@ -45728,7 +45729,22 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>Finalize the virtual machine backup entity.</p>
 </div>
 <div class="paragraph">
-<p>End backup, unlock resources, and perform cleanups.</p>
+<p>End backup, unlock resources, and perform cleanups.
+To finalize a virtual machine with an id '123' and a backup with an id '456'
+send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/backups/456/finalize</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;action /&gt;</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -45777,11 +45793,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;backups&gt;
   &lt;backup id="backup-uuid"&gt;
     &lt;from_checkpoint_id&gt;previous-checkpoint-uuid&lt;/from_checkpoint_id&gt;
-    &lt;disks&gt;
-      &lt;disk id="disk-uuid" /&gt;
-      ...
-      ...
-    &lt;/disks&gt;
+    &lt;link href="/ovirt-engine/api/vms/vm-uuid/backups/backup-uuid/disks" rel="disks"/&gt;
     &lt;status&gt;initializing&lt;/status&gt;
     &lt;creation_date&gt;
  &lt;/backup&gt;
@@ -46797,6 +46809,14 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="paragraph">
 <p>The list of virtual machine checkpoints.</p>
 </div>
+<div class="paragraph">
+<p>To get a list of checkpoints for a virtual machine with an id '123', send a request as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>GET /ovirt-engine/api/vms/123/checkpoints</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 813. Parameters summary</caption>
 <colgroup>
@@ -46846,7 +46866,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
     &lt;link href="/ovirt-engine/api/vms/vm-uuid/checkpoints/checkpoint-uuid/disks" rel="disks"/&gt;
     &lt;parent_id&gt;parent-checkpoint-uuid&lt;/parent_id&gt;
     &lt;creation_date&gt;xxx&lt;/creation_date&gt;
-    &lt;vm href="/ovirt-engine/api/vmsvm-uuid" id="vm-uuid"/&gt;
+    &lt;vm href="/ovirt-engine/api/vm-uuid" id="vm-uuid"/&gt;
  &lt;/checkpoint&gt;
 &lt;/checkpoints&gt;</code></pre>
 </div>
@@ -55737,7 +55757,8 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_mode</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_backup_mode">DiskBackupMode</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The backup type that was taken for the disk (full/incremental).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the disk backup (full/incremental),
+visible only when the disk backup is in progress.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bootable</code></p></td>
@@ -56747,7 +56768,8 @@ address, using the SCSI protocol.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>backup_mode</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/disk_backup_mode">DiskBackupMode</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The backup type that was taken for the disk (full/incremental).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the disk backup (full/incremental),
+visible only when the disk backup is in progress.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bootable</code></p></td>
@@ -84214,7 +84236,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-16 12:41:35 UTC
+Last updated 2021-11-22 09:14:51 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
