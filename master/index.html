@@ -46028,6 +46028,28 @@ since checkpoint id <code>previous-checkpoint-uuid</code>, send a request like t
 &lt;/backup&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To provide the ID of the created backup, send a request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/vms/123/backups</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;backup id="backup-uuid"&gt;
+  &lt;from_checkpoint_id&gt;previous-checkpoint-uuid&lt;/from_checkpoint_id&gt;
+  &lt;disks&gt;
+      &lt;disk id="disk-uuid" /&gt;
+      ...
+  &lt;/disks&gt;
+&lt;/backup&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 797. Parameters summary</caption>
 <colgroup>
@@ -84236,7 +84258,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-22 09:14:51 UTC
+Last updated 2021-11-23 08:57:01 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
