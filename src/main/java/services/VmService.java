@@ -1564,6 +1564,34 @@ public interface VmService extends MeasurableService {
         @In Boolean async();
     }
 
+
+    /**
+     * Captures screenshot of the current state of the VM.
+     *
+     * For example:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/vms/123/screenshot
+     * ----
+     *
+     * The screenshot action does not take any action specific parameters; therefore, the request body should contain an
+     * empty `action`:
+     *
+     * [source,xml]
+     * ----
+     * <action/>
+     *
+     *
+     * ----
+     * @author Saif Abusaleh <sabusale@redhat.com>
+     * @date 25 Nov 2021
+     * @status added
+     */
+    interface Screenshot {
+
+    }
+
     @Service AssignedPermissionsService permissions();
     @Service AssignedTagsService tags();
     @Service VmGraphicsConsolesService graphicsConsoles();
