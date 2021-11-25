@@ -96,12 +96,19 @@ public interface ExternalVmImport {
     String name();
 
     /**
-     * Specifies the disk allocation policy of the resulting virtual machine: `true` for sparse, `false` for preallocated.
+     * Optional. Specifies the disk allocation policy of the resulting virtual machine: `true` for sparse, `false` for
+     * preallocated.
+     *
+     * If not specified:
+     * - When importing an OVA that was produced by oVirt, it will be determined according to the configuration of the
+     *   disk within the OVF.
+     * - Otherwise, it will be set to true.
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 27 Oct 2016
-     * @status updated_by_docs
+     * @author Saif Abu Saleh <sabusale@redhat.com>
+     * @date 30 Nov 2021
+     * @status updated
      * @since 4.0.4
      */
     Boolean sparse();
