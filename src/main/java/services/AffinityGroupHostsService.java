@@ -111,12 +111,13 @@ public interface AffinityGroupHostsService {
     }
 
     /**
-     * Access the service that manages the host assignment to this affinity group.
+     * Access the service that manages the host assignment to this affinity group by host id or name.
      *
      * @author Lucia Jelinkova <ljelinko@redhat.com>
-     * @date 26 Jun 2019
+     * @author Saif Abu Saleh <sabusale@redhat.com>
+     * @date 1 Dec 2021
      * @since 4.4
-     * @status added
+     * @status updated
      */
-    @Service AffinityGroupHostService host(String id);
+    @Service AffinityGroupHostService host(String idOrName);
 }
