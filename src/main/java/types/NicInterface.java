@@ -21,8 +21,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Defines the options for an emulated virtual network interface device model.
  *
  * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
- * @date 24 Apr 2017
- * @status added
+ * @author Ales Musil <amusil@redhat.com>
+ * @date 20 Dec 2021
+ * @status updated
  */
 @Type
 public enum NicInterface {
@@ -35,6 +36,15 @@ public enum NicInterface {
      * @status added
      */
     E1000,
+
+    /**
+     * e1000e.
+     *
+     * @author Ales Musil <amusil@redhat.com>
+     * @date 20 Dec 2021
+     * @status added
+     */
+    E1000E,
 
     /**
      * VirtIO.
