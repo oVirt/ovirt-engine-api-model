@@ -39,5 +39,15 @@ public enum Architecture {
      * @status added
      * @since 4.2
      */
-    S390X;
+    S390X,
+
+    /**
+     * AARCH64 CPU architecture.
+     *
+     * @author Julien Wang <wangdi@kylinos.cn>
+     * @date 24 Dec 2021
+     * @status added
+     * @since 4.5
+     */
+    AARCH64;
 }
