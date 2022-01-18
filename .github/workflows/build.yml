@@ -125,7 +125,7 @@ jobs:
         with:
           repository: '${{ secrets.TARGET_REPO }}'
           ssh-key: '${{ secrets.DEPLOY_KEY }}'
-          path: ovirt-engine-sdk
+          path: ovirt-engine-api-model
           ref: 'gh-pages'
 
       - name: Checkout to gh-pages branch
