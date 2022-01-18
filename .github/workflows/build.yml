@@ -157,7 +157,9 @@ jobs:
           cp ./target/generated-html/model.html ./gh-pages/${{env.FOLDER}}/index.html
 
       - name: Create index page
-        run: .automation/create-index-page.sh
+        run: |
+          ls -alR
+          .automation/create-index-page.sh
 
       - name: Push changes to gh-pages
         run: |
