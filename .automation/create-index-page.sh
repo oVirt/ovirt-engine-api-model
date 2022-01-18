@@ -24,6 +24,6 @@ links=$(
 popd
 noDocumentationFound='<p>No documentation found.</p>'
 replacement=${links:=$noDocumentationFound}
-template=$(cat .automation/index.template.html)
+template=$(cat $(dirname "$(readlink -f "$0")")/index.template.html)
 replaced=${template/=== links ===/$replacement}
 echo "${replaced}" > gh-pages/index.html

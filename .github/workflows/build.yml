@@ -158,7 +158,6 @@ jobs:
 
       - name: Create index page
         run: |
-          ls -alR
           .automation/create-index-page.sh
 
       - name: Push changes to gh-pages
