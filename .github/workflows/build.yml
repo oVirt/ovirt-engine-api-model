@@ -1,0 +1,173 @@
+name: build
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: centos-stream-8
+            shortcut: cs8
+            container-name: stream8
+          - name: centos-stream-9
+            shortcut: cs9
+            container-name: stream9
+
+    name: ${{ matrix.name }}
+
+    env:
+      ARTIFACTS_DIR: exported-artifacts
+
+    container:
+      image: quay.io/centos/centos:${{ matrix.container-name }}
+
+    steps:
+    - name: Prepare CentOS Stream 8 environment
+      if: ${{ matrix.shortcut == 'cs8' }}
+      run: |
+        # Install oVirt repositories
+        dnf copr enable -y ovirt/ovirt-master-snapshot centos-stream-8
+        dnf install -y ovirt-release-master
+
+        # Configure CS8 repositories
+        dnf config-manager --enable powertools
+        dnf module enable -y pki-deps javapackages-tools
+
+    - name: Prepare CentOS Stream 9 environment
+      if: ${{ matrix.shortcut == 'cs9' }}
+      run: |
+        # DNF core plugins are installed in the official CS9 container image
+        dnf install -y dnf-plugins-core
+
+        # Install oVirt repositories
+        dnf copr enable -y ovirt/ovirt-master-snapshot
+        dnf install -y ovirt-release-master
+
+        # Configure CS9 repositories
+        dnf config-manager --enable crb
+
+    - name: Install required packages
+      run: |
+        dnf install -y \
+          dnf-utils \
+          git \
+          gzip \
+          java-11-openjdk-devel \
+          maven \
+          rpm-build \
+          sed \
+          tar
+
+    - name: Checkout sources
+      uses: actions/checkout@v2
+
+    - name: Use cache for maven
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Perform build
+      run: |
+        .automation/build.sh $ARTIFACTS_DIR
+
+    - name: Upload RPM artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: rpm-${{ matrix.shortcut }}
+        path: ${{ env.ARTIFACTS_DIR}}
+
+    - name: Upload generated documentation artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-documentation-${{ matrix.shortcut }}
+        path: target/generated-html*
+
+
+  publish-doc:
+    needs: build
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+    steps:
+      - name: Download generated documentation artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: generated-documentation-cs9
+          path: target
+
+      - name: Install package dependencies
+        run: |
+          dnf install \
+            git \
+            python3-devel \
+            python3-pip \
+            -y
+
+      - name: Set git defaults
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Checkout target repository
+        uses: actions/checkout@v2
+        with:
+          repository: '${{ secrets.TARGET_REPO }}'
+          ssh-key: '${{ secrets.DEPLOY_KEY }}'
+          path: ovirt-engine-sdk
+          ref: 'gh-pages'
+
+      - name: Checkout to gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Set FOLDER variable according to push branch
+        run: |
+          IFS="/" read _ type value <<<  ${GITHUB_REF}
+          if [[ ${type} == "heads" ]];
+          then
+            if [[ ${value} == "master" ]]
+            then
+              echo "FOLDER='master'" >> $GITHUB_ENV;
+            else
+              echo "FOLDER=${value: -3}" >> $GITHUB_ENV;
+            fi
+          elif [[ ${type} == "tags" ]]
+          then
+            echo "FOLDER=${value:0:3}" >> $GITHUB_ENV;
+          fi
+
+      - name: Move created documentation to gh-pages
+        run: |
+          mkdir -p ./gh-pages/${{env.FOLDER}}/
+          cp ./target/generated-html/asciidoctor.css ./gh-pages/${{env.FOLDER}}/asciidoctor.css
+          cp ./target/generated-html/model.html ./gh-pages/${{env.FOLDER}}/index.html
+
+      - name: Create index page
+        run: .automation/create-index-page.sh
+
+      - name: Push changes to gh-pages
+        run: |
+          cd gh-pages
+          commit=$(git log --format="%H" -n 1)
+          description=$(git describe --always)
+          if git status --porcelain 2>/dev/null| grep -E "^??|^M"
+          then
+            git add .
+            git commit -m "gh-pages ${description} ${commit}"
+            git push
+          fi
+          cd ..
