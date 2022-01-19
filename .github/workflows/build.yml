@@ -150,6 +150,9 @@ jobs:
 
       - name: Create index page
         run: |
+          pwd
+          ls -al
+          ls -al .automation
           .automation/create-index-page.sh
 
       - name: Push changes to gh-pages
