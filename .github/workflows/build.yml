@@ -7,8 +7,6 @@ on:
   workflow_dispatch:
     branches: [master]
 
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -98,6 +96,8 @@ jobs:
 
 
   publish-doc:
+    permissions:
+      contents: write
     needs: build
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
