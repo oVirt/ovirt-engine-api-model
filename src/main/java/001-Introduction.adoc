@@ -60,8 +60,6 @@ from the API server. For example:
 
 ** The https://github.com/oVirt/ovirt-engine-sdk/tree/master/sdk[oVirt Python SDK].
 
-** The https://github.com/oVirt/ovirt-engine-sdk-ruby/tree/master/sdk[oVirt Ruby SDK].
-
 ** The https://github.com/oVirt/ovirt-engine-sdk-java/tree/master/sdk[oVirt Java SDK].
 
 ** The https://curl.haxx.se[cURL] command line tool.
