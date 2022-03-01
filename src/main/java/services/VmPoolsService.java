@@ -89,6 +89,42 @@ public interface VmPoolsService {
          * @status added
          */
         @In @Out VmPool pool();
+
+        /**
+         * Specifies if virtual machines created for the pool should be sealed after creation.
+         *
+         * If this optional parameter is provided, and its value is `true`, virtual machines created for the pool
+         * will be sealed after creation. If the value is 'false', the virtual machines will not be sealed.
+         * If the parameter is not provided, the virtual machines will be sealed, only if they are created from
+         * a sealed template and their guest OS is not set to Windows. This parameter affects only the virtual machines
+         * created when the pool is created.
+         *
+         * For example, to create a virtual machine pool with 5 virtual machines and to seal them, send a request
+         * like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vmpools?seal=true
+         * ----
+         *
+         * With the following body:
+         *
+         * [source,xml]
+         * ----
+         * <vmpool>
+         *   <name>mypool</name>
+         *   <cluster id="123"/>
+         *   <template id="456"/>
+         *   <size>5</size>
+         * </vmpool>
+         * ----
+         *
+         * @author Shmuel Leib Melamud <smelamud@redhat.com>
+         * @date 1 Mar 2022
+         * @status added
+         * @since 4.5
+         */
+        @In Boolean seal();
     }
 
     /**
