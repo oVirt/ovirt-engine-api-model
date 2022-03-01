@@ -186,4 +186,15 @@ public interface Display {
      */
     // TODO: Make this an enum.
     String disconnectAction();
+
+    /**
+     * Delay before the graphic console disconnect action is carried out.
+     * This option is only available for Shutdown disconnect action.
+     *
+     * @author Shmuel Melamud <smelamud@redhat.com>
+     * @date 1 Mar 2022
+     * @status added
+     * @since 4.5
+     */
+    Integer disconnectActionDelay();
 }
