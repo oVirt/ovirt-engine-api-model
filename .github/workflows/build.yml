@@ -47,6 +47,10 @@ jobs:
           # DNF core plugins are installed in the official CS9 container image
           dnf install -y dnf-plugins-core
 
+          # use legacy crypto policy on el9
+          dnf upgrade -y crypto-policies-scripts crypto-policies
+          update-crypto-policies --set LEGACY
+
           # Install oVirt repositories
           dnf copr enable -y ovirt/ovirt-master-snapshot
           dnf install -y ovirt-release-master
