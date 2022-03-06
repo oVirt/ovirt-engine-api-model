@@ -1,0 +1,59 @@
+Name:		ovirt-engine-api-model
+Version:	@VERSION@
+Release:	@RELEASE@%{?dist}
+Summary:	Model management tools for the oVirt Engine API.
+Group:		%{ovirt_product_group}
+License:	ASL 2.0
+URL:		http://www.ovirt.org
+Source0:	%{name}-%{version}.tar.gz
+Source1:	%{name}-doc-%{version}.jar
+
+BuildArch:	noarch
+
+BuildRequires:  java-11-openjdk-devel
+BuildRequires:  maven-local
+BuildRequires:  ovirt-engine-api-metamodel
+BuildRequires:  mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
+BuildRequires:  mvn(org.apache.maven.plugins:maven-antrun-plugin)
+BuildRequires:  mvn(org.apache.maven.plugins:maven-compiler-plugin)
+BuildRequires:  mvn(org.apache.maven.plugins:maven-source-plugin)
+BuildRequires:  mvn(org.apache.maven.plugins:maven-surefire-plugin)
+BuildRequires:  mvn(org.asciidoctor:asciidoctorj)
+BuildRequires:  mvn(org.asciidoctor:asciidoctor-maven-plugin)
+BuildRequires:  mvn(org.codehaus.mojo:exec-maven-plugin)
+BuildRequires:  mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
+
+%description
+%{name} provides model management tools for the oVirt Engine API.
+
+
+%prep
+%setup -c -q
+
+# maven-release-plugin is not used during package build, so we can remove it
+# from pom.xml
+%pom_remove_plugin :maven-release-plugin pom.xml
+
+
+%build
+# Necessary to override the default JVM for xmvn in COPR, which is JDK 8
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+
+%mvn_build -j -d
+
+
+%install
+%mvn_install
+
+mkdir -p %{buildroot}/%{_docdir}/%{name}
+unzip %{SOURCE1} -d %{buildroot}/%{_docdir}/%{name}
+
+
+%files -f .mfiles
+%license ASL2
+%{_docdir}/%{name}
+
+%changelog
+* Sun Mar 06 2022 Martin Perina <mperina@redhat.com> 4.5.3-1
+- Initial RPM release
+

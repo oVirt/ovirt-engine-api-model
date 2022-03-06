@@ -2,6 +2,7 @@
 *.iml
 .idea/
 .bash_history
+.vscode/
 exported-artifacts/
 logs*
 mocker*
