@@ -313,11 +313,11 @@ $ mvn package
 ```
 
 This will analyze the model and create the `model.html` inside the
-`target/generated-html` directory:
+`target/html` directory:
 
 ```sh
 $ find . -name model.html
-target/generated-html/model.html
+target/html/model.html
 ```
 
 Open it with your browser and check your changes.
