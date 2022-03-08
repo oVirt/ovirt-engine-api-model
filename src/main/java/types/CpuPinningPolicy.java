@@ -69,6 +69,18 @@ public enum CpuPinningPolicy {
      * @status added
      * @since 4.5
      */
-    RESIZE_AND_PIN_NUMA;
+    RESIZE_AND_PIN_NUMA,
+
+    /**
+     * The CPU pinning will be automatically calculated by the engine when a vm starts and it will be dropped when the vm stops.
+     *
+     * The pinning is exclusive, that means that no other VM can use the pinned physical CPU.
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @date 3 Mar 2021
+     * @status added
+     * @since 4.5
+     */
+    DEDICATED;
 }
 
