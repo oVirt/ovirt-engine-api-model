@@ -168,6 +168,41 @@ public interface VmPoolService {
          * Indicates if the update should be performed asynchronously.
          */
         @In Boolean async();
+
+        /**
+         * Specifies if virtual machines created for the pool should be sealed after creation.
+         *
+         * If this optional parameter is provided, and its value is `true`, virtual machines created for the pool
+         * will be sealed after creation. If the value is 'false', the virtual machines will not be sealed.
+         * If the parameter is not provided, the virtual machines will be sealed, only if they are created from
+         * a sealed template and their guest OS is not set to Windows. This parameter affects only the virtual machines
+         * created when the pool is updated.
+         *
+         * For example, to update a virtual machine pool and to seal the additional virtual machines that are created,
+         * send a request like this:
+         *
+         * [source]
+         * ----
+         * PUT /ovirt-engine/api/vmpools/123?seal=true
+         * ----
+         *
+         * With the following body:
+         *
+         * [source,xml]
+         * ----
+         * <vmpool>
+         *   <name>VM_Pool_B</name>
+         *   <description>Virtual Machine Pool B</description>
+         *   <size>7</size>
+         * </vmpool>
+         * ----
+         *
+         * @author Shmuel Leib Melamud <smelamud@redhat.com>
+         * @date 1 Mar 2022
+         * @status added
+         * @since 4.5
+         */
+        @In Boolean seal();
     }
 
     /**

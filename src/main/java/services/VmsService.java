@@ -322,6 +322,44 @@ public interface VmsService {
         @Deprecated
         @In AutoPinningPolicy autoPinningPolicy();
 
+        /**
+         * Specifies if the virtual machine should be sealed after creation.
+         *
+         * If this optional parameter is provided, and its value is `true`, the virtual machine will be sealed after
+         * creation. If the value is 'false', the virtual machine will not be sealed. If the parameter is not provided,
+         * the virtual machine will be sealed, only if it is created from a sealed template and its guest OS is not set
+         * to Windows.
+         *
+         * For example, to create a virtual machine from the `mytemplate` template and to seal it, send a request
+         * like this:
+         *
+         * [source]
+         * ----
+         * POST /ovirt-engine/api/vms?seal=true
+         * ----
+         *
+         * With a request body like this:
+         *
+         * [source,xml]
+         * ----
+         * <vm>
+         *   <name>myvm<name>
+         *   <template>
+         *     <name>mytemplate<name>
+         *   </template>
+         *   <cluster>
+         *     <name>mycluster<name>
+         *   </cluster>
+         * </vm>
+         * ----
+         *
+         * @author Shmuel Leib Melamud <smelamud@redhat.com>
+         * @date 1 Mar 2022
+         * @status added
+         * @since 4.5
+         */
+        @In Boolean seal();
+
         @InputDetail
         default void inputDetail() {
             optional(vm().bios().bootMenu().enabled());
