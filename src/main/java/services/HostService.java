@@ -1562,4 +1562,16 @@ public interface HostService extends MeasurableService {
      * @since 4.2
      */
     @Service ExternalNetworkProviderConfigurationsService externalNetworkProviderConfigurations();
+
+    /**
+     * A reference to the list of all host's CPUs with detailed information
+     * about the topology (socket, core) and with information
+     * about the current CPU pinning.
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @since 4.5
+     * @date 15 Feb 22
+     * @status added
+     */
+    @Service HostCpuUnitsService cpuUnits();
 }
