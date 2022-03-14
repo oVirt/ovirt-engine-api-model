@@ -251,6 +251,50 @@ public interface Host extends Identified {
     Cpu cpu();
 
     /**
+     * List of all host's CPUs with detailed information
+     * about the topology (socket, core) and with information
+     * about the current CPU pinning.
+     *
+     * [source]
+     * ----
+     * GET /ovirt-engine/api/hosts/123/cpuunits
+     * ----
+     *
+     * You will receive response in XML like this one:
+     *
+     * [source,xml]
+     * ----
+     * <host_cpu_units>
+     *   <host_cpu_unit>
+     *     <core_id>0</core_id>
+     *     <cpu_id>0</cpu_id>
+     *     <socket_id>0</socket_id>
+     *     <vms>
+     *       <vm href="/ovirt-engine/api/vms/def" id="def" />
+     *     </vms>
+     *   </host_cpu_unit>
+     *   <host_cpu_unit>
+     *     <core_id>0</core_id>
+     *     <cpu_id>1</cpu_id>
+     *     <socket_id>1</socket_id>
+     *     <runs_vdsm>true</runs_vdsm>
+     *   </host_cpu_unit>
+     *   <host_cpu_unit>
+     *     <core_id>0</core_id>
+     *     <cpu_id>2</cpu_id>
+     *     <socket_id>2</socket_id>
+     *   </host_cpu_unit>
+     * </host_cpu_units>
+     * ----
+     *
+     * @author Lucia Jelinkova <ljelinko@redhat.com>
+     * @since 4.5
+     * @date 15 Feb 2022
+     * @status added
+     */
+    @Link HostCpuUnit[] cpuUnits();
+
+    /**
      * The amount of physical memory on this host in bytes.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
