@@ -103,4 +103,14 @@ public interface Backup extends Identified {
      * @since 4.3
      */
     @Link Disk[] disks();
+
+    /**
+     * A reference to the snapshot created if the backup is using a snapshot.
+     *
+     * @author Benny Zlotnik
+     * @date 10 Mar 2022
+     * @status added
+     * @since 4.5
+     */
+    @Link Snapshot snapshot();
 }
