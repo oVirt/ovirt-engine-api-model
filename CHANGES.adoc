@@ -1,5 +1,27 @@
 = Changes
 
+4.5.3 / Mar 14 2022
+
+    Add 'seal' parameter for created VMs (#21)
+    https://bugzilla.redhat.com/2054681
+
+    Add snapshot field to backup (#28)
+
+    Introduce host CPU unit details (#20)
+
+    Removed references to Ruby SDK (#19)
+    https://bugzilla.redhat.com/2020168
+
+    Update READMEs (#17)
+
+    Add token permissions (#16)
+
+    Fix publishing documentation
+
+    Debugging documentation generation issues (#14)
+
+    Finish moving project to github
+
 4.5.2 / Dec 30 2021
 
 New features:

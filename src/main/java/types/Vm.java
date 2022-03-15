@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2015-2016 Red Hat, Inc.
+Copyright (c) 2015-2022 Red Hat, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -398,4 +398,14 @@ public interface Vm extends VmBase {
      * @status added
      */
     @Link DynamicCpu dynamicCpu();
+
+    /**
+     * Mediated devices configuration.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 10 Mar 2022
+     * @status added
+     * @since 4.5
+     */
+    @Link VmMediatedDevice[] mediatedDevices();
 }
