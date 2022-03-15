@@ -188,7 +188,7 @@ public interface Display {
     String disconnectAction();
 
     /**
-     * Delay before the graphic console disconnect action is carried out.
+     * Delay (in minutes) before the graphic console disconnect action is carried out.
      * This option is only available for Shutdown disconnect action.
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
