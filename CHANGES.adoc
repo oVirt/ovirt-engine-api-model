@@ -1,5 +1,9 @@
 = Changes
 
+4.5.4 / Mar 14 2022
+
+    Remove gerrit refreneces from pom.xml
+
 4.5.3 / Mar 14 2022
 
     Add 'seal' parameter for created VMs (#21)
