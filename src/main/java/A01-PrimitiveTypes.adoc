@@ -1,15 +1,17 @@
 [appendix]
-== Primitive types
+:_content-type: ASSEMBLY
+[id="primitive-types"]
+= Primitive types
 
 This section describes the primitive data types supported by the API.
 
 [id="types/string"]
-=== String [small]#primitive#
+== String [small]#primitive#
 
-A finite sequence of https://home.unicode.org[Unicode] characters.
+A finite sequence of link:https://home.unicode.org[Unicode] characters.
 
 [id="types/boolean"]
-=== Boolean [small]#primitive#
+== Boolean [small]#primitive#
 
 Represents the _false_ and _true_ concepts used in mathematical logic.
 
@@ -24,7 +26,7 @@ than `false`, and `1` has the same meaning than `true`. Try to avoid
 using these values, as support for them may be removed in the future.
 
 [id="types/integer"]
-=== Integer [small]#primitive#
+== Integer [small]#primitive#
 
 Represents the mathematical concept of integer number.
 
@@ -64,12 +66,12 @@ unlimited precission integers, so the above limitations and exceptions
 will eventually disappear.
 
 [id="types/decimal"]
-=== Decimal [small]#primitive#
+== Decimal [small]#primitive#
 
 Represents the mathematical concept of real number.
 
 Currently the engine implements this type using 32 bit
-https://en.wikipedia.org/wiki/IEEE_floating_point[IEEE 754] single
+link:https://en.wikipedia.org/wiki/IEEE_floating_point[IEEE 754] single
 precision floating point numbers.
 
 For some attributes this isn't enough precision. In those exceptional
@@ -85,12 +87,12 @@ precision decimal numbers, so the above limitations and exceptions will
 eventually disappear.
 
 [id="types/date"]
-=== Date [small]#primitive#
+== Date [small]#primitive#
 
 Represents a date and time.
 
 The format returned by the engine is the one described in the
-https://www.w3.org/TR/xmlschema11-2/#dateTime[XML Schema specification]
+link:https://www.w3.org/TR/xmlschema11-2/#dateTime[XML Schema specification]
 when requesting XML. For example, if you send a request like this to
 retrieve the XML representation of a virtual machine:
 
@@ -113,7 +115,7 @@ The response body will contain the following XML document:
 
 When requesting the JSON representation the engine uses a different,
 format: an integer containing the number of milliseconds since Jan 1^st^ 1970,
-also known as https://en.wikipedia.org/wiki/Unix_time[_epoch time_]. For
+also known as link:https://en.wikipedia.org/wiki/Unix_time[_epoch time_]. For
 example, if you send a request like this to retrieve the JSON
 representation of a virtual machine:
 

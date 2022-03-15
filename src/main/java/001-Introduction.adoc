@@ -1,4 +1,6 @@
-== Introduction
+:_content-type: ASSEMBLY
+[id="introduction"]
+= Introduction
 
 The {engine-name} provides a *Representational State Transfer (REST)
 API*. The API provides software developers and system administrators
@@ -36,7 +38,8 @@ aims to provide developers and administrators with instructions and
 examples to help harness the functionality of their {product-name}
 environment through the API, either directly or using the provided SDKs.
 
-=== Representational State Transfer
+[id="representational-state-transfer"]
+== Representational State Transfer
 
 *Representational State Transfer (REST)* is a design architecture that
 focuses on resources for a specific service and their representations. A
@@ -49,6 +52,7 @@ between the client and server where each request acts independently of any
 other request, and contains all the information necessary to complete the
 request.
 
+[id="api-prerequisites"]
 === API Prerequisites
 
 Prerequisites for using the {product-name} API:
@@ -58,13 +62,13 @@ Prerequisites for using the {product-name} API:
 * A client or programming library that initiates and receives HTTP requests
 from the API server. For example:
 
-** The https://github.com/oVirt/ovirt-engine-sdk/tree/master/sdk[oVirt Python SDK].
+** The link:https://github.com/oVirt/python-ovirt-engine-sdk4[oVirt Python SDK].
 
-** The https://github.com/oVirt/ovirt-engine-sdk-java/tree/master/sdk[oVirt Java SDK].
+** The link:https://github.com/oVirt/ovirt-engine-sdk-java/tree/master/sdk[oVirt Java SDK].
 
-** The https://curl.haxx.se[cURL] command line tool.
+** The link:https://curl.haxx.se[cURL] command line tool.
 
-** https://addons.mozilla.org/en-US/firefox/addon/restclient[RESTClient], a
+** link:https://addons.mozilla.org/en-US/firefox/addon/restclient[RESTClient], a
 debugger for RESTful web services.
 
 * Knowledge of Hypertext Transfer Protocol (HTTP), the protocol
@@ -74,6 +78,5 @@ at http://www.ietf.org/rfc/rfc2616.txt.
 
 * Knowledge of Extensible Markup Language (XML) or JavaScript Object
 Notation (JSON), which the API uses to construct resource representations.
-The W3C provides a full specification on XML at http://www.w3.org/TR/xml.
-ECMA International provide a free publication on JSON at
-http://www.ecma-international.org.
+The W3C provides a link:http://www.w3.org/TR/xml[full specification on XML].
+ECMA International provides a link:http://www.ecma-international.org[free publication on JSON].
