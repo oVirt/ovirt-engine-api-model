@@ -1,16 +1,18 @@
-== Authentication and Security
+:_content-type: ASSEMBLY
+[id="authentication-and-security"]
+= Authentication and Security
 
-=== TLS/SSL Certification
+== TLS/SSL Certification
 
 The {product-name} API requires Hypertext Transfer Protocol Secure
 (HTTPS) footnote:[HTTPS is described in
-http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS.]] for secure
+link:http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS].] for secure
 interaction with client software, such as the SDK and CLI components.
 This involves obtaining the
-https://en.wikipedia.org/wiki/Certificate_authority[CA] certificate used by the
+link:https://en.wikipedia.org/wiki/Certificate_authority[CA] certificate used by the
 server, and importing it into the certificate store of your client.
 
-==== Obtaining the CA Certificate
+=== Obtaining the CA Certificate
 
 You can obtain the CA certificate from the {engine-name} and transfer it
 to the client machine using one of these methods:
@@ -141,28 +143,28 @@ Each of these methods results in a certificate file named `ca.crt` on
 your client machine. You must then import this file into the certificate
 store of the client.
 
-==== Importing a Certificate to a Client
+=== Importing a Certificate to a Client
 
 Importing a certificate to a client relies on how the client
 stores and interprets certificates. See your client documentation for more
 information on importing a certificate.
 
-=== Authentication
+== Authentication
 
 Any user with a {engine-name} account has access to the API. All
 requests must be authenticated using either *OAuth* or basic
 authentication, as described below.
 
-==== OAuth Authentication
+=== OAuth Authentication
 
 Since version 4.0 of {product-name} the preferred authentication
-mechanism is https://oauth.net/2[OAuth 2.0], as described in
-https://tools.ietf.org/html/rfc6749[RFC 6749].
+mechanism is link:https://oauth.net/2[OAuth 2.0], as described in
+link:https://tools.ietf.org/html/rfc6749[RFC 6749].
 
 *OAuth* is a sophisticated protocol, with several mechanisms for obtaining
 authorization and access tokens. For use with the {product-name}
 API, the only supported one is the _Resource Owner Password Credentials
-Grant_, as described in https://tools.ietf.org/html/rfc6749#section-4.3[section 4.3]
+Grant_, as described in link:https://tools.ietf.org/html/rfc6749#section-4.3[section 4.3]
 of RFC 6749.
 
 You must first obtain a _token_, sending the user name and password
@@ -197,7 +199,7 @@ and `password` parameters:
 |===
 
 These parameters must be
-https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example,
+link:https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example,
 the `@` character in the user name needs to be encoded as `%40`. The
 resulting request body will be something like this:
 
@@ -249,14 +251,14 @@ When this happens, a new token is needed, as the {engine-name} single sign-on
 service does not currently support refreshing tokens. A new token can be
 requested using the same method described above.
 
-==== Basic Authentication
+=== Basic Authentication
 
 IMPORTANT: Basic authentication is supported only for backwards
 compatibility; it is deprecated since version 4.0 of {product-name},
 and will be removed in the future.
 
 Each request uses HTTP Basic Authentication footnote:[Basic
-Authentication is described in http://tools.ietf.org/html/rfc2617[RFC
+Authentication is described in link:http://tools.ietf.org/html/rfc2617[RFC
 2617 HTTP Authentication: Basic and Digest Access Authentication].] to
 encode the credentials. If a request does not include an appropriate
 `Authorization` header, the server sends a `401 Authorization Required` response:
@@ -274,7 +276,7 @@ in the supplied credentials with the `username@domain:password`
 convention.
 
 The following table shows the process for encoding credentials in
-https://tools.ietf.org/html/rfc4648[Base64].
+link:https://tools.ietf.org/html/rfc4648[Base64].
 
 .Encoding credentials for API access
 |===
@@ -316,13 +318,13 @@ and terminate each line with a newline character. This breaks the header
 and causes a faulty request. The `Authorization` header requires the
 encoded credentials on a single line within the header.
 
-==== Authentication Sessions
+=== Authentication Sessions
 
 The API also provides authentication session support. Send an initial request
 with authentication details, then send all subsequent requests using a session
 cookie to authenticate.
 
-===== Requesting an Authenticated Session
+==== Requesting an Authenticated Session
 
 . Send a request with the `Authorization` and `Prefer: persistent-auth`
 headers:
