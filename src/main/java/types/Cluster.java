@@ -522,4 +522,32 @@ public interface Cluster extends Identified {
      * @since 4.4.5
      */
     FipsMode fipsMode();
+
+    /**
+     * Indicates if an upgrade has been started for the cluster.
+     *
+     * @author Scott Dickerson <sdickers@redhat.com>
+     * @date 17 Mar 2022
+     * @since 4.5.0
+     */
+    Boolean upgradeInProgress();
+
+    /**
+     * If an upgrade is in progress, the upgrade's reported percent complete.
+     *
+     * @author Scott Dickerson <sdickers@redhat.com>
+     * @date 17 Mar 2022
+     * @since 4.5.0
+     */
+    Integer upgradePercentComplete();
+
+    /**
+     * The upgrade correlation identifier. Use to correlate events detailing the cluster
+     * upgrade to the upgrade itself.
+     *
+     * @author Scott Dickerson <sdickers@redhat.com>
+     * @date 17 Mar 2022
+     * @since 4.5.0
+     */
+    String upgradeCorrelationId();
 }
