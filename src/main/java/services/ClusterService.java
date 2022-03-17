@@ -271,9 +271,9 @@ public interface ClusterService {
      }
 
      /**
-      * Start or finish upgrade process for the cluster based on the action value. This action marks the cluster for
-      * upgrade or clears the upgrade running flag on the cluster based on the action value which takes values of
-      * start or stop.
+      * Start, update or finish upgrade process for the cluster based on the action value. This action marks the
+      * cluster for upgrade, updates the progress, or clears the upgrade running flag on the cluster based on the
+      * action value which takes values of `start`, `stop` or `update_progress`.
       *
       * [source]
       * ----
@@ -291,6 +291,20 @@ public interface ClusterService {
       * </action>
       * ----
       *
+      * After starting the upgrade, use a request body like this to update the progress to 15%:
+      *
+      * [source,xml]
+      * ----
+      * <action>
+      *     <upgrade_action>
+      *         update_progress
+      *     </upgrade_action>
+      *     <upgrade_percent_complete>
+      *         15
+      *     </upgrade_percent_complete>
+      * </action>
+      * ----
+      *
       * @author Ravi Nori <rnori@redhat.com>
       * @date 13 March 2019
       * @since 4.3.2
@@ -305,6 +319,26 @@ public interface ClusterService {
           * @status added
           */
          @In ClusterUpgradeAction upgradeAction();
+
+         /**
+          * Explicitly set the upgrade correlation identifier.  Use to correlate events
+          * detailing the cluster upgrade to the upgrade itself.  If not specificed, the
+          * correlation id from `Correlation-Id` http header will be used.
+          *
+          * @author Scott Dickerson <sdickers@redhat.com>
+          * @date 17 Mar 2022
+          * @since 4.5.0
+          */
+         @In String correlationId();
+
+         /**
+          * Update the upgrade's progress as a percent complete of the total process.
+          *
+          * @author Scott Dickerson <sdickers@redhat.com>
+          * @date 17 Mar 2022
+          * @since 4.5.0
+          */
+         @In Integer upgradePercentComplete();
 
          /**
           * Indicates if the action should be performed asynchronously.

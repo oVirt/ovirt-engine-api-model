@@ -37,6 +37,18 @@ public enum ClusterUpgradeAction {
      * @status added
      */
     START,
+
+    /**
+     * The upgrade action to be passed to update the cluster upgrade progress. This should be used
+     * as the upgrade progresses.
+     *
+     * @author Scott Dickerson <sdickers@redhat.com>
+     * @date 16 Mar 2022
+     * @since 4.5.0
+     * @status added
+     */
+    UPDATE_PROGRESS,
+
     /**
      * The upgrade action to be passed to finish the cluster upgrade process by marking the cluster's
      * upgrade_running flag to false. This should be used at the end of the cluster upgrade process.
