@@ -18,7 +18,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type represeting the deallocation policy of virtual machines in a virtual machines pool.
+ * Type representing the deallocation policy of virtual machines in a virtual machines pool.
  *
  * @author Arik Hadas <ahadas@redhat.com>
  * @date 24 Apr 2017

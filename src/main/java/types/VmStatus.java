@@ -18,7 +18,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type represeting a status of a virtual machine.
+ * Type representing a status of a virtual machine.
  *
  * @author Arik Hadas <ahadas@redhat.com>
  * @date 12 Dec 2016
