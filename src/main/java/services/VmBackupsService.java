@@ -142,6 +142,26 @@ public interface VmBackupsService {
          * @since 4.4.4
          */
         @In Boolean requireConsistency();
+
+        /**
+         * Indicate whether to use the active volume for performing the backup.
+         *
+         * If useActive=False a snapshot will be created for the backup operation.
+         *
+         * The REST API call should look like this:
+         *
+         * ....
+         * POST /ovirt-engine/api/vms/123/backups?use_active=false
+         * ....
+         *
+         * The default value of the useActive flag is `false`.
+         *
+         * @author Benny Zlotnik <bzlotnik@redhat.com>
+         * @date 24 Mar 2022
+         * @status added
+         * @since 4.5
+         */
+        @In Boolean useActive();
     }
 
     /**
