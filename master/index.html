@@ -11224,7 +11224,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Start or finish upgrade process for the cluster based on the action value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start, update or finish upgrade process for the cluster based on the action value.</p></td>
 </tr>
 </tbody>
 </table>
@@ -11541,9 +11541,9 @@ this:</p>
 <div class="sect3">
 <h4 id="services/cluster/methods/upgrade"><a class="anchor" href="#services/cluster/methods/upgrade"></a><a class="link" href="#services/cluster/methods/upgrade">6.38.7. upgrade <span class="small">POST</span></a></h4>
 <div class="paragraph">
-<p>Start or finish upgrade process for the cluster based on the action value. This action marks the cluster for
-upgrade or clears the upgrade running flag on the cluster based on the action value which takes values of
-start or stop.</p>
+<p>Start, update or finish upgrade process for the cluster based on the action value. This action marks the
+cluster for upgrade, updates the progress, or clears the upgrade running flag on the cluster based on the
+action value which takes values of <code>start</code>, <code>stop</code> or <code>update_progress</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11559,6 +11559,21 @@ start or stop.</p>
     &lt;upgrade_action&gt;
         start
     &lt;/upgrade_action&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After starting the upgrade, use a request body like this to update the progress to 15%:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;action&gt;
+    &lt;upgrade_action&gt;
+        update_progress
+    &lt;/upgrade_action&gt;
+    &lt;upgrade_percent_complete&gt;
+        15
+    &lt;/upgrade_percent_complete&gt;
 &lt;/action&gt;</code></pre>
 </div>
 </div>
@@ -11586,13 +11601,33 @@ start or stop.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action should be performed asynchronously.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>correlation_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicitly set the upgrade correlation identifier.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_action</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster_upgrade_action">ClusterUpgradeAction</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The action to be performed.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_percent_complete</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Update the upgrade&#8217;s progress as a percent complete of the total process.</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="services/cluster/methods/upgrade/parameters/correlation_id"><a class="anchor" href="#services/cluster/methods/upgrade/parameters/correlation_id"></a><a class="link" href="#services/cluster/methods/upgrade/parameters/correlation_id">correlation_id</a></h5>
+<div class="paragraph">
+<p>Explicitly set the upgrade correlation identifier.  Use to correlate events
+detailing the cluster upgrade to the upgrade itself.  If not specificed, the
+correlation id from <code>Correlation-Id</code> http header will be used.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -52834,6 +52869,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>correlation_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data_center</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/data_center">DataCenter</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -53181,6 +53221,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_action</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/cluster_upgrade_action">ClusterUpgradeAction</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_percent_complete</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -55722,6 +55767,21 @@ For more information, see
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_correlation_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The upgrade correlation identifier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_in_progress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if an upgrade has been started for the cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>upgrade_percent_complete</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/integer">Integer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If an upgrade is in progress, the upgrade&#8217;s reported percent complete.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/version">Version</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The compatibility version of the cluster.</p></td>
@@ -55917,7 +55977,14 @@ compatibility version 4.1 or higher.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/attributes/version"><a class="anchor" href="#types/cluster/attributes/version"></a><a class="link" href="#types/cluster/attributes/version">7.35.11. version</a></h4>
+<h4 id="types/cluster/attributes/upgrade_correlation_id"><a class="anchor" href="#types/cluster/attributes/upgrade_correlation_id"></a><a class="link" href="#types/cluster/attributes/upgrade_correlation_id">7.35.11. upgrade_correlation_id</a></h4>
+<div class="paragraph">
+<p>The upgrade correlation identifier. Use to correlate events detailing the cluster
+upgrade to the upgrade itself.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/cluster/attributes/version"><a class="anchor" href="#types/cluster/attributes/version"></a><a class="link" href="#types/cluster/attributes/version">7.35.12. version</a></h4>
 <div class="paragraph">
 <p>The compatibility version of the cluster.</p>
 </div>
@@ -55974,7 +56041,7 @@ the new compatibility version.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/attributes/vnc_encryption"><a class="anchor" href="#types/cluster/attributes/vnc_encryption"></a><a class="link" href="#types/cluster/attributes/vnc_encryption">7.35.12. vnc_encryption</a></h4>
+<h4 id="types/cluster/attributes/vnc_encryption"><a class="anchor" href="#types/cluster/attributes/vnc_encryption"></a><a class="link" href="#types/cluster/attributes/vnc_encryption">7.35.13. vnc_encryption</a></h4>
 <div class="paragraph">
 <p>Enable VNC encryption. Default value for this property is false.</p>
 </div>
@@ -56063,7 +56130,7 @@ this cluster.</p></td>
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a><a class="link" href="#types/cluster/links/external_network_providers">7.35.13. external_network_providers</a></h4>
+<h4 id="types/cluster/links/external_network_providers"><a class="anchor" href="#types/cluster/links/external_network_providers"></a><a class="link" href="#types/cluster/links/external_network_providers">7.35.14. external_network_providers</a></h4>
 <div class="paragraph">
 <p>A reference to the external network provider available in the cluster.</p>
 </div>
@@ -56078,7 +56145,7 @@ This value may be overwritten for individual hosts during
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a><a class="link" href="#types/cluster/links/scheduling_policy">7.35.14. scheduling_policy</a></h4>
+<h4 id="types/cluster/links/scheduling_policy"><a class="anchor" href="#types/cluster/links/scheduling_policy"></a><a class="link" href="#types/cluster/links/scheduling_policy">7.35.15. scheduling_policy</a></h4>
 <div class="paragraph">
 <p>Reference to the default scheduling policy used by
 this cluster.</p>
@@ -56269,6 +56336,10 @@ upgrade_running flag to false.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The upgrade action to be passed to start the cluster upgrade process by marking the cluster&#8217;s
 upgrade_running flag to true.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update_progress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The upgrade action to be passed to update the cluster upgrade progress.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect3">
@@ -56283,6 +56354,13 @@ upgrade_running flag to false. This should be used at the end of the cluster upg
 <div class="paragraph">
 <p>The upgrade action to be passed to start the cluster upgrade process by marking the cluster&#8217;s
 upgrade_running flag to true. This should used at the beginning of the cluster upgrade process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/cluster_upgrade_action/values/update_progress"><a class="anchor" href="#types/cluster_upgrade_action/values/update_progress"></a><a class="link" href="#types/cluster_upgrade_action/values/update_progress">7.38.3. update_progress</a></h4>
+<div class="paragraph">
+<p>The upgrade action to be passed to update the cluster upgrade progress. This should be used
+as the upgrade progresses.</p>
 </div>
 </div>
 </div>
@@ -86244,7 +86322,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-24 10:26:45 UTC
+Last updated 2022-03-24 12:30:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
