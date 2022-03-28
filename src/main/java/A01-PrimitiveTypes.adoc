@@ -62,7 +62,7 @@ For these exception cases the minimum value is -2^63^
 (9223372036854775807).
 
 NOTE: In the future the integer type will be implemented using
-unlimited precission integers, so the above limitations and exceptions
+unlimited precision integers, so the above limitations and exceptions
 will eventually disappear.
 
 [id="types/decimal"]
@@ -138,6 +138,9 @@ The response body will contain the following JSON document:
 }
 ----
 
-NOTE: In both cases, the dates returned by the engine use the time zone
+[NOTE]
+====
+In both cases, the dates returned by the engine use the time zone
 configured in the server where it is running, in the above examples it
 is UTC+2.
+====
