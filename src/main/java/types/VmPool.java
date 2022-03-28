@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type represeting a virtual machines pool.
+ * Type representing a virtual machines pool.
  *
  * @author Arik Hadas <ahadas@redhat.com>
  * @date 24 Apr 2017
