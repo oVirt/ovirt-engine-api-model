@@ -47068,6 +47068,12 @@ since checkpoint id <code>previous-checkpoint-uuid</code>, send a request like t
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the backup will fail if VM failed to freeze or not.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>use_active</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicate whether to use the active volume for performing the backup.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="sect4">
@@ -47089,6 +47095,26 @@ failure to freeze the VM.</p>
 </div>
 <div class="paragraph">
 <p>The default value of the requireConsistency flag is <code>false</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services/vm_backups/methods/add/parameters/use_active"><a class="anchor" href="#services/vm_backups/methods/add/parameters/use_active"></a><a class="link" href="#services/vm_backups/methods/add/parameters/use_active">use_active</a></h5>
+<div class="paragraph">
+<p>Indicate whether to use the active volume for performing the backup.</p>
+</div>
+<div class="paragraph">
+<p>If useActive=False a snapshot will be created for the backup operation.</p>
+</div>
+<div class="paragraph">
+<p>The REST API call should look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POST /ovirt-engine/api/vms/123/backups?use_active=false</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default value of the useActive flag is <code>false</code>.</p>
 </div>
 </div>
 </div>
@@ -86322,7 +86348,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-28 07:05:45 UTC
+Last updated 2022-03-28 07:31:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
