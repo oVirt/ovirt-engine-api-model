@@ -76,7 +76,7 @@ jobs:
       - name: Download generated documentation artifacts
         uses: actions/download-artifact@v2
         with:
-          name: generated-documentation-cs9
+          name: generated-documentation-cs8
           path: target
 
       - name: Install package dependencies
@@ -118,8 +118,8 @@ jobs:
       - name: Move created documentation to gh-pages
         run: |
           mkdir -p ./gh-pages/${{env.FOLDER}}/
-          cp ./target/generated-html/asciidoctor.css ./gh-pages/${{env.FOLDER}}/asciidoctor.css
-          cp ./target/generated-html/model.html ./gh-pages/${{env.FOLDER}}/index.html
+          cp ./target/asciidoctor.css ./gh-pages/${{env.FOLDER}}/asciidoctor.css
+          cp ./target/model.html ./gh-pages/${{env.FOLDER}}/index.html
 
       - name: Create index page
         run: |
