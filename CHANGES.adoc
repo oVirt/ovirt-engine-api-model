@@ -1,5 +1,15 @@
 = Changes
 
+4.5.5 / Mar 28 2022
+
+    backup: introduce the use_active flag
+
+    Add upgrade progress tracking for Clusters
+    https://bugzilla.redhat.com/2040474
+
+    Added Display.disconnectActionDelay
+    https://bugzilla.redhat.com/1944834
+
 4.5.4 / Mar 14 2022
 
     Remove gerrit refreneces from pom.xml
