@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -355,7 +355,7 @@ public interface Host extends Identified {
 
     /**
      * The host libvirt version.
-     * For more information on libvirt please go to https://libvirt.org[libvirt].
+     * For more information on libvirt please go to link:https://libvirt.org[libvirt].
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 01 Dec 2016

@@ -6,11 +6,13 @@
 
 The {product-name} API requires Hypertext Transfer Protocol Secure
 (HTTPS) footnote:[HTTPS is described in
+
 link:http://tools.ietf.org/html/rfc2818[RFC 2818 HTTP Over TLS].] for secure
 interaction with client software, such as the SDK and CLI components.
 This involves obtaining the
 link:https://en.wikipedia.org/wiki/Certificate_authority[CA] certificate used by the
-server, and importing it into the certificate store of your client.
+server, and importing it into the
+certificate store of your client.
 
 === Obtaining the CA Certificate
 
@@ -258,7 +260,7 @@ compatibility; it is deprecated since version 4.0 of {product-name},
 and will be removed in the future.
 
 Each request uses HTTP Basic Authentication footnote:[Basic
-Authentication is described in link:http://tools.ietf.org/html/rfc2617[RFC
+Authentication is described in link:https://tools.ietf.org/html/rfc2617[RFC
 2617 HTTP Authentication: Basic and Digest Access Authentication].] to
 encode the credentials. If a request does not include an appropriate
 `Authorization` header, the server sends a `401 Authorization Required` response:

@@ -73,8 +73,7 @@ debugger for RESTful web services.
 
 * Knowledge of Hypertext Transfer Protocol (HTTP), the protocol
 used for REST API interactions. The Internet Engineering Task Force provides
-a Request for Comments (RFC) explaining the Hypertext Transfer Protocol
-at http://www.ietf.org/rfc/rfc2616.txt.
+a link:https://www.ietf.org/rfc/rfc2616.txt[Request for Comments (RFC)] explaining the Hypertext Transfer Protocol.
 
 * Knowledge of Extensible Markup Language (XML) or JavaScript Object
 Notation (JSON), which the API uses to construct resource representations.

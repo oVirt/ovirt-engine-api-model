@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -50,7 +50,7 @@ public enum BootDevice {
 
     /**
      * Boot from the network, using PXE. It is necessary to have
-     * https://en.wikipedia.org/wiki/Preboot_Execution_Environment[PXE] configured on the network that the virtual
+     * link:https://en.wikipedia.org/wiki/Preboot_Execution_Environment[PXE] configured on the network that the virtual
      * machine is connected to.
      *
      * @author Shahar Havivi <shavivi@redhat.com>

@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -226,8 +226,8 @@ public interface HostNic extends Identified {
     /**
      * The `ad_aggregator_id` property of a bond or bond slave, for bonds in mode 4.
      * Bond mode 4 is the 802.3ad standard, also called dynamic link aggregation.
-     * (See https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
-     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information).
+     * (See link:https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
+     * link:https://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information).
      * This is only valid for bonds in mode 4, or NICs which are part of a bond.
      * It is not present for bonds in other modes, or NICs which are not part of a bond in mode 4.
      * The `ad_aggregator_id` property indicates which of the bond slaves are active. The value of the

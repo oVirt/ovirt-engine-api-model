@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -198,7 +198,7 @@ public interface VmsService {
          * Specifies if the virtual machine should be independent of the template.
          *
          * When a virtual machine is created from a template by default the disks of the virtual machine depend on
-         * the disks of the template, they are using the https://en.wikipedia.org/wiki/Copy-on-write[_copy on write_]
+         * the disks of the template, they are using the link:https://en.wikipedia.org/wiki/Copy-on-write[_copy on write_]
          * mechanism so that only the differences from the template take up real storage space. If this parameter is
          * specified and the value is `true` then the disks of the created virtual machine will be _cloned_, and
          * independent of the template. For example, to create an independent virtual machine, send a request like this:

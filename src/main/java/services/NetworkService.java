@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -166,7 +166,7 @@ public interface NetworkService {
      * ----
      *
      * NOTE: To remove an external logical network, the network has to be removed directly from its provider by
-     * https://developer.openstack.org/api-ref/network[OpenStack Networking API].
+     * link:https://developer.openstack.org/api-ref/network[OpenStack Networking API].
      * The entity representing the external network inside {product-name} is removed automatically,
      * if <<types/open_stack_network_provider/attributes/auto_sync,`auto_sync`>> is enabled for the provider,
      * otherwise the entity has to be removed using this method.

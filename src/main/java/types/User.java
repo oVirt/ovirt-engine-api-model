@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,9 +36,9 @@ public interface User extends Identified {
     /**
      * Namespace where the user resides. When using the authorization provider that stores users in the LDAP server,
      * this attribute equals the naming context of the LDAP server.
-     * See https://github.com/oVirt/ovirt-engine-extension-aaa-ldap for more information.
+     * See link:https://github.com/oVirt/ovirt-engine-extension-aaa-ldap[oVirt Engine Extension AAA LDAP] for more information.
      * When using the built-in authorization provider that stores users in the database this attribute is ignored.
-     * See https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc for more information.
+     * See link:https://github.com/oVirt/ovirt-engine-extension-aaa-jdbc[oVirt Engine extension - AAA - JDBC] for more information.
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

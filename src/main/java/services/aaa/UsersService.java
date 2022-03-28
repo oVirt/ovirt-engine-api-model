@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -63,7 +63,7 @@ public interface UsersService {
      * ----
      *
      * In case you are working with Active Directory you have to pass user principal name (UPN) as `username`, followed
-     * by authorization provider name. Due to https://bugzilla.redhat.com/1147900[bug 1147900] you need to provide
+     * by authorization provider name. Due to link:https://bugzilla.redhat.com/1147900[bug 1147900] you need to provide
      * also `principal` parameter set to UPN of the user.
      *
      * For example, to add the user with UPN `myuser@mysubdomain.mydomain.com` from the `myextension-authz`

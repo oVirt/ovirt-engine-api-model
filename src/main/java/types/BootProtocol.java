@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,7 +30,7 @@ public enum BootProtocol {
      * Stateless address auto-configuration.
      *
      * The mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862]. Please refer to
-     * https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[this wikipedia article] for more
+     * link:https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[this wikipedia article] for more
      * information.
      *
      * NOTE: The value is valid for IPv6 addresses only.
@@ -44,7 +44,7 @@ public enum BootProtocol {
     /**
      * Dynamic host configuration protocol.
      *
-     * Please refer to https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[this wikipedia article] for
+     * Please refer to link:https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[this wikipedia article] for
      * more information.
      *
      * @author Megan Lewis <melewis@redhat.com>
@@ -57,8 +57,8 @@ public enum BootProtocol {
      * DHCP alongside Stateless address auto-configuration (SLAAC).
      *
      * The SLAAC mechanism is defined by http://tools.ietf.org/html/rfc4862[RFC 4862]. Please refer to the
-     * https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[Stateless address auto-configuration] article
-     * and the https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[DHCP] article for
+     * link:https://en.wikipedia.org/wiki/IPv6_address#Stateless_address_autoconfiguration[Stateless address auto-configuration] article
+     * and the link:https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol[DHCP] article for
      * more information.
      *
      * NOTE: The value is valid for IPv6 addresses only.

@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -51,7 +51,7 @@ public interface Bonding {
 
     /**
      * The `active_slave` property of the bond in modes that support it (active-backup, balance-alb and balance-tlb).
-     * See https://www.kernel.org/doc/Documentation/networking/bonding.txt[Linux documentation] for further details.
+     * See link:https://www.kernel.org/doc/Documentation/networking/bonding.txt[Linux documentation] for further details.
      * This parameter is read-only. Setting it will have no effect on the bond.
      * It is retrieved from `/sys/class/net/bondX/bonding/active_slave` file on the system where the bond is located.
      *
@@ -90,8 +90,8 @@ public interface Bonding {
     /**
      * The `ad_partner_mac` property of the partner bond in mode 4. Bond mode 4 is the 802.3ad standard, which is
      * also called dynamic link aggregation. See
-     * https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
-     * http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information.
+     * link:https://en.wikipedia.org/wiki/Link_aggregation[Wikipedia] and
+     * link:http://www.ieee802.org/3/hssg/public/apr07/frazier_01_0407.pdf[Presentation] for more information.
      * `ad_partner_mac` is the MAC address of the system (switch) at the other end of a bond.
      * This parameter is read-only. Setting it will have no effect on the bond.
      * It is retrieved from `/sys/class/net/bondX/bonding/ad_partner_mac` file on the system where the bond is located.

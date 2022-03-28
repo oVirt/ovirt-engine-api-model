@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -132,7 +132,7 @@ public interface Qos extends Identified {
      *
      * Used to configure virtual machines networks. If defined, `inbound_peak` and `inbound_burst` also has to be set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -147,7 +147,7 @@ public interface Qos extends Identified {
      *
      * Used to configure virtual machines networks. If defined, `inbound_average` and `inbound_burst` also has to be set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -162,7 +162,7 @@ public interface Qos extends Identified {
      *
      * Used to configure virtual machine networks. If defined, `inbound_average` and `inbound_peak` must also be set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -177,7 +177,7 @@ public interface Qos extends Identified {
      *
      * Used to configure virtual machines networks. If defined, `outbound_peak` and `outbound_burst` also has to be set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -193,7 +193,7 @@ public interface Qos extends Identified {
      * Used to configure virtual machines networks. If defined, `outbound_average` and `outbound_burst` also has to be
      * set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -209,7 +209,7 @@ public interface Qos extends Identified {
      * Used to configure virtual machine networks. If defined, `outbound_average` and `outbound_peak` must also be
      * set.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
@@ -238,7 +238,7 @@ public interface Qos extends Identified {
      * Used to configure host networks. If `outboundAverageUpperlimit` and `outbound_average_realtime` are provided, the
      * `outbound_averageUpperlimit` must not be lower than the `outbound_average_realtime`.
      *
-     * See https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
+     * See link:https://libvirt.org/formatnetwork.html#elementQoS[Libvirt-QOS] for further details.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Eitan Raviv <eraviv@redhat.com>
