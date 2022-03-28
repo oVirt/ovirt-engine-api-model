@@ -60,7 +60,7 @@ Prerequisites for using the {product-name} API:
 * A networked installation of {engine-name}, which includes the API.
 
 * A client or programming library that initiates and receives HTTP requests
-from the API server. For example:
+from the API server, for example:
 
 ** The link:https://github.com/oVirt/python-ovirt-engine-sdk4[oVirt Python SDK].
 
@@ -72,10 +72,8 @@ from the API server. For example:
 debugger for RESTful web services.
 
 * Knowledge of Hypertext Transfer Protocol (HTTP), the protocol
-used for REST API interactions. The Internet Engineering Task Force provides
-a link:https://www.ietf.org/rfc/rfc2616.txt[Request for Comments (RFC)] explaining the Hypertext Transfer Protocol.
+used for REST API interactions. See link:https://www.ietf.org/rfc/rfc2616.txt[RFC 2616: HTTP/1.1].
 
 * Knowledge of Extensible Markup Language (XML) or JavaScript Object
 Notation (JSON), which the API uses to construct resource representations.
-The W3C provides a link:http://www.w3.org/TR/xml[full specification on XML].
-ECMA International provides a link:http://www.ecma-international.org[free publication on JSON].
+See W3C link:https://www.w3.org/TR/xml[Extensible Markup Language (XML) 1.0] and link:https://www.ecma-international.org[ECMA-404: JSON data interchange syntax].

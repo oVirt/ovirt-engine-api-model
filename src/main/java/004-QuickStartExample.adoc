@@ -38,28 +38,29 @@ In many examples, some attributes of the results returned by the
 API have been omitted, for brevity. See, for example, the
 xref:types/cluster[Cluster] reference for a complete list of attributes.
 
+[id="access-api-entry-point"]
 == Access API entry point
 
 The following request retrieves a representation of the main entry point
 for version 4 of the API:
 
-....
+----
 GET /ovirt-engine/api HTTP/1.1
 Version: 4
 Accept: application/xml
-....
+----
 
 The same request, but using the `/v4` URL prefix instead of the `Version`
 header:
 
-....
+----
 GET /ovirt-engine/api/v4 HTTP/1.1
 Accept: application/xml
-....
+----
 
 The same request, using the `curl` command:
 
-....
+----
 curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
@@ -67,7 +68,7 @@ curl \
 --header 'Accept: application/xml' \
 --user 'admin@internal:mypassword' \
 https://myengine.example.com/ovirt-engine/api
-....
+----
 
 The result is an object of type xref:types/api[Api]:
 
@@ -121,11 +122,11 @@ automatically select a version. The default is version `4`. You can change
 the default version using the `ENGINE_API_DEFAULT_VERSION` configuration
 parameter:
 
-....
+----
 # echo "ENGINE_API_DEFAULT_VERSION=3" > \
 /etc/ovirt-engine/engine.conf.d/99-set-default-version.conf
 # systemctl restart ovirt-engine
-....
+----
 
 Changing this parameter affects all users of the API that don't
 specify the version explicitly.
@@ -141,6 +142,7 @@ The entry point also contains other data such as xref:types/product_info[product
 xref:types/api_summary[summary]. This data is covered in chapters
 outside this example.
 
+[id="list-data-centers"]
 == List data centers
 
 {product-name} creates a `Default` data center on installation. This
@@ -149,14 +151,14 @@ environment.
 
 The following request retrieves a representation of the data centers:
 
-....
+----
 GET /ovirt-engine/api/datacenters HTTP/1.1
 Accept: application/xml
-....
+----
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
@@ -164,7 +166,7 @@ The same request, using the `curl` command:
 --header 'Accept: application/xml' \
 --user 'admin@internal:mypassword' \
 https://myengine.example.com/ovirt-engine/api/datacenters
-....
+----
 
 The result will be a list of objects of type xref:types/data_center[DataCenter]:
 
@@ -202,13 +204,14 @@ The data center also contains a link to the
 xref:services/attached_storage_domains[service] that manages the storage
 domains attached to the data center:
 
-....
+----
 <link href="/ovirt-engine/api/datacenters/001/storagedomains" rel="storagedomains"/>
-....
+----
 
 That service is used to attach storage domains from the main
 `storagedomains` collection, which this example covers later.
 
+[id="list-host-clusters"]
 == List host clusters
 
 {product-name} creates a `Default` hosts cluster on installation. This
@@ -218,14 +221,14 @@ example uses the `Default` cluster to group resources in your
 The following request retrieves a representation of the cluster
 collection:
 
-....
+----
 GET /ovirt-engine/api/clusters HTTP/1.1
 Accept: application/xml
-....
+----
 
 The same request, using the `curl` command:
 
-....
+----
 curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
@@ -233,7 +236,7 @@ curl \
 --header 'Accept: application/xml' \
 --user 'admin@internal:mypassword' \
 https://myengine.example.com/ovirt-engine/api/clusters
-....
+----
 
 The result will be a list of objects of type xref:types/cluster[Cluster]:
 
@@ -267,13 +270,14 @@ The `Default` cluster is associated with the `Default` data center
 through a relationship using the `id` and `href` attributes of the
 `data_center` link:
 
-....
+----
 <data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
-....
+----
 
 The `networks` link is a reference to the xref:services/data_center_networks[service] that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.
 
+[id="list-logical-networks"]
 == List logical networks
 
 {product-name} creates a default `ovirtmgmt` network on installation.
@@ -286,14 +290,14 @@ connect the virtual machines.
 
 The following request retrieves the list of logical networks:
 
-....
+----
 GET /ovirt-engine/api/networks HTTP/1.1
 Accept: application/xml
-....
+----
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
@@ -301,7 +305,7 @@ The same request, using the `curl` command:
 --header 'Accept: application/xml' \
 --user 'admin@internal:mypassword' \
 https://myengine.example.com/ovirt-engine/api/networks
-....
+----
 
 The result will be a list of objects of type xref:types/network[Network]:
 
@@ -331,20 +335,21 @@ relationship using the data center's `id`.
 The `ovirtmgmt` network is also attached to the `Default` cluster through a
 relationship in the cluster's network sub-collection.
 
+[id="list-hosts"]
 == List hosts
 
 This example retrieves the list of hosts and shows a host named `myhost`
 registered with the virtualization environment:
 
-....
+----
 GET /ovirt-engine/api/hosts HTTP/1.1
 Accept: application/xml
-....
+----
 
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --request GET \
@@ -352,7 +357,7 @@ The same request, using the `curl` command:
 --header 'Accept: application/xml' \
 --user 'admin@internal:mypassword' \
 https://myengine.example.com/ovirt-engine/api/hosts
-....
+----
 
 The result will be a list of objects of type xref:types/host[Host]:
 
@@ -396,6 +401,7 @@ This host is a member of the `Default` cluster and accessing the `nics`
 sub-collection shows this host has a connection to the `ovirtmgmt`
 network.
 
+[id="create-nfs-data-storage"]
 == Create NFS data storage
 
 An NFS data storage domain is an exported NFS share attached to a data
@@ -412,11 +418,11 @@ already exist.
 
 The request should be like this:
 
-....
+----
 POST /ovirt-engine/api/storagedomains HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 And the request body should be like this:
 
@@ -439,7 +445,7 @@ And the request body should be like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -463,7 +469,7 @@ The same request, using the `curl` command:
 </storage_domain>
 ' \
 https://myengine.example.com/ovirt-engine/api/storagedomains
-....
+----
 
 The server uses host `myhost` to create a NFS data storage domain called
 `mydata` with an export path of `mynfs.example.com:/exports/mydata`. The
@@ -490,6 +496,7 @@ storage domain resource (of type xref:types/storage_domain[StorageDomain]):
 </storage_domain>
 ----
 
+[id="create-nfs-iso-storage"]
 == Create NFS ISO storage
 
 An NFS ISO storage domain is a mounted NFS share attached to a data
@@ -500,11 +507,11 @@ URL of the storage domain collection:
 
 The request should be like this:
 
-....
+----
 POST /ovirt-engine/api/storagedomains HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 And the request body should be like this:
 
@@ -527,7 +534,7 @@ And the request body should be like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -551,7 +558,7 @@ The same request, using the `curl` command:
 </storage_domain>
 ' \
 https://myengine.example.com/ovirt-engine/api/storagedomains
-....
+----
 
 The server uses host `myhost` to create a NFS ISO storage domain called
 `myisos` with an export path of `mynfs.example.com:/exports/myisos`. The
@@ -578,6 +585,7 @@ storage domain resource (of type xref:types/storage_domain[StorageDomain]):
 </storage_domain>
 ----
 
+[id="attach-storage-domains-to-data-center"]
 == Attach storage domains to data center
 
 The following example attaches the `mydata` and `myisos` storage domains
@@ -585,11 +593,11 @@ to the `Default` data center.
 
 To attach the `mydata` storage domain, send a request like this:
 
-....
+----
 POST /ovirt-engine/api/datacenters/001/storagedomains HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 With a request body like this:
 
@@ -602,7 +610,7 @@ With a request body like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -616,15 +624,15 @@ The same request, using the `curl` command:
 </storage_domain>
 ' \
 https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
-....
+----
 
 To attach the `myisos` storage domain, send a request like this:
 
-....
+----
 POST /ovirt-engine/api/datacenters/001/storagedomains HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 With a request body like this:
 
@@ -637,7 +645,7 @@ With a request body like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -651,8 +659,9 @@ The same request, using the `curl` command:
 </storage_domain>
 ' \
 https://myengine.example.com/ovirt-engine/api/datacenters/001/storagedomains
-....
+----
 
+[id="create-virtual-machine"]
 == Create virtual machine
 
 The following example creates a virtual machine called `myvm` on the
@@ -696,7 +705,7 @@ And the request body should be like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -725,7 +734,7 @@ The same request, using the `curl` command:
 </vm>
 ' \
 https://myengine.example.com/ovirt-engine/api/vms
-....
+----
 
 The response body will be an object of the xref:types/vm[Vm] type:
 
@@ -761,6 +770,7 @@ The response body will be an object of the xref:types/vm[Vm] type:
 </vm>
 ----
 
+[id="create-a-virtual-machine-nic"]
 == Create a virtual machine NIC
 
 The following example creates a virtual network interface to connect the
@@ -768,11 +778,11 @@ example virtual machine to the `ovirtmgmt` network.
 
 The request should be like this:
 
-....
+----
 POST /ovirt-engine/api/vms/007/nics HTTP/1.1
 Content-Type: application/xml
 Accept: application/xml
-....
+----
 
 The request body should contain an object of type xref:types/nic[Nic]
 describing the NIC to be created:
@@ -787,7 +797,7 @@ describing the NIC to be created:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -802,8 +812,9 @@ The same request, using the `curl` command:
 </nic>
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/007/nics
-....
+----
 
+[id="create-virtual-machine-disk"]
 == Create virtual machine disk
 
 The following example creates an 8 GiB _copy-on-write_ disk for the
@@ -811,11 +822,11 @@ example virtual machine.
 
 The request should be like this:
 
-....
+----
 POST /ovirt-engine/api/vms/007/diskattachments HTTP/1.1
 Content-Type: application/xml
 Accept: application/xml
-....
+----
 
 The request body should be an object of type xref:types/disk_attachment[DiskAttachment] describing the disk and how it will be attached to the
 virtual machine:
@@ -842,7 +853,7 @@ virtual machine:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -869,11 +880,12 @@ The same request, using the `curl` command:
 </disk_attachment>
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/007/diskattachments
-....
+----
 
 The `storage_domains` attribute tells the API to store the disk on the
 `mydata` storage domain.
 
+[id="attach-iso-image-to-virtual-machine"]
 == Attach ISO image to virtual machine
 
 The boot media for the following virtual machine example requires a CD-ROM or DVD
@@ -888,14 +900,14 @@ image.
 Once the ISO image is uploaded, an API can be used to request the list of
 files from the ISO storage domain:
 
-....
+----
 GET /ovirt-engine/api/storagedomains/006/files HTTP/1.1
 Accept: application/xml
-....
+----
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -903,7 +915,7 @@ The same request, using the `curl` command:
 --header 'Version: 4' \
 --header 'Accept: application/xml' \
 https://myengine.example.com/ovirt-engine/api/storagedomains/006/files
-....
+----
 
 The server returns the following list of objects of type xref:types/file[File], one for each available ISO (or floppy) image:
 
@@ -923,11 +935,11 @@ _Change CD_ button in the administration or user portal applications.
 
 The request should be like this:
 
-....
+----
 PUT /ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000 HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 The request body should be an object of type xref:types/cdrom[Cdrom]
 containing an inner `file` attribute to indicate the identifier of the
@@ -942,7 +954,7 @@ ISO (or floppy) image:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -956,10 +968,11 @@ The same request, using the `curl` command:
 </cdrom>
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000
-....
+----
 
 For more details see the documentation of the xref:services/vm_cdrom[service] that manages virtual machine CD-ROMS.
 
+[id="start-the-virtual-machine"]
 == Start the virtual machine
 
 The virtual environment is complete and the virtual machine contains all
@@ -968,11 +981,11 @@ machine using the xref:services/vm/methods/start[start] method.
 
 The request should be like this:
 
-....
+----
 POST /ovirt-engine/api/vms/007/start HTTP/1.1
 Accept: application/xml
 Content-type: application/xml
-....
+----
 
 The request body should be like this:
 
@@ -993,7 +1006,7 @@ The request body should be like this:
 
 The same request, using the `curl` command:
 
-....
+----
 # curl \
 --cacert '/etc/pki/ovirt-engine/ca.pem' \
 --user 'admin@internal:mypassword' \
@@ -1015,7 +1028,7 @@ The same request, using the `curl` command:
 </action>
 ' \
 https://myengine.example.com/ovirt-engine/api/vms/007/start
-....
+----
 
 The additional request body sets the virtual machine's boot device to
 CD-ROM for this boot only. This enables the virtual machine to install

@@ -6,12 +6,15 @@
 This section enumerates the backwards-compatibility breaking changes that
 have been introduced in and since version 4 of the API.
 
+[id="changes-in-api-version-4_0-succeeding-version-3_6"]
 == Changes in API version 4.0 (succeeding version 3.6)
 
+[id="removed-yaml-support"]
 === Removed YAML support
 
 The support for YAML has been completely removed.
 
+[id="renamed-complex-types"]
 === Renamed complex types
 
 The following XML schema complex types have been renamed:
@@ -58,6 +61,7 @@ The following XML schema complex types have been renamed:
 | `WatchDogs` | `Watchdogs`
 |====
 
+[id="replaced-the-status-type-with-enum-types"]
 === Replaced the `Status` type with enum types
 
 Currently the status of different objects is reported using the `Status`
@@ -93,6 +97,7 @@ the status of the same virtual machine will now be reported as follows:
 </vm>
 ----
 
+[id="remove-the-nic-network-and-port_mirroring-properties"]
 === Remove the NIC `network` and `port_mirroring` properties
 
 The NIC `network` and `port_mirroring` elements have been replaced by
@@ -100,9 +105,9 @@ the `vnic_profile` element, so when creating or updating a NIC instead
 of specifying the network and port mirroring configuration, these are
 previusly specified creating a vNIC profile:
 
-....
+----
 POST /ovirt-engine/api/vnicprofiles
-....
+----
 
 [source,xml]
 ----
@@ -115,9 +120,9 @@ POST /ovirt-engine/api/vnicprofiles
 
 And then the NIC is created or referencing the existing vNIC profile:
 
-....
+----
 PUT /ovirt-engine/api/vms/123/nics/456
-....
+----
 
 [source,xml]
 ----
@@ -133,29 +138,33 @@ Note that the `network` element hasn't been removed from the XML schema
 because it is still used by the `initialization` element, but it will be
 completely ignored if provided when creating or updating a NIC.
 
+[id="remove-the-nic-active-property"]
 === Remove the NIC `active` property
 
 The NIC `active` property was replaced by `plugged` some time ago. It
 has been completely removed now.
 
+[id="remove-the-disk-type-property"]
 === Remove the disk `type` property
 
 The `type` property of disks has been removed, but kept in the XML
 schema and ignored. It has been completely removed now.
 
+[id="remove-the-disk-size-property"]
 === Remove the disk `size` property
 
 The disk `size` property has been replaced by `provisioned_size` long
 ago. It has been completely removed now.
 
+[id="removed-support-for-pinning-a-vm-to-a-single-host"]
 === Removed support for pinning a VM to a single host
 
 Before version 3.6 the API had the possibility to pin a VM to a single
 host, using the `placement_policy` element of the VM entity:
 
-....
+----
 PUT /ovirt-engine/api/vms/123
-....
+----
 
 [source,xml]
 ----
@@ -169,9 +178,9 @@ PUT /ovirt-engine/api/vms/123
 In version 3.6 this capability was enhanced to support multiple hosts,
 and to do so a new `hosts` element was added:
 
-....
+----
 PUT /ovirt-engine/api/vms/123
-....
+----
 
 [source,xml]
 ----
@@ -190,6 +199,7 @@ To preserve backwards compatibility the single `host` element was
 preserved. In 4.0 this has been removed, so applications will need to
 use the `hosts` element even if when pinning to a single host.
 
+[id="removed-the-capabilities_permits-element"]
 === Removed the `capabilities.permits` element
 
 The list of permits is potentiall different for each cluster level, and
@@ -201,9 +211,9 @@ In 4.0 it the `capabilities` service has been completely removed, and
 replaced by the new `clusterlevels` service. To find the permits
 supported by cluster level 4.0 a request like this should be used:
 
-....
+----
 GET /ovirt-engine/api/clusterlevels/4.0
-....
+----
 
 The result will be a document containing the information specific to
 that cluster level, in particular the set of supported permits:
@@ -222,12 +232,14 @@ that cluster level, in particular the set of supported permits:
 </cluster_level>
 ----
 
+[id="removed-the-storage_manager-element"]
 === Removed the `storage_manager` element
 
 The `storage_manager` element was replaced by the `spm` element some
 time ago. The old one was kept for backwards compatibility, but it has
 been completely removed now.
 
+[id="removed-the-data-center-storage_type-element"]
 === Removed the data center `storage_type` element
 
 Data centers used to be associated to a specific storage type (NFS,
@@ -237,6 +249,7 @@ new `local` element was introduced to indicate this, and the old
 `storage_type` was element was preserved for backwards compatibility.
 This old element has now been completely removed.
 
+[id="remove-the-timezone-element"]
 === Remove the `timezone` element
 
 The VM resource used to contain a `timezone` element to represent the
@@ -265,6 +278,7 @@ offset, it was replaced with a new structured `time_zone` element:
 The old `timezone` element was preserved, but it has been completely
 removed now.
 
+[id="removed-the-guest_info-element"]
 === Removed the `guest_info` element
 
 The `guest_info` element was used to hold information gathered by the
@@ -272,9 +286,9 @@ guest agent, like the IP addresses and the fully qualified host name.
 This information is also available in other places. For example, the IP
 addresses are available within VM resource:
 
-....
+----
 GET /ovirt-engine/api/vms/123
-....
+----
 
 [source,xml]
 ----
@@ -291,9 +305,9 @@ GET /ovirt-engine/api/vms/123
 And also within the NIC resource, using the newer `reported_devices`
 element:
 
-....
+----
 GET /ovirt-engine/api/vms/{vm:id}/nics/{nic:id}
-....
+----
 
 [source,xml]
 ----
@@ -320,9 +334,9 @@ To remove this duplication the `guest_info` element has been removed.
 To support the fully qualified domain name a new `fqdn` element has been
 added to the VM resource:
 
-....
+----
 GET /ovirt-engine/api/vms/123
-....
+----
 
 [source]
 ----
@@ -334,6 +348,7 @@ GET /ovirt-engine/api/vms/123
 This will contain the same information that `guest_info.fqdn` used to
 contain.
 
+[id="replaced-cpu-id-attribute-with-type-element"]
 === Replaced CPU `id` attribute with `type` element
 
 The `cpu` element used to have an `id` attribute that indicates the type
@@ -359,6 +374,7 @@ attribute has been replaced with a new `type` element:
 </cpu>
 ----
 
+[id="use-elements-instead-of-attributes-in-cpu-topology"]
 === Use elements instead of attributes in CPU topology
 
 In the past the CPU topology element used attributes for its properties:
@@ -386,6 +402,7 @@ replaced by inner elements:
 </cpu>
 ----
 
+[id="use-elements-instead-of-attributes-in-vcpu-pin"]
 === Use elements instead of attributes in VCPU pin
 
 In the past the VCPU pin element used attributes for its properties:
@@ -410,6 +427,7 @@ replaced by inner elements:
 </cpu_tune>
 ----
 
+[id="use-elements-instead-of-attributes-in-vcpu-pin"]
 === Use elements instead of attributes in VCPU pin
 
 In the past the `version` element used attributes for its properties:
@@ -431,6 +449,7 @@ replaced by inner elements:
 </version>
 ----
 
+[id="use-elements-instead-of-attributes-in-memory-overcommit"]
 === Use elements instead of attributes in memory overcommit
 
 In the past the `overcommit` element used attributes for its properties:
@@ -456,6 +475,7 @@ replaced by inner elements:
 </memory_policy>
 ----
 
+[id="use-elements-instead-of-attributes-in-console"]
 === Use elements instead of attributes in `console`
 
 In the past the `console` element used attributes for its properties:
@@ -475,6 +495,7 @@ replaced by inner elements:
 </console>
 ----
 
+[id="use-elements-instead-of-attributes-in-virtio-scsi"]
 === Use elements instead of attributes in VIRTIO SCSI
 
 In the past the VIRTIO ISCSI element used attributes for its properties:
@@ -494,6 +515,7 @@ replaced by inner elements:
 </virtio_scsi>
 ----
 
+[id="use-element-instead-of-attribute-for-power-management-agent-type"]
 === Use element instead of attribute for power management agent `type`
 
 The power management `type` property was represented as an attribute:
@@ -518,6 +540,7 @@ replaced with an inner element:
 </agent>
 ----
 
+[id="use-elements-instead-of-attributes-in-power-management-agent-options"]
 === Use elements instead of attributes in power management agent options
 
 In the past the power management agent options element used attributes
@@ -550,6 +573,7 @@ replaced with inner elements:
 </options>
 ----
 
+[id="use-elements-instead-of-attributes-in-ip-address:"]
 === Use elements instead of attributes in IP address:
 
 In the past the IP address element used attributes for its properties:
@@ -570,6 +594,7 @@ replaced with inner elements:
 </ip>
 ----
 
+[id="use-elements-instead-of-attributes-in-mac-address:"]
 === Use elements instead of attributes in MAC address:
 
 In the past the MAC address element used attributes for its properties:
@@ -589,6 +614,7 @@ replaced by inner elements:
 </mac>
 ----
 
+[id="use-elements-instead-of-attributes-in-boot-device:"]
 === Use elements instead of attributes in boot device:
 
 In the past the boot device element used attributes for its properties:
@@ -608,6 +634,7 @@ replaced by inner elements:
 </boot>
 ----
 
+[id="use-element-instead-of-attribute-for-operating-system-type"]
 === Use element instead of attribute for operating system `type`
 
 The operating system `type` property was represented as an attribute:
@@ -630,6 +657,7 @@ replaced with an inner element:
 </os>
 ----
 
+[id="removed-the-force-parameter-from-the-request-to-retrieve-a-host"]
 === Removed the `force` parameter from the request to retrieve a host
 
 The request to retrieve a host used to support a `force` matrix
@@ -637,18 +665,18 @@ parameter to indicate that the data of the host should be refreshed
 (calling VDSM to reload host capabilities and devices) before retrieving
 it from the database:
 
-....
+----
 GET /ovirt-engine/api/hosts/123;force
-....
+----
 
 This `force` parameter has been superseded by the host `refresh` action,
 but kept for backwards compatibility. It has been completely removed
 now. Applications that require this functionality should perform two
 requests, first one to refresh the host:
 
-....
+----
 POST /ovirt-engine/api/hosts/123/refresh
-....
+----
 
 [source,xml]
 ----
@@ -657,10 +685,11 @@ POST /ovirt-engine/api/hosts/123/refresh
 
 And then one to retrieve it, without the `force` parameter:
 
-....
+----
 GET /ovirt-engine/api/hosts/123
-....
+----
 
+[id="removed-deprecated-host-power-management-configuration"]
 === Removed deprecated host power management configuration
 
 The host power management configuration used to be part of the host
@@ -689,6 +718,7 @@ were preserved for backwards compatibility. All these elements have been
 completely removed, so the only way to query or modify the power management
 agents is now the `/hosts/123/fenceagents` sub-collection.
 
+[id="use-multiple-boot_devices_device-instead-of-multiple-boot"]
 === Use multiple `boot.devices.device` instead of multiple `boot`
 
 In the past the way to specify the boot sequence when starting a virtual
@@ -697,9 +727,9 @@ element. For example, to specify that the virtual machine should first
 try to boot from CDROM and then from hard disk the following request was
 used:
 
-....
+----
 POST /ovirt-engine/api/vms/123/start
-....
+----
 
 [source,xml]
 ----
@@ -723,9 +753,9 @@ values here is the boot device, not the boot sequence. To fix this
 inconsistence this has been replaced with a single `boot` element that
 can contain multiple devices:
 
-....
+----
 POST /ovirt-engine/api/vms/123/start
-....
+----
 
 [source,xml]
 ----
@@ -742,6 +772,7 @@ POST /ovirt-engine/api/vms/123/start
 </action>
 ----
 
+[id="removed-the-disks_clone-and-disks_detach_only-elements"]
 === Removed the `disks.clone` and `disks.detach_only` elements
 
 These elements aren't really part of the representation of disks, but
@@ -750,9 +781,9 @@ parameters of the operations to add and remove virtual machines.
 The `disks.clone` element was used to indicate that the disks of a new
 virtual machine have to be cloned:
 
-....
+----
 POST /ovirt-engine/api/vms
-....
+----
 
 [source,xml]
 ----
@@ -766,9 +797,9 @@ POST /ovirt-engine/api/vms
 
 This has been now removed, and replaced by a new `clone` query parameter:
 
-....
+----
 POST /ovirt-engine/api/vms?clone=true
-....
+----
 
 [source,xml]
 ----
@@ -781,9 +812,9 @@ The `disks.detach_only` element was used to indicate that when removing
 a virtual machine the disks don't have to be removed, but just detached
 from the virtual machine:
 
-....
+----
 DELETE /ovirt-engine/api/vms/123
-....
+----
 
 [source,xml]
 ----
@@ -799,10 +830,11 @@ DELETE /ovirt-engine/api/vms/123
 This has been now removed, and replaced by a new `detach_only` query
 parameter:
 
-....
+----
 DELETE /ovirt-engine/api/vms/123?detach_only=true
-....
+----
 
+[id="rename-element-vmpool-to-vm_pool"]
 === Rename element `vmpool` to `vm_pool`
 
 The names of the elements that represent pools of virtual machines used
@@ -810,15 +842,16 @@ to be `vmpool` and `vmpools`. They have been renamed to `vm_pool` and
 `vm_pools` in order to have a consistent correspondence between names of
 complex types (`VmPool` and `VmPools` in this case) and elements.
 
+[id="use-logical_units-instead-of-multiple-logical_unit"]
 === Use `logical_units` instead of multiple `logical_unit`
 
 The logical units that are part of a volume group used to be reported as
 an unbounded number of `logical_unit` elements. For example, when
 reporting the details of a storage domain:
 
-....
+----
 GET /ovirt-engine/api/storagedomains/123
-....
+----
 
 [source,xml]
 ----
@@ -843,9 +876,9 @@ This is contrary to the usual practice in the API, as list of elements
 are always wrapped with an element. This has been fixed now, so the list
 of logical units will be wrapped with the `logical_units` element:
 
-....
+----
 GET /ovirt-engine/api/storagedomains/123
-....
+----
 
 [source,xml]
 ----
@@ -868,15 +901,16 @@ GET /ovirt-engine/api/storagedomains/123
 </storage_domain>
 ----
 
+[id="removed-the-snapshots_collapse_snapshots-element"]
 === Removed the `snapshots.collapse_snapshots` element
 
 This element isn't really part of the representation of snapshots, but
 a parameter of the operation that imports a virtual machine from an
 export storage domain:
 
-....
+----
 POST /ovirt-engine/api/storagedomains/123/vms/456/import
-....
+----
 
 [source,xml]
 ----
@@ -892,24 +926,25 @@ POST /ovirt-engine/api/storagedomains/123/vms/456/import
 This has been now removed, and replaced by a new `collapse_snapshots`
 query parameter:
 
-....
+----
 POST /ovirt-engine/api/storagedomains/123/vms/456/import?collapse_snapshots=true
-....
+----
 
 [source,xml]
 ----
 <action/>
 ----
 
+[id="renamed-storage-and-host_storage-elements"]
 === Renamed `storage` and `host_storage` elements
 
 The host storage collection used the `storage` and `host_storage`
 elements and the `Storage` and `HostStorage` complex types to report the
 storage associated to a host:
 
-....
+----
 GET /ovirt-engine/api/hosts/123/storage
-....
+----
 
 [source,xml]
 ----
@@ -929,9 +964,9 @@ outer element is a plural name and the inner element is the same name
 but in singular. This has now been changed to use `host_storages` as the
 outer element and `host_storage` as the inner element:
 
-....
+----
 GET /ovirt-engine/api/hosts/123/storage
-....
+----
 
 [source,xml]
 ----
@@ -946,14 +981,15 @@ GET /ovirt-engine/api/hosts/123/storage
 </host_storage>
 ----
 
+[id="removed-the-permissions_clone-element"]
 === Removed the `permissions.clone` element
 
 This element isn't really part of the representation of permissions, but
 a parameter of the operations to create virtual machines or templates:
 
-....
+----
 POST /ovirt-engine/api/vms
-....
+----
 
 [source,xml]
 ----
@@ -966,9 +1002,9 @@ POST /ovirt-engine/api/vms
 </action>
 ----
 
-....
+----
 POST /ovirt-engine/api/templates
-....
+----
 
 [source,xml]
 ----
@@ -984,9 +1020,9 @@ POST /ovirt-engine/api/templates
 This has been now removed, and replaced by a new `clone_permissions`
 query parameter:
 
-....
+----
 POST /ovirt-engine/api/vms?clone_permissions=true
-....
+----
 
 [source,xml]
 ----
@@ -995,9 +1031,9 @@ POST /ovirt-engine/api/vms?clone_permissions=true
 </vm>
 ----
 
-....
+----
 POST /ovirt-engine/api/templates?clone_permissions=true
-....
+----
 
 [source,xml]
 ----
@@ -1006,6 +1042,7 @@ POST /ovirt-engine/api/templates?clone_permissions=true
 </template>
 ----
 
+[id="renamed-the-random-number-generator-source-elements"]
 === Renamed the random number generator `source` elements
 
 The random number generator sources used to be reported using a
@@ -1013,9 +1050,9 @@ collection of `source` elements wrapped by an element with a name
 reflecting its use. For example, the required random number generator
 sources of a cluster used to be reported as follows:
 
-....
+----
 GET /ovirt-engine/api/clusters/123
-....
+----
 
 [source,xml]
 ----
@@ -1031,9 +1068,9 @@ GET /ovirt-engine/api/clusters/123
 And the random number generator sources suported by a host used to be
 reported as follows:
 
-....
+----
 GET /ovirt-engine/api/hosts/123
-....
+----
 
 [source,xml]
 ----
@@ -1053,9 +1090,9 @@ wrapped by a name in plural and elements by the same name in singular.
 This has been now fixed. The required random number generator sources
 will now be reported as follows:
 
-....
+----
 GET /ovirt-engine/api/clusters/123
-....
+----
 
 [source,xml]
 ----
@@ -1071,9 +1108,9 @@ GET /ovirt-engine/api/clusters/123
 And the random number generator sources supported by a host will be
 reported as follows:
 
-....
+----
 GET /ovirt-engine/api/hosts/123
-....
+----
 
 [source,xml]
 ----
@@ -1091,6 +1128,7 @@ GET /ovirt-engine/api/hosts/123
 Note the use of `required_rng_source` and `supported_rng_source` instead
 of just `source`.
 
+[id="removed-the-intermediate-tag_parent-element"]
 === Removed the intermediate `tag.parent` element
 
 The relationship bettween a tag and it's parent tag used to be
@@ -1118,6 +1156,7 @@ used now:
 </tag>
 ----
 
+[id="remove-scheduling-built-in-names-and-thresholds"]
 === Remove scheduling built-in names and thresholds
 
 In the past the specification of scheduling policies for clusters was
@@ -1178,9 +1217,9 @@ when retrieving, creating or updating a cluster is to reference an
 existing one using its identifier. For example, when retrieving a
 cluster only the `id` (and `href`) will be populated:
 
-....
+----
 GET /ovirt-engine/api/clusters/123
-....
+----
 
 [source,xml]
 ----
@@ -1193,6 +1232,7 @@ GET /ovirt-engine/api/clusters/123
 
 When creating or updating a cluster only the `id` will be accepted.
 
+[id="removed-the-bricks_replica_count-and-bricks_stripe_count-elements"]
 === Removed the `bricks.replica_count` and `bricks.stripe_count` elements
 
 These elements aren't really part of the representation of a collection of
@@ -1200,14 +1240,15 @@ bricks, but parameters of the operations to add and remove bricks. They have
 now been removed, and replaced by new `replica_count` and `stripe_count`
 parameters:
 
-....
+----
 POST .../bricks?replica_count=3&stripe_count=2
-....
+----
 
-....
+----
 DELETE .../bricks?replica_count=3
-....
+----
 
+[id="renamed-the-statistics-type-property-to-kind"]
 === Renamed the statistics `type` property to `kind`
 
 The statistics used to be represented using a `type` element that indicates the
@@ -1242,6 +1283,7 @@ replaced by `kind`, and both `kind` and `type` are now elements:
 </statistic>
 ----
 
+[id="use-multiple-vcpu_pins_vcpu_pin-instead-of-multiple-vcpu_pin"]
 === Use multiple `vcpu_pins.vcpu_pin` instead of multiple `vcpu_pin`
 
 In the past the way to specify the virtual to physical CPU pinning of a virtual
@@ -1278,15 +1320,16 @@ been changed to use a wrapper element, in this case `vcpu_pins`:
 </vm>
 ----
 
+[id="use-force-parameter-to-force-remove-a-data-center"]
 === Use `force` parameter to force remove a data center
 
 The operation that removes a data center supports a `force` parameter.  In
 order to use it the `DELETE` operation used to support an optional action
 parameter:
 
-....
+----
 DELETE /ovirt-engine/api/datacenters/123
-....
+----
 
 [source,xml]
 ----
@@ -1297,18 +1340,19 @@ DELETE /ovirt-engine/api/datacenters/123
 
 This optional action parameter has been replaced with an optional parameter:
 
-....
+----
 DELETE /ovirt-engine/api/datacenters/123?force=true
-....
+----
 
+[id="use-force-parameter-to-force-remove-a-host"]
 === Use `force` parameter to force remove a host
 
 The operation that removes a host supports a `force` parameter. In order to use
 it the `DELETE` operation used to support an optional action parameter:
 
-....
+----
 DELETE /ovirt-engine/api/host/123
-....
+----
 
 [source,xml]
 ----
@@ -1319,19 +1363,20 @@ DELETE /ovirt-engine/api/host/123
 
 This optional action parameter has been replaced with an optional parameter:
 
-....
+----
 DELETE /ovirt-engine/api/host/123?force=true
-....
+----
 
+[id="use-parameters-for-force-remove-storage-domain"]
 === Use parameters for force remove storage domain
 
 The operation that removes a storage domain supports the `force`, `destroy` and
 `host` parameters. These parameters were passed to the `DELETE` method using
 the representation of the storage domain as the body:
 
-....
+----
 DELETE /ovirt-engine/api/storagedomains/123
-....
+----
 
 [source,xml]
 ----
@@ -1353,25 +1398,26 @@ parameters, and the operation doesn't now accept a body. For example, now the
 correct way to delete a storage domain with the `force` parameter is the
 following:
 
-....
+----
 DELETE /ovirt-engine/api/storagedomain/123?host=myhost&force=true
-....
+----
 
 To delete with the `destroy` parameter:
 
-....
+----
 DELETE /ovirt-engine/api/storagedomain/123?host=myhost&destroy=true
-....
+----
 
+[id="use-host-parameter-to-remove-storage-server-connection"]
 === Use `host` parameter to remove storage server connection
 
 The operation that removes a storage server connection supports a `host`
 parameter. In order to use it the `DELETE` method used to support an optional
 action parameter:
 
-....
+----
 DELETE /ovirt-engine/api/storageconnections/123
-....
+----
 
 [source,xml]
 ----
@@ -1384,19 +1430,20 @@ DELETE /ovirt-engine/api/storageconnections/123
 
 This optional action parameter has been replaced with an optional parameter:
 
-....
+----
 DELETE /ovirt-engine/api/storageconnections/123?host=myhost
-....
+----
 
+[id="use-force-and-storage_domain-parameters-to-remove-template-disks"]
 === Use `force` and `storage_domain` parameters to remove template disks
 
 The operation that removes a template disk supports the `force` and
 `storage_domain` parameters. In order to use it them the `DELETE` method used
 to support an optional action parameter:
 
-....
+----
 DELETE /ovirt-engine/api/templates/123/disks/456
-....
+----
 
 [source,xml]
 ----
@@ -1410,14 +1457,15 @@ In version 4 of the API this operation has been moved to the new
 `diskattachments` collection, and the request body has been replaced with the
 query parameters `force` and `storage_domain`:
 
-....
+----
 DELETE /ovirt-engine/api/templates/123/disksattachments/456?force=true
-....
+----
 
-....
+----
 DELETE /ovirt-engine/api/templates/123/disksattachments/456?storage_domain=123
-....
+----
 
+[id="don't-remove-disks-via-the-vm-disk-api"]
 === Don't remove disks via the VM disk API
 
 Removing an entity by deleting `/vms/123/disks/456` means removing the
@@ -1427,19 +1475,20 @@ completely from the system, which was prone to user errors and had
 unreverseable consequences. To remove a disk, instead use the
 `/disk/456` API:
 
-....
+----
 DELETE /ovirt-engine/api/disks/456
-....
+----
 
+[id="use-force-query-parameter-to-force-remove-a-virtual-machine"]
 === Use `force` query parameter to force remove a virtual machine
 
 The operation that removes a virtual machine supports a `force` parameter. In
 order to use it the `DELETE` method used to support an optional action
 parameter:
 
-....
+----
 DELETE /ovirt-engine/api/vms/123
-....
+----
 
 [source,xml]
 ----
@@ -1451,18 +1500,19 @@ DELETE /ovirt-engine/api/vms/123
 This optional action parameter has been replaced with an optional query
 parameter:
 
-....
+----
 DELETE /ovirt-engine/api/vms/123?force=true
-....
+----
 
+[id="use-post-instead-of-delete-to-remove-multiple-bricks"]
 === Use `POST` instead of `DELETE` to remove multiple bricks
 
 The operation that removes multiple Gluster bricks was implemented using the
 `DELETE` method and passing the list of bricks as the body of the request:
 
-....
+----
 DELETE /ovirt-engine/api/clusters/123/glustervolumes/456/bricks
-....
+----
 
 [source,xml]
 ----
@@ -1476,9 +1526,9 @@ DELETE /ovirt-engine/api/clusters/123/glustervolumes/456/bricks
 This is problematic because the `DELETE` method shouldn't have a body, so it
 has been replaced with a new `remove` action that uses the `POST` method:
 
-....
+----
 POST /ovirt-engine/api/clusters/123/glustervolumes/456/bricks/remove
-....
+----
 
 [source,xml]
 ----
@@ -1489,14 +1539,15 @@ POST /ovirt-engine/api/clusters/123/glustervolumes/456/bricks/remove
 </bricks>
 ----
 
+[id="removed-the-scheduling_policy_policy-element"]
 === Removed the `scheduling_policy.policy` element
 
 The element was kept for backward compatibility. Use `scheduling_policy.name`
 instead.
 
-....
+----
 POST /ovirt-engine/api/schedulingpolicies
-....
+----
 
 [source,xml]
 ----
@@ -1507,9 +1558,9 @@ POST /ovirt-engine/api/schedulingpolicies
 </scheduling_policy>
 ----
 
-....
+----
 PUT /ovirt-engine/api/schedulingpolicies/123
-....
+----
 
 [source,xml]
 ----
@@ -1520,6 +1571,7 @@ PUT /ovirt-engine/api/schedulingpolicies/123
 </scheduling_policy>
 ----
 
+[id="added-snapshot_snapshot_type"]
 === Added `snapshot.snapshot_type`
 
 Enums are being gradually introduces to the API. Some fields which were string
@@ -1537,11 +1589,13 @@ type. So a new field has been added to snapshot entity:
 </snapshot>
 ----
 
+[id="removed-move-action-from-vm"]
 === Removed `move` action from `VM`
 
 The deprecated `move` action of the `VM` entity has been removed.  Instead, you
 can move inidividual disks.
 
+[id="moved-reported_configurations_in_sync-to-network_attachment"]
 === Moved `reported_configurations.in_sync` to `network_attachment`
 
 In version 3 of the API the XML schema type `ReportedConfigurations` had a
@@ -1578,6 +1632,7 @@ enclosing `network_attachment`:
 </network_attachment>
 ----
 
+[id="replaced-capabilities-with-clusterlevels"]
 === Replaced `capabilities` with `clusterlevels`
 
 The top level `capabilities` collection has been replaced by the new
@@ -1585,9 +1640,9 @@ The top level `capabilities` collection has been replaced by the new
 that isn't available in the model, like the list of CPU types available for
 each cluster level:
 
-....
+----
 GET /ovirt-engine/api/clusterlevels
-....
+----
 
 This will return a list of `ClusterLevel` objects containing the details for
 all the cluster levels supported by the system:
@@ -1612,9 +1667,9 @@ all the cluster levels supported by the system:
 Each specific cluster level has it's own subresource, identified by the version
 itself:
 
-....
+----
 GET /ovirt-engine/api/clusterlevels/3.6
-....
+----
 
 This will return the details of that version:
 
@@ -1633,6 +1688,7 @@ This will return the details of that version:
 </cluster_level>
 ----
 
+[id="replaced-disks-with-diskattachments"]
 === Replaced `disks` with `diskattachments`
 
 In version 3 of the API virtual machines and templates had a `disks` collection
@@ -1646,9 +1702,9 @@ virtual machine or template that they are attached to: `interface` and
 To find what disks are attached to a virtual machine, for example, send a
 request like this:
 
-....
+----
 GET /ovirt-engine/api/vms/123/diskattachments
-....
+----
 
 That will return a response like this:
 
@@ -1670,9 +1726,9 @@ To find the rest of the details of the disk, follow the link provided.
 Adding disks to a virtual machine or template uses the new `disk_attachment`
 element as well: request like this:
 
-....
+----
 POST /ovirt-engine/api/vms/123/diskattachments
-....
+----
 
 With the following body if the disk doesn't exist and you want to create it:
 
@@ -1733,15 +1789,16 @@ specific storage domains will now look like this:
 </template>
 ----
 
+[id="use-iscsi_targets-element-to-discover-unregistered-storage"]
 === Use `iscsi_targets` element to discover unregistered storage
 
 In version 3 of the API the operation to discover unregistered storage domains
 used to receive a list of iSCSI targets, using multiple `iscsi_target`
 elements:
 
-....
+----
 POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover
-....
+----
 
 [source,xml]
 ----
@@ -1758,9 +1815,9 @@ In version 4 of the API all repeating elements, like `iscsi_target`
 in this case, are wrapped with another element, `iscsi_targets` in
 case. So the same request should now look like this:
 
-....
+----
 POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover
-....
+----
 
 [source,xml]
 ----
@@ -1775,6 +1832,8 @@ POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover
 </action>
 ----
 
+[id="changes-in-engine-version-4_5"]
 == Changes in Engine version 4.5
 
+[id="openstack-volume-cinder-integration-replaced-by-managed-block-storage_"]
 === Openstack Volume (Cinder) integration replaced by Managed Block Storage.
