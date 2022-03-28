@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Network filters filter packets sent to and from the virtual machine's NIC according to defined rules.
  *
  * There are several types of network filters supported based on libvirt.
- * For more details about the different network filters see https://libvirt.org/firewall.html[here].
+ * For more details about the different network filters see link:https://libvirt.org/firewall.html[here].
  *
  * The default Network Filter is based on network type and configuration.
  * VM network's default filter is `vdsm-no-mac-spoof` if `EnableMACAntiSpoofingFilterRules` is True, otherwise

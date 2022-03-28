@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -127,7 +127,7 @@ public interface Disk extends Device {
      * This field can be updated using the update API and will be reported only for QCOW volumes.
      * It is determined by the version of the storage domain that the disk is created on.
      * Storage domains with a version lower than V4 support QCOW2 volumes. V4 storage domains also support QCOW2v3.
-     * For more information about features of the different QCOW versions, see http://wiki.qemu.org/Features/Qcow3[here].
+     * For more information about features of the different QCOW versions, see link:https://wiki.qemu.org/Features/Qcow3[QCOW3].
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -167,8 +167,8 @@ public interface Disk extends Device {
      *
      * IMPORTANT: When a disk is attached to multiple virtual machines it is the responsibility of the guest
      * operating systems of those virtual machines to coordinate access to it, to avoid corruption of the data, for
-     * example using a shared file system like https://www.gluster.org[GlusterFS] or
-     * http://www.sourceware.org/cluster/gfs[GFS].
+     * example using a shared file system like link:https://www.gluster.org[GlusterFS] or
+     * link:https://www.sourceware.org/cluster/gfs[GFS].
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,8 +23,8 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Represents a host provisioned by a host
  * provider (such as Foreman/Satellite).
  *
- * See https://www.theforeman.org/ for more details on Foreman.
- * See https://access.redhat.com/products/red-hat-satellite
+ * See link:https://www.theforeman.org/[Foreman documentation] for more details.
+ * See link:https://access.redhat.com/products/red-hat-satellite[Satellite documentation]
  * for more details on Red Hat Satellite.
  *
  * @author Oved Ourfali <oourfali@redhat.com>

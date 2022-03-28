@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -73,7 +73,7 @@ public enum StorageType {
 
     /**
      * Gluster-FS storage domain.
-     * For more details on Gluster please go to https://www.gluster.org/[Gluster].
+     * For more details on Gluster please go to link:https://www.gluster.org/[Gluster].
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 05 Dec 2016
@@ -83,7 +83,7 @@ public enum StorageType {
 
     /**
      * Glance storage domain.
-     * For more details on Glance please go to https://wiki.openstack.org/wiki/Glance[Glance].
+     * For more details on Glance please go to link:https://wiki.openstack.org/wiki/Glance[Glance].
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 05 Dec 2016
@@ -93,7 +93,7 @@ public enum StorageType {
 
     /**
      * Cinder storage domain.
-     * For more details on Cinder please go to https://wiki.openstack.org/wiki/Cinder[Cinder].
+     * For more details on Cinder please go to link:https://wiki.openstack.org/wiki/Cinder[Cinder].
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 05 Dec 2016
@@ -104,7 +104,7 @@ public enum StorageType {
     /**
      * Managed block storage domain.
      * A storage domain managed using cinderlib.
-     * For supported storage drivers, see https://docs.openstack.org/cinder/rocky/drivers.html[Available Drivers].
+     * For supported storage drivers, see link:https://docs.openstack.org/cinder/rocky/drivers.html[Available Drivers].
      *
      * @author Benny Zlotnik <bzlotnik@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>

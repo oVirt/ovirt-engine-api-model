@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,8 +44,8 @@ public interface LogicalUnit {
      * A value of 0 means that the device does not support discard functionality.
      *
      * NOTE: This is the software limit, and not the hardware limit, as noted in the
-     * https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[documentation] of
-     * `queue-sysfs` for `discard_max_bytes`.
+     * link:https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[`queue-sysfs` documentation]
+     * for `discard_max_bytes`.
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -59,8 +59,8 @@ public interface LogicalUnit {
      * True, if previously discarded blocks in the logical
      * unit's underlying storage are read back as zeros.
      * For more information please see the
-     * https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[documentation]
-     * of `queue-sysfs` for `discard_zeroes_data`.
+     * link:https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt[`queue-sysfs` documentation]
+     * for `discard_zeroes_data`.
      *
      * IMPORTANT: Since version 4.2.1 of the system, the support for this attribute has
      * been removed as the sysfs file, `discard_zeroes_data`, was deprecated in the kernel.

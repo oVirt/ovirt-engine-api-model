@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -1196,7 +1196,7 @@ public interface VmService extends MeasurableService {
 
         /**
          * If set to `true`, the initialization type is set to _cloud-init_. The default value is `false`.
-         * See https://cloudinit.readthedocs.io/en/latest[this] for details.
+         * See link:https://cloudinit.readthedocs.io/en/latest[cloud-init documentation] for details.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
@@ -1207,7 +1207,7 @@ public interface VmService extends MeasurableService {
 
         /**
          * If set to `true`, the initialization type is set to _Sysprep_. The default value is `false`.
-         * See https://en.wikipedia.org/wiki/Sysprep[this] for details.
+         * See link:https://en.wikipedia.org/wiki/Sysprep[Sysprep] for details.
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
@@ -1218,7 +1218,7 @@ public interface VmService extends MeasurableService {
 
         /**
          * If set to `true`, the initialization type is set to _Ignition_. The default value is `false`.
-         * See https://coreos.com/ignition/docs/latest/[this] for details.
+         * See link:https://coreos.com/ignition/docs/latest/[Ignition documentation] for details.
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>
          * @date 5 Dec 2019

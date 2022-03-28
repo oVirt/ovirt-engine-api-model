@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -494,7 +494,7 @@ public interface Cluster extends Identified {
     /**
      * The name of the tuned profile.
      *
-     * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance[Tuned] profile
+     * link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance[Tuned] profile
      * to set on all the hosts in the cluster. This is not mandatory
      * and relevant only for clusters with Gluster service.
      *
@@ -510,7 +510,7 @@ public interface Cluster extends Identified {
     /**
      * FIPS mode of the cluster.
      *
-     * The https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening[FIPS] mode represents the cluster's policy towards hosts.
+     * The link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening[FIPS] mode represents the cluster's policy towards hosts.
      * Hosts added to the cluster will be checked to fulfill the cluster's FIPS mode, making them non-operational in
      * case they don't.
      * Unless a value is explicity provided, new clusters are initialized by default to `UNDEFINED`.
