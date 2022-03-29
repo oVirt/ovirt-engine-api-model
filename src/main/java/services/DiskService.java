@@ -552,7 +552,7 @@ public interface DiskService extends MeasurableService {
     /**
      * Converts disk format and/or preallocation mode.
      *
-     * For example, to convert the disk format from preallocated-cow to a sparse-raw image, 
+     * For example, to convert the disk format from preallocated-cow to a sparse-raw image,
      * send a request like the following:
      *
      * [source]
