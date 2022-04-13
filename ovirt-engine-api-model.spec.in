@@ -12,7 +12,10 @@ BuildArch:	noarch
 
 BuildRequires:  java-11-openjdk-devel
 BuildRequires:  maven-local
+%if 0%{?rhel} >= 8
+# Not supporting fedora, but need to build src.rpm there for copr.
 BuildRequires:  ovirt-engine-api-metamodel
+%endif
 BuildRequires:  mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
 BuildRequires:  mvn(org.apache.maven.plugins:maven-antrun-plugin)
 BuildRequires:  mvn(org.apache.maven.plugins:maven-compiler-plugin)
