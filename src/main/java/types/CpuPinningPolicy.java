@@ -81,6 +81,18 @@ public enum CpuPinningPolicy {
      * @status added
      * @since 4.5
      */
-    DEDICATED;
+    DEDICATED,
+
+    /**
+     * The CPU pinning will be automatically calculated by the engine when a vm starts, and it will be dropped when the vm stops.
+     *
+     * The pinning is exclusive, each virtual thread will get an exclusive physical core. That means that no other VM can use the pinned physical CPU.
+     *
+     * @author Liran Rotenberg <lrotenbe@redhat.com>
+     * @date 13 Apr 2021
+     * @status added
+     * @since 4.5.1
+     */
+    ISOLATE_THREADS;
 }
 
