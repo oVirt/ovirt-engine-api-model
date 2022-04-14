@@ -10,21 +10,30 @@ Source1:	%{name}-doc-%{version}.jar
 
 BuildArch:	noarch
 
-BuildRequires:  java-11-openjdk-devel
-BuildRequires:  maven-local
-%if 0%{?rhel} >= 8
-# Not supporting fedora, but need to build src.rpm there for copr.
-BuildRequires:  ovirt-engine-api-metamodel
-%endif
-BuildRequires:  mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
-BuildRequires:  mvn(org.apache.maven.plugins:maven-antrun-plugin)
-BuildRequires:  mvn(org.apache.maven.plugins:maven-compiler-plugin)
-BuildRequires:  mvn(org.apache.maven.plugins:maven-source-plugin)
-BuildRequires:  mvn(org.apache.maven.plugins:maven-surefire-plugin)
-BuildRequires:  mvn(org.asciidoctor:asciidoctorj)
-BuildRequires:  mvn(org.asciidoctor:asciidoctor-maven-plugin)
-BuildRequires:  mvn(org.codehaus.mojo:exec-maven-plugin)
-BuildRequires:  mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
+# We need to disable automatic generation of "Requires: java-headless >= 1:11"
+# by xmvn, becase JDK 11 doesn't provide java-headless artifact, but it
+# provides java-11-headless.
+AutoReq:	no
+
+BuildRequires:	java-11-openjdk-devel
+BuildRequires:	maven-local
+BuildRequires:	ovirt-engine-api-metamodel
+BuildRequires:	mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
+BuildRequires:	mvn(org.apache.maven.plugins:maven-antrun-plugin)
+BuildRequires:	mvn(org.apache.maven.plugins:maven-compiler-plugin)
+BuildRequires:	mvn(org.apache.maven.plugins:maven-source-plugin)
+BuildRequires:	mvn(org.apache.maven.plugins:maven-surefire-plugin)
+BuildRequires:	mvn(org.asciidoctor:asciidoctorj)
+BuildRequires:	mvn(org.asciidoctor:asciidoctor-maven-plugin)
+BuildRequires:	mvn(org.codehaus.mojo:exec-maven-plugin)
+BuildRequires:	mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
+
+Requires:	ovirt-engine-api-metamodel-server
+Requires:	java-11-openjdk-headless >= 1:11.0.0
+Requires:	javapackages-filesystem
+Requires:	mvn(org.ovirt.engine.api:metamodel-annotations)
+Requires:	mvn(org.ovirt.engine.api:metamodel-server)
+
 
 %description
 %{name} provides model management tools for the oVirt Engine API.
