@@ -42,7 +42,7 @@ public interface ClusterFeatureService {
      * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures/456
      * ----
      *
-     * That will return a <<types/cluster_feature, ClusterFeature>> object containing the name:
+     * That will return a xref:types/cluster_feature[ClusterFeature] object containing the name:
      *
      * [source,xml]
      * ----

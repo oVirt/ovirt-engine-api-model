@@ -25,7 +25,7 @@ import types.DiskAttachment;
 
 /**
  * This service manages the set of disks attached to a template. Each attached disk is represented by a
- * <<types/disk_attachment,DiskAttachment>>.
+ * xref:types/disk_attachment[DiskAttachment].
  *
  * @author Tal Nisan <tnisan@redhat.com>
  * @date 7 Jul 2016

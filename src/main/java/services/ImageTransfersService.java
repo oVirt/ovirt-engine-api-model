@@ -30,7 +30,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages image transfers, for performing Image I/O API in {product-name}.
- * Please refer to <<services/image_transfer, image transfer>> for further
+ * Please refer to xref:services/image_transfer[image transfer] for further
  * documentation.
  *
  * @author Amit Aviram <aaviram@redhat.com>
