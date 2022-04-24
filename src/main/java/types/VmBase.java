@@ -60,13 +60,13 @@ public interface VmBase extends Identified {
      * ----
      *
      * Memory hot plug is supported from {product-name} 3.6 onwards. You can use the example above to increase
-     * memory while the virtual machine is in state <<types/vm_status/values/up, up>>. The size increment must be
+     * memory while the virtual machine is in state xref:types/vm_status/values/up[up]. The size increment must be
      * dividable by the value of the `HotPlugMemoryBlockSizeMb` configuration value (256 MiB by default). If the memory
      * size increment is not dividable by this value, the memory size change is only stored to next run configuration.
      * Each successful memory hot plug operation creates one or two new memory devices.
      *
      * Memory hot unplug is supported since {product-name} 4.2 onwards. Memory hot unplug can only be performed
-     * when the virtual machine is in state <<types/vm_status/values/up, up>>. Only previously hot plugged memory
+     * when the virtual machine is in state xref:types/vm_status/values/up[up]. Only previously hot plugged memory
      * devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
      * of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
      * configuration without rounding.

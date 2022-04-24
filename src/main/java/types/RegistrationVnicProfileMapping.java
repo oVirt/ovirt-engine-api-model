@@ -51,7 +51,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * |===
  *
- * Then the following snippet should be added to <<types/registration_configuration, RegistrationConfiguration>>
+ * Then the following snippet should be added to xref:types/registration_configuration[RegistrationConfiguration]
  *
  * [source,xml]
  * ----

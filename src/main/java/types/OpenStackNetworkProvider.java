@@ -132,22 +132,22 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
     @Link OpenStackSubnet[] subnets();
 
     /**
-     * Indicates if the <<types/network,networks>> of this provider are automatically synchronized.
+     * Indicates if the xref:types/network[networks] of this provider are automatically synchronized.
      *
      * If `true`, the networks of this provider are automatically and cyclically synchronized to {product-name} in
      * the background.
      * This means that all new networks of this provider are imported, and all discarded networks are removed
-     * from all <<types/cluster,clusters>> that have this external provider as the default provider.
+     * from all xref:types/cluster[clusters] that have this external provider as the default provider.
      * If the name of a network is changed on the provider, the change is synchronized to the network entity in
      * {product-name}. Furthermore, if a new cluster that has the provider as the default provider is added,
      * already imported networks are attached to this new cluster during synchronization.
      *
      * The automatically initiated import triggers the following steps:
      *
-     * - The networks of the external provider will be imported to every <<types/data_center,data center>>
+     * - The networks of the external provider will be imported to every xref:types/data_center[data center]
      *   in the data centers of the clusters that have that external provider as the default provider.
      *
-     * - A <<types/vnic_profile,vNIC profile>> will be created for each involved data center and network.
+     * - A xref:types/vnic_profile[vNIC profile] will be created for each involved data center and network.
      *
      * - The networks will be assigned to each cluster that has that external provider as the default provider.
      *
@@ -180,7 +180,7 @@ public interface OpenStackNetworkProvider extends OpenStackProvider {
     Boolean unmanaged();
 
     /**
-     * Defines the domain name of the `username` in <<types/external_provider, ExternalProvider>> for
+     * Defines the domain name of the `username` in xref:types/external_provider[ExternalProvider] for
      * OpenStack Identity API v3.
      *
      * @author Dominik Holler <dholler@redhat.com>

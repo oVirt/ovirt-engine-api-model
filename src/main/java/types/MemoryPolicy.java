@@ -35,8 +35,8 @@ public interface MemoryPolicy {
      * The {engine-name} internally rounds this value down to whole MiB (1MiB = 2^20^ bytes).
      *
      * NOTE: It can be updated while the virtual machine is running since {product-name} 4.2 onwards, provided
-     * <<types/vm/attributes/memory, memory>> is updated in the same request as well, and the virtual machine is in
-     * state <<types/vm_status/values/up, up>>.
+     * xref:types/vm/attributes/memory[memory] is updated in the same request as well, and the virtual machine is in
+     * state xref:types/vm_status/values/up[up].
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

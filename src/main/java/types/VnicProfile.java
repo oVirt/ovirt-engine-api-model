@@ -20,7 +20,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * A vNIC profile is a collection of settings that can be applied to individual <<types/nic,NIC>>.
+ * A vNIC profile is a collection of settings that can be applied to individual xref:types/nic[NIC].
  *
  * @author Dominik Holler <dholler@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>
@@ -33,8 +33,8 @@ public interface VnicProfile extends Identified {
     /**
      * Enables port mirroring.
      *
-     * Port mirroring copies layer 3 network traffic on a given <<types/network,logical network>> and
-     * <<types/host,host>> to a NIC on a <<types/vm,virtual machine>>. This virtual machine
+     * Port mirroring copies layer 3 network traffic on a given xref:types/network[logical network] and
+     * xref:types/host[host] to a NIC on a xref:types/vm[virtual machine]. This virtual machine
      * can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
      * virtual machines on the same host and logical network. The only
      * traffic copied is internal to one logical network on one host. There is no
@@ -69,10 +69,10 @@ public interface VnicProfile extends Identified {
     CustomProperty[] customProperties();
 
     /**
-     * Enables passthrough to an SR-IOV-enabled <<types/host_nic,host NIC>>.
+     * Enables passthrough to an SR-IOV-enabled xref:types/host_nic[host NIC].
      *
      * A vNIC profile enables a NIC to be directly connected to a
-     * <<types/host_nic_virtual_functions_configuration,virtual function (VF)>> of an SR-IOV-enabled
+     * xref:types/host_nic_virtual_functions_configuration[virtual function (VF)] of an SR-IOV-enabled
      * host NIC, if passthrough is enabled. The NIC will then bypass the software network virtualization and
      * connect directly to the VF for direct device assignment.
      *
