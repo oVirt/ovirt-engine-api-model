@@ -64,7 +64,7 @@ public interface VnicProfilesService {
      *
      * Please note that there is a default network filter to each VNIC profile.
      * For more details of how the default network filter is calculated please refer to
-     * the documentation in <<services/network_filters,NetworkFilters>>.
+     * the documentation in xref:services/network_filters[NetworkFilters].
      *
      * NOTE: The automatically created vNIC profile for the external network will be without network filter.
      *

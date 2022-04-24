@@ -32,7 +32,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
  * A service to manage a user in the system.
  * Use this service to either get users details or remove users.
  * In order to add new users please use
- * <<services/users>>.
+ * xref:services/users[users].
  *
  * @author Oved Ourfali <oourfali@redhat.com>
  * @date 28 Nov 2016
@@ -116,7 +116,7 @@ public interface UserService {
      * ----
      *
      * IMPORTANT: Since version 4.4.5 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. Please use the <<services/user_option, options>>
+     * compatibility. It will be removed in the future. Please use the xref:services/user_option[options]
      * endpoint instead.
      *
      * @author Bohdan Iakymets <biakymet@redhat.com>

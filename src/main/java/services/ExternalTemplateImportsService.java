@@ -46,7 +46,7 @@ public interface ExternalTemplateImportsService {
      * POST /externaltemplateimports
      * ----
      *
-     * With request body of type <<types/external_template_import,ExternalTemplateImport>>, for example:
+     * With request body of type xref:types/external_template_import[ExternalTemplateImport], for example:
      *
      * [source,xml]
      * ----
