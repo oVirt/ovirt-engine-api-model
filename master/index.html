@@ -40992,6 +40992,29 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 &lt;/action&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Since version 4.2 of the engine it is also possible to export a template as a virtual appliance (OVA).
+For example, to export template <code>123</code> as an OVA file named <code>myvm.ova</code> that is placed in the directory <code>/home/ovirt/</code> on host <code>myhost</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/templates/123/export</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a request body like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;action&gt;
+  &lt;host&gt;
+    &lt;name&gt;myhost&lt;/name&gt;
+  &lt;/host&gt;
+  &lt;directory&gt;/home/ovirt&lt;/directory&gt;
+  &lt;filename&gt;myvm.ova&lt;/filename&gt;
+&lt;/action&gt;</code></pre>
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 698. Parameters summary</caption>
 <colgroup>
@@ -86069,7 +86092,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-04-26 12:45:05 UTC
+Last updated 2022-04-26 12:50:11 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
