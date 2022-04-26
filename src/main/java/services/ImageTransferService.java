@@ -25,8 +25,8 @@ import annotations.Area;
 
 /**
  * This service provides a mechanism to control an image transfer. The client will have
- * to create a transfer by using <<services/image_transfers/methods/add, add>>
- * of the <<services/image_transfers>> service, stating the image to transfer
+ * to create a transfer by using xref:services/image_transfers/methods/add[add]
+ * of the xref:services/image_transfers[image transfers] service, stating the image to transfer
  * data to/from.
  *
  * After doing that, the transfer is managed by this service.
@@ -65,7 +65,7 @@ import annotations.Area;
  * ----
  *
  * If the user wishes to download a disk rather than upload, he/she should specify
- * `download` as the <<types/image_transfer_direction, direction>> attribute of the transfer.
+ * `download` as the xref:types/image_transfer_direction[direction] attribute of the transfer.
  * This will grant a read permission from the image, instead of a write permission.
  *
  * E.g:
@@ -86,11 +86,11 @@ import annotations.Area;
  * Transfers have phases, which govern the flow of the upload/download.
  * A client implementing such a flow should poll/check the transfer's phase and
  * act accordingly. All the possible phases can be found in
- * <<types/image_transfer_phase, ImageTransferPhase>>.
+ * xref:types/image_transfer_phase[ImageTransferPhase].
  *
- * After adding a new transfer, its phase will be <<types/image_transfer_phase, initializing>>.
+ * After adding a new transfer, its phase will be xref:types/image_transfer_phase[initializing].
  * The client will have to poll on the transfer's phase until it changes.
- * When the phase becomes <<types/image_transfer_phase, transferring>>,
+ * When the phase becomes xref:types/image_transfer_phase[transferring],
  * the session is ready to start the transfer.
  *
  * For example:
@@ -103,14 +103,14 @@ import annotations.Area;
  *    transfer = transfer_service.get()
  * ----
  *
- * At that stage, if the transfer's phase is <<types/image_transfer_phase, paused_system>>, then the session was
+ * At that stage, if the transfer's phase is xref:types/image_transfer_phase[paused_system], then the session was
  * not successfully established. One possible reason for that is that the ovirt-imageio-daemon is not running
  * in the host that was selected for transfer.
- * The transfer can be resumed by calling <<services/image_transfer/methods/resume, resume>>
+ * The transfer can be resumed by calling xref:services/image_transfer/methods/resume[resume]
  * of the service that manages it.
  *
  * If the session was successfully established - the returned transfer entity will
- * contain the <<types/image_transfer, transfer_url>> and <<types/image_transfer, proxy_url>> attributes,
+ * contain the xref:types/image_transfer[transfer_url] and xref:types/image_transfer[proxy_url] attributes,
  * which the client needs to use in order to transfer the required data. The client can choose whatever
  * technique and tool for sending the HTTPS request with the image's data.
  *
@@ -137,7 +137,7 @@ import annotations.Area;
  *     http://ovirt.github.io/ovirt-imageio/images.html
  *
  * When finishing the transfer, the user should call
- * <<services/image_transfer/methods/finalize, finalize>>. This will make the
+ * xref:services/image_transfer/methods/finalize[finalize]. This will make the
  * final adjustments and verifications for finishing the transfer process.
  *
  * For example:
@@ -148,9 +148,9 @@ import annotations.Area;
  * ----
  *
  * In case of an error, the transfer's phase will be changed to
- * <<types/image_transfer_phase, finished_failure>>, and
+ * xref:types/image_transfer_phase[finished_failure], and
  * the disk's status will be changed to `Illegal`. Otherwise it will be changed to
- * <<types/image_transfer_phase, finished_success>>, and the disk will be ready
+ * xref:types/image_transfer_phase[finished_success], and the disk will be ready
  * to be used. In both cases, the transfer entity will be removed shortly after.
  *
  *

@@ -28,7 +28,7 @@ import types.Group;
 
 /**
  * Manages a group of users. Use this service to either get groups details or remove groups. In order
- * to add new groups please use <<services/groups, service>> that manages the collection of groups.
+ * to add new groups please use xref:services/groups[service] that manages the collection of groups.
  *
  * @author Ondra Machacek <omachace@redhat.com>
  * @date 24 Apr 2017
