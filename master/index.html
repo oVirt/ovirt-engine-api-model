@@ -9652,8 +9652,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="content">
 Since version 4.2 of the engine this service is intended only to list disks available in the storage
 domain, and to register unregistered disks. All the other operations, like copying a disk, moving a disk, etc, have
-been deprecated and will be removed in the future. To perform those operations use the <a href="#services/disks">service
-that manages all the disks of the system</a>, or the <a href="#services/disk">service that manages an specific disk</a>.
+been deprecated and will be removed in the future. To perform those operations use the <a href="#services/disks">service that manages all the disks of the system</a>
+or the <a href="#services/disk">service that manages a specific disk</a>.
 </td>
 </tr>
 </table>
@@ -15179,7 +15179,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 and <code>format</code> attributes.</p>
 </div>
 <div class="paragraph">
-<p>Note that block storage domains (i.e., storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
+<p>Note that block storage domains (i.e. storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
 FCP) don&#8217;t support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
 explicitly.</p>
 </div>
@@ -25223,7 +25223,7 @@ is set to <code>true</code>.</p></td>
 <div class="paragraph">
 <p>This service provides a mechanism to control an image transfer. The client will have
 to create a transfer by using <a href="#services/image_transfers/methods/add">add</a>
-of the <a href="#services/image_transfers">ImageTransfers</a> service, stating the image to transfer
+of the <a href="#services/image_transfers">image transfers</a> service, stating the image to transfer
 data to/from.</p>
 </div>
 <div class="paragraph">
@@ -32544,7 +32544,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/permits/methods/add"><a class="anchor" href="#services/permits/methods/add"></a><a class="link" href="#services/permits/methods/add">15.175.1. add <span class="small">POST</span></a></h4>
 <div class="paragraph">
-<p>Adds a permit to the role. The permit name can be retrieved from the <a href="#services/cluster_levels">ClusterLevels</a> service.</p>
+<p>Adds a permit to the role. The permit name can be retrieved from the <a href="#services/cluster_levels">cluster_levels</a> service.</p>
 </div>
 <div class="paragraph">
 <p>For example to assign a permit <code>create_vm</code> to the role with id <code>123</code> send a request like this:</p>
@@ -35386,7 +35386,8 @@ a disk with snapshots, the relevant <code>image_id</code> should be specified fo
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When a snapshot is created the default value for the <a href="#types/snapshot/attributes/persist_memorystate">persist_memorystate</a> attribute is <code>true</code>. That means that the content of the memory of the virtual
+<p>When a snapshot is created, the default value for the
+<a href="#types/snapshot/attributes/persist_memorystate">persist_memorystate</a> attribute is <code>true</code>. That means that the content of the memory of the virtual
 machine will be included in the snapshot, and it also means that the virtual machine will be paused
 for a longer time. That can negatively affect applications that are very sensitive to timing (NTP
 servers, for example). In those cases make sure that you set the attribute to <code>false</code>:</p>
@@ -36681,7 +36682,7 @@ storage domain and only then they will be reduced from the storage domain.</p>
 <div class="literalblock">
 <div class="content">
 <pre>Note that this operation is only applicable to block storage domains (i.e., storage domains with the
-&lt;&lt;types/storage_type, storage type&gt; of iSCSI or FCP).</pre>
+xref:types/storage_type[storage type] of iSCSI or FCP).</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -37180,8 +37181,9 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="content">
 Since version 4.2 of the engine this service is intended only to list disks available in the storage
 domain, and to register unregistered disks. All the other operations, like copying a disk, moving a disk, etc, have
-been deprecated and will be removed in the future. To perform those operations use the <a href="#services/disks">service
-that manages all the disks of the system</a>, or the <a href="#services/disk">service that manages an specific disk</a>.
+been deprecated and will be removed in the future. To perform those operations
+use the <a href="#services/disks">service that manages all the disks of the system</a>
+or the <a href="#services/disk">service that manages a specific disk</a>.
 </td>
 </tr>
 </table>
@@ -43429,7 +43431,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>A service to manage a user in the system.
 Use this service to either get users details or remove users.
 In order to add new users please use
-<a href="#services/users">Users</a>.</p>
+<a href="#services/users">users</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 753. Methods summary</caption>
@@ -46044,7 +46046,8 @@ the SPICE protocol.</p>
 </div>
 <div class="paragraph">
 <p>In order to obtain an authentication token for a specific protocol, for
-example for VNC, use the <code>ticket</code> method of the <a href="#services/vm_graphics_console">service</a>, which manages the graphics consoles of the virtual machine, by sending
+example for VNC, use the <code>ticket</code> method of the
+<a href="#services/vm_graphics_console">service</a>, which manages the graphics consoles of the virtual machine, by sending
 a request:</p>
 </div>
 <div class="listingblock">
@@ -47905,8 +47908,7 @@ There is no need to specify the size as the optimal size is calculated automatic
 </td>
 <td class="content">
 In version 3 of the API this used to also remove the disk completely from the system, but starting with
-version 4 it doesn&#8217;t. If you need to remove it completely use the <a href="#services/disk/methods/remove">remove
-method of the top level disk service</a>.
+version 4 it doesn&#8217;t. If you need to remove it completely use the <a href="#services/disk/methods/remove">remove method of the top level disk service</a>.
 </td>
 </tr>
 </table>
@@ -86092,7 +86094,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-04-26 12:50:11 UTC
+Last updated 2022-04-26 12:53:55 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
