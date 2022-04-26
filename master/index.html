@@ -56435,6 +56435,10 @@ This value should be used for an OVF configuration that is taken from a storage 
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CPU pinning will be automatically calculated by the engine when a vm starts and it will be dropped when the vm stops.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>isolate_threads</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The CPU pinning will be automatically calculated by the engine when a vm starts, and it will be dropped when the vm stops.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>manual</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CPU pinning will be manually configured.</p></td>
 </tr>
@@ -56458,7 +56462,16 @@ This value should be used for an OVF configuration that is taken from a storage 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cpu_pinning_policy/values/manual"><a class="anchor" href="#types/cpu_pinning_policy/values/manual"></a><a class="link" href="#types/cpu_pinning_policy/values/manual">16.45.2. manual</a></h4>
+<h4 id="types/cpu_pinning_policy/values/isolate_threads"><a class="anchor" href="#types/cpu_pinning_policy/values/isolate_threads"></a><a class="link" href="#types/cpu_pinning_policy/values/isolate_threads">16.45.2. isolate_threads</a></h4>
+<div class="paragraph">
+<p>The CPU pinning will be automatically calculated by the engine when a vm starts, and it will be dropped when the vm stops.</p>
+</div>
+<div class="paragraph">
+<p>The pinning is exclusive, each virtual thread will get an exclusive physical core. That means that no other VM can use the pinned physical CPU.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/cpu_pinning_policy/values/manual"><a class="anchor" href="#types/cpu_pinning_policy/values/manual"></a><a class="link" href="#types/cpu_pinning_policy/values/manual">16.45.3. manual</a></h4>
 <div class="paragraph">
 <p>The CPU pinning will be manually configured.</p>
 </div>
@@ -56469,7 +56482,7 @@ the CPU configuration, using CpuTune.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cpu_pinning_policy/values/none"><a class="anchor" href="#types/cpu_pinning_policy/values/none"></a><a class="link" href="#types/cpu_pinning_policy/values/none">16.45.3. none</a></h4>
+<h4 id="types/cpu_pinning_policy/values/none"><a class="anchor" href="#types/cpu_pinning_policy/values/none"></a><a class="link" href="#types/cpu_pinning_policy/values/none">16.45.4. none</a></h4>
 <div class="paragraph">
 <p>The CPU pinning won&#8217;t be configured.</p>
 </div>
@@ -56479,7 +56492,7 @@ machine configuration. By default, the VM topology is set with 1 Socket, 1 Core 
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/cpu_pinning_policy/values/resize_and_pin_numa"><a class="anchor" href="#types/cpu_pinning_policy/values/resize_and_pin_numa"></a><a class="link" href="#types/cpu_pinning_policy/values/resize_and_pin_numa">16.45.4. resize_and_pin_numa</a></h4>
+<h4 id="types/cpu_pinning_policy/values/resize_and_pin_numa"><a class="anchor" href="#types/cpu_pinning_policy/values/resize_and_pin_numa"></a><a class="link" href="#types/cpu_pinning_policy/values/resize_and_pin_numa">16.45.5. resize_and_pin_numa</a></h4>
 <div class="paragraph">
 <p>The CPU and NUMA pinning will be configured by the dedicated host.</p>
 </div>
@@ -86056,7 +86069,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-04-14 14:11:45 UTC
+Last updated 2022-04-26 12:45:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
