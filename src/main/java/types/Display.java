@@ -196,5 +196,5 @@ public interface Display {
      * @status added
      * @since 4.5
      */
-    Integer disconnectActionDelay();
+    Short disconnectActionDelay();
 }
