@@ -64,10 +64,32 @@ public interface TemplateService {
      * </action>
      * ----
      *
+     * Since version 4.2 of the engine it is also possible to export a template as a virtual appliance (OVA).
+     * For example, to export template `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
+     *
+     * [source]
+     * ----
+     * POST /ovirt-engine/api/templates/123/export
+     * ----
+     *
+     * With a request body like this:
+     *
+     * [source,xml]
+     * ----
+     * <action>
+     *   <host>
+     *     <name>myhost</name>
+     *   </host>
+     *   <directory>/home/ovirt</directory>
+     *   <filename>myvm.ova</filename>
+     * </action>
+     * ----
+     *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
-     * @date 03 Mar 2018
-     * @status updated_by_docs
+     * @author Arik Hadas <ahadas@redhat.com>
+     * @date 20 Apr 2022
+     * @status added
      */
     interface Export {
         /**

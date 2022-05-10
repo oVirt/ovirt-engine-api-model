@@ -29,8 +29,9 @@ import types.StorageDomain;
  *
  * IMPORTANT: Since version 4.2 of the engine this service is intended only to list disks available in the storage
  * domain, and to register unregistered disks. All the other operations, like copying a disk, moving a disk, etc, have
- * been deprecated and will be removed in the future. To perform those operations use the <<services/disks, service
- * that manages all the disks of the system>>, or the <<services/disk, service that manages an specific disk>>.
+ * been deprecated and will be removed in the future. To perform those operations
+ * use the xref:services/disks[service that manages all the disks of the system]
+ * or the xref:services/disk[service that manages a specific disk].
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
  * @date 4 Nov 2016
@@ -43,7 +44,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * Copies a disk to the specified storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To copy a disk use the <<services/disk/methods/copy, copy>>
+     * compatibility. It will be removed in the future. To copy a disk use the xref:services/disk/methods/copy[copy]
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -76,7 +77,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
      * compatibility. It will be removed in the future. To update a disk use the
-     * <<services/disk/methods/update, update>> operation of the service that manages that disk.
+     * xref:services/disk/methods/update[update] operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @date 4 Jan 2017
@@ -98,7 +99,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * Exports a disk to an export storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To export a disk use the <<services/disk/methods/export, export>>
+     * compatibility. It will be removed in the future. To export a disk use the xref:services/disk/methods/export[export]
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -138,7 +139,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * Moves a disk to another storage domain.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To move a disk use the <<services/disk/methods/move, move>>
+     * compatibility. It will be removed in the future. To move a disk use the xref:services/disk/methods/move[move]
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -170,7 +171,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * Removes a disk.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To remove a disk use the <<services/disk/methods/remove, remove>>
+     * compatibility. It will be removed in the future. To remove a disk use the xref:services/disk/methods/remove[remove]
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -184,7 +185,7 @@ public interface StorageDomainDiskService extends MeasurableService {
      * Sparsify the disk.
      *
      * IMPORTANT: Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To remove a disk use the <<services/disk/methods/remove, remove>>
+     * compatibility. It will be removed in the future. To remove a disk use the xref:services/disk/methods/remove[remove]
      * operation of the service that manages that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>

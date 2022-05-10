@@ -200,8 +200,8 @@ public interface GlusterBricksService {
      *
      * Removing bricks is a two-step process, where the data on bricks to be removed, is first migrated to remaining
      * bricks. Once migration is completed the removal of bricks is confirmed via the API
-     * <<services/gluster_bricks/methods/remove, remove>>. If at any point, the action needs to be cancelled
-     * <<services/gluster_bricks/methods/stop_migrate, stopmigrate>> has to be called.
+     * xref:services/gluster_bricks/methods/remove[remove]. If at any point, the action needs to be cancelled
+     * xref:services/gluster_bricks/methods/stop_migrate[stopmigrate] has to be called.
      *
      * For instance, to delete a brick from a gluster volume with id `123`, send a request:
      *
@@ -224,7 +224,7 @@ public interface GlusterBricksService {
      * ----
      *
      * The migration process can be tracked from the job id returned from the API using
-     * <<services/job/methods/get, job>> and steps in job using <<services/step/methods/get, step>>
+     * xref:services/job/methods/get[job] and steps in job using xref:services/step/methods/get[step]
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -255,7 +255,7 @@ public interface GlusterBricksService {
      * Removes bricks from gluster volume.
      *
      * The recommended way to remove bricks without data loss is to first migrate the data using
-     * <<services/gluster_bricks/methods/stop_migrate, stopmigrate>> and then removing them. If migrate was not called on
+     * xref:services/gluster_bricks/methods/stop_migrate[stopmigrate] and then removing them. If migrate was not called on
      * bricks prior to remove, the bricks are removed without data migration which may lead to data loss.
      *
      * For example, to delete the bricks from gluster volume `123`, send a request like this:
@@ -341,7 +341,7 @@ public interface GlusterBricksService {
 //        }
         /**
          * List of bricks for which data migration needs to be stopped. This list should match the arguments passed to
-         * <<services/gluster_bricks/methods/migrate, migrate>>.
+         * xref:services/gluster_bricks/methods/migrate[migrate].
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 12 Dec 2016

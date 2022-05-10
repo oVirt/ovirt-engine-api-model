@@ -50,7 +50,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </host_nic>
  * ----
  *
- * A bonded interface is represented as a <<types/host_nic, HostNic>> object
+ * A bonded interface is represented as a xref:types/host_nic[HostNic] object
  * containing the `bonding` and `slaves` attributes.
  *
  * For example, the XML representation of a bonded host NIC looks like this:
