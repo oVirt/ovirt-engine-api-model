@@ -2,7 +2,7 @@
 [id="common-concepts"]
 = Common concepts
 
-[id="types"]
+[id="types-concept"]
 == Types
 
 The API uses the _type_ concept to describe the different kinds of objects
@@ -172,7 +172,7 @@ a collection of virtual machines appears as follows:
 }
 ----
 
-[id="services"]
+[id="services-concept"]
 == Services
 
 Services are the parts of the server responsible for retrieving, adding
