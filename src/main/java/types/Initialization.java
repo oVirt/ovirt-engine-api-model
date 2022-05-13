@@ -46,7 +46,7 @@ public interface Initialization {
      * |===
      *
      * For more details on how to use _cloud-init_ see the examples in
-     * link:https://github.com/oVirt/ovirt-engine-sdk/blob/master/sdk/examples/start_vm_with_cloud_init.py[Python] and
+     * link:https://github.com/oVirt/python-ovirt-engine-sdk4/blob/main/examples/start_vm_with_cloud_init.py[Python] and
      * link:https://github.com/oVirt/ovirt-engine-sdk-java/blob/master/sdk/src/test/java/org/ovirt/engine/sdk4/examples/StartVmWithCloudInit.java[Java].
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
