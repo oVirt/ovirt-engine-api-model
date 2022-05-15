@@ -18,7 +18,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Indicates the kind of data managed by a <<types/storage_domain, storage domain>>.
+ * Indicates the kind of data managed by a xref:types/storage_domain[storage domain].
  *
  * @author Aleksei Slaikovski <aslaikov@redhat.com>
  * @date 24 Apr 2017

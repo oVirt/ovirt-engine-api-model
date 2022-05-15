@@ -20,8 +20,8 @@ import org.ovirt.api.metamodel.annotations.Type;
 
 /**
  * Represents an external status.
- * This status is currently used for <<types/host, hosts>>
- * and <<types/storage_domain, storage domains>>, and allows an external
+ * This status is currently used for xref:types/host[hosts]
+ * and xref:types/storage_domain[storage domains], and allows an external
  * system to update status of objects it is aware of.
  *
  * @author Oved Ourfali <oourfali@redhat.com>

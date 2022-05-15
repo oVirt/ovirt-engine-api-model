@@ -51,8 +51,8 @@ import types.Vm;
  * ----
  *
  * Virtual machines and templates in these collections have a similar representation to their counterparts in the
- * top-level <<types/vm, Vm>> and <<types/template, Template>> collections, except they also contain a
- * <<types/storage_domain, StorageDomain>> reference and an <<services/storage_domain_vm/methods/import, import>>
+ * top-level xref:types/vm[Vm] and xref:types/template[Template] collections, except they also contain a
+ * xref:types/storage_domain[StorageDomain] reference and an xref:services/storage_domain_vm/methods/import[import]
  * action.
  *
  * @author Amit Aviram <aaviram@redhat.com>

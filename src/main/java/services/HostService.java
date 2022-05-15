@@ -192,10 +192,10 @@ public interface HostService extends MeasurableService {
      * ----
      *
      * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
-     * the <<services/host/methods/setup_networks, setupnetworks>> request, in which case the new
+     * the xref:services/host/methods/setup_networks[setupnetworks] request, in which case the new
      * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
      * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
-     * waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>> request.
+     * waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig] request.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Martin Mucha <mmucha@redhat.com>
@@ -1004,7 +1004,7 @@ public interface HostService extends MeasurableService {
      * Check if there are upgrades available for the host. If there are upgrades available an icon will be displayed
      * next to host status icon in the Administration Portal. Audit log messages are also added to indicate the
      * availability of upgrades. The upgrade can be started from the webadmin or by using the
-     * <<services/host/methods/upgrade, upgrade>> host action.
+     * xref:services/host/methods/upgrade[upgrade] host action.
      *
      * @author Ravi Nori <rnori@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1246,13 +1246,13 @@ public interface HostService extends MeasurableService {
      * ----
      *
      * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
-     * when the host is rebooted, remember to call <<services/host/methods/commit_net_config, commitnetconfig>>.
+     * when the host is rebooted, remember to call xref:services/host/methods/commit_net_config[commitnetconfig].
      *
      * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
-     * the <<services/host/methods/setup_networks, setupnetworks>> request, in which case the new
+     * the xref:services/host/methods/setup_networks[setupnetworks] request, in which case the new
      * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
      * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
-     * waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>> request.
+     * waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig] request.
      *
      *
      * @author Megan Lewis <melewis@redhat.com>
@@ -1307,7 +1307,7 @@ public interface HostService extends MeasurableService {
         /**
          * Specifies whether to automatically save the configuration in the {hypervisor-name} upon completing
          * the setup and re-establishing connectivity between the {hypervisor-name} and {engine-name},
-         * and without waiting for a separate <<services/host/methods/commit_net_config, commitnetconfig>>
+         * and without waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig]
          * request.
          * The default value is `false`, which means that the configuration will not be
          * saved automatically.
