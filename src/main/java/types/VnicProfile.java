@@ -43,7 +43,7 @@ public interface VnicProfile extends Identified {
      *
      * Port mirroring has the following limitations:
      *
-     *  - Hot plugging a NIC with a vNIC profile that has port mirroring enabled is not supported.
+     *  - Hot linking a NIC with a vNIC profile that has port mirroring enabled is not supported.
      *  - Port mirroring cannot be altered when the vNIC profile is attached to a virtual machine.
      *
      * Given the above limitations, it is recommended that you enable port mirroring on an additional,
