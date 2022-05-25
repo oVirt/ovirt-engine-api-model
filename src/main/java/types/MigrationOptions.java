@@ -42,6 +42,29 @@ public interface MigrationOptions {
     InheritableBoolean encrypted();
 
     /**
+     * Specifies whether and how to use parallel migration connections.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 24 May 2022
+     * @status added
+     * @since 4.5.1
+     */
+    ParallelMigrationsPolicy parallelMigrationsPolicy();
+
+    /**
+     * Specifies how many parallel migration connections to use.
+     * May be specified only when ParallelMigrationsPolicy is CUSTOM.
+     * The valid range of values is 2-255.
+     * The recommended range of values is 2-16.
+     *
+     * @author Milan Zamazal <mzamazal@redhat.com>
+     * @date 24 May 2022
+     * @status added
+     * @since 4.5.1
+     */
+    Integer customParallelMigrations();
+
+    /**
      * The bandwidth that is allowed to be used by the migration.
      *
      * @author Megan Lewis <melewis@redhat.com>
