@@ -328,7 +328,7 @@ Open it with your browser and check your changes.
 To build this project use the usual Maven command line:
 
 ```sh
-$ mvn clean install
+$ mvn clean install -Pgenerate-adoc-html
 ```
 
 ## Releasing
