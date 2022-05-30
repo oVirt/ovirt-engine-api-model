@@ -1,5 +1,7 @@
 # oVirt Engine API Model
 
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-api-model/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-api-model/)
+
 Welcome to the oVirt Engine API model source repository.
 This repository is hosted on [GitHub:ovirt-engine-api-model](https://github.com/oVirt/ovirt-engine-api-model)
 
