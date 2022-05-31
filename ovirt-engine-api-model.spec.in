@@ -23,8 +23,6 @@ BuildRequires:	mvn(org.apache.maven.plugins:maven-antrun-plugin)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-compiler-plugin)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-source-plugin)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-surefire-plugin)
-BuildRequires:	mvn(org.asciidoctor:asciidoctorj)
-BuildRequires:	mvn(org.asciidoctor:asciidoctor-maven-plugin)
 BuildRequires:	mvn(org.codehaus.mojo:exec-maven-plugin)
 BuildRequires:	mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
 
