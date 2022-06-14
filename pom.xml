@@ -6,7 +6,7 @@
 
   <groupId>org.ovirt.engine.api</groupId>
   <artifactId>model</artifactId>
-  <version>4.5.8-SNAPSHOT</version>
+  <version>4.5.8</version>
 
   <name>oVirt API Model</name>
 
@@ -42,7 +42,7 @@
     <connection>scm:git:git://github.com/oVirt/ovirt-engine-api-model.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/oVirt/ovirt-engine-api-model.git</developerConnection>
     <url>https://github.com/oVirt/ovirt-engine-api-model</url>
-    <tag>HEAD</tag>
+    <tag>4.5.8</tag>
   </scm>
 
   <properties>
