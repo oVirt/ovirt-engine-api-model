@@ -1,6 +1,6 @@
 = Changes
 
-4.5.8 / Jun 14 2022
+4.5.10 / Jun 14 2022
 
     Add parallel migration connections
     https://bugzilla.redhat.com/2078500
