@@ -1,5 +1,23 @@
 = Changes
 
+4.5.8 / Jun 14 2022
+
+    Add parallel migration connections
+    https://bugzilla.redhat.com/2078500
+
+    Introduce isolate threads CpuPinningPolicy
+    https://bugzilla.redhat.com/1782077
+
+    spec: drop deps on asciidoctor
+
+    Update build instructions
+
+    Standardize links within documentaiton
+
+    Define RPM requirements manually
+
+    copr: allow to build src.rpm in fc35 buildroot
+
 4.5.7 / Mar 29 2022
 
     Release for techical reasons, nothing new
