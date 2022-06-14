@@ -40,7 +40,7 @@
 
   <scm>
     <connection>scm:git:git://github.com/oVirt/ovirt-engine-api-model.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/oVirt/ovirt-engine-api-model.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com:oVirt/ovirt-engine-api-model.git</developerConnection>
     <url>https://github.com/oVirt/ovirt-engine-api-model</url>
     <tag>HEAD</tag>
   </scm>
