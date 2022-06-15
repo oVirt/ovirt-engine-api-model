@@ -15,6 +15,7 @@ BuildArch:	noarch
 # provides java-11-headless.
 AutoReq:	no
 
+BuildRequires: dnf
 Requires:	ovirt-engine-api-metamodel-server
 Requires:	java-11-openjdk-headless >= 1:11.0.0
 Requires:	javapackages-filesystem
