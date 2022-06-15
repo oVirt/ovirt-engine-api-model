@@ -123,7 +123,7 @@ public interface VmCdromService {
      * ----
      *
      * By default the above operations change permanently the disk that will be visible to the virtual machine
-     * after the next boot, but they don't have any effect on the currently running virtual machine. If you want
+     * after the next boot, but they do not have any effect on the currently running virtual machine. If you want
      * to change the disk that is visible to the current running virtual machine, add the `current=true` parameter.
      * For example, to eject the current disk send a request like this:
      *

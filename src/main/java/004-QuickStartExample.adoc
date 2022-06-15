@@ -128,7 +128,7 @@ parameter:
 # systemctl restart ovirt-engine
 ----
 
-Changing this parameter affects all users of the API that don't
+Changing this parameter affects all users of the API that do not
 specify the version explicitly.
 ====
 

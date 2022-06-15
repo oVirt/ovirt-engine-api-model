@@ -75,7 +75,7 @@ public interface DiskAttachmentsService {
      * POST /ovirt-engine/api/vms/345/diskattachments
      * ----
      *
-     * IMPORTANT: The server accepts requests that don't contain the `active` attribute, but the effect is
+     * IMPORTANT: The server accepts requests that do not contain the `active` attribute, but the effect is
      * undefined. In some cases the disk will be automatically activated and in other cases it won't. To
      * avoid issues it is strongly recommended to always include the `active` attribute with the desired
      * value.

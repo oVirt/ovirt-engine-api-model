@@ -58,7 +58,7 @@ public interface Device extends Identified {
     @Link Vm[] vms();
 
     /**
-     * Don't use this element, use `vms` instead.
+     * Do not use this element, use `vms` instead.
      *
      * @author Byron Gravenorst <bgraveno@redhat.com>
      * @date 31 Oct 2016

@@ -50,7 +50,7 @@ public interface DisksService {
      * and `format` attributes.
      *
      * Note that block storage domains (i.e. storage domains with the xref:types/storage_type[storage type] of iSCSI or
-     * FCP) don't support the combination of the raw `format` with `sparse=true`, so `sparse=false` must be stated
+     * FCP) do not support the combination of the raw `format` with `sparse=true`, so `sparse=false` must be stated
      * explicitly.
      *
      * To create a new floating image disk with specified `provisioned_size`, `format` and `name` on a storage domain
