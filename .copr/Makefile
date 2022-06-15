@@ -1,7 +1,7 @@
 .PHONY: installdeps git_cfg_safe srpm
 
 installdeps:
-	dnf -y install git gzip java-11-openjdk-devel make maven rpm-build sed unzip
+	dnf -y install git gzip make rpm-build sed unzip
 
 git_cfg_safe:
 	# From git 2.35.2 we need to mark temporary directory, where the project is cloned to, as safe, otherwise
