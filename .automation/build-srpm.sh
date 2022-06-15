@@ -14,7 +14,7 @@ ARTIFACTS_DIR=${1:-exported-artifacts}
 SKIP_TESTS=${2:-0}
 
 # Prepare the version string (with support for SNAPSHOT versioning)
-VERSION=${1.2.3-0.${GIT_HASH}.$(date +%04Y%02m%02d%02H%02M)}
+VERSION=1.2.3-0.${GIT_HASH}.$(date +%04Y%02m%02d%02H%02M)
 IFS='-' read -ra VERSION <<< "$VERSION"
 RELEASE=${VERSION[1]-1}
 
