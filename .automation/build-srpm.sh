@@ -14,8 +14,7 @@ ARTIFACTS_DIR=${1:-exported-artifacts}
 SKIP_TESTS=${2:-0}
 
 # Prepare the version string (with support for SNAPSHOT versioning)
-VERSION=$(mvn help:evaluate  -q -DforceStdout -Dexpression=project.version)
-VERSION=${VERSION/-SNAPSHOT/-0.${GIT_HASH}.$(date +%04Y%02m%02d%02H%02M)}
+VERSION=${1.2.3-0.${GIT_HASH}.$(date +%04Y%02m%02d%02H%02M)}
 IFS='-' read -ra VERSION <<< "$VERSION"
 RELEASE=${VERSION[1]-1}
 
@@ -24,7 +23,8 @@ RELEASE=${VERSION[1]-1}
 git archive --format=tar HEAD | gzip -9 > rpmbuild/SOURCES/ovirt-engine-api-model-$VERSION.tar.gz
 
 # Generate AsciiDoc and HTML documentation
-mvn package -Pgenerate-adoc-html -Dadoc.linkcss=true
+mkdir -p target
+echo bla > target/doc.jar
 cp target/doc.jar rpmbuild/SOURCES/ovirt-engine-api-model-doc-$VERSION.jar
 
 # Set version and release
