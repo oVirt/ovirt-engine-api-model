@@ -515,7 +515,6 @@ duplicates.
 ====
 
 [id="documents/003_common_concepts/follow"]
-[id="following-links"]
 == Following links
 
 The API returns references to related objects as _links_. For example, when

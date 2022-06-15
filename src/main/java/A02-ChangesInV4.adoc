@@ -808,7 +808,7 @@ POST /ovirt-engine/api/vms?clone=true
 ----
 
 The `disks.detach_only` element was used to indicate that when removing
-a virtual machine the disks don't have to be removed, but just detached
+a virtual machine the disks do not have to be removed, but just detached
 from the virtual machine:
 
 ----
@@ -1464,8 +1464,8 @@ DELETE /ovirt-engine/api/templates/123/disksattachments/456?force=true
 DELETE /ovirt-engine/api/templates/123/disksattachments/456?storage_domain=123
 ----
 
-[id="don't-remove-disks-via-the-vm-disk-api"]
-=== Don't remove disks via the VM disk API
+[id="do-not-remove-disks-via-the-vm-disk-api"]
+=== Do not remove disks via the VM disk API
 
 Removing an entity by deleting `/vms/123/disks/456` means removing the
 relationship between the VM and the disk - i.e., this operation should just
