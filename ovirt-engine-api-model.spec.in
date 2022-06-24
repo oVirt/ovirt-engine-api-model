@@ -17,7 +17,7 @@ AutoReq:	no
 
 BuildRequires:	java-11-openjdk-devel
 BuildRequires:	maven-local
-BuildRequires:	ovirt-engine-api-metamodel
+BuildRequires:	ovirt-engine-api-metamodel >= 1.3.8
 BuildRequires:	mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-antrun-plugin)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-compiler-plugin)
