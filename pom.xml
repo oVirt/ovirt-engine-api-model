@@ -52,7 +52,7 @@
 
     <!-- The version of the metamodel used to specify the model and to generate
          code from it: -->
-    <metamodel.version>1.3.7</metamodel.version>
+    <metamodel.version>1.3.8</metamodel.version>
 
     <!-- The name of the product and the engine that will be used in the generated
          documentation: -->
@@ -223,9 +223,9 @@
                   <goal>java</goal>
                 </goals>
                 <configuration>
-                  <mainClass>org.ovirt.api.metamodel.tool.Main</mainClass>
+                  <mainClass>org.ovirt.api.metamodel.doctool.Main</mainClass>
                   <arguments>
-                    <argument>org.ovirt.api.metamodel.tool.Tool</argument>
+                    <argument>org.ovirt.api.metamodel.doctool.DocTool</argument>
                     <argument>--model=${project.basedir}/src/main/java</argument>
                     <argument>--adoc-separator=${adoc.separator}</argument>
                     <argument>--adoc-attribute=product-name:${product.name}</argument>
@@ -246,7 +246,7 @@
             <dependencies>
               <dependency>
                 <groupId>org.ovirt.engine.api</groupId>
-                <artifactId>metamodel-tool</artifactId>
+                <artifactId>metamodel-doctool</artifactId>
                 <version>${metamodel.version}</version>
               </dependency>
             </dependencies>
