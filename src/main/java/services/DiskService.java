@@ -487,7 +487,7 @@ public interface DiskService extends MeasurableService {
      * Refreshing a direct LUN disk is useful when:
      *
      * - The LUN was added using the API without the host parameter, and therefore does not contain
-     *   any information from the storage (see xref:services/disks/methods/add[DisksService::add]).
+     *   any information from the storage (see xref:services-disks-methods-add[DisksService::add]).
      * - New information about the LUN is available on the storage and you want to update the LUN with it.
      *
      * To refresh direct LUN disk `123` using host `456`, send the following request:

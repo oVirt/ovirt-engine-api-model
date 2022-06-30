@@ -98,7 +98,7 @@ public interface GlusterBrickService extends MeasurableService {
      *
      * Removes a brick from the underlying gluster volume and deletes entries from database. This can be used only when
      * removing a single brick without data migration. To remove multiple bricks and with data migration, use
-     * xref:services/gluster_bricks/methods/migrate[migrate] instead.
+     * xref:services-gluster_bricks-methods-migrate[migrate] instead.
      *
      * For example, to delete brick `234` from gluster volume `123`, send a request like this:
      *
@@ -122,8 +122,8 @@ public interface GlusterBrickService extends MeasurableService {
      * Replaces this brick with a new one.
      *
      * IMPORTANT: This operation has been deprecated since version 3.5 of the engine and will be removed in the future.
-     * Use xref:services/gluster_bricks/methods/add[add brick(s)] and
-     * xref:services/gluster_bricks/methods/migrate[migrate brick(s)] instead.
+     * Use xref:services-gluster_bricks-methods-add[add brick(s)] and
+     * xref:services-gluster_bricks-methods-migrate[migrate brick(s)] instead.
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016

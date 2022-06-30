@@ -48,7 +48,7 @@ public interface OpenstackNetworkService {
          * using the `id` or `name` attributes. The rest of
          * the attributes will be ignored.
          *
-         * NOTE: If xref:types/open_stack_network_provider/attributes/auto_sync[`auto_sync`] is
+         * NOTE: If xref:types-open_stack_network_provider-attributes-auto_sync[`auto_sync`] is
          * enabled for the provider, the network might be imported automatically. To
          * prevent this, automatic import can be disabled by setting the `auto_sync` to false,
          * and enabling it again after importing the network.

@@ -80,7 +80,7 @@ public interface TemplatesService {
      * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
      * of the original virtual machine and the characteristics that you want to change. For example, if the original
      * virtual machine has a disk with the identifier `456`, and, for that disk, you want to change the name to `mydisk`
-     * the format to xref:types/disk_format[_Copy On Write_] and make it xref:types/disk[sparse], send a request body like
+     * the format to xref:types-disk_format[_Copy On Write_] and make it xref:types-disk[sparse], send a request body like
      * this:
      *
      * [source,xml]
