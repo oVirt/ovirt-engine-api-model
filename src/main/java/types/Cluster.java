@@ -460,9 +460,9 @@ public interface Cluster extends Identified {
      * the networks of the referenced network provider are available on every host
      * in the cluster.
      * External network providers of a cluster can only be set during
-     * xref:services/clusters/methods/add[adding the cluster].
+     * xref:services-clusters-methods-add[adding the cluster].
      * This value may be overwritten for individual hosts during
-     * xref:services/hosts/methods/add[adding the host].
+     * xref:services-hosts-methods-add[adding the host].
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

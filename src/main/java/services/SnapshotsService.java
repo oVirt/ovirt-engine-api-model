@@ -85,7 +85,7 @@ public interface SnapshotsService {
      * [IMPORTANT]
      * ====
      * When a snapshot is created, the default value for the
-     * xref:types/snapshot/attributes/persist_memorystate[persist_memorystate] attribute is `true`. That means that the content of the memory of the virtual
+     * xref:types-snapshot-attributes-persist_memorystate[persist_memorystate] attribute is `true`. That means that the content of the memory of the virtual
      * machine will be included in the snapshot, and it also means that the virtual machine will be paused
      * for a longer time. That can negatively affect applications that are very sensitive to timing (NTP
      * servers, for example). In those cases make sure that you set the attribute to `false`:

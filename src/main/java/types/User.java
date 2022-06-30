@@ -103,7 +103,7 @@ public interface User extends Identified {
      * which are used to customize the settings per individual
      * user.
      * Note that since version 4.4.5 this property is deprecated and preserved only for backwards
-     * compatibility. It will be removed in the future. Please use the xref:services/user_option[options]
+     * compatibility. It will be removed in the future. Please use the xref:services-user_option[options]
      * endpoint instead.
      *
      * @author Bohdan Iakymets <biakymet@redhat.com>

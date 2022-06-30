@@ -107,7 +107,7 @@ public interface StorageDomainService {
     /**
      * Updates a storage domain.
      *
-     * Not all of the xref:types/storage_domain[StorageDomain]'s attributes are updatable after creation. Those that can be
+     * Not all of the xref:types-storage_domain[StorageDomain]'s attributes are updatable after creation. Those that can be
      * updated are: `name`, `description`, `comment`, `warning_low_space_indicator`, `critical_space_action_blocker` and
      * `wipe_after_delete.` (Note that changing the `wipe_after_delete` attribute will not change the wipe after delete
      * property of disks that already exist).
@@ -294,7 +294,7 @@ public interface StorageDomainService {
      * ----
      *
      *  Note that this operation is only applicable to block storage domains (i.e., storage domains with the
-     *  xref:types/storage_type[storage type] of iSCSI or FCP).
+     *  xref:types-storage_type[storage type] of iSCSI or FCP).
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

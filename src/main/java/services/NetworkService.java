@@ -168,7 +168,7 @@ public interface NetworkService {
      * NOTE: To remove an external logical network, the network has to be removed directly from its provider by
      * link:https://developer.openstack.org/api-ref/network[OpenStack Networking API].
      * The entity representing the external network inside {product-name} is removed automatically,
-     * if xref:types/open_stack_network_provider/attributes/auto_sync[`auto_sync`] is enabled for the provider,
+     * if xref:types-open_stack_network_provider-attributes-auto_sync[`auto_sync`] is enabled for the provider,
      * otherwise the entity has to be removed using this method.
      *
      * @author Martin Mucha <mmucha@redhat.com>

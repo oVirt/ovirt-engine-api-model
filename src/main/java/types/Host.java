@@ -377,8 +377,8 @@ public interface Host extends Identified {
      *
      * IMPORTANT: When a host or collection of hosts is retrieved, this attribute is not included unless the
      * `all_content` parameter of the operation is explicitly set to `true`. See the documentation of the
-     * operations that retrieve xref:services/host/methods/get/parameters/all_content[one] or
-     * xref:services/hosts/methods/list/parameters/all_content[multiple] hosts for details.
+     * operations that retrieve xref:services-host-methods-get-parameters-all_content[one] or
+     * xref:services-hosts-methods-list-parameters-all_content[multiple] hosts for details.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -637,7 +637,7 @@ public interface Host extends Identified {
      * External network providers provisioned on the host.
      *
      * This attribute is read-only. Setting it will have no effect on the host.
-     * The value of this parameter reflects the xref:services/cluster_external_providers[Default Network Provider]
+     * The value of this parameter reflects the xref:services-cluster_external_providers[Default Network Provider]
      * of the cluster.
      *
      * @author Dominik Holler <dholler@redhat.com>

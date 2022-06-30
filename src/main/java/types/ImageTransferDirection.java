@@ -19,12 +19,12 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The xref:types/image_transfer[image transfer] direction for a transfer.
+ * The xref:types-image_transfer[image transfer] direction for a transfer.
  *
  * When adding a new transfer, the user can choose whether the transfer will be to an image, choosing `upload`,
  * or to transfer from an image- choosing `download` as an ImageTransferDirection.
  *
- * Please refer to xref:services/image_transfer[image transfer] for further
+ * Please refer to xref:services-image_transfer[image transfer] for further
  * documentation.
  *
  * @author Amit Aviram <aaviram@redhat.com>

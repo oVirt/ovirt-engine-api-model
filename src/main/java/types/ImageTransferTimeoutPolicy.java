@@ -19,12 +19,12 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * The xref:types/image_transfer[image transfer] timeout policy.
+ * The xref:types-image_transfer[image transfer] timeout policy.
  *
  * Define how the system handles a transfer when the client is inactive
  * for inactivityTimeout seconds.
  *
- * Please refer to xref:services/image_transfer[image transfer] for further
+ * Please refer to xref:services-image_transfer[image transfer] for further
  * documentation.
  *
  * @author Ahmad Khiet <akhiet@redhat.com>
