@@ -43,7 +43,7 @@ public interface StorageDomainsService {
     /**
      * Adds a new storage domain.
      *
-     * Creation of a new xref:types/storage_domain[StorageDomain] requires the `name`, `type`, `host`, and `storage`
+     * Creation of a new xref:types-storage_domain[StorageDomain] requires the `name`, `type`, `host`, and `storage`
      * attributes. Identify the `host` attribute with the `id` or `name` attributes. In {product-name} 3.6 and
      * later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
      * `wipe_after_delete` in the POST request. This option can be edited after the domain is created, but doing so will

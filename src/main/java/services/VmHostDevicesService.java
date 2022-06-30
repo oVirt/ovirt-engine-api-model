@@ -48,7 +48,7 @@ public interface VmHostDevicesService {
      * POST /ovirt-engine/api/vms/123/hostdevices
      * ----
      *
-     * With request body of type xref:types/host_device[HostDevice], for example
+     * With request body of type xref:types-host_device[HostDevice], for example
      *
      * [source,xml]
      * ----
@@ -60,7 +60,7 @@ public interface VmHostDevicesService {
      *
      * NOTE: Attachment of a PCI device that is part of a bigger IOMMU group will result in attachment of the remaining
      * devices from that IOMMU group as "placeholders". These devices are then identified using the `placeholder`
-     * attribute of the xref:types/host_device[HostDevice] type set to `true`.
+     * attribute of the xref:types-host_device[HostDevice] type set to `true`.
      *
      * In case you want attach a device that already serves as an IOMMU placeholder, simply issue an explicit Add operation
      * for it, and its `placeholder` flag will be cleared, and the device will be accessible to the virtual machine.

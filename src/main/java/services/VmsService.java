@@ -168,7 +168,7 @@ public interface VmsService {
      * ----
      *
      * In order to boot from CDROM, you first need to insert a disk, as described in the
-     * xref:services/vm_cdrom[CDROM service]. Then booting from that CDROM can be specified using the `os.boot.devices`
+     * xref:services-vm_cdrom[CDROM service]. Then booting from that CDROM can be specified using the `os.boot.devices`
      * attribute:
      *
      * [source,xml]
@@ -283,7 +283,7 @@ public interface VmsService {
          * Specifies if and how the auto CPU and NUMA configuration is applied.
          *
          * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-         * compatibility. It will be removed in the future. Instead please use POST followed by xref:services/vms/methods/add[add operation].
+         * compatibility. It will be removed in the future. Instead please use POST followed by xref:services-vms-methods-add[add operation].
          *
          * An example for a request:
          *

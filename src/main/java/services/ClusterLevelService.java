@@ -23,7 +23,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ClusterLevel;
 
 /**
- * Provides information about a specific cluster level. See the xref:services/cluster_levels[ClusterLevels] service for
+ * Provides information about a specific cluster level. See the xref:services-cluster_levels[ClusterLevels] service for
  * more information.
  */
 @Service
@@ -38,7 +38,7 @@ public interface ClusterLevelService {
      * GET /ovirt-engine/api/clusterlevels/3.6
      * ----
      *
-     * That will return a xref:types/cluster_level[ClusterLevel] object containing the supported CPU types, and other
+     * That will return a xref:types-cluster_level[ClusterLevel] object containing the supported CPU types, and other
      * information which describes the cluster level:
      *
      * [source,xml]

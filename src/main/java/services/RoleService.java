@@ -86,7 +86,7 @@ public interface RoleService {
     /**
      * Updates a role. You are allowed to update `name`, `description` and `administrative` attributes after role is
      * created. Within this endpoint you can't add or remove roles permits you need to use
-     * xref:services/permits[service] that manages permits of role.
+     * xref:services-permits[service] that manages permits of role.
      *
      * For example to update role's `name`, `description` and `administrative` attributes send a request like this:
      *

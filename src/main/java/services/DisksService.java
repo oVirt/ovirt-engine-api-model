@@ -46,7 +46,7 @@ public interface DisksService {
      *
      * *Adding a new image disk:*
      *
-     * When creating a new floating image xref:types/disk[Disk], the API requires the `storage_domain`, `provisioned_size`
+     * When creating a new floating image xref:types-disk[Disk], the API requires the `storage_domain`, `provisioned_size`
      * and `format` attributes.
      *
      * Note that block storage domains (i.e. storage domains with the xref:types/storage_type[storage type] of iSCSI or
