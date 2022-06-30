@@ -1,5 +1,4 @@
 [appendix]
-:_content-type: ASSEMBLY
 [id="primitive-types"]
 = Primitive types
 
