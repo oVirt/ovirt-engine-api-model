@@ -1,5 +1,4 @@
 [appendix]
-:_content-type: ASSEMBLY
 [id="changes-in-version-4-of-the-api"]
 = Changes in version 4 of the API
 
@@ -402,7 +401,7 @@ replaced by inner elements:
 </cpu>
 ----
 
-[id="use-elements-instead-of-attributes-in-vcpu-pin"]
+[id="use-elements-instead-of-attributes-in-vcpu-pin-2"]
 === Use elements instead of attributes in VCPU pin
 
 In the past the VCPU pin element used attributes for its properties:
@@ -427,7 +426,7 @@ replaced by inner elements:
 </cpu_tune>
 ----
 
-[id="use-elements-instead-of-attributes-in-vcpu-pin"]
+[id="use-elements-instead-of-attributes-in-vcpu-pin-1"]
 === Use elements instead of attributes in VCPU pin
 
 In the past the `version` element used attributes for its properties:
