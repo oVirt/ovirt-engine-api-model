@@ -58,4 +58,11 @@ public interface OperatingSystemInfo extends Identified {
      * @since 4.2.4
      */
     Architecture architecture();
+
+    /**
+     * TPM support status.
+     * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
+     * @since 4.5.2
+     */
+    TpmSupport tpmSupport();
 }
