@@ -74,7 +74,7 @@ public interface VmService extends MeasurableService {
     /**
      * Permanently restores the virtual machine to the state of the previewed snapshot.
      *
-     * See the xref:services/vm/methods/preview_snapshot[preview_snapshot] operation for details.
+     * See the xref:services-vm-methods-preview_snapshot[preview_snapshot] operation for details.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -651,8 +651,8 @@ public interface VmService extends MeasurableService {
      *
      * The snapshot is indicated with the `snapshot.id` parameter. It is restored temporarily, so that the content can
      * be inspected. Once that inspection is finished, the state of the virtual machine can be made permanent, using the
-     * xref:services/vm/methods/commit_snapshot[commit_snapshot] method, or discarded using the
-     * xref:services/vm/methods/undo_snapshot[undo_snapshot] method.
+     * xref:services-vm-methods-commit_snapshot[commit_snapshot] method, or discarded using the
+     * xref:services-vm-methods-undo_snapshot[undo_snapshot] method.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -738,7 +738,7 @@ public interface VmService extends MeasurableService {
      * Apply an automatic CPU and NUMA configuration on the VM.
      *
      * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. Instead please use PUT followed by xref:services/vm/methods/update[update operation].
+     * compatibility. It will be removed in the future. Instead please use PUT followed by xref:services-vm-methods-update[update operation].
      *
      * An example for a request:
      * [source]
@@ -1515,7 +1515,7 @@ public interface VmService extends MeasurableService {
      *
      * In order to obtain an authentication token for a specific protocol, for
      * example for VNC, use the `ticket` method of the
-     * xref:services/vm_graphics_console[service], which manages the graphics consoles of the virtual machine, by sending
+     * xref:services-vm_graphics_console[service], which manages the graphics consoles of the virtual machine, by sending
      * a request:
      *
      * [source]
@@ -1550,7 +1550,7 @@ public interface VmService extends MeasurableService {
     /**
      * Restores the virtual machine to the state it had before previewing the snapshot.
      *
-     * See the xref:services/vm/methods/preview_snapshot[preview_snapshot] operation for details.
+     * See the xref:services-vm-methods-preview_snapshot[preview_snapshot] operation for details.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com:
      * @author Megan Lewis <melewis@redhat.com>

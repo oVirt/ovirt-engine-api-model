@@ -45,7 +45,7 @@ public interface ExternalVmImportsService {
      * POST /externalvmimports
      * ----
      *
-     * With request body of type xref:types/external_vm_import[ExternalVmImport], for example:
+     * With request body of type xref:types-external_vm_import[ExternalVmImport], for example:
      *
      * [source,xml]
      * ----

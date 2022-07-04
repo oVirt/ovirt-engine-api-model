@@ -19,7 +19,7 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Parameter for the xref:types/network_filter[network filter].
+ * Parameter for the xref:types-network_filter[network filter].
  *
  * See link:https://libvirt.org/formatnwfilter.html#nwfconceptsvars[Libvirt-Filters] for further details.
  * This is a example of the XML representation:

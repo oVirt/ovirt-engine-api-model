@@ -37,7 +37,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 @Area("Infrastructure")
 public interface PermitsService {
     /**
-     * Adds a permit to the role. The permit name can be retrieved from the xref:services/cluster_levels[cluster_levels] service.
+     * Adds a permit to the role. The permit name can be retrieved from the xref:services-cluster_levels[cluster_levels] service.
      *
      * For example to assign a permit `create_vm` to the role with id `123` send a request like this:
      *
