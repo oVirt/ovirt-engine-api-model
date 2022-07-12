@@ -34,37 +34,46 @@ public interface SystemOptionService {
     /**
      * Get the values of specific configuration option.
      *
-     * For example to retrieve the values of configuration option `MigrationPoliciesSupported` send a request like this:
+     * For example to retrieve the values of configuration option `MigrationPolicies` send a request like this:
      *
      * [source]
      * ----
-     * GET /ovirt-engine/api/options/MigrationPoliciesSupported
+     * GET /ovirt-engine/api/options/MigrationPolicies
      * ----
      *
      * The response to that request will be the following:
      *
      * [source,xml]
      * ----
-     * <system_option href="/ovirt-engine/api/options/MigrationPoliciesSupported" id="MigrationPoliciesSupported">
-     *   <name>MigrationPoliciesSupported</name>
-     *   <values>
-     *     <system_option_value>
-     *       <value>true</value>
-     *       <version>4.0</version>
-     *     </system_option_value>
-     *     <system_option_value>
-     *       <value>true</value>
-     *       <version>4.1</version>
-     *     </system_option_value>
-     *     <system_option_value>
-     *       <value>true</value>
-     *       <version>4.2</version>
-     *     </system_option_value>
-     *     <system_option_value>
-     *       <value>false</value>
-     *       <version>3.6</version>
-     *     </system_option_value>
-     *   </values>
+     * <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+     * <system_option href="/ovirt-engine/api/options/MigrationPolicies" id="MigrationPolicies">
+     *     <name>MigrationPolicies</name>
+     *     <values>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.2</version>
+     *         </system_option_value>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.3</version>
+     *         </system_option_value>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.4</version>
+     *         </system_option_value>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.5</version>
+     *         </system_option_value>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.6</version>
+     *         </system_option_value>
+     *         <system_option_value>
+     *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+     *             <version>4.7</version>
+     *         </system_option_value>
+     *     </values>
      * </system_option>
      * ----
      *
@@ -82,8 +91,8 @@ public interface SystemOptionService {
      * ====
      *
      * @author Miroslava Voglova <mvoglova@redhat.com>
-     * @date 18 Sep 2017
-     * @status added
+     * @date 12 Jul 2022
+     * @status updated
      * @since 4.2
      */
     interface Get{
@@ -102,32 +111,32 @@ public interface SystemOptionService {
          * should be returned.
          * If this parameter isn't used then all the versions will be returned.
          *
-         * For example, to get the value of the `MigrationPoliciesSupported` option but only for version `4.2` send
+         * For example, to get the value of the `MigrationPolicies` option but only for version `4.2` send
          * a request like this:
          *
          * [source]
          * ----
-         * GET /ovirt-engine/api/options/MigrationPoliciesSupported?version=4.2
+         * GET /ovirt-engine/api/options/MigrationPolicies?version=4.2
          * ----
          *
          * The response to that request will be like this:
          *
          * [source,xml]
          * ----
-         * <system_option href="/ovirt-engine/api/options/MigrationPoliciesSupported" id="MigrationPoliciesSupported">
-         *   <name>MigrationPoliciesSupported</name>
-         *   <values>
-         *     <system_option_value>
-         *       <value>true</value>
-         *       <version>4.2</version>
-         *     </system_option_value>
-         *   </values>
+         * <system_option href="/ovirt-engine/api/options/MigrationPolicies" id="MigrationPolicies">
+         *     <name>MigrationPolicies</name>
+         *     <values>
+         *         <system_option_value>
+         *             <value>[{"id":{"uuid":"80554327-0569-496b-bdeb-fcbbf52b827b"},...}]</value>
+         *             <version>4.2</version>
+         *         </system_option_value>
+         *     </values>
          * </system_option>
          * ----
          *
          * @author Miroslava Voglova <mvoglova@redhat.com>
-         * @date 18 Sep 2017
-         * @status added
+         * @date 12 Jul 2022
+         * @status updated
          * @since 4.2
          */
         @In String version();
