@@ -737,8 +737,8 @@
 <li><a href="#removed-the-guest_info-element">7.13. Removed the <code>guest_info</code> element</a></li>
 <li><a href="#replaced-cpu-id-attribute-with-type-element">7.14. Replaced CPU <code>id</code> attribute with <code>type</code> element</a></li>
 <li><a href="#use-elements-instead-of-attributes-in-cpu-topology">7.15. Use elements instead of attributes in CPU topology</a></li>
-<li><a href="#use-elements-instead-of-attributes-in-vcpu-pin">7.16. Use elements instead of attributes in VCPU pin</a></li>
-<li><a href="#use-elements-instead-of-attributes-in-vcpu-pin">7.17. Use elements instead of attributes in VCPU pin</a></li>
+<li><a href="#use-elements-instead-of-attributes-in-vcpu-pin-2">7.16. Use elements instead of attributes in VCPU pin</a></li>
+<li><a href="#use-elements-instead-of-attributes-in-vcpu-pin-1">7.17. Use elements instead of attributes in VCPU pin</a></li>
 <li><a href="#use-elements-instead-of-attributes-in-memory-overcommit">7.18. Use elements instead of attributes in memory overcommit</a></li>
 <li><a href="#use-elements-instead-of-attributes-in-console">7.19. Use elements instead of attributes in <code>console</code></a></li>
 <li><a href="#use-elements-instead-of-attributes-in-virtio-scsi">7.20. Use elements instead of attributes in VIRTIO SCSI</a></li>
@@ -9653,8 +9653,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <td class="content">
 Since version 4.2 of the engine this service is intended only to list disks available in the storage
 domain, and to register unregistered disks. All the other operations, like copying a disk, moving a disk, etc, have
-been deprecated and will be removed in the future. To perform those operations use the <a href="#services/disks">service that manages all the disks of the system</a>
-or the <a href="#services/disk">service that manages a specific disk</a>.
+been deprecated and will be removed in the future. To perform those operations use the <a href="#services-disks">service that manages all the disks of the system</a>
+or the <a href="#services-disk">service that manages a specific disk</a>.
 </td>
 </tr>
 </table>
@@ -9719,7 +9719,7 @@ or the <a href="#services/disk">service that manages a specific disk</a>.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disk/methods/copy">copy</a>
+compatibility. It will be removed in the future. To copy a disk use the <a href="#services-disk-methods-copy">copy</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -9770,7 +9770,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To export a disk use the <a href="#services/disk/methods/export">export</a>
+compatibility. It will be removed in the future. To export a disk use the <a href="#services-disk-methods-export">export</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -9859,7 +9859,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To move a disk use the <a href="#services/disk/methods/move">move</a>
+compatibility. It will be removed in the future. To move a disk use the <a href="#services-disk-methods-move">move</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -9922,7 +9922,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services-disk-methods-remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -9942,7 +9942,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services-disk-methods-remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -9963,7 +9963,7 @@ operation of the service that manages that disk.
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To update a disk use the
-<a href="#services/disk/methods/update">update</a> operation of the service that manages that disk.
+<a href="#services-disk-methods-update">update</a> operation of the service that manages that disk.
 </td>
 </tr>
 </table>
@@ -10036,9 +10036,9 @@ compatibility. It will be removed in the future. To update a disk use the
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To add a new disk use the <a href="#services/disks/methods/add">add</a>
+compatibility. It will be removed in the future. To add a new disk use the <a href="#services-disks-methods-add">add</a>
 operation of the service that manages the disks of the system. To register an unregistered disk use the
-<a href="#services/attached_storage_domain_disk/methods/register">register</a> operation of the service that manages
+<a href="#services-attached_storage_domain_disk-methods-register">register</a> operation of the service that manages
 that disk.
 </td>
 </tr>
@@ -11367,7 +11367,7 @@ correlation id from <code>Correlation-Id</code> http header will be used.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>That will return a <a href="#types/cluster_feature">ClusterFeature</a> object containing the name:</p>
+<p>That will return a <a href="#types-cluster_feature">ClusterFeature</a> object containing the name:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11682,7 +11682,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 </div>
 <div class="paragraph">
-<p>That will return a <a href="#types/cluster_feature">ClusterFeature</a> object containing the name:</p>
+<p>That will return a <a href="#types-cluster_feature">ClusterFeature</a> object containing the name:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11821,7 +11821,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect2">
 <h3 id="services/cluster_level"><a class="anchor" href="#services/cluster_level"></a><a class="link" href="#services/cluster_level">15.44. ClusterLevel</a></h3>
 <div class="paragraph">
-<p>Provides information about a specific cluster level. See the <a href="#services/cluster_levels">ClusterLevels</a> service for
+<p>Provides information about a specific cluster level. See the <a href="#services-cluster_levels">ClusterLevels</a> service for
 more information.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -11857,7 +11857,7 @@ more information.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>That will return a <a href="#types/cluster_level">ClusterLevel</a> object containing the supported CPU types, and other
+<p>That will return a <a href="#types-cluster_level">ClusterLevel</a> object containing the supported CPU types, and other
 information which describes the cluster level:</p>
 </div>
 <div class="listingblock">
@@ -14149,7 +14149,7 @@ There is no need to specify the size as the optimal size is calculated automatic
 <ul>
 <li>
 <p>The LUN was added using the API without the host parameter, and therefore does not contain
-any information from the storage (see <a href="#services/disks/methods/add">DisksService::add</a>).</p>
+any information from the storage (see <a href="#services-disks-methods-add">DisksService::add</a>).</p>
 </li>
 <li>
 <p>New information about the LUN is available on the storage and you want to update the LUN with it.</p>
@@ -14519,7 +14519,7 @@ The default value is <code>true</code>, which won&#8217;t remove the disk from t
 <h3 id="services/disk_attachments"><a class="anchor" href="#services/disk_attachments"></a><a class="link" href="#services/disk_attachments">15.58. DiskAttachments</a></h3>
 <div class="paragraph">
 <p>This service manages the set of disks attached to a virtual machine. Each attached disk is represented by a
-<a href="#types/disk_attachment">DiskAttachment</a>, containing the bootable flag, the disk interface and the reference to
+<a href="#types-disk_attachment">DiskAttachment</a>, containing the bootable flag, the disk interface and the reference to
 the disk.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -15176,11 +15176,11 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p><strong>Adding a new image disk:</strong></p>
 </div>
 <div class="paragraph">
-<p>When creating a new floating image <a href="#types/disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code>
+<p>When creating a new floating image <a href="#types-disk">Disk</a>, the API requires the <code>storage_domain</code>, <code>provisioned_size</code>
 and <code>format</code> attributes.</p>
 </div>
 <div class="paragraph">
-<p>Note that block storage domains (i.e. storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
+<p>Note that block storage domains (i.e. storage domains with the <a href="#types-storage_type">storage type</a> of iSCSI or
 FCP) don&#8217;t support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
 explicitly.</p>
 </div>
@@ -18652,7 +18652,7 @@ Currently supports OVA only.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>With request body of type <a href="#types/external_template_import">ExternalTemplateImport</a>, for example:</p>
+<p>With request body of type <a href="#types-external_template_import">ExternalTemplateImport</a>, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -18732,7 +18732,7 @@ Currently supports OVA only.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>With request body of type <a href="#types/external_vm_import">ExternalVmImport</a>, for example:</p>
+<p>With request body of type <a href="#types-external_vm_import">ExternalVmImport</a>, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -19736,7 +19736,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="paragraph">
 <p>Removes a brick from the underlying gluster volume and deletes entries from database. This can be used only when
 removing a single brick without data migration. To remove multiple bricks and with data migration, use
-<a href="#services/gluster_bricks/methods/migrate">migrate</a> instead.</p>
+<a href="#services-gluster_bricks-methods-migrate">migrate</a> instead.</p>
 </div>
 <div class="paragraph">
 <p>For example, to delete brick <code>234</code> from gluster volume <code>123</code>, send a request like this:</p>
@@ -19785,8 +19785,8 @@ removing a single brick without data migration. To remove multiple bricks and wi
 </td>
 <td class="content">
 This operation has been deprecated since version 3.5 of the engine and will be removed in the future.
-Use <a href="#services/gluster_bricks/methods/add">add brick(s)</a> and
-<a href="#services/gluster_bricks/methods/migrate">migrate brick(s)</a> instead.
+Use <a href="#services-gluster_bricks-methods-add">add brick(s)</a> and
+<a href="#services-gluster_bricks-methods-migrate">migrate brick(s)</a> instead.
 </td>
 </tr>
 </table>
@@ -20097,8 +20097,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="paragraph">
 <p>Removing bricks is a two-step process, where the data on bricks to be removed, is first migrated to remaining
 bricks. Once migration is completed the removal of bricks is confirmed via the API
-<a href="#services/gluster_bricks/methods/remove">remove</a>. If at any point, the action needs to be cancelled
-<a href="#services/gluster_bricks/methods/stop_migrate">stopmigrate</a> has to be called.</p>
+<a href="#services-gluster_bricks-methods-remove">remove</a>. If at any point, the action needs to be cancelled
+<a href="#services-gluster_bricks-methods-stop_migrate">stopmigrate</a> has to be called.</p>
 </div>
 <div class="paragraph">
 <p>For instance, to delete a brick from a gluster volume with id <code>123</code>, send a request:</p>
@@ -20124,7 +20124,7 @@ bricks. Once migration is completed the removal of bricks is confirmed via the A
 </div>
 <div class="paragraph">
 <p>The migration process can be tracked from the job id returned from the API using
-<a href="#services/job/methods/get">job</a> and steps in job using <a href="#services/step/methods/get">step</a></p>
+<a href="#services-job-methods-get">job</a> and steps in job using <a href="#services-step-methods-get">step</a></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 291. Parameters summary</caption>
@@ -20165,7 +20165,7 @@ bricks. Once migration is completed the removal of bricks is confirmed via the A
 </div>
 <div class="paragraph">
 <p>The recommended way to remove bricks without data loss is to first migrate the data using
-<a href="#services/gluster_bricks/methods/stop_migrate">stopmigrate</a> and then removing them. If migrate was not called on
+<a href="#services-gluster_bricks-methods-stop_migrate">stopmigrate</a> and then removing them. If migrate was not called on
 bricks prior to remove, the bricks are removed without data migration which may lead to data loss.</p>
 </div>
 <div class="paragraph">
@@ -20291,7 +20291,7 @@ operation.</p>
 <h5 id="services/gluster_bricks/methods/stop_migrate/parameters/bricks"><a class="anchor" href="#services/gluster_bricks/methods/stop_migrate/parameters/bricks"></a><a class="link" href="#services/gluster_bricks/methods/stop_migrate/parameters/bricks">bricks</a></h5>
 <div class="paragraph">
 <p>List of bricks for which data migration needs to be stopped. This list should match the arguments passed to
-<a href="#services/gluster_bricks/methods/migrate">migrate</a>.</p>
+<a href="#services-gluster_bricks-methods-migrate">migrate</a>.</p>
 </div>
 </div>
 </div>
@@ -21482,7 +21482,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <h3 id="services/group"><a class="anchor" href="#services/group"></a><a class="link" href="#services/group">15.106. Group</a></h3>
 <div class="paragraph">
 <p>Manages a group of users. Use this service to either get groups details or remove groups. In order
-to add new groups please use <a href="#services/groups">service</a> that manages the collection of groups.</p>
+to add new groups please use <a href="#services-groups">service</a> that manages the collection of groups.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 318. Methods summary</caption>
@@ -22071,10 +22071,10 @@ automatically reverts to the previous networking configuration.
 </td>
 <td class="content">
 Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
-the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+the <a href="#services-host-methods-setup_networks">setupnetworks</a> request, in which case the new
 configuration is automatically saved in the oVirt Node upon completing the setup and
 re-establishing connectivity between the oVirt Node and oVirt Engine, and without
-waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+waiting for a separate <a href="#services-host-methods-commit_net_config">commitnetconfig</a> request.
 </td>
 </tr>
 </table>
@@ -23140,7 +23140,7 @@ host_service.commit_net_config()</code></pre>
 </td>
 <td class="content">
 To make sure that the network configuration has been saved in the host, and that it will be applied
-when the host is rebooted, remember to call <a href="#services/host/methods/commit_net_config">commitnetconfig</a>.
+when the host is rebooted, remember to call <a href="#services-host-methods-commit_net_config">commitnetconfig</a>.
 </td>
 </tr>
 </table>
@@ -23153,10 +23153,10 @@ when the host is rebooted, remember to call <a href="#services/host/methods/comm
 </td>
 <td class="content">
 Since oVirt Engine 4.3, it is possible to also specify <code>commit_on_success</code> in
-the <a href="#services/host/methods/setup_networks">setupnetworks</a> request, in which case the new
+the <a href="#services-host-methods-setup_networks">setupnetworks</a> request, in which case the new
 configuration is automatically saved in the oVirt Node upon completing the setup and
 re-establishing connectivity between the oVirt Node and oVirt Engine, and without
-waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a> request.
+waiting for a separate <a href="#services-host-methods-commit_net_config">commitnetconfig</a> request.
 </td>
 </tr>
 </table>
@@ -23196,7 +23196,7 @@ waiting for a separate <a href="#services/host/methods/commit_net_config">commit
 <td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether to automatically save the configuration in the oVirt Node upon completing
 the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
-and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+and without waiting for a separate <a href="#services-host-methods-commit_net_config">commitnetconfig</a>
 request.</p></td>
 </tr>
 <tr>
@@ -23254,7 +23254,7 @@ request.</p></td>
 <div class="paragraph">
 <p>Specifies whether to automatically save the configuration in the oVirt Node upon completing
 the setup and re-establishing connectivity between the oVirt Node and oVirt Engine,
-and without waiting for a separate <a href="#services/host/methods/commit_net_config">commitnetconfig</a>
+and without waiting for a separate <a href="#services-host-methods-commit_net_config">commitnetconfig</a>
 request.
 The default value is <code>false</code>, which means that the configuration will not be
 saved automatically.</p>
@@ -23490,7 +23490,7 @@ Default value is specified by <code>ANSIBLE_PLAYBOOK_EXEC_DEFAULT_TIMEOUT</code>
 <p>Check if there are upgrades available for the host. If there are upgrades available an icon will be displayed
 next to host status icon in the Administration Portal. Audit log messages are also added to indicate the
 availability of upgrades. The upgrade can be started from the webadmin or by using the
-<a href="#services/host/methods/upgrade">upgrade</a> host action.</p>
+<a href="#services-host-methods-upgrade">upgrade</a> host action.</p>
 </div>
 </div>
 </div>
@@ -25223,8 +25223,8 @@ is set to <code>true</code>.</p></td>
 <h3 id="services/image_transfer"><a class="anchor" href="#services/image_transfer"></a><a class="link" href="#services/image_transfer">15.123. ImageTransfer</a></h3>
 <div class="paragraph">
 <p>This service provides a mechanism to control an image transfer. The client will have
-to create a transfer by using <a href="#services/image_transfers/methods/add">add</a>
-of the <a href="#services/image_transfers">image transfers</a> service, stating the image to transfer
+to create a transfer by using <a href="#services-image_transfers-methods-add">add</a>
+of the <a href="#services-image_transfers">image transfers</a> service, stating the image to transfer
 data to/from.</p>
 </div>
 <div class="paragraph">
@@ -25268,7 +25268,7 @@ transfer = transfers_service.add(
 </div>
 <div class="paragraph">
 <p>If the user wishes to download a disk rather than upload, he/she should specify
-<code>download</code> as the <a href="#types/image_transfer_direction">direction</a> attribute of the transfer.
+<code>download</code> as the <a href="#types-image_transfer_direction">direction</a> attribute of the transfer.
 This will grant a read permission from the image, instead of a write permission.</p>
 </div>
 <div class="paragraph">
@@ -25291,12 +25291,12 @@ transfer = transfers_service.add(
 <p>Transfers have phases, which govern the flow of the upload/download.
 A client implementing such a flow should poll/check the transfer&#8217;s phase and
 act accordingly. All the possible phases can be found in
-<a href="#types/image_transfer_phase">ImageTransferPhase</a>.</p>
+<a href="#types-image_transfer_phase">ImageTransferPhase</a>.</p>
 </div>
 <div class="paragraph">
-<p>After adding a new transfer, its phase will be <a href="#types/image_transfer_phase">initializing</a>.
+<p>After adding a new transfer, its phase will be <a href="#types-image_transfer_phase">initializing</a>.
 The client will have to poll on the transfer&#8217;s phase until it changes.
-When the phase becomes <a href="#types/image_transfer_phase">transferring</a>,
+When the phase becomes <a href="#types-image_transfer_phase">transferring</a>,
 the session is ready to start the transfer.</p>
 </div>
 <div class="paragraph">
@@ -25311,15 +25311,15 @@ while transfer.phase == types.ImageTransferPhase.INITIALIZING:
 </div>
 </div>
 <div class="paragraph">
-<p>At that stage, if the transfer&#8217;s phase is <a href="#types/image_transfer_phase">paused_system</a>, then the session was
+<p>At that stage, if the transfer&#8217;s phase is <a href="#types-image_transfer_phase">paused_system</a>, then the session was
 not successfully established. One possible reason for that is that the ovirt-imageio-daemon is not running
 in the host that was selected for transfer.
-The transfer can be resumed by calling <a href="#services/image_transfer/methods/resume">resume</a>
+The transfer can be resumed by calling <a href="#services-image_transfer-methods-resume">resume</a>
 of the service that manages it.</p>
 </div>
 <div class="paragraph">
 <p>If the session was successfully established - the returned transfer entity will
-contain the <a href="#types/image_transfer">transfer_url</a> and <a href="#types/image_transfer">proxy_url</a> attributes,
+contain the <a href="#types-image_transfer">transfer_url</a> and <a href="#types-image_transfer">proxy_url</a> attributes,
 which the client needs to use in order to transfer the required data. The client can choose whatever
 technique and tool for sending the HTTPS request with the image&#8217;s data.</p>
 </div>
@@ -25359,7 +25359,7 @@ on this, see imageio API documentation:</p>
 </div>
 <div class="paragraph">
 <p>When finishing the transfer, the user should call
-<a href="#services/image_transfer/methods/finalize">finalize</a>. This will make the
+<a href="#services-image_transfer-methods-finalize">finalize</a>. This will make the
 final adjustments and verifications for finishing the transfer process.</p>
 </div>
 <div class="paragraph">
@@ -25372,9 +25372,9 @@ final adjustments and verifications for finishing the transfer process.</p>
 </div>
 <div class="paragraph">
 <p>In case of an error, the transfer&#8217;s phase will be changed to
-<a href="#types/image_transfer_phase">finished_failure</a>, and
+<a href="#types-image_transfer_phase">finished_failure</a>, and
 the disk&#8217;s status will be changed to <code>Illegal</code>. Otherwise it will be changed to
-<a href="#types/image_transfer_phase">finished_success</a>, and the disk will be ready
+<a href="#types-image_transfer_phase">finished_success</a>, and the disk will be ready
 to be used. In both cases, the transfer entity will be removed shortly after.</p>
 </div>
 <div class="paragraph">
@@ -25643,7 +25643,7 @@ while transfer.phase == types.ImageTransferPhase.RESUMING:
 <h3 id="services/image_transfers"><a class="anchor" href="#services/image_transfers"></a><a class="link" href="#services/image_transfers">15.124. ImageTransfers</a></h3>
 <div class="paragraph">
 <p>This service manages image transfers, for performing Image I/O API in oVirt.
-Please refer to <a href="#services/image_transfer">image transfer</a> for further
+Please refer to <a href="#services-image_transfer">image transfer</a> for further
 documentation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -28627,7 +28627,7 @@ result as if we would just remove that network. However it might be more specifi
 To remove an external logical network, the network has to be removed directly from its provider by
 <a href="https://developer.openstack.org/api-ref/network">OpenStack Networking API</a>.
 The entity representing the external network inside oVirt is removed automatically,
-if <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is enabled for the provider,
+if <a href="#types-open_stack_network_provider-attributes-auto_sync"><code>auto_sync</code></a> is enabled for the provider,
 otherwise the entity has to be removed using this method.
 </td>
 </tr>
@@ -29099,7 +29099,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </div>
 <div class="paragraph">
 <p>The network filter enables to filter packets send to/from the VM&#8217;s nic according to defined rules.
-For more information please refer to <a href="#services/network_filter">NetworkFilter</a> service documentation</p>
+For more information please refer to <a href="#services-network_filter">NetworkFilter</a> service documentation</p>
 </div>
 <div class="paragraph">
 <p>Network filters are supported in different versions, starting from version 3.0.</p>
@@ -30669,7 +30669,7 @@ the attributes will be ignored.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If <a href="#types/open_stack_network_provider/attributes/auto_sync"><code>auto_sync</code></a> is
+If <a href="#types-open_stack_network_provider-attributes-auto_sync"><code>auto_sync</code></a> is
 enabled for the provider, the network might be imported automatically. To
 prevent this, automatic import can be disabled by setting the <code>auto_sync</code> to false,
 and enabling it again after importing the network.
@@ -32545,7 +32545,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="sect3">
 <h4 id="services/permits/methods/add"><a class="anchor" href="#services/permits/methods/add"></a><a class="link" href="#services/permits/methods/add">15.175.1. add <span class="small">POST</span></a></h4>
 <div class="paragraph">
-<p>Adds a permit to the role. The permit name can be retrieved from the <a href="#services/cluster_levels">cluster_levels</a> service.</p>
+<p>Adds a permit to the role. The permit name can be retrieved from the <a href="#services-cluster_levels">cluster_levels</a> service.</p>
 </div>
 <div class="paragraph">
 <p>For example to assign a permit <code>create_vm</code> to the role with id <code>123</code> send a request like this:</p>
@@ -33954,7 +33954,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="paragraph">
 <p>Updates a role. You are allowed to update <code>name</code>, <code>description</code> and <code>administrative</code> attributes after role is
 created. Within this endpoint you can&#8217;t add or remove roles permits you need to use
-<a href="#services/permits">service</a> that manages permits of role.</p>
+<a href="#services-permits">service</a> that manages permits of role.</p>
 </div>
 <div class="paragraph">
 <p>For example to update role&#8217;s <code>name</code>, <code>description</code> and <code>administrative</code> attributes send a request like this:</p>
@@ -35388,7 +35388,7 @@ a disk with snapshots, the relevant <code>image_id</code> should be specified fo
 <td class="content">
 <div class="paragraph">
 <p>When a snapshot is created, the default value for the
-<a href="#types/snapshot/attributes/persist_memorystate">persist_memorystate</a> attribute is <code>true</code>. That means that the content of the memory of the virtual
+<a href="#types-snapshot-attributes-persist_memorystate">persist_memorystate</a> attribute is <code>true</code>. That means that the content of the memory of the virtual
 machine will be included in the snapshot, and it also means that the virtual machine will be paused
 for a longer time. That can negatively affect applications that are very sensitive to timing (NTP
 servers, for example). In those cases make sure that you set the attribute to <code>false</code>:</p>
@@ -35626,7 +35626,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </td>
 <td class="content">
 Since version 4.4.8 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. Instead please use DELETE followed by <a href="#services/ssh_public_keys/methods/add">add operation</a>.
+compatibility. It will be removed in the future. Instead please use DELETE followed by <a href="#services-ssh_public_keys-methods-add">add operation</a>.
 </td>
 </tr>
 </table>
@@ -36683,7 +36683,7 @@ storage domain and only then they will be reduced from the storage domain.</p>
 <div class="literalblock">
 <div class="content">
 <pre>Note that this operation is only applicable to block storage domains (i.e., storage domains with the
-xref:types/storage_type[storage type] of iSCSI or FCP).</pre>
+xref:types-storage_type[storage type] of iSCSI or FCP).</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -36886,7 +36886,7 @@ to remove the storage domain with identifier <code>123</code> send a request lik
 <p>Updates a storage domain.</p>
 </div>
 <div class="paragraph">
-<p>Not all of the <a href="#types/storage_domain">StorageDomain</a>'s attributes are updatable after creation. Those that can be
+<p>Not all of the <a href="#types-storage_domain">StorageDomain</a>'s attributes are updatable after creation. Those that can be
 updated are: <code>name</code>, <code>description</code>, <code>comment</code>, <code>warning_low_space_indicator</code>, <code>critical_space_action_blocker</code> and
 <code>wipe_after_delete.</code> (Note that changing the <code>wipe_after_delete</code> attribute will not change the wipe after delete
 property of disks that already exist).</p>
@@ -37183,8 +37183,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 Since version 4.2 of the engine this service is intended only to list disks available in the storage
 domain, and to register unregistered disks. All the other operations, like copying a disk, moving a disk, etc, have
 been deprecated and will be removed in the future. To perform those operations
-use the <a href="#services/disks">service that manages all the disks of the system</a>
-or the <a href="#services/disk">service that manages a specific disk</a>.
+use the <a href="#services-disks">service that manages all the disks of the system</a>
+or the <a href="#services-disk">service that manages a specific disk</a>.
 </td>
 </tr>
 </table>
@@ -37249,7 +37249,7 @@ or the <a href="#services/disk">service that manages a specific disk</a>.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To copy a disk use the <a href="#services/disk/methods/copy">copy</a>
+compatibility. It will be removed in the future. To copy a disk use the <a href="#services-disk-methods-copy">copy</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -37300,7 +37300,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To export a disk use the <a href="#services/disk/methods/export">export</a>
+compatibility. It will be removed in the future. To export a disk use the <a href="#services-disk-methods-export">export</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -37389,7 +37389,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To move a disk use the <a href="#services/disk/methods/move">move</a>
+compatibility. It will be removed in the future. To move a disk use the <a href="#services-disk-methods-move">move</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -37482,7 +37482,7 @@ There is no need to specify the size as the optimal size is calculated automatic
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services-disk-methods-remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -37502,7 +37502,7 @@ operation of the service that manages that disk.
 </td>
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To remove a disk use the <a href="#services/disk/methods/remove">remove</a>
+compatibility. It will be removed in the future. To remove a disk use the <a href="#services-disk-methods-remove">remove</a>
 operation of the service that manages that disk.
 </td>
 </tr>
@@ -37523,7 +37523,7 @@ operation of the service that manages that disk.
 <td class="content">
 Since version 4.2 of the engine this operation is deprecated, and preserved only for backwards
 compatibility. It will be removed in the future. To update a disk use the
-<a href="#services/disk/methods/update">update</a> operation of the service that manages that disk.
+<a href="#services-disk-methods-update">update</a> operation of the service that manages that disk.
 </td>
 </tr>
 </table>
@@ -37596,9 +37596,9 @@ compatibility. It will be removed in the future. To update a disk use the
 </td>
 <td class="content">
 Since version 4.2 of the oVirt Engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. To add a new disk use the <a href="#services/disks/methods/add">add</a>
+compatibility. It will be removed in the future. To add a new disk use the <a href="#services-disks-methods-add">add</a>
 operation of the service that manages the disks of the system. To register an unregistered disk use the
-<a href="#services/attached_storage_domain_disk/methods/register">register</a> operation of the service that manages
+<a href="#services-attached_storage_domain_disk-methods-register">register</a> operation of the service that manages
 that disk.
 </td>
 </tr>
@@ -38274,7 +38274,7 @@ it had in the original environment where it was created.</p>
 <td class="content">
 Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
 compatibility. It will be removed in the future. To specify <code>vnic_profile_mappings</code> use the <code>vnic_profile_mappings</code>
-attribute inside the <a href="#types/registration_configuration">RegistrationConfiguration</a> type.
+attribute inside the <a href="#types-registration_configuration">RegistrationConfiguration</a> type.
 </td>
 </tr>
 </table>
@@ -38781,7 +38781,7 @@ it had in the original environment where it was created.</p>
 <td class="content">
 Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
 compatibility. It will be removed in the future. To specify <code>vnic_profile_mappings</code> use the <code>vnic_profile_mappings</code>
-attribute inside the <a href="#types/registration_configuration">RegistrationConfiguration</a> type.
+attribute inside the <a href="#types-registration_configuration">RegistrationConfiguration</a> type.
 </td>
 </tr>
 </table>
@@ -39002,8 +39002,8 @@ following request:</p>
 </div>
 <div class="paragraph">
 <p>Virtual machines and templates in these collections have a similar representation to their counterparts in the
-top-level <a href="#types/vm">Vm</a> and <a href="#types/template">Template</a> collections, except they also contain a
-<a href="#types/storage_domain">StorageDomain</a> reference and an <a href="#services/storage_domain_vm/methods/import">import</a>
+top-level <a href="#types-vm">Vm</a> and <a href="#types-template">Template</a> collections, except they also contain a
+<a href="#types-storage_domain">StorageDomain</a> reference and an <a href="#services-storage_domain_vm-methods-import">import</a>
 action.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -39145,7 +39145,7 @@ The request only apply to storage domains that are attached.</p>
 <p>Adds a new storage domain.</p>
 </div>
 <div class="paragraph">
-<p>Creation of a new <a href="#types/storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code>, and <code>storage</code>
+<p>Creation of a new <a href="#types-storage_domain">StorageDomain</a> requires the <code>name</code>, <code>type</code>, <code>host</code>, and <code>storage</code>
 attributes. Identify the <code>host</code> attribute with the <code>id</code> or <code>name</code> attributes. In oVirt 3.6 and
 later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
 <code>wipe_after_delete</code> in the POST request. This option can be edited after the domain is created, but doing so will
@@ -41721,7 +41721,7 @@ have copies on multiple storage domains).</p>
 <h3 id="services/template_disk_attachments"><a class="anchor" href="#services/template_disk_attachments"></a><a class="link" href="#services/template_disk_attachments">15.234. TemplateDiskAttachments</a></h3>
 <div class="paragraph">
 <p>This service manages the set of disks attached to a template. Each attached disk is represented by a
-<a href="#types/disk_attachment">DiskAttachment</a>.</p>
+<a href="#types-disk_attachment">DiskAttachment</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 714. Methods summary</caption>
@@ -42974,7 +42974,7 @@ like this:</p>
 original virtual machine. To do so use the <code>vm.disk_attachments</code> attribute, specifying the identifier of the disk
 of the original virtual machine and the characteristics that you want to change. For example, if the original
 virtual machine has a disk with the identifier <code>456</code>, and, for that disk, you want to change the name to <code>mydisk</code>
-the format to <a href="#types/disk_format"><em>Copy On Write</em></a> and make it <a href="#types/disk">sparse</a>, send a request body like
+the format to <a href="#types-disk_format"><em>Copy On Write</em></a> and make it <a href="#types-disk">sparse</a>, send a request body like
 this:</p>
 </div>
 <div class="listingblock">
@@ -43432,7 +43432,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <p>A service to manage a user in the system.
 Use this service to either get users details or remove users.
 In order to add new users please use
-<a href="#services/users">users</a>.</p>
+<a href="#services-users">users</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 753. Methods summary</caption>
@@ -43615,7 +43615,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </td>
 <td class="content">
 Since version 4.4.5 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. Please use the <a href="#services/user_option">options</a>
+compatibility. It will be removed in the future. Please use the <a href="#services-user_option">options</a>
 endpoint instead.
 </td>
 </tr>
@@ -44419,7 +44419,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 </td>
 <td class="content">
 Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. Instead please use PUT followed by <a href="#services/vm/methods/update">update operation</a>.
+compatibility. It will be removed in the future. Instead please use PUT followed by <a href="#services-vm-methods-update">update operation</a>.
 </td>
 </tr>
 </table>
@@ -44587,7 +44587,7 @@ snapshots collapsed. Default is true.</p>
 <p>Permanently restores the virtual machine to the state of the previewed snapshot.</p>
 </div>
 <div class="paragraph">
-<p>See the <a href="#services/vm/methods/preview_snapshot">preview_snapshot</a> operation for details.</p>
+<p>See the <a href="#services-vm-methods-preview_snapshot">preview_snapshot</a> operation for details.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 775. Parameters summary</caption>
@@ -45215,8 +45215,8 @@ that are running on the same host.</p>
 <div class="paragraph">
 <p>The snapshot is indicated with the <code>snapshot.id</code> parameter. It is restored temporarily, so that the content can
 be inspected. Once that inspection is finished, the state of the virtual machine can be made permanent, using the
-<a href="#services/vm/methods/commit_snapshot">commit_snapshot</a> method, or discarded using the
-<a href="#services/vm/methods/undo_snapshot">undo_snapshot</a> method.</p>
+<a href="#services-vm-methods-commit_snapshot">commit_snapshot</a> method, or discarded using the
+<a href="#services-vm-methods-undo_snapshot">undo_snapshot</a> method.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 783. Parameters summary</caption>
@@ -46048,7 +46048,7 @@ the SPICE protocol.</p>
 <div class="paragraph">
 <p>In order to obtain an authentication token for a specific protocol, for
 example for VNC, use the <code>ticket</code> method of the
-<a href="#services/vm_graphics_console">service</a>, which manages the graphics consoles of the virtual machine, by sending
+<a href="#services-vm_graphics_console">service</a>, which manages the graphics consoles of the virtual machine, by sending
 a request:</p>
 </div>
 <div class="listingblock">
@@ -46098,7 +46098,7 @@ a request:</p>
 <p>Restores the virtual machine to the state it had before previewing the snapshot.</p>
 </div>
 <div class="paragraph">
-<p>See the <a href="#services/vm/methods/preview_snapshot">preview_snapshot</a> operation for details.</p>
+<p>See the <a href="#services-vm-methods-preview_snapshot">preview_snapshot</a> operation for details.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 794. Parameters summary</caption>
@@ -47154,7 +47154,7 @@ default the update will have effect only after the next boot.</p>
 <div class="paragraph">
 <p>Currently virtual machines have exactly one CDROM device. No new devices can be added, and the existing one can&#8217;t
 be removed, thus there are no <code>add</code> or <code>remove</code> methods. Changing and ejecting CDROM disks is done with the
-<a href="#services/vm_cdrom/methods/update">update</a> method of the <a href="#services/vm_cdrom">service</a> that manages the
+<a href="#services-vm_cdrom-methods-update">update</a> method of the <a href="#services-vm_cdrom">service</a> that manages the
 CDROM device.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -47909,7 +47909,7 @@ There is no need to specify the size as the optimal size is calculated automatic
 </td>
 <td class="content">
 In version 3 of the API this used to also remove the disk completely from the system, but starting with
-version 4 it doesn&#8217;t. If you need to remove it completely use the <a href="#services/disk/methods/remove">remove method of the top level disk service</a>.
+version 4 it doesn&#8217;t. If you need to remove it completely use the <a href="#services-disk-methods-remove">remove method of the top level disk service</a>.
 </td>
 </tr>
 </table>
@@ -48835,7 +48835,7 @@ group are detached).
 </div>
 </div>
 <div class="paragraph">
-<p>With request body of type <a href="#types/host_device">HostDevice</a>, for example</p>
+<p>With request body of type <a href="#types-host_device">HostDevice</a>, for example</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -48864,7 +48864,7 @@ to <strong>exactly</strong> one host. The device ID is then taken relative to th
 <td class="content">
 Attachment of a PCI device that is part of a bigger IOMMU group will result in attachment of the remaining
 devices from that IOMMU group as "placeholders". These devices are then identified using the <code>placeholder</code>
-attribute of the <a href="#types/host_device">HostDevice</a> type set to <code>true</code>.
+attribute of the <a href="#types-host_device">HostDevice</a> type set to <code>true</code>.
 </td>
 </tr>
 </table>
@@ -51478,7 +51478,7 @@ following:</p>
 </div>
 <div class="paragraph">
 <p>In order to boot from CDROM, you first need to insert a disk, as described in the
-<a href="#services/vm_cdrom">CDROM service</a>. Then booting from that CDROM can be specified using the <code>os.boot.devices</code>
+<a href="#services-vm_cdrom">CDROM service</a>. Then booting from that CDROM can be specified using the <code>os.boot.devices</code>
 attribute:</p>
 </div>
 <div class="listingblock">
@@ -51566,7 +51566,7 @@ attribute:</p>
 </td>
 <td class="content">
 Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-compatibility. It will be removed in the future. Instead please use POST followed by <a href="#services/vms/methods/add">add operation</a>.
+compatibility. It will be removed in the future. Instead please use POST followed by <a href="#services-vms-methods-add">add operation</a>.
 </td>
 </tr>
 </table>
@@ -52105,7 +52105,7 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 <div class="paragraph">
 <p>Please note that there is a default network filter to each VNIC profile.
 For more details of how the default network filter is calculated please refer to
-the documentation in <a href="#services/network_filters">NetworkFilters</a>.</p>
+the documentation in <a href="#services-network_filters">NetworkFilters</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -55105,8 +55105,8 @@ and should be removed (For example, after committing to an older VM snapshot).</
 </div>
 <div class="paragraph">
 <p>This type has been deprecated and replaced by alternative attributes inside the
-<a href="#types/initialization">Initialization</a> type. See the
-<a href="#types/initialization/attributes/cloud_init">cloud_init</a> attribute documentation for details.</p>
+<a href="#types-initialization">Initialization</a> type. See the
+<a href="#types-initialization-attributes-cloud_init">cloud_init</a> attribute documentation for details.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 957. Attributes summary</caption>
@@ -55885,9 +55885,9 @@ this cluster.</p></td>
 the networks of the referenced network provider are available on every host
 in the cluster.
 External network providers of a cluster can only be set during
-<a href="#services/clusters/methods/add">adding the cluster</a>.
+<a href="#services-clusters-methods-add">adding the cluster</a>.
 This value may be overwritten for individual hosts during
-<a href="#services/hosts/methods/add">adding the host</a>.</p>
+<a href="#services-hosts-methods-add">adding the host</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -57299,7 +57299,7 @@ size for disks that use the <code>cow</code> format.</p>
 </td>
 <td class="content">
 This attribute only makes sense for disks that are actually connected to virtual machines, and in
-version 4 of the API it has been moved to the <a href="#types/disk_attachment">DiskAttachment</a> type. It is preserved
+version 4 of the API it has been moved to the <a href="#types-disk_attachment">DiskAttachment</a> type. It is preserved
 here only for backwards compatibility, and it will be removed in the future.
 </td>
 </tr>
@@ -57365,7 +57365,7 @@ system will be allocated.</p>
 </td>
 <td class="content">
 This attribute only makes sense for disks that are actually connected to virtual machines, and in
-version 4 of the API it has been moved to the <a href="#types/disk_attachment">DiskAttachment</a> type. It is preserved
+version 4 of the API it has been moved to the <a href="#types-disk_attachment">DiskAttachment</a> type. It is preserved
 here only for backwards compatibility, and it will be removed in the future.
 </td>
 </tr>
@@ -57398,12 +57398,12 @@ For more information about features of the different QCOW versions, see <a href=
 <p>Indicates if the disk is in read-only mode.</p>
 </div>
 <div class="paragraph">
-<p>Since version 4.0 this attribute is not shown in the API and was moved to <a href="#types/disk_attachment">DiskAttachment</a>.</p>
+<p>Since version 4.0 this attribute is not shown in the API and was moved to <a href="#types-disk_attachment">DiskAttachment</a>.</p>
 </div>
 <div class="paragraph">
 <p>Since version 4.1.2 of oVirt Engine this attribute is deprecated, and it will be removed in the future.
 In order to attach a disk in read only mode use the <code>read_only</code> attribute
-of the <a href="#types/disk_attachment">DiskAttachment</a> type. For example:</p>
+of the <a href="#types-disk_attachment">DiskAttachment</a> type. For example:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -58311,7 +58311,7 @@ size for disks that use the <code>cow</code> format.</p>
 </td>
 <td class="content">
 This attribute only makes sense for disks that are actually connected to virtual machines, and in
-version 4 of the API it has been moved to the <a href="#types/disk_attachment">DiskAttachment</a> type. It is preserved
+version 4 of the API it has been moved to the <a href="#types-disk_attachment">DiskAttachment</a> type. It is preserved
 here only for backwards compatibility, and it will be removed in the future.
 </td>
 </tr>
@@ -58377,7 +58377,7 @@ system will be allocated.</p>
 </td>
 <td class="content">
 This attribute only makes sense for disks that are actually connected to virtual machines, and in
-version 4 of the API it has been moved to the <a href="#types/disk_attachment">DiskAttachment</a> type. It is preserved
+version 4 of the API it has been moved to the <a href="#types-disk_attachment">DiskAttachment</a> type. It is preserved
 here only for backwards compatibility, and it will be removed in the future.
 </td>
 </tr>
@@ -58410,12 +58410,12 @@ For more information about features of the different QCOW versions, see <a href=
 <p>Indicates if the disk is in read-only mode.</p>
 </div>
 <div class="paragraph">
-<p>Since version 4.0 this attribute is not shown in the API and was moved to <a href="#types/disk_attachment">DiskAttachment</a>.</p>
+<p>Since version 4.0 this attribute is not shown in the API and was moved to <a href="#types-disk_attachment">DiskAttachment</a>.</p>
 </div>
 <div class="paragraph">
 <p>Since version 4.1.2 of oVirt Engine this attribute is deprecated, and it will be removed in the future.
 In order to attach a disk in read only mode use the <code>read_only</code> attribute
-of the <a href="#types/disk_attachment">DiskAttachment</a> type. For example:</p>
+of the <a href="#types-disk_attachment">DiskAttachment</a> type. For example:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -60284,8 +60284,8 @@ Such as installed software, system definitions, passwords and more.</p>
 <h3 id="types/external_status"><a class="anchor" href="#types/external_status"></a><a class="link" href="#types/external_status">16.85. ExternalStatus <span class="small">enum</span></a></h3>
 <div class="paragraph">
 <p>Represents an external status.
-This status is currently used for <a href="#types/host">hosts</a>
-and <a href="#types/storage_domain">storage domains</a>, and allows an external
+This status is currently used for <a href="#types-host">hosts</a>
+and <a href="#types-storage_domain">storage domains</a>, and allows an external
 system to update status of objects it is aware of.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -63264,8 +63264,8 @@ status and acts accordingly.</p>
 <td class="content">
 When a host or collection of hosts is retrieved, this attribute is not included unless the
 <code>all_content</code> parameter of the operation is explicitly set to <code>true</code>. See the documentation of the
-operations that retrieve <a href="#services/host/methods/get/parameters/all_content">one</a> or
-<a href="#services/hosts/methods/list/parameters/all_content">multiple</a> hosts for details.
+operations that retrieve <a href="#services-host-methods-get-parameters-all_content">one</a> or
+<a href="#services-hosts-methods-list-parameters-all_content">multiple</a> hosts for details.
 </td>
 </tr>
 </table>
@@ -63597,7 +63597,7 @@ about the current CPU pinning.</p>
 </div>
 <div class="paragraph">
 <p>This attribute is read-only. Setting it will have no effect on the host.
-The value of this parameter reflects the <a href="#services/cluster_external_providers">Default Network Provider</a>
+The value of this parameter reflects the <a href="#services-cluster_external_providers">Default Network Provider</a>
 of the cluster.</p>
 </div>
 </div>
@@ -64032,7 +64032,7 @@ the current pinning status.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>A bonded interface is represented as a <a href="#types/host_nic">HostNic</a> object
+<p>A bonded interface is represented as a <a href="#types-host_nic">HostNic</a> object
 containing the <code>bonding</code> and <code>slaves</code> attributes.</p>
 </div>
 <div class="paragraph">
@@ -65312,7 +65312,7 @@ To disable the inactivity timeout specify '0'. If not specified, the value is de
 <div class="paragraph">
 <p>The current phase of the image transfer in progress. Each transfer needs a managed
 session, which must be opened for the user to input or output an image.
-Please refer to <a href="#services/image_transfer">image transfer</a> for further
+Please refer to <a href="#services-image_transfer">image transfer</a> for further
 documentation.</p>
 </div>
 </div>
@@ -65320,7 +65320,7 @@ documentation.</p>
 <h4 id="types/image_transfer/attributes/proxy_url"><a class="anchor" href="#types/image_transfer/attributes/proxy_url"></a><a class="link" href="#types/image_transfer/attributes/proxy_url">16.139.5. proxy_url</a></h4>
 <div class="paragraph">
 <p>The URL of the proxy server that the user inputs or outputs to. This attribute is
-available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
+available only if the image transfer is in the <a href="#types-image_transfer_phase">transferring</a>
 phase. See <code>phase</code> for details.</p>
 </div>
 </div>
@@ -65394,7 +65394,7 @@ client.download(
 <div class="paragraph">
 <p>This is as an alternative to the <code>proxy_url</code>. I.e. if the client has access to the host machine, it could bypass
 the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
-available only if the image transfer is in the <a href="#types/image_transfer_phase">transferring</a>
+available only if the image transfer is in the <a href="#types-image_transfer_phase">transferring</a>
 phase. See <code>phase</code> for details.</p>
 </div>
 <table id="types/image_transfer/links_summary" class="tableblock frame-all grid-all stretch">
@@ -65478,14 +65478,14 @@ attributes instead.
 <div class="sect2">
 <h3 id="types/image_transfer_direction"><a class="anchor" href="#types/image_transfer_direction"></a><a class="link" href="#types/image_transfer_direction">16.140. ImageTransferDirection <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>The <a href="#types/image_transfer">image transfer</a> direction for a transfer.</p>
+<p>The <a href="#types-image_transfer">image transfer</a> direction for a transfer.</p>
 </div>
 <div class="paragraph">
 <p>When adding a new transfer, the user can choose whether the transfer will be to an image, choosing <code>upload</code>,
 or to transfer from an image- choosing <code>download</code> as an ImageTransferDirection.</p>
 </div>
 <div class="paragraph">
-<p>Please refer to <a href="#services/image_transfer">image transfer</a> for further
+<p>Please refer to <a href="#services-image_transfer">image transfer</a> for further
 documentation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -65515,11 +65515,11 @@ documentation.</p>
 <div class="sect2">
 <h3 id="types/image_transfer_phase"><a class="anchor" href="#types/image_transfer_phase"></a><a class="link" href="#types/image_transfer_phase">16.141. ImageTransferPhase <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>A list of possible phases for an <a href="#types/image_transfer">image transfer</a> entity. Each of these values
+<p>A list of possible phases for an <a href="#types-image_transfer">image transfer</a> entity. Each of these values
 defines a specific point in a transfer flow.</p>
 </div>
 <div class="paragraph">
-<p>Please refer to <a href="#services/image_transfer">image transfer</a> for more
+<p>Please refer to <a href="#services-image_transfer">image transfer</a> for more
 information.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -65558,7 +65558,7 @@ is being finalized with a failure.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalizing_success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set when the user calls <a href="#services/image_transfer/methods/finalize">finalize</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This phase will be set when the user calls <a href="#services-image_transfer-methods-finalize">finalize</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>finished_cleanup</code></p></td>
@@ -65585,12 +65585,12 @@ with this transfer; for example ovirt-imageio-daemon is not running in the selec
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>paused_user</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This phase is a result of a pause call by the user, using
-<a href="#services/image_transfer/methods/pause">pause</a>.</p></td>
+<a href="#services-image_transfer-methods-pause">pause</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>resuming</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The phase where the transfer has been resumed by the client calling
-<a href="#services/image_transfer/methods/resume">resume</a>.</p></td>
+<a href="#services-image_transfer-methods-resume">resume</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transferring</code></p></td>
@@ -65613,12 +65613,12 @@ in the Administration Portal.</p>
 <div class="sect3">
 <h4 id="types/image_transfer_phase/values/finalizing_success"><a class="anchor" href="#types/image_transfer_phase/values/finalizing_success"></a><a class="link" href="#types/image_transfer_phase/values/finalizing_success">16.141.2. finalizing_success</a></h4>
 <div class="paragraph">
-<p>This phase will be set when the user calls <a href="#services/image_transfer/methods/finalize">finalize</a>. Calling
+<p>This phase will be set when the user calls <a href="#services-image_transfer-methods-finalize">finalize</a>. Calling
 finalize is essential to finish the transfer session, and finish using the targeted image. After finalizing,
 the phase will be changed to <code>finished_success</code> or <code>finished_failure</code>.</p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="#services/image_transfer">image transfer</a> for more information.</p>
+<p>Refer to <a href="#services-image_transfer">image transfer</a> for more information.</p>
 </div>
 </div>
 <div class="sect3">
@@ -65648,7 +65648,7 @@ Once the session is established, the phase will be changed to <code>transferring
 <div class="paragraph">
 <p>This phase means the session timed out, or some other error occurred
 with this transfer; for example ovirt-imageio-daemon is not running in the selected host.
-To resume the session, the client should call <a href="#services/image_transfer/methods/resume">resume</a>. After
+To resume the session, the client should call <a href="#services-image_transfer-methods-resume">resume</a>. After
 resuming, the phase will change to <code>resuming</code>.</p>
 </div>
 </div>
@@ -65656,7 +65656,7 @@ resuming, the phase will change to <code>resuming</code>.</p>
 <h4 id="types/image_transfer_phase/values/resuming"><a class="anchor" href="#types/image_transfer_phase/values/resuming"></a><a class="link" href="#types/image_transfer_phase/values/resuming">16.141.7. resuming</a></h4>
 <div class="paragraph">
 <p>The phase where the transfer has been resumed by the client calling
-<a href="#services/image_transfer/methods/resume">resume</a>. Resuming starts a new session, and after calling it,
+<a href="#services-image_transfer-methods-resume">resume</a>. Resuming starts a new session, and after calling it,
 the phase will be changed to <code>transferring</code>, or <code>paused_system</code> in case of a failure.</p>
 </div>
 </div>
@@ -65670,14 +65670,14 @@ the phase will be changed to <code>transferring</code>, or <code>paused_system</
 <div class="sect2">
 <h3 id="types/image_transfer_timeout_policy"><a class="anchor" href="#types/image_transfer_timeout_policy"></a><a class="link" href="#types/image_transfer_timeout_policy">16.142. ImageTransferTimeoutPolicy <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>The <a href="#types/image_transfer">image transfer</a> timeout policy.</p>
+<p>The <a href="#types-image_transfer">image transfer</a> timeout policy.</p>
 </div>
 <div class="paragraph">
 <p>Define how the system handles a transfer when the client is inactive
 for inactivityTimeout seconds.</p>
 </div>
 <div class="paragraph">
-<p>Please refer to <a href="#services/image_transfer">image transfer</a> for further
+<p>Please refer to <a href="#services-image_transfer">image transfer</a> for further
 documentation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -65900,9 +65900,9 @@ use for formatting the cloud-init network parameters.</p></td>
 <p>Deprecated attribute to specify <em>cloud-init</em> configuration.</p>
 </div>
 <div class="paragraph">
-<p>This attribute and the <a href="#types/cloud_init">CloudInit</a> type have been deprecated and will be
+<p>This attribute and the <a href="#types-cloud_init">CloudInit</a> type have been deprecated and will be
 removed in the future.  To specify the <em>cloud-init</em> configuration, use the attributes inside
-the <a href="#types/initialization">Initialization</a> type. The mapping between the attributes
+the <a href="#types-initialization">Initialization</a> type. The mapping between the attributes
 of these two types are as follows:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -65967,7 +65967,7 @@ of these two types are as follows:</p>
 <p>Attribute specifying the cloud-init protocol to
 use for formatting the cloud-init network parameters.
 If omitted, a default value is used, as described in
-the <a href="#types/cloud_init_network_protocol">CloudInitNetworkProtocol</a></p>
+the <a href="#types-cloud_init_network_protocol">CloudInitNetworkProtocol</a></p>
 </div>
 </div>
 </div>
@@ -66488,14 +66488,14 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 <div class="paragraph">
 <p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+memory while the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. The size increment must be
 dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
 size increment is not dividable by this value, the memory size change is only stored to next run configuration.
 Each successful memory hot plug operation creates one or two new memory devices.</p>
 </div>
 <div class="paragraph">
 <p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
-when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+when the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. Only previously hot plugged memory
 devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
 of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
 configuration without rounding.</p>
@@ -68186,8 +68186,8 @@ It is preserved for backwards compatibility, but the value will always be <code>
 </td>
 <td class="content">
 It can be updated while the virtual machine is running since oVirt 4.2 onwards, provided
-<a href="#types/vm/attributes/memory">memory</a> is updated in the same request as well, and the virtual machine is in
-state <a href="#types/vm_status/values/up">up</a>.
+<a href="#types-vm-attributes-memory">memory</a> is updated in the same request as well, and the virtual machine is in
+state <a href="#types-vm_status-values-up">up</a>.
 </td>
 </tr>
 </table>
@@ -69280,7 +69280,7 @@ does not exist on the NICs.</p>
 <div class="sect2">
 <h3 id="types/network_filter_parameter"><a class="anchor" href="#types/network_filter_parameter"></a><a class="link" href="#types/network_filter_parameter">16.179. NetworkFilterParameter <span class="small">struct</span></a></h3>
 <div class="paragraph">
-<p>Parameter for the <a href="#types/network_filter">network filter</a>.</p>
+<p>Parameter for the <a href="#types-network_filter">network filter</a>.</p>
 </div>
 <div class="paragraph">
 <p>See <a href="https://libvirt.org/formatnwfilter.html#nwfconceptsvars">Libvirt-Filters</a> for further details.
@@ -71250,7 +71250,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto_sync</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the <a href="#types-network">networks</a> of this provider are automatically synchronized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>comment</code></p></td>
@@ -71335,7 +71335,7 @@ This statistics sub-collection is read-only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user_domain_name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the domain name of the <code>username</code> in <a href="#types/external_provider">ExternalProvider</a> for
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the domain name of the <code>username</code> in <a href="#types-external_provider">ExternalProvider</a> for
 OpenStack Identity API v3.</p></td>
 </tr>
 <tr>
@@ -71357,13 +71357,13 @@ OpenStack Identity API v3.</p></td>
 <div class="sect3">
 <h4 id="types/open_stack_network_provider/attributes/auto_sync"><a class="anchor" href="#types/open_stack_network_provider/attributes/auto_sync"></a><a class="link" href="#types/open_stack_network_provider/attributes/auto_sync">16.198.2. auto_sync</a></h4>
 <div class="paragraph">
-<p>Indicates if the <a href="#types/network">networks</a> of this provider are automatically synchronized.</p>
+<p>Indicates if the <a href="#types-network">networks</a> of this provider are automatically synchronized.</p>
 </div>
 <div class="paragraph">
 <p>If <code>true</code>, the networks of this provider are automatically and cyclically synchronized to oVirt in
 the background.
 This means that all new networks of this provider are imported, and all discarded networks are removed
-from all <a href="#types/cluster">clusters</a> that have this external provider as the default provider.
+from all <a href="#types-cluster">clusters</a> that have this external provider as the default provider.
 If the name of a network is changed on the provider, the change is synchronized to the network entity in
 oVirt. Furthermore, if a new cluster that has the provider as the default provider is added,
 already imported networks are attached to this new cluster during synchronization.</p>
@@ -71374,11 +71374,11 @@ already imported networks are attached to this new cluster during synchronizatio
 <div class="ulist">
 <ul>
 <li>
-<p>The networks of the external provider will be imported to every <a href="#types/data_center">data center</a>
+<p>The networks of the external provider will be imported to every <a href="#types-data_center">data center</a>
 in the data centers of the clusters that have that external provider as the default provider.</p>
 </li>
 <li>
-<p>A <a href="#types/vnic_profile">vNIC profile</a> will be created for each involved data center and network.</p>
+<p>A <a href="#types-vnic_profile">vNIC profile</a> will be created for each involved data center and network.</p>
 </li>
 <li>
 <p>The networks will be assigned to each cluster that has that external provider as the default provider.</p>
@@ -72226,7 +72226,7 @@ This attribute is currently only used for hosts.
 </div>
 <div class="paragraph">
 <p>For example <code>Fedora</code> or <code>RHEL</code>. In general one of the names returned by
-the <a href="#services/operating_systems">operating system</a> service.</p>
+the <a href="#services-operating_systems">operating system</a> service.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -72359,8 +72359,8 @@ Read only for hosts.
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-This type has been deprecated with the introduction of the <a href="#types/operating_system_info">OperatingSystemInfo</a> type.
-Operating systems are available as a top-level collection in the API: <a href="#services/operating_systems">operating_systems</a>.
+This type has been deprecated with the introduction of the <a href="#types-operating_system_info">OperatingSystemInfo</a> type.
+Operating systems are available as a top-level collection in the API: <a href="#services-operating_systems">operating_systems</a>.
 </td>
 </tr>
 </table>
@@ -73317,19 +73317,19 @@ It means that the new format is in use.</p>
 <p>This type represents the attributes to define Quality of service (QoS).</p>
 </div>
 <div class="paragraph">
-<p>For storage the <code>type</code> is <a href="#types/qos_type">storage</a>, the attributes <code>max_throughput</code>, <code>max_read_throughput</code>,
+<p>For storage the <code>type</code> is <a href="#types-qos_type">storage</a>, the attributes <code>max_throughput</code>, <code>max_read_throughput</code>,
 <code>max_write_throughput</code>, <code>max_iops</code>, <code>max_read_iops</code> and <code>max_write_iops</code> are relevant.</p>
 </div>
 <div class="paragraph">
-<p>For resources with computing capabilities the <code>type</code> is <a href="#types/qos_type">cpu</a>, the attribute <code>cpu_limit</code> is
+<p>For resources with computing capabilities the <code>type</code> is <a href="#types-qos_type">cpu</a>, the attribute <code>cpu_limit</code> is
 relevant.</p>
 </div>
 <div class="paragraph">
-<p>For virtual machines networks the <code>type</code> is <a href="#types/qos_type">network</a>, the attributes <code>inbound_average</code>,
+<p>For virtual machines networks the <code>type</code> is <a href="#types-qos_type">network</a>, the attributes <code>inbound_average</code>,
 <code>inbound_peak</code>, <code>inbound_burst</code>, <code>outbound_average</code>, <code>outbound_peak</code> and <code>outbound_burst</code> are relevant.</p>
 </div>
 <div class="paragraph">
-<p>For host networks the <code>type</code> is <a href="#types/qos_type">hostnetwork</a>, the attributes <code>outbound_average_linkshare</code>,
+<p>For host networks the <code>type</code> is <a href="#types-qos_type">hostnetwork</a>, the attributes <code>outbound_average_linkshare</code>,
 <code>outbound_average_upperlimit</code> and <code>outbound_average_realtime</code> are relevant.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -73652,7 +73652,7 @@ set.</p>
 <div class="sect2">
 <h3 id="types/qos_type"><a class="anchor" href="#types/qos_type"></a><a class="link" href="#types/qos_type">16.229. QosType <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>This type represents the kind of resource the <a href="#types/qos">Quality of service (QoS)</a> can be assigned to.</p>
+<p>This type represents the kind of resource the <a href="#types-qos">Quality of service (QoS)</a> can be assigned to.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1213. Values summary</caption>
@@ -73669,19 +73669,19 @@ set.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cpu</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types/qos">Quality of service (QoS)</a> can be assigned to resources with computing capabilities.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types-qos">Quality of service (QoS)</a> can be assigned to resources with computing capabilities.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hostnetwork</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types/qos">Quality of service (QoS)</a> can be assigned to host networks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types-qos">Quality of service (QoS)</a> can be assigned to host networks.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>network</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types/qos">Quality of service (QoS)</a> can be assigned to virtual machines networks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types-qos">Quality of service (QoS)</a> can be assigned to virtual machines networks.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types/qos">Quality of service (QoS)</a> can be assigned to storage.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="#types-qos">Quality of service (QoS)</a> can be assigned to storage.</p></td>
 </tr>
 </tbody>
 </table>
@@ -74746,7 +74746,7 @@ The target may be specified as a profile ID or a pair of profile name and networ
 </tbody>
 </table>
 <div class="paragraph">
-<p>Then the following snippet should be added to <a href="#types/registration_configuration">RegistrationConfiguration</a></p>
+<p>Then the following snippet should be added to <a href="#types-registration_configuration">RegistrationConfiguration</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -76276,14 +76276,14 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 <div class="paragraph">
 <p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+memory while the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. The size increment must be
 dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
 size increment is not dividable by this value, the memory size change is only stored to next run configuration.
 Each successful memory hot plug operation creates one or two new memory devices.</p>
 </div>
 <div class="paragraph">
 <p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
-when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+when the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. Only previously hot plugged memory
 devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
 of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
 configuration without rounding.</p>
@@ -77990,8 +77990,8 @@ domain or not.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>discard_after_delete</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether <a href="#types/disk">disk</a>s' blocks on block
-<a href="#types/storage_domain">storage domain</a>s will be
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether <a href="#types-disk">disk</a>s' blocks on block
+<a href="#types-storage_domain">storage domain</a>s will be
 discarded right before they are deleted.</p></td>
 </tr>
 <tr>
@@ -78063,8 +78063,8 @@ discard zeroes the data.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>wipe_after_delete</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/boolean">Boolean</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Serves as the default value of <code>wipe_after_delete</code> for <a href="#types/disk">disk</a>s on this
-<a href="#types/storage_domain">storage domain</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serves as the default value of <code>wipe_after_delete</code> for <a href="#types-disk">disk</a>s on this
+<a href="#types-storage_domain">storage domain</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -78091,8 +78091,8 @@ Not all storage domains support all possible sizes.</p>
 <div class="sect3">
 <h4 id="types/storage_domain/attributes/discard_after_delete"><a class="anchor" href="#types/storage_domain/attributes/discard_after_delete"></a><a class="link" href="#types/storage_domain/attributes/discard_after_delete">16.281.3. discard_after_delete</a></h4>
 <div class="paragraph">
-<p>Indicates whether <a href="#types/disk">disk</a>s' blocks on block
-<a href="#types/storage_domain">storage domain</a>s will be
+<p>Indicates whether <a href="#types-disk">disk</a>s' blocks on block
+<a href="#types-storage_domain">storage domain</a>s will be
 discarded right before they are deleted.</p>
 </div>
 <div class="paragraph">
@@ -78122,7 +78122,7 @@ deleted:</p>
 </li>
 <li>
 <p>Discard after delete can be set to <code>true</code> only if the storage domain
-<a href="#types/storage_domain/attributes/supports_discard">supports discard</a>.</p>
+<a href="#types-storage_domain-attributes-supports_discard">supports discard</a>.</p>
 </li>
 </ul>
 </div>
@@ -78131,8 +78131,8 @@ deleted:</p>
 <h4 id="types/storage_domain/attributes/supports_discard"><a class="anchor" href="#types/storage_domain/attributes/supports_discard"></a><a class="link" href="#types/storage_domain/attributes/supports_discard">16.281.4. supports_discard</a></h4>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports discard operations.
-A <a href="#types/storage_domain">storage domain</a> only supports discard
-if all of the <a href="#types/logical_unit">logical unit</a>s that it is built
+A <a href="#types-storage_domain">storage domain</a> only supports discard
+if all of the <a href="#types-logical_unit">logical unit</a>s that it is built
 from support discard; that is, if each logical unit&#8217;s <code>discard_max_size</code> value
 is greater than 0.
 This is one of the conditions necessary for a virtual disk in this
@@ -78144,9 +78144,9 @@ storage domain to have its <code>pass_discard</code> attribute enabled.</p>
 <div class="paragraph">
 <p>Indicates whether a block storage domain supports the property that
 discard zeroes the data.
-A <a href="#types/storage_domain">storage domain</a> only supports the property that
+A <a href="#types-storage_domain">storage domain</a> only supports the property that
 discard zeroes the data if all of the
-<a href="#types/logical_unit">logical unit</a>s that it is built from support it;
+<a href="#types-logical_unit">logical unit</a>s that it is built from support it;
 that is, if each logical unit&#8217;s <code>discard_zeroes_data</code> value is true.</p>
 </div>
 <div class="admonitionblock important">
@@ -78167,8 +78167,8 @@ It is preserved for backwards compatibility, but the value will always be <code>
 <div class="sect3">
 <h4 id="types/storage_domain/attributes/wipe_after_delete"><a class="anchor" href="#types/storage_domain/attributes/wipe_after_delete"></a><a class="link" href="#types/storage_domain/attributes/wipe_after_delete">16.281.6. wipe_after_delete</a></h4>
 <div class="paragraph">
-<p>Serves as the default value of <code>wipe_after_delete</code> for <a href="#types/disk">disk</a>s on this
-<a href="#types/storage_domain">storage domain</a>.</p>
+<p>Serves as the default value of <code>wipe_after_delete</code> for <a href="#types-disk">disk</a>s on this
+<a href="#types-storage_domain">storage domain</a>.</p>
 </div>
 <div class="paragraph">
 <p>That is, newly created disks will get their <code>wipe_after_delete</code> value from their storage domains by default.
@@ -78355,7 +78355,7 @@ volume on the storage domain, this Sanlock resource is used to provide storage b
 <div class="sect2">
 <h3 id="types/storage_domain_type"><a class="anchor" href="#types/storage_domain_type"></a><a class="link" href="#types/storage_domain_type">16.284. StorageDomainType <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>Indicates the kind of data managed by a <a href="#types/storage_domain">storage domain</a>.</p>
+<p>Indicates the kind of data managed by a <a href="#types-storage_domain">storage domain</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1282. Values summary</caption>
@@ -78446,7 +78446,7 @@ from an OpenStack Cincer block storage service.</p>
 <div class="sect2">
 <h3 id="types/storage_format"><a class="anchor" href="#types/storage_format"></a><a class="link" href="#types/storage_format">16.285. StorageFormat <span class="small">enum</span></a></h3>
 <div class="paragraph">
-<p>Type which represents a format of <a href="#types/storage_domain">storage domain</a>.</p>
+<p>Type which represents a format of <a href="#types-storage_domain">storage domain</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1283. Values summary</caption>
@@ -79258,14 +79258,14 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 <div class="paragraph">
 <p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+memory while the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. The size increment must be
 dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
 size increment is not dividable by this value, the memory size change is only stored to next run configuration.
 Each successful memory hot plug operation creates one or two new memory devices.</p>
 </div>
 <div class="paragraph">
 <p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
-when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+when the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. Only previously hot plugged memory
 devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
 of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
 configuration without rounding.</p>
@@ -80008,7 +80008,7 @@ value of the <code>uid</code> LDAP attribute. In Active Directory it is the User
 which are used to customize the settings per individual
 user.
 Note that since version 4.4.5 this property is deprecated and preserved only for backwards
-compatibility. It will be removed in the future. Please use the <a href="#services/user_option">options</a>
+compatibility. It will be removed in the future. Please use the <a href="#services-user_option">options</a>
 endpoint instead.</p>
 </div>
 <table id="types/user/links_summary" class="tableblock frame-all grid-all stretch">
@@ -81156,14 +81156,14 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 <div class="paragraph">
 <p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+memory while the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. The size increment must be
 dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
 size increment is not dividable by this value, the memory size change is only stored to next run configuration.
 Each successful memory hot plug operation creates one or two new memory devices.</p>
 </div>
 <div class="paragraph">
 <p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
-when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+when the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. Only previously hot plugged memory
 devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
 of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
 configuration without rounding.</p>
@@ -82031,14 +82031,14 @@ from this template to be preconfigured with this storage domain as the location 
 </div>
 <div class="paragraph">
 <p>Memory hot plug is supported from oVirt 3.6 onwards. You can use the example above to increase
-memory while the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. The size increment must be
+memory while the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. The size increment must be
 dividable by the value of the <code>HotPlugMemoryBlockSizeMb</code> configuration value (256 MiB by default). If the memory
 size increment is not dividable by this value, the memory size change is only stored to next run configuration.
 Each successful memory hot plug operation creates one or two new memory devices.</p>
 </div>
 <div class="paragraph">
 <p>Memory hot unplug is supported since oVirt 4.2 onwards. Memory hot unplug can only be performed
-when the virtual machine is in state <a href="#types/vm_status/values/up">up</a>. Only previously hot plugged memory
+when the virtual machine is in state <a href="#types-vm_status-values-up">up</a>. Only previously hot plugged memory
 devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
 of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
 configuration without rounding.</p>
@@ -83099,7 +83099,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 <div class="sect2">
 <h3 id="types/vnic_profile"><a class="anchor" href="#types/vnic_profile"></a><a class="link" href="#types/vnic_profile">16.326. VnicProfile <span class="small">struct</span></a></h3>
 <div class="paragraph">
-<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types/nic">NIC</a>.</p>
+<p>A vNIC profile is a collection of settings that can be applied to individual <a href="#types-nic">NIC</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1336. Attributes summary</caption>
@@ -83149,7 +83149,7 @@ cannot be set automatically; manually setting them before running the virtual ma
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pass_through</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vnic_pass_through">VnicPassThrough</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables passthrough to an SR-IOV-enabled <a href="#types-host_nic">host NIC</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port_mirroring</code></p></td>
@@ -83175,11 +83175,11 @@ flagged as <code>migratable</code>.</p>
 <div class="sect3">
 <h4 id="types/vnic_profile/attributes/pass_through"><a class="anchor" href="#types/vnic_profile/attributes/pass_through"></a><a class="link" href="#types/vnic_profile/attributes/pass_through">16.326.2. pass_through</a></h4>
 <div class="paragraph">
-<p>Enables passthrough to an SR-IOV-enabled <a href="#types/host_nic">host NIC</a>.</p>
+<p>Enables passthrough to an SR-IOV-enabled <a href="#types-host_nic">host NIC</a>.</p>
 </div>
 <div class="paragraph">
 <p>A vNIC profile enables a NIC to be directly connected to a
-<a href="#types/host_nic_virtual_functions_configuration">virtual function (VF)</a> of an SR-IOV-enabled
+<a href="#types-host_nic_virtual_functions_configuration">virtual function (VF)</a> of an SR-IOV-enabled
 host NIC, if passthrough is enabled. The NIC will then bypass the software network virtualization and
 connect directly to the VF for direct device assignment.</p>
 </div>
@@ -83194,8 +83194,8 @@ If a vNIC profile has passthrough enabled, <code>qos</code> and <code>port_mirro
 <p>Enables port mirroring.</p>
 </div>
 <div class="paragraph">
-<p>Port mirroring copies layer 3 network traffic on a given <a href="#types/network">logical network</a> and
-<a href="#types/host">host</a> to a NIC on a <a href="#types/vm">virtual machine</a>. This virtual machine
+<p>Port mirroring copies layer 3 network traffic on a given <a href="#types-network">logical network</a> and
+<a href="#types-host">host</a> to a NIC on a <a href="#types-vm">virtual machine</a>. This virtual machine
 can be used for network debugging and tuning, intrusion detection, and monitoring the behavior of other
 virtual machines on the same host and logical network. The only
 traffic copied is internal to one logical network on one host. There is no
@@ -84579,7 +84579,7 @@ replaced by inner elements:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-elements-instead-of-attributes-in-vcpu-pin"><a class="anchor" href="#use-elements-instead-of-attributes-in-vcpu-pin"></a><a class="link" href="#use-elements-instead-of-attributes-in-vcpu-pin">7.16. Use elements instead of attributes in VCPU pin</a></h3>
+<h3 id="use-elements-instead-of-attributes-in-vcpu-pin-2"><a class="anchor" href="#use-elements-instead-of-attributes-in-vcpu-pin-2"></a><a class="link" href="#use-elements-instead-of-attributes-in-vcpu-pin-2">7.16. Use elements instead of attributes in VCPU pin</a></h3>
 <div class="paragraph">
 <p>In the past the VCPU pin element used attributes for its properties:</p>
 </div>
@@ -84606,7 +84606,7 @@ replaced by inner elements:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-elements-instead-of-attributes-in-vcpu-pin"><a class="anchor" href="#use-elements-instead-of-attributes-in-vcpu-pin"></a><a class="link" href="#use-elements-instead-of-attributes-in-vcpu-pin">7.17. Use elements instead of attributes in VCPU pin</a></h3>
+<h3 id="use-elements-instead-of-attributes-in-vcpu-pin-1"><a class="anchor" href="#use-elements-instead-of-attributes-in-vcpu-pin-1"></a><a class="link" href="#use-elements-instead-of-attributes-in-vcpu-pin-1">7.17. Use elements instead of attributes in VCPU pin</a></h3>
 <div class="paragraph">
 <p>In the past the <code>version</code> element used attributes for its properties:</p>
 </div>
@@ -86175,7 +86175,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-06-15 10:57:41 UTC
+Last updated 2022-07-14 08:07:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
