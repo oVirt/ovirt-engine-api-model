@@ -35,7 +35,7 @@ environment.
 
 In many examples, some attributes of the results returned by the
 API have been omitted, for brevity. See, for example, the
-xref:types/cluster[Cluster] reference for a complete list of attributes.
+xref:types-cluster[Cluster] reference for a complete list of attributes.
 
 [id="access-api-entry-point"]
 == Access API entry point
@@ -69,7 +69,7 @@ curl \
 https://myengine.example.com/ovirt-engine/api
 ----
 
-The result is an object of type xref:types/api[Api]:
+The result is an object of type xref:types-api[Api]:
 
 [source,xml]
 ----
@@ -137,8 +137,8 @@ provides a reference point for each link. The next step in this example
 examines the data center collection, which is available through the
 `datacenters` link.
 
-The entry point also contains other data such as xref:types/product_info[product_info], xref:types/special_objects[special_objects] and
-xref:types/api_summary[summary]. This data is covered in chapters
+The entry point also contains other data such as xref:types-product_info[product_info], xref:types-special_objects[special_objects] and
+xref:types-api_summary[summary]. This data is covered in chapters
 outside this example.
 
 [id="list-data-centers"]
@@ -167,7 +167,7 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/datacenters
 ----
 
-The result will be a list of objects of type xref:types/data_center[DataCenter]:
+The result will be a list of objects of type xref:types-data_center[DataCenter]:
 
 [source,xml]
 ----
@@ -200,7 +200,7 @@ Note the `id` of your `Default` data center. It identifies this data
 center in relation to other resources of your virtual environment.
 
 The data center also contains a link to the
-xref:services/attached_storage_domains[service] that manages the storage
+xref:services-attached_storage_domains[service] that manages the storage
 domains attached to the data center:
 
 ----
@@ -237,7 +237,7 @@ curl \
 https://myengine.example.com/ovirt-engine/api/clusters
 ----
 
-The result will be a list of objects of type xref:types/cluster[Cluster]:
+The result will be a list of objects of type xref:types-cluster[Cluster]:
 
 [source,xml]
 ----
@@ -273,7 +273,7 @@ through a relationship using the `id` and `href` attributes of the
 <data_center href="/ovirt-engine/api/datacenters/001" id="001"/>
 ----
 
-The `networks` link is a reference to the xref:services/data_center_networks[service] that manages the networks associated to this cluster. The next
+The `networks` link is a reference to the xref:services-data_center_networks[service] that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.
 
 [id="list-logical-networks"]
@@ -306,7 +306,7 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/networks
 ----
 
-The result will be a list of objects of type xref:types/network[Network]:
+The result will be a list of objects of type xref:types-network[Network]:
 
 [source,xml]
 ----
@@ -358,7 +358,7 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/hosts
 ----
 
-The result will be a list of objects of type xref:types/host[Host]:
+The result will be a list of objects of type xref:types-host[Host]:
 
 [source,xml]
 ----
@@ -473,7 +473,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains
 The server uses host `myhost` to create a NFS data storage domain called
 `mydata` with an export path of `mynfs.example.com:/exports/mydata`. The
 API also returns the following representation of the newly created
-storage domain resource (of type xref:types/storage_domain[StorageDomain]):
+storage domain resource (of type xref:types-storage_domain[StorageDomain]):
 
 [source,xml]
 ----
@@ -562,7 +562,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains
 The server uses host `myhost` to create a NFS ISO storage domain called
 `myisos` with an export path of `mynfs.example.com:/exports/myisos`. The
 API also returns the following representation of the newly created
-storage domain resource (of type xref:types/storage_domain[StorageDomain]):
+storage domain resource (of type xref:types-storage_domain[StorageDomain]):
 
 [source,xml]
 ----
@@ -668,7 +668,7 @@ The following example creates a virtual machine called `myvm` on the
 template as a basis. The request also defines the virtual machine's
 memory as 512 MiB and sets the boot device to a virtual hard disk.
 
-The request should be contain an object of type xref:types/vm[Vm]
+The request should be contain an object of type xref:types-vm[Vm]
 describing the virtual machine to create:
 
 [source,xml]
@@ -735,7 +735,7 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/vms
 ----
 
-The response body will be an object of the xref:types/vm[Vm] type:
+The response body will be an object of the xref:types-vm[Vm] type:
 
 [source,xml]
 ----
@@ -783,7 +783,7 @@ Content-Type: application/xml
 Accept: application/xml
 ----
 
-The request body should contain an object of type xref:types/nic[Nic]
+The request body should contain an object of type xref:types-nic[Nic]
 describing the NIC to be created:
 
 [source,xml]
@@ -827,7 +827,7 @@ Content-Type: application/xml
 Accept: application/xml
 ----
 
-The request body should be an object of type xref:types/disk_attachment[DiskAttachment] describing the disk and how it will be attached to the
+The request body should be an object of type xref:types-disk_attachment[DiskAttachment] describing the disk and how it will be attached to the
 virtual machine:
 
 [source,xml]
@@ -892,8 +892,8 @@ ISO image for an operating system installation. This example uses a
 CentOS 7 image.
 
 ISO images must be available in the `myisos` ISO domain for the virtual
-machines to use. You can use xref:services/image_transfer[ImageTransfer] to create an
-image transfer and xref:services/image_transfers[ImageTransfers] to upload the ISO
+machines to use. You can use xref:services-image_transfer[ImageTransfer] to create an
+image transfer and xref:services-image_transfers[ImageTransfers] to upload the ISO
 image.
 
 Once the ISO image is uploaded, an API can be used to request the list of
@@ -916,7 +916,7 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/storagedomains/006/files
 ----
 
-The server returns the following list of objects of type xref:types/file[File], one for each available ISO (or floppy) image:
+The server returns the following list of objects of type xref:types-file[File], one for each available ISO (or floppy) image:
 
 [source,xml]
 ----
@@ -940,7 +940,7 @@ Accept: application/xml
 Content-type: application/xml
 ----
 
-The request body should be an object of type xref:types/cdrom[Cdrom]
+The request body should be an object of type xref:types-cdrom[Cdrom]
 containing an inner `file` attribute to indicate the identifier of the
 ISO (or floppy) image:
 
@@ -969,14 +969,14 @@ The same request, using the `curl` command:
 https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-0000-000000000000
 ----
 
-For more details see the documentation of the xref:services/vm_cdrom[service] that manages virtual machine CD-ROMS.
+For more details see the documentation of the xref:services-vm_cdrom[service] that manages virtual machine CD-ROMS.
 
 [id="start-the-virtual-machine"]
 == Start the virtual machine
 
 The virtual environment is complete and the virtual machine contains all
 necessary components to function. This example starts the virtual
-machine using the xref:services/vm/methods/start[start] method.
+machine using the xref:services-vm-methods-start[start] method.
 
 The request should be like this:
 
