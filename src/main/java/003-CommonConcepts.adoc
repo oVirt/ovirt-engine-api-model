@@ -10,21 +10,21 @@ accepted and returned.
 
 There are three relevant kinds of types:
 
-Primitive types:: Describe simple kinds of objects, like xref:types/string[strings] or
-xref:types/integer[integers].
+Primitive types:: Describe simple kinds of objects, like xref:types-string[strings] or
+xref:types-integer[integers].
 
-Enumerated types:: Describe lists of valid values like xref:types/vm_status[VmStatus]
-or xref:types/disk_format[DiskFormat].
+Enumerated types:: Describe lists of valid values like xref:types-vm_status[VmStatus]
+or xref:types-disk_format[DiskFormat].
 
 Structured types:: Describe structured objects, with multiple attributes and
-links, like xref:types/vm[Vm] or xref:types/disk[Disk].
+links, like xref:types-vm[Vm] or xref:types-disk[Disk].
 
 [id="identified-types"]
 == Identified types
 
 Many of the types used by the API represent _identified_ objects, objects
 that have an unique identifier and exist independently of other objects.
-The types used to describe those objects extend the xref:types/identified[Identified]
+The types used to describe those objects extend the xref:types-identified[Identified]
 type, which contains the following set of common attributes:
 
 [cols="20,20,60"]
@@ -32,21 +32,21 @@ type, which contains the following set of common attributes:
 |Attribute |Type |Description
 
 |`id`
-|xref:types/string[String]
+|xref:types-string[String]
 |Each object in the virtualization infrastructure contains an `id`, which
 acts as an unique identifier.
 
 |`href`
-|xref:types/string[String]
+|xref:types-string[String]
 |The canonical location of the object as an absolute path.
 
 |`name`
-|xref:types/string[String]
+|xref:types-string[String]
 |A user-supplied human readable name for the object. The `name` name is
 unique across all objects of the same type.
 
 |`description`
-|xref:types/string[String]
+|xref:types-string[String]
 |A free-form user-supplied human readable description of the object.
 
 |===
@@ -62,7 +62,7 @@ identifiers are just strings.
 
 Objects are the individual instances of the types supported by the API.
 For example, the virtual machine with identifier `123` is an object of
-the xref:types/vm[Vm] type.
+the xref:types-vm[Vm] type.
 
 [id="collections"]
 == Collections
@@ -183,12 +183,12 @@ There are two relevant kinds of services:
 
 Services that manage a collection of objects:: These services are
 reponsible for listing existing objects and adding new objects. For
-example, the xref:services/vms[Vms] service is responsible for managing
+example, the xref:services-vms[Vms] service is responsible for managing
 the collection of virtual machines available in the system.
 
 Services that manage a specific object:: These services are responsible
 for retrieving, updating, deleting and executing actions in specific
-objects. For example, the xref:services/vm[Vm] service is responsible for
+objects. For example, the xref:services-vm[Vm] service is responsible for
 managing a specific virtual machine.
 
 Each service is accessible via a particular _path_ within the server.
@@ -202,8 +202,8 @@ operations that they can perform. The services that manage collections
 of objects usually have the `list` and `add` methods. The services that
 manage specific objects usually have the `get`, `update` and `remove`
 methods. In addition, services may also have _action_ methods, that
-represent less common operations. For example, the xref:services/vm[Vm]
-service has a xref:services/vm/methods/start[start] method that is used
+represent less common operations. For example, the xref:services-vm[Vm]
+service has a xref:services-vm-methods-start[start] method that is used
 to start a virtual machine.
 
 For the more usual methods there is a direct mapping between the name of
@@ -251,14 +251,14 @@ main parameter per method.
 Secondary parameters:: The rest of the parameters.
 
 For example, the operation that adds a virtual machine (see
-xref:services/vms/methods/add[here]) has three parameters: `vm`, `clone`
+xref:services-vms-methods-add[here]) has three parameters: `vm`, `clone`
 and `clone_permissions`. The main parameter is `vm`, as it describes the
 object that is added. The `clone` and `clone_permissions` parameters are
 secondary parameters.
 
 The main parameter, when used for input, must be included in the body of
 the HTTP request. For example, when adding a virtual machine, the `vm`
-parameter, of type xref:types/vm[Vm] must be included in the request
+parameter, of type xref:types-vm[Vm] must be included in the request
 body. So the complete request to add a virtual machine, including all
 the HTTP details, must look like this:
 
@@ -324,7 +324,7 @@ Accept: application/xml
 Action methods only have secondary parameters. They can be used for
 input and output, and they should be included in the request body,
 wrapped with an `action` element. For example, the action method used to
-start a virtual machine (see xref:services/vm/methods/start[here]) has a
+start a virtual machine (see xref:services-vm-methods-start[here]) has a
 `vm` parameter to describe how the virtual machine should be started,
 and a `use_cloud_init` parameter to specify if
 link:https://cloudinit.readthedocs.io[cloud-init] should be used to configure
