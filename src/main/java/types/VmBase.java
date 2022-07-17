@@ -311,11 +311,14 @@ public interface VmBase extends Identified {
     Boolean startPaused();
 
     /**
-     * Reference to configuration of migration of running virtual machine to another host.
+     * Reference to configuration of migration of a running virtual machine to another host.
+     *
+     * NOTE: API for querying migration policy by ID returned by this method is not implemented yet. Use
+     * `/ovirt-engine/api/options/MigrationPolicies` to get a list of all migration policies with their IDs.
      *
      * @author Marek Libra <mlibra@redhat.com>
-     * @date 12 Dec 2016
-     * @status added
+     * @date 18 Jul 2022
+     * @status updated
      */
     MigrationOptions migration();
 
