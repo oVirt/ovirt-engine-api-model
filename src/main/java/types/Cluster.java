@@ -330,6 +330,17 @@ public interface Cluster extends Identified {
      * @status updated_by_docs
      */
     FencingPolicy fencingPolicy();
+
+    /**
+     * Reference to cluster-wide configuration of migration of a running virtual machine to another host.
+     *
+     * NOTE: API for querying migration policy by ID returned by this method is not implemented yet. Use
+     * `/ovirt-engine/api/options/MigrationPolicies` to get a list of all migration policies with their IDs.
+     *
+     * @author Shmuel Leib Melamud <smelamud@redhat.com>
+     * @date 18 Jul 2022
+     * @status added
+     */
     MigrationOptions migration();
 
     /**
