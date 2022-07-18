@@ -18,7 +18,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * This type represents the kind of resource the xref:types/qos[Quality of service (QoS)] can be assigned to.
+ * This type represents the kind of resource the xref:types-qos[Quality of service (QoS)] can be assigned to.
  *
  * @author Dominik Holler <dholler@redhat.com>
  * @date 12 Dec 2016
@@ -27,7 +27,7 @@ import org.ovirt.api.metamodel.annotations.Type;
 @Type
 public enum QosType {
     /**
-     * The xref:types/qos[Quality of service (QoS)] can be assigned to storage.
+     * The xref:types-qos[Quality of service (QoS)] can be assigned to storage.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 12 Dec 2016
@@ -36,7 +36,7 @@ public enum QosType {
     STORAGE,
 
     /**
-     * The xref:types/qos[Quality of service (QoS)] can be assigned to resources with computing capabilities.
+     * The xref:types-qos[Quality of service (QoS)] can be assigned to resources with computing capabilities.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 12 Dec 2016
@@ -45,7 +45,7 @@ public enum QosType {
     CPU,
 
     /**
-     * The xref:types/qos[Quality of service (QoS)] can be assigned to virtual machines networks.
+     * The xref:types-qos[Quality of service (QoS)] can be assigned to virtual machines networks.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 12 Dec 2016
@@ -54,7 +54,7 @@ public enum QosType {
     NETWORK,
 
     /**
-     * The xref:types/qos[Quality of service (QoS)] can be assigned to host networks.
+     * The xref:types-qos[Quality of service (QoS)] can be assigned to host networks.
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 12 Dec 2016

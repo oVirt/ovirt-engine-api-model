@@ -33,7 +33,7 @@ public interface ImageTransfer extends Identified {
 
     /**
      * The URL of the proxy server that the user inputs or outputs to. This attribute is
-     * available only if the image transfer is in the xref:types/image_transfer_phase[transferring]
+     * available only if the image transfer is in the xref:types-image_transfer_phase[transferring]
      * phase. See `phase` for details.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -49,7 +49,7 @@ public interface ImageTransfer extends Identified {
      *
      * This is as an alternative to the `proxy_url`. I.e. if the client has access to the host machine, it could bypass
      * the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
-     * available only if the image transfer is in the xref:types/image_transfer_phase[transferring]
+     * available only if the image transfer is in the xref:types-image_transfer_phase[transferring]
      * phase. See `phase` for details.
      *
      * @author Daniel Erez <derez@redhat.com>
@@ -62,7 +62,7 @@ public interface ImageTransfer extends Identified {
     /**
      * The current phase of the image transfer in progress. Each transfer needs a managed
      * session, which must be opened for the user to input or output an image.
-     * Please refer to xref:services/image_transfer[image transfer] for further
+     * Please refer to xref:services-image_transfer[image transfer] for further
      * documentation.
      *
      * @author Amit Aviram <aaviram@redhat.com>

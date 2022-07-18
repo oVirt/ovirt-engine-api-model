@@ -20,8 +20,8 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * Type representing kind of operating system.
  *
- * WARNING: This type has been deprecated with the introduction of the xref:types/operating_system_info[OperatingSystemInfo] type.
- * Operating systems are available as a top-level collection in the API: xref:services/operating_systems[operating_systems].
+ * WARNING: This type has been deprecated with the introduction of the xref:types-operating_system_info[OperatingSystemInfo] type.
+ * Operating systems are available as a top-level collection in the API: xref:services-operating_systems[operating_systems].
  *
  * The end-user declares the type of the operating system installed in the virtual machine (guest operating system) by
  * selecting one of these values. This declaration enables the system to tune the virtual machine configuration for

@@ -150,7 +150,7 @@ public interface StorageDomainTemplateService {
          *
          * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
          * compatibility. It will be removed in the future. To specify `vnic_profile_mappings` use the `vnic_profile_mappings`
-         * attribute inside the xref:types/registration_configuration[RegistrationConfiguration] type.
+         * attribute inside the xref:types-registration_configuration[RegistrationConfiguration] type.
          *
          * @author Maor Lipchuk <mlipchuk@redhat.com>
          * @author Eitan Raviv <eraviv@redhat.com>

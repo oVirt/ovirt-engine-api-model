@@ -68,8 +68,8 @@ public interface StorageDomain extends Identified {
     StorageFormat storageFormat();
 
     /**
-     * Serves as the default value of `wipe_after_delete` for xref:types/disk[disk]s on this
-     * xref:types/storage_domain[storage domain].
+     * Serves as the default value of `wipe_after_delete` for xref:types-disk[disk]s on this
+     * xref:types-storage_domain[storage domain].
      *
      * That is, newly created disks will get their `wipe_after_delete` value from their storage domains by default.
      * Note that the configuration value `SANWipeAfterDelete` serves as the default value of block storage domains'
@@ -82,8 +82,8 @@ public interface StorageDomain extends Identified {
     Boolean wipeAfterDelete();
 
     /**
-     * Indicates whether xref:types/disk[disk]s' blocks on block
-     * xref:types/storage_domain[storage domain]s will be
+     * Indicates whether xref:types-disk[disk]s' blocks on block
+     * xref:types-storage_domain[storage domain]s will be
      * discarded right before they are deleted.
      *
      * If true, and a disk on this storage domain has its `wipe_after_delete` value enabled, then when the disk is
@@ -98,7 +98,7 @@ public interface StorageDomain extends Identified {
      * * Discard after delete will always be `false` for non block storage types.
      *
      * * Discard after delete can be set to `true` only if the storage domain
-     * xref:types/storage_domain/attributes/supports_discard[supports discard].
+     * xref:types-storage_domain-attributes-supports_discard[supports discard].
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @date 29 November 2016
@@ -109,8 +109,8 @@ public interface StorageDomain extends Identified {
 
     /**
      * Indicates whether a block storage domain supports discard operations.
-     * A xref:types/storage_domain[storage domain] only supports discard
-     * if all of the xref:types/logical_unit[logical unit]s that it is built
+     * A xref:types-storage_domain[storage domain] only supports discard
+     * if all of the xref:types-logical_unit[logical unit]s that it is built
      * from support discard; that is, if each logical unit's `discard_max_size` value
      * is greater than 0.
      * This is one of the conditions necessary for a virtual disk in this
@@ -127,9 +127,9 @@ public interface StorageDomain extends Identified {
     /**
      * Indicates whether a block storage domain supports the property that
      * discard zeroes the data.
-     * A xref:types/storage_domain[storage domain] only supports the property that
+     * A xref:types-storage_domain[storage domain] only supports the property that
      * discard zeroes the data if all of the
-     * xref:types/logical_unit[logical unit]s that it is built from support it;
+     * xref:types-logical_unit[logical unit]s that it is built from support it;
      * that is, if each logical unit's `discard_zeroes_data` value is true.
      *
      * IMPORTANT: Since version 4.2.1 of the system, the support for this attribute has
