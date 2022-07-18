@@ -1,4 +1,3 @@
-:_content-type: ASSEMBLY
 [id="common-concepts"]
 = Common concepts
 

@@ -1,4 +1,3 @@
-:_content-type: ASSEMBLY
 [id="quick-start-examples"]
 = Quick Start Examples
 
