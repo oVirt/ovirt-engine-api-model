@@ -1463,18 +1463,18 @@ accepted and returned.</p>
 <dl>
 <dt class="hdlist1">Primitive types</dt>
 <dd>
-<p>Describe simple kinds of objects, like <a href="#types/string">strings</a> or
-<a href="#types/integer">integers</a>.</p>
+<p>Describe simple kinds of objects, like <a href="#types-string">strings</a> or
+<a href="#types-integer">integers</a>.</p>
 </dd>
 <dt class="hdlist1">Enumerated types</dt>
 <dd>
-<p>Describe lists of valid values like <a href="#types/vm_status">VmStatus</a>
-or <a href="#types/disk_format">DiskFormat</a>.</p>
+<p>Describe lists of valid values like <a href="#types-vm_status">VmStatus</a>
+or <a href="#types-disk_format">DiskFormat</a>.</p>
 </dd>
 <dt class="hdlist1">Structured types</dt>
 <dd>
 <p>Describe structured objects, with multiple attributes and
-links, like <a href="#types/vm">Vm</a> or <a href="#types/disk">Disk</a>.</p>
+links, like <a href="#types-vm">Vm</a> or <a href="#types-disk">Disk</a>.</p>
 </dd>
 </dl>
 </div>
@@ -1486,7 +1486,7 @@ links, like <a href="#types/vm">Vm</a> or <a href="#types/disk">Disk</a>.</p>
 <div class="paragraph">
 <p>Many of the types used by the API represent <em>identified</em> objects, objects
 that have an unique identifier and exist independently of other objects.
-The types used to describe those objects extend the <a href="#types/identified">Identified</a>
+The types used to describe those objects extend the <a href="#types-identified">Identified</a>
 type, which contains the following set of common attributes:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1505,24 +1505,24 @@ type, which contains the following set of common attributes:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types-string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Each object in the virtualization infrastructure contains an <code>id</code>, which
 acts as an unique identifier.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>href</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types-string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The canonical location of the object as an absolute path.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types-string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A user-supplied human readable name for the object. The <code>name</code> name is
 unique across all objects of the same type.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/string">String</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types-string">String</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A free-form user-supplied human readable description of the object.</p></td>
 </tr>
 </tbody>
@@ -1551,7 +1551,7 @@ identifiers are just strings.
 <div class="paragraph">
 <p>Objects are the individual instances of the types supported by the API.
 For example, the virtual machine with identifier <code>123</code> is an object of
-the <a href="#types/vm">Vm</a> type.</p>
+the <a href="#types-vm">Vm</a> type.</p>
 </div>
 </div>
 </div>
@@ -1702,14 +1702,14 @@ API.</p>
 <dd>
 <p>These services are
 reponsible for listing existing objects and adding new objects. For
-example, the <a href="#services/vms">Vms</a> service is responsible for managing
+example, the <a href="#services-vms">Vms</a> service is responsible for managing
 the collection of virtual machines available in the system.</p>
 </dd>
 <dt class="hdlist1">Services that manage a specific object</dt>
 <dd>
 <p>These services are responsible
 for retrieving, updating, deleting and executing actions in specific
-objects. For example, the <a href="#services/vm">Vm</a> service is responsible for
+objects. For example, the <a href="#services-vm">Vm</a> service is responsible for
 managing a specific virtual machine.</p>
 </dd>
 </dl>
@@ -1727,8 +1727,8 @@ operations that they can perform. The services that manage collections
 of objects usually have the <code>list</code> and <code>add</code> methods. The services that
 manage specific objects usually have the <code>get</code>, <code>update</code> and <code>remove</code>
 methods. In addition, services may also have <em>action</em> methods, that
-represent less common operations. For example, the <a href="#services/vm">Vm</a>
-service has a <a href="#services/vm/methods/start">start</a> method that is used
+represent less common operations. For example, the <a href="#services-vm">Vm</a>
+service has a <a href="#services-vm-methods-start">start</a> method that is used
 to start a virtual machine.</p>
 </div>
 <div class="paragraph">
@@ -1816,7 +1816,7 @@ main parameter per method.</p>
 </div>
 <div class="paragraph">
 <p>For example, the operation that adds a virtual machine (see
-<a href="#services/vms/methods/add">here</a>) has three parameters: <code>vm</code>, <code>clone</code>
+<a href="#services-vms-methods-add">here</a>) has three parameters: <code>vm</code>, <code>clone</code>
 and <code>clone_permissions</code>. The main parameter is <code>vm</code>, as it describes the
 object that is added. The <code>clone</code> and <code>clone_permissions</code> parameters are
 secondary parameters.</p>
@@ -1824,7 +1824,7 @@ secondary parameters.</p>
 <div class="paragraph">
 <p>The main parameter, when used for input, must be included in the body of
 the HTTP request. For example, when adding a virtual machine, the <code>vm</code>
-parameter, of type <a href="#types/vm">Vm</a> must be included in the request
+parameter, of type <a href="#types-vm">Vm</a> must be included in the request
 body. So the complete request to add a virtual machine, including all
 the HTTP details, must look like this:</p>
 </div>
@@ -1896,7 +1896,7 @@ Accept: application/xml
 <p>Action methods only have secondary parameters. They can be used for
 input and output, and they should be included in the request body,
 wrapped with an <code>action</code> element. For example, the action method used to
-start a virtual machine (see <a href="#services/vm/methods/start">here</a>) has a
+start a virtual machine (see <a href="#services-vm-methods-start">here</a>) has a
 <code>vm</code> parameter to describe how the virtual machine should be started,
 and a <code>use_cloud_init</code> parameter to specify if
 <a href="https://cloudinit.readthedocs.io">cloud-init</a> should be used to configure
@@ -2453,7 +2453,7 @@ environment.</p>
 <div class="paragraph">
 <p>In many examples, some attributes of the results returned by the
 API have been omitted, for brevity. See, for example, the
-<a href="#types/cluster">Cluster</a> reference for a complete list of attributes.</p>
+<a href="#types-cluster">Cluster</a> reference for a complete list of attributes.</p>
 </div>
 <div class="sect1">
 <h2 id="access-api-entry-point"><a class="anchor" href="#access-api-entry-point"></a><a class="link" href="#access-api-entry-point">1. Access API entry point</a></h2>
@@ -2494,7 +2494,7 @@ https://myengine.example.com/ovirt-engine/api</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result is an object of type <a href="#types/api">Api</a>:</p>
+<p>The result is an object of type <a href="#types-api">Api</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2575,8 +2575,8 @@ examines the data center collection, which is available through the
 <code>datacenters</code> link.</p>
 </div>
 <div class="paragraph">
-<p>The entry point also contains other data such as <a href="#types/product_info">product_info</a>, <a href="#types/special_objects">special_objects</a> and
-<a href="#types/api_summary">summary</a>. This data is covered in chapters
+<p>The entry point also contains other data such as <a href="#types-product_info">product_info</a>, <a href="#types-special_objects">special_objects</a> and
+<a href="#types-api_summary">summary</a>. This data is covered in chapters
 outside this example.</p>
 </div>
 </div>
@@ -2613,7 +2613,7 @@ https://myengine.example.com/ovirt-engine/api/datacenters</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result will be a list of objects of type <a href="#types/data_center">DataCenter</a>:</p>
+<p>The result will be a list of objects of type <a href="#types-data_center">DataCenter</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2648,7 +2648,7 @@ center in relation to other resources of your virtual environment.</p>
 </div>
 <div class="paragraph">
 <p>The data center also contains a link to the
-<a href="#services/attached_storage_domains">service</a> that manages the storage
+<a href="#services-attached_storage_domains">service</a> that manages the storage
 domains attached to the data center:</p>
 </div>
 <div class="listingblock">
@@ -2695,7 +2695,7 @@ https://myengine.example.com/ovirt-engine/api/clusters</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result will be a list of objects of type <a href="#types/cluster">Cluster</a>:</p>
+<p>The result will be a list of objects of type <a href="#types-cluster">Cluster</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2735,7 +2735,7 @@ through a relationship using the <code>id</code> and <code>href</code> attribute
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>networks</code> link is a reference to the <a href="#services/data_center_networks">service</a> that manages the networks associated to this cluster. The next
+<p>The <code>networks</code> link is a reference to the <a href="#services-data_center_networks">service</a> that manages the networks associated to this cluster. The next
 section examines the networks collection in more detail.</p>
 </div>
 </div>
@@ -2777,7 +2777,7 @@ https://myengine.example.com/ovirt-engine/api/networks</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result will be a list of objects of type <a href="#types/network">Network</a>:</p>
+<p>The result will be a list of objects of type <a href="#types-network">Network</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2837,7 +2837,7 @@ https://myengine.example.com/ovirt-engine/api/hosts</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The result will be a list of objects of type <a href="#types/host">Host</a>:</p>
+<p>The result will be a list of objects of type <a href="#types-host">Host</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2964,7 +2964,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains</pre>
 <p>The server uses host <code>myhost</code> to create a NFS data storage domain called
 <code>mydata</code> with an export path of <code>mynfs.example.com:/exports/mydata</code>. The
 API also returns the following representation of the newly created
-storage domain resource (of type <a href="#types/storage_domain">StorageDomain</a>):</p>
+storage domain resource (of type <a href="#types-storage_domain">StorageDomain</a>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3062,7 +3062,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains</pre>
 <p>The server uses host <code>myhost</code> to create a NFS ISO storage domain called
 <code>myisos</code> with an export path of <code>mynfs.example.com:/exports/myisos</code>. The
 API also returns the following representation of the newly created
-storage domain resource (of type <a href="#types/storage_domain">StorageDomain</a>):</p>
+storage domain resource (of type <a href="#types-storage_domain">StorageDomain</a>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3185,7 +3185,7 @@ template as a basis. The request also defines the virtual machine&#8217;s
 memory as 512 MiB and sets the boot device to a virtual hard disk.</p>
 </div>
 <div class="paragraph">
-<p>The request should be contain an object of type <a href="#types/vm">Vm</a>
+<p>The request should be contain an object of type <a href="#types-vm">Vm</a>
 describing the virtual machine to create:</p>
 </div>
 <div class="listingblock">
@@ -3256,7 +3256,7 @@ https://myengine.example.com/ovirt-engine/api/vms</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The response body will be an object of the <a href="#types/vm">Vm</a> type:</p>
+<p>The response body will be an object of the <a href="#types-vm">Vm</a> type:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3310,7 +3310,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The request body should contain an object of type <a href="#types/nic">Nic</a>
+<p>The request body should contain an object of type <a href="#types-nic">Nic</a>
 describing the NIC to be created:</p>
 </div>
 <div class="listingblock">
@@ -3362,7 +3362,7 @@ Accept: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The request body should be an object of type <a href="#types/disk_attachment">DiskAttachment</a> describing the disk and how it will be attached to the
+<p>The request body should be an object of type <a href="#types-disk_attachment">DiskAttachment</a> describing the disk and how it will be attached to the
 virtual machine:</p>
 </div>
 <div class="listingblock">
@@ -3434,8 +3434,8 @@ CentOS 7 image.</p>
 </div>
 <div class="paragraph">
 <p>ISO images must be available in the <code>myisos</code> ISO domain for the virtual
-machines to use. You can use <a href="#services/image_transfer">ImageTransfer</a> to create an
-image transfer and <a href="#services/image_transfers">ImageTransfers</a> to upload the ISO
+machines to use. You can use <a href="#services-image_transfer">ImageTransfer</a> to create an
+image transfer and <a href="#services-image_transfers">ImageTransfers</a> to upload the ISO
 image.</p>
 </div>
 <div class="paragraph">
@@ -3463,7 +3463,7 @@ https://myengine.example.com/ovirt-engine/api/storagedomains/006/files</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The server returns the following list of objects of type <a href="#types/file">File</a>, one for each available ISO (or floppy) image:</p>
+<p>The server returns the following list of objects of type <a href="#types-file">File</a>, one for each available ISO (or floppy) image:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3491,7 +3491,7 @@ Content-type: application/xml</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The request body should be an object of type <a href="#types/cdrom">Cdrom</a>
+<p>The request body should be an object of type <a href="#types-cdrom">Cdrom</a>
 containing an inner <code>file</code> attribute to indicate the identifier of the
 ISO (or floppy) image:</p>
 </div>
@@ -3523,7 +3523,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-
 </div>
 </div>
 <div class="paragraph">
-<p>For more details see the documentation of the <a href="#services/vm_cdrom">service</a> that manages virtual machine CD-ROMS.</p>
+<p>For more details see the documentation of the <a href="#services-vm_cdrom">service</a> that manages virtual machine CD-ROMS.</p>
 </div>
 </div>
 </div>
@@ -3533,7 +3533,7 @@ https://myengine.example.com/ovirt-engine/api/vms/007/cdroms/00000000-0000-0000-
 <div class="paragraph">
 <p>The virtual environment is complete and the virtual machine contains all
 necessary components to function. This example starts the virtual
-machine using the <a href="#services/vm/methods/start">start</a> method.</p>
+machine using the <a href="#services-vm-methods-start">start</a> method.</p>
 </div>
 <div class="paragraph">
 <p>The request should be like this:</p>
@@ -86211,7 +86211,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-18 09:17:30 UTC
+Last updated 2022-07-18 09:42:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
