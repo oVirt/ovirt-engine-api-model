@@ -61,10 +61,13 @@ public interface VmPool extends Identified {
     /**
      * The display settings configured for virtual machines in the pool.
      *
+     * WARNING: Please note that this attribute is not working and is now deprecated. Please use `Vm.display` instead.
+     *
      * @author Arik Hadas <ahadas@redhat.com>
-     * @date 24 Apr 2017
-     * @status added
+     * @date 24 Jul 2022
+     * @status updated
      */
+    @Deprecated
     Display display();
 
     /**
