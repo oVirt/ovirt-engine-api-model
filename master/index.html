@@ -82673,7 +82673,25 @@ free space is selected.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/attributes/prestarted_vms"><a class="anchor" href="#types/vm_pool/attributes/prestarted_vms"></a><a class="link" href="#types/vm_pool/attributes/prestarted_vms">16.319.2. prestarted_vms</a></h4>
+<h4 id="types/vm_pool/attributes/display"><a class="anchor" href="#types/vm_pool/attributes/display"></a><a class="link" href="#types/vm_pool/attributes/display">16.319.2. display</a></h4>
+<div class="paragraph">
+<p>The display settings configured for virtual machines in the pool.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Please note that this attribute is not working and is now deprecated. Please use <code>Vm.display</code> instead.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="types/vm_pool/attributes/prestarted_vms"><a class="anchor" href="#types/vm_pool/attributes/prestarted_vms"></a><a class="link" href="#types/vm_pool/attributes/prestarted_vms">16.319.3. prestarted_vms</a></h4>
 <div class="paragraph">
 <p>The system attempts to prestart the specified number of virtual machines from the pool.</p>
 </div>
@@ -82683,7 +82701,7 @@ machines from the pool faster.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a><a class="link" href="#types/vm_pool/attributes/stateful">16.319.3. stateful</a></h4>
+<h4 id="types/vm_pool/attributes/stateful"><a class="anchor" href="#types/vm_pool/attributes/stateful"></a><a class="link" href="#types/vm_pool/attributes/stateful">16.319.4. stateful</a></h4>
 <div class="paragraph">
 <p>Virtual machine pool&#8217;s stateful flag.</p>
 </div>
@@ -82694,7 +82712,7 @@ different user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/attributes/tpm_enabled"><a class="anchor" href="#types/vm_pool/attributes/tpm_enabled"></a><a class="link" href="#types/vm_pool/attributes/tpm_enabled">16.319.4. tpm_enabled</a></h4>
+<h4 id="types/vm_pool/attributes/tpm_enabled"><a class="anchor" href="#types/vm_pool/attributes/tpm_enabled"></a><a class="link" href="#types/vm_pool/attributes/tpm_enabled">16.319.5. tpm_enabled</a></h4>
 <div class="paragraph">
 <p>If <code>true</code>, a TPM device is added to the virtual machine. By default the value is <code>false</code>.
 This property is only visible when fetching if "All-Content=true" header is set.</p>
@@ -82743,14 +82761,14 @@ This property is only visible when fetching if "All-Content=true" header is set.
 </table>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a><a class="link" href="#types/vm_pool/links/instance_type">16.319.5. instance_type</a></h4>
+<h4 id="types/vm_pool/links/instance_type"><a class="anchor" href="#types/vm_pool/links/instance_type"></a><a class="link" href="#types/vm_pool/links/instance_type">16.319.6. instance_type</a></h4>
 <div class="paragraph">
 <p>Reference to the instance type on which this pool is based. It can be
 set only on pool creation and cannot be edited.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="types/vm_pool/links/vm"><a class="anchor" href="#types/vm_pool/links/vm"></a><a class="link" href="#types/vm_pool/links/vm">16.319.6. vm</a></h4>
+<h4 id="types/vm_pool/links/vm"><a class="anchor" href="#types/vm_pool/links/vm"></a><a class="link" href="#types/vm_pool/links/vm">16.319.7. vm</a></h4>
 <div class="paragraph">
 <p>Reference to an arbitrary virtual machine that is part of the pool.</p>
 </div>
@@ -86334,7 +86352,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-18 09:47:19 UTC
+Last updated 2022-07-25 06:29:01 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
