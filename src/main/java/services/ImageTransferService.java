@@ -104,8 +104,12 @@ import annotations.Area;
  * ----
  *
  * At that stage, if the transfer's phase is xref:types-image_transfer_phase[paused_system], then the session was
- * not successfully established. One possible reason for that is that the ovirt-imageio-daemon is not running
+ * not successfully established. One possible reason for that is that the ovirt-imageio is not running
  * in the host that was selected for transfer.
+ * @author Donna DaCosta <ddacosta@redhat.com>
+ * @date 26 July 2022
+ * @status updated_by_docs
+ * @since 4.5.1
  * The transfer can be resumed by calling xref:services-image_transfer-methods-resume[resume]
  * of the service that manages it.
  *
@@ -215,11 +219,14 @@ import annotations.Area;
  * Note: If the phase is 'initializing', poll the `image_transfer` till its phase changes to 'transferring'.
  *
  * - Use the 'transfer_url' or 'proxy_url' to invoke a curl command:
- * - use 'transfer_url' for transferring directly from/to ovirt-imageio-daemon,
- *   or, use 'proxy_url' for transferring from/to ovirt-imageio-proxy.
+ * - use 'transfer_url' for transferring directly from/to ovirt-imageio,
+ *   or, use 'proxy_url' for transferring from/to ovirt-imageio.
  *   Note: using the proxy would mitigate scenarios where there's no direct connectivity
  *   to the daemon machine, e.g. vdsm machines are on a different network than the engine.
- *
+ * @author Donna DaCosta <ddacosta@redhat.com>
+ * @date 26 July 2022
+ * @status updated_by_docs
+ * @since 4.5.1
  * -- Download:
  *
  * [source,shell]
