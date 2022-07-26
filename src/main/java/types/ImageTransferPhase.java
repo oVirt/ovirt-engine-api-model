@@ -83,15 +83,16 @@ public enum ImageTransferPhase {
 
     /**
      * This phase means the session timed out, or some other error occurred
-     * with this transfer; for example ovirt-imageio-daemon is not running in the selected host.
+     * with this transfer; for example ovirt-imageio is not running in the selected host.
      * To resume the session, the client should call xref:services-image_transfer-methods-resume[resume]. After
      * resuming, the phase will change to `resuming`.
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
-     * @date 15 Nov 2016
+     * @author Donna DaCosta <ddacosta@redhat.com>
+     * @date 26 July 2022
      * @status updated_by_docs
-     * @since 4.0.4
+     * @since 4.5.1
      */
     PAUSED_SYSTEM,
 
