@@ -103,11 +103,10 @@ import annotations.Area;
  *    transfer = transfer_service.get()
  * ----
  *
- * At that stage, if the transfer's phase is xref:types-image_transfer_phase[paused_system], then the session was
- * not successfully established. One possible reason for that is that the ovirt-imageio is not running
- * in the host that was selected for transfer.
+ * At that stage, if the phase of the transfer is <<types/image_transfer_phase, paused_system>>, the session was
+ * not successfully established. This can happen if ovirt-imageio is not running in the selected host.
  * @author Donna DaCosta <ddacosta@redhat.com>
- * @date 26 July 2022
+ * @date 29 July 2022
  * @status updated_by_docs
  * @since 4.5.1
  * The transfer can be resumed by calling xref:services-image_transfer-methods-resume[resume]
