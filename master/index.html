@@ -25312,201 +25312,8 @@ while transfer.phase == types.ImageTransferPhase.INITIALIZING:
 </div>
 </div>
 <div class="paragraph">
-<p>At that stage, if the transfer&#8217;s phase is <a href="#types-image_transfer_phase">paused_system</a>, then the session was
-not successfully established. One possible reason for that is that the ovirt-imageio-daemon is not running
-in the host that was selected for transfer.
-The transfer can be resumed by calling <a href="#services-image_transfer-methods-resume">resume</a>
-of the service that manages it.</p>
-</div>
-<div class="paragraph">
-<p>If the session was successfully established - the returned transfer entity will
-contain the <a href="#types-image_transfer">transfer_url</a> and <a href="#types-image_transfer">proxy_url</a> attributes,
-which the client needs to use in order to transfer the required data. The client can choose whatever
-technique and tool for sending the HTTPS request with the image&#8217;s data.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>transfer_url</code> is the address of an imageio server running on one of the hypervisors.</p>
-</li>
-<li>
-<p><code>proxy_url</code> is the address of an imageio proxy server that can be used if
-you cannot access transfer_url.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To transfer the image, it is recommended to use the imageio client python library.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from ovirt_imageio import client
-
-# Upload qcow2 image to virtual disk:
-client.upload("disk.qcow2", transfer.transfer_url)
-
-# Download virtual disk to qcow2 image:
-client.download(transfer.transfer_url, "disk.qcow2")</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also upload and download using imageio REST API. For more info
-on this, see imageio API documentation:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>http://ovirt.github.io/ovirt-imageio/images.html</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When finishing the transfer, the user should call
-<a href="#services-image_transfer-methods-finalize">finalize</a>. This will make the
-final adjustments and verifications for finishing the transfer process.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">transfer_service.finalize()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In case of an error, the transfer&#8217;s phase will be changed to
-<a href="#types-image_transfer_phase">finished_failure</a>, and
-the disk&#8217;s status will be changed to <code>Illegal</code>. Otherwise it will be changed to
-<a href="#types-image_transfer_phase">finished_success</a>, and the disk will be ready
-to be used. In both cases, the transfer entity will be removed shortly after.</p>
-</div>
-<div class="paragraph">
-<p><strong>Using HTTP and cURL calls:</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For upload, create a new disk first:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Specify 'initial_size' and 'provisioned_size' in bytes.</p>
-</li>
-<li>
-<p>'initial_size' must be bigger or the same as the size of the uploaded data.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/disks</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With a request body as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;disk&gt;
-  &lt;storage_domains&gt;
-    &lt;storage_domain id="123"/&gt;
-  &lt;/storage_domains&gt;
-  &lt;alias&gt;mydisk&lt;/alias&gt;
-  &lt;initial_size&gt;1073741824&lt;/initial_size&gt;
-  &lt;provisioned_size&gt;1073741824&lt;/provisioned_size&gt;
-  &lt;format&gt;raw&lt;/format&gt;
-&lt;/disk&gt;</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Create a new image transfer for downloading/uploading a <code>disk</code> with id <code>456</code>:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With a request body as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;image_transfer&gt;
-  &lt;disk id="456"/&gt;
-  &lt;direction&gt;upload|download&lt;/direction&gt;
-&lt;/image_transfer&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Will respond:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;image_transfer id="123"&gt;
-  &lt;direction&gt;download|upload&lt;/direction&gt;
-  &lt;phase&gt;initializing|transferring&lt;/phase&gt;
-  &lt;proxy_url&gt;https://proxy_fqdn:54323/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb&lt;/proxy_url&gt;
-  &lt;transfer_url&gt;https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb&lt;/transfer_url&gt;
-  ...
-&lt;/image_transfer&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note: If the phase is 'initializing', poll the <code>image_transfer</code> till its phase changes to 'transferring'.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Use the 'transfer_url' or 'proxy_url' to invoke a curl command:</p>
-</li>
-<li>
-<p>use 'transfer_url' for transferring directly from/to ovirt-imageio-daemon,
-or, use 'proxy_url' for transferring from/to ovirt-imageio-proxy.
-Note: using the proxy would mitigate scenarios where there&#8217;s no direct connectivity
-to the daemon machine, e.g. vdsm machines are on a different network than the engine.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>&#8201;&#8212;&#8201;Download:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl --cacert /etc/pki/ovirt-engine/ca.pem https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb -o &lt;output_file&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>&#8201;&#8212;&#8201;Upload:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl --cacert /etc/pki/ovirt-engine/ca.pem --upload-file &lt;file_to_upload&gt; -X PUT https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Finalize the image transfer by invoking the action:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>POST /ovirt-engine/api/imagetransfers/123/finalize</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With a request body as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;action /&gt;</code></pre>
-</div>
+<p>At that stage, if the phase of the transfer is <a href="#types-image_transfer_phase">paused_system</a>, the session was
+not successfully established. This can happen if ovirt-imageio is not running in the selected host.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 376. Methods summary</caption>
@@ -65609,7 +65416,7 @@ used.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>paused_system</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This phase means the session timed out, or some other error occurred
-with this transfer; for example ovirt-imageio-daemon is not running in the selected host.</p></td>
+with this transfer; for example ovirt-imageio is not running in the selected host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>paused_user</code></p></td>
@@ -65676,7 +65483,7 @@ Once the session is established, the phase will be changed to <code>transferring
 <h4 id="types/image_transfer_phase/values/paused_system"><a class="anchor" href="#types/image_transfer_phase/values/paused_system"></a><a class="link" href="#types/image_transfer_phase/values/paused_system">16.141.6. paused_system</a></h4>
 <div class="paragraph">
 <p>This phase means the session timed out, or some other error occurred
-with this transfer; for example ovirt-imageio-daemon is not running in the selected host.
+with this transfer; for example ovirt-imageio is not running in the selected host.
 To resume the session, the client should call <a href="#services-image_transfer-methods-resume">resume</a>. After
 resuming, the phase will change to <code>resuming</code>.</p>
 </div>
@@ -86352,7 +86159,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-25 06:29:01 UTC
+Last updated 2022-08-02 08:26:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
