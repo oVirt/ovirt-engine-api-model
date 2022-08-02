@@ -1,4 +1,17 @@
 = Changes
+4.5.11 / Aug 2 2022
+
+    bump metamodel to 1.3.9
+
+    Image I/O Proxy is replaced by ovirt-imageio
+    https://bugzilla.redhat.com/2042401
+
+    Deprecate VmPool.display attribute
+    https://bugzilla.redhat.com/2106349
+
+    Add TpmSupport to OperatingSystemInfo
+
+    git safe dir
 
 4.5.10 / Jun 14 2022
 
