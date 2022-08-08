@@ -60,7 +60,7 @@
 <li><a href="#pagination">7.5. Pagination</a></li>
 </ul>
 </li>
-<li><a href="#following-links">8. Following links</a></li>
+<li><a href="#documents/003_common_concepts/follow">8. Following links</a></li>
 <li><a href="#permissions">9. Permissions</a></li>
 <li><a href="#handling-errors">10. Handling errors</a></li>
 </ul>
@@ -769,7 +769,7 @@
 <li><a href="#use-parameters-for-force-remove-storage-domain">7.44. Use parameters for force remove storage domain</a></li>
 <li><a href="#use-host-parameter-to-remove-storage-server-connection">7.45. Use <code>host</code> parameter to remove storage server connection</a></li>
 <li><a href="#use-force-and-storage_domain-parameters-to-remove-template-disks">7.46. Use <code>force</code> and <code>storage_domain</code> parameters to remove template disks</a></li>
-<li><a href="#don't-remove-disks-via-the-vm-disk-api">7.47. Don&#8217;t remove disks via the VM disk API</a></li>
+<li><a href="#do-not-remove-disks-via-the-vm-disk-api">7.47. Do not remove disks via the VM disk API</a></li>
 <li><a href="#use-force-query-parameter-to-force-remove-a-virtual-machine">7.48. Use <code>force</code> query parameter to force remove a virtual machine</a></li>
 <li><a href="#use-post-instead-of-delete-to-remove-multiple-bricks">7.49. Use <code>POST</code> instead of <code>DELETE</code> to remove multiple bricks</a></li>
 <li><a href="#removed-the-scheduling_policy_policy-element">7.50. Removed the <code>scheduling_policy.policy</code> element</a></li>
@@ -2151,7 +2151,7 @@ duplicates.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="following-links"><a class="anchor" href="#following-links"></a><a class="link" href="#following-links">8. Following links</a></h2>
+<h2 id="documents/003_common_concepts/follow"><a class="anchor" href="#documents/003_common_concepts/follow"></a><a class="link" href="#documents/003_common_concepts/follow">8. Following links</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The API returns references to related objects as <em>links</em>. For example, when
@@ -2560,7 +2560,7 @@ parameter:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Changing this parameter affects all users of the API that don&#8217;t
+<p>Changing this parameter affects all users of the API that do not
 specify the version explicitly.</p>
 </div>
 </td>
@@ -14599,7 +14599,7 @@ the disk already exists:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The server accepts requests that don&#8217;t contain the <code>active</code> attribute, but the effect is
+The server accepts requests that do not contain the <code>active</code> attribute, but the effect is
 undefined. In some cases the disk will be automatically activated and in other cases it won&#8217;t. To
 avoid issues it is strongly recommended to always include the <code>active</code> attribute with the desired
 value.
@@ -15181,8 +15181,8 @@ of the current request. See <a href="#documents/003_common_concepts/follow">here
 and <code>format</code> attributes.</p>
 </div>
 <div class="paragraph">
-<p>Note that block storage domains (i.e. storage domains with the <a href="#types-storage_type">storage type</a> of iSCSI or
-FCP) don&#8217;t support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
+<p>Note that block storage domains (i.e. storage domains with the <a href="#types/storage_type">storage type</a> of iSCSI or
+FCP) do not support the combination of the raw <code>format</code> with <code>sparse=true</code>, so <code>sparse=false</code> must be stated
 explicitly.</p>
 </div>
 <div class="paragraph">
@@ -46889,7 +46889,7 @@ attached ISO storage domain.</p>
 </div>
 <div class="paragraph">
 <p>By default the above operations change permanently the disk that will be visible to the virtual machine
-after the next boot, but they don&#8217;t have any effect on the currently running virtual machine. If you want
+after the next boot, but they do not have any effect on the currently running virtual machine. If you want
 to change the disk that is visible to the current running virtual machine, add the <code>current=true</code> parameter.
 For example, to eject the current disk send a request like this:</p>
 </div>
@@ -54728,7 +54728,7 @@ The value is valid for IPv6 addresses only.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -55448,9 +55448,9 @@ they will only be reflected on this specific cluster.</p>
 <p>FIPS mode of the cluster.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening">FIPS</a> mode represents the cluster&#8217;s policy towards hosts.
-Hosts added to the cluster will be checked to fulfill the cluster&#8217;s FIPS mode, making them non-operational in
-case they don&#8217;t.
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/using-the-system-wide-cryptographic-policies_security-hardening">FIPS</a> mode represents the cluster&#8217;s policy towards hosts.
+Hosts added to the cluster will be checked to fulfill the cluster&#8217;s FIPS mode, making them non-operational
+if they do not.
 Unless a value is explicity provided, new clusters are initialized by default to <code>UNDEFINED</code>.
 This value changes automatically to the FIPS mode of the first host added to the cluster.</p>
 </div>
@@ -56899,7 +56899,7 @@ performance.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -57387,7 +57387,7 @@ zeros, the disk will be deleted immediately.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -58409,7 +58409,7 @@ zeros, the disk will be deleted immediately.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -61040,7 +61040,7 @@ configuration using a command line program and dynamic configuration.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -61214,7 +61214,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -61333,7 +61333,7 @@ for example, a shared disk my be used simultaneously by two or more virtual mach
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -69675,7 +69675,7 @@ of an SR-IOV NIC.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -82303,7 +82303,7 @@ of a host device.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -83561,7 +83561,7 @@ and preserved only for backward compatibility. It will be removed in the future.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#types/vm">Vm</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use this element, use <code>vms</code> instead.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not use this element, use <code>vms</code> instead.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>vms</code></p></td>
@@ -85009,7 +85009,7 @@ virtual machine have to be cloned:</p>
 </div>
 <div class="paragraph">
 <p>The <code>disks.detach_only</code> element was used to indicate that when removing
-a virtual machine the disks don&#8217;t have to be removed, but just detached
+a virtual machine the disks do not have to be removed, but just detached
 from the virtual machine:</p>
 </div>
 <div class="listingblock">
@@ -85736,7 +85736,7 @@ query parameters <code>force</code> and <code>storage_domain</code>:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="don't-remove-disks-via-the-vm-disk-api"><a class="anchor" href="#don't-remove-disks-via-the-vm-disk-api"></a><a class="link" href="#don't-remove-disks-via-the-vm-disk-api">7.47. Don&#8217;t remove disks via the VM disk API</a></h3>
+<h3 id="do-not-remove-disks-via-the-vm-disk-api"><a class="anchor" href="#do-not-remove-disks-via-the-vm-disk-api"></a><a class="link" href="#do-not-remove-disks-via-the-vm-disk-api">7.47. Do not remove disks via the VM disk API</a></h3>
 <div class="paragraph">
 <p>Removing an entity by deleting <code>/vms/123/disks/456</code> means removing the
 relationship between the VM and the disk - i.e., this operation should just
@@ -86159,7 +86159,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-02 17:48:21 UTC
+Last updated 2022-08-08 06:34:41 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
