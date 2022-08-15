@@ -49,5 +49,14 @@ public enum Architecture {
      * @status added
      * @since 4.5
      */
-    AARCH64;
+    AARCH64,
+
+    /**
+     * LOONGARCH64 CPU architecture.
+     *
+     * @author Wenlong Zhang <zhangwenlong@loongson.cn>
+     * @date 15 Aug 2022
+     * @status added
+     */
+    LOONGARCH64;
 }
