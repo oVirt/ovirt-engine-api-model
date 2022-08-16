@@ -13682,6 +13682,11 @@ send a request like the following:</p>
  &lt;/action&gt;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Note: In order to sparsify a disk, two conversions might be needed if the disk is on a Block Storage Domain.
+For example: If a disk is RAW, converting it QCOW will result in a larger disk. In order to reduce the size,
+it is possible to convert the disk again to QCOW and keep the same allocation policy.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 166. Parameters summary</caption>
 <colgroup>
@@ -86159,7 +86164,7 @@ case. So the same request should now look like this:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-08 11:50:06 UTC
+Last updated 2022-08-16 08:11:29 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
