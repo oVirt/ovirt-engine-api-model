@@ -573,7 +573,7 @@ public interface DiskService extends MeasurableService {
      * ----
      *
      * Note: In order to sparsify a disk, two conversions might be needed if the disk is on a Block Storage Domain.
-     * For example: If a disk is RAW, converting it QCOW will result in a larger disk. In order to reduce the size,
+     * For example: If a disk is RAW, converting it to QCOW will result in a larger disk. In order to reduce the size,
      * it is possible to convert the disk again to QCOW and keep the same allocation policy.
      *
      *
