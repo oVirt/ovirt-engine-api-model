@@ -1,11 +1,7 @@
 #!/bin/bash -xe
 
 # When building on GitHub we should use GITHUB_SHA environment variable, otherwise parse has from git
-if [ "${GITHUB_SHA}" == "" ]; then
-  GIT_HASH=$(git rev-list HEAD | wc -l)
-else
-  GIT_HASH=$(git rev-parse --short $GITHUB_SHA)
-fi
+GIT_HASH=$(git rev-parse --short ${GITHUB_SHA:-HEAD})
 
 # Directory, where build artifacts will be stored, should be passed as the 1st parameter
 ARTIFACTS_DIR=${1:-exported-artifacts}
