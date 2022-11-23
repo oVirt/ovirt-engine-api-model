@@ -26,6 +26,9 @@ BuildRequires:	mvn(org.apache.maven.plugins:maven-surefire-plugin)
 BuildRequires:	mvn(org.codehaus.mojo:exec-maven-plugin)
 BuildRequires:	mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
 
+# Required to pass COPR build, which uses old xmvn package
+BuildRequires:	maven
+
 Requires:	ovirt-engine-api-metamodel-server
 Requires:	java-11-openjdk-headless >= 1:11.0.0
 Requires:	javapackages-filesystem
