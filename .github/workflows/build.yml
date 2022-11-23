@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: ovirt/checkout-action@main
 
       - name: Use cache for maven
         uses: actions/cache@v2
