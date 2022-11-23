@@ -15,7 +15,7 @@ SKIP_TESTS=${2:-0}
 
 # Prepare the version string (with support for SNAPSHOT versioning)
 VERSION=$(mvn help:evaluate  -q -DforceStdout -Dexpression=project.version)
-VERSION=${VERSION/-SNAPSHOT/-0.${GIT_HASH}.$(date +%04Y%02m%02d%02H%02M)}
+VERSION=${VERSION/-SNAPSHOT/-0.$(date +%04Y%02m%02d%02H%02M).git${GIT_HASH}}
 IFS='-' read -ra VERSION <<< "$VERSION"
 RELEASE=${VERSION[1]-1}
 
