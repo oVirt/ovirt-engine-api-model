@@ -32,8 +32,11 @@ jobs:
       - name: Checkout sources
         uses: ovirt/checkout-action@main
 
+      - name: Mark git repo as safe
+        run: git config --global --add safe.directory $(pwd)
+
       - name: Use cache for maven
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -49,12 +52,12 @@ jobs:
           .automation/build-rpm.sh $ARTIFACTS_DIR
 
       - name: Upload artifacts
-        uses: ovirt/upload-rpms-action@v2
+        uses: ovirt/upload-rpms-action@main
         with:
           directory: ${{ env.ARTIFACTS_DIR }}
 
       - name: Upload generated documentation artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: generated-documentation-${{ matrix.shortcut }}
           path: target/html/*
