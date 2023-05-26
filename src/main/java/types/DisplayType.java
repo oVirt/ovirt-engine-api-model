@@ -39,6 +39,7 @@ public enum DisplayType {
      * @date 23 Apr 2017
      * @status added
      */
+    @Deprecated
     VNC,
 
     /**
@@ -49,5 +50,49 @@ public enum DisplayType {
      * @date 23 Apr 2017
      * @status added
      */
-    SPICE;
+    @Deprecated
+    SPICE,
+
+    /**
+     * Display of type CIRRUS
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 26 May 2023
+     * @status added
+     */
+    @Deprecated
+    CIRRUS,
+
+    /**
+     * Display of type QXL
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 26 May 2023
+     * @status added
+     */
+    @Deprecated
+    QXL,
+
+    /**
+     * Display of type VGA
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 26 May 2023
+     * @status added
+     */
+    VGA,
+
+    /**
+     * Display of type BOCHS
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 26 May 2023
+     * @status added
+     */
+    BOCHS,
+
+  /**
+     * Display of type NONE
+     * This is for headless VM's
+     * @author Jean-Louis Dupond <jean-louis@dupond.be>
+     * @date 26 May 2023
+     * @status added
+     */
+    NONE;
 }
