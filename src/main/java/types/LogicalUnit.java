@@ -33,6 +33,7 @@ public interface LogicalUnit {
     Integer lunMapping();
     Integer size();
     Integer paths();
+    Integer activePaths();
     LunStatus status();
     String volumeGroupId();
     String storageDomainId();
