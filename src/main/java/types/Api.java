@@ -72,12 +72,21 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </storage_domains>
  *   </summary>
  *   <time>2016-12-12T12:22:25.866+01:00</time>
+ *   <engine_backup>
+ *      <last_cinder_backup>2025-01-30T13:18:47.671Z</last_cinder_backup>
+ *      <last_db_backup>2025-01-30T13:18:47.646Z</last_db_backup>
+ *      <last_dwh_backup>2025-01-30T13:18:47.659Z</last_dwh_backup>
+ *      <last_engine_backup>2025-01-30T13:18:47.634Z</last_engine_backup>
+ *      <last_grafana_backup>2025-01-30T13:18:47.694Z</last_grafana_backup>
+ *      <last_keycloak_backup>2025-01-30T13:18:47.682Z</last_keycloak_backup>
+ *   </engine_backup>
  * </api>
  * ----
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>
- * @date 12 Dec 2016
+ * @author Jasper Berton <jasper.berton@team.blue>
+ * @date 03 February 2025
  * @status updated_by_docs
  */
 @Type
@@ -114,9 +123,19 @@ public interface Api {
      *
      * @author Megan Lewis <melewis@redhat.com>
      * @date 15 Nov 2016
-     * status updated_by_docs
+     * @status updated_by_docs
      */
     Date time();
+
+    /**
+     * Object containing info about when the last backup of the engine was made
+     *
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 03 Feb 2025
+     * @status added
+     * @since 4.6.1
+     */
+    EngineBackupInfo engineBackup();
 
     /**
      * Reference to the authenticated user.
