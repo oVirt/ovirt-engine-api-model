@@ -75,7 +75,7 @@ jobs:
       - name: Download generated documentation artifacts
         uses: actions/download-artifact@v4
         with:
-          name: generated-documentation-cs8
+          name: generated-documentation-cs9
           path: target
 
       - name: Install package dependencies
