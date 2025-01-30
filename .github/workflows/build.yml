@@ -13,9 +13,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: centos-stream-8
-            shortcut: cs8
-            container-name: el8stream
           - name: centos-stream-9
             shortcut: cs9
             container-name: el9stream
@@ -36,7 +33,7 @@ jobs:
         run: git config --global --add safe.directory $(pwd)
 
       - name: Use cache for maven
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -57,7 +54,7 @@ jobs:
           directory: ${{ env.ARTIFACTS_DIR }}
 
       - name: Upload generated documentation artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: generated-documentation-${{ matrix.shortcut }}
           path: target/html/*
@@ -73,10 +70,10 @@ jobs:
       image: quay.io/centos/centos:stream9
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Download generated documentation artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: generated-documentation-cs8
           path: target
@@ -95,7 +92,7 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Checkout to gh-pages branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages
