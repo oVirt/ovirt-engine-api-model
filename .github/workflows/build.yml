@@ -59,6 +59,21 @@ jobs:
           name: generated-documentation-${{ matrix.shortcut }}
           path: target/html/*
 
+      - name: Set up Maven settings.xml
+        uses: s4u/maven-settings-action@v3.1.0
+        with:
+          path: /root/.m2/settings.xml
+          servers: |
+            [{
+              "id": "ossrh",
+              "username": "${{ secrets.OSSRH_USERNAME }}",
+              "password": "${{ secrets.OSSRH_TOKEN }}"
+            }]
+
+      - name: Publish snapshot
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          mvn --batch-mode deploy
 
   publish-doc:
     permissions:
