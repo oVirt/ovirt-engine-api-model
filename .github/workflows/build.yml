@@ -72,8 +72,7 @@ jobs:
 
       - name: Publish snapshot
         if: ${{ github.event_name != 'pull_request' }}
-        run: |
-          mvn --batch-mode deploy
+        run: mvn --batch-mode deploy -Pgenerate-adoc-html -Dadoc.linkcss=true
 
   publish-doc:
     permissions:
