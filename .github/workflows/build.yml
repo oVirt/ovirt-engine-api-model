@@ -61,6 +61,7 @@ jobs:
 
       - name: Set up Maven settings.xml
         uses: s4u/maven-settings-action@v3.1.0
+        if: ${{ github.event_name != 'pull_request' }}
         with:
           path: /root/.m2/settings.xml
           servers: |
