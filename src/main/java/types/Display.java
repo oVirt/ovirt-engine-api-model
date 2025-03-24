@@ -24,22 +24,34 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Represents a graphic console configuration.
+ * Represents the configuration of the used display.
  *
  * @author Sharon Gratch <sgratch@redhat.com>
- * @date 24 Apr 2017
- * @status added
+ * @author Jasper Berton <jasper.berton@team.blue>
+ * @date 17 April 2025
+ * @status updated
  */
 @Type
 public interface Display {
     /**
-     * The graphic console protocol type.
+     * Returns SPICE or VNC based on the current Display type.
      *
      * @author Sharon Gratch <sgratch@redhat.com>
-     * @date 24 Apr 2017
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 17 April 2025
+     * @status updated
+     */
+    @Deprecated
+    DisplayType type();
+
+    /** 
+     * Returns the video type used for the display.
+     * 
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 17 April 2025
      * @status added
      */
-    DisplayType type();
+    VideoType videoType();
 
     /**
      * The IP address of the guest to connect the graphic console client to.
