@@ -1276,6 +1276,16 @@ public interface VmService extends MeasurableService {
          */
         @In Boolean _volatile();
 
+        /**
+         * If set to `true`, the Windows Guest Tool iso will automatically be mounted. The default value is `false`.
+         * 
+         * @author Peter Boden <peter.boden@team.blue>
+         * @date 23 Apr 2025
+         * @status added
+         * @since 4.6.1
+         */
+        @In Boolean attachWgt();
+
         @InputDetail
         default void inputDetail() {
             optional(pause());
@@ -1336,6 +1346,7 @@ public interface VmService extends MeasurableService {
             optional(vm().initialization().nicConfigurations()[COLLECTION].name());
             optional(vm().initialization().nicConfigurations()[COLLECTION].onBoot());
             optional(_volatile());
+            optional(attachWgt());
         }
 
     }
