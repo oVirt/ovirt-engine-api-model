@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An XML representation of a network attachment on a host:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_attachment href="/ovirt-engine/api/hosts/123/nics/456/networkattachments/789" id="789">
  *   <network href="/ovirt-engine/api/networks/234" id="234"/>
  *   <host_nic href="/ovirt-engine/api/hosts/123/nics/123" id="123"/>
@@ -62,57 +61,51 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     ...
  *   </reported_configurations>
  * </network_attachment>
- * ----
+ * ```
  *
  * The network element, with either a `name` or an `id`, is required in order to attach a network
  * to a network interface card (NIC).
  *
  * For example, to attach a network to a host network interface card, send a request like this:
  *
- * [source]
- * ----
+ * ```http
  * POST /ovirt-engine/api/hosts/123/nics/456/networkattachments
- * ----
+ * ```
  *
  * With a request body like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <networkattachment>
  *   <network id="234"/>
  * </networkattachment>
- * ----
+ * ```
  *
  * To attach a network to a host, send a request like this:
  *
- * [source]
- * ----
+ * ```http
  * POST /ovirt-engine/api/hosts/123/networkattachments
- * ----
+ * ```
  *
  * With a request body like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_attachment>
  *   <network id="234"/>
  *   <host_nic id="456"/>
  * </network_attachment>
- * ----
+ * ```
  *
  * The `ip_address_assignments` and `properties` elements are updatable post-creation.
  *
  * For example, to update a network attachment, send a request like this:
  *
- * [source]
- * ----
+ * ```http
  * PUT /ovirt-engine/api/hosts/123/nics/456/networkattachments/789
- * ----
+ * ```
  *
  * With a request body like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_attachment>
  *   <ip_address_assignments>
  *     <ip_address_assignment>
@@ -126,21 +119,19 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </ip_address_assignment>
  *   </ip_address_assignments>
  * </network_attachment>
- * ----
+ * ```
  *
  * To detach a network from the network interface card send a request like this:
  *
- * [source]
- * ----
+ * ```http
  * DELETE /ovirt-engine/api/hosts/123/nics/456/networkattachments/789
- * ----
+ * ```
  *
  * IMPORTANT: Changes to network attachment configuration must be explicitly committed.
  *
  * An XML representation of a network attachment's `properties` sub-collection:
  *
- * [source, xml]
- * ----
+ * ```xml
  * <network_attachment>
  *   <properties>
  *     <property>
@@ -152,7 +143,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   </properties>
  *   ...
  * </network_attachment>
- * ----
+ * ```
  *
  * @author Marcin Mirecki <mmirecki@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>

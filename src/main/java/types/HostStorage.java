@@ -75,13 +75,12 @@ public interface HostStorage extends Identified {
    *
    *
    * For example (Kaminario backend):
-   * [source]
-   * ----
-   * POST /ovirt-engine/api/storagedomains/
-   * ----
    *
-   * [source,xml]
-   * ----
+   * ```http
+   * POST /ovirt-engine/api/storagedomains/
+   * ```
+   *
+   * ```xml
    * <storage_domain>
    *  <name>kamniraio-cinder</name>
    *  <type>managed_block_storage</type>
@@ -114,7 +113,7 @@ public interface HostStorage extends Identified {
    *    <name>host</name>
    *    </host>
    * </storage_domain>
-   * ----
+   * ```
    *
    * @author Benny Zlotnik <bzlotnik@redhat.com>
    * @author Steve Goodman <sgoodman@redhat.com>
@@ -130,13 +129,11 @@ public interface HostStorage extends Identified {
      *
      * For example, the following XML encrypts and saves a username, password and SAN IP address:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storagedomains/
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_domain>
      *  <name>kamniraio-cinder</name>
      *  <type>managed_block_storage</type>
@@ -183,7 +180,7 @@ public interface HostStorage extends Identified {
      *    <name>host</name>
      *  </host>
      * </storage_domain>
-     * ----
+     * ```
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>

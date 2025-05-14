@@ -35,18 +35,16 @@ public interface AttachedStorageDomainService {
      * This operation activates an attached storage domain.
      * Once the storage domain is activated it is ready for use with the data center.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/storagedomains/456/activate
-     * ----
+     * ```
      *
      * The activate action does not take any action specific parameters,
      * so the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
      * @date 14 Sep 2016
@@ -64,17 +62,15 @@ public interface AttachedStorageDomainService {
      * Once the storage domain is deactivated it will not be used with the data center.
      * For example, to deactivate storage domain `456`, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * If the `force` parameter is `true` then the operation will succeed, even if the OVF update which takes place
      * before the deactivation of the storage domain failed. If the `force` parameter is `false` and the OVF update failed,
@@ -97,19 +93,17 @@ public interface AttachedStorageDomainService {
          * the OVF update for the storage domain failed.
          * For example, to deactivate storage domain `456` using force flag, send the following request:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <force>true</force>
          * <action>
-         * ----
+         * ```
          *
          * This parameter is optional, and the default value is `false`.
          *

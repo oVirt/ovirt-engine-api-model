@@ -28,8 +28,8 @@ import org.ovirt.api.metamodel.annotations.Type;
  * Deprecated type to specify _cloud-init_ configuration.
  *
  * This type has been deprecated and replaced by alternative attributes inside the
- * xref:types-initialization[Initialization] type. See the
- * xref:types-initialization-attributes-cloud_init[cloud_init] attribute documentation for details.
+ * xref:types/initialization[Initialization] type. See the
+ * xref:types/initialization/attributes/cloud_init[cloud_init] attribute documentation for details.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

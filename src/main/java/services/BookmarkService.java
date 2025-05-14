@@ -43,18 +43,16 @@ public interface BookmarkService {
      *
      * An example for getting a bookmark:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/bookmarks/123
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bookmark href="/ovirt-engine/api/bookmarks/123" id="123">
      *   <name>example_vm</name>
      *   <value>vm: name=example*</value>
      * </bookmark>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016
@@ -76,20 +74,18 @@ public interface BookmarkService {
      *
      * An example for updating a bookmark:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/bookmarks/123
-     * ----
+     * ```
      *
      * With the request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bookmark>
      *   <name>new_example_vm</name>
      *   <value>vm: name=new_example*</value>
      * </bookmark>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016
@@ -116,10 +112,9 @@ public interface BookmarkService {
      *
      * An example for removing a bookmark:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/bookmarks/123
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016

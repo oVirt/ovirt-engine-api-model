@@ -42,22 +42,21 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.or;
 @Area("Infrastructure")
 public interface PermitsService {
     /**
-     * Adds a permit to the role. The permit name can be retrieved from the xref:services-cluster_levels[cluster_levels] service.
+     * Adds a permit to the role. The permit name can be retrieved from the xref:services/cluster_levels[cluster_levels] service.
      *
      * For example to assign a permit `create_vm` to the role with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/roles/123/permits
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permit>
      *   <name>create_vm</name>
      * </permit>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -80,12 +79,11 @@ public interface PermitsService {
      *
      * For example to list the permits of the role with the id `123` send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/roles/123/permits
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permits>
      *   <permit href="/ovirt-engine/api/roles/123/permits/5" id="5">
      *     <name>change_vm_cd</name>
@@ -98,7 +96,7 @@ public interface PermitsService {
      *     <role href="/ovirt-engine/api/roles/123" id="123"/>
      *   </permit>
      * </permits>
-     * ----
+     * ```
      *
      * The order of the returned list of permits isn't guaranteed.
      *

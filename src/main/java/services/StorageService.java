@@ -44,8 +44,7 @@ public interface StorageService {
          *
          * Here an example with the LUN status :
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <host_storage id="360014051136c20574f743bdbd28177fd">
          *   <logical_units>
          *     <logical_unit id="360014051136c20574f743bdbd28177fd">
@@ -62,12 +61,11 @@ public interface StorageService {
          *   <type>iscsi</type>
          *   <host id="8bb5ade5-e988-4000-8b93-dbfc6717fe50"/>
          * </host_storage>
-         * ----
+         * ```
          *
          * Here an example without the LUN status :
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <host_storage id="360014051136c20574f743bdbd28177fd">
          *   <logical_units>
          *     <logical_unit id="360014051136c20574f743bdbd28177fd">
@@ -83,7 +81,7 @@ public interface StorageService {
          *   <type>iscsi</type>
          *   <host id="8bb5ade5-e988-4000-8b93-dbfc6717fe50"/>
          * </host_storage>
-         * ----
+         * ```
          */
         @In Boolean reportStatus();
     }

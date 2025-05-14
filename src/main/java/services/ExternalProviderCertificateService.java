@@ -41,21 +41,19 @@ public interface ExternalProviderCertificateService {
     /**
      * Get specific certificate.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/certificate/0
-     * ----
+     * ```
      *
      * And here is sample response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <certificate id="0">
      *   <organization>provider.example.com</organization>
      *   <subject>CN=provider.example.com</subject>
      *   <content>...</content>
      * </certificate>
-     * ----
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 24 Apr 2017

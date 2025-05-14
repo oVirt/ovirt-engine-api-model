@@ -45,15 +45,13 @@ public interface QossService {
     /**
      * Add a new QoS to the dataCenter.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/qoss
-     * ----
+     * ```
      *
      * The response will look as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <qos href="/ovirt-engine/api/datacenters/123/qoss/123" id="123">
      *   <name>123</name>
      *   <description>123</description>
@@ -61,7 +59,7 @@ public interface QossService {
      *   <type>storage</type>
      *   <data_center href="/ovirt-engine/api/datacenters/123" id="123"/>
      * </qos>
-     * ----
+     * ```
      *
      * @author Ori Liel <oliel@redhat.com>
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
@@ -105,21 +103,19 @@ public interface QossService {
     /**
      * Returns the list of _quality of service_ configurations available in the data center.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenter/123/qoss
-     * ----
+     * ```
      *
      * You will get response which will look like this:
      *
-     * [source, xml]
-     * ----
+     * ```xml
      * <qoss>
      *   <qos href="/ovirt-engine/api/datacenters/123/qoss/1" id="1">...</qos>
      *   <qos href="/ovirt-engine/api/datacenters/123/qoss/2" id="2">...</qos>
      *   <qos href="/ovirt-engine/api/datacenters/123/qoss/3" id="3">...</qos>
      * </qoss>
-     * ----
+     * ```
      *
      * The returned list of quality of service configurations isn't guaranteed.
      *

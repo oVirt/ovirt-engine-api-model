@@ -37,15 +37,13 @@ public interface StatisticsService {
      * For example, to retrieve the statistics for virtual machine `123` send a
      * request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/statistics
-     * ----
+     * ```
      *
      * The result will be like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <statistics>
      *   <statistic href="/ovirt-engine/api/vms/123/statistics/456" id="456">
      *     <name>memory.installed</name>
@@ -62,19 +60,17 @@ public interface StatisticsService {
      *   </statistic>
      *   ...
      * </statistics>
-     * ----
+     * ```
      *
      * Just a single part of the statistics can be retrieved by specifying its id at the end of the URI. That means:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/statistics/456
-     * ----
+     * ```
      *
      * Outputs:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <statistic href="/ovirt-engine/api/vms/123/statistics/456" id="456">
      *   <name>memory.installed</name>
      *   <description>Total memory configured</description>
@@ -88,7 +84,7 @@ public interface StatisticsService {
      *   </values>
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      * </statistic>
-     * ----
+     * ```
      *
      * The order of the returned list of statistics isn't guaranteed.
      *

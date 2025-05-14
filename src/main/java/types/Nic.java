@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * For example, the XML representation of a NIC will look like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <nic href="/ovirt-engine/api/vms/123/nics/456" id="456">
  *   <name>nic1</name>
  *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
@@ -42,7 +41,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <plugged>true</plugged>
  *   <vnic_profile href="/ovirt-engine/api/vnicprofiles/789" id="789"/>
  * </nic>
- * ----
+ * ```
  *
  * @author Martin Mucha <mmucha@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>

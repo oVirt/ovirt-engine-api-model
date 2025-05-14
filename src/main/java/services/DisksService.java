@@ -51,25 +51,23 @@ public interface DisksService {
      *
      * *Adding a new image disk:*
      *
-     * When creating a new floating image xref:types-disk[Disk], the API requires the `storage_domain`, `provisioned_size`
+     * When creating a new floating image xref:types/disk[Disk], the API requires the `storage_domain`, `provisioned_size`
      * and `format` attributes.
      *
-     * Note that block storage domains (i.e. storage domains with the xref:types-storage_type[storage type] of iSCSI or
+     * Note that block storage domains (i.e. storage domains with the xref:types/storage_type[storage type] of iSCSI or
      * FCP) do not support the combination of the raw `format` with `sparse=true`, so `sparse=false` must be stated
      * explicitly.
      *
      * To create a new floating image disk with specified `provisioned_size`, `format` and `name` on a storage domain
      * with an id `123` and enabled for incremental backup, send a request as follows:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks
-     * ----
+     * ```
      *
      * With a request body as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk>
      *   <storage_domains>
      *     <storage_domain id="123"/>
@@ -79,7 +77,7 @@ public interface DisksService {
      *   <format>cow</format>
      *   <backup>incremental</backup>
      * </disk>
-     * ----
+     * ```
      *
      *
      * *Adding a new direct LUN disk:*
@@ -95,15 +93,13 @@ public interface DisksService {
      * `logical_unit` with an id `456` (that has the attributes `address`, `port` and `target`),
      * send a request as follows:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks
-     * ----
+     * ```
      *
      * With a request body as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk>
      *   <alias>mylun</alias>
      *   <lun_storage>
@@ -118,7 +114,7 @@ public interface DisksService {
      *     </logical_units>
      *   </lun_storage>
      * </disk>
-     * ----
+     * ```
      *
      * To create a new floating direct LUN disk without using a host, remove the `host` element.
      *
@@ -141,8 +137,7 @@ public interface DisksService {
      * `qemu-img info` command. For example, if the disk image is stored into
      * a file named `b7a4c6c5-443b-47c5-967f-6abc79675e8b/myimage.img`:
      *
-     * [source,shell]
-     * ----
+     * ```shell
      * $ qemu-img info b7a4c6c5-443b-47c5-967f-6abc79675e8b/myimage.img
      * image: b548366b-fb51-4b41-97be-733c887fe305
      * file format: qcow2
@@ -151,20 +146,18 @@ public interface DisksService {
      * cluster_size: 65536
      * backing file: ad58716a-1fe9-481f-815e-664de1df04eb
      * backing file format: raw
-     * ----
+     * ```
      *
      * To create a disk with with the disk identifier and image identifier obtained
      * with the `qemu-img info` command shown above, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks
-     * ----
+     * ```
      *
      * With a request body as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk id="b7a4c6c5-443b-47c5-967f-6abc79675e8b">
      *   <image_id>b548366b-fb51-4b41-97be-733c887fe305</image_id>
      *   <storage_domains>
@@ -174,7 +167,7 @@ public interface DisksService {
      *   <provisioned_size>1048576</provisioned_size>
      *   <format>cow</format>
      * </disk>
-     * ----
+     * ```
      *
      *
      * @author Idan Shaby <ishaby@redhat.com>
@@ -252,15 +245,13 @@ public interface DisksService {
     /**
      * Get list of disks.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/disks
-     * ----
+     * ```
      *
      * You will get a XML response which will look like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disks>
      *   <disk id="123">
      *     <actions>...</actions>
@@ -280,7 +271,7 @@ public interface DisksService {
      *   </disk>
      *   ...
      * </disks>
-     * ----
+     * ```
      *
      * The order of the returned list of disks is guaranteed only if the `sortby` clause is included in the
      * `search` parameter.

@@ -49,17 +49,15 @@ public interface NetworkLabelsService {
      *
      * For example, to attach the label `mylabel` to a logical network having id `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/networks/123/networklabels
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network_label id="mylabel"/>
-     * ----
+     * ```
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 08 Apr 2019

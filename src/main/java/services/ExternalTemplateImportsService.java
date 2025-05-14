@@ -46,15 +46,13 @@ public interface ExternalTemplateImportsService {
      *
      * For example import of a template OVA can be facilitated using the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /externaltemplateimports
-     * ----
+     * ```
      *
-     * With request body of type xref:types-external_template_import[ExternalTemplateImport], for example:
+     * With request body of type xref:types/external_template_import[ExternalTemplateImport], for example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_template_import>
      *   <template>
      *     <name>my_template</name>
@@ -64,7 +62,7 @@ public interface ExternalTemplateImportsService {
      *   <url>ova:///mnt/ova/ova_template.ova</url>
      *   <host id="8bb5ade5-e988-4000-8b93-dbfc6717fe50" />
      * </external_template_import>
-     * ----
+     * ```
      *
      * @author Liran Rotenberg <lrotenbe@redhat.com>
      * @date 12 May 2021

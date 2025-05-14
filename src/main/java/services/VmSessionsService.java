@@ -44,15 +44,13 @@ public interface VmSessionsService {
      *
      * For example, to retrieve the session information for virtual machine `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/sessions
-     * ----
+     * ```
      *
      * The response body will contain something like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <sessions>
      *   <session href="/ovirt-engine/api/vms/123/sessions/456" id="456">
      *     <console_user>true</console_user>
@@ -64,7 +62,7 @@ public interface VmSessionsService {
      *   </session>
      *   ...
      * </sessions>
-     * ----
+     * ```
      *
      * The order of the returned list of sessions isn't guaranteed.
      *

@@ -58,10 +58,9 @@ public interface TemplateDiskAttachmentService {
      * A storage domain has to be specified to determine which of the copies should be removed (template disks can
      * have copies on multiple storage domains).
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/templates/{template:id}/diskattachments/{attachment:id}?storage_domain=072fbaa1-08f3-4a40-9f34-a5ca22dd1d74
-     * ----
+     * ```
      *
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 7 Jul 2016

@@ -28,12 +28,11 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * This is an example of the package element:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <package>
  *   <name>libipa_hbac-1.9.2-82.11.el6_4.i686</name>
    </package>
- * ----
+ * ```
  *
  * @author Moti Asayag <masayag@redhat.com>
  * @date 12 Dec 2016

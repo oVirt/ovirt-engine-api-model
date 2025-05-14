@@ -31,14 +31,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * To get that information send a request like this:
  *
- * ....
+ * ```http
  * GET /ovirt-engine/api
- * ....
+ * ```
  *
  * The result will be like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <api>
  *   <link rel="hosts" href="/ovirt-engine/api/hosts"/>
  *   <link rel="vms" href="/ovirt-engine/api/vms"/>
@@ -86,7 +85,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *      <last_keycloak_backup>2025-01-30T13:18:47.682Z</last_keycloak_backup>
  *   </engine_backup>
  * </api>
- * ----
+ * ```
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>

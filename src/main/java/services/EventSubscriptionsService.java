@@ -31,19 +31,18 @@ public interface EventSubscriptionsService {
      * event-subscription for `host_high_cpu_use` for user `123`, and have the notification
      * sent to the e-mail address: `a@b.com`, send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/users/123/eventsubscriptions
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <event_subscription>
      *     <event>host_high_cpu_use</event>
      *     <address>a@b.com</address>
      * </event_subscription>
-     * ----
+     * ```
      *
      * The event name will become the ID of the new event-subscription entity:
      * GET .../api/users/123/eventsubscriptions/host_high_cpu_use
@@ -83,12 +82,11 @@ public interface EventSubscriptionsService {
      *
      * For example to list event-subscriptions for user `123`:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/users/123/event-subscriptions
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <event-subscriptions>
      *   <event-subscription href="/ovirt-engine/api/users/123/event-subscriptions/host_install_failed">
      *     <event>host_install_failed</event>
@@ -103,7 +101,7 @@ public interface EventSubscriptionsService {
      *     <address>a@b.com</address>
      *   </event-subscription>
      * </event-subscriptions>
-     * ----
+     * ```
      *
      * @author Ori Liel <oliel@redhat.com>
      * @date 17 June 2019

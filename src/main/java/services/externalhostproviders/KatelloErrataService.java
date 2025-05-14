@@ -43,15 +43,13 @@ public interface KatelloErrataService {
     /**
      * Retrieves the representation of the Katello errata.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/katelloerrata
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <katello_errata>
      *   <katello_erratum href="/ovirt-engine/api/katelloerrata/123" id="123">
      *     <name>RHBA-2013:XYZ</name>
@@ -70,7 +68,7 @@ public interface KatelloErrataService {
      *   </katello_erratum>
      *   ...
      * </katello_errata>
-     * ----
+     * ```
      *
      * The order of the returned list of erratum isn't guaranteed.
      *

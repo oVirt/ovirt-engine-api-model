@@ -45,18 +45,16 @@ public interface VmPoolService {
     /**
      * This operation allocates a virtual machine in the virtual machine pool.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vmpools/123/allocatevm
-     * ----
+     * ```
      *
      * The allocate virtual machine action does not take any action specific parameters, so the request body should
      * contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @date 14 Sep 2016
@@ -72,14 +70,13 @@ public interface VmPoolService {
     /**
      * Get the virtual machine pool.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vmpools/123
-     * ----
+     * ```
      *
      * You will get a XML response like that one:
-     * [source,xml]
-     * ----
+     *
+     * ```xml
      * <vm_pool id="123">
      *   <actions>...</actions>
      *   <name>MyVmPool</name>
@@ -96,7 +93,7 @@ public interface VmPoolService {
      *   <vm id="123">...</vm>
      *   ...
      * </vm_pool>
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
@@ -121,17 +118,15 @@ public interface VmPoolService {
     /**
      * Update the virtual machine pool.
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vmpools/123
-     * ----
+     * ```
      *
      * The `name`, `description`, `size`, `prestarted_vms` and `max_user_vms`
      * attributes can be updated after the virtual machine pool has been
      * created.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vmpool>
      *   <name>VM_Pool_B</name>
      *   <description>Virtual Machine Pool B</description>
@@ -139,7 +134,7 @@ public interface VmPoolService {
      *   <prestarted_vms>1</size>
      *   <max_user_vms>2</size>
      * </vmpool>
-     * ----
+     * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @date 14 Sep 2016
@@ -186,21 +181,19 @@ public interface VmPoolService {
          * For example, to update a virtual machine pool and to seal the additional virtual machines that are created,
          * send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * PUT /ovirt-engine/api/vmpools/123?seal=true
-         * ----
+         * ```
          *
          * With the following body:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vmpool>
          *   <name>VM_Pool_B</name>
          *   <description>Virtual Machine Pool B</description>
          *   <size>7</size>
          * </vmpool>
-         * ----
+         * ```
          *
          * @author Shmuel Leib Melamud <smelamud@redhat.com>
          * @date 1 Mar 2022
@@ -213,10 +206,9 @@ public interface VmPoolService {
     /**
      * Removes a virtual machine pool.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vmpools/123
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @date 14 Sep 2016

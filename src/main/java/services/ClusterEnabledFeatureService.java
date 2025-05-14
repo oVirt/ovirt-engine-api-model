@@ -42,19 +42,17 @@ public interface ClusterEnabledFeatureService {
      *
      * For example, to find details of the enabled feature `456` for cluster `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/123/enabledfeatures/456
-     * ----
+     * ```
      *
-     * That will return a xref:types-cluster_feature[ClusterFeature] object containing the name:
+     * That will return a xref:types/cluster_feature[ClusterFeature] object containing the name:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster_feature id="456">
      *   <name>libgfapi_supported</name>
      * </cluster_feature>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
@@ -78,10 +76,9 @@ public interface ClusterEnabledFeatureService {
      *
      * For example, to disable the feature `456` of cluster `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/clusters/123/enabledfeatures/456
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017

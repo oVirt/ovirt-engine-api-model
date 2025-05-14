@@ -37,15 +37,13 @@ public interface QosService {
     /**
      * Get specified QoS in the data center.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenters/123/qoss/123
-     * ----
+     * ```
      *
      * You will get response like this one below:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <qos href="/ovirt-engine/api/datacenters/123/qoss/123" id="123">
      *   <name>123</name>
      *   <description>123</description>
@@ -54,7 +52,7 @@ public interface QosService {
      *   <type>storage</type>
      *   <data_center href="/ovirt-engine/api/datacenters/123" id="123"/>
      * </qos>
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 24 Apr 2017
@@ -74,24 +72,21 @@ public interface QosService {
     /**
      * Update the specified QoS in the dataCenter.
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/datacenters/123/qoss/123
-     * ----
+     * ```
      *
      * For example with curl:
      *
-     * [source]
-     * ----
+     * ```
      * curl -u admin@internal:123456 -X PUT -H "content-type: application/xml" -d \
      * "<qos><name>321</name><description>321</description><max_iops>10</max_iops></qos>" \
      * https://engine/ovirt-engine/api/datacenters/123/qoss/123
-     * ----
+     * ```
      *
      * You will receive response like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <qos href="/ovirt-engine/api/datacenters/123/qoss/123" id="123">
      *   <name>321</name>
      *   <description>321</description>
@@ -100,7 +95,7 @@ public interface QosService {
      *   <type>storage</type>
      *   <data_center href="/ovirt-engine/api/datacenters/123" id="123"/>
      * </qos>
-     * ----
+     * ```
      *
      * @author Ori Liel <oliel@redhat.com>
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
@@ -148,10 +143,9 @@ public interface QosService {
     /**
      * Remove specified QoS from datacenter.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/datacenters/123/qoss/123
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 24 Apr 2017

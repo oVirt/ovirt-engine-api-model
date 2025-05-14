@@ -23,18 +23,16 @@ with the server, and then extract the certificates that it presents.
 +
 . Run the `openssl s_client` command as in the following example:
 +
-[source,terminal]
-----
+```bash
 $ openssl s_client \
 -connect myengine.example.com:443 \
 -showcerts \
 < /dev/null
-----
+```
 +
 .Example output
 +
-[source,terminal]
-----
+```bash
 CONNECTED(00000003)
 depth=1 C = US, O = Example Inc., CN = myengine.example.com.23416
 verify error:num=19:self signed certificate in certificate chain
@@ -54,7 +52,7 @@ MIIDxjCCAq6gAwIBAgICEAAwDQYJKoZIhvcNAQEFBQAwSTELMAkGA1UEBhMCVVMx
 FTATBgNVBAoTDEV4YW1wbGUgSW5jLjEjMCEGA1UEAxMaZW5naW5lNDEuZXhhbXBs
 Pkyg1rQHR6ebGQ==
 -----END CERTIFICATE-----
-----
+```
 +
 The text between the `-----BEGIN CERTIFICATE-----` and `-----END
 CERTIFICATE-----` lines shows the certificates presented by the server.
@@ -64,13 +62,13 @@ The first certificate is the certificate of the server itself. The second certif
 . Copy the CA certificate, including the `-----BEGIN CERTIFICATE-----` and `-----END
 CERTIFICATE-----` lines, to the `ca.crt` file as in the following example:
 +
-----
+```bash
 -----BEGIN CERTIFICATE-----
 MIIDxjCCAq6gAwIBAgICEAAwDQYJKoZIhvcNAQEFBQAwSTELMAkGA1UEBhMCVVMx
 FTATBgNVBAoTDEV4YW1wbGUgSW5jLjEjMCEGA1UEAxMaZW5naW5lNDEuZXhhbXBs
 Pkyg1rQHR6ebGQ==
 -----END CERTIFICATE-----
-----
+```
 +
 IMPORTANT: This is the most reliable method to obtain the CA certificate
 used by the server. The rest of the methods described here will
@@ -81,21 +79,19 @@ Method 2:: If you cannot use `openssl s_client` to obtain the certificate, you c
 +
 * If using `curl`:
 +
-[source,terminal]
-----
+```bash
 $ curl \
 --output ca.crt \
 'http://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
-----
+```
 +
 * If using `wget`:
 +
-[source,terminal]
-----
+```bash
 $ wget \
 --output-document ca.crt \
 'http://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA'
-----
+```
 
 Method 3:: Use a web browser to navigate to the certificate located
 at \`https://myengine.example.com/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA`.
@@ -117,8 +113,7 @@ truststore, and copy it to your client machine.
 . Export the certificate from the truststore using the Java
 `keytool` management utility:
 +
-[source,terminal]
-----
+```bash
 # keytool \
 -keystore /etc/pki/ovirt-engine/.truststore \
 -storepass mypass \
@@ -126,17 +121,16 @@ truststore, and copy it to your client machine.
 -alias cacert \
 -rfc \
 -file ca.crt
-----
+```
 +
 This creates a certificate file called `ca.crt`.
 +
 . Copy the certificate to the client machine using the `scp`
 command:
 +
-[source,terminal]
-----
+```bash
 $ scp ca.crt myuser@myclient.example.com:/home/myuser/.
-----
+```
 +
 Each of these methods results in a certificate file named `ca.crt` on
 your client machine. You must then import this file into the certificate
@@ -171,12 +165,12 @@ Grant_, as described in link:https://tools.ietf.org/html/rfc6749#section-4.3[RFC
 You must first obtain a _token_, sending the user name and password
 to the {engine-name} single sign-on service:
 
-----
+```http
 POST /ovirt-engine/sso/oauth/token HTTP/1.1
 Host: myengine.example.com
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
-----
+```
 
 The request body must contain the `grant_type`, `scope`, `username`,
 and `password` parameters:
@@ -204,9 +198,9 @@ link:https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded]. For example,
 the `@` character in the user name needs to be encoded as `%40`. The
 resulting request body will be something like this:
 
-----
+```
 grant_type=password&scope=ovirt-app-api&username=admin%40internal&password=mypassword
-----
+```
 
 IMPORTANT: The `scope` parameter is described as optional in the *OAuth*
 RFC, but when using it with the {product-name} API it is mandatory, and
@@ -215,15 +209,14 @@ its value must be `ovirt-app-api`.
 If the user name and password are valid, the {engine-name} single sign-on service
 will respond with a JSON document similar to this one:
 
-[source,json]
-----
+```json
 {
   "access_token": "fqbR1ftzh8wBCviLxJcYuV5oSDI=",
   "token_type": "bearer",
   "scope": "...",
   ...
 }
-----
+```
 
 For API authentication purposes, the only relevant name/value pair is the
 `access_token`. Do not manipulate this in any way; use it exactly as
@@ -234,20 +227,20 @@ the API by including it in the HTTP `Authorization` header, and using the
 `Bearer` scheme. For example, to get the list of virtual machines,
 send a request like this:
 
-----
+```http
 GET /ovirt-engine/api/vms HTTP/1.1
 Host: myengine.example.com
 Accept: application/xml
 Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
-----
+```
 
 The token can be used multiple times, for multiple requests, but it will
 eventually expire. When it expires, the server will reject the request with
 the 401 HTTP response code:
 
-----
+```http
 HTTP/1.1 401 Unauthorized
-----
+```
 
 When this happens, a new token is needed, as the {engine-name} single sign-on
 service does not currently support refreshing tokens. A new token can be
@@ -266,12 +259,12 @@ Authentication is described in link:https://tools.ietf.org/html/rfc2617[RFC
 encode the credentials. If a request does not include an appropriate
 `Authorization` header, the server sends a `401 Authorization Required` response:
 
-----
+```http
 HEAD /ovirt-engine/api HTTP/1.1
 Host: myengine.example.com
 
 HTTP/1.1 401 Authorization Required
-----
+```
 
 Request are issued with an `Authorization` header for the specified
 realm. Encode an appropriate {engine-name} domain and user
@@ -303,13 +296,13 @@ link:https://tools.ietf.org/html/rfc4648[Base64].
 
 Provide the Base64-encoded credentials as shown:
 
-----
+```http
 HEAD /ovirt-engine/api HTTP/1.1
 Host: myengine.example.com
 Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
 
 HTTP/1.1 200 OK
-----
+```
 
 IMPORTANT: Basic authentication involves potentially sensitive
 information, such as passwords, sent as plain text. The API requires
@@ -334,7 +327,7 @@ cookie to authenticate.
 . Send a request with the `Authorization` and `Prefer: persistent-auth`
 headers:
 +
-----
+```http
 HEAD /ovirt-engine/api HTTP/1.1
 Host: myengine.example.com
 Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
@@ -342,13 +335,13 @@ Prefer: persistent-auth
 
 HTTP/1.1 200 OK
 ...
-----
+```
 +
 This returns a response with the following header:
 +
-----
+```
 Set-Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK; Path=/ovirt-engine/api; Secure
-----
+```
 +
 Take note of the `JSESSIONID=` value. In this example the value is
 `5dQja5ubr4yvI2MM2z+LZxrK`.
@@ -357,7 +350,7 @@ Take note of the `JSESSIONID=` value. In this example the value is
 `Cookie` headers with the `JSESSIONID=` value. The `Authorization` header
 is no longer needed when using an authenticated session.
 +
-----
+```http
 HEAD /ovirt-engine/api HTTP/1.1
 Host: myengine.example.com
 Prefer: persistent-auth
@@ -365,17 +358,17 @@ Cookie: JSESSIONID=5dQja5ubr4yvI2MM2z+LZxrK
 
 HTTP/1.1 200 OK
 ...
-----
+```
 +
 . When the session is no longer required, perform a request to the
 sever without the `Prefer: persistent-auth` header.
 +
-----
+```http
 HEAD /ovirt-engine/api HTTP/1.1
 Host: myengine.example.com
 Authorization: Basic YWRtaW5AaW50ZXJuYWw6bXlwYXNzd29yZA==
 
 HTTP/1.1 200 OK
 ...
-----
+```
 +

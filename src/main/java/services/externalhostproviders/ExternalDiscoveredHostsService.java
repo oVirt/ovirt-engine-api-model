@@ -45,13 +45,11 @@ public interface ExternalDiscoveredHostsService {
      *
      * To list all discovered hosts for provider `123` send the following:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/discoveredhost
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_discovered_hosts>
      *  <external_discovered_host href="/ovirt-engine/api/externalhostproviders/123/discoveredhosts/456" id="456">
      *   <name>mac001a4ad04031</name>
@@ -71,7 +69,7 @@ public interface ExternalDiscoveredHostsService {
      *  </external_discovered_host>
      *  ...
      * </external_discovered_hosts>
-     * ----
+     * ```
      *
      * The order of the returned list of hosts isn't guaranteed.
      *

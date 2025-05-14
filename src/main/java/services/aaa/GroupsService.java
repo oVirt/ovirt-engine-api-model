@@ -49,22 +49,20 @@ public interface GroupsService {
      * For example, to add the `Developers` group from the `internal-authz` authorization provider send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/groups
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <group>
      *   <name>Developers</name>
      *   <domain>
      *     <name>internal-authz</name>
      *   </domain>
      * </group>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 14 Sep 2016
@@ -92,14 +90,13 @@ public interface GroupsService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/groups
-     * ....
+     * ```
      *
      * Will return the list of groups:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <groups>
      *   <group href="/ovirt-engine/api/groups/123" id="123">
      *     <name>mygroup</name>
@@ -114,7 +111,7 @@ public interface GroupsService {
      *   </group>
      *   ...
      * </groups>
-     * ----
+     * ```
      *
      * The order of the returned list of groups isn't guaranteed.
      *

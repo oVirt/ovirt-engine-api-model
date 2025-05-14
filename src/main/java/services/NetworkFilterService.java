@@ -31,8 +31,7 @@ import types.NetworkFilter;
 /**
  * Manages a network filter.
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_filter id="00000019-0019-0019-0019-00000000026b">
  *   <name>example-network-filter-b</name>
  *   <version>
@@ -42,7 +41,7 @@ import types.NetworkFilter;
  *     <revision>-1</revision>
  *   </version>
  * </network_filter>
- * ----
+ * ```
  *
  * Please note that version is referring to the minimal support version for the specific filter.
  */

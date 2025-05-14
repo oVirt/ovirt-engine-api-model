@@ -49,16 +49,15 @@ public interface AffinityGroupVmLabelsService {
      * For example, to add the label `789` to the affinity group `456` of cluster `123`,
      * send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vmlabels
-     * ....
+     * ```
      *
      * With the following body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <affinity_label id="789"/>
-     * ----
+     * ```
      *
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>

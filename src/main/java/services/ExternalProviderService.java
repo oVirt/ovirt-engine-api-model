@@ -59,10 +59,9 @@ public interface ExternalProviderService {
      * In order to test connectivity for external provider we need
      * to run following request where 123 is an id of a provider.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/externalhostproviders/123/testconnectivity
-     * ----
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 24 Apr 2017

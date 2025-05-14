@@ -50,8 +50,7 @@ public interface VmBackupService {
         /**
          * The information about the virtual machine backup entities.
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <backups>
          *   <backup id="backup-uuid">
          *     <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
@@ -60,7 +59,7 @@ public interface VmBackupService {
          *     <creation_date>
          *  </backup>
          * </backups>
-         * ----
+         * ```
          *
          * @author Daniel Erez <derez@redhat.com>
          * @date 12 Dec 2018
@@ -78,17 +77,15 @@ public interface VmBackupService {
      * To finalize a virtual machine with an id '123' and a backup with an id '456'
      * send a request as follows:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/backups/456/finalize
-     * ----
+     * ```
      *
      * With a request body as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action />
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Eyal Shenitzky <eshenitz@redhat.com>

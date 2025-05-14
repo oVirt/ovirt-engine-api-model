@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <vm_numa_node href="/ovirt-engine/api/vms/123/numanodes/456" id="456">
  *   <cpu>
  *     <cores>
@@ -48,7 +47,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   </numa_node_pins>
  *   <vm href="/ovirt-engine/api/vms/123" id="123" />
  * </vm_numa_node>
- * ----
+ * ```
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

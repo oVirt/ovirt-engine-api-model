@@ -44,36 +44,32 @@ public interface StorageServerConnectionService {
      *
      * For example, to change the address of an NFS storage server, send a request like this:
      *
-     * [source,xml]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/storageconnections/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_connection>
      *   <address>mynewnfs.example.com</address>
      * </storage_connection>
-     * ----
+     * ```
      *
      * To change the connection of an iSCSI storage server, send a request like this:
      *
-     * [source,xml]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/storageconnections/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_connection>
      *   <port>3260</port>
      *   <target>iqn.2017-01.com.myhost:444</target>
      * </storage_connection>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Shani Leviim <sleviim@redhat.com>
@@ -207,10 +203,9 @@ public interface StorageServerConnectionService {
          * For example, to use the host with identifier `456` to delete the storage connection with identifier `123`
          * send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * DELETE /ovirt-engine/api/storageconnections/123?host=456
-         * ----
+         * ```
          *
          * @author Daniel Erez <derez@redhat.com>
          * @date 14 Sep 2016

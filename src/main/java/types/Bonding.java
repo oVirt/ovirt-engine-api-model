@@ -62,15 +62,13 @@ public interface Bonding {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/nics/321
-     * ----
+     * ```
      *
      * Will respond:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host_nic href="/ovirt-engine/api/hosts/123/nics/321" id="321">
      *   ...
      *   <bonding>
@@ -82,7 +80,7 @@ public interface Bonding {
      *   </bonding>
      *   ...
      * </host_nic>
-     * ----
+     * ```
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

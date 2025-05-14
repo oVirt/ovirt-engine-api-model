@@ -133,8 +133,7 @@ the following to better describe the `Start` operation of the `Vm` service:
  * To use this parameter with the Python SDK you can use the
  * following code snippet:
  *
- * [source,python]
- * ----
+ * ```python
  * # Find the virtual machine:
  * vm = api.vms.get(name="myvm")
  *
@@ -144,7 +143,7 @@ the following to better describe the `Start` operation of the `Vm` service:
  *     pause=True
  *   )
  * )
- * ----
+ * ```
  */
 @In Boolean pause();
 ```

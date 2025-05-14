@@ -48,25 +48,22 @@ public interface JobsService {
      *
      * For example, to add a job with the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/jobs
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <job>
      *   <description>Doing some work</description>
      *   <auto_cleared>true</auto_cleared>
      * </job>
-     * ----
+     * ```
      *
      * The response should look like:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <job href="/ovirt-engine/api/jobs/123" id="123">
      *   <actions>
      *     <link href="/ovirt-engine/api/jobs/123/clear" rel="clear"/>
@@ -81,7 +78,7 @@ public interface JobsService {
      *   <status>started</status>
      *   <owner href="/ovirt-engine/api/users/456" id="456"/>
      * </job>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -107,15 +104,13 @@ public interface JobsService {
     /**
      * Retrieves the representation of the jobs.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/jobs
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <jobs>
      *   <job href="/ovirt-engine/api/jobs/123" id="123">
      *     <actions>
@@ -134,7 +129,7 @@ public interface JobsService {
      *   </job>
      *   ...
      * </jobs>
-     * ----
+     * ```
      *
      * The order of the returned list of jobs isn't guaranteed.
      *

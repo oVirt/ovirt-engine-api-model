@@ -48,33 +48,31 @@ public interface TagsService {
      *
      * For example, to add new tag with name `mytag` to the system send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/tags
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tag>
      *   <name>mytag</name>
      * </tag>
-     * ----
+     * ```
      *
      * NOTE: The root tag is a special pseudo-tag assumed as the default parent tag if no parent tag is specified.
      * The root tag cannot be deleted nor assigned a parent tag.
      *
      * To create new tag with specific parent tag send a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tag>
      *   <name>mytag</name>
      *   <parent>
      *     <name>myparenttag</name>
      *   </parent>
      * </tag>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -102,12 +100,11 @@ public interface TagsService {
      *
      * For example to list the full hierarchy of the tags in the system send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/tags
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tags>
      *   <tag href="/ovirt-engine/api/tags/222" id="222">
      *     <name>root2</name>
@@ -124,14 +121,15 @@ public interface TagsService {
      *     <description>root</description>
      *   </tag>
      * </tags>
-     * ----
+     * ```
      *
      * In the previous XML output you can see the following hierarchy of the tags:
-     * ....
+     *
+     * ```
      * root:        (id: 111)
      *   - root2    (id: 222)
      *     - root3  (id: 333)
-     * ....
+     * ```
      *
      * The order of the returned list of tags isn't guaranteed.
      *

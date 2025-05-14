@@ -61,8 +61,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example of an XML representation using the mapping:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action>
  *   <registration_configuration>
  *     <cluster_mappings>
@@ -162,7 +161,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </vnic_profile_mappings>
  *   </registration_configuration>
  * </action>
- * ----
+ * ```
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

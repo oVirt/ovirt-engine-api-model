@@ -55,20 +55,18 @@ public interface VmApplicationService {
          *
          * For example, a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/vms/123/applications/789
-         * ----
+         * ```
          *
          * May return information like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <application href="/ovirt-engine/api/vms/123/applications/789" id="789">
          *   <name>ovirt-guest-agent-common-1.0.12-3.el7</name>
          *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
          * </application>
-         * ----
+         * ```
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
          * @date 12 Dec 2016

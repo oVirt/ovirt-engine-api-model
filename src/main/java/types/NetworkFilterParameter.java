@@ -24,18 +24,17 @@ import org.ovirt.api.metamodel.annotations.Link;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Parameter for the xref:types-network_filter[network filter].
+ * Parameter for the xref:types/network_filter[network filter].
  *
  * See link:https://libvirt.org/formatnwfilter.html#nwfconceptsvars[Libvirt-Filters] for further details.
  * This is a example of the XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_filter_parameter id="123">
  *   <name>IP</name>
  *   <value>10.0.1.2</value>
  * </network_filter_parameter>
- * ----
+ * ```
  *
  * @author Dominik Holler <dholler@redhat.com>
  * @date 28 Nov 2016

@@ -37,7 +37,7 @@ public interface OperatingSystem {
      * Operating system name in human readable form.
      *
      * For example `Fedora` or `RHEL`. In general one of the names returned by
-     * the xref:services-operating_systems[operating system] service.
+     * the xref:services/operating_systems[operating system] service.
      *
      * NOTE: Read only for hosts.
      *

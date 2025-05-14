@@ -34,15 +34,13 @@ import types.Vm;
  * For example, to retrieve the virtual machines that are available in the storage domain with identifier `123` send the
  * following request:
  *
- * [source]
- * ----
+ * ```http
  * GET /ovirt-engine/api/storagedomains/123/vms
- * ----
+ * ```
  *
  * This will return the following response body:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <vms>
  *   <vm id="456" href="/api/storagedomains/123/vms/456">
  *     <name>vm1</name>
@@ -53,11 +51,11 @@ import types.Vm;
  *     </actions>
  *   </vm>
  * </vms>
- * ----
+ * ```
  *
  * Virtual machines and templates in these collections have a similar representation to their counterparts in the
- * top-level xref:types-vm[Vm] and xref:types-template[Template] collections, except they also contain a
- * xref:types-storage_domain[StorageDomain] reference and an xref:services-storage_domain_vm-methods-import[import]
+ * top-level xref:types/vm[Vm] and xref:types/template[Template] collections, except they also contain a
+ * xref:types/storage_domain[StorageDomain] reference and an xref:services/storage_domain_vm/methods/import[import]
  * action.
  *
  * @author Amit Aviram <aaviram@redhat.com>
@@ -91,9 +89,9 @@ public interface StorageDomainVmsService {
          * To get a list of unregistered virtual machines the call should indicate the unregistered flag.
          * For example, to get a list of unregistered virtual machines the REST API call should look like this:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/storagedomains/123/vms?unregistered=true
-         * ....
+         * ```
          *
          * The default value of the unregisterd flag is `false`.
          * The request only apply to storage domains that are attached.

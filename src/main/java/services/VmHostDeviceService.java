@@ -44,13 +44,11 @@ public interface VmHostDeviceService {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/hostdevices/456
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host_device href="/ovirt-engine/api/hosts/543/devices/456" id="456">
      *   <name>pci_0000_04_00_0</name>
      *   <capability>pci</capability>
@@ -68,7 +66,7 @@ public interface VmHostDeviceService {
      *   </parent_device>
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      * </host_device>
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 12 Dec 2016
@@ -93,10 +91,9 @@ public interface VmHostDeviceService {
      * automatically as soon as there will be no more non-placeholder devices (all devices from given IOMMU
      * group are detached).
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/hostdevices/456
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 12 Dec 2016

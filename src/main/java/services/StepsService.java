@@ -49,27 +49,24 @@ public interface StepsService {
      * For example, to add a step to `job` with identifier `123` send the
      * following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/jobs/123/steps
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <step>
      *   <description>Validating</description>
      *   <start_time>2016-12-12T23:07:26.605+02:00</start_time>
      *   <status>started</status>
      *   <type>validating</type>
      * </step>
-     * ----
+     * ```
      *
      * The response should look like:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <step href="/ovirt-engine/api/jobs/123/steps/456" id="456">
      *   <actions>
      *     <link href="/ovirt-engine/api/jobs/123/steps/456/end" rel="end"/>
@@ -83,7 +80,7 @@ public interface StepsService {
      *   <type>validating</type>
      *   <job href="/ovirt-engine/api/jobs/123" id="123"/>
      * </step>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -111,15 +108,13 @@ public interface StepsService {
     /**
      * Retrieves the representation of the steps.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/job/123/steps
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <steps>
      *   <step href="/ovirt-engine/api/jobs/123/steps/456" id="456">
      *     <actions>
@@ -136,7 +131,7 @@ public interface StepsService {
      *   </step>
      *   ...
      * </steps>
-     * ----
+     * ```
      *
      * The order of the returned list of steps isn't guaranteed.
      *

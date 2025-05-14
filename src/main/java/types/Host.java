@@ -117,15 +117,13 @@ public interface Host extends Identified {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123
-     * ----
+     * ```
      *
      * This `GET` request will return the following output:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host>
      *   ...
      *   <version>
@@ -137,7 +135,7 @@ public interface Host extends Identified {
      *   </version>
      *   ...
      * </host>
-     * ----
+     * ```
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -170,20 +168,19 @@ public interface Host extends Identified {
      *
      * For example, to enable KSM for host `123`, send a request like this:
      *
-     * ....
+     * ```http
      * PUT /ovirt-engine/api/hosts/123
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host>
      *   <ksm>
      *     <enabled>true</enabled>
      *   </ksm>
      * </host>
-     * ----
+     * ```
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @date 14 Sept 2016
@@ -197,20 +194,19 @@ public interface Host extends Identified {
      *
      * For example, to enable transparent huge page support for host `123`, send a request like this:
      *
-     * ....
+     * ```http
      * PUT /ovirt-engine/api/hosts/123
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host>
      *   <transparent_hugepages>
      *     <enabled>true</enabled>
      *   </transparent_hugepages>
      * </host>
-     * ----
+     * ```
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @date 14 Sept 2016
@@ -260,15 +256,13 @@ public interface Host extends Identified {
      * about the topology (socket, core) and with information
      * about the current CPU pinning.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/cpuunits
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host_cpu_units>
      *   <host_cpu_unit>
      *     <core_id>0</core_id>
@@ -290,7 +284,7 @@ public interface Host extends Identified {
      *     <socket_id>2</socket_id>
      *   </host_cpu_unit>
      * </host_cpu_units>
-     * ----
+     * ```
      *
      * @author Lucia Jelinkova <ljelinko@redhat.com>
      * @since 4.5
@@ -382,8 +376,8 @@ public interface Host extends Identified {
      *
      * IMPORTANT: When a host or collection of hosts is retrieved, this attribute is not included unless the
      * `all_content` parameter of the operation is explicitly set to `true`. See the documentation of the
-     * operations that retrieve xref:services-host-methods-get-parameters-all_content[one] or
-     * xref:services-hosts-methods-list-parameters-all_content[multiple] hosts for details.
+     * operations that retrieve xref:services/host/methods/get/parameters/all_content[one] or
+     * xref:services/hosts/methods/list/parameters/all_content[multiple] hosts for details.
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -508,15 +502,13 @@ public interface Host extends Identified {
     /**
      * Lists all the Katello errata assigned to the host.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/katelloerrata
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <katello_errata>
      *   <katello_erratum href="/ovirt-engine/api/katelloerrata/456" id="456">
      *     <name>RHBA-2013:XYZ</name>
@@ -535,7 +527,7 @@ public interface Host extends Identified {
      *   </katello_erratum>
      *   ...
      * </katello_errata>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -553,8 +545,7 @@ public interface Host extends Identified {
      *
      * An example of an XML representation:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <statistics>
      *   <statistic href="/ovirt-engine/api/hosts/123/statistics/456" id="456">
      *     <name>memory.total</name>
@@ -571,7 +562,7 @@ public interface Host extends Identified {
      *   </statistic>
      *     ...
      * </statistics>
-     * ----
+     * ```
      *
      * NOTE: This statistics sub-collection is read-only.
      *
@@ -642,7 +633,7 @@ public interface Host extends Identified {
      * External network providers provisioned on the host.
      *
      * This attribute is read-only. Setting it will have no effect on the host.
-     * The value of this parameter reflects the xref:services-cluster_external_providers[Default Network Provider]
+     * The value of this parameter reflects the xref:services/cluster_external_providers[Default Network Provider]
      * of the cluster.
      *
      * @author Dominik Holler <dholler@redhat.com>

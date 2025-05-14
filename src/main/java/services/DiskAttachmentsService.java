@@ -34,7 +34,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
 
 /**
  * This service manages the set of disks attached to a virtual machine. Each attached disk is represented by a
- * xref:types-disk_attachment[DiskAttachment], containing the bootable flag, the disk interface and the reference to
+ * xref:types/disk_attachment[DiskAttachment], containing the bootable flag, the disk interface and the reference to
  * the disk.
  */
 @Service
@@ -43,8 +43,7 @@ public interface DiskAttachmentsService {
      * Adds a new disk attachment to the virtual machine. The `attachment` parameter can contain just a reference, if
      * the disk already exists:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment>
      *   <bootable>true</bootable>
      *   <pass_discard>true</pass_discard>
@@ -52,12 +51,11 @@ public interface DiskAttachmentsService {
      *   <active>true</active>
      *   <disk id="123"/>
      * </disk_attachment>
-     * ----
+     * ```
      *
      * Or it can contain the complete representation of the disk, if the disk doesn't exist yet:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment>
      *   <bootable>true</bootable>
      *   <pass_discard>true</pass_discard>
@@ -69,16 +67,15 @@ public interface DiskAttachmentsService {
      *     ...
      *   </disk>
      * </disk_attachment>
-     * ----
+     * ```
      *
      * In this case the disk will be created and then attached to the virtual machine.
      *
      * In both cases, use the following URL for a virtual machine with an id `345`:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/345/diskattachments
-     * ----
+     * ```
      *
      * IMPORTANT: The server accepts requests that do not contain the `active` attribute, but the effect is
      * undefined. In some cases the disk will be automatically activated and in other cases it won't. To

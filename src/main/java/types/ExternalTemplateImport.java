@@ -41,10 +41,9 @@ public interface ExternalTemplateImport {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * ova:///mnt/ova/ova_file.ova
-     * ----
+     * ```
      *
      *
      * @author Liran Rotenberg <lrotenbe@redhat.com>

@@ -98,10 +98,9 @@ public interface VmGraphicsConsolesService {
          * For example, to get data for the current execution of the virtual machine, including the
          * `address` and `port` attributes, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/vms/123/graphicsconsoles?current=true
-         * ----
+         * ```
          *
          * The default value is `false`.
          *

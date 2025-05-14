@@ -43,9 +43,9 @@ public interface StorageDomainDisksService {
      * Adds or registers a disk.
      *
      * IMPORTANT: Since version 4.2 of the {engine-name} this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. To add a new disk use the xref:services-disks-methods-add[add]
+     * compatibility. It will be removed in the future. To add a new disk use the xref:services/disks/methods/add[add]
      * operation of the service that manages the disks of the system. To register an unregistered disk use the
-     * xref:services-attached_storage_domain_disk-methods-register[register] operation of the service that manages
+     * xref:services/attached_storage_domain_disk/methods/register[register] operation of the service that manages
      * that disk.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -70,35 +70,33 @@ public interface StorageDomainDisksService {
          * value is `true` then the identifier of the disk to register needs to be provided. For example, to register
          * the disk with ID `456` send a request like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/api/storagedomains/123/disks?unregistered=true
-         * ....
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <disk id="456"/>
-         * ----
+         * ```
          *
          * If the value is `false` then a new disk will be created in the storage domain. In that case the
          * `provisioned_size`, `format`, and `name` attributes are mandatory. For example, to create a new
          * _copy on write_ disk of 1 GiB, send a request like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/api/storagedomains/123/disks
-         * ....
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <disk>
          *   <name>mydisk</name>
          *   <format>cow</format>
          *   <provisioned_size>1073741824</provisioned_size>
          * </disk>
-         * ----
+         * ```
          *
          * The default value is `false`.
          *
@@ -150,9 +148,9 @@ public interface StorageDomainDisksService {
          * To get a list of unregistered disks in the storage domain the call should indicate the unregistered flag.
          * For example, to get a list of unregistered disks the REST API call should look like this:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/storagedomains/123/disks?unregistered=true
-         * ....
+         * ```
          *
          * The default value of the unregistered flag is `false`.
          * The request only applies to storage domains that are attached.

@@ -49,27 +49,24 @@ public interface SshPublicKeysService {
      * For example, to retrieve the list of SSH keys of user with identifier `123`,
      * send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/users/123/sshpublickeys
-     * ----
+     * ```
      *
      * The result will be the following XML document:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <ssh_public_keys>
      *   <ssh_public_key href="/ovirt-engine/api/users/123/sshpublickeys/456" id="456">
      *     <content>ssh-rsa ...</content>
      *     <user href="/ovirt-engine/api/users/123" id="123"/>
      *   </ssh_public_key>
      * </ssh_public_keys>
-     * ----
+     * ```
      *
      * Or the following JSON object
      *
-     * [source,json]
-     * ----
+     * ```json
      * {
      *   "ssh_public_key": [
      *     {
@@ -83,7 +80,7 @@ public interface SshPublicKeysService {
      *     }
      *   ]
      * }
-     * ----
+     * ```
      *
      * The order of the returned list of keys is not guaranteed.
      *

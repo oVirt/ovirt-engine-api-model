@@ -41,15 +41,13 @@ public interface IscsiBondsService {
      * For example, to create a new iSCSI bond on data center `123` using storage connections `456` and `789`, send a
      * request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/iscsibonds
-     * ----
+     * ```
      *
      * The request body should look like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <iscsi_bond>
      *   <name>mybond</name>
      *   <storage_connections>
@@ -60,7 +58,7 @@ public interface IscsiBondsService {
      *     <network id="abc"/>
      *   </networks>
      * </iscsi_bond>
-     * ----
+     * ```
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>
      * @date 14 Sep 2016

@@ -43,13 +43,11 @@ public interface HostDeviceService {
      *
      * An example of getting a host device:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/devices/456
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host_device href="/ovirt-engine/api/hosts/123/devices/456" id="456">
      *   <name>usb_1_9_1_1_0</name>
      *   <capability>usb</capability>
@@ -58,7 +56,7 @@ public interface HostDeviceService {
      *     <name>usb_1_9_1</name>
      *   </parent_device>
      * </host_device>
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 12 Dec 2016

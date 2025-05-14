@@ -54,33 +54,29 @@ public interface TemplateService {
      *
      * For example, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/templates/123/export
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      *   <exclusive>true<exclusive/>
      * </action>
-     * ----
+     * ```
      *
      * Since version 4.2 of the engine it is also possible to export a template as a virtual appliance (OVA).
      * For example, to export template `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/templates/123/export
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <host>
      *     <name>myhost</name>
@@ -88,7 +84,7 @@ public interface TemplateService {
      *   <directory>/home/ovirt</directory>
      *   <filename>myvm.ova</filename>
      * </action>
-     * ----
+     * ```
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -228,31 +224,28 @@ public interface TemplateService {
      *
      * For example, to update a template so that it has 1 GiB of memory send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/templates/123
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <memory>1073741824</memory>
      * </template>
-     * ----
+     * ```
      *
      * The `version_name` name attribute is the only one that can be updated within the `version` attribute used for
      * template versions:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <version>
      *     <version_name>mytemplate_2</version_name>
      *   </version>
      * </template>
-     * ----
+     * ```
      *
      * @author Shahar Havivi <shavivi@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -350,10 +343,9 @@ public interface TemplateService {
     /**
      * Removes a virtual machine template.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/templates/123
-     * ----
+     * ```
      *
      * @author Shahar Havivi <shavivi@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

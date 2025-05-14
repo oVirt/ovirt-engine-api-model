@@ -57,10 +57,9 @@ public interface FilesService {
      * The default value of the `refresh` parameter is `true`, but it can be changed using the configuration value
      * `ForceRefreshDomainFilesByDefault`:
      *
-     * [source]
-     * ----
+     * ```
      * # engine-config -s ForceRefreshDomainFilesByDefault=false
-     * ----
+     * ```
      *
      * IMPORTANT: Setting the value of the `refresh` parameter to `true` has an impact on the performance of the
      * server. Use it only if necessary.

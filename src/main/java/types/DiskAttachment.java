@@ -101,13 +101,12 @@ public interface DiskAttachment extends Identified {
      * For example, if the guest operating system is Linux and the disk is connected via a VirtIO interface, the
      * logical name will be reported as `/dev/vda`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment>
      *   ...
      *   <logical_name>/dev/vda</logical_name>
      * </disk_attachment>
-     * ----
+     * ```
      *
      * If the guest operating system is Windows, the logical name will be reported as `\\.\PHYSICALDRIVE0`.
      *
@@ -124,13 +123,12 @@ public interface DiskAttachment extends Identified {
      *
      * When adding a new disk attachment the default value is `false`.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment>
      *   ...
      *   <read_only>true</read_only>
      * </disk_attachment>
-     * ----
+     * ```
      *
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 9 Apr 2017

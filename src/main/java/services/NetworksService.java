@@ -55,54 +55,48 @@ public interface NetworksService {
      *
      * For example, to create a network named `mynetwork` for data center `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/networks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <name>mynetwork</name>
      *   <data_center id="123"/>
      * </network>
-     * ----
+     * ```
      *
      *
      * To associate the existing network `456` with the data center `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/networks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <name>ovirtmgmt</name>
      * </network>
-     * ----
+     * ```
      *
      * To create a network named `exnetwork` on top of an external _OpenStack_ network provider `456` send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/networks
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <name>exnetwork</name>
      *   <external_provider id="456"/>
      *   <data_center id="123"/>
      * </network>
-     * ----
+     * ```
      *
      * @author Martin Mucha <mmucha@redhat.com>
      * @author Petr Horacek <phoracek@redhat.com>
@@ -135,15 +129,13 @@ public interface NetworksService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/networks
-     * ----
+     * ```
      *
      * Will respond:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <networks>
      *   <network href="/ovirt-engine/api/networks/123" id="123">
      *     <name>ovirtmgmt</name>
@@ -160,7 +152,7 @@ public interface NetworksService {
      *   </network>
      *   ...
      * </networks>
-     * ----
+     * ```
      *
      * The order of the returned list of networks is guaranteed only if the `sortby` clause is included in the
      * `search` parameter.

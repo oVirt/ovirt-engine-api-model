@@ -33,8 +33,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * The follow elements identify a genuine {product-name} environment:
  *
- * [source]
- * ----
+ * ```xml
  * <api>
  * ...
  * <product_info>
@@ -50,7 +49,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * </product_info>
  * ...
  * </api>
- * ----
+ * ```
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
  * @date 12 Dec 2016

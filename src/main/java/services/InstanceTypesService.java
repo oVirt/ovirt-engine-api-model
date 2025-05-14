@@ -41,24 +41,21 @@ public interface InstanceTypesService {
      * This requires only a name attribute and can include all hardware configurations of the
      * virtual machine.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/instancetypes
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <instance_type>
      *   <name>myinstancetype</name>
      * </template>
-     * ----
+     * ```
      *
      * Creating an instance type with all hardware configurations with a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <instance_type>
      *   <name>myinstancetype</name>
      *   <console>
@@ -120,7 +117,7 @@ public interface InstanceTypesService {
      *     <enabled>true</enabled>
      *   </virtio_scsi>
      * </instance_type>
-     * ----
+     * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016

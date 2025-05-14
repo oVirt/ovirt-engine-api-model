@@ -45,18 +45,17 @@ public interface AssignedTagService {
      * For example to retrieve the information about the tag with the id `456` which is assigned to virtual machine
      * with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/vms/123/tags/456
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tag href="/ovirt-engine/api/tags/456" id="456">
      *   <name>root</name>
      *   <description>root</description>
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      * </tag>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -78,9 +77,9 @@ public interface AssignedTagService {
      *
      * For example to unassign the tag with id `456` from virtual machine with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/tags/456
-     * ....
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016

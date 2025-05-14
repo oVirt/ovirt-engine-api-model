@@ -25,19 +25,18 @@ public interface EventSubscriptionService {
      * For example to retrieve the information about the subscription of user '123' to
      * the event 'vm_console_detected':
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/users/123/vm_console_detected
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <event-subscription href="/ovirt-engine/api/users/123/event-subscriptions/vm_console_detected">
      *   <event>vm_console_detected</event>
      *   <notification_method>smtp</notification_method>
      *   <user href="/ovirt-engine/api/users/123" id="123"/>
      *   <address>a@b.com</address>
      * </event-subscription>
-     * ----
+     * ```
      *
      * @author Ori Liel <oliel@redhat.com>
      * @date 17 June 2019
@@ -62,9 +61,9 @@ public interface EventSubscriptionService {
      *
      * For example to remove user 123's subscription to `vm_console_detected` event:
      *
-     * ....
+     * ```http
      * DELETE /ovirt-engine/api/users/123/vm_console_detected
-     * ....
+     * ```
      *
      * @author Ori Liel <oliel@redhat.com>
      * @date 17 June 2019

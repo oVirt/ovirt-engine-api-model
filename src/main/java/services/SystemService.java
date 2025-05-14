@@ -45,15 +45,13 @@ public interface SystemService {
      * Returns basic information describing the API, like the product name, the version number and a summary of the
      * number of relevant objects.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api
-     * ----
+     * ```
      *
      * We get following response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <api>
      *   <link rel="capabilities" href="/api/capabilities"/>
      *   <link rel="clusters" href="/api/clusters"/>
@@ -113,7 +111,7 @@ public interface SystemService {
      *   </summary>
      *   <time>2016-09-14T12:00:48.132+02:00</time>
      * </api>
-     * ----
+     * ```
      *
      * The entry point provides a user with links to the collections in a
      * virtualization environment. The `rel` attribute of each collection link

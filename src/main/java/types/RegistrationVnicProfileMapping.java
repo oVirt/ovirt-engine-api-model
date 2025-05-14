@@ -56,10 +56,9 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * |===
  *
- * Then the following snippet should be added to xref:types-registration_configuration[RegistrationConfiguration]
+ * Then the following snippet should be added to xref:types/registration_configuration[RegistrationConfiguration]
  *
- * [source,xml]
- * ----
+ * ```xml
  * <vnic_profile_mappings>
  *   <registration_vnic_profile_mapping>
  *     <from>
@@ -116,7 +115,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </from>
  *   </registration_vnic_profile_mapping>
  * </vnic_profile_mappings>
- * ----
+ * ```
  *
  * @author Eitan Raviv <eraviv@redhat.com>
  * @date 20 Feb 2017

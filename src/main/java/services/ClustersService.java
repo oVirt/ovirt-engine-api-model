@@ -50,15 +50,13 @@ public interface ClustersService {
      * This requires the `name`, `cpu.type`, and `data_center` attributes. Identify the data center with either the `id`
      * or `name` attribute.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <name>mycluster</name>
      *   <cpu>
@@ -66,20 +64,18 @@ public interface ClustersService {
      *   </cpu>
      *   <data_center id="123"/>
      * </cluster>
-     * ----
+     * ```
      *
      * To create a cluster with an external network provider to be deployed on
      * every host that is added to the cluster, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters
-     * ----
+     * ```
      *
      * With a request body containing a reference to the desired provider:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <name>mycluster</name>
      *   <cpu>
@@ -90,7 +86,7 @@ public interface ClustersService {
      *     <external_provider name="ovirt-provider-ovn"/>
      *   </external_network_providers>
      * </cluster>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>

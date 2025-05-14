@@ -45,8 +45,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * The following form is deprecated since 4.2.1 and will be removed in the future:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <vnic_profile_mappings>
  *   <vnic_profile_mapping>
  *     <source_network_name>red</source_network_name>
@@ -59,7 +58,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     <target_vnic_profile id="892a12ec-2028-4451-80aa-ff3bf55d6bac"/>
  *   </vnic_profile_mapping>
  * </vnic_profile_mappings>
- * ----
+ * ```
  *
  *
  * @author Yevgeny Zaspitsky <yzaspits@redhat.com>

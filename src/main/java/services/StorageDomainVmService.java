@@ -49,15 +49,13 @@ public interface StorageDomainVmService {
      *
      * For example, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storagedomains/123/vms/456/import
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain>
      *     <name>mydata</name>
@@ -66,12 +64,11 @@ public interface StorageDomainVmService {
      *     <name>mycluster</name>
      *   </cluster>
      * </action>
-     * ----
+     * ```
      *
      * To import a virtual machine as a new entity add the `clone` parameter:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain>
      *     <name>mydata</name>
@@ -84,13 +81,12 @@ public interface StorageDomainVmService {
      *     <name>myvm</name>
      *   </vm>
      * </action>
-     * ----
+     * ```
      *
      * Include an optional `disks` parameter to choose which disks to import. For example, to import the disks
      * of the template that have the identifiers `123` and `456` send the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <cluster>
      *     <name>mycluster</name>
@@ -103,7 +99,7 @@ public interface StorageDomainVmService {
      *     <disk id="456"/>
      *   </disks>
      * </action>
-     * ----
+     * ```
      *
      * If you register an entity without specifying the cluster ID or name,
      * the cluster name from the entity's OVF will be used (unless the register request also includes the
@@ -184,7 +180,7 @@ public interface StorageDomainVmService {
          *
          * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
          * compatibility. It will be removed in the future. To specify `vnic_profile_mappings` use the `vnic_profile_mappings`
-         * attribute inside the xref:types-registration_configuration[RegistrationConfiguration] type.
+         * attribute inside the xref:types/registration_configuration[RegistrationConfiguration] type.
          *
          * @author Yevgeny Zaspitsky <yzaspits@redhat.com>
          * @author Eitan Raviv <eraviv@redhat.com>
@@ -243,10 +239,9 @@ public interface StorageDomainVmService {
      *
      * For example, to delete the virtual machine `456` from the storage domain `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/storagedomains/123/vms/456
-     * ----
+     * ```
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @date 14 Sep 2016

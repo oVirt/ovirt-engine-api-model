@@ -52,15 +52,13 @@ public interface GlusterVolumesService {
      *
      * For example, to add a volume with name `myvolume` to the cluster `123`, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/123/glustervolumes
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <gluster_volume>
      *   <name>myvolume</name>
      *   <volume_type>replicate</volume_type>
@@ -80,7 +78,7 @@ public interface GlusterVolumesService {
      *     </brick>
      *   <bricks>
      * </gluster_volume>
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -112,10 +110,9 @@ public interface GlusterVolumesService {
      * For example, to list all Gluster Volumes in cluster `456`, send a request like
      * this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/456/glustervolumes
-     * ----
+     * ```
      *
      * The order of the returned list of volumes isn't guaranteed.
      *

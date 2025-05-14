@@ -49,20 +49,18 @@ public interface StepService extends MeasurableService {
      * For example, to terminate a step with identifier `456` which belongs to a `job` with identifier `123` send the
      * following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/jobs/123/steps/456/end
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <force>true</force>
      *   <succeeded>true</succeeded>
      * </action>
-     * ----
+     * ```xml
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -105,15 +103,13 @@ public interface StepService extends MeasurableService {
     /**
      * Retrieves a step.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/jobs/123/steps/456
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <step href="/ovirt-engine/api/jobs/123/steps/456" id="456">
      *   <actions>
      *     <link href="/ovirt-engine/api/jobs/123/steps/456/end" rel="end"/>
@@ -127,7 +123,7 @@ public interface StepService extends MeasurableService {
      *   <type>validating</type>
      *   <job href="/ovirt-engine/api/jobs/123" id="123"/>
      * </step>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016

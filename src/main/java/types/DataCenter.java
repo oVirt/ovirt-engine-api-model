@@ -36,15 +36,13 @@ public interface DataCenter extends Identified {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenters/123
-     * ----
+     * ```
      *
      * Will respond:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center>
      *   ...
      *   <version>
@@ -53,26 +51,24 @@ public interface DataCenter extends Identified {
      *   </version>
      *   ...
      * </data_center>
-     * ----
+     * ```
      *
      * To update the compatibility version, use:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/datacenters/123
-     * ----
+     * ```
      *
      * With a request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center>
      *   <version>
      *     <major>4</major>
      *     <minor>1</minor>
      *   </version>
      * </data_center>
-     * ----
+     * ```
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

@@ -43,21 +43,19 @@ public interface StorageServerConnectionExtensionService {
      *
      * To update the storage connection `456` of host `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/hosts/123/storageconnectionextensions/456
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_connection_extension>
      *   <target>iqn.2016-01.com.example:mytarget</target>
      *   <username>myuser</username>
      *   <password>mypassword</password>
      * </storage_connection_extension>
-     * ----
+     * ```
      *
      * @author Tal Nisan <tnisanredhat.com>
      * @date 15 Sep 2016

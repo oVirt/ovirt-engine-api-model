@@ -41,13 +41,11 @@ public interface DiskAttachmentService {
      *
      * An example of getting a disk attachment:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/diskattachments/456
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment href="/ovirt-engine/api/vms/123/diskattachments/456" id="456">
      *   <active>true</active>
      *   <bootable>true</bootable>
@@ -55,7 +53,7 @@ public interface DiskAttachmentService {
      *   <disk href="/ovirt-engine/api/disks/456" id="456"/>
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      * </disk_attachment>
-     * ----
+     * ```
      *
      * @author Boris Odnopozov <bodnopoz@redhat.com>
      * @date 12 Dec 2016
@@ -73,10 +71,9 @@ public interface DiskAttachmentService {
      *
      * An example of removing a disk attachment:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/diskattachments/456?detach_only=true
-     * ----
+     * ```
      *
      * @author Boris Odnopozov <bodnopoz@redhat.com>
      * @date 12 Dec 2016
@@ -93,8 +90,7 @@ public interface DiskAttachmentService {
     /**
      * Update the disk attachment and the disk properties within it.
      *
-     * [source]
-     * ----
+     * ```xml
      * PUT /vms/{vm:id}/disksattachments/{attachment:id}
      * <disk_attachment>
      *   <bootable>true</bootable>
@@ -106,7 +102,7 @@ public interface DiskAttachmentService {
      *     ...
      *   </disk>
      * </disk_attachment>
-     * ----
+     * ```
      */
     interface Update {
         @InputDetail

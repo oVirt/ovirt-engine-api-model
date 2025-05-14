@@ -24,7 +24,7 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * Type which represents a format of xref:types-storage_domain[storage domain].
+ * Type which represents a format of xref:types/storage_domain[storage domain].
  *
  * @author Aleksei Slaikovskii <aslaikov@redhat.com>
  * @date 24 Apr 2017

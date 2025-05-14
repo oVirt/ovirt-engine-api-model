@@ -46,15 +46,13 @@ public interface FenceAgentService {
     /**
      * Gets details of this fence agent.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/fenceagents/0
-     * ----
+     * ```
      *
      * And here is sample response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <agent id="0">
      *   <type>apc</type>
      *   <order>1</order>
@@ -64,7 +62,7 @@ public interface FenceAgentService {
      *   <port>9</port>
      *   <options>name1=value1, name2=value2</options>
      * </agent>
-     * ----
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 24 Apr 2017
@@ -121,10 +119,9 @@ public interface FenceAgentService {
     /**
      * Removes a fence agent for a specific host.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/hosts/123/fenceagents/0
-     * ----
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 24 Apr 2017

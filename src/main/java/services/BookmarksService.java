@@ -46,18 +46,16 @@ public interface BookmarksService {
      *
      * Example of adding a bookmark:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/bookmarks
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bookmark>
      *   <name>new_example_vm</name>
      *   <value>vm: name=new_example*</value>
      * </bookmark>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016
@@ -84,13 +82,11 @@ public interface BookmarksService {
      *
      * Example of listing bookmarks:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/bookmarks
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bookmarks>
      *   <bookmark href="/ovirt-engine/api/bookmarks/123" id="123">
      *     <name>database</name>
@@ -101,7 +97,7 @@ public interface BookmarksService {
      *     <value>vm: name=example*</value>
      *   </bookmark>
      * </bookmarks>
-     * ----
+     * ```
      *
      * The order of the returned bookmarks isn't guaranteed.
      *

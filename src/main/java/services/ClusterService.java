@@ -50,13 +50,11 @@ public interface ClusterService {
      *
      * An example of getting a cluster:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/123
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster href="/ovirt-engine/api/clusters/123" id="123">
      *   <actions>
      *     <link href="/ovirt-engine/api/clusters/123/resetemulatedmachine" rel="resetemulatedmachine"/>
@@ -122,7 +120,7 @@ public interface ClusterService {
      *   <virt_service>true</virt_service>
      *   <data_center href="/ovirt-engine/api/datacenters/111" id="111"/>
      * </cluster>
-     * ----
+     * ```
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -150,21 +148,19 @@ public interface ClusterService {
      *
      * For example, to update the cluster's CPU:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/clusters/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <cpu>
      *     <type>Intel Haswell-noTSX Family</type>
      *   </cpu>
      * </cluster>
-     * ----
+     * ```
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -210,10 +206,9 @@ public interface ClusterService {
     /**
      * Removes the cluster from the system.
      *
-     * [source]
-     * ----
+     * ```xml
      * DELETE /ovirt-engine/api/clusters/00000000-0000-0000-0000-000000000000
-     * ----
+     * ```
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -245,17 +240,15 @@ public interface ClusterService {
      /**
       * Synchronizes all networks on the cluster.
       *
-      * [source]
-      * ----
+      * ```http
       * POST /ovirt-engine/api/clusters/123/syncallnetworks
-      * ----
+      * ```
       *
       * With a request body like this:
       *
-      * [source,xml]
-      * ----
+      * ```xml
       * <action/>
-      * ----
+      * ```
       *
       * @author Eitan Raviv <eraviv@redhat.com>
       * @author Avital Pinnick <apinnick@redhat.com>
@@ -280,26 +273,23 @@ public interface ClusterService {
       * cluster for upgrade, updates the progress, or clears the upgrade running flag on the cluster based on the
       * action value which takes values of `start`, `stop` or `update_progress`.
       *
-      * [source]
-      * ----
+      * ```http
       * POST /ovirt-engine/api/clusters/123/upgrade
-      * ----
+      * ```
       *
       * With a request body like this to mark the cluster for upgrade:
       *
-      * [source,xml]
-      * ----
+      * ```xml
       * <action>
       *     <upgrade_action>
       *         start
       *     </upgrade_action>
       * </action>
-      * ----
+      * ```
       *
       * After starting the upgrade, use a request body like this to update the progress to 15%:
       *
-      * [source,xml]
-      * ----
+      * ```xml
       * <action>
       *     <upgrade_action>
       *         update_progress
@@ -308,7 +298,7 @@ public interface ClusterService {
       *         15
       *     </upgrade_percent_complete>
       * </action>
-      * ----
+      * ```
       *
       * @author Ravi Nori <rnori@redhat.com>
       * @date 13 March 2019
@@ -453,10 +443,9 @@ public interface ClusterService {
       * For example, Cluster `123`, send a request like
       * this:
       *
-      * [source]
-      * ----
+      * ```http
       * POST /ovirt-engine/api/clusters/123/refreshglusterhealstatus
-      * ----
+      * ```
       *
       *
       * @author Ritesh Chikatwar <rchikatw@redhat.com>

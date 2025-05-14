@@ -41,22 +41,20 @@ public interface HostStorageService {
     /**
      * Get list of storages.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123/storage
-     * ----
+     * ```
      *
      * The XML response you get will be like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host_storages>
      *   <host_storage id="123">
      *     ...
      *   </host_storage>
      *   ...
      * </host_storages>
-     * ----
+     * ```
      *
      * The order of the returned list of storages isn't guaranteed.
      *
@@ -84,8 +82,7 @@ public interface HostStorageService {
          *
          * Here an example with the LUN status :
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <host_storage id="123">
          *   <logical_units>
          *     <logical_unit id="123">
@@ -102,12 +99,11 @@ public interface HostStorageService {
          *   <type>iscsi</type>
          *   <host id="123"/>
          * </host_storage>
-         * ----
+         * ```
          *
          * Here an example without the LUN status :
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <host_storage id="123">
          *   <logical_units>
          *     <logical_unit id="123">
@@ -123,7 +119,7 @@ public interface HostStorageService {
          *   <type>iscsi</type>
          *   <host id="123"/>
          * </host_storage>
-         * ----
+         * ```
          */
         @In Boolean reportStatus();
     }

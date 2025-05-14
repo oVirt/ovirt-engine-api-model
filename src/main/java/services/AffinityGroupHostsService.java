@@ -50,16 +50,15 @@ public interface AffinityGroupHostsService {
      * For example, to add the host `789` to the affinity group `456` of cluster `123`, send a request like
      * this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/clusters/123/affinitygroups/456/hosts
-     * ....
+     * ```
      *
      * With the following body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host id="789"/>
-     * ----
+     * ```
      *
      * @author Lucia Jelinkova <ljelinko@redhat.com>
      * @date 26 Jun 2019

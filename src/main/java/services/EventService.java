@@ -43,13 +43,11 @@ public interface EventService {
      *
      * An example of getting an event:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/events/123
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <event href="/ovirt-engine/api/events/123" id="123">
      *   <description>Host example.com was added by admin@internal-authz.</description>
      *   <code>42</code>
@@ -63,7 +61,7 @@ public interface EventService {
      *   <host href="/ovirt-engine/api/hosts/789" id="789"/>
      *   <user href="/ovirt-engine/api/users/987" id="987"/>
      * </event>
-     * ----
+     * ```
      *
      * Note that the number of fields changes according to the information that resides on the event.
      * For example, for storage domain related events you will get the storage domain reference,
@@ -82,10 +80,9 @@ public interface EventService {
      *
      * An event can be removed by sending following request
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/events/123
-     * ----
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 14 Sep 2016

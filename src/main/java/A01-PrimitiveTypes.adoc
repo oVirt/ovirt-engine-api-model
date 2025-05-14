@@ -95,22 +95,20 @@ link:https://www.w3.org/TR/xmlschema11-2/#dateTime[XML Schema specification]
 when requesting XML. For example, if you send a request like this to
 retrieve the XML representation of a virtual machine:
 
-[source]
-----
+```http
 GET /ovirt-engine/api/vms/123
 Accept: application/xml
-----
+```
 
 The response body will contain the following XML document:
 
-[source,xml]
-----
+```xml
 <vm id="123" href="/ovirt-engine/api/vms/123">
   ...
   <creation_time>2016-09-08T09:53:35.138+02:00</creation_time>
   ...
 </vm>
-----
+```
 
 When requesting the JSON representation the engine uses a different,
 format: an integer containing the number of milliseconds since Jan 1^st^ 1970,
@@ -118,16 +116,14 @@ also known as link:https://en.wikipedia.org/wiki/Unix_time[_epoch time_]. For
 example, if you send a request like this to retrieve the JSON
 representation of a virtual machine:
 
-[source,terminal]
-----
+```http
 GET /ovirt-engine/api/vms/123
 Accept: application/json
-----
+```
 
 The response body will contain the following JSON document:
 
-[source,json]
-----
+```json
 {
   "id": "123",
   "href="/ovirt-engine/api/vms/123",
@@ -135,7 +131,7 @@ The response body will contain the following JSON document:
   "creation_time": 1472564909990,
   ...
 }
-----
+```
 
 [NOTE]
 ====

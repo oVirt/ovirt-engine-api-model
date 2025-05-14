@@ -48,20 +48,18 @@ public interface DataCentersService {
      * Creation of a new data center requires the `name` and `local` elements. For example, to create a data center
      * named `mydc` that uses shared storage (NFS, iSCSI or fibre channel) send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center>
      *   <name>mydc</name>
      *   <local>false</local>
      * </data_center>
-     * ----
+     * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @date 14 Sep 2016
@@ -94,15 +92,13 @@ public interface DataCentersService {
      *
      * The following request retrieves a representation of the data centers:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenters
-     * ----
+     * ```
      *
      * The above request performed with `curl`:
      *
-     * [source,bash]
-     * ----
+     * ```shell
      * curl \
      * --request GET \
      * --cacert /etc/pki/ovirt-engine/ca.pem \
@@ -110,12 +106,11 @@ public interface DataCentersService {
      * --header "Accept: application/xml" \
      * --user "admin@internal:mypassword" \
      * https://myengine.example.com/ovirt-engine/api/datacenters
-     * ----
+     * ```
      *
      * This is what an example response could look like:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center href="/ovirt-engine/api/datacenters/123" id="123">
      *   <name>Default</name>
      *   <description>The default Data Center</description>
@@ -140,7 +135,7 @@ public interface DataCentersService {
      *     <minor>0</minor>
      *   </version>
      * </data_center>
-     * ----
+     * ```
      *
      * Note the `id` code of your `Default` data center. This code identifies this data center in relation to other
      * resources of your virtual environment.

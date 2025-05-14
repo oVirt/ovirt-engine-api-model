@@ -44,15 +44,13 @@ public interface VmNumaNodeService {
      *
      * An example of pinning a virtual NUMA node to a physical NUMA node on the host:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123/numanodes/456
-     * ----
+     * ```
      *
      * The request body should contain the following:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm_numa_node>
      *   <numa_node_pins>
      *     <numa_node_pin>
@@ -60,7 +58,7 @@ public interface VmNumaNodeService {
      *     </numa_node_pin>
      *   </numa_node_pins>
      * </vm_numa_node>
-     * ----
+     * ```
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
      * @author Liran Rotenberg <lrotenbe@redhat.com>
@@ -89,10 +87,9 @@ public interface VmNumaNodeService {
      *
      * An example of removing a virtual NUMA node:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/numanodes/456
-     * ----
+     * ```
      *
      * NOTE: It's required to remove the numa nodes from the highest index
      * first.

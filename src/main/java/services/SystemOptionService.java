@@ -41,15 +41,13 @@ public interface SystemOptionService {
      *
      * For example to retrieve the values of configuration option `MigrationPolicies` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/options/MigrationPolicies
-     * ----
+     * ```
      *
      * The response to that request will be the following:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
      * <system_option href="/ovirt-engine/api/options/MigrationPolicies" id="MigrationPolicies">
      *     <name>MigrationPolicies</name>
@@ -80,7 +78,7 @@ public interface SystemOptionService {
      *         </system_option_value>
      *     </values>
      * </system_option>
-     * ----
+     * ```
      *
      * NOTE: The appropriate permissions are required to query configuration options. Some options can be queried
      * only by users with administrator permissions.
@@ -119,15 +117,13 @@ public interface SystemOptionService {
          * For example, to get the value of the `MigrationPolicies` option but only for version `4.2` send
          * a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/options/MigrationPolicies?version=4.2
-         * ----
+         * ```
          *
          * The response to that request will be like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <system_option href="/ovirt-engine/api/options/MigrationPolicies" id="MigrationPolicies">
          *     <name>MigrationPolicies</name>
          *     <values>
@@ -137,7 +133,7 @@ public interface SystemOptionService {
          *         </system_option_value>
          *     </values>
          * </system_option>
-         * ----
+         * ```
          *
          * @author Miroslava Voglova <mvoglova@redhat.com>
          * @date 12 Jul 2022

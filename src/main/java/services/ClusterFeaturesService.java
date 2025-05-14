@@ -40,22 +40,20 @@ public interface ClusterFeaturesService {
     /**
      * Lists the cluster features supported by the cluster level.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures
-     * ----
+     * ```
      *
      * This will return a list of cluster features supported by the cluster level:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster_features>
      *   <cluster_feature id="123">
      *      <name>test_feature</name>
      *   </cluster_feature>
      *   ...
      * </cluster_features>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017

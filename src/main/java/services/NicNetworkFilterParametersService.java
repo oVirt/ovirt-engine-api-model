@@ -70,20 +70,18 @@ public interface NicNetworkFilterParametersService {
      * For example, to add the parameter for the network filter on NIC `456` of
      * virtual machine `789` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/789/nics/456/networkfilterparameters
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network_filter_parameter>
      *   <name>IP</name>
      *   <value>10.0.1.2</value>
      * </network_filter_parameter>
-     * ----
+     * ```
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 13 Dec 2016

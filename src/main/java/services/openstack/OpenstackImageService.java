@@ -50,15 +50,13 @@ public interface OpenstackImageService {
      * For example, to import the image with identifier `456` from the
      * storage domain with identifier `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/openstackimageproviders/123/images/456/import
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain>
      *     <name>images0</name>
@@ -67,7 +65,7 @@ public interface OpenstackImageService {
      *     <name>images0</name>
      *   </cluster>
      * </action>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @date 14 Sep 2016

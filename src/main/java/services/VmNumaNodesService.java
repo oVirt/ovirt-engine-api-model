@@ -41,15 +41,15 @@ public interface VmNumaNodesService {
      *
      * An example of creating a NUMA node:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/c7ecd2dc/numanodes
      * Accept: application/xml
      * Content-type: application/xml
-     * ----
+     * ```
+     *
      * The request body can contain the following:
-     * [source,xml]
-     * ----
+     *
+     * ```xml
      * <vm_numa_node>
      *   <cpu>
      *     <cores>
@@ -62,7 +62,7 @@ public interface VmNumaNodesService {
      *   <memory>1024</memory>
      *   <numa_tune_mode>strict</numa_tune_mode>
      * </vm_numa_node>
-     * ----
+     * ```
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
      * @date 14 Sep 2016

@@ -28,7 +28,7 @@ import org.ovirt.api.metamodel.annotations.Service;
 import types.ClusterLevel;
 
 /**
- * Provides information about a specific cluster level. See the xref:services-cluster_levels[ClusterLevels] service for
+ * Provides information about a specific cluster level. See the xref:services/cluster_levels[ClusterLevels] service for
  * more information.
  */
 @Service
@@ -38,16 +38,14 @@ public interface ClusterLevelService {
      *
      * For example, to find what CPU types are supported by level 3.6 you can send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusterlevels/3.6
-     * ----
+     * ```
      *
-     * That will return a xref:types-cluster_level[ClusterLevel] object containing the supported CPU types, and other
+     * That will return a xref:types/cluster_level[ClusterLevel] object containing the supported CPU types, and other
      * information which describes the cluster level:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster_level id="3.6">
      *   <cpu_types>
      *     <cpu_type>
@@ -65,7 +63,7 @@ public interface ClusterLevelService {
      *     ...
      *   </permits>
      * </cluster_level>
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>

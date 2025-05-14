@@ -30,8 +30,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example of an XML representation using mapping:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action>
  *   <registration_configuration>
  *     <affinity_label_mappings>
@@ -46,7 +45,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </affinity_label_mappings>
  *   </registration_configuration>
  * </action>
- * ----
+ * ```
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

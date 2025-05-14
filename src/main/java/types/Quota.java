@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example XML representation of a quota:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <quota href="/ovirt-engine/api/datacenters/7044934e/quotas/dcad5ddc" id="dcad5ddc">
  *   <name>My Quota</name>
  *   <description>A quota for my oVirt environment</description>
@@ -40,7 +39,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <storage_hard_limit_pct>0</storage_hard_limit_pct>
  *   <storage_soft_limit_pct>0</storage_soft_limit_pct>
  * </quota>
- * ----
+ * ```
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>

@@ -36,8 +36,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * using the `SuperUser` role instead of `UserVmRunTimeManager`
  * An example of an XML representation using this mapping:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action>
  *   <registration_configuration>
  *     <role_mappings>
@@ -52,7 +51,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </role_mappings>
  *   </registration_configuration>
  * </action>
- * ----
+ * ```
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

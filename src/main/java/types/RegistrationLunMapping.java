@@ -33,8 +33,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * environment where the object is registered.
  * An example of an XML representation using this mapping:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action>
  *   <registration_configuration>
  *     <lun_mappings>
@@ -61,7 +60,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </lun_mappings>
  *   </registration_configuration>
  * </action>
- * ----
+ * ```
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

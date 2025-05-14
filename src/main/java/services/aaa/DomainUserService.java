@@ -42,14 +42,13 @@ public interface DomainUserService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/domains/5678/users/1234
-     * ....
+     * ```
      *
      * Will return the domain user information:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <user href="/ovirt-engine/api/users/1234" id="1234">
      *   <name>admin</name>
      *   <namespace>*</namespace>
@@ -60,7 +59,7 @@ public interface DomainUserService {
      *   </domain>
      *   <groups/>
      * </user>
-     * ----
+     * ```
      *
      * @author Ravi Nori <rnori@redhat.com>
      * @date 12 Dec 2017

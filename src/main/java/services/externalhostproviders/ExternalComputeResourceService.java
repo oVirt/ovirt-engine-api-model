@@ -46,14 +46,13 @@ public interface ExternalComputeResourceService {
      *
      * For example, to get the details of compute resource `234` of provider `123`, send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/computeresources/234
-     * ....
+     * ```
      *
      * It will return a response like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_compute_resource href="/ovirt-engine/api/externalhostproviders/123/computeresources/234" id="234">
      *   <name>hostname</name>
      *   <provider>oVirt</provider>
@@ -61,7 +60,7 @@ public interface ExternalComputeResourceService {
      *   <user>admin@internal</user>
      *   <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/>
      * </external_compute_resource>
-     * ----
+     * ```
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @date 24 Apr 2017

@@ -68,10 +68,9 @@ public interface VmGraphicsConsoleService {
          * For example, to get data for the current execution of the virtual machine, including the
          * `address` and `port` attributes, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovit-engine/api/vms/123/graphicsconsoles/456?current=true
-         * ----
+         * ```
          *
          * The default value is `false`.
          *
@@ -96,24 +95,22 @@ public interface VmGraphicsConsoleService {
     /**
      * Generates a time-sensitive authentication token for accessing this virtual machine's console.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
-     * ----
+     * ```
      *
      * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
      *
      * In any case, the response specifies the actual ticket value and expiry used.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <ticket>
      *     <value>abcd12345</value>
      *     <expiry>120</expiry>
      *   </ticket>
      * </action>
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 21 Nov 2016
@@ -139,23 +136,20 @@ public interface VmGraphicsConsoleService {
      * Use the following request to generate remote viewer connection file of the graphics console.
      * Note that this action generates the file only if virtual machine is running.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile
-     * ----
+     * ```
      *
      * The `remoteviewerconnectionfile` action does not take any action specific parameters,
      * so the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * The response contains the file, which can be used with `remote-viewer` client.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <remote_viewer_connection_file>
      *     [virt-viewer]
@@ -177,13 +171,12 @@ public interface VmGraphicsConsoleService {
      *     ca=...
      *   </remote_viewer_connection_file>
      * </action>
-     * ----
+     * ```
      *
      * E.g., to fetch the content of remote viewer connection file and save it into temporary file, user can use
      * oVirt Python SDK as follows:
      *
-     * [source,python]
-     * ----
+     * ```python
      * # Find the virtual machine:
      * vm = vms_service.list(search='name=myvm')[0]
      *
@@ -203,17 +196,16 @@ public interface VmGraphicsConsoleService {
      * path = "/tmp/remote_viewer_connection_file.vv"
      * with open(path, "w") as f:
      *     f.write(remote_viewer_connection_file)
-     * ----
+     * ```
      *
      * When you create the remote viewer connection file, then you can connect to virtual machine graphic console,
      * as follows:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * #!/bin/sh -ex
      *
      * remote-viewer --ovirt-ca-file=/etc/pki/ovirt-engine/ca.pem /tmp/remote_viewer_connection_file.vv
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 31 Oct 2016

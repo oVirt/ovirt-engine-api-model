@@ -49,16 +49,15 @@ public interface AffinityGroupVmsService {
      * For example, to add the virtual machine `789` to the affinity group `456` of cluster `123`, send a request like
      * this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vms
-     * ....
+     * ```
      *
      * With the following body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm id="789"/>
-     * ----
+     * ```
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

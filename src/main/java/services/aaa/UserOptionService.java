@@ -18,21 +18,20 @@ public interface UserOptionService {
      *
      * Example request(for user with identifier `123` and option with identifier `456`):
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/users/123/options/456
-     * ----
+     * ```
      *
      * The result will be the following XML document:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      *   <user_option href="/ovirt-engine/api/users/123/options/456" id="456">
      *     <name>SomeName</name>
      *     <content>["any", "JSON"]</content>
      *     <user href="/ovirt-engine/api/users/123" id="123"/>
      *   </user_option>
-     * ----
+     * ```
+     *
      * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
      * @date 11 Jan 2021
      * @status added
@@ -47,10 +46,10 @@ public interface UserOptionService {
      *
      * Example request(for user with identifier `123` and option with identifier `456`):
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/users/123/options/456
-     * ----
+     * ```
+     *
      * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
      * @date 11 Jan 2021
      * @status added

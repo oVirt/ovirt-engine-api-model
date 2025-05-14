@@ -42,8 +42,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * This is a example of the XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_filter id="00000019-0019-0019-0019-00000000026c">
  *   <name>example-filter</name>
  *   <version>
@@ -53,7 +52,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     <revision>-1</revision>
  *   </version>
  * </network_filter>
- * ----
+ * ```
  *
  * If any part of the version is not present, it is represented by -1.
  *

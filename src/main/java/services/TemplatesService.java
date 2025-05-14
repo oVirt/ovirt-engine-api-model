@@ -52,25 +52,22 @@ public interface TemplatesService {
      * attributes. For example, to create a template from a virtual machine with the identifier `123` send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/templates
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123"/>
      * </template>
-     * ----
+     * ```
      *
      * Since version 4.3, in order to create virtual machine template from a snapshot send a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123">
@@ -79,17 +76,16 @@ public interface TemplatesService {
      *     </snapshots>
      *   </vm>
      * </template>
-     * ----
+     * ```
      *
      * The disks of the template can be customized, making some of their characteristics different from the disks of the
      * original virtual machine. To do so use the `vm.disk_attachments` attribute, specifying the identifier of the disk
      * of the original virtual machine and the characteristics that you want to change. For example, if the original
      * virtual machine has a disk with the identifier `456`, and, for that disk, you want to change the name to `mydisk`
-     * the format to xref:types-disk_format[_Copy On Write_] and make it xref:types-disk[sparse], send a request body like
+     * the format to xref:types/disk_format[_Copy On Write_] and make it xref:types/disk[sparse], send a request body like
      * this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123">
@@ -104,15 +100,14 @@ public interface TemplatesService {
      *     </disk_attachments>
      *   </vm>
      * </template>
-     * ----
+     * ```
      *
      * The template can be created as a sub-version of an existing template. This requires the `name` and `vm` attributes
      * for the new template, and the `base_template` and `version_name` attributes for the new template version. The
      * `base_template` and `version_name` attributes must be specified within a `version` section enclosed in the
      * `template` section. Identify the virtual machine with the `id` or `name` attributes.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123"/>
@@ -121,15 +116,14 @@ public interface TemplatesService {
      *     <version_name>mytemplate_001</version_name>
      *   </version>
      * </template>
-     * ----
+     * ```
      *
      * The destination storage domain of the template can be customized, in one of two ways:
      *
      * 1. Globally, at the request level. The request must list the desired disk attachments to be created on the
      * storage domain. If the disk attachments are not listed, the global storage domain parameter will be ignored.
      * +
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <storage_domain id="123"/>
@@ -144,13 +138,12 @@ public interface TemplatesService {
      *     </disk_attachments>
      *   </vm>
      * </template>
-     * ----
+     * ```
      *
      * 2. Per each disk attachment. Specify the desired storage domain for each disk attachment.
      * Specifying the global storage definition will override the storage domain per disk attachment specification.
      * +
-     * [source,xml]
-     * ----
+     * ```xml
      * <template>
      *   <name>mytemplate</name>
      *   <vm id="123">
@@ -167,7 +160,7 @@ public interface TemplatesService {
      *     </disk_attachments>
      *   </vm>
      * </template>
-     * ----
+     * ```
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Arik Hadas <ahadas@redhat.com>
@@ -194,22 +187,20 @@ public interface TemplatesService {
          * (only the direct ones, not the inherited ones) will be copied to the created template. For example, to create
          * a template from the `myvm` virtual machine copying its permissions, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/templates?clone_permissions=true
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <template>
          *   <name>mytemplate<name>
          *   <vm>
          *     <name>myvm<name>
          *   </vm>
          * </template>
-         * ----
+         * ```
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
          * @author Tahlia Richardson <trichard@redhat.com>
@@ -380,10 +371,9 @@ public interface TemplatesService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/templates
-     * ----
+     * ```
      *
      * Will return the list of virtual machines and virtual machine templates.
      *
