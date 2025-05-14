@@ -50,28 +50,26 @@ public interface VmBase extends Identified {
      *
      * For example, to update a virtual machine to contain 1 Gibibyte (GiB) of memory, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   <memory>1073741824</memory>
      * </vm>
-     * ----
+     * ```
      *
      * Memory hot plug is supported from {product-name} 3.6 onwards. You can use the example above to increase
-     * memory while the virtual machine is in state xref:types-vm_status-values-up[up]. The size increment must be
+     * memory while the virtual machine is in state xref:types/vm_status/values/up[up]. The size increment must be
      * dividable by the value of the `HotPlugMemoryBlockSizeMb` configuration value (256 MiB by default). If the memory
      * size increment is not dividable by this value, the memory size change is only stored to next run configuration.
      * Each successful memory hot plug operation creates one or two new memory devices.
      *
      * Memory hot unplug is supported since {product-name} 4.2 onwards. Memory hot unplug can only be performed
-     * when the virtual machine is in state xref:types-vm_status-values-up[up]. Only previously hot plugged memory
+     * when the virtual machine is in state xref:types/vm_status/values/up[up]. Only previously hot plugged memory
      * devices can be removed by the hot unplug operation. The requested memory decrement is rounded down to match sizes
      * of a combination of previously hot plugged memory devices. The requested memory value is stored to next run
      * configuration without rounding.
@@ -99,15 +97,13 @@ public interface VmBase extends Identified {
      * For example, to change the number of sockets to 4 immediately, and the number of cores and threads to 2 after
      * reboot, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123
-     * ----
+     * ```
      *
      * With a request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   <cpu>
      *     <topology>
@@ -117,7 +113,7 @@ public interface VmBase extends Identified {
      *     </topology>
      *   </cpu>
      * </vm>
-     * ----
+     * ```
      *
      * @author Jenny Tokar <jtokar@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -381,19 +377,17 @@ public interface VmBase extends Identified {
      *
      * For example, to clear the `initialization` attribute send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   <initialization/>
      * </vm>
-     * ----
+     * ```
      *
      * The response to such a request, and requests with the header `All-Content: true` will still contain this attribute.
      *
@@ -504,15 +498,13 @@ public interface VmBase extends Identified {
      *
      * For example, to pin a virtual machine to two hosts, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /api/vms/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   <high_availability>
      *     <enabled>true</enabled>
@@ -530,7 +522,7 @@ public interface VmBase extends Identified {
      *     <affinity>pinned</affinity>
      *   </placement_policy>
      * </vm>
-     * ----
+     * ```
      *
      * @author Phillip Bailey <phbailey@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

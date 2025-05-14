@@ -50,23 +50,27 @@ public interface EventsService {
      * is full inside the guest operating system of a virtual machine. This event can be added to the internal audit
      * log sending a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/events
+     * ```
+     * 
+     * ```xml
      * <event>
      *   <description>File system /home is full</description>
      *   <severity>alert</severity>
      *   <origin>mymonitor</origin>
      *   <custom_id>1467879754</custom_id>
      * </event>
-     * ----
+     * ```
      *
      * Events can also be linked to specific objects. For example, the above event could be linked to the specific
      * virtual machine where it happened, using the `vm` link:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/events
+     * ```
+     * 
+     * ```xml
      * <event>
      *   <description>File system /home is full</description>
      *   <severity>alert</severity>
@@ -74,7 +78,7 @@ public interface EventsService {
      *   <custom_id>1467879754</custom_id>
      *   <vm id="aae98225-5b73-490d-a252-899209af17e9"/>
      * </event>
-     * ----
+     * ```
      *
      * NOTE: When using links, like the `vm` in the previous example, only the `id` attribute is accepted. The `name`
      * attribute, if provided, is simply ignored.
@@ -109,15 +113,13 @@ public interface EventsService {
     /**
      * Get list of events.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/events
-     * ----
+     * ```
      *
      * To the above request we get following response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <events>
      *   <event href="/ovirt-engine/api/events/2" id="2">
      *     <description>User admin@internal-authz logged out.</description>
@@ -142,7 +144,7 @@ public interface EventsService {
      *     <user href="/ovirt-engine/api/users/57d91d48-00da-0137-0138-000000000244" id="57d91d48-00da-0137-0138-000000000244"/>
      *   </event>
      * </events>
-     * ----
+     * ```
      *
      * The following events occur:
      *
@@ -154,9 +156,9 @@ public interface EventsService {
      * included, then the events will be sorted by the numeric value of the `id` attribute, starting with the
      * highest value. This, combined with the `max` parameter, simplifies obtaining the most recent event:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/events?max=1
-     * ....
+     * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
      * @date 14 Sep 2016
@@ -171,10 +173,9 @@ public interface EventsService {
          * will be returned. For example, the following request will return only the events
          * with indexes greater than `123`:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/events?from=123
-         * ----
+         * ```
          *
          * This parameter is optional, and if not specified then the first event returned will be most recently
          * generated.
@@ -195,15 +196,13 @@ public interface EventsService {
          *
          * We can search by providing specific severity.
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/events?search=severity%3Dnormal
-         * ----
+         * ```
          *
          * To the above request we get a list of events which severity is equal to `normal`:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <events>
          *   <event href="/ovirt-engine/api/events/2" id="2">
          *     <description>User admin@internal-authz logged out.</description>
@@ -226,7 +225,7 @@ public interface EventsService {
          *     <time>2016-09-14T11:52:18.861+02:00</time>
          *   </event>
          * </events>
-         * ----
+         * ```
          *
          * A virtualization environment generates a large amount of events after
          * a period of time. However, the API only displays a default number of
@@ -235,24 +234,21 @@ public interface EventsService {
          * The following search query tells the API to paginate results using a
          * page value in combination with the sortby clause:
          *
-         * [source]
-         * ----
+         * ```
          * sortby time asc page 1
-         * ----
+         * ```
          *
          * Below example paginates event resources. The URL-encoded request is:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%201
-         * ----
+         * ```
          *
          * Increase the page value to view the next page of results.
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%202
-         * ----
+         * ```
          *
          * @author Piotr Kliczewski <pkliczew@redhat.com>
          * @date 14 Sep 2016

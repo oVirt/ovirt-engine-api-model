@@ -32,8 +32,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example of an XML representation using this mapping:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action>
  *   <registration_configuration>
  *     <domain_mappings>
@@ -48,7 +47,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </domain_mappings>
  *   </registration_configuration>
  * </action>
- * ----
+ * ```
  *
  * @author Maor Lipchuk <mlipchuk@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

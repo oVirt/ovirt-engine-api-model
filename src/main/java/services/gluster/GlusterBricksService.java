@@ -48,15 +48,13 @@ public interface GlusterBricksService {
      * For example, to retain the bricks that on glustervolume `123` from which data was migrated, send a request like
      * this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/activate
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <bricks>
      *     <brick>
@@ -64,7 +62,7 @@ public interface GlusterBricksService {
      *     </brick>
      *   </bricks>
      * </action>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -100,22 +98,20 @@ public interface GlusterBricksService {
      *
      * For example, to add bricks to gluster volume `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bricks>
      *   <brick>
      *     <server_id>111</server_id>
      *     <brick_dir>/export/data/brick3</brick_dir>
      *   </brick>
      * </bricks>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -160,15 +156,13 @@ public interface GlusterBricksService {
      *
      * For example, to list bricks of gluster volume `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
-     * ----
+     * ```
      *
      * Provides an output as below:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bricks>
      *   <brick id="234">
      *     <name>host1:/rhgs/data/brick1</name>
@@ -183,7 +177,7 @@ public interface GlusterBricksService {
      *     <status>up</status>
      *   </brick>
      * </bricks>
-     * ----
+     * ```
      *
      * The order of the returned list is based on the brick order provided at gluster volume creation.
      *
@@ -205,20 +199,18 @@ public interface GlusterBricksService {
      *
      * Removing bricks is a two-step process, where the data on bricks to be removed, is first migrated to remaining
      * bricks. Once migration is completed the removal of bricks is confirmed via the API
-     * xref:services-gluster_bricks-methods-remove[remove]. If at any point, the action needs to be cancelled
-     * xref:services-gluster_bricks-methods-stop_migrate[stopmigrate] has to be called.
+     * xref:services/gluster_bricks/methods/remove[remove]. If at any point, the action needs to be cancelled
+     * xref:services/gluster_bricks/methods/stop_migrate[stopmigrate] has to be called.
      *
      * For instance, to delete a brick from a gluster volume with id `123`, send a request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/migrate
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <bricks>
      *     <brick>
@@ -226,10 +218,10 @@ public interface GlusterBricksService {
      *     </brick>
      *   </bricks>
      * </action>
-     * ----
+     * ```
      *
      * The migration process can be tracked from the job id returned from the API using
-     * xref:services-job-methods-get[job] and steps in job using xref:services-step-methods-get[step]
+     * xref:services/job/methods/get[job] and steps in job using xref:services/step/methods/get[step]
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -260,26 +252,24 @@ public interface GlusterBricksService {
      * Removes bricks from gluster volume.
      *
      * The recommended way to remove bricks without data loss is to first migrate the data using
-     * xref:services-gluster_bricks-methods-stop_migrate[stopmigrate] and then removing them. If migrate was not called on
+     * xref:services/gluster_bricks/methods/stop_migrate[stopmigrate] and then removing them. If migrate was not called on
      * bricks prior to remove, the bricks are removed without data migration which may lead to data loss.
      *
      * For example, to delete the bricks from gluster volume `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bricks>
      *   <brick>
      *     <name>host:brick_directory</name>
      *   </brick>
      * </bricks>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -319,21 +309,19 @@ public interface GlusterBricksService {
      *
      * For example, to stop migration of data from the bricks of gluster volume `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/stopmigrate
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <bricks>
      *   <brick>
      *     <name>host:brick_directory</name>
      *   </brick>
      * </bricks>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 12 Dec 2016
@@ -346,7 +334,7 @@ public interface GlusterBricksService {
 //        }
         /**
          * List of bricks for which data migration needs to be stopped. This list should match the arguments passed to
-         * xref:services-gluster_bricks-methods-migrate[migrate].
+         * xref:services/gluster_bricks/methods/migrate[migrate].
          *
          * @author Sahina Bose <sabose@redhat.com>
          * @date 12 Dec 2016

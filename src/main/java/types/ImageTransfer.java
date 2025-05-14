@@ -38,7 +38,7 @@ public interface ImageTransfer extends Identified {
 
     /**
      * The URL of the proxy server that the user inputs or outputs to. This attribute is
-     * available only if the image transfer is in the xref:types-image_transfer_phase[transferring]
+     * available only if the image transfer is in the xref:types/image_transfer_phase[transferring]
      * phase. See `phase` for details.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -54,7 +54,7 @@ public interface ImageTransfer extends Identified {
      *
      * This is as an alternative to the `proxy_url`. I.e. if the client has access to the host machine, it could bypass
      * the proxy and transfer directly to the host, potentially improving the throughput performance. This attribute is
-     * available only if the image transfer is in the xref:types-image_transfer_phase[transferring]
+     * available only if the image transfer is in the xref:types/image_transfer_phase[transferring]
      * phase. See `phase` for details.
      *
      * @author Daniel Erez <derez@redhat.com>
@@ -67,7 +67,7 @@ public interface ImageTransfer extends Identified {
     /**
      * The current phase of the image transfer in progress. Each transfer needs a managed
      * session, which must be opened for the user to input or output an image.
-     * Please refer to xref:services-image_transfer[image transfer] for further
+     * Please refer to xref:services/image_transfer[image transfer] for further
      * documentation.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -225,33 +225,30 @@ public interface ImageTransfer extends Identified {
      *
      * Example: Downloading a single snapshot:
      *
-     * [source,xml]
-     * ----
+     * ```http
      * <image_transfer>
      *   <snapshot id="2fb24fa2-a5db-446b-b733-4654661cd56d"/>
      *   <direction>download</direction>
      *   <format>raw</format>
      *   <shallow>true</shallow>
      * </image_transfer>
-     * ----
+     * ```
      *
      * To download the active snapshot disk image (which is not accessible
      * as a disk snapshot), specify the disk:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <image_transfer>
      *   <disk id="ff6be46d-ef5d-41d6-835c-4a68e8956b00"/>
      *   <direction>download</direction>
      *   <format>raw</format>
      *   <shallow>true</shallow>
      * </image_transfer>
-     * ----
+     * ```
      *
      * In both cases you can now download a qcow2 image using imageio client:
      *
-     * [source,python]
-     * ----
+     * ```python
      * from ovirt_imageio import client
      *
      * client.download(
@@ -259,7 +256,7 @@ public interface ImageTransfer extends Identified {
      *   "51275e7d-42e9-491f-9d65-b9211c897eac",
      *   backing_file="07c0ccac-0845-4665-9097-d0a3b16cf43b",
      *   backing_format="qcow2")
-     * ----
+     * ```
      *
      * @author Nir Soffer <nsoffer@redhat.com>
      * @date 15 Sep 2020

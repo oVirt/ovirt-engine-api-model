@@ -42,10 +42,9 @@ public interface TemplateCdromService {
      *
      * For example, to get information about the CD-ROM device of template `123` send a request like:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/templates/123/cdroms/
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016
@@ -60,22 +59,20 @@ public interface TemplateCdromService {
          *
          * If there is a disk inserted then the `file` attribute will contain a reference to the ISO image:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <cdrom href="..." id="00000000-0000-0000-0000-000000000000">
          *   <template href="/ovirt-engine/api/templates/123" id="123"/>
          *   <file id="mycd.iso"/>
          * </cdrom>
-         * ----
+         * ```
          *
          * If there is no disk inserted then the `file` attribute won't be reported:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <cdrom href="..." id="00000000-0000-0000-0000-000000000000">
          *   <template href="/ovirt-engine/api/templates/123" id="123"/>
          * </cdrom>
-         * ----
+         * ```
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
          * @date 12 Dec 2016

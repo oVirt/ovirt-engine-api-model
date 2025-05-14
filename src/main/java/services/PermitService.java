@@ -45,18 +45,17 @@ public interface PermitService {
      * For example to retrieve the information about the permit with the id `456` of the role with the id `123`
      * send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/roles/123/permits/456
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permit href="/ovirt-engine/api/roles/123/permits/456" id="456">
      *   <name>change_vm_cd</name>
      *   <administrative>false</administrative>
      *   <role href="/ovirt-engine/api/roles/123" id="123"/>
      * </permit>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -78,9 +77,9 @@ public interface PermitService {
      *
      * For example to remove the permit with id `456` from the role with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * DELETE /ovirt-engine/api/roles/123/permits/456
-     * ....
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016

@@ -49,18 +49,16 @@ public interface QuotasService {
      *
      * An example of creating a new quota:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/quotas
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <quota>
      *   <name>myquota</name>
      *   <description>My new quota for virtual machines</description>
      * </quota>
-     * ----
+     * ```
      *
      * @author Roman Mohr <rmohr@redhat.com>
      * @date 14 Sep 2016

@@ -42,14 +42,13 @@ public interface DomainService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/domains/5678
-     * ....
+     * ```
      *
      * Will return the domain information:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <domain href="/ovirt-engine/api/domains/5678" id="5678">
      *   <name>internal-authz</name>
      *   <link href="/ovirt-engine/api/domains/5678/users" rel="users"/>
@@ -57,7 +56,7 @@ public interface DomainService {
      *   <link href="/ovirt-engine/api/domains/5678/users?search={query}" rel="users/search"/>
      *   <link href="/ovirt-engine/api/domains/5678/groups?search={query}" rel="groups/search"/>
      * </domain>
-     * ----
+     * ```
      *
      * @author Ravi Nori <rnori@redhat.com>
      * @date 12 Dec 2017

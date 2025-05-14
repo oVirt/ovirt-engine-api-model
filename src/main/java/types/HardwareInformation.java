@@ -28,14 +28,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * To get that information send a request like this:
  *
- * ....
+ * ```http
  * GET /ovirt-engine/api/hosts/123
- * ....
+ * ```
  *
  * The result will be like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <host href="/ovirt-engine/api/hosts/123" id="123">
  *   ...
  *   <hardware_information>
@@ -51,7 +50,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   </hardware_information>
  *   ...
  * </application>
- * ----
+ * ```
  *
  * @author Lukas Svaty <lsvaty@redhat.com>
  * @date 24 Apr 2017

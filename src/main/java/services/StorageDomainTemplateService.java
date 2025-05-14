@@ -50,15 +50,13 @@ public interface StorageDomainTemplateService {
      *
      * For example, to import the template `456` from the storage domain `123` send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storagedomains/123/templates/456/import
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source, xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain>
      *     <name>myexport</name>
@@ -67,7 +65,7 @@ public interface StorageDomainTemplateService {
      *     <name>mycluster</name>
      *   </cluster>
      * </action>
-     * ----
+     * ```
      *
      * If you register an entity without specifying the cluster ID or name,
      * the cluster name from the entity's OVF will be used (unless the register request also includes the
@@ -155,7 +153,7 @@ public interface StorageDomainTemplateService {
          *
          * WARNING: Please note that this attribute has been deprecated since version 4.2.1 of the engine, and preserved only for backward
          * compatibility. It will be removed in the future. To specify `vnic_profile_mappings` use the `vnic_profile_mappings`
-         * attribute inside the xref:types-registration_configuration[RegistrationConfiguration] type.
+         * attribute inside the xref:types/registration_configuration[RegistrationConfiguration] type.
          *
          * @author Maor Lipchuk <mlipchuk@redhat.com>
          * @author Eitan Raviv <eraviv@redhat.com>

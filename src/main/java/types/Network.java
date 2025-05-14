@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example of the JSON representation of a logical network:
  *
- * [source,json]
- * ----
+ * ```json
  * {
  *   "network" : [ {
  *     "data_center" : {
@@ -58,12 +57,11 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     } ]
  *   } ]
  * }
- * ----
+ * ```
  *
  * An example of the XML representation of the same logical network:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network href="/ovirt-engine/api/networks/456" id="456">
  *   <name>ovirtmgmt</name>
  *   <description>Management Network</description>
@@ -77,7 +75,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     <usage>vm</usage>
  *   </usages>
  * </network>
- * ----
+ * ```
  *
  * @author Martin Mucha <mmucha@redhat.com>
  * @author Megan Lewis <melewis@redhat.com>

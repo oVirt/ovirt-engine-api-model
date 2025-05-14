@@ -53,21 +53,20 @@ public interface ExternalHostProviderService extends ExternalProviderService {
      *
      * For example, to get the details of host provider `123`, send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123
-     * ....
+     * ```
      *
      * The response will be like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123">
      *   <name>mysatellite</name>
      *   <requires_authentication>true</requires_authentication>
      *   <url>https://mysatellite.example.com</url>
      *   <username>admin</username>
      * </external_host_provider>
-     * ----
+     * ```
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @date 24 Apr 2017

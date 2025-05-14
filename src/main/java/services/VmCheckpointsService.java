@@ -44,10 +44,9 @@ public interface VmCheckpointsService {
      *
      * To get a list of checkpoints for a virtual machine with an id '123', send a request as follows:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/checkpoints
-     * ----
+     * ```
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>
@@ -59,8 +58,7 @@ public interface VmCheckpointsService {
         /**
          * The information about the virtual machine checkpoint entities.
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <checkpoints>
          *   <checkpoint id="checkpoint-uuid">
          *     <link href="/ovirt-engine/api/vms/vm-uuid/checkpoints/checkpoint-uuid/disks" rel="disks"/>
@@ -69,7 +67,7 @@ public interface VmCheckpointsService {
          *     <vm href="/ovirt-engine/api/vm-uuid" id="vm-uuid"/>
          *  </checkpoint>
          * </checkpoints>
-         * ----
+         * ```
          *
          * @author Eyal Shenitzky <eshenitz@redhat.com>
          * @date 3 Jun 2020

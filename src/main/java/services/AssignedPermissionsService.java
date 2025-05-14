@@ -49,59 +49,56 @@ public interface AssignedPermissionsService {
      * For example, to assign the `UserVmManager` role to the virtual machine with id `123` to the user with id `456`
      * send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/vms/123/permissions
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permission>
      *   <role>
      *     <name>UserVmManager</name>
      *   </role>
      *   <user id="456"/>
      * </permission>
-     * ----
+     * ```
      *
      * To assign the `SuperUser` role to the system to the user with id `456` send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/permissions
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permission>
      *   <role>
      *     <name>SuperUser</name>
      *   </role>
      *   <user id="456"/>
      * </permission>
-     * ----
+     * ```
      *
      * If you want to assign permission to the group instead of the user please replace the `user` element with the
      * `group` element with proper `id` of the group. For example to assign the `UserRole` role to the cluster with
      * id `123` to the group with id `789` send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/clusters/123/permissions
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permission>
      *   <role>
      *     <name>UserRole</name>
      *   </role>
      *   <group id="789"/>
      * </permission>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -256,12 +253,11 @@ public interface AssignedPermissionsService {
      *
      * For example to list all the permissions of the cluster with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/clusters/123/permissions
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <permissions>
      *   <permission id="456">
      *     <cluster id="123"/>
@@ -274,7 +270,7 @@ public interface AssignedPermissionsService {
      *     <group id="127"/>
      *   </permission>
      * </permissions>
-     * ----
+     * ```
      *
      * The order of the returned permissions isn't guaranteed.
      *

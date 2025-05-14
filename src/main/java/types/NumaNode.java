@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * Example XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <host_numa_node href="/ovirt-engine/api/hosts/0923f1ea/numanodes/007cf1ab" id="007cf1ab">
  *   <cpu>
  *     <cores>
@@ -44,7 +43,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <node_distance>40 20 40 10</node_distance>
  *   <host href="/ovirt-engine/api/hosts/0923f1ea" id="0923f1ea"/>
  * </host_numa_node>
- * ----
+ * ```
  *
  * @author Andrej Krejcir <akrejcir@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>
@@ -74,8 +73,7 @@ public interface NumaNode extends Identified {
      *
      * An example of an XML representation:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <statistics>
      *   <statistic href="/ovirt-engine/api/hosts/123/numanodes/456/statistics/789" id="789">
      *     <name>memory.total</name>
@@ -92,7 +90,7 @@ public interface NumaNode extends Identified {
      *   </statistic>
      *     ...
      * </statistics>
-     * ----
+     * ```
      *
      * NOTE: This statistics sub-collection is read-only.
      *

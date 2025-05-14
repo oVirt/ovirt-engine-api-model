@@ -45,25 +45,26 @@ public interface VmWatchdogsService {
      *
      * For example, to add a watchdog to a virtual machine, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/watchdogs
+     * ```
+     *
+     * ```xml
      * <watchdog>
      *   <action>poweroff</action>
      *   <model>i6300esb</model>
      * </watchdog>
-     * ----
+     * ```
      *
      * with response body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <watchdog href="/ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000" id="00000000-0000-0000-0000-000000000000">
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      *   <action>poweroff</action>
      *   <model>i6300esb</model>
      * </watchdog>
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016
@@ -105,8 +106,7 @@ public interface VmWatchdogsService {
          * The information consists of `model` element, `action` element and the reference to the
          * virtual machine. It may look like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <watchdogs>
          *   <watchdog href="/ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000" id="00000000-0000-0000-0000-000000000000">
          *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
@@ -114,7 +114,7 @@ public interface VmWatchdogsService {
          *     <model>i6300esb</model>
          *   </watchdog>
          * </watchdogs>
-         * ----
+         * ```
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
          * @date 12 Dec 2016

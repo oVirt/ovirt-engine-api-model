@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * A JSON representation of a cluster:
  *
- * [source]
- * ----
+ * ```json
  * {
  *   "cluster" : [ {
  *     "ballooning_enabled" : "false",
@@ -151,7 +150,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     } ]
  *   } ]
  * }
- * ----
+ * ```
  *
  * @author Piotr Kliczewski <pkliczew@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>
@@ -170,15 +169,13 @@ public interface Cluster extends Identified {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/123
-     * ----
+     * ```
      *
      * Will respond with:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   ...
      *   <version>
@@ -187,26 +184,24 @@ public interface Cluster extends Identified {
      *   </version>
      *   ...
      * </cluster>
-     * ----
+     * ```
      *
      * To update the compatibility version, use:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/clusters/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <version>
      *     <major>4</major>
      *     <minor>1</minor>
      *   </version>
      * </cluster>
-     * ----
+     * ```
      *
      * In order to update the cluster compatibility version, all hosts in the cluster must support
      * the new compatibility version.
@@ -306,15 +301,13 @@ public interface Cluster extends Identified {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/cluster/123
-     * ----
+     * ```
      *
      * With request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <fencing_policy>
      *     <enabled>true</enabled>
@@ -327,7 +320,7 @@ public interface Cluster extends Identified {
      *     </skip_if_connectivity_broken>
      *   </fencing_policy>
      * </cluster>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -357,15 +350,13 @@ public interface Cluster extends Identified {
      * For example, to update the custom properties of the cluster,
      * send a request:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/clusters/123
-     * ----
+     * ```
      *
      * With a request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster>
      *   <custom_scheduling_policy_properties>
      *     <property>
@@ -374,7 +365,7 @@ public interface Cluster extends Identified {
      *     </property>
      *   </custom_scheduling_policy_properties>
      * </cluster>
-     * ----
+     * ```
      *
      * Update operations using the `custom_scheduling_policy_properties` attribute
      * will not update the the properties of the scheduling policy specified by
@@ -476,9 +467,9 @@ public interface Cluster extends Identified {
      * the networks of the referenced network provider are available on every host
      * in the cluster.
      * External network providers of a cluster can only be set during
-     * xref:services-clusters-methods-add[adding the cluster].
+     * xref:services/clusters/methods/add[adding the cluster].
      * This value may be overwritten for individual hosts during
-     * xref:services-hosts-methods-add[adding the host].
+     * xref:services/hosts/methods/add[adding the host].
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

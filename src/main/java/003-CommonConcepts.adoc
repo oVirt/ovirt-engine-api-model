@@ -9,21 +9,21 @@ accepted and returned.
 
 There are three relevant kinds of types:
 
-Primitive types:: Describe simple kinds of objects, like xref:types-string[strings] or
-xref:types-integer[integers].
+Primitive types:: Describe simple kinds of objects, like xref:types/string[strings] or
+xref:types/integer[integers].
 
-Enumerated types:: Describe lists of valid values like xref:types-vm_status[VmStatus]
-or xref:types-disk_format[DiskFormat].
+Enumerated types:: Describe lists of valid values like xref:types/vm_status[VmStatus]
+or xref:types/disk_format[DiskFormat].
 
 Structured types:: Describe structured objects, with multiple attributes and
-links, like xref:types-vm[Vm] or xref:types-disk[Disk].
+links, like xref:types/vm[Vm] or xref:types/disk[Disk].
 
 [id="identified-types"]
 == Identified types
 
 Many of the types used by the API represent _identified_ objects, objects
 that have an unique identifier and exist independently of other objects.
-The types used to describe those objects extend the xref:types-identified[Identified]
+The types used to describe those objects extend the xref:types/identified[Identified]
 type, which contains the following set of common attributes:
 
 [cols="20,20,60"]
@@ -31,21 +31,21 @@ type, which contains the following set of common attributes:
 |Attribute |Type |Description
 
 |`id`
-|xref:types-string[String]
+|xref:types/string[String]
 |Each object in the virtualization infrastructure contains an `id`, which
 acts as an unique identifier.
 
 |`href`
-|xref:types-string[String]
+|xref:types/string[String]
 |The canonical location of the object as an absolute path.
 
 |`name`
-|xref:types-string[String]
+|xref:types/string[String]
 |A user-supplied human readable name for the object. The `name` name is
 unique across all objects of the same type.
 
 |`description`
-|xref:types-string[String]
+|xref:types/string[String]
 |A free-form user-supplied human readable description of the object.
 
 |===
@@ -61,7 +61,7 @@ identifiers are just strings.
 
 Objects are the individual instances of the types supported by the API.
 For example, the virtual machine with identifier `123` is an object of
-the xref:types-vm[Vm] type.
+the xref:types/vm[Vm] type.
 
 [id="collections"]
 == Collections
@@ -84,15 +84,14 @@ corresponding to the type of the object, XML attributes for the `id` and
 attributes. For example, the XML representation for a virtual machine
 appears as follows:
 
-[source,xml]
-----
+```xml
 <vm id="123" href="/ovirt-engine/api/vms/123">
   <name>myvm</name>
   <description>My VM</description>
   <memory>1073741824</memory>
   ...
 </vm>
-----
+```
 
 The XML representation of a collection of objects consists of an XML
 element, named after the type of the objects, in plural. This contains
@@ -100,8 +99,7 @@ the representations of the objects of the collection. For example, the
 XML respresentation for a collection of virtual machines appears as
 follows:
 
-[source,xml]
-----
+```xml
 <vms>
   <vm id="123" href="/ovirt-engine/api/vms/123">
     <name>yourvm</name>
@@ -117,7 +115,7 @@ follows:
   </vm>
   ...
 </vms>
-----
+```
 
 IMPORTANT: In the XML representation of objects the `id` and `href`
 attributes are the only ones that are represented as XML attributes, the
@@ -131,7 +129,7 @@ containing a name/value pair for each attribute (including `id` and
 `href`). For example, the JSON representation of a virtual machine
 appears as follows:
 
-----
+```json
 {
   "id": "123",
   "href": "/ovirt-engine/api/vms/123",
@@ -140,7 +138,7 @@ appears as follows:
   "memory": 1073741824,
   ...
 }
-----
+```
 
 The JSON representation of a collection of objects consists of a JSON
 document containg a name/value pair (named ater the type of the objects,
@@ -148,7 +146,7 @@ in singular) which in turn contains an array with the representations of
 the objects of the collection. For example, the JSON respresentation for
 a collection of virtual machines appears as follows:
 
-----
+```json
 {
   "vm": [
     {
@@ -169,7 +167,7 @@ a collection of virtual machines appears as follows:
     },
   ]
 }
-----
+```
 
 [id="services-concept"]
 == Services
@@ -182,12 +180,12 @@ There are two relevant kinds of services:
 
 Services that manage a collection of objects:: These services are
 reponsible for listing existing objects and adding new objects. For
-example, the xref:services-vms[Vms] service is responsible for managing
+example, the xref:services/vms[Vms] service is responsible for managing
 the collection of virtual machines available in the system.
 
 Services that manage a specific object:: These services are responsible
 for retrieving, updating, deleting and executing actions in specific
-objects. For example, the xref:services-vm[Vm] service is responsible for
+objects. For example, the xref:services/vm[Vm] service is responsible for
 managing a specific virtual machine.
 
 Each service is accessible via a particular _path_ within the server.
@@ -201,8 +199,8 @@ operations that they can perform. The services that manage collections
 of objects usually have the `list` and `add` methods. The services that
 manage specific objects usually have the `get`, `update` and `remove`
 methods. In addition, services may also have _action_ methods, that
-represent less common operations. For example, the xref:services-vm[Vm]
-service has a xref:services-vm-methods-start[start] method that is used
+represent less common operations. For example, the xref:services/vm[Vm]
+service has a xref:services/vm/methods/start[start] method that is used
 to start a virtual machine.
 
 For the more usual methods there is a direct mapping between the name of
@@ -225,18 +223,18 @@ The path used in the HTTP request is the path of the service, with the
 For example, the request to `list` the virtual machines should be like
 this, using the HTTP `GET` method and the path `/vms`:
 
-----
+```http
 GET /ovirt-engine/api/vms
-----
+```
 
 For action methods the HTTP method is always `POST`, and the name of the
 method is added as a suffix to the path. For example, the request to
 start virtual machine `123` should look like this, using the HTTP `POST`
 method and the path `/vms/123/start`:
 
-----
+```http
 POST /ovirt-engine/api/vms/123/start
-----
+```
 
 Each method has a set of parameters.
 
@@ -250,24 +248,28 @@ main parameter per method.
 Secondary parameters:: The rest of the parameters.
 
 For example, the operation that adds a virtual machine (see
-xref:services-vms-methods-add[here]) has three parameters: `vm`, `clone`
+xref:services/vms/methods/add[here]) has three parameters: `vm`, `clone`
 and `clone_permissions`. The main parameter is `vm`, as it describes the
 object that is added. The `clone` and `clone_permissions` parameters are
 secondary parameters.
 
 The main parameter, when used for input, must be included in the body of
 the HTTP request. For example, when adding a virtual machine, the `vm`
-parameter, of type xref:types-vm[Vm] must be included in the request
+parameter, of type xref:types/vm[Vm] must be included in the request
 body. So the complete request to add a virtual machine, including all
 the HTTP details, must look like this:
 
-----
+```http
 POST /ovirt-engine/api/vms HTTP/1.1
 Host: myengine.example.com
 Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
 Content-Type: application/xml
 Accept: application/xml
+```
 
+With a body containing the following XML:
+
+```xml
 <vm>
   <name>myvm</name>
   <description>My VM</description>
@@ -278,14 +280,14 @@ Accept: application/xml
     <name>Blank</name>
   </template>
 </vm>
-----
+```
 
 When used for output, the main parameters are included in the response
 body. For example, when adding a virtual machine, the `vm` parameter
 will be included in the response body. So the complete response body
 will look like this:
 
-----
+```
 HTTP/1.1 201 Created
 Content-Type: application/xml
 
@@ -294,14 +296,14 @@ Content-Type: application/xml
   <description>My VM</description>
   ...
 </vm>
-----
+```
 
 Secondary parameters are only allowed for input (except for action
 methods, which are described later), and they must be included as query
 parameters. For example, when adding a virtual machine with the `clone`
 parameter set to `true`, the complete request must look like this:
 
-----
+```
 POST /ovirt-engine/api/vms?clone=true HTTP/1.1
 Host: myengine.example.com
 Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
@@ -318,19 +320,19 @@ Accept: application/xml
     <name>Blank</name>
   </template>
 </vm>
-----
+```
 
 Action methods only have secondary parameters. They can be used for
 input and output, and they should be included in the request body,
 wrapped with an `action` element. For example, the action method used to
-start a virtual machine (see xref:services-vm-methods-start[here]) has a
+start a virtual machine (see xref:services/vm/methods/start[here]) has a
 `vm` parameter to describe how the virtual machine should be started,
 and a `use_cloud_init` parameter to specify if
 link:https://cloudinit.readthedocs.io[cloud-init] should be used to configure
 the guest operating system. So the complete request to start virtual
 machine `123` using _cloud-init_ will look like this when using XML:
 
-----
+```
 POST /ovirt-engine/api/vms/123/start HTTP/1.1
 Host: myengine.example.com
 Authorization: Bearer fqbR1ftzh8wBCviLxJcYuV5oSDI=
@@ -357,7 +359,7 @@ Accept: application/xml
     </initialization>
   </vm>
 </action>
-----
+```
 
 [id="searching"]
 == Searching
@@ -367,9 +369,9 @@ used to specify search criteria. When used, the server will only return
 objects within the collection that satisfy those criteria. For example,
 the following request will return only the virtual machine named `myvm`:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=name%3Dmyvm
-----
+```
 
 [id="maximum-results-parameter"]
 === Maximum results parameter
@@ -378,9 +380,9 @@ Use the `max` parameter to limit the number of objects returned. For
 example, the following request will only return one virtual machine,
 regardless of how many are available in the system:
 
-----
+```http
 GET /ovirt-engine/api/vms?max=1
-----
+```
 
 A search request without the `max` parameter will return all the
 objects. Specifying the `max` parameter is recommended to reduce the
@@ -392,17 +394,17 @@ impact of requests in the overall performance of the system.
 By default queries are not case sensitive. For example, the following
 request will return the virtual machines named `myvm`, `MyVM` and `MYVM`:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=name%3Dmyvm
-----
+```
 
 The optional `case_sensitive` boolean parameter can be used to change this
 behaviour. For example, to get exactly the virtual machine named `myhost`, and
 not `MyHost` or `MYHOST`, send a request like this:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true
-----
+```
 
 [id="search-syntax"]
 === Search syntax
@@ -410,9 +412,9 @@ GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true
 The `search` parameters use the same syntax as the {product-name} query
 language:
 
-----
+```
 (criteria) [sortby (element) asc|desc]
-----
+```
 
 The `sortby` clause is optional and only needed when ordering results.
 
@@ -452,9 +454,9 @@ link:https://en.wikipedia.org/wiki/Percent-encoding[URL-encoded] to translate
 reserved characters, such as operators and spaces. For example, the
 equal sign should be encoded as `%3D`:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=name%3Dmyvm
-----
+```
 
 [id="wildcards"]
 === Wildcards
@@ -464,9 +466,9 @@ matches, including the emtpy string. For example, the following request
 will return all the virtual machines with names beginning with `myvm`,
 such as `myvm`, `myvm2`, `myvma` or `myvm-webserver`:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=name%3Dmyvm*
-----
+```
 
 [id="pagination"]
 === Pagination
@@ -479,9 +481,9 @@ parameter, is the basis for paging. For example, to get the first page
 of virtual machines, with a page size of 10 virtual machines, send
 request like this:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=page%201&max=10
-----
+```
 
 NOTE: The search parameter is URL-encoded, the actual value of the
 `search` parameter, before encoding, is `page 1`, so this is actually
@@ -489,17 +491,17 @@ requesting the first page.
 
 Increase the `page` value to retrieve the next page:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=page%202&max=10
-----
+```
 
 The `page` clause can be used in conjunction with other clauses inside
 the `search` parameter. For example, the following request will return
 the second page of virtual machines, but sorting by name:
 
-----
+```http
 GET /ovirt-engine/api/vms?search=sortby%20name%20page%202&max=10
-----
+```
 
 [IMPORTANT]
 ====
@@ -521,23 +523,22 @@ The API returns references to related objects as _links_. For example, when
 a virtual machine is retrieved it contains links to its disk attachments
 and network interface cards:
 
-[source,xml]
-----
+```xml
 <vm id="123" href="/ovirt-engine/api/vms/123">
   ...
   <link rel="diskattachments" href="/ovirt-engine/api/vms/123/diskattachments"/>
   <link rel="nics" href="/ovirt-engine/api/vms/123/nics"/>
   ...
 </vm>
-----
+```
 
 The complete description of those _linked_ objects can be retrieved by sending
 separate requests:
 
-----
+```http
 GET /ovirt-engine/api/vms/123/diskattachments
 GET /ovirt-engine/api/vms/123/nics
-----
+```
 
 However, in some situations it is more convenient for the application using the API to
 retrieve the linked information in the same request. This is useful, for example,
@@ -551,14 +552,13 @@ Each of those strings is the _path_ of the linked object. For example, to retrie
 the disk attachments and the NICs in the example above the request should be like
 this:
 
-----
+```http
 GET /ovirt-engine/api/vms/123?follow=disk_attachments,nics
-----
+```
 
 That will return an response like this:
 
-[source,xml]
-----
+```xml
 <vm id="123" href="/ovirt-engine/api/vms/123">
   ...
   <disk_attachments>
@@ -587,7 +587,7 @@ That will return an response like this:
   </nics>
   ...
 </vm>
-----
+```
 
 The path to the linked object can be a single word, as in the previous example,
 or it can be a sequence of words, separated by dots, to request nested
@@ -597,14 +597,13 @@ disk attachment contains a link to the disk, which wasn't _followed_.
 In order to also follow the links to the disks, the following request
 can be used:
 
-----
+```http
 GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk
-----
+```
 
 That will result in the following response:
 
-[source,xml]
-----
+```xml
 <vm id="123" href="/ovirt-engine/api/vms/123">
   <disk_attachments>
     <disk_attachment id="456" href="/ovirt-engine/api/vms/123/diskattachments/456">
@@ -630,21 +629,21 @@ That will result in the following response:
   </disk_attachments>
   ...
 </vm>
-----
+```
 
 The path can be made as deep as needed. For example, to also get the statistics
 of the disks:
 
-----
+```xml
 GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics
-----
+```
 
 Multiple path elements and multiple paths can be combined. For example, to get the
 disk attachments and the network interface cards, both with their statistics:
 
-----
+```http
 GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics
-----
+```
 
 IMPORTANT: Almost all the operations that retrieve objects support the `follow`
 parameter, but make sure to explicitly check the reference documentation, as
@@ -669,14 +668,13 @@ object. Each permission contains links to the user or group, the role
 and the object. For example, the permissions assigned to a specific
 virtual machine can be retrieved sending a request like this:
 
-----
+```http
 GET /ovirt-engine/api/vms/123/permissions
-----
+```
 
 The response body will look like this:
 
-[source,xml]
-----
+```xml
 <permissions>
   <permission id="456" href="/ovirt-engien/api/vms/123/permissions/456">
     <user id="789" href="/ovirt-engine/api/users/789"/>
@@ -685,7 +683,7 @@ The response body will look like this:
   </permission>
   ...
 </permissions>
-----
+```
 
 A permission is added to an object sending a `POST` request with a
 permission representation to this service. Each new permission requires
@@ -701,16 +699,15 @@ or action with a `fault` in the response body. The fault contains the
 a request to create a virtual machine without the mandatory `name`
 attribute it will respond with the following HTTP response line:
 
-----
+```http
 HTTP/1.1 400 Bad Request
-----
+```
 
 And the following response body:
 
-[source,xml]
-----
+```xml
 <fault>
   <reason>Incomplete parameters</reason>
   <detail>Vm [name] required for add</detail>
 </fault>
-----
+```

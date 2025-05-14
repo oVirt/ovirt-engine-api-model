@@ -55,8 +55,7 @@ public interface VmWatchdogService {
          * The information consists of `model` element, `action` element and the reference to the
          * virtual machine. It may look like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <watchdogs>
          *   <watchdog href="/ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000" id="00000000-0000-0000-0000-000000000000">
          *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
@@ -64,7 +63,7 @@ public interface VmWatchdogService {
          *     <model>i6300esb</model>
          *   </watchdog>
          * </watchdogs>
-         * ----
+         * ```
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
          * @date 12 Dec 2016
@@ -80,24 +79,25 @@ public interface VmWatchdogService {
      *
      * For example, to update a watchdog, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123/watchdogs
+     * ```
+     *
+     * ```xml
      * <watchdog>
      *   <action>reset</action>
      * </watchdog>
-     * ----
+     * ```
      *
      * with response body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <watchdog href="/ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000" id="00000000-0000-0000-0000-000000000000">
      *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
      *   <action>reset</action>
      *   <model>i6300esb</model>
      * </watchdog>
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016
@@ -133,10 +133,9 @@ public interface VmWatchdogService {
      *
      * For example, to remove a watchdog from a virtual machine, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 12 Dec 2016

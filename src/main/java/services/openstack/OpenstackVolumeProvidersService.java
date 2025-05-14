@@ -50,15 +50,13 @@ public interface OpenstackVolumeProvidersService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/openstackvolumeproviders
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <openstack_volume_provider>
      *   <name>mycinder</name>
      *   <url>https://mycinder.example.com:8776</url>
@@ -70,7 +68,7 @@ public interface OpenstackVolumeProvidersService {
      *   <password>mypassword</password>
      *   <tenant_name>mytenant</tenant_name>
      * </openstack_volume_provider>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @date 14 Sep 2016

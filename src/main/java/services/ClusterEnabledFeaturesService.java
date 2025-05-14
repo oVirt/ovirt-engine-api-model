@@ -47,22 +47,20 @@ public interface ClusterEnabledFeaturesService {
      *
      * For example, to get the features enabled for cluster `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/123/enabledfeatures
-     * ----
+     * ```
      *
      * This will return a list of features:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <enabled_features>
      *   <cluster_feature id="123">
      *      <name>test_feature</name>
      *   </cluster_feature>
      *   ...
      * </enabled_features>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017
@@ -86,17 +84,15 @@ public interface ClusterEnabledFeaturesService {
      *
      * For example, to enable a feature `456` on cluster `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/123/enabledfeatures
-     * ----
+     * ```
      *
      * The request body should look like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster_feature id="456"/>
-     * ----
+     * ```
      *
      * @author Sahina Bose <sabose@redhat.com>
      * @date 04 Aug 2017

@@ -52,36 +52,33 @@ public interface DiskService extends MeasurableService {
      *
      * For example, a disk can be copied using the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks/123/copy
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      *   <disk>
      *     <name>mydisk</name>
      *   </disk>
      * </action>
-     * ----
+     * ```
      *
      * If the disk profile or the quota currently used by the disk are not defined for the new storage domain, they
      * can be explicitly specified. If they are not specified, the first available disk profile and the default quota are used.
      *
      * For example, to specify disk profile `987` and quota `753`, send a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      *   <disk_profile id="987"/>
      *   <quota id="753"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Avital Pinnick <apinnick@redhat.com>
@@ -94,21 +91,20 @@ public interface DiskService extends MeasurableService {
          * used for the new disk. For example, to copy disk `123`, with `myname` as the name of the new disk, send
          * a request like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/disks/123
-         * ....
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <disk>
          *     <name>mydisk<name>
          *   </disk>
          *   <storage_domain id="456"/>
          * </action>
-         * ----
+         * ```
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
          * @author Avital Pinnick <apinnick@redhat.com>
@@ -128,20 +124,19 @@ public interface DiskService extends MeasurableService {
          * The storage domain where the new disk is created. This can be specified using the `id` or `name`
          * attributes. For example, to copy a disk to the storage domain called `mydata`, send a request like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/api/storagedomains/123/disks/789
-         * ....
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <storage_domain>
          *     <name>mydata</name>
          *   </storage_domain>
          * </action>
-         * ----
+         * ```
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
          * @author Avital Pinnick <apinnick@redhat.com>
@@ -208,21 +203,19 @@ public interface DiskService extends MeasurableService {
      *
      * For example, a disk's update can be done by using the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/disks/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk>
      *   <qcow_version>qcow2_v3</qcow_version>
      *   <alias>new-alias</alias>
      *   <description>new-desc</description>
      * </disk>
-     * ----
+     * ```
      *
      * Since the backend operation is asynchronous, the disk element that is returned
      * to the user might not be synced with the changed properties.
@@ -334,9 +327,9 @@ public interface DiskService extends MeasurableService {
          *
          * For example, to retrieve the complete representation of disk '123':
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/disks/123?all_content=true
-         * ....
+         * ```
          *
          * @author Shani Leviim <sleviim@redhat.com>
          * @author Tahlia Richardson <trichard@redhat.com>
@@ -352,19 +345,17 @@ public interface DiskService extends MeasurableService {
      * For example, to move the disk with identifier `123` to a storage domain with identifier `456` send the following
      * request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks/123/move
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      * </action>
-     * ----
+     * ```
      *
      * If the disk profile or the quota used currently by
      * the disk aren't defined for the new storage domain,
@@ -375,14 +366,13 @@ public interface DiskService extends MeasurableService {
      * For example, to explicitly use disk profile `987` and
      * quota `753` send a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      *   <disk_profile id="987"/>
      *   <quota id="753"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @date 14 Sep 2016
@@ -492,24 +482,22 @@ public interface DiskService extends MeasurableService {
      * Refreshing a direct LUN disk is useful when:
      *
      * - The LUN was added using the API without the host parameter, and therefore does not contain
-     *   any information from the storage (see xref:services-disks-methods-add[DisksService::add]).
+     *   any information from the storage (see xref:services/disks/methods/add[DisksService::add]).
      * - New information about the LUN is available on the storage and you want to update the LUN with it.
      *
      * To refresh direct LUN disk `123` using host `456`, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks/123/refreshlun
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <host id='456'/>
      * </action>
-     * ----
+     * ```
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -560,22 +548,20 @@ public interface DiskService extends MeasurableService {
      * For example, to convert the disk format from preallocated-cow to a sparse-raw image,
      * send a request like the following:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/disks/123/convert
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      *  <action>
      *    <disk>
      *      <sparse>true</sparse>
      *      <format>raw</format>
      *    </disk>
      *  </action>
-     * ----
+     * ```
      *
      * Note: In order to sparsify a disk, two conversions might be needed if the disk is on a Block Storage Domain.
      * For example: If a disk is RAW, converting it to QCOW will result in a larger disk. In order to reduce the size,
@@ -620,14 +606,15 @@ public interface DiskService extends MeasurableService {
      *
      * For example, to list all disk snapshots under the disks resource '123':
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/disks/123/disksnapshots
-     * ....
+     * ```
      *
      * For example, to retrieve a specific disk snapshot '789' under the disk resource '123':
-     * ....
+     *
+     * ```http
      * GET /ovirt-engine/api/disks/123/disksnapshots/789
-     * ....
+     * ```
      *
      * @author Ahmad Khiet <akhiet@redhat.com>
      * @date 1 Sep 2020

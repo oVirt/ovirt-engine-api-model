@@ -45,14 +45,13 @@ public interface ExternalHostGroupService {
      *
      * For example, to get the details of hostgroup `234` of provider `123`, send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/hostgroups/234
-     * ....
+     * ```
      *
      * It will return a response like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_host_group href="/ovirt-engine/api/externalhostproviders/123/hostgroups/234" id="234">
      *   <name>rhel7</name>
      *   <architecture_name>x86_64</architecture_name>
@@ -61,7 +60,7 @@ public interface ExternalHostGroupService {
      *   <subnet_name>sat0</subnet_name>
      *   <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/>
      * </external_host_group>
-     * ----
+     * ```
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @date 24 Apr 2017

@@ -318,15 +318,13 @@ public interface Vm extends VmBase {
     /**
      * Lists all the Katello errata assigned to the virtual machine.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vms/123/katelloerrata
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <katello_errata>
      *   <katello_erratum href="/ovirt-engine/api/katelloerrata/456" id="456">
      *     <name>RHBA-2013:XYZ</name>
@@ -345,7 +343,7 @@ public interface Vm extends VmBase {
      *   </katello_erratum>
      *   ...
      * </katello_errata>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016

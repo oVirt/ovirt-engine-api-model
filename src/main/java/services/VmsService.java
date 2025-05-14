@@ -45,8 +45,7 @@ public interface VmsService {
      * - From a template. In this case the identifier or name of the template must be provided. For example, using a
      *   plain shell script and XML:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -72,13 +71,12 @@ public interface VmsService {
      * </vm>
      * ' \
      * "${url}/vms"
-     * ----
+     * ```
      *
      * - From a snapshot. In this case the identifier of the snapshot has to be provided. For example, using a plain
      *   shel script and XML:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -103,14 +101,13 @@ public interface VmsService {
      * </vm>
      * ' \
      * "${url}/vms"
-     * ----
+     * ```
      *
      * When creating a virtual machine from a template or from a snapshot it is usually useful to explicitly indicate
      * in what storage domain to create the disks for the virtual machine. If the virtual machine is created from
      * a template then this is achieved passing a set of `disk_attachment` elements that indicate the mapping:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   ...
      *   <disk_attachments>
@@ -123,13 +120,12 @@ public interface VmsService {
      *     <disk_attachment>
      *   </disk_attachments>
      * </vm>
-     * ----
+     * ```
      *
      * When the virtual machine is created from a snapshot this set of disks is slightly different, it uses the
      * `image_id` attribute instead of `id`.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   ...
      *   <disk_attachments>
@@ -143,14 +139,13 @@ public interface VmsService {
      *     <disk_attachment>
      *   </disk_attachments>
      * </vm>
-     * ----
+     * ```
      *
      * It is possible to specify additional virtual machine parameters in the XML description, e.g. a virtual machine
      * of `desktop` type, with 2 GiB of RAM and additional description can be added sending a request body like the
      * following:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   <name>myvm</name>
      *   <description>My Desktop Virtual Machine</description>
@@ -158,26 +153,24 @@ public interface VmsService {
      *   <memory>2147483648</memory>
      *   ...
      * </vm>
-     * ----
+     * ```
      *
      * A bootable CDROM device can be set like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   ...
      *   <os>
      *     <boot dev="cdrom"/>
      *   </os>
      * </vm>
-     * ----
+     * ```
      *
      * In order to boot from CDROM, you first need to insert a disk, as described in the
-     * xref:services-vm_cdrom[CDROM service]. Then booting from that CDROM can be specified using the `os.boot.devices`
+     * xref:services/vm_cdrom[CDROM service]. Then booting from that CDROM can be specified using the `os.boot.devices`
      * attribute:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm>
      *   ...
      *   <os>
@@ -188,7 +181,7 @@ public interface VmsService {
      *     </boot>
      *   </os>
      * </vm>
-     * ----
+     * ```
      *
      * In all cases the name or identifier of the cluster where the virtual machine will be created is mandatory.
      *
@@ -208,15 +201,13 @@ public interface VmsService {
          * specified and the value is `true` then the disks of the created virtual machine will be _cloned_, and
          * independent of the template. For example, to create an independent virtual machine, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/vms?clone=true
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vm>
          *   <name>myvm<name>
          *   <template>
@@ -226,7 +217,7 @@ public interface VmsService {
          *     <name>mycluster<name>
          *   </cluster>
          * </vm>
-         * ----
+         * ```
          *
          * NOTE: When this parameter is `true` the permissions of the template will also be copied, as when using
          * `clone_permissions=true`.
@@ -240,15 +231,13 @@ public interface VmsService {
          * the direct ones, not the inherited ones) will be copied to the created virtual machine. For example, to
          * create a virtual machine from the `mytemplate` template copying its permissions, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vms?clone_permissions=true
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vm>
          *   <name>myvm<name>
          *   <template>
@@ -258,7 +247,7 @@ public interface VmsService {
          *     <name>mycluster<name>
          *   </cluster>
          * </vm>
-         * ----
+         * ```
          *
          * @author Juan Hernandez <juan.hernandez@redhat.com>
          * @date 16 Aug 2016
@@ -288,19 +277,17 @@ public interface VmsService {
          * Specifies if and how the auto CPU and NUMA configuration is applied.
          *
          * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-         * compatibility. It will be removed in the future. Instead please use POST followed by xref:services-vms-methods-add[add operation].
+         * compatibility. It will be removed in the future. Instead please use POST followed by xref:services/vms/methods/add[add operation].
          *
          * An example for a request:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vms?auto_pinning_policy=existing/adjust
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vm>
          *   <name>myvm<name>
          *   <template>
@@ -317,7 +304,7 @@ public interface VmsService {
          *     </hosts>
          *   </placement_policy>
          * </vm>
-         * ----
+         * ```
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>
          * @date 1 Sep 2020
@@ -338,15 +325,13 @@ public interface VmsService {
          * For example, to create a virtual machine from the `mytemplate` template and to seal it, send a request
          * like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vms?seal=true
-         * ----
+         * ```
          *
          * With a request body like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vm>
          *   <name>myvm<name>
          *   <template>
@@ -356,7 +341,7 @@ public interface VmsService {
          *     <name>mycluster<name>
          *   </cluster>
          * </vm>
-         * ----
+         * ```
          *
          * @author Shmuel Leib Melamud <smelamud@redhat.com>
          * @date 1 Mar 2022
@@ -546,9 +531,9 @@ public interface VmsService {
          *
          * For example, to retrieve the complete representation of the virtual machines send a request like this:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/vms?all_content=true
-         * ....
+         * ```
          *
          * NOTE: The reason for not including these attributes is performance: they are seldom used and they require
          * additional queries to the database. So try to use the this parameter only when it is really needed.
@@ -566,10 +551,10 @@ public interface VmsService {
          * The OVF will be presented in `initialization.configuration.data`.
          *
          * For example:
-         * [source]
-         * ----
+         *
+         * ```http
          * GET /vms?all_content=true&ovf_as_ova=true
-         * ----
+         * ```
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>
          * @date 08 Sep 2020

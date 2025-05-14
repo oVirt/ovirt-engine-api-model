@@ -49,10 +49,9 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      *
      * For example, to get the OpenStack network provider with identifier `1234`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/openstacknetworkproviders/1234
-     * ----
+     * ```
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
      * @date 14 Dec 2016
@@ -68,15 +67,13 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      * For example, to update `provider_name`, `requires_authentication`, `url`, `tenant_name` and `type` properties,
      * for the OpenStack network provider with identifier `1234`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/openstacknetworkproviders/1234
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <openstack_network_provider>
      *   <name>ovn-network-provider</name>
      *   <requires_authentication>false</requires_authentication>
@@ -84,7 +81,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      *   <tenant_name>oVirt</tenant_name>
      *   <type>external</type>
      * </openstack_network_provider>
-     * ----
+     * ```
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
      * @date 14 Dec 2016
@@ -128,10 +125,9 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      *
      * For example, to remove the OpenStack network provider with identifier `1234`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/openstacknetworkproviders/1234
-     * ----
+     * ```
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
      * @date 14 Dec 2016

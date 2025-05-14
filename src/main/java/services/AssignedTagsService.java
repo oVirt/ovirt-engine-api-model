@@ -48,18 +48,17 @@ public interface AssignedTagsService {
      *
      * For example to assign tag `mytag` to virtual machine with the id `123` send a request like this:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/vms/123/tags
-     * ....
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tag>
      *   <name>mytag</name>
      * </tag>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 12 Dec 2016
@@ -85,12 +84,11 @@ public interface AssignedTagsService {
      *
      * For example to list all the tags of the virtual machine with id `123` send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/vms/123/tags
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <tags>
      *   <tag href="/ovirt-engine/api/tags/222" id="222">
      *     <name>mytag</name>
@@ -98,7 +96,7 @@ public interface AssignedTagsService {
      *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
      *   </tag>
      * </tags>
-     * ----
+     * ```
      *
      * The order of the returned tags isn't guaranteed.
      *

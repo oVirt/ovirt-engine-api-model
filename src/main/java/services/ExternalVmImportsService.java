@@ -45,15 +45,13 @@ public interface ExternalVmImportsService {
      *
      * For example import of a virtual machine from VMware can be facilitated using the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /externalvmimports
-     * ----
+     * ```
      *
-     * With request body of type xref:types-external_vm_import[ExternalVmImport], for example:
+     * With request body of type xref:types/external_vm_import[ExternalVmImport], for example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_vm_import>
      *   <vm>
      *     <name>my_vm</name>
@@ -68,7 +66,7 @@ public interface ExternalVmImportsService {
      *   <url>vpx://wmware_user@vcenter-host/DataCenter/Cluster/esxi-host?no_verify=1</url>
      *   <drivers_iso id="virtio-win-1.6.7.iso" />
      * </external_vm_import>
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @date 27 Jul 2016

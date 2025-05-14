@@ -49,15 +49,13 @@ public interface VnicProfilesService {
      *
      * For example to add vNIC profile `123` to network `456` send a request to:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/networks/456/vnicprofiles
-     * ----
+     * ```
      *
      * With the following body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vnic_profile id="123">
      *   <name>new_vNIC_name</name>
      *   <pass_through>
@@ -65,19 +63,18 @@ public interface VnicProfilesService {
      *   </pass_through>
      *   <port_mirroring>false</port_mirroring>
      * </vnic_profile>
-     * ----
+     * ```
      *
      * Please note that there is a default network filter to each VNIC profile.
      * For more details of how the default network filter is calculated please refer to
-     * the documentation in xref:services-network_filters[NetworkFilters].
+     * the documentation in xref:services/network_filters[NetworkFilters].
      *
      * NOTE: The automatically created vNIC profile for the external network will be without network filter.
      *
      * The output of creating a new VNIC profile depends in the  body  arguments that were given.
      * In case no network filter was given, the default network filter will be configured. For example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vnic_profile href="/ovirt-engine/api/vnicprofiles/123" id="123">
      *   <name>new_vNIC_name</name>
      *   <link href="/ovirt-engine/api/vnicprofiles/123/permissions" rel="permissions"/>
@@ -88,29 +85,27 @@ public interface VnicProfilesService {
      *   <network href="/ovirt-engine/api/networks/456" id="456"/>
      *   <network_filter href="/ovirt-engine/api/networkfilters/789" id="789"/>
      * </vnic_profile>
-     * ----
+     * ```
      *
      * In case an empty network filter was given, no network filter will be configured for the specific VNIC profile
      * regardless of the VNIC profile's default network filter. For example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vnic_profile>
      *   <name>no_network_filter</name>
      *   <network_filter/>
      * </vnic_profile>
-     * ----
+     * ```
      *
      * In case that a specific valid network filter id was given, the VNIC profile will be configured with the given
      * network filter regardless of the VNIC profiles's default network filter. For example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vnic_profile>
      *   <name>user_choice_network_filter</name>
      *   <network_filter id= "0000001b-001b-001b-001b-0000000001d5"/>
      * </vnic_profile>
-     * ----
+     * ```
      *
      * @author Alona Kaplan <alkaplan@redhat.com>
      * @author Dominik Holler <dholler@redhat.com>

@@ -40,22 +40,20 @@ public interface ClusterLevelsService {
     /**
      * Lists the cluster levels supported by the system.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusterlevels
-     * ----
+     * ```
      *
      * This will return a list of available cluster levels.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <cluster_levels>
      *   <cluster_level id="4.0">
      *      ...
      *   </cluster_level>
      *   ...
      * </cluster_levels>
-     * ----
+     * ```
      *
      * The order of the returned cluster levels isn't guaranteed.
      *

@@ -46,15 +46,13 @@ public interface RolesService {
      * For example, to add the `MyRole` non-administrative role with permits to login and create virtual machines
      * send a request like this (note that you have to pass permit id):
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/roles
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <role>
      *   <name>MyRole</name>
      *   <description>My custom role to create virtual machines</description>
@@ -64,7 +62,7 @@ public interface RolesService {
      *     <permit id="1300"/>
      *   </permits>
      * </group>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 14 Sep 2016
@@ -91,15 +89,13 @@ public interface RolesService {
     /**
      * List roles.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/roles
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <roles>
      *   <role id="123">
      *      <name>SuperUser</name>
@@ -110,7 +106,7 @@ public interface RolesService {
      *   </role>
      *   ...
      * </roles>
-     * ----
+     * ```
      *
      * The order of the returned list of roles isn't guaranteed.
      *

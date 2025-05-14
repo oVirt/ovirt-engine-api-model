@@ -47,15 +47,13 @@ public interface AffinityGroupsService {
      *
      * Post a request like in the example below to create a new affinity group:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/000-000/affinitygroups
-     * ----
+     * ```
      *
      * And use the following example in its body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <affinity_group>
      *   <name>AF_GROUP_001</name>
      *   <hosts_rule>
@@ -66,7 +64,7 @@ public interface AffinityGroupsService {
      *     <enabled>false</enabled>
      *   </vms_rule>
      * </affinity_group>
-     * ----
+     * ```
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

@@ -40,20 +40,18 @@ public interface IconService {
     /**
      * Get an icon.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/icons/123
-     * ----
+     * ```
      *
      * You will get a XML response like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <icon id="123">
      *   <data>Some binary data here</data>
      *   <media_type>image/png</media_type>
      * </icon>
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016

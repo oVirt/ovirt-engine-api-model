@@ -44,19 +44,17 @@ public interface DataCenterNetworksService {
      *
      * Post a request like in the example below to create a new network in a data center with an ID of `123`.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/networks
-     * ----
+     * ```
      *
      * Use the following example in its body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <name>mynetwork</name>
      * </network>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

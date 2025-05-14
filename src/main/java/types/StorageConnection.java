@@ -29,14 +29,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * Example XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <storage_connection id="123">
  *   <address>mynfs.example.com</address>
  *   <type>nfs</type>
  *   <path>/exports/mydata</path>
  * </storage_connection>
- * ----
+ * ```
  *
  * @author Daniel Erez <derez@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>

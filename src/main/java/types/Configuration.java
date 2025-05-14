@@ -32,8 +32,7 @@ public interface Configuration {
      *
      * Example of the OVF document:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <?xml version='1.0' encoding='UTF-8'?>
      * <ovf:Envelope xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1/"
      *   xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData"
@@ -113,7 +112,7 @@ public interface Configuration {
      *     </Section>
      *   </Content>
      * </ovf:Envelope>
-     * ----
+     * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

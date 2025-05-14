@@ -60,21 +60,19 @@ public interface VmNicService extends MeasurableService {
      * For example, to update the NIC having with `456` belonging to virtual the machine with id `123` send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/123/nics/456
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <nic>
      *   <name>mynic</name>
      *   <interface>e1000</interface>
      *   <vnic_profile id='789'/>
      * </nic>
-     * ----
+     * ```
      *
      * [IMPORTANT]
      * ====
@@ -114,10 +112,9 @@ public interface VmNicService extends MeasurableService {
      *
      * For example, to remove the NIC with id `456` from the virtual machine with id `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123/nics/456
-     * ----
+     * ```
      *
      * [IMPORTANT]
      * ====
@@ -146,7 +143,7 @@ public interface VmNicService extends MeasurableService {
     /**
      * Reference to the service that manages the network filter parameters of the NIC.
      *
-     * A single top-level network filter may assigned to the NIC by the NIC's xref:types-vnic_profile[vNIC Profile].
+     * A single top-level network filter may assigned to the NIC by the NIC's xref:types/vnic_profile[vNIC Profile].
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 13 Dec 2016

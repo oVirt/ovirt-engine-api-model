@@ -41,20 +41,18 @@ public interface ExternalProviderCertificatesService {
     /**
      * Returns the chain of certificates presented by the external provider.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/certificates
-     * ----
+     * ```
      *
      * And here is sample response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <certificates>
      *   <certificate id="789">...</certificate>
      *   ...
      * </certificates>
-     * ----
+     * ```
      *
      * The order of the returned certificates is always guaranteed to be the sign order: the first is the
      * certificate of the server itself, the second the certificate of the CA that signs the first, so on.

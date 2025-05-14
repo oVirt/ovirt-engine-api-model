@@ -59,9 +59,11 @@ public interface TemplateMediatedDeviceService {
      *
      * For example, to update a mediated device, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/templates/123/mediateddevices/00000000-0000-0000-0000-000000000000
+     * ```
+     *
+     * ```xml
      * <vm_mediated_device>
      *   <spec_params>
      *     <property>
@@ -70,12 +72,11 @@ public interface TemplateMediatedDeviceService {
      *     </property>
      *   </spec_params>
      * </vm_mediated_device>
-     * ----
+     * ```
      *
      * with response body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm_mediated_device href="/ovirt-engine/api/templates/123/mediateddevices/00000000-0000-0000-0000-000000000000" id="00000000-0000-0000-0000-000000000000">
      *   <template href="/ovirt-engine/api/templates/123" id="123"/>
      *   <spec_params>
@@ -85,7 +86,7 @@ public interface TemplateMediatedDeviceService {
      *     </property>
      *   </spec_params>
      * </vm_mediated_device>
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @date 10 Mar 2022

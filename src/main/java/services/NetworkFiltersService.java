@@ -32,7 +32,7 @@ import types.NetworkFilter;
  * Represents a readonly network filters sub-collection.
  *
  * The network filter enables to filter packets send to/from the VM's nic according to defined rules.
- * For more information please refer to xref:services-network_filter[NetworkFilter] service documentation
+ * For more information please refer to xref:services/network_filter[NetworkFilter] service documentation
  *
  * Network filters are supported in different versions, starting from version 3.0.
  *
@@ -51,15 +51,13 @@ import types.NetworkFilter;
  *
  * Example of listing all of the supported network filters for a specific cluster:
  *
- * [source]
- * ----
+ * ```http
  * GET http://localhost:8080/ovirt-engine/api/clusters/{cluster:id}/networkfilters
- * ----
+ * ```
  *
  * Output:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <network_filters>
  *   <network_filter id="00000019-0019-0019-0019-00000000026c">
  *     <name>example-network-filter-a</name>
@@ -89,7 +87,7 @@ import types.NetworkFilter;
  *     </version>
  *   </network_filter>
  * </network_filters>
- * ----
+ * ```
  */
 @Service
 @Area("Network")

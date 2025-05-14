@@ -41,15 +41,13 @@ public interface IconsService {
     /**
      * Get a list of icons.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/icons
-     * ----
+     * ```
      *
      * You will get a XML response which is similar to this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <icons>
      *   <icon id="123">
      *     <data>...</data>
@@ -57,7 +55,7 @@ public interface IconsService {
      *   </icon>
      *   ...
      * </icons>
-     * ----
+     * ```
      *
      * The order of the returned list of icons isn't guaranteed.
      *

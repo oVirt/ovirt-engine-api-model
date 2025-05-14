@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * For example, the XML representation of a host NIC looks like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <host_nic href="/ovirt-engine/api/hosts/123/nics/456" id="456">
  *   <name>eth0</name>
  *   <boot_protocol>static</boot_protocol>
@@ -53,15 +52,14 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <mtu>1500</mtu>
  *   <status>up</status>
  * </host_nic>
- * ----
+ * ```
  *
- * A bonded interface is represented as a xref:types-host_nic[HostNic] object
+ * A bonded interface is represented as a xref:types/host_nic[HostNic] object
  * containing the `bonding` and `slaves` attributes.
  *
  * For example, the XML representation of a bonded host NIC looks like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <host_nic href="/ovirt-engine/api/hosts/123/nics/456" id="456">
  *   <name>bond0</name>
  *   <mac address="00:00:00:00:00:00"/>
@@ -93,7 +91,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <bridged>true</bridged>
  *   <custom_configuration>false</custom_configuration>
  * </host_nic>
- * ----
+ * ```
  *
  * @author Martin Mucha <mmucha@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>

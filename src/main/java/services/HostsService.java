@@ -51,21 +51,19 @@ public interface HostsService {
      *
      * For example, to add a host, send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host>
      *   <name>myhost</name>
      *   <address>myhost.example.com</address>
      *   <root_password>myrootpassword</root_password>
      * </host>
-     * ----
+     * ```
      *
      * NOTE: The `root_password` element is only included in the client-provided initial representation and is not
      * exposed in the representations returned from subsequent requests.
@@ -75,10 +73,9 @@ public interface HostsService {
      *
      * To add a hosted engine host, use the optional `deploy_hosted_engine` parameter:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true
-     * ----
+     * ```
      *
      * If the cluster has a default external network provider that is supported for automatic deployment,
      * the external network provider is deployed when adding the host.
@@ -86,16 +83,14 @@ public interface HostsService {
      * To deploy an external network provider other than the one defined in the clusters, overwrite the external
      * network provider when adding hosts, by sending the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts
-     * ----
+     * ```
      *
      * With a request body that contains a reference to the desired provider in the
      * `external_network_provider_configuration`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <host>
      *   <name>myhost</name>
      *   <address>myhost.example.com</address>
@@ -106,7 +101,7 @@ public interface HostsService {
      *     </external_network_provider_configuration>
      *   </external_network_provider_configurations>
      * </host>
-     * ----
+     * ```
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Roy Golan <rgolan@redhat.com>
@@ -216,14 +211,13 @@ public interface HostsService {
      *
      * For example, to list the hosts send the following request:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/hosts
-     * ....
+     * ```
      *
      * The response body will be similar to this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <hosts>
      *   <host href="/ovirt-engine/api/hosts/123" id="123">
      *     ...
@@ -233,7 +227,7 @@ public interface HostsService {
      *   </host>
      *   ...
      * </host>
-     * ----
+     * ```
      *
      * The order of the returned list of hosts is guaranteed only if the `sortby` clause is included in
      * the `search` parameter.
@@ -277,9 +271,9 @@ public interface HostsService {
          *
          * For example, to retrieve the complete representation of the hosts:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/hosts?all_content=true
-         * ....
+         * ```
          *
          * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
          * seldom used and require additional queries to the database. Use this parameter with caution and only when
@@ -299,9 +293,9 @@ public interface HostsService {
          * For example, to retrieve the list of hosts to which the virtual machine with ID 123 and
          * the virtual machine with ID 456 can be migrated to, send the following request:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/hosts?migration_target_of=123,456
-         * ....
+         * ```
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
          * @author Avital Pinnick <apinnick@redhat.com>
@@ -322,9 +316,9 @@ public interface HostsService {
          *
          * The default value is `false`.
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/hosts?migration_target_of=123,456&check_vms_in_affinity_closure=true
-         * ....
+         * ```
          *
          * @author Andrej Krejcir <akrejcir@redhat.com>
          * @date 15 Apr 2019

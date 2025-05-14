@@ -41,24 +41,21 @@ public interface VmNicsService {
      * The following example adds to the virtual machine `123` a network interface named `mynic` using `virtio` and the
      * NIC profile `456`.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/nics
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <nic>
      *   <name>mynic</name>
      *   <interface>virtio</interface>
      *   <vnic_profile id="456"/>
      * </nic>
-     * ----
+     * ```
      *
      * The following example sends that request using `curl`:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * curl \
      * --request POST \
      * --header "Version: 4" \
@@ -74,7 +71,7 @@ public interface VmNicsService {
      * </nic>
      * ' \
      * https://myengine.example.com/ovirt-engine/api/vms/123/nics
-     * ----
+     * ```
      *
      * [IMPORTANT]
      * ====

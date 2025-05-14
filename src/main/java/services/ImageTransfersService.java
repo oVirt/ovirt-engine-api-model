@@ -35,7 +35,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.optional;
 
 /**
  * This service manages image transfers, for performing Image I/O API in {product-name}.
- * Please refer to xref:services-image_transfer[image transfer] for further
+ * Please refer to xref:services/image_transfer[image transfer] for further
  * documentation.
  *
  * @author Amit Aviram <aaviram@redhat.com>
@@ -59,20 +59,18 @@ public interface ImageTransfersService {
      * To create an image transfer to download or upload a disk with id `123`,
      * send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/imagetransfers
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <image_transfer>
      *   <disk id="123"/>
      *   <direction>upload|download</direction>
      * </image_transfer>
-     * ----
+     * ```
      *
      *
      * *Creating a new image transfer for downloading or uploading a `disk_snapshot`:*
@@ -80,20 +78,18 @@ public interface ImageTransfersService {
      * To create an image transfer to download or upload a `disk_snapshot` with id `456`,
      * send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/imagetransfers
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <image_transfer>
      *   <snapshot id="456"/>
      *   <direction>download|upload</direction>
      * </image_transfer>
-     * ----
+     * ```
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -107,22 +103,20 @@ public interface ImageTransfersService {
      * To create an image transfer to download a backup with id '456' of `disk` with id `123`,
      * send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/imagetransfers
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <image_transfer>
      *   <disk id="123"/>
      *   <direction>download</direction>
      *   <backup id="456"></backup>
      *   <format>raw</format>
      * </image_transfer>
-     * ----
+     * ```
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>
      * @author Steve Goodman <sgoodman@redhat.com>

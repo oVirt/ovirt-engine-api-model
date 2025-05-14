@@ -31,8 +31,7 @@ import java.util.Date;
  *
  * Example XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <snapshot id="456" href="/ovirt-engine/api/vms/123/snapshots/456">
  *   <actions>
  *     <link rel="restore" href="/ovirt-engine/api/vms/123/snapshots/456/restore"/>
@@ -43,7 +42,7 @@ import java.util.Date;
  *   <date>2010-08-16T14:24:29</date>
  *   <persist_memorystate>false</persist_memorystate>
  * </snapshot>
- * ----
+ * ```
  *
  * @author Daniel Erez <derez@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>

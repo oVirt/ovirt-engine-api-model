@@ -35,7 +35,7 @@ import static org.ovirt.api.metamodel.language.ApiLanguage.mandatory;
  *
  * Currently virtual machines have exactly one CDROM device. No new devices can be added, and the existing one can't
  * be removed, thus there are no `add` or `remove` methods. Changing and ejecting CDROM disks is done with the
- * xref:services-vm_cdrom-methods-update[update] method of the xref:services-vm_cdrom[service] that manages the
+ * xref:services/vm_cdrom/methods/update[update] method of the xref:services/vm_cdrom[service] that manages the
  * CDROM device.
  *
  * @author Juan Hernandez <juan.hernandez@redhat.com>

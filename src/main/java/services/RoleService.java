@@ -33,15 +33,13 @@ public interface RoleService {
     /**
      * Get the role.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/roles/123
-     * ----
+     * ```
      *
      * You will receive XML response like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <role id="123">
      *   <name>MyRole</name>
      *   <description>MyRole description</description>
@@ -49,7 +47,7 @@ public interface RoleService {
      *   <administrative>true</administrative>
      *   <mutable>false</mutable>
      * </role>
-     * ----
+     * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
      * @date 12 Dec 2016
@@ -71,10 +69,9 @@ public interface RoleService {
      *
      * To remove the role you need to know its id, then send request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/roles/{role_id}
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 14 Sep 2016
@@ -91,25 +88,23 @@ public interface RoleService {
     /**
      * Updates a role. You are allowed to update `name`, `description` and `administrative` attributes after role is
      * created. Within this endpoint you can't add or remove roles permits you need to use
-     * xref:services-permits[service] that manages permits of role.
+     * xref:services/permits[service] that manages permits of role.
      *
      * For example to update role's `name`, `description` and `administrative` attributes send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/roles/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <role>
      *   <name>MyNewRoleName</name>
      *   <description>My new description of the role</description>
      *   <administrative>true</administrative>
      * </group>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 14 Sep 2016

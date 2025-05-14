@@ -54,9 +54,9 @@ public interface SnapshotService {
          * For example, to retrieve the complete representation of the snapshot with id `456` of the virtual machine
          * with id `123` send a request like this:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true
-         * ....
+         * ```
          *
          * @author Ondra Machacek <omachace@redhat.com>
          * @date 02 Feb 2017
@@ -72,17 +72,15 @@ public interface SnapshotService {
      * For example, to restore the snapshot with identifier `456` of virtual machine with identifier `123` send a
      * request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/snapshots/456/restore
-     * ----
+     * ```
      *
      * With an empty `action` in the body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      * NOTE: Confirm that the commit operation is finished and the virtual machine is down before running the virtual machine.
      *
      * @author Daniel Erez <derez@redhat.com>
@@ -105,15 +103,13 @@ public interface SnapshotService {
          * For example, to restore a snapshot with an identifier `456` of a virtual machine with identifier `123`, including
          * a disk with identifier `111` and `image_id` of `222`, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vms/123/snapshots/456/restore
-         * ----
+         * ```
          *
          * Request body:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <disks>
          *     <disk id="111">
@@ -121,7 +117,7 @@ public interface SnapshotService {
          *     </disk>
          *   </disks>
          * </action>
-         * ----
+         * ```
          *
          * @author Shani Leviim <sleviim@redhat.com>
          * @author Byron Gravenorst <bgraveno@redhat.com>

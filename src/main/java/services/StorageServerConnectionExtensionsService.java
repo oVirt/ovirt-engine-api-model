@@ -42,21 +42,19 @@ public interface StorageServerConnectionExtensionsService {
      * `myuser` and `mypassword` as the credentials when connecting to the iSCSI target from host `123` send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/storageconnectionextensions
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_connection_extension>
      *   <target>iqn.2016-01.com.example:mytarget</target>
      *   <username>myuser</username>
      *   <password>mypassword</password>
      * </storage_connection_extension>
-     * ----
+     * ```
      *
      * @author Tal Nisan <tnisan@redhat.com>
      * @date 20 Sep 2016

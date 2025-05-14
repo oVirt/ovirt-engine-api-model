@@ -43,14 +43,13 @@ public interface DomainsService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/domains
-     * ....
+     * ```
      *
      * Will return the list of domains:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <domains>
      *   <domain href="/ovirt-engine/api/domains/5678" id="5678">
      *     <name>internal-authz</name>
@@ -60,7 +59,7 @@ public interface DomainsService {
      *     <link href="/ovirt-engine/api/domains/5678/groups?search={query}" rel="groups/search"/>
      *   </domain>
      * </domains>
-     * ----
+     * ```
      *
      * The order of the returned list of domains isn't guaranteed.
      *

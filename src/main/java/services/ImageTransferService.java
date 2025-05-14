@@ -30,8 +30,8 @@ import annotations.Area;
 
 /**
  * This service provides a mechanism to control an image transfer. The client will have
- * to create a transfer by using xref:services-image_transfers-methods-add[add]
- * of the xref:services-image_transfers[image transfers] service, stating the image to transfer
+ * to create a transfer by using xref:services/image_transfers/methods/add[add]
+ * of the xref:services/image_transfers[image transfers] service, stating the image to transfer
  * data to/from.
  *
  * After doing that, the transfer is managed by this service.
@@ -40,8 +40,7 @@ import annotations.Area;
  *
  * Uploading a `disk` with id `123` (on a random host in the data center):
  *
- * [source,python]
- * ----
+ * ```python
  * transfers_service = system_service.image_transfers_service()
  * transfer = transfers_service.add(
  *    types.ImageTransfer(
@@ -50,12 +49,11 @@ import annotations.Area;
  *       )
  *    )
  * )
- * ----
+ * ```
  *
  * Uploading a `disk` with id `123` on `host` id `456`:
  *
- * [source,python]
- * ----
+ * ```python
  * transfers_service = system_service.image_transfers_service()
  * transfer = transfers_service.add(
  *    types.ImageTransfer(
@@ -67,16 +65,15 @@ import annotations.Area;
  *      )
  *    )
  * )
- * ----
+ * ```
  *
  * If the user wishes to download a disk rather than upload, he/she should specify
- * `download` as the xref:types-image_transfer_direction[direction] attribute of the transfer.
+ * `download` as the xref:types/image_transfer_direction[direction] attribute of the transfer.
  * This will grant a read permission from the image, instead of a write permission.
  *
  * E.g:
  *
- * [source,python]
- * ----
+ * ```python
  * transfers_service = system_service.image_transfers_service()
  * transfer = transfers_service.add(
  *    types.ImageTransfer(
@@ -86,39 +83,38 @@ import annotations.Area;
  *       direction=types.ImageTransferDirection.DOWNLOAD
  *    )
  * )
- * ----
+ * ```
  *
  * Transfers have phases, which govern the flow of the upload/download.
  * A client implementing such a flow should poll/check the transfer's phase and
  * act accordingly. All the possible phases can be found in
- * xref:types-image_transfer_phase[ImageTransferPhase].
+ * xref:types/image_transfer_phase[ImageTransferPhase].
  *
- * After adding a new transfer, its phase will be xref:types-image_transfer_phase[initializing].
+ * After adding a new transfer, its phase will be xref:types/image_transfer_phase[initializing].
  * The client will have to poll on the transfer's phase until it changes.
- * When the phase becomes xref:types-image_transfer_phase[transferring],
+ * When the phase becomes xref:types/image_transfer_phase[transferring],
  * the session is ready to start the transfer.
  *
  * For example:
  *
- * [source,python]
- * ----
+ * ```python
  * transfer_service = transfers_service.image_transfer_service(transfer.id)
  * while transfer.phase == types.ImageTransferPhase.INITIALIZING:
  *    time.sleep(3)
  *    transfer = transfer_service.get()
- * ----
+ * ```
  *
- * At that stage, if the phase of the transfer is xref:types-image_transfer_phase[paused_system], the session was
+ * At that stage, if the phase of the transfer is xref:types/image_transfer_phase[paused_system], the session was
  * not successfully established. This can happen if ovirt-imageio is not running in the selected host.
  * @author Donna DaCosta <ddacosta@redhat.com>
  * @date 29 July 2022
  * @status updated_by_docs
  * @since 4.5.1
- * The transfer can be resumed by calling xref:services-image_transfer-methods-resume[resume]
+ * The transfer can be resumed by calling xref:services/image_transfer/methods/resume[resume]
  * of the service that manages it.
  *
  * If the session was successfully established - the returned transfer entity will
- * contain the xref:types-image_transfer[transfer_url] and xref:types-image_transfer[proxy_url] attributes,
+ * contain the xref:types/image_transfer[transfer_url] and xref:types/image_transfer[proxy_url] attributes,
  * which the client needs to use in order to transfer the required data. The client can choose whatever
  * technique and tool for sending the HTTPS request with the image's data.
  *
@@ -128,8 +124,7 @@ import annotations.Area;
  *
  * To transfer the image, it is recommended to use the imageio client python library.
  *
- * [source,python]
- * ----
+ * ```python
  * from ovirt_imageio import client
  *
  * # Upload qcow2 image to virtual disk:
@@ -137,7 +132,7 @@ import annotations.Area;
  *
  * # Download virtual disk to qcow2 image:
  * client.download(transfer.transfer_url, "disk.qcow2")
- * ----
+ * ```
  *
  * You can also upload and download using imageio REST API. For more info
  * on this, see imageio API documentation:
@@ -145,20 +140,19 @@ import annotations.Area;
  *     http://ovirt.github.io/ovirt-imageio/images.html
  *
  * When finishing the transfer, the user should call
- * xref:services-image_transfer-methods-finalize[finalize]. This will make the
+ * xref:services/image_transfer/methods/finalize[finalize]. This will make the
  * final adjustments and verifications for finishing the transfer process.
  *
  * For example:
  *
- * [source,python]
- * ----
+ * ```python
  * transfer_service.finalize()
- * ----
+ * ```
  *
  * In case of an error, the transfer's phase will be changed to
- * xref:types-image_transfer_phase[finished_failure], and
+ * xref:types/image_transfer_phase[finished_failure], and
  * the disk's status will be changed to `Illegal`. Otherwise it will be changed to
- * xref:types-image_transfer_phase[finished_success], and the disk will be ready
+ * xref:types/image_transfer_phase[finished_success], and the disk will be ready
  * to be used. In both cases, the transfer entity will be removed shortly after.
  *
  *
@@ -168,15 +162,13 @@ import annotations.Area;
  * * Specify 'initial_size' and 'provisioned_size' in bytes.
  * * 'initial_size' must be bigger or the same as the size of the uploaded data.
  *
- * [source]
- * ----
+ * ```http
  * POST /ovirt-engine/api/disks
- * ----
+ * ```
  *
  * With a request body as follows:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <disk>
  *   <storage_domains>
  *     <storage_domain id="123"/>
@@ -186,31 +178,28 @@ import annotations.Area;
  *   <provisioned_size>1073741824</provisioned_size>
  *   <format>raw</format>
  * </disk>
- * ----
+ * ```
  *
  *
  * - Create a new image transfer for downloading/uploading a `disk` with id `456`:
  *
  *
- * [source]
- * ----
+ * ```http
  * POST /ovirt-engine/api/imagetransfers
- * ----
+ * ```
  *
  * With a request body as follows:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <image_transfer>
  *   <disk id="456"/>
  *   <direction>upload|download</direction>
  * </image_transfer>
- * ----
+ * ```
  *
  * Will respond:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <image_transfer id="123">
  *   <direction>download|upload</direction>
  *   <phase>initializing|transferring</phase>
@@ -218,7 +207,7 @@ import annotations.Area;
  *   <transfer_url>https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb</transfer_url>
  *   ...
  * </image_transfer>
- * ----
+ * ```
  *
  * Note: If the phase is 'initializing', poll the `image_transfer` till its phase changes to 'transferring'.
  *
@@ -233,31 +222,27 @@ import annotations.Area;
  * @since 4.5.1
  * -- Download:
  *
- * [source,shell]
- * ----
+ * ```shell
  * $ curl --cacert /etc/pki/ovirt-engine/ca.pem https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb -o <output_file>
- * ----
+ * ```
  *
  * -- Upload:
  *
- * [source,shell]
- * ----
+ * ```shell
  * $ curl --cacert /etc/pki/ovirt-engine/ca.pem --upload-file <file_to_upload> -X PUT https://daemon_fqdn:54322/images/41c732d4-2210-4e7b-9e5c-4e2805baadbb
- * ----
+ * ```
  *
  * - Finalize the image transfer by invoking the action:
  *
- * [source]
- * ----
+ * ```http
  * POST /ovirt-engine/api/imagetransfers/123/finalize
- * ----
+ * ```
  *
  * With a request body as follows:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <action />
- * ----
+ * ```
  *
  *
  * @author Amit Aviram <aaviram@redhat.com>
@@ -306,8 +291,7 @@ public interface ImageTransferService {
      * Resume the image transfer session. The client will need to poll the transfer's phase until
      * it is different than `resuming`. For example:
      *
-     * [source,python]
-     * ----
+     * ```python
      * transfer_service = transfers_service.image_transfer_service(transfer.id)
      * transfer_service.resume()
      * transfer = transfer_service.get()
@@ -315,7 +299,7 @@ public interface ImageTransferService {
      * while transfer.phase == types.ImageTransferPhase.RESUMING:
      *    time.sleep(1)
      *    transfer = transfer_service.get()
-     * ----
+     * ```
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @date 30 Aug 2016

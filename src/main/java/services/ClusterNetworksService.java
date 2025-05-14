@@ -44,17 +44,15 @@ public interface ClusterNetworksService {
      *
      * Post a request like in the example below to assign the network to a cluster:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/123/networks
-     * ----
+     * ```
      *
      * Use the following example in its body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network id="123" />
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>

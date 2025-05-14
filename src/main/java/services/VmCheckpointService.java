@@ -52,15 +52,14 @@ public interface VmCheckpointService {
         /**
          * The information about the virtual machine checkpoint entity.
          *
-         * [source,xml]
-         * ----
+         * ```xml
          *<checkpoint id="checkpoint-uuid">
          *  <link href="/ovirt-engine/api/vms/vm-uuid/checkpoints/checkpoint-uuid/disks" rel="disks"/>
          *  <parent_id>parent-checkpoint-uuid</parent_id>
          *  <creation_date>xxx</creation_date>
          *  <vm href="/ovirt-engine/api/vms/vm-uuid" id="vm-uuid"/>
          *</checkpoint>
-         * ----
+         * ```
          *
          * @author Eyal Shenitzky <eshenitz@redhat.com>
          * @date 3 Jun 2020

@@ -58,14 +58,13 @@ public interface LinkLayerDiscoveryProtocolService {
          * For example, to retrieve the information elements received on the NIC `321` on host `123`,
          * send a request like this:
          *
-         * ....
+         * ```http
          * GET ovirt-engine/api/hosts/123/nics/321/linklayerdiscoveryprotocolelements
-         * ....
+         * ```
          *
          * It will return a response like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <link_layer_discovery_protocol_elements>
          *     ...
          *   <link_layer_discovery_protocol_element>
@@ -80,7 +79,7 @@ public interface LinkLayerDiscoveryProtocolService {
          *   </link_layer_discovery_protocol_element>
          *   ...
          * <link_layer_discovery_protocol_elements>
-         * ----
+         * ```
          * @author Dominik Holler <dholler@redhat.com>
          * @author Tahlia Richardson <trichard@redhat.com>
          * @date 14 Jul 2017

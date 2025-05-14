@@ -68,20 +68,18 @@ public interface NicNetworkFilterParameterService {
      * For example, to update the network filter parameter having with with id `123` on NIC `456` of
      * virtual machine `789` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network_filter_parameter>
      *   <name>updatedName</name>
      *   <value>updatedValue</value>
      * </network_filter_parameter>
-     * ----
+     * ```
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 13 Dec 2016
@@ -109,10 +107,9 @@ public interface NicNetworkFilterParameterService {
      * For example, to remove the filter parameter with id `123` on NIC `456` of virtual machine `789`
      * send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123
-     * ----
+     * ```
      *
      * @author Dominik Holler <dholler@redhat.com>
      * @date 13 Dec 2016

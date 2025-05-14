@@ -48,7 +48,7 @@ public interface StorageDomainsService {
     /**
      * Adds a new storage domain.
      *
-     * Creation of a new xref:types-storage_domain[StorageDomain] requires the `name`, `type`, `host`, and `storage`
+     * Creation of a new xref:types/storage_domain[StorageDomain] requires the `name`, `type`, `host`, and `storage`
      * attributes. Identify the `host` attribute with the `id` or `name` attributes. In {product-name} 3.6 and
      * later you can enable the wipe after delete option by default on the storage domain. To configure this, specify
      * `wipe_after_delete` in the POST request. This option can be edited after the domain is created, but doing so will
@@ -57,15 +57,13 @@ public interface StorageDomainsService {
      * To add a new storage domain with specified `name`, `type`, `storage.type`, `storage.address`, and `storage.path`,
      * and using a host with an id `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storageDomains
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_domain>
      *   <name>mydata</name>
      *   <type>data</type>
@@ -78,12 +76,11 @@ public interface StorageDomainsService {
      *     <name>myhost</name>
      *   </host>
      * </storage_domain>
-     * ----
+     * ```
      *
      * To create a new NFS ISO storage domain send a request like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_domain>
      *   <name>myisos</name>
      *   <type>iso</type>
@@ -96,12 +93,11 @@ public interface StorageDomainsService {
      *     <name>myhost</name>
      *   </host>
      * </storage_domain>
-     * ----
+     * ```
      *
      * To create a new iSCSI storage domain send a request like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_domain>
      *   <name>myiscsi</name>
      *   <type>data</type>
@@ -116,7 +112,7 @@ public interface StorageDomainsService {
      *     <name>myhost</name>
      *   </host>
      * </storage_domain>
-     * ----
+     * ```
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Tal Nisan <tnisan@redhat.com>

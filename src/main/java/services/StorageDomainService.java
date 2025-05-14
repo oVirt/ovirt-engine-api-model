@@ -112,7 +112,7 @@ public interface StorageDomainService {
     /**
      * Updates a storage domain.
      *
-     * Not all of the xref:types-storage_domain[StorageDomain]'s attributes are updatable after creation. Those that can be
+     * Not all of the xref:types/storage_domain[StorageDomain]'s attributes are updatable after creation. Those that can be
      * updated are: `name`, `description`, `comment`, `warning_low_space_indicator`, `critical_space_action_blocker` and
      * `wipe_after_delete.` (Note that changing the `wipe_after_delete` attribute will not change the wipe after delete
      * property of disks that already exist).
@@ -120,20 +120,18 @@ public interface StorageDomainService {
      * To update the `name` and `wipe_after_delete` attributes of a storage domain with an identifier `123`, send a
      * request as follows:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/storageDomains/123
-     * ----
+     * ```
      *
      * With a request body as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_domain>
      *   <name>data2</name>
      *   <wipe_after_delete>true</wipe_after_delete>
      * </storage_domain>
-     * ----
+     * ```
      *
      * @author Idan Shaby <ishaby@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -226,22 +224,20 @@ public interface StorageDomainService {
      *
      * For example, in order to refresh the size of two LUNs send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storageDomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      *  <action>
      *    <logical_units>
      *      <logical_unit id="1IET_00010001"/>
      *      <logical_unit id="1IET_00010002"/>
      *    </logical_units>
      *  </action>
-     * ----
+     * ```
      *
      * @author Fred Rolland <frolland@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -281,25 +277,23 @@ public interface StorageDomainService {
      *
      * For example, in order to reduce two logical units from a storage domain send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storageDomains/123/reduceluns
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      *  <action>
      *    <logical_units>
      *      <logical_unit id="1IET_00010001"/>
      *      <logical_unit id="1IET_00010002"/>
      *    </logical_units>
      *  </action>
-     * ----
+     * ```
      *
      *  Note that this operation is only applicable to block storage domains (i.e., storage domains with the
-     *  xref:types-storage_type[storage type] of iSCSI or FCP).
+     *  xref:types/storage_type[storage type] of iSCSI or FCP).
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -347,10 +341,10 @@ public interface StorageDomainService {
          * The value should contain the name or the identifier of the host. For example, to use the host named `myhost`
          * to remove the storage domain with identifier `123` send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * DELETE /ovirt-engine/api/storageDomains/123?host=myhost
-         * ----
+         * ```
+         *
          * @author Maor Lipchuk <mlipchuk@redhat.com>
          * @author Megan Lewis <melewis@redhat.com>
          * @date 13 Sep 2017
@@ -362,10 +356,9 @@ public interface StorageDomainService {
          * Indicates if the actual storage should be formatted, removing all the metadata from the underlying LUN or
          * directory:
          *
-         * [source]
-         * ----
+         * ```http
          * DELETE /ovirt-engine/api/storageDomains/123?format=true
-         * ----
+         * ```
          *
          * This parameter is optional, and the default value is `false`.
          *
@@ -380,10 +373,9 @@ public interface StorageDomainService {
          * Indicates if the operation should succeed, and the storage domain removed from the database, even if the
          * storage is not accessible.
          *
-         * [source]
-         * ----
+         * ```http
          * DELETE /ovirt-engine/api/storageDomains/123?destroy=true
-         * ----
+         * ```
          *
          * This parameter is optional, and the default value is `false`.
          * When the value of `destroy` is `true` the `host` parameter will be ignored.

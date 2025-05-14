@@ -29,8 +29,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * Example of an XML representation of a MAC address pool:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <mac_pool href="/ovirt-engine/api/macpools/123" id="123">
  *   <name>Default</name>
  *   <description>Default MAC pool</description>
@@ -43,7 +42,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </range>
  *   </ranges>
  * </mac_pool>
- * ----
+ * ```
  *
  * @author Marcin Mirecki <mmirecki@redhat.com>
  * @author Byron Gravenorst <bgraveno@redhat.com>

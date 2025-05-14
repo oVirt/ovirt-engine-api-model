@@ -27,16 +27,16 @@ import org.ovirt.api.metamodel.annotations.Type;
 /**
  * This type represents the attributes to define Quality of service (QoS).
  *
- * For storage the `type` is xref:types-qos_type[storage], the attributes `max_throughput`, `max_read_throughput`,
+ * For storage the `type` is xref:types/qos_type[storage], the attributes `max_throughput`, `max_read_throughput`,
  * `max_write_throughput`, `max_iops`, `max_read_iops` and `max_write_iops` are relevant.
  *
- * For resources with computing capabilities the `type` is xref:types-qos_type[cpu], the attribute `cpu_limit` is
+ * For resources with computing capabilities the `type` is xref:types/qos_type[cpu], the attribute `cpu_limit` is
  * relevant.
  *
- * For virtual machines networks the `type` is xref:types-qos_type[network], the attributes `inbound_average`,
+ * For virtual machines networks the `type` is xref:types/qos_type[network], the attributes `inbound_average`,
  * `inbound_peak`, `inbound_burst`, `outbound_average`, `outbound_peak` and `outbound_burst` are relevant.
  *
- * For host networks the `type` is xref:types-qos_type[hostnetwork], the attributes `outbound_average_linkshare`,
+ * For host networks the `type` is xref:types/qos_type[hostnetwork], the attributes `outbound_average_linkshare`,
  * `outbound_average_upperlimit` and `outbound_average_realtime` are relevant.
  *
  * @author Dominik Holler <dholler@redhat.com>

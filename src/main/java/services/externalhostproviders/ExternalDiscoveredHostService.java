@@ -45,14 +45,13 @@ public interface ExternalDiscoveredHostService {
      *
      * For example, to get the details of host `234` from provider `123`, send a request like this:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/externalhostproviders/123/discoveredhosts/234
-     * ....
+     * ```
      *
      * The result will be like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <external_discovered_host href="/ovirt-engine/api/externalhostproviders/123/discoveredhosts/234" id="234">
      *  <name>mac001a4ad04040</name>
      *  <ip>10.34.67.43</ip>
@@ -61,7 +60,7 @@ public interface ExternalDiscoveredHostService {
      *  <subnet_name>sat0</subnet_name>
      *  <external_host_provider href="/ovirt-engine/api/externalhostproviders/123" id="123"/>
      * </external_discovered_host>
-     * ----
+     * ```
      *
      * @author Yaniv Bronhaim <ybronhei@redhat.com>
      * @date 24 Apr 2017

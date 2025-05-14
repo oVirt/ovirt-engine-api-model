@@ -30,9 +30,9 @@ public interface Initialization {
     /**
      * Deprecated attribute to specify _cloud-init_ configuration.
      *
-     * This attribute and the xref:types-cloud_init[CloudInit] type have been deprecated and will be
+     * This attribute and the xref:types/cloud_init[CloudInit] type have been deprecated and will be
      * removed in the future.  To specify the _cloud-init_ configuration, use the attributes inside
-     * the xref:types-initialization[Initialization] type. The mapping between the attributes
+     * the xref:types/initialization[Initialization] type. The mapping between the attributes
      * of these two types are as follows:
      *
      * |===
@@ -87,7 +87,7 @@ public interface Initialization {
      * Attribute specifying the cloud-init protocol to
      * use for formatting the cloud-init network parameters.
      * If omitted, a default value is used, as described in
-     * the xref:types-cloud_init_network_protocol[CloudInitNetworkProtocol]
+     * the xref:types/cloud_init_network_protocol[CloudInitNetworkProtocol]
      *
      *
      * @author Eitan Raviv <eraviv@redhat.com>

@@ -41,13 +41,11 @@ public interface QuotaService {
      *
      * An example of retrieving a quota:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenters/123/quotas/456
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <quota id="456">
      *   <name>myquota</name>
      *   <description>My new quota for virtual machines</description>
@@ -56,7 +54,7 @@ public interface QuotaService {
      *   <storage_hard_limit_pct>20</storage_hard_limit_pct>
      *   <storage_soft_limit_pct>80</storage_soft_limit_pct>
      * </quota>
-     * ----
+     * ```
      *
      * @author Roman Mohr <rmohr@redhat.com>
      * @date 14 Sep 2016
@@ -71,20 +69,18 @@ public interface QuotaService {
      *
      * An example of updating a quota:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/datacenters/123/quotas/456
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <quota>
      *   <cluster_hard_limit_pct>30</cluster_hard_limit_pct>
      *   <cluster_soft_limit_pct>70</cluster_soft_limit_pct>
      *   <storage_hard_limit_pct>20</storage_hard_limit_pct>
      *   <storage_soft_limit_pct>80</storage_soft_limit_pct>
      * </quota>
-     * ----
+     * ```
      *
      * @author Roman Mohr <rmohr@redhat.com>
      * @date 14 Sep 2016
@@ -114,13 +110,12 @@ public interface QuotaService {
      *
      * An example of deleting a quota:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/datacenters/123-456/quotas/654-321
      * -0472718ab224 HTTP/1.1
      * Accept: application/xml
      * Content-type: application/xml
-     * ----
+     * ```
      *
      * @author Roman Mohr <rmohr@redhat.com>
      * @date 14 Sep 2016

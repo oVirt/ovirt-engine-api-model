@@ -48,19 +48,17 @@ public interface SnapshotsService {
      *
      * For example, to create a new snapshot for virtual machine `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/snapshots
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <snapshot>
      *   <description>My snapshot</description>
      * </snapshot>
-     * ----
+     * ```
      *
      * For including only a sub-set of disks in the snapshots, add `disk_attachments` element to the
      * request body. Note that disks which are not specified in `disk_attachments` element will not be a
@@ -73,8 +71,7 @@ public interface SnapshotsService {
      * a disk with snapshots, the relevant `image_id` should be specified for each snapshot
      * (so the identifiers of the disk snapshots are identical to the backup).
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <snapshot>
      *   <description>My snapshot</description>
      *   <disk_attachments>
@@ -85,23 +82,22 @@ public interface SnapshotsService {
      *     </disk_attachment>
      *   </disk_attachments>
      * </snapshot>
-     * ----
+     * ```
      *
      * [IMPORTANT]
      * ====
      * When a snapshot is created, the default value for the
-     * xref:types-snapshot-attributes-persist_memorystate[persist_memorystate] attribute is `true`. That means that the content of the memory of the virtual
+     * xref:types/snapshot/attributes/persist_memorystate[persist_memorystate] attribute is `true`. That means that the content of the memory of the virtual
      * machine will be included in the snapshot, and it also means that the virtual machine will be paused
      * for a longer time. That can negatively affect applications that are very sensitive to timing (NTP
      * servers, for example). In those cases make sure that you set the attribute to `false`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <snapshot>
      *   <description>My snapshot</description>
      *   <persist_memorystate>false</persist_memorystate>
      * </snapshot>
-     * ----
+     * ```
      * ====
      *
      * @author Daniel Erez <derez@redhat.com>
@@ -144,9 +140,9 @@ public interface SnapshotsService {
          * For example, to retrieve the complete representation of the virtual machine with id `123` snapshots send a
          * request like this:
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/vms/123/snapshots?all_content=true
-         * ....
+         * ```
          *
          * @author Ondra Machacek <omachace@redhat.com>
          * @date 02 Feb 2017

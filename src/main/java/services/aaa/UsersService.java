@@ -50,22 +50,20 @@ public interface UsersService {
      * For example, to add the `myuser` user from the `myextension-authz` authorization provider send a request
      * like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/users
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <user>
      *   <user_name>myuser@myextension-authz</user_name>
      *   <domain>
      *     <name>myextension-authz</name>
      *   </domain>
      * </user>
-     * ----
+     * ```
      *
      * In case you are working with Active Directory you have to pass user principal name (UPN) as `username`, followed
      * by authorization provider name. Due to link:https://bugzilla.redhat.com/1147900[bug 1147900] you need to provide
@@ -74,8 +72,7 @@ public interface UsersService {
      * For example, to add the user with UPN `myuser@mysubdomain.mydomain.com` from the `myextension-authz`
      * authorization provider send a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <user>
      *   <principal>myuser@mysubdomain.mydomain.com</principal>
      *   <user_name>myuser@mysubdomain.mydomain.com@myextension-authz</user_name>
@@ -83,7 +80,7 @@ public interface UsersService {
      *     <name>myextension-authz</name>
      *   </domain>
      * </user>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 14 Sep 2016
@@ -105,14 +102,13 @@ public interface UsersService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/users
-     * ....
+     * ```
      *
      * Will return the list of users:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <users>
      *   <user href="/ovirt-engine/api/users/1234" id="1234">
      *     <name>admin</name>
@@ -129,7 +125,7 @@ public interface UsersService {
      *     </domain>
      *   </user>
      * </users>
-     * ----
+     * ```
      *
      * The order of the returned list of users isn't guaranteed.
      *

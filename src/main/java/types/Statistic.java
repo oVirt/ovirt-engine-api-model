@@ -42,8 +42,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * An example of a XML representation:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <statistics>
  *   <statistic id="1234" href="/ovirt-engine/api/hosts/1234/nics/1234/statistics/1234">
  *     <name>data.current.rx</name>
@@ -59,7 +58,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   </statistic>
  *   ...
  * </statistics>
- * ----
+ * ```
  *
  * NOTE: This statistics sub-collection is read-only.
  *

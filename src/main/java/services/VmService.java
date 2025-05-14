@@ -47,18 +47,18 @@ public interface VmService extends MeasurableService {
     /**
      * This operation stops any migration of a virtual machine to another physical host.
      *
-     * [source]
-     * ----
+     *
+     * ```http
      * POST /ovirt-engine/api/vms/123/cancelmigration
-     * ----
+     * ```
      *
      * The cancel migration action does not take any action specific parameters;
      * therefore, the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * 
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -79,7 +79,7 @@ public interface VmService extends MeasurableService {
     /**
      * Permanently restores the virtual machine to the state of the previewed snapshot.
      *
-     * See the xref:services-vm-methods-preview_snapshot[preview_snapshot] operation for details.
+     * See the xref:services/vm/methods/preview_snapshot[preview_snapshot] operation for details.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -141,18 +141,16 @@ public interface VmService extends MeasurableService {
     /**
      * Detaches a virtual machine from a pool.
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/detach
-     * ----
+     * ```
      *
      * The detach action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -176,15 +174,13 @@ public interface VmService extends MeasurableService {
      * A virtual machine can be exported to an export domain.
      * For example, to export virtual machine `123` to the export domain `myexport`:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/export
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain>
      *     <name>myexport</name>
@@ -192,20 +188,18 @@ public interface VmService extends MeasurableService {
      *   <exclusive>true</exclusive>
      *   <discard_snapshots>true</discard_snapshots>
      * </action>
-     * ----
+     * ```
      *
      * Since version 4.2 of the engine it is also possible to export a virtual machine as a virtual appliance (OVA).
      * For example, to export virtual machine `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/export
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <host>
      *     <name>myhost</name>
@@ -213,7 +207,7 @@ public interface VmService extends MeasurableService {
      *   <directory>/home/ovirt</directory>
      *   <filename>myvm.ova</filename>
      * </action>
-     * ----
+     * ```
      *
      *NOTE: Confirm that the export operation has completed before attempting any actions on the export domain.
      *
@@ -342,15 +336,13 @@ public interface VmService extends MeasurableService {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/freezefilesystems
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -396,17 +388,15 @@ public interface VmService extends MeasurableService {
          * If the parameter is included in the request, but without a value, it is assumed that the value is `true`. The
          * the following request:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /vms/{vm:id};next_run
-         * ----
+         * ```
          *
          * Is equivalent to using the value `true`:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /vms/{vm:id};next_run=true
-         * ----
+         * ```
          *
          * @author Megan Lewis <melewis@redhat.com>
          * @date 28 Mar 2017
@@ -427,9 +417,9 @@ public interface VmService extends MeasurableService {
          *
          * For example, to retrieve the complete representation of the virtual machine '123':
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/vms/123?all_content=true
-         * ....
+         * ```
          *
          * NOTE: These attributes are not included by default as they reduce performance. These attributes are seldom used
          * and require additional queries to the database. Only use this parameter when required as it will reduce performance.
@@ -457,10 +447,9 @@ public interface VmService extends MeasurableService {
          * The OVF will be presented in `initialization.configuration.data`.
          *
          * For example:
-         * [source]
-         * ----
+         * ```http
          * GET /vms/{vm:id}?all_content=true&ovf_as_ova=true
-         * ----
+         * ```
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>
          * @date 08 Sep 2020
@@ -481,17 +470,15 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/logon
-     * ----
+     * ```
      *
      * Request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Vinzenz Feenstra <vfeenstr@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -516,17 +503,15 @@ public interface VmService extends MeasurableService {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/maintenance
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <maintenance_enabled>true<maintenance_enabled/>
      * </action>
-     * ----
+     * ```
      *
      * @author Andrej Krejcir <akrejcir@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -565,19 +550,17 @@ public interface VmService extends MeasurableService {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/migrate
-     * ----
+     * ```
      *
      * To specify a specific host to migrate the virtual machine to:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <host id="2ab5e1da-b726-4274-bbf7-0a42b16a0fc3"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -656,8 +639,8 @@ public interface VmService extends MeasurableService {
      *
      * The snapshot is indicated with the `snapshot.id` parameter. It is restored temporarily, so that the content can
      * be inspected. Once that inspection is finished, the state of the virtual machine can be made permanent, using the
-     * xref:services-vm-methods-commit_snapshot[commit_snapshot] method, or discarded using the
-     * xref:services-vm-methods-undo_snapshot[undo_snapshot] method.
+     * xref:services/vm/methods/commit_snapshot[commit_snapshot] method, or discarded using the
+     * xref:services/vm/methods/undo_snapshot[undo_snapshot] method.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -673,15 +656,13 @@ public interface VmService extends MeasurableService {
          * For example, to preview a snapshot with identifier `456` which includes a disk with identifier `111` and its
          * `image_id` as `222`, send a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vms/123/previewsnapshot
-         * ----
+         * ```
          *
          * Request body:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <disks>
          *     <disk id="111">
@@ -690,7 +671,7 @@ public interface VmService extends MeasurableService {
          *   </disks>
          *   <snapshot id="456"/>
          * </action>
-         * ----
+         * ```
          *
          * @author Shani Leviim <sleviim@redhat.com>
          * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -743,22 +724,20 @@ public interface VmService extends MeasurableService {
      * Apply an automatic CPU and NUMA configuration on the VM.
      *
      * IMPORTANT: Since version 4.5 of the engine this operation is deprecated, and preserved only for backwards
-     * compatibility. It will be removed in the future. Instead please use PUT followed by xref:services-vm-methods-update[update operation].
+     * compatibility. It will be removed in the future. Instead please use PUT followed by xref:services/vm/methods/update[update operation].
      *
      * An example for a request:
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/autopincpuandnumanodes
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <optimize_cpu_settings>true</optimize_cpu_settings>
      * </action>
-     * ----
+     * ```
      *
      * @author Liran Rotenberg <lrotenbe@redhat.com>
      * @date 20 Jan 2021
@@ -908,34 +887,31 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/reboot
-     * ----
+     * ```
      *
      * The reboot action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * To reboot the VM even if a backup is running for it,
      * the action should include the 'force' element.
      *
      * For example, to force reboot virtual machine `123`:
      *
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/reboot
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *     <force>true</force>
      * </action>
-     * ----
+     * ```
      *
      * @author Martin Betak <mbetak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -974,10 +950,9 @@ public interface VmService extends MeasurableService {
      *
      * For example, to remove the virtual machine with identifier `123`:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/vms/123
-     * ----
+     * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1023,18 +998,16 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/reset
-     * ----
+     * ```
      *
      * The reset action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Jean-Louis Dupond <jean-louis@dupond.be>
      * @date 1 Mar 2021
@@ -1059,34 +1032,31 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/shutdown
-     * ----
+     * ```
      *
      * The shutdown action does not take any action specific parameters;
      * therefore, the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * To shutdown the VM even if a backup is running for it,
      * the action should include the 'force' element.
      *
      * For example, to force shutdown virtual machine `123`:
      *
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/shutdown
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *     <force>true</force>
      * </action>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1139,17 +1109,15 @@ public interface VmService extends MeasurableService {
      *
      * This example starts the virtual machine:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/start
-     * ----
+     * ```
      *
      * With a request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Tomas Jelinek <tjelinek@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1174,8 +1142,7 @@ public interface VmService extends MeasurableService {
          *
          * For example:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <action>
          *   <vm>
          *     <os>
@@ -1187,7 +1154,7 @@ public interface VmService extends MeasurableService {
          *     </os>
          *   </vm>
          * </action>
-         * ----
+         * ```
          *
          * This will set the boot device to the CDROM only for this specific start. After the virtual machine is
          * powered off, this definition will be reverted.
@@ -1356,34 +1323,31 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```xml
      * POST /ovirt-engine/api/vms/123/stop
-     * ----
+     * ```
      *
      * The stop action does not take any action specific parameters;
      * therefore, the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * To stop the VM even if a backup is running for it,
      * the action should include the 'force' element.
      *
      * For example, to force stop virtual machine `123`:
      *
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/stop
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *     <force>true</force>
      * </action>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1433,18 +1397,16 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/suspend
-     * ----
+     * ```
      *
      * The suspend action does not take any action specific parameters;
      * therefore, the request body should contain an empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1471,15 +1433,13 @@ public interface VmService extends MeasurableService {
      *
      * Example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /api/vms/123/thawfilesystems
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1502,24 +1462,22 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/ticket
-     * ----
+     * ```
      *
      * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
      *
      * The response specifies the actual ticket value and expiry used.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <ticket>
      *     <value>abcd12345</value>
      *     <expiry>120</expiry>
      *   </ticket>
      * </action>
-     * ----
+     * ```
      *
      * [IMPORTANT]
      * ====
@@ -1531,13 +1489,12 @@ public interface VmService extends MeasurableService {
      *
      * In order to obtain an authentication token for a specific protocol, for
      * example for VNC, use the `ticket` method of the
-     * xref:services-vm_graphics_console[service], which manages the graphics consoles of the virtual machine, by sending
+     * xref:services/vm_graphics_console[service], which manages the graphics consoles of the virtual machine, by sending
      * a request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
-     * ----
+     * ```
      * ====
      *
      * @author Martin Betak <mbetak@redhat.com>
@@ -1566,7 +1523,7 @@ public interface VmService extends MeasurableService {
     /**
      * Restores the virtual machine to the state it had before previewing the snapshot.
      *
-     * See the xref:services-vm-methods-preview_snapshot[preview_snapshot] operation for details.
+     * See the xref:services/vm/methods/preview_snapshot[preview_snapshot] operation for details.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com:
      * @author Megan Lewis <melewis@redhat.com>
@@ -1590,20 +1547,18 @@ public interface VmService extends MeasurableService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/screenshot
-     * ----
+     * ```
      *
      * The screenshot action does not take any action specific parameters; therefore, the request body should contain an
      * empty `action`:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
      *
      *
-     * ----
+     * ```
      * @author Saif Abusaleh <sabusale@redhat.com>
      * @date 25 Nov 2021
      * @status added

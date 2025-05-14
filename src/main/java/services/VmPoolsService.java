@@ -49,21 +49,19 @@ public interface VmPoolsService {
      * A new pool requires the `name`, `cluster` and `template` attributes. Identify the cluster and template with the
      * `id` or `name` nested attributes:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vmpools
-     * ----
+     * ```
      *
      * With the following body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vmpool>
      *   <name>mypool</name>
      *   <cluster id="123"/>
      *   <template id="456"/>
      * </vmpool>
-     * ----
+     * ```
      *
      * @author Shahar Havivi <shavivi@redhat.com>
      * @date 14 Sep 2016
@@ -107,22 +105,20 @@ public interface VmPoolsService {
          * For example, to create a virtual machine pool with 5 virtual machines and to seal them, send a request
          * like this:
          *
-         * [source]
-         * ----
+         * ```http
          * POST /ovirt-engine/api/vmpools?seal=true
-         * ----
+         * ```
          *
          * With the following body:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <vmpool>
          *   <name>mypool</name>
          *   <cluster id="123"/>
          *   <template id="456"/>
          *   <size>5</size>
          * </vmpool>
-         * ----
+         * ```
          *
          * @author Shmuel Leib Melamud <smelamud@redhat.com>
          * @date 1 Mar 2022
@@ -135,22 +131,20 @@ public interface VmPoolsService {
     /**
      * Get a list of available virtual machines pools.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/vmpools
-     * ----
+     * ```
      *
      * You will receive the following response:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <vm_pools>
      *   <vm_pool id="123">
      *     ...
      *   </vm_pool>
      *   ...
      * </vm_pools>
-     * ----
+     * ```
      *
      * The order of the returned list of pools is guaranteed only if the `sortby` clause is included in the
      * `search` parameter.

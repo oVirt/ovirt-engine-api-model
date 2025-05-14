@@ -28,14 +28,13 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * To get that information send a request like this:
  *
- * ....
+ * ```http
  * GET /ovirt-engine/api/vms/123
- * ....
+ * ```
  *
  * The result will be like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <vm href="/ovirt-engine/api/vms/123" id="123">
  * ...
  *   <guest_operating_system>
@@ -59,7 +58,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *     </version>
  *   </guest_operating_system>
  * </vm>
- * ----
+ * ```
  *
  * @author Lukas Svaty <lsvaty@redhat.com>
  * @date 24 Apr 2017

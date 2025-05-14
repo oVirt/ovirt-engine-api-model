@@ -33,7 +33,7 @@ import types.Group;
 
 /**
  * Manages a group of users. Use this service to either get groups details or remove groups. In order
- * to add new groups please use xref:services-groups[service] that manages the collection of groups.
+ * to add new groups please use xref:services/groups[service] that manages the collection of groups.
  *
  * @author Ondra Machacek <omachace@redhat.com>
  * @date 24 Apr 2017
@@ -48,14 +48,13 @@ public interface GroupService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/groups/123
-     * ....
+     * ```
      *
      * Will return the group information:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <group href="/ovirt-engine/api/groups/123" id="123">
      *   <name>mygroup</name>
      *   <link href="/ovirt-engine/api/groups/123/roles" rel="roles"/>
@@ -67,7 +66,7 @@ public interface GroupService {
      *     <name>myextension-authz</name>
      *   </domain>
      * </group>
-     * ----
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 24 Apr 2017
@@ -89,9 +88,9 @@ public interface GroupService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * DELETE /ovirt-engine/api/groups/123
-     * ....
+     * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
      * @date 24 Apr 2017

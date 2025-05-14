@@ -38,8 +38,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * For example, the XML representation of an information element may look like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <link_layer_discovery_protocol_element>
  *   <name>Port VLAN Id</name>
  *   <oui>32962</oui>
@@ -56,7 +55,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  *   <subtype>3</subtype>
  *   <type>127</type>
  * </link_layer_discovery_protocol_element>
- * ----
+ * ```
  *
  * @author Dominik Holler <dholler@redhat.com>
  * @author Tahlia Richardson <trichard@redhat.com>

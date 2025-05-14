@@ -53,15 +53,13 @@ public interface VmApplicationsService {
          *
          * For example, a request like this:
          *
-         * [source]
-         * ----
+         * ```http
          * GET /ovirt-engine/api/vms/123/applications/
-         * ----
+         * ```
          *
          * May return a list like this:
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <applications>
          *   <application href="/ovirt-engine/api/vms/123/applications/456" id="456">
          *     <name>kernel-3.10.0-327.36.1.el7</name>
@@ -72,7 +70,7 @@ public interface VmApplicationsService {
          *     <vm href="/ovirt-engine/api/vms/123" id="123"/>
          *   </application>
          * </applications>
-         * ----
+         * ```
          *
          * @author Milan Zamazal <mzamazal@redhat.com>
          * @date 12 Dec 2016

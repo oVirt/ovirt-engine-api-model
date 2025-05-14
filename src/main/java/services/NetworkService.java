@@ -46,15 +46,13 @@ public interface NetworkService {
      *
      * For example:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/networks/123
-     * ----
+     * ```
      *
      * Will respond:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network href="/ovirt-engine/api/networks/123" id="123">
      *   <name>ovirtmgmt</name>
      *   <description>Default Management Network</description>
@@ -68,7 +66,7 @@ public interface NetworkService {
      *   </usages>
      *   <data_center href="/ovirt-engine/api/datacenters/456" id="456"/>
      * </network>
-     * ----
+     * ```
      *
      * @author Ori Ben Sasson <obensass@redhat.com>
      * @date 14 Sep 2016
@@ -85,19 +83,17 @@ public interface NetworkService {
      *
      * For example, to update the description of the logical network `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/networks/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <description>My updated description</description>
      * </network>
-     * ----
+     * ```
      *
      *
      * The maximum transmission unit of a network is set using a PUT request to
@@ -105,19 +101,17 @@ public interface NetworkService {
      *
      * For example, to set the maximum transmission unit send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/datacenters/123/networks/456
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <network>
      *   <mtu>1500</mtu>
      * </network>
-     * ----
+     * ```
      *
      * NOTE: Updating external networks is not propagated to the provider.
      *
@@ -154,10 +148,9 @@ public interface NetworkService {
      *
      * For example, to remove the logical network `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/networks/123
-     * ----
+     * ```
      *
      * Each network is bound exactly to one data center. So if we disassociate network with data center it has the same
      * result as if we would just remove that network. However it might be more specific to say we're removing network
@@ -165,15 +158,14 @@ public interface NetworkService {
      *
      * For example, to remove the association of network `456` to data center `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/datacenters/123/networks/456
-     * ----
+     * ```
      *
      * NOTE: To remove an external logical network, the network has to be removed directly from its provider by
      * link:https://developer.openstack.org/api-ref/network[OpenStack Networking API].
      * The entity representing the external network inside {product-name} is removed automatically,
-     * if xref:types-open_stack_network_provider-attributes-auto_sync[`auto_sync`] is enabled for the provider,
+     * if xref:types/open_stack_network_provider/attributes/auto_sync[`auto_sync`] is enabled for the provider,
      * otherwise the entity has to be removed using this method.
      *
      * @author Martin Mucha <mmucha@redhat.com>

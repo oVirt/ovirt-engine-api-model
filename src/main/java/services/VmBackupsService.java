@@ -48,15 +48,13 @@ public interface VmBackupsService {
      * For example, to start a new incremental backup of a virtual machine
      * since checkpoint id `previous-checkpoint-uuid`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/backups
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <backup>
      *   <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
      *   <disks>
@@ -64,12 +62,11 @@ public interface VmBackupsService {
      *       ...
      *   </disks>
      * </backup>
-     * ----
+     * ```
      *
      * The response body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <backup id="backup-uuid">
      *     <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
      *     <to_checkpoint_id>new-checkpoint-uuid</to_checkpoint_id>
@@ -81,19 +78,17 @@ public interface VmBackupsService {
      *     <status>initializing</status>
      *     <creation_date>
      * </backup>
-     * ----
+     * ```
      *
      * To provide the ID of the created backup, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/vms/123/backups
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <backup id="backup-uuid">
      *   <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
      *   <disks>
@@ -101,7 +96,7 @@ public interface VmBackupsService {
      *       ...
      *   </disks>
      * </backup>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @author Eyal Shenitzky <eshenitz@redhat.com>
@@ -135,9 +130,9 @@ public interface VmBackupsService {
          *
          * The REST API call should look like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/api/vms/123/backups?require_consistency=true
-         * ....
+         * ```
          *
          * The default value of the requireConsistency flag is `false`.
          *
@@ -155,9 +150,9 @@ public interface VmBackupsService {
          *
          * The REST API call should look like this:
          *
-         * ....
+         * ```http
          * POST /ovirt-engine/api/vms/123/backups?use_active=false
-         * ....
+         * ```
          *
          * The default value of the useActive flag is `false`.
          *
@@ -181,8 +176,7 @@ public interface VmBackupsService {
         /**
          * The information about the virtual machine backup entities.
          *
-         * [source,xml]
-         * ----
+         * ```xml
          * <backups>
          *   <backup id="backup-uuid">
          *     <from_checkpoint_id>previous-checkpoint-uuid</from_checkpoint_id>
@@ -195,7 +189,7 @@ public interface VmBackupsService {
          *     <creation_date>
          *  </backup>
          * </backups>
-         * ----
+         * ```
          *
          * @author Daniel Erez <derez@redhat.com>
          * @date 12 Dec 2018

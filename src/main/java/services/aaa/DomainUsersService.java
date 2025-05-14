@@ -43,14 +43,13 @@ public interface DomainUsersService {
      *
      * Usage:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/domains/5678/users
-     * ....
+     * ```
      *
      * Will return the list of users in the domain:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <users>
      *   <user href="/ovirt-engine/api/domains/5678/users/1234" id="1234">
      *     <name>admin</name>
@@ -63,7 +62,7 @@ public interface DomainUsersService {
      *     <groups/>
      *   </user>
      * </users>
-     * ----
+     * ```
      *
      * The order of the returned list of users isn't guaranteed.
      *

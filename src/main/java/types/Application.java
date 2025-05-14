@@ -30,19 +30,18 @@ import org.ovirt.api.metamodel.annotations.Type;
  *
  * To get that information send a request like this:
  *
- * ....
+ * ```http
  * GET /ovirt-engine/api/vms/123/applications/456
- * ....
+ * ```
  *
  * The result will be like this:
  *
- * [source,xml]
- * ----
+ * ```xml
  * <application href="/ovirt-engine/api/vms/123/applications/456" id="456">
  *   <name>application-test-1.0.0-0.el7</name>
  *   <vm href="/ovirt-engine/api/vms/123" id="123"/>
  * </application>
- * ----
+ * ```
  *
  * @author Lukas Svaty <lsvaty@redhat.com>
  * @author Oved Ourfali <oourfali@redhat.com>

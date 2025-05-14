@@ -105,7 +105,7 @@ public interface Disk extends Device {
      * The type of interface driver used to connect the disk device to the virtual machine.
      *
      * IMPORTANT: This attribute only makes sense for disks that are actually connected to virtual machines, and in
-     * version 4 of the API it has been moved to the xref:types-disk_attachment[DiskAttachment] type. It is preserved
+     * version 4 of the API it has been moved to the xref:types/disk_attachment[DiskAttachment] type. It is preserved
      * here only for backwards compatibility, and it will be removed in the future.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -156,7 +156,7 @@ public interface Disk extends Device {
      * Indicates if the disk is marked as bootable.
      *
      * IMPORTANT: This attribute only makes sense for disks that are actually connected to virtual machines, and in
-     * version 4 of the API it has been moved to the xref:types-disk_attachment[DiskAttachment] type. It is preserved
+     * version 4 of the API it has been moved to the xref:types/disk_attachment[DiskAttachment] type. It is preserved
      * here only for backwards compatibility, and it will be removed in the future.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
@@ -248,23 +248,22 @@ public interface Disk extends Device {
     /**
      * Indicates if the disk is in read-only mode.
      *
-     * Since version 4.0 this attribute is not shown in the API and was moved to xref:types-disk_attachment[DiskAttachment].
+     * Since version 4.0 this attribute is not shown in the API and was moved to xref:types/disk_attachment[DiskAttachment].
      *
      * Since version 4.1.2 of {engine-name} this attribute is deprecated, and it will be removed in the future.
      * In order to attach a disk in read only mode use the `read_only` attribute
-     * of the xref:types-disk_attachment[DiskAttachment] type. For example:
+     * of the xref:types/disk_attachment[DiskAttachment] type. For example:
      *
-     * ....
+     * ```http
      * POST /ovirt-engine/api/vms/123/diskattachments
-     * ....
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <disk_attachment>
      *   <read_only>true</read_only>
      *   ...
      * </disk_attachment>
-     * ----
+     * ```
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -328,8 +327,7 @@ public interface Disk extends Device {
     /**
      * Statistics exposed by the disk. For example:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <statistics>
      *   <statistic href="/ovirt-engine/api/disks/123/statistics/456" id="456">
      *     <name>data.current.read</name>
@@ -346,14 +344,14 @@ public interface Disk extends Device {
      *   </statistic>
      *   ...
      * </statistics>
-     * ----
+     * ```
      *
      * These statistics are not directly included when the disk is retrieved, only a link. To obtain the statistics
      * follow the included link:
      *
-     * ....
+     * ```http
      * GET /ovirt-engine/api/disks/123/statistics
-     * ....
+     * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

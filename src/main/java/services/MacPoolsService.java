@@ -43,15 +43,13 @@ public interface MacPoolsService {
      *
      * For example, to create MAC address pool send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/macpools
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <mac_pool>
      *   <name>MACPool</name>
      *   <description>A MAC address pool</description>
@@ -64,7 +62,7 @@ public interface MacPoolsService {
      *     </range>
      *   </ranges>
      * </mac_pool>
-     * ----
+     * ```
      *
      * @author Martin Mucha <mmucha@redhat.com>
      * @date 14 Sep 2016

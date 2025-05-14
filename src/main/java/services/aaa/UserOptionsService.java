@@ -18,20 +18,19 @@ public interface UserOptionsService {
      *
      * Example request(for user with identifier `123`):
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/users/123/options
-     * ----
+     * ```
      *
      * Payload:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      *   <user_option>
      *     <name>SomeName</name>
      *     <content>["any", "JSON"]</content>
      *   </user_option>
-     * ----
+     * ```
+     *
      * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
      * @date 11 Jan 2021
      * @status added
@@ -52,15 +51,13 @@ public interface UserOptionsService {
      *
      * Example request(for user with identifier `123`):
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/users/123/options
-     * ----
+     * ```
      *
      * The result will be the following XML document:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <user_options>
      *   <user_option href="/ovirt-engine/api/users/123/options/456" id="456">
      *     <name>SomeName</name>
@@ -68,7 +65,8 @@ public interface UserOptionsService {
      *     <user href="/ovirt-engine/api/users/123" id="123"/>
      *   </user_option>
      * </user_options>
-     * ----
+     * ```
+     *
      * @author Radoslaw Szwajkowski <rszwajko@redhat.com>
      * @date 11 Jan 2021
      * @status added

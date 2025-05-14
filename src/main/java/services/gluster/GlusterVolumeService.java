@@ -51,15 +51,13 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to get details of a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/clusters/456/glustervolumes/123
-     * ----
+     * ```
      *
      * This GET request will return the following output:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <gluster_volume id="123">
      *  <name>data</name>
      *  <link href="/ovirt-engine/api/clusters/456/glustervolumes/123/glusterbricks" rel="glusterbricks"/>
@@ -87,7 +85,7 @@ public interface GlusterVolumeService extends MeasurableService {
      *  </transport_types>
      *  <volume_type>replicate</volume_type>
      *  </gluster_volume>
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -110,10 +108,9 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to get profile statistics for a gluster volume with identifier `123` in cluster `456`, send a
      * request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/getprofilestatistics
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -140,10 +137,9 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to rebalance a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/rebalance
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -187,10 +183,9 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to remove a volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/clusters/456/glustervolumes/123
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -209,10 +204,9 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to reset all options in a gluster volume with identifier `123` in cluster `456`, send a request like
      * this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetalloptions
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -231,19 +225,17 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to reset a particular option `option1` in a gluster volume with identifier `123` in cluster `456`,
      * send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetoption
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *  <option name="option1"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -278,19 +270,17 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to set `option1` with value `value1` in a gluster volume with identifier `123` in cluster `456`,
      * send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/setoption
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *  <option name="option1" value="value1"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -323,10 +313,9 @@ public interface GlusterVolumeService extends MeasurableService {
      * A Gluster Volume should be started to read/write data. For example, to start a gluster volume with identifier
      * `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/start
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -358,10 +347,9 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to start profiling a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/startprofile
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -381,10 +369,9 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to stop a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stop
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -408,10 +395,9 @@ public interface GlusterVolumeService extends MeasurableService {
      *
      * For example, to stop profiling a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stopprofile
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016
@@ -430,10 +416,9 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to stop rebalancing a gluster volume with identifier `123` in cluster `456`, send a request like
      * this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stoprebalance
-     * ----
+     * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
      * @date 12 Dec 2016

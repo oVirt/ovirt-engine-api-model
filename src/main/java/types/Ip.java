@@ -38,23 +38,21 @@ public interface Ip {
      *
      * For example, an IPv4 address will be represented as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <ip>
      *   <address>192.168.0.1</address>
      *   ...
      * </ip>
-     * ----
+     * ```
      *
      * An IPv6 address will be represented as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <ip>
      *   <address>2620:52:0:20f0:4216:7eff:feaa:1b50</address>
      *   ...
      * </ip>
-     * ----
+     * ```
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

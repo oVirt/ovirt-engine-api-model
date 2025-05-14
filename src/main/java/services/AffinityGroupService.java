@@ -46,15 +46,14 @@ public interface AffinityGroupService {
     /**
      * Retrieve the affinity group details.
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <affinity_group id="00000000-0000-0000-0000-000000000000">
      *   <name>AF_GROUP_001</name>
      *   <cluster id="00000000-0000-0000-0000-000000000000"/>
      *   <positive>true</positive>
      *   <enforcing>true</enforcing>
      * </affinity_group>
-     * ----
+     * ```
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -111,10 +110,9 @@ public interface AffinityGroupService {
     /**
      * Remove the affinity group.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/clusters/000-000/affinitygroups/123-456
-     * ----
+     * ```
      *
      * @author Martin Sivak <msivak@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>

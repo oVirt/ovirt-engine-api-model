@@ -184,23 +184,21 @@ public interface HostService extends MeasurableService {
      *
      * For example, to commit the network configuration of host with id `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/commitnetconfig
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
-     * the xref:services-host-methods-setup_networks[setupnetworks] request, in which case the new
+     * the xref:services/host/methods/setup_networks[setupnetworks] request, in which case the new
      * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
      * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
-     * waiting for a separate xref:services-host-methods-commit_net_config[commitnetconfig] request.
+     * waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig] request.
      *
      * @author Juan Hernandez <juan.hernandez@redhat.com>
      * @author Martin Mucha <mmucha@redhat.com>
@@ -280,8 +278,7 @@ public interface HostService extends MeasurableService {
      *
      * For example, to start the host. This can be done via:
      *
-     * [source]
-     * ----
+     * ```
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -302,7 +299,8 @@ public interface HostService extends MeasurableService {
      * </action>
      * ' \
      * "${url}/hosts/123/fence"
-     * ----
+     * ```
+     *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
      * @date 17 Oct 17
@@ -339,17 +337,15 @@ public interface HostService extends MeasurableService {
     /**
      * To manually set a host as the storage pool manager (SPM).
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/forceselectspm
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Liron Aravot <laravot@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -370,10 +366,9 @@ public interface HostService extends MeasurableService {
     /**
      * Gets the host details.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/hosts/123
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>
@@ -410,9 +405,9 @@ public interface HostService extends MeasurableService {
          *
          * For example, to retrieve the complete representation of host '123':
          *
-         * ....
+         * ```http
          * GET /ovirt-engine/api/hosts/123?all_content=true
-         * ....
+         * ```
          *
          * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
          * seldom used and require additional queries to the database. Use this parameter with caution and only when
@@ -436,8 +431,7 @@ public interface HostService extends MeasurableService {
      *
      * Example of installing a host, using `curl` and JSON, plain:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * curl \
      * --verbose \
      * --cacert /etc/pki/ovirt-engine/ca.pem \
@@ -452,12 +446,11 @@ public interface HostService extends MeasurableService {
      * }
      * ' \
      * "https://engine.example.com/ovirt-engine/api/hosts/123"
-     * ----
+     * ```
      *
      * Example of installing a host using `curl` and JSON with hosted engine components:
      *
-     * [source,bash]
-     * ----
+     * ```bash
      * curl \
      * curl \
      * --verbose \
@@ -474,7 +467,7 @@ public interface HostService extends MeasurableService {
      * }
      * ' \
      * "https://engine.example.com/ovirt-engine/api/hosts/123"
-     * ----
+     * ```
      *
      * IMPORTANT: Since version 4.1.2 of the engine, when a host is reinstalled we override the host firewall
      * definitions by default.
@@ -630,21 +623,19 @@ public interface HostService extends MeasurableService {
      * For example, to discover iSCSI targets available in `myiscsi.example.com`,
      * from host `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/iscsidiscover
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <iscsi>
      *     <address>myiscsi.example.com</address>
      *   </iscsi>
      * </action>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -697,26 +688,23 @@ public interface HostService extends MeasurableService {
      * For example, to discover iSCSI targets available in `myiscsi.example.com`,
      * from host `123`, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/discoveriscsi
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <iscsi>
      *     <address>myiscsi.example.com</address>
      *   </iscsi>
      * </action>
-     * ----
+     * ```
      *
      * The result will be like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <discovered_targets>
      *   <iscsi_details>
      *     <address>10.35.1.72</address>
@@ -725,7 +713,7 @@ public interface HostService extends MeasurableService {
      *     <target>iqn.2015-08.com.tgt:444</target>
      *   </iscsi_details>
      * </discovered_targets>
-     * ----
+     * ```
      *
      * IMPORTANT: When using this method to discover iscsi targets, you can use an FQDN or an
      * IP address, but you must use the iscsi details from the discovered targets results to log in
@@ -847,21 +835,19 @@ public interface HostService extends MeasurableService {
      *
      * For example, to update a the kernel command line of a host send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/hosts/123
-     * ----
+     * ```
      *
      * With request body like this:
      *
-     * [source, xml]
-     * ----
+     * ```xml
      * <host>
      *   <os>
      *     <custom_kernel_cmdline>vfio_iommu_type1.allow_unsafe_interrupts=1</custom_kernel_cmdline>
      *   </os>
      * </host>
-     * ----
+     * ```
      *
      * @author Jakub Niedermertl <jniederm@redhat.com>
      * @author Oved Ourfali <oourfali@redhat.com>
@@ -1009,7 +995,7 @@ public interface HostService extends MeasurableService {
      * Check if there are upgrades available for the host. If there are upgrades available an icon will be displayed
      * next to host status icon in the Administration Portal. Audit log messages are also added to indicate the
      * availability of upgrades. The upgrade can be started from the webadmin or by using the
-     * xref:services-host-methods-upgrade[upgrade] host action.
+     * xref:services/host/methods/upgrade[upgrade] host action.
      *
      * @author Ravi Nori <rnori@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1042,8 +1028,7 @@ public interface HostService extends MeasurableService {
     /**
      * Remove the host from the system.
      *
-     * [source]
-     * ----
+     * ```
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -1057,7 +1042,7 @@ public interface HostService extends MeasurableService {
      * --request DELETE \
      * --header "Version: 4" \
      * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc"
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @author Megan Lewis <melewis@redhat.com>
@@ -1094,8 +1079,7 @@ public interface HostService extends MeasurableService {
      * a new bond using `eth0` and `eth1`, and put a VLAN on top of it. Using a simple shell script and the `curl`
      * command line HTTP client that can be done as follows:
      *
-     * [source]
-     * ----
+     * ```
      * #!/bin/sh -ex
      *
      * url="https://engine.example.com/ovirt-engine/api"
@@ -1165,22 +1149,20 @@ public interface HostService extends MeasurableService {
      *  </action>
      * ' \
      * "${url}/hosts/1ff7a191-2f3b-4eff-812b-9f91a30c3acc/setupnetworks"
-     * ----
+     * ```
      *
      * NOTE: This is valid for version 4 of the API. In previous versions some elements were represented as XML
      * attributes instead of XML elements. In particular the `options` and `ip` elements were represented as follows:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <options name="mode" value="4"/>
      * <options name="miimon" value="100"/>
      * <ip address="192.168.122.10" netmask="255.255.255.0"/>
-     * ----
+     * ```
      *
      * The same thing can be done using the Python SDK with the following code:
      *
-     * [source,python]
-     * ----
+     * ```python
      * # Find the service that manages the collection of hosts:
      * hosts_service = connection.system_service().hosts_service()
      *
@@ -1248,16 +1230,16 @@ public interface HostService extends MeasurableService {
      * # After modifying the network configuration it is very important to make it
      * # persistent:
      * host_service.commit_net_config()
-     * ----
+     * ```
      *
      * IMPORTANT: To make sure that the network configuration has been saved in the host, and that it will be applied
-     * when the host is rebooted, remember to call xref:services-host-methods-commit_net_config[commitnetconfig].
+     * when the host is rebooted, remember to call xref:services/host/methods/commit_net_config[commitnetconfig].
      *
      * IMPORTANT: Since {engine-name} 4.3, it is possible to also specify `commit_on_success` in
-     * the xref:services-host-methods-setup_networks[setupnetworks] request, in which case the new
+     * the xref:services/host/methods/setup_networks[setupnetworks] request, in which case the new
      * configuration is automatically saved in the {hypervisor-name} upon completing the setup and
      * re-establishing connectivity between the {hypervisor-name} and {engine-name}, and without
-     * waiting for a separate xref:services-host-methods-commit_net_config[commitnetconfig] request.
+     * waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig] request.
      *
      *
      * @author Megan Lewis <melewis@redhat.com>
@@ -1312,7 +1294,7 @@ public interface HostService extends MeasurableService {
         /**
          * Specifies whether to automatically save the configuration in the {hypervisor-name} upon completing
          * the setup and re-establishing connectivity between the {hypervisor-name} and {engine-name},
-         * and without waiting for a separate xref:services-host-methods-commit_net_config[commitnetconfig]
+         * and without waiting for a separate xref:services/host/methods/commit_net_config[commitnetconfig]
          * request.
          * The default value is `false`, which means that the configuration will not be
          * saved automatically.
@@ -1339,17 +1321,15 @@ public interface HostService extends MeasurableService {
     /**
      * To synchronize all networks on the host, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/syncallnetworks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Leon Goldberg <lgoldber@redhat.com>
      * @author Tahlia Richardson <trichard@redhat.com>
@@ -1378,19 +1358,17 @@ public interface HostService extends MeasurableService {
      *
      * To copy networks from another host, send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/hosts/123/copyhostnetworks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *    <source_host id="456"/>
      * </action>
-     * ----
+     * ```
      *
      * @author Ales Musil <amusil@redhat.com>
      * @author Andrej Cernek <acernek@redhat.com>

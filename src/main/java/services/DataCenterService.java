@@ -50,13 +50,11 @@ public interface DataCenterService {
      *
      * An example of getting a data center:
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/datacenters/123
-     * ----
+     * ```
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center href="/ovirt-engine/api/datacenters/123" id="123">
      *   <name>Default</name>
      *   <description>The default Data Center</description>
@@ -83,7 +81,7 @@ public interface DataCenterService {
      *   </version>
      *   <mac_pool href="/ovirt-engine/api/macpools/456" id="456"/>
      * </data_center>
-     * ----
+     * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
      * @date 12 Dec 2016
@@ -104,20 +102,18 @@ public interface DataCenterService {
      * The `name`, `description`, `storage_type`, `version`, `storage_format` and `mac_pool` elements are updatable
      * post-creation. For example, to change the name and description of data center `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/datacenters/123
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <data_center>
      *   <name>myupdatedname</name>
      *   <description>An updated description for the data center</description>
      * </data_center>
-     * ----
+     * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>
      * @date 14 Sep 2016
@@ -153,10 +149,9 @@ public interface DataCenterService {
     /**
      * Removes the data center.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/datacenters/123
-     * ----
+     * ```
      *
      * Without any special parameters, the storage domains attached to the data center are detached and then removed
      * from the storage. If something fails when performing this operation, for example if there is no host available to
@@ -196,19 +191,17 @@ public interface DataCenterService {
      * For example, for setting a storage domain with ID '456' as a master on a data center with ID '123',
      * send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/setmaster
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <storage_domain id="456"/>
      * </action>
-     * ----
+     * ```
      *
      * The new master storage domain can be also specified by its name.
      *
@@ -250,17 +243,15 @@ public interface DataCenterService {
      *
      * For example, to clean all the finished tasks on a data center with ID `123` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/datacenters/123/cleanfinishedtasks
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Pavel Bar <pbar@redhat.com>
      * @author Eli Marcus <emarcus@redhat.com>
@@ -285,26 +276,23 @@ public interface DataCenterService {
     *
     * For attaching a single storage domain we should use the following POST request:
     *
-    * [source]
-    * ----
+    * ```http
     * POST /ovirt-engine/api/datacenters/123/storagedomains
-    * ----
+    * ```
     *
     * With a request body like this:
     *
-    * [source,xml]
-    * ----
+    * ```xml
     * <storage_domain>
     *   <name>data1</name>
     * </storage_domain>
-    * ----
+    * ```
     *
     * For detaching a single storage domain we should use the following DELETE request:
     *
-    * [source]
-    * ----
+    * ```http
     * DELETE /ovirt-engine/api/datacenters/123/storagedomains/123
-    * ----
+    * ```
     *
     * @author Maor Lipchuk <mlipchuk@redhat.com>
     * @date 14 Sep 2016

@@ -38,10 +38,9 @@ public interface InstanceTypeService {
     /**
      * Get a specific instance type and it's attributes.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/instancetypes/123
-     * ----
+     * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016
@@ -59,17 +58,14 @@ public interface InstanceTypeService {
      * type X was updated, the virtual machine's configuration will be updated automatically by the
      * engine.
      *
-     * [source]
-     * ----
+     * ```http
      * PUT /ovirt-engine/api/instancetypes/123
-     * ----
+     * ```
      *
      * For example, to update the memory of instance type `123` to 1 GiB and set the cpu topology
      * to 2 sockets and 1 core, send a request like this:
      *
-     * [source, xml]
-     * ----
-     *
+     * ```xml
      * <instance_type>
      *   <memory>1073741824</memory>
      *   <cpu>
@@ -80,7 +76,7 @@ public interface InstanceTypeService {
      *     </topology>
      *   </cpu>
      * </instance_type>
-     * ----
+     * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016
@@ -106,10 +102,9 @@ public interface InstanceTypeService {
      * If a virtual machine was created using an instance type X after removal of the instance type
      * the virtual machine's instance type will be set to `custom`.
      *
-     * [source]
-     * ----
+     * ```http
      * DELETE /ovirt-engine/api/instancetypes/123
-     * ----
+     * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>
      * @date 12 Dec 2016

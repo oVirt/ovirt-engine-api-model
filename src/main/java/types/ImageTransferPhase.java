@@ -24,10 +24,10 @@ package types;
 import org.ovirt.api.metamodel.annotations.Type;
 
 /**
- * A list of possible phases for an xref:types-image_transfer[image transfer] entity. Each of these values
+ * A list of possible phases for an xref:types/image_transfer[image transfer] entity. Each of these values
  * defines a specific point in a transfer flow.
  *
- * Please refer to xref:services-image_transfer[image transfer] for more
+ * Please refer to xref:services/image_transfer[image transfer] for more
  * information.
  *
  * @author Amit Aviram <aaviram@redhat.com>
@@ -75,7 +75,7 @@ public enum ImageTransferPhase {
 
     /**
      * The phase where the transfer has been resumed by the client calling
-     * xref:services-image_transfer-methods-resume[resume]. Resuming starts a new session, and after calling it,
+     * xref:services/image_transfer/methods/resume[resume]. Resuming starts a new session, and after calling it,
      * the phase will be changed to `transferring`, or `paused_system` in case of a failure.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -89,7 +89,7 @@ public enum ImageTransferPhase {
     /**
      * This phase means the session timed out, or some other error occurred
      * with this transfer; for example ovirt-imageio is not running in the selected host.
-     * To resume the session, the client should call xref:services-image_transfer-methods-resume[resume]. After
+     * To resume the session, the client should call xref:services/image_transfer/methods/resume[resume]. After
      * resuming, the phase will change to `resuming`.
      *
      * @author Amit Aviram <aaviram@redhat.com>
@@ -103,7 +103,7 @@ public enum ImageTransferPhase {
 
     /**
      * This phase is a result of a pause call by the user, using
-     * xref:services-image_transfer-methods-pause[pause].
+     * xref:services/image_transfer/methods/pause[pause].
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>
@@ -129,11 +129,11 @@ public enum ImageTransferPhase {
     CANCELLED,
 
     /**
-     * This phase will be set when the user calls xref:services-image_transfer-methods-finalize[finalize]. Calling
+     * This phase will be set when the user calls xref:services/image_transfer/methods/finalize[finalize]. Calling
      * finalize is essential to finish the transfer session, and finish using the targeted image. After finalizing,
      * the phase will be changed to `finished_success` or `finished_failure`.
      *
-     * Refer to xref:services-image_transfer[image transfer] for more information.
+     * Refer to xref:services/image_transfer[image transfer] for more information.
      *
      * @author Amit Aviram <aaviram@redhat.com>
      * @author Byron Gravenorst <bgraveno@redhat.com>

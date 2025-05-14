@@ -41,15 +41,13 @@ public interface StorageServerConnectionsService {
      * For example, to create a new storage connection for the NFS server `mynfs.example.com` and NFS share
      * `/export/mydata` send a request like this:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/storageconnections
-     * ----
+     * ```
      *
      * With a request body like this:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <storage_connection>
      *   <type>nfs</type>
      *   <address>mynfs.example.com</address>
@@ -58,7 +56,7 @@ public interface StorageServerConnectionsService {
      *     <name>myhost</name>
      *   </host>
      * </storage_connection>
-     * ----
+     * ```
      *
      * @author Daniel Erez <derez@redhat.com>
      * @date 14 Sep 2016

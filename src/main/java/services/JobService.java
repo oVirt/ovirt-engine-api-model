@@ -44,17 +44,15 @@ public interface JobService {
      *
      * For example, to set a job with identifier `123` send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/jobs/clear
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action/>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -72,20 +70,18 @@ public interface JobService {
      *
      * For example, to terminate a job with identifier `123` send the following request:
      *
-     * [source]
-     * ----
+     * ```http
      * POST /ovirt-engine/api/jobs/end
-     * ----
+     * ```
      *
      * With the following request body:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <action>
      *   <force>true</force>
      *   <status>finished</status>
      * </action>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
@@ -122,15 +118,13 @@ public interface JobService {
     /**
      * Retrieves a job.
      *
-     * [source]
-     * ----
+     * ```http
      * GET /ovirt-engine/api/jobs/123
-     * ----
+     * ```
      *
      * You will receive response in XML like this one:
      *
-     * [source,xml]
-     * ----
+     * ```xml
      * <job href="/ovirt-engine/api/jobs/123" id="123">
      *   <actions>
      *     <link href="/ovirt-engine/api/jobs/123/clear" rel="clear"/>
@@ -146,7 +140,7 @@ public interface JobService {
      *   <status>failed</status>
      *   <owner href="/ovirt-engine/api/users/456" id="456"/>
      * </job>
-     * ----
+     * ```
      *
      * @author Moti Asayag <masayag@redhat.com>
      * @date 12 Dec 2016
