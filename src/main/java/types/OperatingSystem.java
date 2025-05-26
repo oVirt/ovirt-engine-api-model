@@ -129,5 +129,18 @@ public interface OperatingSystem {
      */
     String customKernelCmdline();
 
+    /**
+     * Specific description of the operating system. Gives a more detailed type of the OS unlike the `type` attribute.
+     * For example returns `CentOS Stream 9` instead of `RHEL`. Value aligns with the OS description in the engine UI.
+     * 
+     * NOTE: this attribute is currently only used for hosts.
+     * 
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 26 May 2025
+     * @status added
+     * @since 4.6.1
+     */
+    String description();
+
     Version version();
 }
