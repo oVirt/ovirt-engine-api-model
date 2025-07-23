@@ -47,6 +47,10 @@ Requires:	mvn(org.ovirt.engine.api:metamodel-server)
 # from pom.xml
 %pom_remove_plugin :maven-release-plugin pom.xml
 
+# No need for central-publishing-maven-plugin, this is only used for deployments.
+%pom_remove_plugin org.sonatype.central:central-publishing-maven-plugin pom.xml
+
+
 
 %build
 # Necessary to override the default JVM for xmvn in COPR, which is JDK 8
