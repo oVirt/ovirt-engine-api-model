@@ -83,6 +83,15 @@
       <version>${metamodel.version}</version>
     </dependency>
 
+     <!-- This is needed for the generate-adoc-html but includePluginDependencies 
+    is not available until exec-maven-plugin has version 3.3.0 -->
+     <dependency>
+      <groupId>org.ovirt.engine.api</groupId>
+      <artifactId>metamodel-doctool</artifactId>
+      <version>${metamodel.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -228,11 +237,16 @@
                 <!-- Generate after compilation ('process-classes' phase) to ensure validity of analyzed files -->
                 <phase>process-classes</phase>
                 <goals>
-                  <goal>java</goal>
+                  <goal>exec</goal>
                 </goals>
                 <configuration>
-                  <mainClass>org.ovirt.api.metamodel.doctool.Main</mainClass>
+                  <executable>${java.home}/bin/java</executable>
                   <arguments>
+                    <argument>--add-opens=java.base/java.lang=ALL-UNNAMED</argument>
+                    <argument>--add-opens=java.base/java.lang.util=ALL-UNNAMED</argument>
+                    <argument>-classpath</argument>
+                    <classpath />
+                    <argument>org.ovirt.api.metamodel.tool.Main</argument>
                     <argument>org.ovirt.api.metamodel.doctool.DocTool</argument>
                     <argument>--model=${project.basedir}/src/main/java</argument>
                     <argument>--adoc-separator=${adoc.separator}</argument>
@@ -246,18 +260,9 @@
                     <argument>--xml-description=${project.basedir}/target/xml/model.xml</argument>
                     <argument>--report=${project.basedir}/target/csv/model.csv</argument>
                   </arguments>
-                  <includePluginDependencies>true</includePluginDependencies>
-                  <includeProjectDependencies>false</includeProjectDependencies>
                 </configuration>
               </execution>
             </executions>
-            <dependencies>
-              <dependency>
-                <groupId>org.ovirt.engine.api</groupId>
-                <artifactId>metamodel-doctool</artifactId>
-                <version>${metamodel.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
 
           <!-- Generate the HTML documentation: -->
