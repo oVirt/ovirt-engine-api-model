@@ -332,8 +332,7 @@ $ mvn clean install -Pgenerate-adoc-html
 
 ## Releasing
 
-The project is released to Maven Central via the Sonatype OSSRH
-repository.
+The project is released to Maven Central using the central-publishing-maven-plugin.
 
 To perform a release you will need to do the following actions, most of
 them automated by the Maven release plugin:
@@ -376,28 +375,24 @@ Central require signed artifacts. To sign artifacts the `sign` profile
 needs to be activated:
 
 ```sh
-$ mvn release:perform -Psign
+$ mvn deploy -Psign
 ```
 
 NOTE: The artifacts will be signed using your default GPG key, so make
-sure you have a valid GPG key available.
+sure you have a valid GPG key available. Also make sure you have your Maven
+Central user credentials in the settings.xml available like described 
+[here](https://central.sonatype.org/publish/publish-portal-maven/#credentials).
 
 This will use the tag to checkout the code from the remote repository,
 it will build it, run the tests and, finally, if everything succeeds, it
-will upload the signed artifacts to the OSSRH repository.
+will upload the signed artifacts to Maven Central.
 
-The rest of the process is manual, using the OSSRH web interface
-available [here](https://oss.sonatype.org). Log in with your user name and
-password and select the _Staging Repositories_ option. Then use the
-search bar in the top right corner to search for `ovirt`. In the result
-list you should see you repository, and in the panel below you should
-see the details, including the contents of the repository. Inspect
-those contents, and when you are satisfied click the _Close_ button.
-Wait a bit, maybe clicking the _Refresh_ button a few times, till the
-_Release_ button is enabled. Click the _Release_ button, it will ask for
-a message, write something like _Release 4.0.5_ and then _OK_. The
-release is now ready, and it will be propagated to Maven Central later,
-it usually takes around 30 minutes.
+The rest of the process is manual, using the Maven Central web interface
+available [here](https://central.sonatype.com/). Log in with your user name and
+password and select the __View Deployments__ option under your account . 
+There you should see a list of deployments. 
+After all checks are complete you should have the option to 
+__Publish__ the deployment.
 
 ## Branding
 
