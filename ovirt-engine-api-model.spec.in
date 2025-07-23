@@ -10,13 +10,8 @@ Source1:	%{name}-doc-%{version}.jar
 
 BuildArch:	noarch
 
-# We need to disable automatic generation of "Requires: java-headless >= 1:11"
-# by xmvn, becase JDK 11 doesn't provide java-headless artifact, but it
-# provides java-11-headless.
-AutoReq:	no
-
-BuildRequires:	java-11-openjdk-devel
-BuildRequires:	maven-local
+BuildRequires:	java-21-openjdk-devel
+BuildRequires:	maven-local-openjdk21
 BuildRequires:	ovirt-engine-api-metamodel >= 1.3.8
 BuildRequires:	mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
 BuildRequires:	mvn(org.apache.maven.plugins:maven-antrun-plugin)
@@ -26,11 +21,8 @@ BuildRequires:	mvn(org.apache.maven.plugins:maven-surefire-plugin)
 BuildRequires:	mvn(org.codehaus.mojo:exec-maven-plugin)
 BuildRequires:	mvn(org.ovirt.maven.plugins:ovirt-jboss-modules-maven-plugin)
 
-# Required to pass COPR build, which uses old xmvn package
-BuildRequires:	maven-openjdk11
-
 Requires:	ovirt-engine-api-metamodel-server
-Requires:	java-11-openjdk-headless >= 1:11.0.0
+Requires:	(java-11-openjdk-headless or java-21-openjdk-headless)
 Requires:	javapackages-filesystem
 Requires:	mvn(org.ovirt.engine.api:metamodel-annotations)
 Requires:	mvn(org.ovirt.engine.api:metamodel-server)
@@ -43,6 +35,9 @@ Requires:	mvn(org.ovirt.engine.api:metamodel-server)
 %prep
 %setup -c -q
 
+# Dependency is needed for generation of documentation, but not during package build.
+%pom_remove_dep org.ovirt.engine.api:metamodel-doctool pom.xml
+
 # maven-release-plugin is not used during package build, so we can remove it
 # from pom.xml
 %pom_remove_plugin :maven-release-plugin pom.xml
@@ -53,8 +48,6 @@ Requires:	mvn(org.ovirt.engine.api:metamodel-server)
 
 
 %build
-# Necessary to override the default JVM for xmvn in COPR, which is JDK 8
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
 
 %mvn_build -j -d
 
