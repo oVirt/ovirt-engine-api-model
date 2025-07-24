@@ -62,6 +62,29 @@ jobs:
           name: generated-documentation-${{ matrix.shortcut }}
           path: target/html/*
 
+  publish-snapshot:
+    needs: build
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+
+    container:
+      image: quay.io/ovirt/buildcontainer:el10stream
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Mark git repo as safe
+        run: git config --global --add safe.directory $(pwd)
+
+      - name: Use cache for maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Set up Maven settings.xml
         uses: s4u/maven-settings-action@v3.1.0
         if: ${{ github.event_name != 'pull_request' }}
@@ -70,8 +93,8 @@ jobs:
           servers: |
             [{
               "id": "central",
-              "username": "${{ secrets.OSSRH_USERNAME }}",
-              "password": "${{ secrets.OSSRH_TOKEN }}"
+              "username": "${{ secrets.SONATYPE_USERNAME }}",
+              "password": "${{ secrets.SONATYPE_TOKEN }}"
             }]
 
       - name: Publish snapshot
