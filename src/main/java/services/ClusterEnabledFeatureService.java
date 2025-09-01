@@ -43,7 +43,7 @@ public interface ClusterEnabledFeatureService {
      * For example, to find details of the enabled feature `456` for cluster `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/123/enabledfeatures/456
+     * GET /ovirt-engine/api/clusters/123/enabledfeatures/456 HTTP/1.1
      * ```
      *
      * That will return a xref:types/cluster_feature[ClusterFeature] object containing the name:
@@ -77,7 +77,7 @@ public interface ClusterEnabledFeatureService {
      * For example, to disable the feature `456` of cluster `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/clusters/123/enabledfeatures/456
+     * DELETE /ovirt-engine/api/clusters/123/enabledfeatures/456 HTTP/1.1
      * ```
      *
      * @author Sahina Bose <sabose@redhat.com>

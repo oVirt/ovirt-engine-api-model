@@ -49,7 +49,7 @@ public interface TagService {
      * For example to retrieve the information about the tag with the id `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/tags/123
+     * GET /ovirt-engine/api/tags/123 HTTP/1.1
      * ```
      *
      * ```xml
@@ -80,7 +80,7 @@ public interface TagService {
      * For example to update parent tag to tag with id `456` of the tag with id `123` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/tags/123
+     * PUT /ovirt-engine/api/tags/123 HTTP/1.1
      * ```
      *
      * With request body like:
@@ -134,7 +134,7 @@ public interface TagService {
      * For example to remove the tag with id `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/tags/123
+     * DELETE /ovirt-engine/api/tags/123 HTTP/1.1
      * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>

@@ -42,7 +42,7 @@ public interface IscsiBondsService {
      * request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/iscsibonds
+     * POST /ovirt-engine/api/datacenters/123/iscsibonds HTTP/1.1
      * ```
      *
      * The request body should look like this:

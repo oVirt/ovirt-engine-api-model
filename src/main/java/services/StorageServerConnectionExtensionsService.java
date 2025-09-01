@@ -43,7 +43,7 @@ public interface StorageServerConnectionExtensionsService {
      * like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/storageconnectionextensions
+     * POST /ovirt-engine/api/hosts/123/storageconnectionextensions HTTP/1.1
      * ```
      *
      * With a request body like this:

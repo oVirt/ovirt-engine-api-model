@@ -50,7 +50,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      * For example, to get the OpenStack network provider with identifier `1234`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/openstacknetworkproviders/1234
+     * GET /ovirt-engine/api/openstacknetworkproviders/1234 HTTP/1.1
      * ```
      *
      * @author Mor Kalfon <mkalfon@redhat.com>
@@ -68,7 +68,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      * for the OpenStack network provider with identifier `1234`, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/openstacknetworkproviders/1234
+     * PUT /ovirt-engine/api/openstacknetworkproviders/1234 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -126,7 +126,7 @@ public interface OpenstackNetworkProviderService extends ExternalProviderService
      * For example, to remove the OpenStack network provider with identifier `1234`, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/openstacknetworkproviders/1234
+     * DELETE /ovirt-engine/api/openstacknetworkproviders/1234 HTTP/1.1
      * ```
      *
      * @author Mor Kalfon <mkalfon@redhat.com>

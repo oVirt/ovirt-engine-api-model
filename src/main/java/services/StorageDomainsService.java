@@ -58,7 +58,7 @@ public interface StorageDomainsService {
      * and using a host with an id `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/storageDomains
+     * POST /ovirt-engine/api/storageDomains HTTP/1.1
      * ```
      *
      * With a request body like this:

@@ -35,7 +35,7 @@ import types.Vm;
  * following request:
  *
  * ```http
- * GET /ovirt-engine/api/storagedomains/123/vms
+ * GET /ovirt-engine/api/storagedomains/123/vms HTTP/1.1
  * ```
  *
  * This will return the following response body:
@@ -90,7 +90,7 @@ public interface StorageDomainVmsService {
          * For example, to get a list of unregistered virtual machines the REST API call should look like this:
          *
          * ```http
-         * GET /ovirt-engine/api/storagedomains/123/vms?unregistered=true
+         * GET /ovirt-engine/api/storagedomains/123/vms?unregistered=true HTTP/1.1
          * ```
          *
          * The default value of the unregisterd flag is `false`.

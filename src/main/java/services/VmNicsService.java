@@ -42,7 +42,7 @@ public interface VmNicsService {
      * NIC profile `456`.
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/nics
+     * POST /ovirt-engine/api/vms/123/nics HTTP/1.1
      * ```
      *
      * ```xml

@@ -78,7 +78,7 @@ public interface VmBackupService {
      * send a request as follows:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/backups/456/finalize
+     * POST /ovirt-engine/api/vms/123/backups/456/finalize HTTP/1.1
      * ```
      *
      * With a request body as follows:

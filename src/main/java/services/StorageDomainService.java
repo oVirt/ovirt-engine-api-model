@@ -121,7 +121,7 @@ public interface StorageDomainService {
      * request as follows:
      *
      * ```http
-     * PUT /ovirt-engine/api/storageDomains/123
+     * PUT /ovirt-engine/api/storageDomains/123 HTTP/1.1
      * ```
      *
      * With a request body as follows:
@@ -225,7 +225,7 @@ public interface StorageDomainService {
      * For example, in order to refresh the size of two LUNs send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/storageDomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns
+     * POST /ovirt-engine/api/storageDomains/262b056b-aede-40f1-9666-b883eff59d40/refreshluns HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -278,7 +278,7 @@ public interface StorageDomainService {
      * For example, in order to reduce two logical units from a storage domain send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/storageDomains/123/reduceluns
+     * POST /ovirt-engine/api/storageDomains/123/reduceluns HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -342,7 +342,7 @@ public interface StorageDomainService {
          * to remove the storage domain with identifier `123` send a request like this:
          *
          * ```http
-         * DELETE /ovirt-engine/api/storageDomains/123?host=myhost
+         * DELETE /ovirt-engine/api/storageDomains/123?host=myhost HTTP/1.1
          * ```
          *
          * @author Maor Lipchuk <mlipchuk@redhat.com>
@@ -357,7 +357,7 @@ public interface StorageDomainService {
          * directory:
          *
          * ```http
-         * DELETE /ovirt-engine/api/storageDomains/123?format=true
+         * DELETE /ovirt-engine/api/storageDomains/123?format=true HTTP/1.1
          * ```
          *
          * This parameter is optional, and the default value is `false`.
@@ -374,7 +374,7 @@ public interface StorageDomainService {
          * storage is not accessible.
          *
          * ```http
-         * DELETE /ovirt-engine/api/storageDomains/123?destroy=true
+         * DELETE /ovirt-engine/api/storageDomains/123?destroy=true HTTP/1.1
          * ```
          *
          * This parameter is optional, and the default value is `false`.

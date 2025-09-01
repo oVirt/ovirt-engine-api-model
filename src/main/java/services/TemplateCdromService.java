@@ -43,7 +43,7 @@ public interface TemplateCdromService {
      * For example, to get information about the CD-ROM device of template `123` send a request like:
      *
      * ```http
-     * GET /ovirt-engine/api/templates/123/cdroms/
+     * GET /ovirt-engine/api/templates/123/cdroms/ HTTP/1.1
      * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>

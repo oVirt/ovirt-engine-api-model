@@ -51,7 +51,7 @@ public interface VmBase extends Identified {
      * For example, to update a virtual machine to contain 1 Gibibyte (GiB) of memory, send the following request:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123
+     * PUT /ovirt-engine/api/vms/123 HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -98,7 +98,7 @@ public interface VmBase extends Identified {
      * reboot, send the following request:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123
+     * PUT /ovirt-engine/api/vms/123 HTTP/1.1
      * ```
      *
      * With a request body:
@@ -378,7 +378,7 @@ public interface VmBase extends Identified {
      * For example, to clear the `initialization` attribute send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123
+     * PUT /ovirt-engine/api/vms/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -499,7 +499,7 @@ public interface VmBase extends Identified {
      * For example, to pin a virtual machine to two hosts, send the following request:
      *
      * ```http
-     * PUT /api/vms/123
+     * PUT /api/vms/123 HTTP/1.1
      * ```
      *
      * With a request body like this:

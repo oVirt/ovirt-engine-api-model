@@ -49,7 +49,7 @@ public interface GlusterBricksService {
      * this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/activate
+     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/activate HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -99,7 +99,7 @@ public interface GlusterBricksService {
      * For example, to add bricks to gluster volume `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
+     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -157,7 +157,7 @@ public interface GlusterBricksService {
      * For example, to list bricks of gluster volume `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
+     * GET /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks HTTP/1.1
      * ```
      *
      * Provides an output as below:
@@ -205,7 +205,7 @@ public interface GlusterBricksService {
      * For instance, to delete a brick from a gluster volume with id `123`, send a request:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/migrate
+     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/migrate HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -258,7 +258,7 @@ public interface GlusterBricksService {
      * For example, to delete the bricks from gluster volume `123`, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks
+     * DELETE /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -310,7 +310,7 @@ public interface GlusterBricksService {
      * For example, to stop migration of data from the bricks of gluster volume `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/stopmigrate
+     * POST /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/stopmigrate HTTP/1.1
      * ```
      *
      * With a request body like this:

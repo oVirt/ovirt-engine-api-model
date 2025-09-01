@@ -69,7 +69,7 @@ public interface NicNetworkFilterParameterService {
      * virtual machine `789` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123
+     * PUT /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -108,7 +108,7 @@ public interface NicNetworkFilterParameterService {
      * send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123
+     * DELETE /ovirt-engine/api/vms/789/nics/456/networkfilterparameters/123 HTTP/1.1
      * ```
      *
      * @author Dominik Holler <dholler@redhat.com>

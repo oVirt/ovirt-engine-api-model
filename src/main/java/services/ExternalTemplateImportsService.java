@@ -47,7 +47,7 @@ public interface ExternalTemplateImportsService {
      * For example import of a template OVA can be facilitated using the following request:
      *
      * ```http
-     * POST /externaltemplateimports
+     * POST /externaltemplateimports HTTP/1.1
      * ```
      *
      * With request body of type xref:types/external_template_import[ExternalTemplateImport], for example:

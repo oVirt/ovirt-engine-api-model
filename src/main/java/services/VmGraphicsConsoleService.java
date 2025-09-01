@@ -69,7 +69,7 @@ public interface VmGraphicsConsoleService {
          * `address` and `port` attributes, send a request like this:
          *
          * ```http
-         * GET /ovit-engine/api/vms/123/graphicsconsoles/456?current=true
+         * GET /ovit-engine/api/vms/123/graphicsconsoles/456?current=true HTTP/1.1
          * ```
          *
          * The default value is `false`.
@@ -96,7 +96,7 @@ public interface VmGraphicsConsoleService {
      * Generates a time-sensitive authentication token for accessing this virtual machine's console.
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket HTTP/1.1
      * ```
      *
      * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
@@ -137,7 +137,7 @@ public interface VmGraphicsConsoleService {
      * Note that this action generates the file only if virtual machine is running.
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/remoteviewerconnectionfile HTTP/1.1
      * ```
      *
      * The `remoteviewerconnectionfile` action does not take any action specific parameters,

@@ -47,7 +47,7 @@ public interface FenceAgentService {
      * Gets details of this fence agent.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/fenceagents/0
+     * GET /ovirt-engine/api/hosts/123/fenceagents/0 HTTP/1.1
      * ```
      *
      * And here is sample response:
@@ -120,7 +120,7 @@ public interface FenceAgentService {
      * Removes a fence agent for a specific host.
      *
      * ```http
-     * DELETE /ovirt-engine/api/hosts/123/fenceagents/0
+     * DELETE /ovirt-engine/api/hosts/123/fenceagents/0 HTTP/1.1
      * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>

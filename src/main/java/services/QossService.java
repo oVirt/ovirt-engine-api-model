@@ -46,7 +46,7 @@ public interface QossService {
      * Add a new QoS to the dataCenter.
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/qoss
+     * POST /ovirt-engine/api/datacenters/123/qoss HTTP/1.1
      * ```
      *
      * The response will look as follows:
@@ -104,7 +104,7 @@ public interface QossService {
      * Returns the list of _quality of service_ configurations available in the data center.
      *
      * ```http
-     * GET /ovirt-engine/api/datacenter/123/qoss
+     * GET /ovirt-engine/api/datacenter/123/qoss HTTP/1.1
      * ```
      *
      * You will get response which will look like this:

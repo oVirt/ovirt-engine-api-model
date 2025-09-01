@@ -50,7 +50,7 @@ public interface GroupsService {
      * like this:
      *
      * ```http
-     * POST /ovirt-engine/api/groups
+     * POST /ovirt-engine/api/groups HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -91,7 +91,7 @@ public interface GroupsService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/groups
+     * GET /ovirt-engine/api/groups HTTP/1.1
      * ```
      *
      * Will return the list of groups:

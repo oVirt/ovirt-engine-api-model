@@ -45,7 +45,7 @@ public interface JobService {
      * For example, to set a job with identifier `123` send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/jobs/clear
+     * POST /ovirt-engine/api/jobs/clear HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -71,7 +71,7 @@ public interface JobService {
      * For example, to terminate a job with identifier `123` send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/jobs/end
+     * POST /ovirt-engine/api/jobs/end HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -119,7 +119,7 @@ public interface JobService {
      * Retrieves a job.
      *
      * ```http
-     * GET /ovirt-engine/api/jobs/123
+     * GET /ovirt-engine/api/jobs/123 HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

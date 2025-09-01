@@ -61,7 +61,7 @@ public interface VmNicService extends MeasurableService {
      * like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/nics/456
+     * PUT /ovirt-engine/api/vms/123/nics/456 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -113,7 +113,7 @@ public interface VmNicService extends MeasurableService {
      * For example, to remove the NIC with id `456` from the virtual machine with id `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/nics/456
+     * DELETE /ovirt-engine/api/vms/123/nics/456 HTTP/1.1
      * ```
      *
      * [IMPORTANT]

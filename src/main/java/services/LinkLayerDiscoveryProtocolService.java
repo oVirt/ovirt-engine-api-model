@@ -59,7 +59,7 @@ public interface LinkLayerDiscoveryProtocolService {
          * send a request like this:
          *
          * ```http
-         * GET ovirt-engine/api/hosts/123/nics/321/linklayerdiscoveryprotocolelements
+         * GET ovirt-engine/api/hosts/123/nics/321/linklayerdiscoveryprotocolelements HTTP/1.1
          * ```
          *
          * It will return a response like this:

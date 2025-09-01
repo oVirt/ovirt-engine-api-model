@@ -53,7 +53,7 @@ public interface TemplatesService {
      * like this:
      *
      * ```http
-     * POST /ovirt-engine/api/templates
+     * POST /ovirt-engine/api/templates HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -188,7 +188,7 @@ public interface TemplatesService {
          * a template from the `myvm` virtual machine copying its permissions, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/templates?clone_permissions=true
+         * POST /ovirt-engine/api/templates?clone_permissions=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -372,7 +372,7 @@ public interface TemplatesService {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/templates
+     * GET /ovirt-engine/api/templates HTTP/1.1
      * ```
      *
      * Will return the list of virtual machines and virtual machine templates.

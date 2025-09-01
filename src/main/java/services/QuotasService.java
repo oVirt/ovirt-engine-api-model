@@ -50,7 +50,7 @@ public interface QuotasService {
      * An example of creating a new quota:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/quotas
+     * POST /ovirt-engine/api/datacenters/123/quotas HTTP/1.1
      * ```
      *
      * ```xml

@@ -45,7 +45,7 @@ public interface VmHostDeviceService {
      * Example:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/hostdevices/456
+     * GET /ovirt-engine/api/vms/123/hostdevices/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -92,7 +92,7 @@ public interface VmHostDeviceService {
      * group are detached).
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/hostdevices/456
+     * DELETE /ovirt-engine/api/vms/123/hostdevices/456 HTTP/1.1
      * ```
      *
      * @author Martin Betak <mbetak@redhat.com>

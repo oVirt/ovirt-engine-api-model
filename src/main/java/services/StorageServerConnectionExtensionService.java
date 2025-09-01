@@ -44,7 +44,7 @@ public interface StorageServerConnectionExtensionService {
      * To update the storage connection `456` of host `123` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/hosts/123/storageconnectionextensions/456
+     * PUT /ovirt-engine/api/hosts/123/storageconnectionextensions/456 HTTP/1.1
      * ```
      *
      * With a request body like this:

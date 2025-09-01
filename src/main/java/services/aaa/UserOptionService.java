@@ -19,7 +19,7 @@ public interface UserOptionService {
      * Example request(for user with identifier `123` and option with identifier `456`):
      *
      * ```http
-     * GET /ovirt-engine/api/users/123/options/456
+     * GET /ovirt-engine/api/users/123/options/456 HTTP/1.1
      * ```
      *
      * The result will be the following XML document:
@@ -47,7 +47,7 @@ public interface UserOptionService {
      * Example request(for user with identifier `123` and option with identifier `456`):
      *
      * ```http
-     * DELETE /ovirt-engine/api/users/123/options/456
+     * DELETE /ovirt-engine/api/users/123/options/456 HTTP/1.1
      * ```
      *
      * @author Radoslaw Szwajkowski <rszwajko@redhat.com>

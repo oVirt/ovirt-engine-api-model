@@ -42,7 +42,7 @@ public interface HostStorageService {
      * Get list of storages.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/storage
+     * GET /ovirt-engine/api/hosts/123/storage HTTP/1.1
      * ```
      *
      * The XML response you get will be like this one:

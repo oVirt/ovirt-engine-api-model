@@ -46,7 +46,7 @@ public interface ExternalVmImportsService {
      * For example import of a virtual machine from VMware can be facilitated using the following request:
      *
      * ```http
-     * POST /externalvmimports
+     * POST /externalvmimports HTTP/1.1
      * ```
      *
      * With request body of type xref:types/external_vm_import[ExternalVmImport], for example:

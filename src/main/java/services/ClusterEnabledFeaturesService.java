@@ -48,7 +48,7 @@ public interface ClusterEnabledFeaturesService {
      * For example, to get the features enabled for cluster `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/123/enabledfeatures
+     * GET /ovirt-engine/api/clusters/123/enabledfeatures HTTP/1.1
      * ```
      *
      * This will return a list of features:
@@ -85,7 +85,7 @@ public interface ClusterEnabledFeaturesService {
      * For example, to enable a feature `456` on cluster `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/enabledfeatures
+     * POST /ovirt-engine/api/clusters/123/enabledfeatures HTTP/1.1
      * ```
      *
      * The request body should look like this:

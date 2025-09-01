@@ -224,7 +224,7 @@ For example, the request to `list` the virtual machines should be like
 this, using the HTTP `GET` method and the path `/vms`:
 
 ```http
-GET /ovirt-engine/api/vms
+GET /ovirt-engine/api/vms HTTP/1.1
 ```
 
 For action methods the HTTP method is always `POST`, and the name of the
@@ -233,7 +233,7 @@ start virtual machine `123` should look like this, using the HTTP `POST`
 method and the path `/vms/123/start`:
 
 ```http
-POST /ovirt-engine/api/vms/123/start
+POST /ovirt-engine/api/vms/123/start HTTP/1.1
 ```
 
 Each method has a set of parameters.
@@ -370,7 +370,7 @@ objects within the collection that satisfy those criteria. For example,
 the following request will return only the virtual machine named `myvm`:
 
 ```http
-GET /ovirt-engine/api/vms?search=name%3Dmyvm
+GET /ovirt-engine/api/vms?search=name%3Dmyvm HTTP/1.1
 ```
 
 [id="maximum-results-parameter"]
@@ -381,7 +381,7 @@ example, the following request will only return one virtual machine,
 regardless of how many are available in the system:
 
 ```http
-GET /ovirt-engine/api/vms?max=1
+GET /ovirt-engine/api/vms?max=1 HTTP/1.1
 ```
 
 A search request without the `max` parameter will return all the
@@ -395,7 +395,7 @@ By default queries are not case sensitive. For example, the following
 request will return the virtual machines named `myvm`, `MyVM` and `MYVM`:
 
 ```http
-GET /ovirt-engine/api/vms?search=name%3Dmyvm
+GET /ovirt-engine/api/vms?search=name%3Dmyvm HTTP/1.1
 ```
 
 The optional `case_sensitive` boolean parameter can be used to change this
@@ -403,7 +403,7 @@ behaviour. For example, to get exactly the virtual machine named `myhost`, and
 not `MyHost` or `MYHOST`, send a request like this:
 
 ```http
-GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true
+GET /ovirt-engine/api/vms?search=name%3D=myvm&case_sensitive=true HTTP/1.1
 ```
 
 [id="search-syntax"]
@@ -455,7 +455,7 @@ reserved characters, such as operators and spaces. For example, the
 equal sign should be encoded as `%3D`:
 
 ```http
-GET /ovirt-engine/api/vms?search=name%3Dmyvm
+GET /ovirt-engine/api/vms?search=name%3Dmyvm HTTP/1.1
 ```
 
 [id="wildcards"]
@@ -467,7 +467,7 @@ will return all the virtual machines with names beginning with `myvm`,
 such as `myvm`, `myvm2`, `myvma` or `myvm-webserver`:
 
 ```http
-GET /ovirt-engine/api/vms?search=name%3Dmyvm*
+GET /ovirt-engine/api/vms?search=name%3Dmyvm* HTTP/1.1
 ```
 
 [id="pagination"]
@@ -482,7 +482,7 @@ of virtual machines, with a page size of 10 virtual machines, send
 request like this:
 
 ```http
-GET /ovirt-engine/api/vms?search=page%201&max=10
+GET /ovirt-engine/api/vms?search=page%201&max=10 HTTP/1.1
 ```
 
 NOTE: The search parameter is URL-encoded, the actual value of the
@@ -492,7 +492,7 @@ requesting the first page.
 Increase the `page` value to retrieve the next page:
 
 ```http
-GET /ovirt-engine/api/vms?search=page%202&max=10
+GET /ovirt-engine/api/vms?search=page%202&max=10 HTTP/1.1
 ```
 
 The `page` clause can be used in conjunction with other clauses inside
@@ -500,7 +500,7 @@ the `search` parameter. For example, the following request will return
 the second page of virtual machines, but sorting by name:
 
 ```http
-GET /ovirt-engine/api/vms?search=sortby%20name%20page%202&max=10
+GET /ovirt-engine/api/vms?search=sortby%20name%20page%202&max=10 HTTP/1.1
 ```
 
 [IMPORTANT]
@@ -536,8 +536,8 @@ The complete description of those _linked_ objects can be retrieved by sending
 separate requests:
 
 ```http
-GET /ovirt-engine/api/vms/123/diskattachments
-GET /ovirt-engine/api/vms/123/nics
+GET /ovirt-engine/api/vms/123/diskattachments HTTP/1.1
+GET /ovirt-engine/api/vms/123/nics HTTP/1.1
 ```
 
 However, in some situations it is more convenient for the application using the API to
@@ -553,7 +553,7 @@ the disk attachments and the NICs in the example above the request should be lik
 this:
 
 ```http
-GET /ovirt-engine/api/vms/123?follow=disk_attachments,nics
+GET /ovirt-engine/api/vms/123?follow=disk_attachments,nics HTTP/1.1
 ```
 
 That will return an response like this:
@@ -598,7 +598,7 @@ In order to also follow the links to the disks, the following request
 can be used:
 
 ```http
-GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk
+GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk HTTP/1.1
 ```
 
 That will result in the following response:
@@ -642,7 +642,7 @@ Multiple path elements and multiple paths can be combined. For example, to get t
 disk attachments and the network interface cards, both with their statistics:
 
 ```http
-GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics
+GET /ovirt-engine/api/vms/123?follow=disk_attachments.disk.statistics,nics.statistics HTTP/1.1
 ```
 
 IMPORTANT: Almost all the operations that retrieve objects support the `follow`
@@ -669,7 +669,7 @@ and the object. For example, the permissions assigned to a specific
 virtual machine can be retrieved sending a request like this:
 
 ```http
-GET /ovirt-engine/api/vms/123/permissions
+GET /ovirt-engine/api/vms/123/permissions HTTP/1.1
 ```
 
 The response body will look like this:

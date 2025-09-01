@@ -51,7 +51,7 @@ public interface ClustersService {
      * or `name` attribute.
      *
      * ```http
-     * POST /ovirt-engine/api/clusters
+     * POST /ovirt-engine/api/clusters HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -70,7 +70,7 @@ public interface ClustersService {
      * every host that is added to the cluster, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters
+     * POST /ovirt-engine/api/clusters HTTP/1.1
      * ```
      *
      * With a request body containing a reference to the desired provider:

@@ -51,7 +51,7 @@ public interface AffinityGroupHostsService {
      * this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/hosts
+     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/hosts HTTP/1.1
      * ```
      *
      * With the following body:

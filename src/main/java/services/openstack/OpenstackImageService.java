@@ -51,7 +51,7 @@ public interface OpenstackImageService {
      * storage domain with identifier `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/openstackimageproviders/123/images/456/import
+     * POST /ovirt-engine/api/openstackimageproviders/123/images/456/import HTTP/1.1
      * ```
      *
      * With a request body like this:

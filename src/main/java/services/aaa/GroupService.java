@@ -49,7 +49,7 @@ public interface GroupService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/groups/123
+     * GET /ovirt-engine/api/groups/123 HTTP/1.1
      * ```
      *
      * Will return the group information:
@@ -89,7 +89,7 @@ public interface GroupService {
      * Usage:
      *
      * ```http
-     * DELETE /ovirt-engine/api/groups/123
+     * DELETE /ovirt-engine/api/groups/123 HTTP/1.1
      * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>

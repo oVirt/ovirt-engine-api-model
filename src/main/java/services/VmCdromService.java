@@ -100,7 +100,7 @@ public interface VmCdromService {
      * For example, to insert or change the disk send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000
+     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000 HTTP/1.1
      * ```
      *
      * The body should contain the new value for the `file` attribute:
@@ -128,7 +128,7 @@ public interface VmCdromService {
      * For example, to eject the current disk send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000?current=true
+     * PUT /ovirt-engine/api/vms/123/cdroms/00000000-0000-0000-0000-000000000000?current=true HTTP/1.1
      * ```
      *
      * With a request body like this:

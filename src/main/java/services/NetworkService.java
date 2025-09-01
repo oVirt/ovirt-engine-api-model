@@ -47,7 +47,7 @@ public interface NetworkService {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/networks/123
+     * GET /ovirt-engine/api/networks/123 HTTP/1.1
      * ```
      *
      * Will respond:
@@ -84,7 +84,7 @@ public interface NetworkService {
      * For example, to update the description of the logical network `123` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/networks/123
+     * PUT /ovirt-engine/api/networks/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -102,7 +102,7 @@ public interface NetworkService {
      * For example, to set the maximum transmission unit send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123/networks/456
+     * PUT /ovirt-engine/api/datacenters/123/networks/456 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -149,7 +149,7 @@ public interface NetworkService {
      * For example, to remove the logical network `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/networks/123
+     * DELETE /ovirt-engine/api/networks/123 HTTP/1.1
      * ```
      *
      * Each network is bound exactly to one data center. So if we disassociate network with data center it has the same
@@ -159,7 +159,7 @@ public interface NetworkService {
      * For example, to remove the association of network `456` to data center `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/datacenters/123/networks/456
+     * DELETE /ovirt-engine/api/datacenters/123/networks/456 HTTP/1.1
      * ```
      *
      * NOTE: To remove an external logical network, the network has to be removed directly from its provider by

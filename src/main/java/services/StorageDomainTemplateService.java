@@ -51,7 +51,7 @@ public interface StorageDomainTemplateService {
      * For example, to import the template `456` from the storage domain `123` send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/storagedomains/123/templates/456/import
+     * POST /ovirt-engine/api/storagedomains/123/templates/456/import HTTP/1.1
      * ```
      *
      * With the following request body:

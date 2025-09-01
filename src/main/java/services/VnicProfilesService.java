@@ -50,7 +50,7 @@ public interface VnicProfilesService {
      * For example to add vNIC profile `123` to network `456` send a request to:
      *
      * ```http
-     * POST /ovirt-engine/api/networks/456/vnicprofiles
+     * POST /ovirt-engine/api/networks/456/vnicprofiles HTTP/1.1
      * ```
      *
      * With the following body:

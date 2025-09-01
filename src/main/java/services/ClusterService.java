@@ -51,7 +51,7 @@ public interface ClusterService {
      * An example of getting a cluster:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/123
+     * GET /ovirt-engine/api/clusters/123 HTTP/1.1
      * ```
      *
      * ```xml
@@ -149,7 +149,7 @@ public interface ClusterService {
      * For example, to update the cluster's CPU:
      *
      * ```http
-     * PUT /ovirt-engine/api/clusters/123
+     * PUT /ovirt-engine/api/clusters/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -241,7 +241,7 @@ public interface ClusterService {
       * Synchronizes all networks on the cluster.
       *
       * ```http
-      * POST /ovirt-engine/api/clusters/123/syncallnetworks
+      * POST /ovirt-engine/api/clusters/123/syncallnetworks HTTP/1.1
       * ```
       *
       * With a request body like this:
@@ -274,7 +274,7 @@ public interface ClusterService {
       * action value which takes values of `start`, `stop` or `update_progress`.
       *
       * ```http
-      * POST /ovirt-engine/api/clusters/123/upgrade
+      * POST /ovirt-engine/api/clusters/123/upgrade HTTP/1.1
       * ```
       *
       * With a request body like this to mark the cluster for upgrade:
@@ -444,7 +444,7 @@ public interface ClusterService {
       * this:
       *
       * ```http
-      * POST /ovirt-engine/api/clusters/123/refreshglusterhealstatus
+      * POST /ovirt-engine/api/clusters/123/refreshglusterhealstatus HTTP/1.1
       * ```
       *
       *

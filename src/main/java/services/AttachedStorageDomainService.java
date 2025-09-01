@@ -36,7 +36,7 @@ public interface AttachedStorageDomainService {
      * Once the storage domain is activated it is ready for use with the data center.
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/activate
+     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/activate HTTP/1.1
      * ```
      *
      * The activate action does not take any action specific parameters,
@@ -63,7 +63,7 @@ public interface AttachedStorageDomainService {
      * For example, to deactivate storage domain `456`, send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
+     * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -94,7 +94,7 @@ public interface AttachedStorageDomainService {
          * For example, to deactivate storage domain `456` using force flag, send the following request:
          *
          * ```http
-         * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate
+         * POST /ovirt-engine/api/datacenters/123/storagedomains/456/deactivate HTTP/1.1
          * ```
          *
          * With a request body like this:

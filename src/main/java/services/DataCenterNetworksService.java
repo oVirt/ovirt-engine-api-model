@@ -45,7 +45,7 @@ public interface DataCenterNetworksService {
      * Post a request like in the example below to create a new network in a data center with an ID of `123`.
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/networks
+     * POST /ovirt-engine/api/datacenters/123/networks HTTP/1.1
      * ```
      *
      * Use the following example in its body:

@@ -44,7 +44,7 @@ public interface DomainsService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/domains
+     * GET /ovirt-engine/api/domains HTTP/1.1
      * ```
      *
      * Will return the list of domains:

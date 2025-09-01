@@ -31,7 +31,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * To get that information send a request like this:
  *
  * ```http
- * GET /ovirt-engine/api/vms/123/applications/456
+ * GET /ovirt-engine/api/vms/123/applications/456 HTTP/1.1
  * ```
  *
  * The result will be like this:

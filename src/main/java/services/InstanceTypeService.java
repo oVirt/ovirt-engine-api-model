@@ -39,7 +39,7 @@ public interface InstanceTypeService {
      * Get a specific instance type and it's attributes.
      *
      * ```http
-     * GET /ovirt-engine/api/instancetypes/123
+     * GET /ovirt-engine/api/instancetypes/123 HTTP/1.1
      * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>
@@ -59,7 +59,7 @@ public interface InstanceTypeService {
      * engine.
      *
      * ```http
-     * PUT /ovirt-engine/api/instancetypes/123
+     * PUT /ovirt-engine/api/instancetypes/123 HTTP/1.1
      * ```
      *
      * For example, to update the memory of instance type `123` to 1 GiB and set the cpu topology
@@ -103,7 +103,7 @@ public interface InstanceTypeService {
      * the virtual machine's instance type will be set to `custom`.
      *
      * ```http
-     * DELETE /ovirt-engine/api/instancetypes/123
+     * DELETE /ovirt-engine/api/instancetypes/123 HTTP/1.1
      * ```
      *
      * @author Sefi Litmanovich <slitmano@redhat.com>

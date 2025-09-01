@@ -65,7 +65,7 @@ public interface HostNicsService {
          * For example, to retrieve the complete representation of network interface '456' of host '123':
          *
          * ```http
-         * GET /ovirt-engine/api/hosts/123/nics?all_content=true
+         * GET /ovirt-engine/api/hosts/123/nics?all_content=true HTTP/1.1
          * ```
          *
          * NOTE: These attributes are not included by default because retrieving them impacts performance. They are

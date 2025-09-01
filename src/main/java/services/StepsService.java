@@ -50,7 +50,7 @@ public interface StepsService {
      * following request:
      *
      * ```http
-     * POST /ovirt-engine/api/jobs/123/steps
+     * POST /ovirt-engine/api/jobs/123/steps HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -109,7 +109,7 @@ public interface StepsService {
      * Retrieves the representation of the steps.
      *
      * ```http
-     * GET /ovirt-engine/api/job/123/steps
+     * GET /ovirt-engine/api/job/123/steps HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

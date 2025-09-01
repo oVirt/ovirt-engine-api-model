@@ -42,7 +42,7 @@ public interface StorageServerConnectionsService {
      * `/export/mydata` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/storageconnections
+     * POST /ovirt-engine/api/storageconnections HTTP/1.1
      * ```
      *
      * With a request body like this:

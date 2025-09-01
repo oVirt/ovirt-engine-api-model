@@ -49,7 +49,7 @@ public interface VmBackupsService {
      * since checkpoint id `previous-checkpoint-uuid`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/backups
+     * POST /ovirt-engine/api/vms/123/backups HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -83,7 +83,7 @@ public interface VmBackupsService {
      * To provide the ID of the created backup, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/backups
+     * POST /ovirt-engine/api/vms/123/backups HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -131,7 +131,7 @@ public interface VmBackupsService {
          * The REST API call should look like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms/123/backups?require_consistency=true
+         * POST /ovirt-engine/api/vms/123/backups?require_consistency=true HTTP/1.1
          * ```
          *
          * The default value of the requireConsistency flag is `false`.
@@ -151,7 +151,7 @@ public interface VmBackupsService {
          * The REST API call should look like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms/123/backups?use_active=false
+         * POST /ovirt-engine/api/vms/123/backups?use_active=false HTTP/1.1
          * ```
          *
          * The default value of the useActive flag is `false`.

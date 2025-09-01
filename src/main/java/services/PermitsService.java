@@ -47,7 +47,7 @@ public interface PermitsService {
      * For example to assign a permit `create_vm` to the role with id `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/roles/123/permits
+     * POST /ovirt-engine/api/roles/123/permits HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -80,7 +80,7 @@ public interface PermitsService {
      * For example to list the permits of the role with the id `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/roles/123/permits
+     * GET /ovirt-engine/api/roles/123/permits HTTP/1.1
      * ```
      *
      * ```xml

@@ -56,7 +56,7 @@ public interface VmApplicationService {
          * For example, a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123/applications/789
+         * GET /ovirt-engine/api/vms/123/applications/789 HTTP/1.1
          * ```
          *
          * May return information like this:

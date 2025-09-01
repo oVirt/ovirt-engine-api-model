@@ -49,7 +49,7 @@ public interface SnapshotsService {
      * For example, to create a new snapshot for virtual machine `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/snapshots
+     * POST /ovirt-engine/api/vms/123/snapshots HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -141,7 +141,7 @@ public interface SnapshotsService {
          * request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123/snapshots?all_content=true
+         * GET /ovirt-engine/api/vms/123/snapshots?all_content=true HTTP/1.1
          * ```
          *
          * @author Ondra Machacek <omachace@redhat.com>

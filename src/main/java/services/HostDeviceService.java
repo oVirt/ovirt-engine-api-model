@@ -44,7 +44,7 @@ public interface HostDeviceService {
      * An example of getting a host device:
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/devices/456
+     * GET /ovirt-engine/api/hosts/123/devices/456 HTTP/1.1
      * ```
      *
      * ```xml

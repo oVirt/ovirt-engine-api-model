@@ -50,7 +50,7 @@ public interface AssignedPermissionsService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/permissions
+     * POST /ovirt-engine/api/vms/123/permissions HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -67,7 +67,7 @@ public interface AssignedPermissionsService {
      * To assign the `SuperUser` role to the system to the user with id `456` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/permissions
+     * POST /ovirt-engine/api/permissions HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -86,7 +86,7 @@ public interface AssignedPermissionsService {
      * id `123` to the group with id `789` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/permissions
+     * POST /ovirt-engine/api/clusters/123/permissions HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -254,7 +254,7 @@ public interface AssignedPermissionsService {
      * For example to list all the permissions of the cluster with id `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/123/permissions
+     * GET /ovirt-engine/api/clusters/123/permissions HTTP/1.1
      * ```
      *
      * ```xml

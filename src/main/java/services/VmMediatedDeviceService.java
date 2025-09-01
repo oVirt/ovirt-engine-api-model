@@ -60,7 +60,7 @@ public interface VmMediatedDeviceService {
      * For example, to update a mediated device, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/mediateddevices/00000000-0000-0000-0000-000000000000
+     * PUT /ovirt-engine/api/vms/123/mediateddevices/00000000-0000-0000-0000-000000000000 HTTP/1.1
      * ```
      *
      * ```xml

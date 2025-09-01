@@ -103,7 +103,7 @@ of specifying the network and port mirroring configuration, these are
 previusly specified creating a vNIC profile:
 
 ```http
-POST /ovirt-engine/api/vnicprofiles
+POST /ovirt-engine/api/vnicprofiles HTTP/1.1
 ```
 
 ```xml
@@ -117,7 +117,7 @@ POST /ovirt-engine/api/vnicprofiles
 And then the NIC is created or referencing the existing vNIC profile:
 
 ```http
-PUT /ovirt-engine/api/vms/123/nics/456
+PUT /ovirt-engine/api/vms/123/nics/456 HTTP/1.1
 ```
 
 ```xml
@@ -158,7 +158,7 @@ Before version 3.6 the API had the possibility to pin a VM to a single
 host, using the `placement_policy` element of the VM entity:
 
 ```http
-PUT /ovirt-engine/api/vms/123
+PUT /ovirt-engine/api/vms/123 HTTP/1.1
 ```
 
 ```xml
@@ -173,7 +173,7 @@ In version 3.6 this capability was enhanced to support multiple hosts,
 and to do so a new `hosts` element was added:
 
 ```http
-PUT /ovirt-engine/api/vms/123
+PUT /ovirt-engine/api/vms/123 HTTP/1.1
 ```
 
 ```xml
@@ -205,7 +205,7 @@ replaced by the new `clusterlevels` service. To find the permits
 supported by cluster level 4.0 a request like this should be used:
 
 ```http
-GET /ovirt-engine/api/clusterlevels/4.0
+GET /ovirt-engine/api/clusterlevels/4.0 HTTP/1.1
 ```
 
 The result will be a document containing the information specific to
@@ -295,7 +295,7 @@ And also within the NIC resource, using the newer `reported_devices`
 element:
 
 ```http
-GET /ovirt-engine/api/vms/{vm:id}/nics/{nic:id}
+GET /ovirt-engine/api/vms/{vm:id}/nics/{nic:id} HTTP/1.1
 ```
 
 ```xml
@@ -323,7 +323,7 @@ To support the fully qualified domain name a new `fqdn` element has been
 added to the VM resource:
 
 ```http
-GET /ovirt-engine/api/vms/123
+GET /ovirt-engine/api/vms/123 HTTP/1.1
 ```
 
 ```xml
@@ -627,7 +627,7 @@ parameter to indicate that the data of the host should be refreshed
 it from the database:
 
 ```http
-GET /ovirt-engine/api/hosts/123;force
+GET /ovirt-engine/api/hosts/123;force HTTP/1.1
 ```
 
 This `force` parameter has been superseded by the host `refresh` action,
@@ -636,7 +636,7 @@ now. Applications that require this functionality should perform two
 requests, first one to refresh the host:
 
 ```http
-POST /ovirt-engine/api/hosts/123/refresh
+POST /ovirt-engine/api/hosts/123/refresh HTTP/1.1
 ```
 
 ```xml
@@ -646,7 +646,7 @@ POST /ovirt-engine/api/hosts/123/refresh
 And then one to retrieve it, without the `force` parameter:
 
 ```http
-GET /ovirt-engine/api/hosts/123
+GET /ovirt-engine/api/hosts/123 HTTP/1.1
 ```
 
 [id="removed-deprecated-host-power-management-configuration"]
@@ -687,7 +687,7 @@ try to boot from CDROM and then from hard disk the following request was
 used:
 
 ```http
-POST /ovirt-engine/api/vms/123/start
+POST /ovirt-engine/api/vms/123/start HTTP/1.1
 ```
 
 ```xml
@@ -712,7 +712,7 @@ inconsistence this has been replaced with a single `boot` element that
 can contain multiple devices:
 
 ```http
-POST /ovirt-engine/api/vms/123/start
+POST /ovirt-engine/api/vms/123/start HTTP/1.1
 ```
 
 ```xml
@@ -739,7 +739,7 @@ The `disks.clone` element was used to indicate that the disks of a new
 virtual machine have to be cloned:
 
 ```http
-POST /ovirt-engine/api/vms
+POST /ovirt-engine/api/vms HTTP/1.1
 ```
 
 ```xml
@@ -754,7 +754,7 @@ POST /ovirt-engine/api/vms
 This has been now removed, and replaced by a new `clone` query parameter:
 
 ```http
-POST /ovirt-engine/api/vms?clone=true
+POST /ovirt-engine/api/vms?clone=true HTTP/1.1
 ```
 
 ```xml
@@ -768,7 +768,7 @@ a virtual machine the disks do not have to be removed, but just detached
 from the virtual machine:
 
 ```http
-DELETE /ovirt-engine/api/vms/123
+DELETE /ovirt-engine/api/vms/123 HTTP/1.1
 ```
 
 ```xml
@@ -785,7 +785,7 @@ This has been now removed, and replaced by a new `detach_only` query
 parameter:
 
 ```http
-DELETE /ovirt-engine/api/vms/123?detach_only=true
+DELETE /ovirt-engine/api/vms/123?detach_only=true HTTP/1.1
 ```
 
 [id="rename-element-vmpool-to-vm_pool"]
@@ -804,7 +804,7 @@ an unbounded number of `logical_unit` elements. For example, when
 reporting the details of a storage domain:
 
 ```http
-GET /ovirt-engine/api/storagedomains/123
+GET /ovirt-engine/api/storagedomains/123 HTTP/1.1
 ```
 
 ```xml
@@ -830,7 +830,7 @@ are always wrapped with an element. This has been fixed now, so the list
 of logical units will be wrapped with the `logical_units` element:
 
 ```http
-GET /ovirt-engine/api/storagedomains/123
+GET /ovirt-engine/api/storagedomains/123 HTTP/1.1
 ```
 
 ```xml
@@ -861,7 +861,7 @@ a parameter of the operation that imports a virtual machine from an
 export storage domain:
 
 ```http
-POST /ovirt-engine/api/storagedomains/123/vms/456/import
+POST /ovirt-engine/api/storagedomains/123/vms/456/import HTTP/1.1
 ```
 
 ```xml
@@ -878,7 +878,7 @@ This has been now removed, and replaced by a new `collapse_snapshots`
 query parameter:
 
 ```http
-POST /ovirt-engine/api/storagedomains/123/vms/456/import?collapse_snapshots=true
+POST /ovirt-engine/api/storagedomains/123/vms/456/import?collapse_snapshots=true HTTP/1.1
 ```
 
 ```xml
@@ -893,7 +893,7 @@ elements and the `Storage` and `HostStorage` complex types to report the
 storage associated to a host:
 
 ```http
-GET /ovirt-engine/api/hosts/123/storage
+GET /ovirt-engine/api/hosts/123/storage HTTP/1.1
 ```
 
 ```xml
@@ -914,7 +914,7 @@ but in singular. This has now been changed to use `host_storages` as the
 outer element and `host_storage` as the inner element:
 
 ```http
-GET /ovirt-engine/api/hosts/123/storage
+GET /ovirt-engine/api/hosts/123/storage HTTP/1.1
 ```
 
 ```xml
@@ -936,7 +936,7 @@ This element isn't really part of the representation of permissions, but
 a parameter of the operations to create virtual machines or templates:
 
 ```http
-POST /ovirt-engine/api/vms
+POST /ovirt-engine/api/vms HTTP/1.1
 ```
 
 ```xml
@@ -950,7 +950,7 @@ POST /ovirt-engine/api/vms
 ```
 
 ```http
-POST /ovirt-engine/api/templates
+POST /ovirt-engine/api/templates HTTP/1.1
 ```
 
 ```xml
@@ -967,7 +967,7 @@ This has been now removed, and replaced by a new `clone_permissions`
 query parameter:
 
 ```http
-POST /ovirt-engine/api/vms?clone_permissions=true
+POST /ovirt-engine/api/vms?clone_permissions=true HTTP/1.1
 ```
 
 ```xml
@@ -977,7 +977,7 @@ POST /ovirt-engine/api/vms?clone_permissions=true
 ```
 
 ```http
-POST /ovirt-engine/api/templates?clone_permissions=true
+POST /ovirt-engine/api/templates?clone_permissions=true HTTP/1.1
 ```
 
 ```xml
@@ -995,7 +995,7 @@ reflecting its use. For example, the required random number generator
 sources of a cluster used to be reported as follows:
 
 ```http
-GET /ovirt-engine/api/clusters/123
+GET /ovirt-engine/api/clusters/123 HTTP/1.1
 ```
 
 ```xml
@@ -1012,7 +1012,7 @@ And the random number generator sources suported by a host used to be
 reported as follows:
 
 ```http
-GET /ovirt-engine/api/hosts/123
+GET /ovirt-engine/api/hosts/123 HTTP/1.1
 ```
 
 ```xml
@@ -1033,7 +1033,7 @@ This has been now fixed. The required random number generator sources
 will now be reported as follows:
 
 ```http
-GET /ovirt-engine/api/clusters/123
+GET /ovirt-engine/api/clusters/123 HTTP/1.1
 ```
 
 ```xml
@@ -1050,7 +1050,7 @@ And the random number generator sources supported by a host will be
 reported as follows:
 
 ```http
-GET /ovirt-engine/api/hosts/123
+GET /ovirt-engine/api/hosts/123 HTTP/1.1
 ```
 
 ```xml
@@ -1153,7 +1153,7 @@ existing one using its identifier. For example, when retrieving a
 cluster only the `id` (and `href`) will be populated:
 
 ```http
-GET /ovirt-engine/api/clusters/123
+GET /ovirt-engine/api/clusters/123 HTTP/1.1
 ```
 
 ```xml
@@ -1175,11 +1175,11 @@ now been removed, and replaced by new `replica_count` and `stripe_count`
 parameters:
 
 ```http
-POST .../bricks?replica_count=3&stripe_count=2
+POST .../bricks?replica_count=3&stripe_count=2 HTTP/1.1
 ```
 
 ```http
-DELETE .../bricks?replica_count=3
+DELETE .../bricks?replica_count=3 HTTP/1.1
 ```
 
 [id="renamed-the-statistics-type-property-to-kind"]
@@ -1258,7 +1258,7 @@ order to use it the `DELETE` operation used to support an optional action
 parameter:
 
 ```http
-DELETE /ovirt-engine/api/datacenters/123
+DELETE /ovirt-engine/api/datacenters/123 HTTP/1.1
 ```
 
 ```xml
@@ -1270,7 +1270,7 @@ DELETE /ovirt-engine/api/datacenters/123
 This optional action parameter has been replaced with an optional parameter:
 
 ```http
-DELETE /ovirt-engine/api/datacenters/123?force=true
+DELETE /ovirt-engine/api/datacenters/123?force=true HTTP/1.1
 ```
 
 [id="use-force-parameter-to-force-remove-a-host"]
@@ -1280,7 +1280,7 @@ The operation that removes a host supports a `force` parameter. In order to use
 it the `DELETE` operation used to support an optional action parameter:
 
 ```http
-DELETE /ovirt-engine/api/host/123
+DELETE /ovirt-engine/api/host/123 HTTP/1.1
 ```
 
 ```xml
@@ -1292,7 +1292,7 @@ DELETE /ovirt-engine/api/host/123
 This optional action parameter has been replaced with an optional parameter:
 
 ```http
-DELETE /ovirt-engine/api/host/123?force=true
+DELETE /ovirt-engine/api/host/123?force=true HTTP/1.1
 ```
 
 [id="use-parameters-for-force-remove-storage-domain"]
@@ -1303,7 +1303,7 @@ The operation that removes a storage domain supports the `force`, `destroy` and
 the representation of the storage domain as the body:
 
 ```http
-DELETE /ovirt-engine/api/storagedomains/123
+DELETE /ovirt-engine/api/storagedomains/123 HTTP/1.1
 ```
 
 ```xml
@@ -1326,13 +1326,13 @@ correct way to delete a storage domain with the `force` parameter is the
 following:
 
 ```http
-DELETE /ovirt-engine/api/storagedomain/123?host=myhost&force=true
+DELETE /ovirt-engine/api/storagedomain/123?host=myhost&force=true HTTP/1.1
 ```
 
 To delete with the `destroy` parameter:
 
 ```http
-DELETE /ovirt-engine/api/storagedomain/123?host=myhost&destroy=true
+DELETE /ovirt-engine/api/storagedomain/123?host=myhost&destroy=true HTTP/1.1
 ```
 
 [id="use-host-parameter-to-remove-storage-server-connection"]
@@ -1343,7 +1343,7 @@ parameter. In order to use it the `DELETE` method used to support an optional
 action parameter:
 
 ```http
-DELETE /ovirt-engine/api/storageconnections/123
+DELETE /ovirt-engine/api/storageconnections/123 HTTP/1.1
 ```
 
 ```xml
@@ -1357,7 +1357,7 @@ DELETE /ovirt-engine/api/storageconnections/123
 This optional action parameter has been replaced with an optional parameter:
 
 ```http
-DELETE /ovirt-engine/api/storageconnections/123?host=myhost
+DELETE /ovirt-engine/api/storageconnections/123?host=myhost HTTP/1.1
 ```
 
 [id="use-force-and-storage_domain-parameters-to-remove-template-disks"]
@@ -1368,7 +1368,7 @@ The operation that removes a template disk supports the `force` and
 to support an optional action parameter:
 
 ```http
-DELETE /ovirt-engine/api/templates/123/disks/456
+DELETE /ovirt-engine/api/templates/123/disks/456 HTTP/1.1
 ```
 
 ```xml
@@ -1383,11 +1383,11 @@ In version 4 of the API this operation has been moved to the new
 query parameters `force` and `storage_domain`:
 
 ```http
-DELETE /ovirt-engine/api/templates/123/disksattachments/456?force=true
+DELETE /ovirt-engine/api/templates/123/disksattachments/456?force=true HTTP/1.1
 ```
 
 ```http
-DELETE /ovirt-engine/api/templates/123/disksattachments/456?storage_domain=123
+DELETE /ovirt-engine/api/templates/123/disksattachments/456?storage_domain=123 HTTP/1.1
 ```
 
 [id="do-not-remove-disks-via-the-vm-disk-api"]
@@ -1401,7 +1401,7 @@ unreverseable consequences. To remove a disk, instead use the
 `/disk/456` API:
 
 ```http
-DELETE /ovirt-engine/api/disks/456
+DELETE /ovirt-engine/api/disks/456 HTTP/1.1
 ```
 
 [id="use-force-query-parameter-to-force-remove-a-virtual-machine"]
@@ -1412,7 +1412,7 @@ order to use it the `DELETE` method used to support an optional action
 parameter:
 
 ```http
-DELETE /ovirt-engine/api/vms/123
+DELETE /ovirt-engine/api/vms/123 HTTP/1.1
 ```
 
 ```xml
@@ -1425,7 +1425,7 @@ This optional action parameter has been replaced with an optional query
 parameter:
 
 ```http
-DELETE /ovirt-engine/api/vms/123?force=true
+DELETE /ovirt-engine/api/vms/123?force=true HTTP/1.1
 ```
 
 [id="use-post-instead-of-delete-to-remove-multiple-bricks"]
@@ -1435,7 +1435,7 @@ The operation that removes multiple Gluster bricks was implemented using the
 `DELETE` method and passing the list of bricks as the body of the request:
 
 ```http
-DELETE /ovirt-engine/api/clusters/123/glustervolumes/456/bricks
+DELETE /ovirt-engine/api/clusters/123/glustervolumes/456/bricks HTTP/1.1
 ```
 
 ```xml
@@ -1450,7 +1450,7 @@ This is problematic because the `DELETE` method shouldn't have a body, so it
 has been replaced with a new `remove` action that uses the `POST` method:
 
 ```http
-POST /ovirt-engine/api/clusters/123/glustervolumes/456/bricks/remove
+POST /ovirt-engine/api/clusters/123/glustervolumes/456/bricks/remove HTTP/1.1
 ```
 
 ```xml
@@ -1468,8 +1468,8 @@ The element was kept for backward compatibility. Use `scheduling_policy.name`
 instead.
 
 ```http
-POST /ovirt-engine/api/schedulingpolicies
-```http
+POST /ovirt-engine/api/schedulingpolicies HTTP/1.1
+```
 
 ```xml
 <scheduling_policy>
@@ -1480,7 +1480,7 @@ POST /ovirt-engine/api/schedulingpolicies
 ```
 
 ```http
-PUT /ovirt-engine/api/schedulingpolicies/123
+PUT /ovirt-engine/api/schedulingpolicies/123 HTTP/1.1
 ```
 
 ```xml
@@ -1558,7 +1558,7 @@ that isn't available in the model, like the list of CPU types available for
 each cluster level:
 
 ```http
-GET /ovirt-engine/api/clusterlevels
+GET /ovirt-engine/api/clusterlevels HTTP/1.1
 ```
 
 This will return a list of `ClusterLevel` objects containing the details for
@@ -1584,7 +1584,7 @@ Each specific cluster level has it's own subresource, identified by the version
 itself:
 
 ```http
-GET /ovirt-engine/api/clusterlevels/3.6
+GET /ovirt-engine/api/clusterlevels/3.6 HTTP/1.1
 ```
 
 This will return the details of that version:
@@ -1618,7 +1618,7 @@ To find what disks are attached to a virtual machine, for example, send a
 request like this:
 
 ```http
-GET /ovirt-engine/api/vms/123/diskattachments
+GET /ovirt-engine/api/vms/123/diskattachments HTTP/1.1
 ```
 
 That will return a response like this:
@@ -1641,7 +1641,7 @@ Adding disks to a virtual machine or template uses the new `disk_attachment`
 element as well: request like this:
 
 ```http
-POST /ovirt-engine/api/vms/123/diskattachments
+POST /ovirt-engine/api/vms/123/diskattachments HTTP/1.1
 ```
 
 With the following body if the disk doesn't exist and you want to create it:
@@ -1708,7 +1708,7 @@ used to receive a list of iSCSI targets, using multiple `iscsi_target`
 elements:
 
 ```http
-POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover
+POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover HTTP/1.1
 ```
 
 ```xml
@@ -1726,7 +1726,7 @@ in this case, are wrapped with another element, `iscsi_targets` in
 case. So the same request should now look like this:
 
 ```http
-POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover
+POST /ovirt-engine/api/hosts/123/unregisteredstoragedomaindiscover HTTP/1.1
 ```
 
 ```xml

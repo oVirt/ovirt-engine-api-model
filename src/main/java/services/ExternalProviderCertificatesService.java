@@ -42,7 +42,7 @@ public interface ExternalProviderCertificatesService {
      * Returns the chain of certificates presented by the external provider.
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/certificates
+     * GET /ovirt-engine/api/externalhostproviders/123/certificates HTTP/1.1
      * ```
      *
      * And here is sample response:

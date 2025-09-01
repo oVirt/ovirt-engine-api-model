@@ -42,7 +42,7 @@ public interface InstanceTypesService {
      * virtual machine.
      *
      * ```http
-     * POST /ovirt-engine/api/instancetypes
+     * POST /ovirt-engine/api/instancetypes HTTP/1.1
      * ```
      *
      * With a request body like this:

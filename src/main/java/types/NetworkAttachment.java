@@ -69,7 +69,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * For example, to attach a network to a host network interface card, send a request like this:
  *
  * ```http
- * POST /ovirt-engine/api/hosts/123/nics/456/networkattachments
+ * POST /ovirt-engine/api/hosts/123/nics/456/networkattachments HTTP/1.1
  * ```
  *
  * With a request body like this:
@@ -83,7 +83,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * To attach a network to a host, send a request like this:
  *
  * ```http
- * POST /ovirt-engine/api/hosts/123/networkattachments
+ * POST /ovirt-engine/api/hosts/123/networkattachments HTTP/1.1
  * ```
  *
  * With a request body like this:
@@ -100,7 +100,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * For example, to update a network attachment, send a request like this:
  *
  * ```http
- * PUT /ovirt-engine/api/hosts/123/nics/456/networkattachments/789
+ * PUT /ovirt-engine/api/hosts/123/nics/456/networkattachments/789 HTTP/1.1
  * ```
  *
  * With a request body like this:
@@ -124,7 +124,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * To detach a network from the network interface card send a request like this:
  *
  * ```http
- * DELETE /ovirt-engine/api/hosts/123/nics/456/networkattachments/789
+ * DELETE /ovirt-engine/api/hosts/123/nics/456/networkattachments/789 HTTP/1.1
  * ```
  *
  * IMPORTANT: Changes to network attachment configuration must be explicitly committed.

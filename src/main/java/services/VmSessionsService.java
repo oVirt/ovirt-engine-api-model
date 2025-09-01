@@ -45,7 +45,7 @@ public interface VmSessionsService {
      * For example, to retrieve the session information for virtual machine `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/sessions
+     * GET /ovirt-engine/api/vms/123/sessions HTTP/1.1
      * ```
      *
      * The response body will contain something like this:

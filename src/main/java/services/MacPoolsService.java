@@ -44,7 +44,7 @@ public interface MacPoolsService {
      * For example, to create MAC address pool send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/macpools
+     * POST /ovirt-engine/api/macpools HTTP/1.1
      * ```
      *
      * With a request body like this:

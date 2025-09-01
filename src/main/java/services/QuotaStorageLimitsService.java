@@ -48,7 +48,7 @@ public interface QuotaStorageLimitsService {
      * To create a 100GiB storage limit for all storage domains in a data center, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits
+     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -62,7 +62,7 @@ public interface QuotaStorageLimitsService {
      * To create a 50GiB storage limit for a storage domain with the ID `000`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits
+     * POST /ovirt-engine/api/datacenters/123/quotas/456/quotastoragelimits HTTP/1.1
      * ```
      *
      * With a request body like this:

@@ -48,7 +48,7 @@ public interface AffinityGroupsService {
      * Post a request like in the example below to create a new affinity group:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/000-000/affinitygroups
+     * POST /ovirt-engine/api/clusters/000-000/affinitygroups HTTP/1.1
      * ```
      *
      * And use the following example in its body:

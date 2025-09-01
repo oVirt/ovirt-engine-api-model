@@ -51,7 +51,7 @@ public interface UsersService {
      * like this:
      *
      * ```http
-     * POST /ovirt-engine/api/users
+     * POST /ovirt-engine/api/users HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -103,7 +103,7 @@ public interface UsersService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/users
+     * GET /ovirt-engine/api/users HTTP/1.1
      * ```
      *
      * Will return the list of users:

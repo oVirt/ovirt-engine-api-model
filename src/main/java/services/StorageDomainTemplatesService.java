@@ -61,7 +61,7 @@ public interface StorageDomainTemplatesService {
          * For example, to get a list of unregistered templates the REST API call should look like this:
          *
          * ```http
-         * GET /ovirt-engine/api/storagedomains/123/templates?unregistered=true
+         * GET /ovirt-engine/api/storagedomains/123/templates?unregistered=true HTTP/1.1
          * ```
          *
          * The default value of the unregisterd flag is `false`.

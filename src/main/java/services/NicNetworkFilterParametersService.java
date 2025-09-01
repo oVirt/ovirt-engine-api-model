@@ -71,7 +71,7 @@ public interface NicNetworkFilterParametersService {
      * virtual machine `789` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/789/nics/456/networkfilterparameters
+     * POST /ovirt-engine/api/vms/789/nics/456/networkfilterparameters HTTP/1.1
      * ```
      *
      * With a request body like this:

@@ -51,7 +51,7 @@ public interface IscsiBondService {
      * update the iSCSI bond `456` of data center `123`, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123/iscsibonds/1234
+     * PUT /ovirt-engine/api/datacenters/123/iscsibonds/1234 HTTP/1.1
      * ```
      *
      * The request body should look like this:
@@ -91,7 +91,7 @@ public interface IscsiBondService {
      * For example, to remove the iSCSI bond `456` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/datacenters/123/iscsibonds/456
+     * DELETE /ovirt-engine/api/datacenters/123/iscsibonds/456 HTTP/1.1
      * ```
      *
      * @author Maor Lipchuk <mlipchuk@redhat.com>

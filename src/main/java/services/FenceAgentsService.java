@@ -46,7 +46,7 @@ public interface FenceAgentsService {
      * Add a new fencing-agent to the host.
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/fenceagents
+     * POST /ovirt-engine/api/hosts/123/fenceagents HTTP/1.1
      * ```
      *
      * You should consult the /usr/sbin/fence_<agent_name> manual page for
@@ -133,7 +133,7 @@ public interface FenceAgentsService {
      * Returns the list of fencing agents configured for the host.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/fenceagents
+     * GET /ovirt-engine/api/hosts/123/fenceagents HTTP/1.1
      * ```
      *
      * And here is sample response:

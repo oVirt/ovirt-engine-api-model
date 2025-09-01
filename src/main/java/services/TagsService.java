@@ -49,7 +49,7 @@ public interface TagsService {
      * For example, to add new tag with name `mytag` to the system send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/tags
+     * POST /ovirt-engine/api/tags HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -101,7 +101,7 @@ public interface TagsService {
      * For example to list the full hierarchy of the tags in the system send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/tags
+     * GET /ovirt-engine/api/tags HTTP/1.1
      * ```
      *
      * ```xml

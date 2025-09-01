@@ -47,7 +47,7 @@ public interface ExternalHostGroupsService {
      * For example, to get the details of all host groups of provider `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/hostgroups
+     * GET /ovirt-engine/api/externalhostproviders/123/hostgroups HTTP/1.1
      * ```
      *
      * The response will be like this:

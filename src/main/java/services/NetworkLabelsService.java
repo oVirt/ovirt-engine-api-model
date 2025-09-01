@@ -50,7 +50,7 @@ public interface NetworkLabelsService {
      * For example, to attach the label `mylabel` to a logical network having id `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/networks/123/networklabels
+     * POST /ovirt-engine/api/networks/123/networklabels HTTP/1.1
      * ```
      *
      * With a request body like this:

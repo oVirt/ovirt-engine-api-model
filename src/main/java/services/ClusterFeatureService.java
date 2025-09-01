@@ -43,7 +43,7 @@ public interface ClusterFeatureService {
      * For example, to find details of the cluster feature `456` for cluster level 4.1, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures/456
+     * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures/456 HTTP/1.1
      * ```
      *
      * That will return a xref:types/cluster_feature[ClusterFeature] object containing the name:

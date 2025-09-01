@@ -74,7 +74,7 @@ public interface DiskAttachmentsService {
      * In both cases, use the following URL for a virtual machine with an id `345`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/345/diskattachments
+     * POST /ovirt-engine/api/vms/345/diskattachments HTTP/1.1
      * ```
      *
      * IMPORTANT: The server accepts requests that do not contain the `active` attribute, but the effect is

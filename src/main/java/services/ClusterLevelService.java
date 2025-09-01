@@ -39,7 +39,7 @@ public interface ClusterLevelService {
      * For example, to find what CPU types are supported by level 3.6 you can send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusterlevels/3.6
+     * GET /ovirt-engine/api/clusterlevels/3.6 HTTP/1.1
      * ```
      *
      * That will return a xref:types/cluster_level[ClusterLevel] object containing the supported CPU types, and other

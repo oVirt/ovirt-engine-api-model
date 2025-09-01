@@ -38,7 +38,7 @@ public interface StatisticsService {
      * request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/statistics
+     * GET /ovirt-engine/api/vms/123/statistics HTTP/1.1
      * ```
      *
      * The result will be like this:
@@ -65,7 +65,7 @@ public interface StatisticsService {
      * Just a single part of the statistics can be retrieved by specifying its id at the end of the URI. That means:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/statistics/456
+     * GET /ovirt-engine/api/vms/123/statistics/456 HTTP/1.1
      * ```
      *
      * Outputs:

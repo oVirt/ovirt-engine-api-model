@@ -163,7 +163,7 @@ import annotations.Area;
  * * 'initial_size' must be bigger or the same as the size of the uploaded data.
  *
  * ```http
- * POST /ovirt-engine/api/disks
+ * POST /ovirt-engine/api/disks HTTP/1.1
  * ```
  *
  * With a request body as follows:
@@ -185,7 +185,7 @@ import annotations.Area;
  *
  *
  * ```http
- * POST /ovirt-engine/api/imagetransfers
+ * POST /ovirt-engine/api/imagetransfers HTTP/1.1
  * ```
  *
  * With a request body as follows:
@@ -235,7 +235,7 @@ import annotations.Area;
  * - Finalize the image transfer by invoking the action:
  *
  * ```http
- * POST /ovirt-engine/api/imagetransfers/123/finalize
+ * POST /ovirt-engine/api/imagetransfers/123/finalize HTTP/1.1
  * ```
  *
  * With a request body as follows:

@@ -45,7 +45,7 @@ public interface VmCheckpointsService {
      * To get a list of checkpoints for a virtual machine with an id '123', send a request as follows:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/checkpoints
+     * GET /ovirt-engine/api/vms/123/checkpoints HTTP/1.1
      * ```
      *
      * @author Eyal Shenitzky <eshenitz@redhat.com>

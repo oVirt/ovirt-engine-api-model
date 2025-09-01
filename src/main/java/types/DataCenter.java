@@ -37,7 +37,7 @@ public interface DataCenter extends Identified {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/datacenters/123
+     * GET /ovirt-engine/api/datacenters/123 HTTP/1.1
      * ```
      *
      * Will respond:
@@ -56,7 +56,7 @@ public interface DataCenter extends Identified {
      * To update the compatibility version, use:
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123
+     * PUT /ovirt-engine/api/datacenters/123 HTTP/1.1
      * ```
      *
      * With a request body:

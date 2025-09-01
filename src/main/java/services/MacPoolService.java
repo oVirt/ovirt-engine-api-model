@@ -47,7 +47,7 @@ public interface MacPoolService {
      * For example, to update the MAC address pool of id `123` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/macpools/123
+     * PUT /ovirt-engine/api/macpools/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -98,7 +98,7 @@ public interface MacPoolService {
      * For example, to remove the MAC address pool having id `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/macpools/123
+     * DELETE /ovirt-engine/api/macpools/123 HTTP/1.1
      * ```
      *
      * @author Martin Mucha <mmucha@redhat.com>

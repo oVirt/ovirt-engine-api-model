@@ -38,7 +38,7 @@ public interface QosService {
      * Get specified QoS in the data center.
      *
      * ```http
-     * GET /ovirt-engine/api/datacenters/123/qoss/123
+     * GET /ovirt-engine/api/datacenters/123/qoss/123 HTTP/1.1
      * ```
      *
      * You will get response like this one below:
@@ -73,7 +73,7 @@ public interface QosService {
      * Update the specified QoS in the dataCenter.
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123/qoss/123
+     * PUT /ovirt-engine/api/datacenters/123/qoss/123 HTTP/1.1
      * ```
      *
      * For example with curl:
@@ -144,7 +144,7 @@ public interface QosService {
      * Remove specified QoS from datacenter.
      *
      * ```http
-     * DELETE /ovirt-engine/api/datacenters/123/qoss/123
+     * DELETE /ovirt-engine/api/datacenters/123/qoss/123 HTTP/1.1
      * ```
      *
      * @author Aleksei Slaikovskii <aslaikov@redhat.com>

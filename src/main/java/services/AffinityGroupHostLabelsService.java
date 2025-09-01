@@ -50,7 +50,7 @@ public interface AffinityGroupHostLabelsService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/hostlabels
+     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/hostlabels HTTP/1.1
      * ```
      *
      * With the following body:

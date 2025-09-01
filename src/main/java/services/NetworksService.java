@@ -56,7 +56,7 @@ public interface NetworksService {
      * For example, to create a network named `mynetwork` for data center `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/networks
+     * POST /ovirt-engine/api/networks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -72,7 +72,7 @@ public interface NetworksService {
      * To associate the existing network `456` with the data center `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/networks
+     * POST /ovirt-engine/api/datacenters/123/networks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -87,7 +87,7 @@ public interface NetworksService {
      * like this:
      *
      * ```http
-     * POST /ovirt-engine/api/networks
+     * POST /ovirt-engine/api/networks HTTP/1.1
      * ```
      *
      * ```xml
@@ -130,7 +130,7 @@ public interface NetworksService {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/networks
+     * GET /ovirt-engine/api/networks HTTP/1.1
      * ```
      *
      * Will respond:

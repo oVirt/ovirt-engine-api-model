@@ -59,7 +59,7 @@ public interface TemplateDiskAttachmentService {
      * have copies on multiple storage domains).
      *
      * ```http
-     * DELETE /ovirt-engine/api/templates/{template:id}/diskattachments/{attachment:id}?storage_domain=072fbaa1-08f3-4a40-9f34-a5ca22dd1d74
+     * DELETE /ovirt-engine/api/templates/{template:id}/diskattachments/{attachment:id}?storage_domain=072fbaa1-08f3-4a40-9f34-a5ca22dd1d74 HTTP/1.1
      * ```
      *
      * @author Tal Nisan <tnisan@redhat.com>

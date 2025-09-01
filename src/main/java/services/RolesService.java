@@ -47,7 +47,7 @@ public interface RolesService {
      * send a request like this (note that you have to pass permit id):
      *
      * ```http
-     * POST /ovirt-engine/api/roles
+     * POST /ovirt-engine/api/roles HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -90,7 +90,7 @@ public interface RolesService {
      * List roles.
      *
      * ```http
-     * GET /ovirt-engine/api/roles
+     * GET /ovirt-engine/api/roles HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

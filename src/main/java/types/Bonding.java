@@ -63,7 +63,7 @@ public interface Bonding {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/nics/321
+     * GET /ovirt-engine/api/hosts/123/nics/321 HTTP/1.1
      * ```
      *
      * Will respond:

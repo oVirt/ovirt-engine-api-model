@@ -44,7 +44,7 @@ public interface DomainUsersService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/domains/5678/users
+     * GET /ovirt-engine/api/domains/5678/users HTTP/1.1
      * ```
      *
      * Will return the list of users in the domain:

@@ -60,7 +60,7 @@ public interface ImageTransfersService {
      * send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/imagetransfers
+     * POST /ovirt-engine/api/imagetransfers HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -79,7 +79,7 @@ public interface ImageTransfersService {
      * send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/imagetransfers
+     * POST /ovirt-engine/api/imagetransfers HTTP/1.1
      * ```
      *
      * With a request body like this:

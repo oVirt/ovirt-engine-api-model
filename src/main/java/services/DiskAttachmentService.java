@@ -42,7 +42,7 @@ public interface DiskAttachmentService {
      * An example of getting a disk attachment:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/diskattachments/456
+     * GET /ovirt-engine/api/vms/123/diskattachments/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -72,7 +72,7 @@ public interface DiskAttachmentService {
      * An example of removing a disk attachment:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/diskattachments/456?detach_only=true
+     * DELETE /ovirt-engine/api/vms/123/diskattachments/456?detach_only=true HTTP/1.1
      * ```
      *
      * @author Boris Odnopozov <bodnopoz@redhat.com>

@@ -52,7 +52,7 @@ import types.NetworkFilter;
  * Example of listing all of the supported network filters for a specific cluster:
  *
  * ```http
- * GET http://localhost:8080/ovirt-engine/api/clusters/{cluster:id}/networkfilters
+ * GET http://localhost:8080/ovirt-engine/api/clusters/{cluster:id}/networkfilters HTTP/1.1
  * ```
  *
  * Output:

@@ -43,7 +43,7 @@ public interface DomainService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/domains/5678
+     * GET /ovirt-engine/api/domains/5678 HTTP/1.1
      * ```
      *
      * Will return the domain information:

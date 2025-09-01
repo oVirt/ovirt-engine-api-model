@@ -170,7 +170,7 @@ public interface Cluster extends Identified {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/123
+     * GET /ovirt-engine/api/clusters/123 HTTP/1.1
      * ```
      *
      * Will respond with:
@@ -189,7 +189,7 @@ public interface Cluster extends Identified {
      * To update the compatibility version, use:
      *
      * ```http
-     * PUT /ovirt-engine/api/clusters/123
+     * PUT /ovirt-engine/api/clusters/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -302,7 +302,7 @@ public interface Cluster extends Identified {
      * For example:
      *
      * ```http
-     * PUT /ovirt-engine/api/cluster/123
+     * PUT /ovirt-engine/api/cluster/123 HTTP/1.1
      * ```
      *
      * With request body like this:
@@ -351,7 +351,7 @@ public interface Cluster extends Identified {
      * send a request:
      *
      * ```http
-     * PUT /ovirt-engine/api/clusters/123
+     * PUT /ovirt-engine/api/clusters/123 HTTP/1.1
      * ```
      *
      * With a request body:

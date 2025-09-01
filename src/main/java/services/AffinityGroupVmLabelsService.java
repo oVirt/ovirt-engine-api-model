@@ -50,7 +50,7 @@ public interface AffinityGroupVmLabelsService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vmlabels
+     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vmlabels HTTP/1.1
      * ```
      *
      * With the following body:

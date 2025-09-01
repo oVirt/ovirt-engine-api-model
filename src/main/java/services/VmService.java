@@ -49,7 +49,7 @@ public interface VmService extends MeasurableService {
      *
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/cancelmigration
+     * POST /ovirt-engine/api/vms/123/cancelmigration HTTP/1.1
      * ```
      *
      * The cancel migration action does not take any action specific parameters;
@@ -142,7 +142,7 @@ public interface VmService extends MeasurableService {
      * Detaches a virtual machine from a pool.
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/detach
+     * POST /ovirt-engine/api/vms/123/detach HTTP/1.1
      * ```
      *
      * The detach action does not take any action specific parameters; therefore, the request body should contain an
@@ -175,7 +175,7 @@ public interface VmService extends MeasurableService {
      * For example, to export virtual machine `123` to the export domain `myexport`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/export
+     * POST /ovirt-engine/api/vms/123/export HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -194,7 +194,7 @@ public interface VmService extends MeasurableService {
      * For example, to export virtual machine `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/export
+     * POST /ovirt-engine/api/vms/123/export HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -309,7 +309,7 @@ public interface VmService extends MeasurableService {
              * The name of the OVA file.
              *
              * This is an optional parameter, if it is not specified then the name of OVA file is determined according
-             * to the name of the virtual machine. It will conform the following pattern: "<virtual machine name>.ova".
+             * to the name of the virtual machine. It will conform the following pattern: "virtual_machine_name.ova".
              *
              * @author Arik Hadas <ahadas@redhat.com>
              * @date 14 Nov 2017
@@ -337,7 +337,7 @@ public interface VmService extends MeasurableService {
      * Example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/freezefilesystems
+     * POST /ovirt-engine/api/vms/123/freezefilesystems HTTP/1.1
      * ```
      *
      * ```xml
@@ -389,13 +389,13 @@ public interface VmService extends MeasurableService {
          * the following request:
          *
          * ```http
-         * GET /vms/{vm:id};next_run
+         * GET /vms/{vm:id};next_run HTTP/1.1
          * ```
          *
          * Is equivalent to using the value `true`:
          *
          * ```http
-         * GET /vms/{vm:id};next_run=true
+         * GET /vms/{vm:id};next_run=true HTTP/1.1
          * ```
          *
          * @author Megan Lewis <melewis@redhat.com>
@@ -418,7 +418,7 @@ public interface VmService extends MeasurableService {
          * For example, to retrieve the complete representation of the virtual machine '123':
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123?all_content=true
+         * GET /ovirt-engine/api/vms/123?all_content=true HTTP/1.1
          * ```
          *
          * NOTE: These attributes are not included by default as they reduce performance. These attributes are seldom used
@@ -448,7 +448,7 @@ public interface VmService extends MeasurableService {
          *
          * For example:
          * ```http
-         * GET /vms/{vm:id}?all_content=true&ovf_as_ova=true
+         * GET /vms/{vm:id}?all_content=true&ovf_as_ova=true HTTP/1.1
          * ```
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>
@@ -471,7 +471,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/logon
+     * POST /ovirt-engine/api/vms/123/logon HTTP/1.1
      * ```
      *
      * Request body:
@@ -504,7 +504,7 @@ public interface VmService extends MeasurableService {
      * Example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/maintenance
+     * POST /ovirt-engine/api/vms/123/maintenance HTTP/1.1
      * ```
      *
      * ```xml
@@ -551,7 +551,7 @@ public interface VmService extends MeasurableService {
      * Example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/migrate
+     * POST /ovirt-engine/api/vms/123/migrate HTTP/1.1
      * ```
      *
      * To specify a specific host to migrate the virtual machine to:
@@ -657,7 +657,7 @@ public interface VmService extends MeasurableService {
          * `image_id` as `222`, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms/123/previewsnapshot
+         * POST /ovirt-engine/api/vms/123/previewsnapshot HTTP/1.1
          * ```
          *
          * Request body:
@@ -728,7 +728,7 @@ public interface VmService extends MeasurableService {
      *
      * An example for a request:
      * ```http
-     * POST /ovirt-engine/api/vms/123/autopincpuandnumanodes
+     * POST /ovirt-engine/api/vms/123/autopincpuandnumanodes HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -888,7 +888,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/reboot
+     * POST /ovirt-engine/api/vms/123/reboot HTTP/1.1
      * ```
      *
      * The reboot action does not take any action specific parameters; therefore, the request body should contain an
@@ -904,7 +904,7 @@ public interface VmService extends MeasurableService {
      * For example, to force reboot virtual machine `123`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/reboot
+     * POST /ovirt-engine/api/vms/123/reboot HTTP/1.1
      * ```
      *
      * ```xml
@@ -951,7 +951,7 @@ public interface VmService extends MeasurableService {
      * For example, to remove the virtual machine with identifier `123`:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123
+     * DELETE /ovirt-engine/api/vms/123 HTTP/1.1
      * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>
@@ -999,7 +999,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/reset
+     * POST /ovirt-engine/api/vms/123/reset HTTP/1.1
      * ```
      *
      * The reset action does not take any action specific parameters; therefore, the request body should contain an
@@ -1033,7 +1033,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/shutdown
+     * POST /ovirt-engine/api/vms/123/shutdown HTTP/1.1
      * ```
      *
      * The shutdown action does not take any action specific parameters;
@@ -1049,7 +1049,7 @@ public interface VmService extends MeasurableService {
      * For example, to force shutdown virtual machine `123`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/shutdown
+     * POST /ovirt-engine/api/vms/123/shutdown HTTP/1.1
      * ```
      *
      * ```xml
@@ -1110,7 +1110,7 @@ public interface VmService extends MeasurableService {
      * This example starts the virtual machine:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/start
+     * POST /ovirt-engine/api/vms/123/start HTTP/1.1
      * ```
      *
      * With a request body:
@@ -1340,7 +1340,7 @@ public interface VmService extends MeasurableService {
      * For example, to force stop virtual machine `123`:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/stop
+     * POST /ovirt-engine/api/vms/123/stop HTTP/1.1
      * ```
      *
      * ```xml
@@ -1398,7 +1398,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/suspend
+     * POST /ovirt-engine/api/vms/123/suspend HTTP/1.1
      * ```
      *
      * The suspend action does not take any action specific parameters;
@@ -1434,7 +1434,7 @@ public interface VmService extends MeasurableService {
      * Example:
      *
      * ```http
-     * POST /api/vms/123/thawfilesystems
+     * POST /api/vms/123/thawfilesystems HTTP/1.1
      * ```
      *
      * ```xml
@@ -1463,7 +1463,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/ticket
+     * POST /ovirt-engine/api/vms/123/ticket HTTP/1.1
      * ```
      *
      * The client-provided action optionally includes a desired ticket value and/or an expiry time in seconds.
@@ -1493,7 +1493,7 @@ public interface VmService extends MeasurableService {
      * a request:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles/456/ticket HTTP/1.1
      * ```
      * ====
      *
@@ -1548,7 +1548,7 @@ public interface VmService extends MeasurableService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/screenshot
+     * POST /ovirt-engine/api/vms/123/screenshot HTTP/1.1
      * ```
      *
      * The screenshot action does not take any action specific parameters; therefore, the request body should contain an

@@ -60,7 +60,7 @@ public interface ExternalProviderService {
      * to run following request where 123 is an id of a provider.
      *
      * ```http
-     * POST /ovirt-engine/api/externalhostproviders/123/testconnectivity
+     * POST /ovirt-engine/api/externalhostproviders/123/testconnectivity HTTP/1.1
      * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>

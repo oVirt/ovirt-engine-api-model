@@ -44,7 +44,7 @@ public interface KatelloErrataService {
      * Retrieves the representation of the Katello errata.
      *
      * ```http
-     * GET /ovirt-engine/api/katelloerrata
+     * GET /ovirt-engine/api/katelloerrata HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

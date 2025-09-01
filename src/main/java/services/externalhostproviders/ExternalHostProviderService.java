@@ -54,7 +54,7 @@ public interface ExternalHostProviderService extends ExternalProviderService {
      * For example, to get the details of host provider `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123
+     * GET /ovirt-engine/api/externalhostproviders/123 HTTP/1.1
      * ```
      *
      * The response will be like this:

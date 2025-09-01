@@ -32,7 +32,7 @@ import org.ovirt.api.metamodel.annotations.Type;
  * To get that information send a request like this:
  *
  * ```http
- * GET /ovirt-engine/api
+ * GET /ovirt-engine/api HTTP/1.1
  * ```
  *
  * The result will be like this:

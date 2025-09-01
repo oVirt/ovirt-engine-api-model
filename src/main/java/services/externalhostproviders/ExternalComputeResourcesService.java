@@ -48,7 +48,7 @@ public interface ExternalComputeResourcesService {
      * For example, to retrieve the compute resources of external host provider `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/computeresources
+     * GET /ovirt-engine/api/externalhostproviders/123/computeresources HTTP/1.1
      * ```
      *
      * It will return a response like this:

@@ -53,7 +53,7 @@ public interface GlusterVolumesService {
      * For example, to add a volume with name `myvolume` to the cluster `123`, send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/glustervolumes
+     * POST /ovirt-engine/api/clusters/123/glustervolumes HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -111,7 +111,7 @@ public interface GlusterVolumesService {
      * this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/456/glustervolumes
+     * GET /ovirt-engine/api/clusters/456/glustervolumes HTTP/1.1
      * ```
      *
      * The order of the returned list of volumes isn't guaranteed.

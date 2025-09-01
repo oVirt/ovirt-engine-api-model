@@ -55,7 +55,7 @@ public interface TemplateService {
      * For example, send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/templates/123/export
+     * POST /ovirt-engine/api/templates/123/export HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -71,7 +71,7 @@ public interface TemplateService {
      * For example, to export template `123` as an OVA file named `myvm.ova` that is placed in the directory `/home/ovirt/` on host `myhost`:
      *
      * ```http
-     * POST /ovirt-engine/api/templates/123/export
+     * POST /ovirt-engine/api/templates/123/export HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -168,7 +168,7 @@ public interface TemplateService {
              * The name of the OVA file.
              *
              * This is an optional parameter. If it is not specified, the name of the OVA file is determined according
-             * to the name of the template. It will conform to the following pattern: "<template name>.ova".
+             * to the name of the template. It will conform to the following pattern: "template_name.ova".
              *
              * @author Arik Hadas <ahadas@redhat.com>
              * @author Tahlia Richardson <trichard@redhat.com>
@@ -225,7 +225,7 @@ public interface TemplateService {
      * For example, to update a template so that it has 1 GiB of memory send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/templates/123
+     * PUT /ovirt-engine/api/templates/123 HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -344,7 +344,7 @@ public interface TemplateService {
      * Removes a virtual machine template.
      *
      * ```http
-     * DELETE /ovirt-engine/api/templates/123
+     * DELETE /ovirt-engine/api/templates/123 HTTP/1.1
      * ```
      *
      * @author Shahar Havivi <shavivi@redhat.com>

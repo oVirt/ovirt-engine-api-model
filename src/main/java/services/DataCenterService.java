@@ -51,7 +51,7 @@ public interface DataCenterService {
      * An example of getting a data center:
      *
      * ```http
-     * GET /ovirt-engine/api/datacenters/123
+     * GET /ovirt-engine/api/datacenters/123 HTTP/1.1
      * ```
      *
      * ```xml
@@ -103,7 +103,7 @@ public interface DataCenterService {
      * post-creation. For example, to change the name and description of data center `123` send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123
+     * PUT /ovirt-engine/api/datacenters/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -150,7 +150,7 @@ public interface DataCenterService {
      * Removes the data center.
      *
      * ```http
-     * DELETE /ovirt-engine/api/datacenters/123
+     * DELETE /ovirt-engine/api/datacenters/123 HTTP/1.1
      * ```
      *
      * Without any special parameters, the storage domains attached to the data center are detached and then removed
@@ -192,7 +192,7 @@ public interface DataCenterService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/setmaster
+     * POST /ovirt-engine/api/datacenters/123/setmaster HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -244,7 +244,7 @@ public interface DataCenterService {
      * For example, to clean all the finished tasks on a data center with ID `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters/123/cleanfinishedtasks
+     * POST /ovirt-engine/api/datacenters/123/cleanfinishedtasks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -277,7 +277,7 @@ public interface DataCenterService {
     * For attaching a single storage domain we should use the following POST request:
     *
     * ```http
-    * POST /ovirt-engine/api/datacenters/123/storagedomains
+    * POST /ovirt-engine/api/datacenters/123/storagedomains HTTP/1.1
     * ```
     *
     * With a request body like this:
@@ -291,7 +291,7 @@ public interface DataCenterService {
     * For detaching a single storage domain we should use the following DELETE request:
     *
     * ```http
-    * DELETE /ovirt-engine/api/datacenters/123/storagedomains/123
+    * DELETE /ovirt-engine/api/datacenters/123/storagedomains/123 HTTP/1.1
     * ```
     *
     * @author Maor Lipchuk <mlipchuk@redhat.com>

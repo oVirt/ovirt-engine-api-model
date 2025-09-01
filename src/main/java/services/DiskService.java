@@ -53,7 +53,7 @@ public interface DiskService extends MeasurableService {
      * For example, a disk can be copied using the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/disks/123/copy
+     * POST /ovirt-engine/api/disks/123/copy HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -92,7 +92,7 @@ public interface DiskService extends MeasurableService {
          * a request like this:
          *
          * ```http
-         * POST /ovirt-engine/disks/123
+         * POST /ovirt-engine/disks/123 HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -125,7 +125,7 @@ public interface DiskService extends MeasurableService {
          * attributes. For example, to copy a disk to the storage domain called `mydata`, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/storagedomains/123/disks/789
+         * POST /ovirt-engine/api/storagedomains/123/disks/789 HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -204,7 +204,7 @@ public interface DiskService extends MeasurableService {
      * For example, a disk's update can be done by using the following request:
      *
      * ```http
-     * PUT /ovirt-engine/api/disks/123
+     * PUT /ovirt-engine/api/disks/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -328,7 +328,7 @@ public interface DiskService extends MeasurableService {
          * For example, to retrieve the complete representation of disk '123':
          *
          * ```http
-         * GET /ovirt-engine/api/disks/123?all_content=true
+         * GET /ovirt-engine/api/disks/123?all_content=true HTTP/1.1
          * ```
          *
          * @author Shani Leviim <sleviim@redhat.com>
@@ -346,7 +346,7 @@ public interface DiskService extends MeasurableService {
      * request:
      *
      * ```http
-     * POST /ovirt-engine/api/disks/123/move
+     * POST /ovirt-engine/api/disks/123/move HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -488,7 +488,7 @@ public interface DiskService extends MeasurableService {
      * To refresh direct LUN disk `123` using host `456`, send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/disks/123/refreshlun
+     * POST /ovirt-engine/api/disks/123/refreshlun HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -549,7 +549,7 @@ public interface DiskService extends MeasurableService {
      * send a request like the following:
      *
      * ```http
-     * POST /ovirt-engine/api/disks/123/convert
+     * POST /ovirt-engine/api/disks/123/convert HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -607,13 +607,13 @@ public interface DiskService extends MeasurableService {
      * For example, to list all disk snapshots under the disks resource '123':
      *
      * ```http
-     * GET /ovirt-engine/api/disks/123/disksnapshots
+     * GET /ovirt-engine/api/disks/123/disksnapshots HTTP/1.1
      * ```
      *
      * For example, to retrieve a specific disk snapshot '789' under the disk resource '123':
      *
      * ```http
-     * GET /ovirt-engine/api/disks/123/disksnapshots/789
+     * GET /ovirt-engine/api/disks/123/disksnapshots/789 HTTP/1.1
      * ```
      *
      * @author Ahmad Khiet <akhiet@redhat.com>

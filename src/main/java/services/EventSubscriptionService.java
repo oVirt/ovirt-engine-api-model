@@ -26,7 +26,7 @@ public interface EventSubscriptionService {
      * the event 'vm_console_detected':
      *
      * ```http
-     * GET /ovirt-engine/api/users/123/vm_console_detected
+     * GET /ovirt-engine/api/users/123/vm_console_detected HTTP/1.1
      * ```
      *
      * ```xml
@@ -62,7 +62,7 @@ public interface EventSubscriptionService {
      * For example to remove user 123's subscription to `vm_console_detected` event:
      *
      * ```http
-     * DELETE /ovirt-engine/api/users/123/vm_console_detected
+     * DELETE /ovirt-engine/api/users/123/vm_console_detected HTTP/1.1
      * ```
      *
      * @author Ori Liel <oliel@redhat.com>

@@ -52,7 +52,7 @@ public interface UserService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/users/1234
+     * GET /ovirt-engine/api/users/1234 HTTP/1.1
      * ```
      *
      * Will return the user information:
@@ -101,7 +101,7 @@ public interface UserService {
      * For example, to update user options:
      *
      * ```http
-     * PUT /ovirt-engine/api/users/123
+     * PUT /ovirt-engine/api/users/123 HTTP/1.1
      * ```
      *
      * With a request body like this:

@@ -118,7 +118,7 @@ public interface Host extends Identified {
      * For example:
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123
+     * GET /ovirt-engine/api/hosts/123 HTTP/1.1
      * ```
      *
      * This `GET` request will return the following output:
@@ -169,7 +169,7 @@ public interface Host extends Identified {
      * For example, to enable KSM for host `123`, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/hosts/123
+     * PUT /ovirt-engine/api/hosts/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -195,7 +195,7 @@ public interface Host extends Identified {
      * For example, to enable transparent huge page support for host `123`, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/hosts/123
+     * PUT /ovirt-engine/api/hosts/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -257,7 +257,7 @@ public interface Host extends Identified {
      * about the current CPU pinning.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/cpuunits
+     * GET /ovirt-engine/api/hosts/123/cpuunits HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:
@@ -503,7 +503,7 @@ public interface Host extends Identified {
      * Lists all the Katello errata assigned to the host.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123/katelloerrata
+     * GET /ovirt-engine/api/hosts/123/katelloerrata HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

@@ -42,7 +42,7 @@ public interface QuotaService {
      * An example of retrieving a quota:
      *
      * ```http
-     * GET /ovirt-engine/api/datacenters/123/quotas/456
+     * GET /ovirt-engine/api/datacenters/123/quotas/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -70,7 +70,7 @@ public interface QuotaService {
      * An example of updating a quota:
      *
      * ```http
-     * PUT /ovirt-engine/api/datacenters/123/quotas/456
+     * PUT /ovirt-engine/api/datacenters/123/quotas/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -111,8 +111,7 @@ public interface QuotaService {
      * An example of deleting a quota:
      *
      * ```http
-     * DELETE /ovirt-engine/api/datacenters/123-456/quotas/654-321
-     * -0472718ab224 HTTP/1.1
+     * DELETE /ovirt-engine/api/datacenters/123-456/quotas/654-321-0472718ab224 HTTP/1.1
      * Accept: application/xml
      * Content-type: application/xml
      * ```

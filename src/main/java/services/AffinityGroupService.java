@@ -111,7 +111,7 @@ public interface AffinityGroupService {
      * Remove the affinity group.
      *
      * ```http
-     * DELETE /ovirt-engine/api/clusters/000-000/affinitygroups/123-456
+     * DELETE /ovirt-engine/api/clusters/000-000/affinitygroups/123-456 HTTP/1.1
      * ```
      *
      * @author Martin Sivak <msivak@redhat.com>

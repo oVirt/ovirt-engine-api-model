@@ -49,7 +49,7 @@ public interface AssignedTagsService {
      * For example to assign tag `mytag` to virtual machine with the id `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/tags
+     * POST /ovirt-engine/api/vms/123/tags HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -85,7 +85,7 @@ public interface AssignedTagsService {
      * For example to list all the tags of the virtual machine with id `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/tags
+     * GET /ovirt-engine/api/vms/123/tags HTTP/1.1
      * ```
      *
      * ```xml

@@ -50,7 +50,7 @@ public interface StorageDomainVmService {
      * For example, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/storagedomains/123/vms/456/import
+     * POST /ovirt-engine/api/storagedomains/123/vms/456/import HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -240,7 +240,7 @@ public interface StorageDomainVmService {
      * For example, to delete the virtual machine `456` from the storage domain `123`, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/storagedomains/123/vms/456
+     * DELETE /ovirt-engine/api/storagedomains/123/vms/456 HTTP/1.1
      * ```
      *
      * @author Liron Aravot <laravot@redhat.com>

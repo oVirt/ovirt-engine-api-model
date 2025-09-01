@@ -51,7 +51,7 @@ public interface OpenstackVolumeProvidersService {
      * For example:
      *
      * ```http
-     * POST /ovirt-engine/api/openstackvolumeproviders
+     * POST /ovirt-engine/api/openstackvolumeproviders HTTP/1.1
      * ```
      *
      * With a request body like this:

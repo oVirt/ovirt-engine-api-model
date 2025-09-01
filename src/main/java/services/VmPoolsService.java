@@ -50,7 +50,7 @@ public interface VmPoolsService {
      * `id` or `name` nested attributes:
      *
      * ```http
-     * POST /ovirt-engine/api/vmpools
+     * POST /ovirt-engine/api/vmpools HTTP/1.1
      * ```
      *
      * With the following body:
@@ -106,7 +106,7 @@ public interface VmPoolsService {
          * like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vmpools?seal=true
+         * POST /ovirt-engine/api/vmpools?seal=true HTTP/1.1
          * ```
          *
          * With the following body:
@@ -132,7 +132,7 @@ public interface VmPoolsService {
      * Get a list of available virtual machines pools.
      *
      * ```http
-     * GET /ovirt-engine/api/vmpools
+     * GET /ovirt-engine/api/vmpools HTTP/1.1
      * ```
      *
      * You will receive the following response:

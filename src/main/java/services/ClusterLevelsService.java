@@ -41,7 +41,7 @@ public interface ClusterLevelsService {
      * Lists the cluster levels supported by the system.
      *
      * ```http
-     * GET /ovirt-engine/api/clusterlevels
+     * GET /ovirt-engine/api/clusterlevels HTTP/1.1
      * ```
      *
      * This will return a list of available cluster levels.

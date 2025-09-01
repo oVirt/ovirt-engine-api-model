@@ -42,7 +42,7 @@ public interface ExternalTemplateImport {
      * Example:
      *
      * ```http
-     * ova:///mnt/ova/ova_file.ova
+     * ova:///mnt/ova/ova_file.ova HTTP/1.1
      * ```
      *
      *

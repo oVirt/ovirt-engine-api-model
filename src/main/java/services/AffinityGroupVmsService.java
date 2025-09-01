@@ -50,7 +50,7 @@ public interface AffinityGroupVmsService {
      * this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vms
+     * POST /ovirt-engine/api/clusters/123/affinitygroups/456/vms HTTP/1.1
      * ```
      *
      * With the following body:

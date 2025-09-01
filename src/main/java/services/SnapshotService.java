@@ -55,7 +55,7 @@ public interface SnapshotService {
          * with id `123` send a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true
+         * GET /ovirt-engine/api/vms/123/snapshots/456?all_content=true HTTP/1.1
          * ```
          *
          * @author Ondra Machacek <omachace@redhat.com>
@@ -73,7 +73,7 @@ public interface SnapshotService {
      * request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/snapshots/456/restore
+     * POST /ovirt-engine/api/vms/123/snapshots/456/restore HTTP/1.1
      * ```
      *
      * With an empty `action` in the body:
@@ -104,7 +104,7 @@ public interface SnapshotService {
          * a disk with identifier `111` and `image_id` of `222`, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms/123/snapshots/456/restore
+         * POST /ovirt-engine/api/vms/123/snapshots/456/restore HTTP/1.1
          * ```
          *
          * Request body:

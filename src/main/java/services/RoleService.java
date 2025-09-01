@@ -34,7 +34,7 @@ public interface RoleService {
      * Get the role.
      *
      * ```http
-     * GET /ovirt-engine/api/roles/123
+     * GET /ovirt-engine/api/roles/123 HTTP/1.1
      * ```
      *
      * You will receive XML response like this one:
@@ -70,7 +70,7 @@ public interface RoleService {
      * To remove the role you need to know its id, then send request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/roles/{role_id}
+     * DELETE /ovirt-engine/api/roles/{role_id} HTTP/1.1
      * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>
@@ -93,7 +93,7 @@ public interface RoleService {
      * For example to update role's `name`, `description` and `administrative` attributes send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/roles/123
+     * PUT /ovirt-engine/api/roles/123 HTTP/1.1
      * ```
      *
      * With a request body like this:

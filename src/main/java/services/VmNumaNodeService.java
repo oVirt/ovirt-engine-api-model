@@ -45,7 +45,7 @@ public interface VmNumaNodeService {
      * An example of pinning a virtual NUMA node to a physical NUMA node on the host:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/numanodes/456
+     * PUT /ovirt-engine/api/vms/123/numanodes/456 HTTP/1.1
      * ```
      *
      * The request body should contain the following:
@@ -88,7 +88,7 @@ public interface VmNumaNodeService {
      * An example of removing a virtual NUMA node:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/numanodes/456
+     * DELETE /ovirt-engine/api/vms/123/numanodes/456 HTTP/1.1
      * ```
      *
      * NOTE: It's required to remove the numa nodes from the highest index

@@ -46,7 +46,7 @@ public interface AssignedTagService {
      * with id `123` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/tags/456
+     * GET /ovirt-engine/api/vms/123/tags/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -78,7 +78,7 @@ public interface AssignedTagService {
      * For example to unassign the tag with id `456` from virtual machine with id `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/tags/456
+     * DELETE /ovirt-engine/api/vms/123/tags/456 HTTP/1.1
      * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>

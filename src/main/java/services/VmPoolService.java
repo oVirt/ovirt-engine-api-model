@@ -46,7 +46,7 @@ public interface VmPoolService {
      * This operation allocates a virtual machine in the virtual machine pool.
      *
      * ```http
-     * POST /ovirt-engine/api/vmpools/123/allocatevm
+     * POST /ovirt-engine/api/vmpools/123/allocatevm HTTP/1.1
      * ```
      *
      * The allocate virtual machine action does not take any action specific parameters, so the request body should
@@ -71,7 +71,7 @@ public interface VmPoolService {
      * Get the virtual machine pool.
      *
      * ```http
-     * GET /ovirt-engine/api/vmpools/123
+     * GET /ovirt-engine/api/vmpools/123 HTTP/1.1
      * ```
      *
      * You will get a XML response like that one:
@@ -119,7 +119,7 @@ public interface VmPoolService {
      * Update the virtual machine pool.
      *
      * ```http
-     * PUT /ovirt-engine/api/vmpools/123
+     * PUT /ovirt-engine/api/vmpools/123 HTTP/1.1
      * ```
      *
      * The `name`, `description`, `size`, `prestarted_vms` and `max_user_vms`
@@ -182,7 +182,7 @@ public interface VmPoolService {
          * send a request like this:
          *
          * ```http
-         * PUT /ovirt-engine/api/vmpools/123?seal=true
+         * PUT /ovirt-engine/api/vmpools/123?seal=true HTTP/1.1
          * ```
          *
          * With the following body:
@@ -207,7 +207,7 @@ public interface VmPoolService {
      * Removes a virtual machine pool.
      *
      * ```http
-     * DELETE /ovirt-engine/api/vmpools/123
+     * DELETE /ovirt-engine/api/vmpools/123 HTTP/1.1
      * ```
      *
      * @author Arik Hadas <ahadas@redhat.com>

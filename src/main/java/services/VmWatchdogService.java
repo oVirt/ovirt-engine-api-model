@@ -80,7 +80,7 @@ public interface VmWatchdogService {
      * For example, to update a watchdog, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/vms/123/watchdogs
+     * PUT /ovirt-engine/api/vms/123/watchdogs HTTP/1.1
      * ```
      *
      * ```xml
@@ -134,7 +134,7 @@ public interface VmWatchdogService {
      * For example, to remove a watchdog from a virtual machine, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000
+     * DELETE /ovirt-engine/api/vms/123/watchdogs/00000000-0000-0000-0000-000000000000 HTTP/1.1
      * ```
      *
      * @author Milan Zamazal <mzamazal@redhat.com>

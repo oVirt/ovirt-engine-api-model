@@ -62,7 +62,7 @@ public interface DisksService {
      * with an id `123` and enabled for incremental backup, send a request as follows:
      *
      * ```http
-     * POST /ovirt-engine/api/disks
+     * POST /ovirt-engine/api/disks HTTP/1.1
      * ```
      *
      * With a request body as follows:
@@ -94,7 +94,7 @@ public interface DisksService {
      * send a request as follows:
      *
      * ```http
-     * POST /ovirt-engine/api/disks
+     * POST /ovirt-engine/api/disks HTTP/1.1
      * ```
      *
      * With a request body as follows:
@@ -152,7 +152,7 @@ public interface DisksService {
      * with the `qemu-img info` command shown above, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/disks
+     * POST /ovirt-engine/api/disks HTTP/1.1
      * ```
      *
      * With a request body as follows:
@@ -246,7 +246,7 @@ public interface DisksService {
      * Get list of disks.
      *
      * ```http
-     * GET /ovirt-engine/api/disks
+     * GET /ovirt-engine/api/disks HTTP/1.1
      * ```
      *
      * You will get a XML response which will look like this one:

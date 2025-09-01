@@ -42,7 +42,7 @@ public interface VmNumaNodesService {
      * An example of creating a NUMA node:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/c7ecd2dc/numanodes
+     * POST /ovirt-engine/api/vms/c7ecd2dc/numanodes HTTP/1.1
      * Accept: application/xml
      * Content-type: application/xml
      * ```

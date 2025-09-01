@@ -32,7 +32,7 @@ public interface EventSubscriptionsService {
      * sent to the e-mail address: `a@b.com`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/users/123/eventsubscriptions
+     * POST /ovirt-engine/api/users/123/eventsubscriptions HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -83,7 +83,7 @@ public interface EventSubscriptionsService {
      * For example to list event-subscriptions for user `123`:
      *
      * ```http
-     * GET /ovirt-engine/api/users/123/event-subscriptions
+     * GET /ovirt-engine/api/users/123/event-subscriptions HTTP/1.1
      * ```
      *
      * ```xml

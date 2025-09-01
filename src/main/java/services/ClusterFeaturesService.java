@@ -41,7 +41,7 @@ public interface ClusterFeaturesService {
      * Lists the cluster features supported by the cluster level.
      *
      * ```http
-     * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures
+     * GET /ovirt-engine/api/clusterlevels/4.1/clusterfeatures HTTP/1.1
      * ```
      *
      * This will return a list of cluster features supported by the cluster level:

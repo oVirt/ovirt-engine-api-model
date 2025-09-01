@@ -41,7 +41,7 @@ public interface NetworkLabelService {
      * For example, to remove the label `exemplary` from a logical network having id `123` send the following request:
      *
      * ```http
-     * DELETE /ovirt-engine/api/networks/123/networklabels/exemplary
+     * DELETE /ovirt-engine/api/networks/123/networklabels/exemplary HTTP/1.1
      * ```
      *
      * @author Martin Mucha <mmucha@redhat.com>

@@ -42,7 +42,7 @@ public interface ExternalProviderCertificateService {
      * Get specific certificate.
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/certificate/0
+     * GET /ovirt-engine/api/externalhostproviders/123/certificate/0 HTTP/1.1
      * ```
      *
      * And here is sample response:

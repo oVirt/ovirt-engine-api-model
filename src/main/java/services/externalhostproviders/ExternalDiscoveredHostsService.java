@@ -46,7 +46,7 @@ public interface ExternalDiscoveredHostsService {
      * To list all discovered hosts for provider `123` send the following:
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/discoveredhost
+     * GET /ovirt-engine/api/externalhostproviders/123/discoveredhost HTTP/1.1
      * ```
      *
      * ```xml

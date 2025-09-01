@@ -46,7 +46,7 @@ public interface VmWatchdogsService {
      * For example, to add a watchdog to a virtual machine, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/watchdogs
+     * POST /ovirt-engine/api/vms/123/watchdogs HTTP/1.1
      * ```
      *
      * ```xml

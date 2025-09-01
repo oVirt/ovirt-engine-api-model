@@ -45,7 +45,7 @@ public interface StorageServerConnectionService {
      * For example, to change the address of an NFS storage server, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/storageconnections/123
+     * PUT /ovirt-engine/api/storageconnections/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -59,7 +59,7 @@ public interface StorageServerConnectionService {
      * To change the connection of an iSCSI storage server, send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/storageconnections/123
+     * PUT /ovirt-engine/api/storageconnections/123 HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -204,7 +204,7 @@ public interface StorageServerConnectionService {
          * send a request like this:
          *
          * ```http
-         * DELETE /ovirt-engine/api/storageconnections/123?host=456
+         * DELETE /ovirt-engine/api/storageconnections/123?host=456 HTTP/1.1
          * ```
          *
          * @author Daniel Erez <derez@redhat.com>

@@ -42,7 +42,7 @@ public interface IconsService {
      * Get a list of icons.
      *
      * ```http
-     * GET /ovirt-engine/api/icons
+     * GET /ovirt-engine/api/icons HTTP/1.1
      * ```
      *
      * You will get a XML response which is similar to this one:

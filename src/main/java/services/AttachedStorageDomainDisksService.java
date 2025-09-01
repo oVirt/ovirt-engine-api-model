@@ -69,7 +69,7 @@ public interface AttachedStorageDomainDisksService {
          * the disk with id `456` send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/storagedomains/123/disks?unregistered=true
+         * POST /ovirt-engine/api/storagedomains/123/disks?unregistered=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -83,7 +83,7 @@ public interface AttachedStorageDomainDisksService {
          * _copy on write_ disk of 1 GiB, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/storagedomains/123/disks
+         * POST /ovirt-engine/api/storagedomains/123/disks HTTP/1.1
          * ```
          *
          * With a request body like this:

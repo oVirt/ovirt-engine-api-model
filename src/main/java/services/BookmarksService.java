@@ -47,7 +47,7 @@ public interface BookmarksService {
      * Example of adding a bookmark:
      *
      * ```http
-     * POST /ovirt-engine/api/bookmarks
+     * POST /ovirt-engine/api/bookmarks HTTP/1.1
      * ```
      *
      * ```xml
@@ -83,7 +83,7 @@ public interface BookmarksService {
      * Example of listing bookmarks:
      *
      * ```http
-     * GET /ovirt-engine/api/bookmarks
+     * GET /ovirt-engine/api/bookmarks HTTP/1.1
      * ```
      *
      * ```xml

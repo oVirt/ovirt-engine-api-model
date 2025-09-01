@@ -255,7 +255,7 @@ public interface Disk extends Device {
      * of the xref:types/disk_attachment[DiskAttachment] type. For example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/diskattachments
+     * POST /ovirt-engine/api/vms/123/diskattachments HTTP/1.1
      * ```
      *
      * ```xml
@@ -350,7 +350,7 @@ public interface Disk extends Device {
      * follow the included link:
      *
      * ```http
-     * GET /ovirt-engine/api/disks/123/statistics
+     * GET /ovirt-engine/api/disks/123/statistics HTTP/1.1
      * ```
      *
      * @author Shmuel Melamud <smelamud@redhat.com>

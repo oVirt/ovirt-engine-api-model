@@ -49,7 +49,7 @@ public interface JobsService {
      * For example, to add a job with the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/jobs
+     * POST /ovirt-engine/api/jobs HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -105,7 +105,7 @@ public interface JobsService {
      * Retrieves the representation of the jobs.
      *
      * ```http
-     * GET /ovirt-engine/api/jobs
+     * GET /ovirt-engine/api/jobs HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

@@ -99,7 +99,7 @@ public interface VmGraphicsConsolesService {
          * `address` and `port` attributes, send a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123/graphicsconsoles?current=true
+         * GET /ovirt-engine/api/vms/123/graphicsconsoles?current=true HTTP/1.1
          * ```
          *
          * The default value is `false`.

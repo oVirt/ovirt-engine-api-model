@@ -202,7 +202,7 @@ public interface VmsService {
          * independent of the template. For example, to create an independent virtual machine, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/vms?clone=true
+         * POST /ovirt-engine/vms?clone=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -232,7 +232,7 @@ public interface VmsService {
          * create a virtual machine from the `mytemplate` template copying its permissions, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms?clone_permissions=true
+         * POST /ovirt-engine/api/vms?clone_permissions=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -282,7 +282,7 @@ public interface VmsService {
          * An example for a request:
          *
          * ```http
-         * POST /ovirt-engine/api/vms?auto_pinning_policy=existing/adjust
+         * POST /ovirt-engine/api/vms?auto_pinning_policy=existing/adjust HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -326,7 +326,7 @@ public interface VmsService {
          * like this:
          *
          * ```http
-         * POST /ovirt-engine/api/vms?seal=true
+         * POST /ovirt-engine/api/vms?seal=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -532,7 +532,7 @@ public interface VmsService {
          * For example, to retrieve the complete representation of the virtual machines send a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms?all_content=true
+         * GET /ovirt-engine/api/vms?all_content=true HTTP/1.1
          * ```
          *
          * NOTE: The reason for not including these attributes is performance: they are seldom used and they require
@@ -553,7 +553,7 @@ public interface VmsService {
          * For example:
          *
          * ```http
-         * GET /vms?all_content=true&ovf_as_ova=true
+         * GET /vms?all_content=true&ovf_as_ova=true HTTP/1.1
          * ```
          *
          * @author Liran Rotenberg <lrotenbe@redhat.com>

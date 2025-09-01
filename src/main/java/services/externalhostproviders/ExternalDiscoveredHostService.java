@@ -46,7 +46,7 @@ public interface ExternalDiscoveredHostService {
      * For example, to get the details of host `234` from provider `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/externalhostproviders/123/discoveredhosts/234
+     * GET /ovirt-engine/api/externalhostproviders/123/discoveredhosts/234 HTTP/1.1
      * ```
      *
      * The result will be like this:

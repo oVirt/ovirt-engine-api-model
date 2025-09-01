@@ -54,7 +54,7 @@ public interface VmApplicationsService {
          * For example, a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/vms/123/applications/
+         * GET /ovirt-engine/api/vms/123/applications/ HTTP/1.1
          * ```
          *
          * May return a list like this:

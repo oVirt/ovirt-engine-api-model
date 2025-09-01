@@ -50,7 +50,7 @@ public interface StepService extends MeasurableService {
      * following request:
      *
      * ```http
-     * POST /ovirt-engine/api/jobs/123/steps/456/end
+     * POST /ovirt-engine/api/jobs/123/steps/456/end HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -104,7 +104,7 @@ public interface StepService extends MeasurableService {
      * Retrieves a step.
      *
      * ```http
-     * GET /ovirt-engine/api/jobs/123/steps/456
+     * GET /ovirt-engine/api/jobs/123/steps/456 HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

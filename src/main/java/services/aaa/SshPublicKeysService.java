@@ -50,7 +50,7 @@ public interface SshPublicKeysService {
      * send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/users/123/sshpublickeys
+     * GET /ovirt-engine/api/users/123/sshpublickeys HTTP/1.1
      * ```
      *
      * The result will be the following XML document:

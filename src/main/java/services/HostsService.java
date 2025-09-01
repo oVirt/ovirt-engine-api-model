@@ -52,7 +52,7 @@ public interface HostsService {
      * For example, to add a host, send the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts
+     * POST /ovirt-engine/api/hosts HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -74,7 +74,7 @@ public interface HostsService {
      * To add a hosted engine host, use the optional `deploy_hosted_engine` parameter:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true
+     * POST /ovirt-engine/api/hosts?deploy_hosted_engine=true HTTP/1.1
      * ```
      *
      * If the cluster has a default external network provider that is supported for automatic deployment,
@@ -84,7 +84,7 @@ public interface HostsService {
      * network provider when adding hosts, by sending the following request:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts
+     * POST /ovirt-engine/api/hosts HTTP/1.1
      * ```
      *
      * With a request body that contains a reference to the desired provider in the
@@ -212,7 +212,7 @@ public interface HostsService {
      * For example, to list the hosts send the following request:
      *
      * ```http
-     * GET /ovirt-engine/api/hosts
+     * GET /ovirt-engine/api/hosts HTTP/1.1
      * ```
      *
      * The response body will be similar to this:
@@ -272,7 +272,7 @@ public interface HostsService {
          * For example, to retrieve the complete representation of the hosts:
          *
          * ```http
-         * GET /ovirt-engine/api/hosts?all_content=true
+         * GET /ovirt-engine/api/hosts?all_content=true HTTP/1.1
          * ```
          *
          * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
@@ -294,7 +294,7 @@ public interface HostsService {
          * the virtual machine with ID 456 can be migrated to, send the following request:
          *
          * ```http
-         * GET /ovirt-engine/api/hosts?migration_target_of=123,456
+         * GET /ovirt-engine/api/hosts?migration_target_of=123,456 HTTP/1.1
          * ```
          *
          * @author Tomas Jelinek <tjelinek@redhat.com>
@@ -317,7 +317,7 @@ public interface HostsService {
          * The default value is `false`.
          *
          * ```http
-         * GET /ovirt-engine/api/hosts?migration_target_of=123,456&check_vms_in_affinity_closure=true
+         * GET /ovirt-engine/api/hosts?migration_target_of=123,456&check_vms_in_affinity_closure=true HTTP/1.1
          * ```
          *
          * @author Andrej Krejcir <akrejcir@redhat.com>

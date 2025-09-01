@@ -49,7 +49,7 @@ public interface DataCentersService {
      * named `mydc` that uses shared storage (NFS, iSCSI or fibre channel) send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/datacenters
+     * POST /ovirt-engine/api/datacenters HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -93,7 +93,7 @@ public interface DataCentersService {
      * The following request retrieves a representation of the data centers:
      *
      * ```http
-     * GET /ovirt-engine/api/datacenters
+     * GET /ovirt-engine/api/datacenters HTTP/1.1
      * ```
      *
      * The above request performed with `curl`:

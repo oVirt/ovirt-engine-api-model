@@ -43,7 +43,7 @@ public interface DomainUserService {
      * Usage:
      *
      * ```http
-     * GET /ovirt-engine/api/domains/5678/users/1234
+     * GET /ovirt-engine/api/domains/5678/users/1234 HTTP/1.1
      * ```
      *
      * Will return the domain user information:

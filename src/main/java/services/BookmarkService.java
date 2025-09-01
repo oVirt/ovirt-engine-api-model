@@ -44,7 +44,7 @@ public interface BookmarkService {
      * An example for getting a bookmark:
      *
      * ```http
-     * GET /ovirt-engine/api/bookmarks/123
+     * GET /ovirt-engine/api/bookmarks/123 HTTP/1.1
      * ```
      *
      * ```xml
@@ -75,7 +75,7 @@ public interface BookmarkService {
      * An example for updating a bookmark:
      *
      * ```http
-     * PUT /ovirt-engine/api/bookmarks/123
+     * PUT /ovirt-engine/api/bookmarks/123 HTTP/1.1
      * ```
      *
      * With the request body:
@@ -113,7 +113,7 @@ public interface BookmarkService {
      * An example for removing a bookmark:
      *
      * ```http
-     * DELETE /ovirt-engine/api/bookmarks/123
+     * DELETE /ovirt-engine/api/bookmarks/123 HTTP/1.1
      * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>

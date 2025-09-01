@@ -185,7 +185,7 @@ public interface HostService extends MeasurableService {
      * For example, to commit the network configuration of host with id `123` send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/commitnetconfig
+     * POST /ovirt-engine/api/hosts/123/commitnetconfig HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -338,7 +338,7 @@ public interface HostService extends MeasurableService {
      * To manually set a host as the storage pool manager (SPM).
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/forceselectspm
+     * POST /ovirt-engine/api/hosts/123/forceselectspm HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -367,7 +367,7 @@ public interface HostService extends MeasurableService {
      * Gets the host details.
      *
      * ```http
-     * GET /ovirt-engine/api/hosts/123
+     * GET /ovirt-engine/api/hosts/123 HTTP/1.1
      * ```
      *
      * @author Oved Ourfali <oourfali@redhat.com>
@@ -406,7 +406,7 @@ public interface HostService extends MeasurableService {
          * For example, to retrieve the complete representation of host '123':
          *
          * ```http
-         * GET /ovirt-engine/api/hosts/123?all_content=true
+         * GET /ovirt-engine/api/hosts/123?all_content=true HTTP/1.1
          * ```
          *
          * NOTE: These attributes are not included by default because retrieving them impacts performance. They are
@@ -624,7 +624,7 @@ public interface HostService extends MeasurableService {
      * from host `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/iscsidiscover
+     * POST /ovirt-engine/api/hosts/123/iscsidiscover HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -689,7 +689,7 @@ public interface HostService extends MeasurableService {
      * from host `123`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/discoveriscsi
+     * POST /ovirt-engine/api/hosts/123/discoveriscsi HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -836,7 +836,7 @@ public interface HostService extends MeasurableService {
      * For example, to update a the kernel command line of a host send a request like this:
      *
      * ```http
-     * PUT /ovirt-engine/api/hosts/123
+     * PUT /ovirt-engine/api/hosts/123 HTTP/1.1
      * ```
      *
      * With request body like this:
@@ -1322,7 +1322,7 @@ public interface HostService extends MeasurableService {
      * To synchronize all networks on the host, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/syncallnetworks
+     * POST /ovirt-engine/api/hosts/123/syncallnetworks HTTP/1.1
      * ```
      *
      * With a request body like this:
@@ -1359,7 +1359,7 @@ public interface HostService extends MeasurableService {
      * To copy networks from another host, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/hosts/123/copyhostnetworks
+     * POST /ovirt-engine/api/hosts/123/copyhostnetworks HTTP/1.1
      * ```
      *
      * With a request body like this:

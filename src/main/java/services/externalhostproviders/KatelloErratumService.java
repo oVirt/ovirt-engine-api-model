@@ -42,7 +42,7 @@ public interface KatelloErratumService {
      * Retrieves a Katello erratum.
      *
      * ```http
-     * GET /ovirt-engine/api/katelloerrata/123
+     * GET /ovirt-engine/api/katelloerrata/123 HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

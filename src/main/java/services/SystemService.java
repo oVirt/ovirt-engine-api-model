@@ -46,7 +46,7 @@ public interface SystemService {
      * number of relevant objects.
      *
      * ```http
-     * GET /ovirt-engine/api
+     * GET /ovirt-engine/api HTTP/1.1
      * ```
      *
      * We get following response:

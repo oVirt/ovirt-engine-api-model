@@ -19,7 +19,7 @@ public interface UserOptionsService {
      * Example request(for user with identifier `123`):
      *
      * ```http
-     * POST /ovirt-engine/api/users/123/options
+     * POST /ovirt-engine/api/users/123/options HTTP/1.1
      * ```
      *
      * Payload:
@@ -52,7 +52,7 @@ public interface UserOptionsService {
      * Example request(for user with identifier `123`):
      *
      * ```http
-     * GET /ovirt-engine/api/users/123/options
+     * GET /ovirt-engine/api/users/123/options HTTP/1.1
      * ```
      *
      * The result will be the following XML document:

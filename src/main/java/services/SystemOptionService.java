@@ -42,7 +42,7 @@ public interface SystemOptionService {
      * For example to retrieve the values of configuration option `MigrationPolicies` send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/options/MigrationPolicies
+     * GET /ovirt-engine/api/options/MigrationPolicies HTTP/1.1
      * ```
      *
      * The response to that request will be the following:
@@ -118,7 +118,7 @@ public interface SystemOptionService {
          * a request like this:
          *
          * ```http
-         * GET /ovirt-engine/api/options/MigrationPolicies?version=4.2
+         * GET /ovirt-engine/api/options/MigrationPolicies?version=4.2 HTTP/1.1
          * ```
          *
          * The response to that request will be like this:

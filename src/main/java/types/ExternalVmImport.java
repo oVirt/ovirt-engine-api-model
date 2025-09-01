@@ -53,7 +53,7 @@ public interface ExternalVmImport {
      * Example:
      *
      * ```http
-     * vpx://wmware_user@vcenter-host/DataCenter/Cluster/esxi-host?no_verify=1
+     * vpx://wmware_user@vcenter-host/DataCenter/Cluster/esxi-host?no_verify=1 HTTP/1.1
      * ```
      *
      * More examples can be found at http://libguestfs.org/virt-v2v.1.html.

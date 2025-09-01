@@ -46,7 +46,7 @@ public interface PermitService {
      * send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/roles/123/permits/456
+     * GET /ovirt-engine/api/roles/123/permits/456 HTTP/1.1
      * ```
      *
      * ```xml
@@ -78,7 +78,7 @@ public interface PermitService {
      * For example to remove the permit with id `456` from the role with id `123` send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/roles/123/permits/456
+     * DELETE /ovirt-engine/api/roles/123/permits/456 HTTP/1.1
      * ```
      *
      * @author Ondra Machacek <omachace@redhat.com>

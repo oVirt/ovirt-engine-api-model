@@ -51,7 +51,7 @@ public interface EventsService {
      * log sending a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/events
+     * POST /ovirt-engine/api/events HTTP/1.1
      * ```
      * 
      * ```xml
@@ -67,7 +67,7 @@ public interface EventsService {
      * virtual machine where it happened, using the `vm` link:
      *
      * ```http
-     * POST /ovirt-engine/api/events
+     * POST /ovirt-engine/api/events HTTP/1.1
      * ```
      * 
      * ```xml
@@ -114,7 +114,7 @@ public interface EventsService {
      * Get list of events.
      *
      * ```http
-     * GET /ovirt-engine/api/events
+     * GET /ovirt-engine/api/events HTTP/1.1
      * ```
      *
      * To the above request we get following response:
@@ -157,7 +157,7 @@ public interface EventsService {
      * highest value. This, combined with the `max` parameter, simplifies obtaining the most recent event:
      *
      * ```http
-     * GET /ovirt-engine/api/events?max=1
+     * GET /ovirt-engine/api/events?max=1 HTTP/1.1
      * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>
@@ -174,7 +174,7 @@ public interface EventsService {
          * with indexes greater than `123`:
          *
          * ```http
-         * GET /ovirt-engine/api/events?from=123
+         * GET /ovirt-engine/api/events?from=123 HTTP/1.1
          * ```
          *
          * This parameter is optional, and if not specified then the first event returned will be most recently
@@ -197,7 +197,7 @@ public interface EventsService {
          * We can search by providing specific severity.
          *
          * ```http
-         * GET /ovirt-engine/api/events?search=severity%3Dnormal
+         * GET /ovirt-engine/api/events?search=severity%3Dnormal HTTP/1.1
          * ```
          *
          * To the above request we get a list of events which severity is equal to `normal`:
@@ -241,13 +241,13 @@ public interface EventsService {
          * Below example paginates event resources. The URL-encoded request is:
          *
          * ```http
-         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%201
+         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%201 HTTP/1.1
          * ```
          *
          * Increase the page value to view the next page of results.
          *
          * ```http
-         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%202
+         * GET /ovirt-engine/api/events?search=sortby%20time%20asc%20page%202 HTTP/1.1
          * ```
          *
          * @author Piotr Kliczewski <pkliczew@redhat.com>

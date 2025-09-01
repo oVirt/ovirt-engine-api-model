@@ -45,7 +45,7 @@ public interface ClusterNetworksService {
      * Post a request like in the example below to assign the network to a cluster:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/123/networks
+     * POST /ovirt-engine/api/clusters/123/networks HTTP/1.1
      * ```
      *
      * Use the following example in its body:

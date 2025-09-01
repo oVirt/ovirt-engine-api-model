@@ -225,7 +225,7 @@ public interface ImageTransfer extends Identified {
      *
      * Example: Downloading a single snapshot:
      *
-     * ```http
+     * ```xml
      * <image_transfer>
      *   <snapshot id="2fb24fa2-a5db-446b-b733-4654661cd56d"/>
      *   <direction>download</direction>

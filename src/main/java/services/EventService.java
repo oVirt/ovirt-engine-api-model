@@ -44,7 +44,7 @@ public interface EventService {
      * An example of getting an event:
      *
      * ```http
-     * GET /ovirt-engine/api/events/123
+     * GET /ovirt-engine/api/events/123 HTTP/1.1
      * ```
      *
      * ```xml
@@ -81,7 +81,7 @@ public interface EventService {
      * An event can be removed by sending following request
      *
      * ```http
-     * DELETE /ovirt-engine/api/events/123
+     * DELETE /ovirt-engine/api/events/123 HTTP/1.1
      * ```
      *
      * @author Piotr Kliczewski <pkliczew@redhat.com>

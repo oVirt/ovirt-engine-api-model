@@ -49,7 +49,7 @@ public interface GlusterBrickService extends MeasurableService {
      * For example, to get the details of brick `234` of gluster volume `123`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/234
+     * GET /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/234 HTTP/1.1
      * ```
      *
      * Which will return a response body like this:
@@ -106,7 +106,7 @@ public interface GlusterBrickService extends MeasurableService {
      * For example, to delete brick `234` from gluster volume `123`, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/234
+     * DELETE /ovirt-engine/api/clusters/567/glustervolumes/123/glusterbricks/234 HTTP/1.1
      * ```
      *
      * @author Sahina Bose <sabose@redhat.com>

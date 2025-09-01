@@ -96,7 +96,7 @@ when requesting XML. For example, if you send a request like this to
 retrieve the XML representation of a virtual machine:
 
 ```http
-GET /ovirt-engine/api/vms/123
+GET /ovirt-engine/api/vms/123 HTTP/1.1
 Accept: application/xml
 ```
 
@@ -117,7 +117,7 @@ example, if you send a request like this to retrieve the JSON
 representation of a virtual machine:
 
 ```http
-GET /ovirt-engine/api/vms/123
+GET /ovirt-engine/api/vms/123 HTTP/1.1
 Accept: application/json
 ```
 

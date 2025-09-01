@@ -49,7 +49,7 @@ public interface VmHostDevicesService {
      * Example:
      *
      * ```http
-     * POST /ovirt-engine/api/vms/123/hostdevices
+     * POST /ovirt-engine/api/vms/123/hostdevices HTTP/1.1
      * ```
      *
      * With request body of type xref:types/host_device[HostDevice], for example

@@ -77,7 +77,7 @@ public interface HostStorage extends Identified {
    * For example (Kaminario backend):
    *
    * ```http
-   * POST /ovirt-engine/api/storagedomains/
+   * POST /ovirt-engine/api/storagedomains/ HTTP/1.1
    * ```
    *
    * ```xml
@@ -130,7 +130,7 @@ public interface HostStorage extends Identified {
      * For example, the following XML encrypts and saves a username, password and SAN IP address:
      *
      * ```http
-     * POST /ovirt-engine/api/storagedomains/
+     * POST /ovirt-engine/api/storagedomains/ HTTP/1.1
      * ```
      *
      * ```xml

@@ -319,7 +319,7 @@ public interface Vm extends VmBase {
      * Lists all the Katello errata assigned to the virtual machine.
      *
      * ```http
-     * GET /ovirt-engine/api/vms/123/katelloerrata
+     * GET /ovirt-engine/api/vms/123/katelloerrata HTTP/1.1
      * ```
      *
      * You will receive response in XML like this one:

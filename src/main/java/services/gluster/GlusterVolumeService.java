@@ -52,7 +52,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to get details of a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * GET /ovirt-engine/api/clusters/456/glustervolumes/123
+     * GET /ovirt-engine/api/clusters/456/glustervolumes/123 HTTP/1.1
      * ```
      *
      * This GET request will return the following output:
@@ -109,7 +109,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/getprofilestatistics
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/getprofilestatistics HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -138,7 +138,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to rebalance a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/rebalance
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/rebalance HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -184,7 +184,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to remove a volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * DELETE /ovirt-engine/api/clusters/456/glustervolumes/123
+     * DELETE /ovirt-engine/api/clusters/456/glustervolumes/123 HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -205,7 +205,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetalloptions
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetalloptions HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -226,7 +226,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetoption
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/resetoption HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -271,7 +271,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/setoption
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/setoption HTTP/1.1
      * ```
      *
      * With the following request body:
@@ -314,7 +314,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/start
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/start HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -348,7 +348,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to start profiling a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/startprofile
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/startprofile HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -370,7 +370,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to stop a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stop
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stop HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -396,7 +396,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * For example, to stop profiling a gluster volume with identifier `123` in cluster `456`, send a request like this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stopprofile
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stopprofile HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>
@@ -417,7 +417,7 @@ public interface GlusterVolumeService extends MeasurableService {
      * this:
      *
      * ```http
-     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stoprebalance
+     * POST /ovirt-engine/api/clusters/456/glustervolumes/123/stoprebalance HTTP/1.1
      * ```
      *
      * @author Ramesh Nachimuthu <rnachimu@redhat.com>

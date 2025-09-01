@@ -71,7 +71,7 @@ public interface StorageDomainDisksService {
          * the disk with ID `456` send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/storagedomains/123/disks?unregistered=true
+         * POST /ovirt-engine/api/storagedomains/123/disks?unregistered=true HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -85,7 +85,7 @@ public interface StorageDomainDisksService {
          * _copy on write_ disk of 1 GiB, send a request like this:
          *
          * ```http
-         * POST /ovirt-engine/api/storagedomains/123/disks
+         * POST /ovirt-engine/api/storagedomains/123/disks HTTP/1.1
          * ```
          *
          * With a request body like this:
@@ -149,7 +149,7 @@ public interface StorageDomainDisksService {
          * For example, to get a list of unregistered disks the REST API call should look like this:
          *
          * ```http
-         * GET /ovirt-engine/api/storagedomains/123/disks?unregistered=true
+         * GET /ovirt-engine/api/storagedomains/123/disks?unregistered=true HTTP/1.1
          * ```
          *
          * The default value of the unregistered flag is `false`.
