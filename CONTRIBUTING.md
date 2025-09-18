@@ -332,7 +332,8 @@ $ mvn clean install -Pgenerate-adoc-html
 
 ## Releasing
 
-The project is released to Maven Central using the central-publishing-maven-plugin.
+The project is released to Maven Central using the Central Publishing Maven
+Plugin.
 
 To perform a release you will need to do the following actions, most of
 them automated by the Maven release plugin:
@@ -359,7 +360,7 @@ the remote repository, so you need to do it manually, first the patches:
 $ git push origin HEAD:refs/for/master
 ```
 
-This will send the patches for review to [gerrit](https://gerrit.ovirt.org).
+This will send the patches for review to [Github](https://github.com/oVirt).
 Go there, review and merge them. Once the patches are merged the tag can
 be pushed:
 
@@ -369,10 +370,9 @@ $ git push origin 4.0.5
 
 ### Perform the release
 
-This is also automated using the Maven release plugin. But in this case
-it is necessary to sign the artifacts, as both Sonatype OSSRH and Maven
-Central require signed artifacts. To sign artifacts the `sign` profile
-needs to be activated:
+This is also automated using the Maven release plugin. But in this case it is
+necessary to sign the artifacts, as Maven Central requires signed artifacts.
+To sign artifacts the `sign` profile needs to be activated:
 
 ```sh
 $ mvn deploy -Psign
@@ -391,8 +391,8 @@ The rest of the process is manual, using the Maven Central web interface
 available [here](https://central.sonatype.com/). Log in with your user name and
 password and select the __View Deployments__ option under your account . 
 There you should see a list of deployments. 
-After all checks are complete you should have the option to 
-__Publish__ the deployment.
+After all checks are complete you should have the option to __Publish__ the
+deployment.
 
 ## Branding
 
@@ -431,5 +431,5 @@ package \
 
 ## Feedback/questions/issues
 
-If you have any question, issue, or feedback please
-contact mailto:juan.hernandez@redhat.com[Juan Hernández].
+If you have any other questions or suggestions, you can join and contact us on
+the [oVirt Users forum / mailing list](https://lists.ovirt.org/hyperkitty/list/users@ovirt.org/).
