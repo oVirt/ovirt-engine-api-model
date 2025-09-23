@@ -35,9 +35,14 @@ public interface InstanceTypeGraphicsConsoleService {
     /**
      * Gets graphics console configuration of the instance type.
      *
+     * ```http
+     * GET /ovirt-engine/api/instancetypes/123/graphicsconsoles HTTP/1.1
+     * ```
+     *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 31 Oct 2016
-     * @status added
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 18 March 2025
+     * @status updated_by_docs
      */
     interface Get extends Follow {
         /**

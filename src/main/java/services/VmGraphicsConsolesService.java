@@ -38,9 +38,27 @@ public interface VmGraphicsConsolesService {
     /**
      * Add new graphics console to the virtual machine.
      *
+     * For example, to add a new graphics console to the virtual machine `123` send a request as follows:
+     *
+     * ```http
+     * POST /ovirt-engine/api/vms/123/graphicsconsoles HTTP/1.1
+     * ```
+     *
+     * With a request body as follows:
+     *
+     * ```xml
+     * <graphics_console> <protocol>type</protocol> </graphics_console>
+     * ```
+     *
+     * Where `type` can be spice or vnc.
+     *
+     * IMPORTANT: Currently there is no check if the protocol is supported by the operating system the engine is running on.
+     * 
+     *
      * @author Ondra Machacek <omachace@redhat.com>
-     * @date 31 Oct 2016
-     * @status added
+     * @author Jasper Berton <jasper.berton@team.blue>
+     * @date 18 Apr 2025
+     * @status updated_by_docs
      */
     interface Add {
         @InputDetail
