@@ -368,6 +368,7 @@ public interface VmsService {
             optional(vm().display().monitors());
             optional(vm().display().smartcardEnabled());
             optional(vm().display().type());
+            optional(vm().display().videoType());
             optional(vm().domain().name());
             optional(vm().highAvailability().enabled());
             optional(vm().highAvailability().priority());
