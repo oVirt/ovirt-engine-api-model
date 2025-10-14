@@ -64,6 +64,12 @@ unzip %{SOURCE1} -d %{buildroot}/%{_docdir}/%{name}
 %{_docdir}/%{name}
 
 %changelog
+* Tue Oct 14 2025 Jean-Louis Dupond <jean-louis@dupond.be> 4.6.1-1
+- Bump metamodel to 1.3.11
+- Add VideoType under display
+- Drop CentOS 8
+- Introduce CentOS 10
+
 * Thu Nov 24 2022 Martin Perina <mperina@redhat.com> 4.6.0-1
 - Add loongarch64 architecture type
 
