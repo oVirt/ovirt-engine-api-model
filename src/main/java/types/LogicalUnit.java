@@ -80,4 +80,14 @@ public interface LogicalUnit {
      */
     @Deprecated
     Boolean discardZeroesData();
+
+    /**
+     * The NVMe Qualified Name (NQN) of the NVMe-oF target subsystem.
+     *
+     * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+     * @date 05 Jun 2026
+     * @status added
+     * @since 4.6
+     */
+    String nqn();
 }
