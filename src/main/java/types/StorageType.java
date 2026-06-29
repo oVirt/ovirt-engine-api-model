@@ -118,5 +118,15 @@ public enum StorageType {
      * @status updated_by_docs
 
      */
-    MANAGED_BLOCK_STORAGE;
+    MANAGED_BLOCK_STORAGE,
+
+    /**
+     * NVMe over Fabrics (NVMe-oF) storage domain using TCP transport.
+     *
+     * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+     * @date 05 Jun 2026
+     * @status added
+     * @since 4.6
+     */
+    NVMEOF;
 }
