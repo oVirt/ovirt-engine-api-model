@@ -13,11 +13,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - name: almalinux-9
+            shortcut: el9
+            container-name: almalinux9
+          - name: almalinux-10
+            shortcut: el10
+            container-name: almalinux10
           - name: centos-stream-9
-            shortcut: cs9
+            shortcut: el9s
             container-name: el9stream
           - name: centos-stream-10
-            shortcut: cs10
+            shortcut: el10s
             container-name: el10stream
 
     name: ${{ matrix.name }}
@@ -54,13 +60,41 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          directory: ${{ env.ARTIFACTS_DIR }}
+          name: rpm-${{ matrix.shortcut }}
+          path: ${{ env.ARTIFACTS_DIR }}
 
       - name: Upload generated documentation artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: generated-documentation-${{ matrix.shortcut }}
           path: target/html/*
+
+  publish-rpms:
+    needs: build
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shortcut: [el9, el10, el9s, el10s]
+
+    steps:
+      - name: Download RPM artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: rpm-${{ matrix.shortcut }}
+          path: exported-artifacts
+
+      - name: Upload to resources.ovirt.org
+        uses: ovirt/ovirt-resources-upload-action@main
+        with:
+          username: ${{ secrets.RESOURCES_OVIRT_ORG_USERNAME }}
+          key: ${{ secrets.RESOURCES_OVIRT_ORG_KEY }}
+          known_hosts: ${{ secrets.RESOURCES_OVIRT_ORG_KNOWN_HOSTS }}
+          source: exported-artifacts/*.rpm
+          target: /pub/ovirt-master-snapshot/rpm/${{ matrix.shortcut }}/${{ github.event.repository.name }}
+          createrepo: yes
 
   publish-snapshot:
     needs: build
@@ -116,7 +150,7 @@ jobs:
       - name: Download generated documentation artifacts
         uses: actions/download-artifact@v8
         with:
-          name: generated-documentation-cs9
+          name: generated-documentation-el9s
           path: target
 
       - name: Install package dependencies
