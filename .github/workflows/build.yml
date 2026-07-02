@@ -36,7 +36,7 @@ jobs:
         run: git config --global --add safe.directory $(pwd)
 
       - name: Use cache for maven
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -52,7 +52,7 @@ jobs:
           .automation/build-rpm.sh $ARTIFACTS_DIR
 
       - name: Upload artifacts
-        uses: ovirt/upload-rpms-action@main
+        uses: actions/upload-artifact@v7
         with:
           directory: ${{ env.ARTIFACTS_DIR }}
 
@@ -72,13 +72,13 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Mark git repo as safe
         run: git config --global --add safe.directory $(pwd)
 
       - name: Use cache for maven
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -111,10 +111,10 @@ jobs:
       image: quay.io/centos/centos:stream9
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Download generated documentation artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: generated-documentation-cs9
           path: target
@@ -133,7 +133,7 @@ jobs:
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
       - name: Checkout to gh-pages branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: gh-pages
