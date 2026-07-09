@@ -234,6 +234,17 @@ public interface Host extends Identified {
     String rootPassword();
 
     /**
+     * The NVMe host NQN used by this host for NVMe-oF initiator connections.
+     * This value is generated from `/etc/nvme/hostnqn` during host deployment.
+     *
+     * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+     * @date 05 Jun 2026
+     * @status added
+     * @since 4.6
+     */
+    String nvmeHostNqn();
+
+    /**
      * The SSH definitions.
      *
      * @author Oved Ourfali <oourfali@redhat.com>

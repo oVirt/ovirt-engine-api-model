@@ -1,6 +1,9 @@
 *.class
 *.iml
 .idea/
+.classpath
+.project
+.settings/
 .bash_history
 .vscode/
 exported-artifacts/
