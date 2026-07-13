@@ -1,7 +1,10 @@
+---
 name: build
+
 on:
   push:
     branches: [master]
+    tags: ['*']
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -40,6 +43,23 @@ jobs:
 
       - name: Mark git repo as safe
         run: git config --global --add safe.directory $(pwd)
+
+      - name: Set build environment
+        run: |
+          TAG=$(git tag --points-at HEAD | head -1)
+          if [[ -n "$TAG" ]]; then
+            if [[ "$TAG" =~ ^([0-9]+\.[0-9]+\.[0-9]+)-([0-9]+)$ ]]; then
+              echo "RPM_VERSION=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+              echo "PACKAGE_RPM_RELEASE=${BASH_REMATCH[2]}" >> $GITHUB_ENV
+            elif [[ "$TAG" =~ ^([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+              echo "RPM_VERSION=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+              echo "PACKAGE_RPM_RELEASE=1" >> $GITHUB_ENV
+            else
+              echo "PACKAGE_RPM_RELEASE=1" >> $GITHUB_ENV
+            fi
+          else
+            echo "RELEASE_SUFFIX=.$(date --utc +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          fi
 
       - name: Use cache for maven
         uses: actions/cache@v6
