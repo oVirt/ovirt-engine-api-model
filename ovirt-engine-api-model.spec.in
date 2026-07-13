@@ -1,6 +1,6 @@
 Name:		ovirt-engine-api-model
 Version:	@VERSION@
-Release:	@RELEASE@%{?dist}
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
 Summary:	Model management tools for the oVirt Engine API.
 Group:		%{ovirt_product_group}
 License:	ASL 2.0
