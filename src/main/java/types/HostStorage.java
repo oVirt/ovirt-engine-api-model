@@ -190,6 +190,59 @@ public interface HostStorage extends Identified {
      */
     Property[] driverSensitiveOptions();
 
+  // NVMe-oF fields:
+  /**
+   * The NVMe Qualified Name (NQN) of the NVMe-oF target subsystem.
+   *
+   * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+   * @date 05 Jun 2026
+   * @status added
+   * @since 4.6
+   */
+  String nqn();
+
+  /**
+   * The transport protocol for the NVMe-oF connection.
+   * Valid values are `tcp`, `rdma`, and `fc`. Defaults to `tcp`.
+   *
+   * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+   * @date 05 Jun 2026
+   * @status added
+   * @since 4.6
+   */
+  String transport();
+
+  /**
+   * The NVMe-oF transport service identifier, typically the TCP port.
+   * Defaults to `4420`.
+   *
+   * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+   * @date 05 Jun 2026
+   * @status added
+   * @since 4.6
+   */
+  String trsvcid();
+
+  /**
+   * The host NQN used by the initiator for NVMe-oF discovery and connection.
+   *
+   * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+   * @date 05 Jun 2026
+   * @status added
+   * @since 4.6
+   */
+  String hostNqn();
+
+  /**
+   * The DH-HMAC-CHAP key for NVMe-oF in-band authentication.
+   *
+   * @author Thibaut Démaret <thibaut.demaret@worteks.com>
+   * @date 05 Jun 2026
+   * @status added
+   * @since 4.6
+   */
+  String dhchapKey();
+
 
   // Link to the host:
   @Link Host host();
