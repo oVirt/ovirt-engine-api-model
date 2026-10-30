@@ -198,6 +198,14 @@ public enum NotifiableEvent {
      */
     VM_STATUS_RESTORED,
     /**
+     * VM set to unknown status
+     *
+     * @author Seongrak Kim <ywr0823@gmail.com>
+     * @date 30 Oct 2026
+     * @status added
+     */
+    VM_SET_TO_UNKNOWN_STATUS,
+    /**
      * Highly-Available VM restart failed
      */
     HA_VM_RESTART_FAILED,
